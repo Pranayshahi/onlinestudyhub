@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { getAllClasses } from '../data/curriculum';
+import SEO from '../components/SEO';
 
 const FEATURES = [
   { icon: '📖', title: 'Topic-by-topic learning', desc: 'Every concept broken down into clear, focused topics with definitions and detailed explanations.', color: '#eef2ff', iconBg: '#4f46e5' },
@@ -24,6 +25,25 @@ export default function HomePage() {
 
   return (
     <div>
+      <SEO
+        title="Best Online Tuition for Class 6-12, JEE & NEET in India"
+        description="OnlineStudyHub offers expert online tuition for Class 6 to 12, JEE and NEET. Find verified teachers, study topic-wise notes, and book 1-on-1 sessions. CBSE curriculum."
+        path="/"
+        schema={{
+          '@context': 'https://schema.org',
+          '@type': 'ItemList',
+          name: 'Classes Available',
+          itemListElement: [
+            { '@type': 'ListItem', position: 1, name: 'Class 6', url: 'https://onlinestudyhub.vercel.app/class/class-6' },
+            { '@type': 'ListItem', position: 2, name: 'Class 7', url: 'https://onlinestudyhub.vercel.app/class/class-7' },
+            { '@type': 'ListItem', position: 3, name: 'Class 8', url: 'https://onlinestudyhub.vercel.app/class/class-8' },
+            { '@type': 'ListItem', position: 4, name: 'Class 9', url: 'https://onlinestudyhub.vercel.app/class/class-9' },
+            { '@type': 'ListItem', position: 5, name: 'Class 10', url: 'https://onlinestudyhub.vercel.app/class/class-10' },
+            { '@type': 'ListItem', position: 6, name: 'JEE', url: 'https://onlinestudyhub.vercel.app/class/jee' },
+            { '@type': 'ListItem', position: 7, name: 'NEET', url: 'https://onlinestudyhub.vercel.app/class/neet' },
+          ],
+        }}
+      />
       {/* Hero */}
       <section className="hero">
         <div className="container hero-content">

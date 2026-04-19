@@ -3,6 +3,7 @@ import { useParams, Link } from 'react-router-dom';
 import { getClass, getSubjectColor, SUBJECT_META } from '../data/curriculum';
 import { TEACHERS } from '../data/teachers';
 import Breadcrumb from '../components/Breadcrumb';
+import SEO from '../components/SEO';
 
 function StarRating({ rating }) {
   return (
@@ -204,8 +205,22 @@ export default function ClassPage({ user, onOpenLogin }) {
     }
   };
 
+  const topicCount = Object.keys(classData.subjects).reduce((acc, sid) => acc + classData.subjects[sid].topics.length, 0);
+
   return (
     <div>
+      <SEO
+        title={`${classData.label} Online Tuition — CBSE Subjects & Topics`}
+        description={`Study ${classData.label} online with expert teachers. ${topicCount} topics covering ${Object.keys(classData.subjects).map(s => SUBJECT_META[s]?.label || s).join(', ')}. CBSE curriculum with Q&A.`}
+        path={`/class/${classId}`}
+        schema={{
+          '@context': 'https://schema.org',
+          '@type': 'Course',
+          name: `${classData.label} — CBSE`,
+          description: classData.description,
+          provider: { '@type': 'Organization', name: 'OnlineStudyHub', url: 'https://onlinestudyhub.vercel.app' },
+        }}
+      />
       {/* Teacher modal */}
       {showTeacher && (
         <TeacherModal

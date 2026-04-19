@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Routes, Route } from 'react-router-dom';
+import { HelmetProvider } from 'react-helmet-async';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import AIDoubtPanel from './components/AIDoubtPanel';
@@ -43,6 +44,7 @@ export default function App() {
   };
 
   return (
+    <HelmetProvider>
     <div className="app">
       <Navbar
         onOpenAI={() => setAiOpen(true)}
@@ -68,5 +70,6 @@ export default function App() {
       <AIDoubtPanel open={aiOpen} onClose={() => setAiOpen(false)} />
       <LoginModal open={loginOpen} onClose={() => setLoginOpen(false)} onLogin={handleLogin} />
     </div>
+    </HelmetProvider>
   );
 }

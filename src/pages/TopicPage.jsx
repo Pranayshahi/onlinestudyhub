@@ -5,6 +5,7 @@ import { TEACHERS } from '../data/teachers';
 import Breadcrumb from '../components/Breadcrumb';
 import FlashcardModal from '../components/FlashcardModal';
 import { useProgress } from '../hooks/useProgress';
+import SEO from '../components/SEO';
 
 // ── Accordion item ──────────────────────────────────────────────
 function AccordionItem({ number, question, answer, subjectColor, isOpen, onToggle }) {
@@ -151,6 +152,29 @@ export default function TopicPage({ user, onOpenLogin }) {
 
   return (
     <div>
+      <SEO
+        title={`${topic.title} — ${meta.label} ${classData.label} CBSE`}
+        description={`${topic.definition?.slice(0, 140)} Study ${topic.title} for ${classData.label} ${meta.label} with topic notes, subtopics (${topic.subtopics}), and exam Q&A.`}
+        path={`/class/${classId}/subject/${subjectId}/topic/${topicId}`}
+        schema={{
+          '@context': 'https://schema.org',
+          '@type': 'LearningResource',
+          name: topic.title,
+          description: topic.definition,
+          educationalLevel: classData.label,
+          about: { '@type': 'Thing', name: meta.label },
+          provider: { '@type': 'Organization', name: 'OnlineStudyHub', url: 'https://onlinestudyhub.vercel.app' },
+          breadcrumb: {
+            '@type': 'BreadcrumbList',
+            itemListElement: [
+              { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://onlinestudyhub.vercel.app' },
+              { '@type': 'ListItem', position: 2, name: classData.label, item: `https://onlinestudyhub.vercel.app/class/${classId}` },
+              { '@type': 'ListItem', position: 3, name: meta.label, item: `https://onlinestudyhub.vercel.app/class/${classId}/subject/${subjectId}` },
+              { '@type': 'ListItem', position: 4, name: topic.title },
+            ],
+          },
+        }}
+      />
       {/* ── Topic Hero Banner ── */}
       <div className={`${subjectColor}`} style={{
         background: 'linear-gradient(135deg, var(--sc) 0%, color-mix(in srgb, var(--sc) 65%, #000) 100%)',
