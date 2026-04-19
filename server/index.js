@@ -7,9 +7,6 @@ require('dotenv').config({ path: require('path').join(__dirname, '.env') });
 const connectDB = require('./db');
 const { Student, Teacher, Booking } = require('./models');
 
-// Connect to MongoDB
-connectDB();
-
 const app = express();
 const PORT = process.env.PORT || 5001;
 const JWT_SECRET = process.env.JWT_SECRET || 'dev_secret_change_in_prod';
@@ -26,6 +23,16 @@ app.use(cors({
   credentials: true,
 }));
 app.use(express.json({ limit: '5mb' }));
+
+// Ensure DB is connected before every request (safe for serverless)
+app.use(async (req, res, next) => {
+  try {
+    await connectDB();
+    next();
+  } catch {
+    res.status(503).json({ error: 'Database unavailable. Check MONGODB_URI and Atlas network access.' });
+  }
+});
 
 // ── JWT middleware ──────────────────────────────────────────────
 function requireAuth(req, res, next) {
@@ -267,15 +274,10 @@ app.post('/api/bookings', async (req, res) => {
 // ── Health check ────────────────────────────────────────────────
 app.get('/api/health', (req, res) => {
   const mongoose = require('mongoose');
-  const err = connectDB.getConnectionError();
-  if (err) {
-    return res.json({ status: 'error', db: 'disconnected', reason: err });
-  }
-  if (mongoose.connection.readyState === 1 || mongoose.connection.readyState === 2) {
-    res.json({ status: 'ok', db: 'connected' });
-  } else {
-    res.json({ status: 'ok', db: 'disconnected', reason: 'unknown' });
-  }
+  const state = mongoose.connection.readyState;
+  // 0=disconnected 1=connected 2=connecting 3=disconnecting
+  const connected = state === 1;
+  res.json({ status: 'ok', db: connected ? 'connected' : 'disconnected' });
 });
 
 // ── Helper ──────────────────────────────────────────────────────

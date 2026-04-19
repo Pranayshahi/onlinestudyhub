@@ -65,7 +65,8 @@ async function apiCall(path, method = 'GET', body = null, token = null) {
   });
   const contentType = res.headers.get('content-type') || '';
   if (!contentType.includes('application/json')) {
-    throw new Error('Backend server is not running. Start it with: npm run server');
+    const text = await res.text();
+    throw new Error(`Vercel returned a non-JSON error: ${res.status} ${res.statusText}. Code snippet: ${text.substring(0, 60)}...`);
   }
   const data = await res.json();
   if (!res.ok) throw new Error(data.error || 'Request failed');
