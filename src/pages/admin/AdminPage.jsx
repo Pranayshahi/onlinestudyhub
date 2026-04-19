@@ -58,19 +58,24 @@ function resizeImage(file, maxSize = 400) {
 async function apiCall(path, method = 'GET', body = null, token = null) {
   const headers = { 'Content-Type': 'application/json' };
   if (token) headers['Authorization'] = `Bearer ${token}`;
+  
   const res = await fetch(`/api${path}`, {
     method,
     headers,
     body: body ? JSON.stringify(body) : null,
   });
+
   const contentType = res.headers.get('content-type') || '';
-  if (!contentType.includes('application/json')) {
+  if (contentType.includes('application/json')) {
+    const data = await res.json();
+    if (!res.ok) {
+      throw new Error(data.message || data.error || `Request failed with status ${res.status}`);
+    }
+    return data;
+  } else {
     const text = await res.text();
-    throw new Error(`Vercel returned a non-JSON error: ${res.status} ${res.statusText}. Code snippet: ${text.substring(0, 60)}...`);
+    throw new Error(`Server returned a non-JSON error (${res.status}): ${text.substring(0, 100)}...`);
   }
-  const data = await res.json();
-  if (!res.ok) throw new Error(data.error || 'Request failed');
-  return data;
 }
 
 // ─── Components ──────────────────────────────────────────────────

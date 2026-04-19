@@ -48,19 +48,18 @@ function requireAuth(req, res, next) {
 
 // ── Auth: Register ──────────────────────────────────────────────
 app.post('/api/auth/register', async (req, res) => {
-  const {
-    email, password, name, avatar, profile_pic, subject, class_ids,
-    experience, qualification, fee, bio, topics, contact, available,
-  } = req.body;
-
-  if (!email || !password || !name || !subject || !class_ids || !qualification) {
-    return res.status(400).json({ error: 'Required fields missing' });
-  }
-  if (password.length < 6) {
-    return res.status(400).json({ error: 'Password must be at least 6 characters' });
-  }
-
   try {
+    const {
+      email, password, name, avatar, profile_pic, subject, class_ids,
+      experience, qualification, fee, bio, topics, contact, available,
+    } = req.body || {};
+
+    if (!email || !password || !name || !subject || !class_ids || !qualification) {
+      return res.status(400).json({ error: 'Required fields missing' });
+    }
+    if (password.length < 6) {
+      return res.status(400).json({ error: 'Password must be at least 6 characters' });
+    }
     const existing = await Teacher.findOne({ email });
     if (existing) {
       return res.status(409).json({ error: 'Email already registered' });
@@ -84,7 +83,7 @@ app.post('/api/auth/register', async (req, res) => {
       available: available !== false,
     });
 
-    const token = jwt.sign({ id: teacher._id, email }, JWT_SECRET, { expiresIn: '30d' });
+    const token = jwt.sign({ id: teacher._id.toString(), email }, JWT_SECRET, { expiresIn: '30d' });
     res.status(201).json({ token, id: teacher._id });
   } catch (err) {
     console.error('Register error:', err);
@@ -94,17 +93,17 @@ app.post('/api/auth/register', async (req, res) => {
 
 // ── Auth: Teacher Login ──────────────────────────────────────────
 app.post('/api/auth/login', async (req, res) => {
-  const { email, password } = req.body;
-  if (!email || !password) return res.status(400).json({ error: 'Email and password required' });
-
   try {
+    const { email, password } = req.body || {};
+    if (!email || !password) return res.status(400).json({ error: 'Email and password required' });
+
     const teacher = await Teacher.findOne({ email });
     if (!teacher) return res.status(401).json({ error: 'Invalid credentials' });
 
     const valid = await bcrypt.compare(password, teacher.password_hash);
     if (!valid) return res.status(401).json({ error: 'Invalid credentials' });
 
-    const token = jwt.sign({ id: teacher._id, email: teacher.email, role: 'teacher' }, JWT_SECRET, { expiresIn: '30d' });
+    const token = jwt.sign({ id: teacher._id.toString(), email: teacher.email, role: 'teacher' }, JWT_SECRET, { expiresIn: '30d' });
     res.json({ token, id: teacher._id, email: teacher.email, name: teacher.name, role: 'teacher' });
   } catch (err) {
     console.error('Login error:', err);
@@ -114,17 +113,16 @@ app.post('/api/auth/login', async (req, res) => {
 
 // ── Auth: Student Registration ──────────────────────────────────
 app.post('/api/auth/student/register', async (req, res) => {
-  const { email, password, name } = req.body;
-  if (!email || !password || !name) return res.status(400).json({ error: 'All fields required' });
-
   try {
+    const { email, password, name } = req.body || {};
+    if (!email || !password || !name) return res.status(400).json({ error: 'All fields required' });
     const existing = await Student.findOne({ email });
     if (existing) return res.status(409).json({ error: 'Email already registered' });
 
     const hash = await bcrypt.hash(password, 10);
     const student = await Student.create({ email, password_hash: hash, name });
 
-    const token = jwt.sign({ id: student._id, email, role: 'student' }, JWT_SECRET, { expiresIn: '30d' });
+    const token = jwt.sign({ id: student._id.toString(), email, role: 'student' }, JWT_SECRET, { expiresIn: '30d' });
     res.status(201).json({ token, id: student._id, email, name, role: 'student' });
   } catch (err) {
     console.error('Student Register error:', err);
@@ -134,17 +132,17 @@ app.post('/api/auth/student/register', async (req, res) => {
 
 // ── Auth: Student Login ─────────────────────────────────────────
 app.post('/api/auth/student/login', async (req, res) => {
-  const { email, password } = req.body;
-  if (!email || !password) return res.status(400).json({ error: 'Email and password required' });
-
   try {
+    const { email, password } = req.body || {};
+    if (!email || !password) return res.status(400).json({ error: 'Email and password required' });
+
     const student = await Student.findOne({ email });
     if (!student) return res.status(401).json({ error: 'Invalid credentials' });
 
     const valid = await bcrypt.compare(password, student.password_hash);
     if (!valid) return res.status(401).json({ error: 'Invalid credentials' });
 
-    const token = jwt.sign({ id: student._id, email: student.email, role: 'student' }, JWT_SECRET, { expiresIn: '30d' });
+    const token = jwt.sign({ id: student._id.toString(), email: student.email, role: 'student' }, JWT_SECRET, { expiresIn: '30d' });
     res.json({ token, id: student._id, email: student.email, name: student.name, role: 'student' });
   } catch (err) {
     console.error('Student Login error:', err);
@@ -198,12 +196,11 @@ app.get('/api/teachers/me', requireAuth, async (req, res) => {
 
 // ── Teachers: Update own profile (protected) ───────────────────
 app.put('/api/teachers/me', requireAuth, async (req, res) => {
-  const {
-    name, avatar, profile_pic, subject, class_ids, experience, qualification,
-    fee, bio, topics, contact, available,
-  } = req.body;
-
   try {
+    const {
+      name, avatar, profile_pic, subject, class_ids, experience, qualification,
+      fee, bio, topics, contact, available,
+    } = req.body || {};
     const teacher = await Teacher.findByIdAndUpdate(
       req.teacher.id,
       {
@@ -250,13 +247,12 @@ app.delete('/api/teachers/me', requireAuth, async (req, res) => {
 
 // ── Bookings: Create (public) ──────────────────────────────────
 app.post('/api/bookings', async (req, res) => {
-  const { studentEmail, teacherId, classId, subjectId, topicId } = req.body;
-
-  if (!studentEmail || !teacherId || !classId || !subjectId) {
-    return res.status(400).json({ error: 'Missing required booking information' });
-  }
-
   try {
+    const { studentEmail, teacherId, classId, subjectId, topicId } = req.body || {};
+
+    if (!studentEmail || !teacherId || !classId || !subjectId) {
+      return res.status(400).json({ error: 'Missing required booking information' });
+    }
     const booking = await Booking.create({
       student_email: studentEmail,
       teacher_id: teacherId,
@@ -290,6 +286,16 @@ function formatTeacher(t) {
     rating: parseFloat(t.rating) || 4.5,
   };
 }
+
+// ── Error Handler ──────────────────────────────────────────────
+app.use((err, req, res, next) => {
+  console.error('Unhandled error:', err);
+  res.status(500).json({ 
+    error: 'Internal Server Error',
+    message: err.message,
+    stack: process.env.NODE_ENV === 'production' ? null : err.stack
+  });
+});
 
 if (require.main === module) {
   app.listen(PORT, () => console.log(`Server running on http://localhost:${PORT}`));
