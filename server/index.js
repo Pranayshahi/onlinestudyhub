@@ -4,7 +4,12 @@ const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 require('dotenv').config({ path: require('path').join(__dirname, '.env') });
 
-const pool = require('./db');
+const connectDB = require('./db');
+const { Student, Teacher, Booking } = require('./models');
+
+// Connect to MongoDB
+connectDB();
+
 const app = express();
 const PORT = process.env.PORT || 5001;
 const JWT_SECRET = process.env.JWT_SECRET || 'dev_secret_change_in_prod';
@@ -40,34 +45,31 @@ app.post('/api/auth/register', async (req, res) => {
   }
 
   try {
-    const [existing] = await pool.query('SELECT id FROM teachers WHERE email = ?', [email]);
-    if (existing.length > 0) {
+    const existing = await Teacher.findOne({ email });
+    if (existing) {
       return res.status(409).json({ error: 'Email already registered' });
     }
 
     const hash = await bcrypt.hash(password, 10);
-    const [result] = await pool.query(
-      `INSERT INTO teachers
-        (email, password_hash, name, avatar, profile_pic, subject, class_ids, experience, qualification, fee, bio, topics, contact, available)
-       VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
-      [
-        email, hash, name,
-        avatar || '👨‍🏫',
-        profile_pic || null,
-        subject,
-        Array.isArray(class_ids) ? class_ids.join(',') : class_ids,
-        parseInt(experience) || 1,
-        qualification,
-        parseInt(fee) || 500,
-        bio || '',
-        Array.isArray(topics) ? topics.join(',') : (topics || ''),
-        contact || '',
-        available !== false ? 1 : 0,
-      ]
-    );
+    const teacher = await Teacher.create({
+      email,
+      password_hash: hash,
+      name,
+      avatar: avatar || '👨‍🏫',
+      profile_pic: profile_pic || null,
+      subject,
+      class_ids: Array.isArray(class_ids) ? class_ids.join(',') : class_ids,
+      experience: parseInt(experience) || 1,
+      qualification,
+      fee: parseInt(fee) || 500,
+      bio: bio || '',
+      topics: Array.isArray(topics) ? topics.join(',') : (topics || ''),
+      contact: contact || '',
+      available: available !== false,
+    });
 
-    const token = jwt.sign({ id: result.insertId, email }, JWT_SECRET, { expiresIn: '30d' });
-    res.status(201).json({ token, id: result.insertId });
+    const token = jwt.sign({ id: teacher._id, email }, JWT_SECRET, { expiresIn: '30d' });
+    res.status(201).json({ token, id: teacher._id });
   } catch (err) {
     console.error('Register error:', err);
     res.status(500).json({ error: 'Server error' });
@@ -80,15 +82,14 @@ app.post('/api/auth/login', async (req, res) => {
   if (!email || !password) return res.status(400).json({ error: 'Email and password required' });
 
   try {
-    const [rows] = await pool.query('SELECT * FROM teachers WHERE email = ?', [email]);
-    if (rows.length === 0) return res.status(401).json({ error: 'Invalid credentials' });
+    const teacher = await Teacher.findOne({ email });
+    if (!teacher) return res.status(401).json({ error: 'Invalid credentials' });
 
-    const teacher = rows[0];
     const valid = await bcrypt.compare(password, teacher.password_hash);
     if (!valid) return res.status(401).json({ error: 'Invalid credentials' });
 
-    const token = jwt.sign({ id: teacher.id, email: teacher.email, role: 'teacher' }, JWT_SECRET, { expiresIn: '30d' });
-    res.json({ token, id: teacher.id, email: teacher.email, name: teacher.name, role: 'teacher' });
+    const token = jwt.sign({ id: teacher._id, email: teacher.email, role: 'teacher' }, JWT_SECRET, { expiresIn: '30d' });
+    res.json({ token, id: teacher._id, email: teacher.email, name: teacher.name, role: 'teacher' });
   } catch (err) {
     console.error('Login error:', err);
     res.status(500).json({ error: 'Server error' });
@@ -101,17 +102,14 @@ app.post('/api/auth/student/register', async (req, res) => {
   if (!email || !password || !name) return res.status(400).json({ error: 'All fields required' });
 
   try {
-    const [existing] = await pool.query('SELECT id FROM students WHERE email = ?', [email]);
-    if (existing.length > 0) return res.status(409).json({ error: 'Email already registered' });
+    const existing = await Student.findOne({ email });
+    if (existing) return res.status(409).json({ error: 'Email already registered' });
 
     const hash = await bcrypt.hash(password, 10);
-    const [result] = await pool.query(
-      'INSERT INTO students (email, password_hash, name) VALUES (?, ?, ?)',
-      [email, hash, name]
-    );
+    const student = await Student.create({ email, password_hash: hash, name });
 
-    const token = jwt.sign({ id: result.insertId, email, role: 'student' }, JWT_SECRET, { expiresIn: '30d' });
-    res.status(201).json({ token, id: result.insertId, email, name, role: 'student' });
+    const token = jwt.sign({ id: student._id, email, role: 'student' }, JWT_SECRET, { expiresIn: '30d' });
+    res.status(201).json({ token, id: student._id, email, name, role: 'student' });
   } catch (err) {
     console.error('Student Register error:', err);
     res.status(500).json({ error: 'Server error' });
@@ -124,15 +122,14 @@ app.post('/api/auth/student/login', async (req, res) => {
   if (!email || !password) return res.status(400).json({ error: 'Email and password required' });
 
   try {
-    const [rows] = await pool.query('SELECT * FROM students WHERE email = ?', [email]);
-    if (rows.length === 0) return res.status(401).json({ error: 'Invalid credentials' });
+    const student = await Student.findOne({ email });
+    if (!student) return res.status(401).json({ error: 'Invalid credentials' });
 
-    const student = rows[0];
     const valid = await bcrypt.compare(password, student.password_hash);
     if (!valid) return res.status(401).json({ error: 'Invalid credentials' });
 
-    const token = jwt.sign({ id: student.id, email: student.email, role: 'student' }, JWT_SECRET, { expiresIn: '30d' });
-    res.json({ token, id: student.id, email: student.email, name: student.name, role: 'student' });
+    const token = jwt.sign({ id: student._id, email: student.email, role: 'student' }, JWT_SECRET, { expiresIn: '30d' });
+    res.json({ token, id: student._id, email: student.email, name: student.name, role: 'student' });
   } catch (err) {
     console.error('Student Login error:', err);
     res.status(500).json({ error: 'Server error' });
@@ -143,19 +140,21 @@ app.post('/api/auth/student/login', async (req, res) => {
 app.get('/api/teachers', async (req, res) => {
   try {
     const { classId } = req.query;
-    let sql = 'SELECT id, name, avatar, profile_pic, subject, class_ids, experience, qualification, rating, students, fee, bio, topics, contact, available FROM teachers';
-    const params = [];
-
+    let query = { available: true };
     if (classId) {
-      sql += ' WHERE FIND_IN_SET(?, class_ids) > 0 AND available = 1';
-      params.push(classId);
-    } else {
-      sql += ' WHERE available = 1';
+      query.class_ids = new RegExp(classId);
     }
-    sql += ' ORDER BY rating DESC, students DESC';
-
-    const [rows] = await pool.query(sql, params);
-    res.json(rows.map(formatTeacher));
+    
+    const teachers = await Teacher.find(query)
+      .select('-password_hash -createdAt -updatedAt -__v')
+      .sort({ rating: -1, students_count: -1 })
+      .lean();
+      
+    res.json(teachers.map(t => ({
+      ...t,
+      id: t._id.toString(),
+      students: t.students_count || 0
+    })).map(formatTeacher));
   } catch (err) {
     console.error('Get teachers error:', err);
     res.status(500).json({ error: 'Server error' });
@@ -165,12 +164,16 @@ app.get('/api/teachers', async (req, res) => {
 // ── Teachers: Get own profile (protected) ──────────────────────
 app.get('/api/teachers/me', requireAuth, async (req, res) => {
   try {
-    const [rows] = await pool.query(
-      'SELECT id, email, name, avatar, profile_pic, subject, class_ids, experience, qualification, rating, students, fee, bio, topics, contact, available FROM teachers WHERE id = ?',
-      [req.teacher.id]
-    );
-    if (rows.length === 0) return res.status(404).json({ error: 'Not found' });
-    res.json(formatTeacher(rows[0]));
+    const teacher = await Teacher.findById(req.teacher.id).select('-password_hash -createdAt -updatedAt -__v').lean();
+    if (!teacher) return res.status(404).json({ error: 'Not found' });
+    
+    const formattedTeacher = {
+      ...teacher,
+      id: teacher._id.toString(),
+      students: teacher.students_count || 0
+    };
+    
+    res.json(formatTeacher(formattedTeacher));
   } catch (err) {
     console.error('Get me error:', err);
     res.status(500).json({ error: 'Server error' });
@@ -185,33 +188,34 @@ app.put('/api/teachers/me', requireAuth, async (req, res) => {
   } = req.body;
 
   try {
-    await pool.query(
-      `UPDATE teachers SET
-        name = ?, avatar = ?, profile_pic = ?, subject = ?, class_ids = ?,
-        experience = ?, qualification = ?, fee = ?,
-        bio = ?, topics = ?, contact = ?, available = ?
-       WHERE id = ?`,
-      [
-        name, avatar || '👨‍🏫',
-        profile_pic || null,
+    const teacher = await Teacher.findByIdAndUpdate(
+      req.teacher.id,
+      {
+        name,
+        avatar: avatar || '👨‍🏫',
+        profile_pic: profile_pic || null,
         subject,
-        Array.isArray(class_ids) ? class_ids.join(',') : class_ids,
-        parseInt(experience) || 1,
+        class_ids: Array.isArray(class_ids) ? class_ids.join(',') : class_ids,
+        experience: parseInt(experience) || 1,
         qualification,
-        parseInt(fee) || 500,
-        bio || '',
-        Array.isArray(topics) ? topics.join(',') : (topics || ''),
-        contact || '',
-        available !== false ? 1 : 0,
-        req.teacher.id,
-      ]
-    );
+        fee: parseInt(fee) || 500,
+        bio: bio || '',
+        topics: Array.isArray(topics) ? topics.join(',') : (topics || ''),
+        contact: contact || '',
+        available: available !== false,
+      },
+      { new: true }
+    ).select('-password_hash -createdAt -updatedAt -__v').lean();
+    
+    if (!teacher) return res.status(404).json({ error: 'Not found' });
 
-    const [rows] = await pool.query(
-      'SELECT id, email, name, avatar, profile_pic, subject, class_ids, experience, qualification, rating, students, fee, bio, topics, contact, available FROM teachers WHERE id = ?',
-      [req.teacher.id]
-    );
-    res.json(formatTeacher(rows[0]));
+    const formattedTeacher = {
+      ...teacher,
+      id: teacher._id.toString(),
+      students: teacher.students_count || 0
+    };
+
+    res.json(formatTeacher(formattedTeacher));
   } catch (err) {
     console.error('Update error:', err);
     res.status(500).json({ error: 'Server error' });
@@ -221,7 +225,7 @@ app.put('/api/teachers/me', requireAuth, async (req, res) => {
 // ── Teachers: Delete own account (protected) ───────────────────
 app.delete('/api/teachers/me', requireAuth, async (req, res) => {
   try {
-    await pool.query('DELETE FROM teachers WHERE id = ?', [req.teacher.id]);
+    await Teacher.findByIdAndDelete(req.teacher.id);
     res.json({ message: 'Account deleted' });
   } catch (err) {
     res.status(500).json({ error: 'Server error' });
@@ -237,12 +241,14 @@ app.post('/api/bookings', async (req, res) => {
   }
 
   try {
-    const [result] = await pool.query(
-      `INSERT INTO bookings (student_email, teacher_id, class_id, subject_id, topic_id)
-       VALUES (?, ?, ?, ?, ?)`,
-      [studentEmail, teacherId, classId, subjectId, topicId || null]
-    );
-    res.status(201).json({ message: 'Booking request sent successfully', bookingId: result.insertId });
+    const booking = await Booking.create({
+      student_email: studentEmail,
+      teacher_id: teacherId,
+      class_id: classId,
+      subject_id: subjectId,
+      topic_id: topicId || null
+    });
+    res.status(201).json({ message: 'Booking request sent successfully', bookingId: booking._id });
   } catch (err) {
     console.error('Booking error:', err);
     res.status(500).json({ error: 'Failed to create booking' });
@@ -250,11 +256,11 @@ app.post('/api/bookings', async (req, res) => {
 });
 
 // ── Health check ────────────────────────────────────────────────
-app.get('/api/health', async (req, res) => {
-  try {
-    await pool.query('SELECT 1');
+app.get('/api/health', (req, res) => {
+  const mongoose = require('mongoose');
+  if (mongoose.connection.readyState === 1 || mongoose.connection.readyState === 2) {
     res.json({ status: 'ok', db: 'connected' });
-  } catch {
+  } else {
     res.json({ status: 'ok', db: 'disconnected' });
   }
 });

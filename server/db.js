@@ -1,17 +1,15 @@
-const mysql = require('mysql2/promise');
+const mongoose = require('mongoose');
 require('dotenv').config({ path: require('path').join(__dirname, '.env') });
 
-const dbPort = process.env.DB_PORT ? parseInt(process.env.DB_PORT, 10) : 3306;
+const connectDB = async () => {
+  try {
+    const uri = process.env.MONGODB_URI || 'mongodb://127.0.0.1:27017/onlinestudyhub';
+    await mongoose.connect(uri);
+    console.log('MongoDB connected successfully');
+  } catch (error) {
+    console.error('MongoDB connection error:', error);
+    process.exit(1);
+  }
+};
 
-const pool = mysql.createPool({
-  host:     process.env.DB_HOST || 'localhost',
-  port:     isNaN(dbPort) ? 3306 : dbPort,
-  user:     process.env.DB_USER || 'root',
-  password: process.env.DB_PASS || '',
-  database: process.env.DB_NAME || 'onlinestudyhub',
-  waitForConnections: true,
-  connectionLimit: 10,
-  timezone: '+00:00',
-});
-
-module.exports = pool;
+module.exports = connectDB;
