@@ -258,10 +258,14 @@ app.post('/api/bookings', async (req, res) => {
 // ── Health check ────────────────────────────────────────────────
 app.get('/api/health', (req, res) => {
   const mongoose = require('mongoose');
+  const err = connectDB.getConnectionError();
+  if (err) {
+    return res.json({ status: 'error', db: 'disconnected', reason: err });
+  }
   if (mongoose.connection.readyState === 1 || mongoose.connection.readyState === 2) {
     res.json({ status: 'ok', db: 'connected' });
   } else {
-    res.json({ status: 'ok', db: 'disconnected' });
+    res.json({ status: 'ok', db: 'disconnected', reason: 'unknown' });
   }
 });
 
