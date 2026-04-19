@@ -646,7 +646,7 @@ export default function AdminPage() {
         )}
         {serverOnline === true && dbOnline === false && (
           <div style={{ background: '#fff3cd', border: '1px solid #ffc107', borderRadius: 12, padding: '1rem 1.25rem', marginBottom: '1.5rem', fontSize: '.87rem', color: '#856404' }}>
-            ⚠️ <strong>MySQL is not connected.</strong> Install &amp; start MySQL, then run <code style={{ background: '#f8f9fa', padding: '.1rem .4rem', borderRadius: 4 }}>mysql -u root -p &lt; server/schema.sql</code> and set your password in <code>server/.env</code>.
+            ⚠️ <strong>Database is not connected.</strong> Check your MongoDB URI and network access.
           </div>
         )}
 

@@ -15,8 +15,17 @@ const PORT = process.env.PORT || 5001;
 const JWT_SECRET = process.env.JWT_SECRET || 'dev_secret_change_in_prod';
 
 const allowedOrigins = (process.env.CORS_ORIGIN || 'http://localhost:3001').split(',');
-app.use(cors({ origin: allowedOrigins, credentials: true }));
-app.use(express.json());
+app.use(cors({
+  origin: (origin, callback) => {
+    if (!origin || allowedOrigins.includes(origin) || origin.endsWith('.vercel.app')) {
+      callback(null, true);
+    } else {
+      callback(new Error('Not allowed by CORS'));
+    }
+  },
+  credentials: true,
+}));
+app.use(express.json({ limit: '5mb' }));
 
 // ── JWT middleware ──────────────────────────────────────────────
 function requireAuth(req, res, next) {
