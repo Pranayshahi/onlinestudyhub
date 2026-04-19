@@ -1,1 +1,8 @@
 node_modules
+.env
+.env.local
+.env.production
+server/.env
+build
+test-results
+testing/report
