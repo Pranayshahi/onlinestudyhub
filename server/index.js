@@ -14,7 +14,10 @@ const JWT_SECRET = process.env.JWT_SECRET || 'dev_secret_change_in_prod';
 const allowedOrigins = (process.env.CORS_ORIGIN || 'http://localhost:3001').split(',');
 app.use(cors({
   origin: (origin, callback) => {
-    if (!origin || allowedOrigins.includes(origin) || origin.endsWith('.vercel.app')) {
+    if (!origin || 
+        allowedOrigins.includes(origin) || 
+        origin.endsWith('.vercel.app') || 
+        origin.includes('onlinestudyhub.com')) {
       callback(null, true);
     } else {
       callback(new Error('Not allowed by CORS'));
