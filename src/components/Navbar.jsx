@@ -90,9 +90,9 @@ export default function Navbar({ onOpenAI, onOpenLogin, user, onLogout, darkMode
 
             {/* ── Teachers dropdown ── */}
             <div className={`nav-item ${mobileOpen && mobileExpanded === 'teachers' ? 'mobile-expanded' : ''}`}>
-              <div className="nav-link" onClick={() => mobileOpen && toggleMobile('teachers')}>
+              <Link to="/teachers" className="nav-link" onClick={() => mobileOpen && toggleMobile('teachers')} style={{ textDecoration: 'none' }}>
                 Teachers <ChevronDown />
-              </div>
+              </Link>
               <div className="dropdown">
                 <div className="dropdown-section">
                   <div className="dropdown-label">Find a Teacher</div>
@@ -144,11 +144,14 @@ export default function Navbar({ onOpenAI, onOpenLogin, user, onLogout, darkMode
 
             {user && (
               <div className="nav-item" style={{ position: 'relative' }}>
-                <button 
-                  className="user-btn" 
+                <button
+                  className="user-btn"
                   onClick={() => setUserMenuOpen(!userMenuOpen)}
+                  aria-label={`Account menu for ${user.name}`}
+                  aria-expanded={userMenuOpen}
+                  aria-haspopup="menu"
                 >
-                  <span className="user-avatar">👤</span>
+                  <span className="user-avatar" aria-hidden="true">👤</span>
                   <span className="hide-mobile">{user.name}</span>
                 </button>
                 {userMenuOpen && (
@@ -183,11 +186,11 @@ export default function Navbar({ onOpenAI, onOpenLogin, user, onLogout, darkMode
             aria-label="Toggle menu"
           >
             {mobileOpen ? (
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+              <svg aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                 <line x1="18" y1="6" x2="6" y2="18" /><line x1="6" y1="6" x2="18" y2="18" />
               </svg>
             ) : (
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+              <svg aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                 <line x1="3" y1="12" x2="21" y2="12" /><line x1="3" y1="6" x2="21" y2="6" /><line x1="3" y1="18" x2="21" y2="18" />
               </svg>
             )}

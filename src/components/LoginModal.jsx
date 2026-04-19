@@ -42,7 +42,7 @@ export default function LoginModal({ open, onClose, onLogin }) {
     <>
       <div className="modal-backdrop" onClick={onClose} style={{ zIndex: 2000 }} />
       <div className="modal-content" style={{ zIndex: 2001, maxWidth: '400px', padding: '2.5rem' }}>
-        <button className="modal-close" onClick={onClose}>✕</button>
+        <button className="modal-close" onClick={onClose} aria-label="Close modal">✕</button>
         
         <div style={{ textAlign: 'center', marginBottom: '2rem' }}>
           <div style={{ fontSize: '3rem', marginBottom: '1rem' }}>🎓</div>

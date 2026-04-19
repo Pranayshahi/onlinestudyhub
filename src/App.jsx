@@ -1,18 +1,33 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, lazy, Suspense } from 'react';
 import { Routes, Route } from 'react-router-dom';
 import { HelmetProvider } from 'react-helmet-async';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
-import AIDoubtPanel from './components/AIDoubtPanel';
-import LoginModal from './components/LoginModal';
-import HomePage from './pages/HomePage';
-import ClassPage from './pages/ClassPage';
-import ClassesPage from './pages/ClassesPage';
-import SubjectPage from './pages/SubjectPage';
-import TopicPage from './pages/TopicPage';
-import NotFoundPage from './pages/NotFoundPage';
-import AdminPage from './pages/admin/AdminPage';
-import BookSessionPage from './pages/BookSessionPage';
+
+// Lazy-load every page — each becomes its own JS chunk, loaded only when visited
+const HomePage        = lazy(() => import('./pages/HomePage'));
+const ClassPage       = lazy(() => import('./pages/ClassPage'));
+const ClassesPage     = lazy(() => import('./pages/ClassesPage'));
+const SubjectPage     = lazy(() => import('./pages/SubjectPage'));
+const TopicPage       = lazy(() => import('./pages/TopicPage'));
+const NotFoundPage    = lazy(() => import('./pages/NotFoundPage'));
+const AdminPage       = lazy(() => import('./pages/admin/AdminPage'));
+const BookSessionPage = lazy(() => import('./pages/BookSessionPage'));
+const TeachersPage    = lazy(() => import('./pages/TeachersPage'));
+const TeachersListPage= lazy(() => import('./pages/TeachersListPage'));
+
+// Heavy panel components — load only when opened
+const AIDoubtPanel = lazy(() => import('./components/AIDoubtPanel'));
+const LoginModal   = lazy(() => import('./components/LoginModal'));
+
+function PageLoader() {
+  return (
+    <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', minHeight: '60vh' }}>
+      <div style={{ width: 36, height: 36, border: '3px solid #e0e7ff', borderTopColor: '#4f46e5', borderRadius: '50%', animation: 'spin 0.7s linear infinite' }} />
+      <style>{`@keyframes spin { to { transform: rotate(360deg); } }`}</style>
+    </div>
+  );
+}
 
 export default function App() {
   const [aiOpen, setAiOpen] = useState(false);
@@ -55,20 +70,26 @@ export default function App() {
         onToggleDark={() => setDarkMode(d => !d)}
       />
       <main style={{ minHeight: '80vh' }}>
-        <Routes>
-          <Route path="/" element={<HomePage />} />
-          <Route path="/classes" element={<ClassesPage />} />
-          <Route path="/class/:classId" element={<ClassPage user={user} onOpenLogin={() => setLoginOpen(true)} />} />
-          <Route path="/class/:classId/subject/:subjectId" element={<SubjectPage />} />
-          <Route path="/class/:classId/subject/:subjectId/topic/:topicId" element={<TopicPage user={user} onOpenLogin={() => setLoginOpen(true)} />} />
-          <Route path="/class/:classId/subject/:subjectId/topic/:topicId/book" element={<BookSessionPage />} />
-          <Route path="/teacher-portal" element={<AdminPage />} />
-          <Route path="*" element={<NotFoundPage />} />
-        </Routes>
+        <Suspense fallback={<PageLoader />}>
+          <Routes>
+            <Route path="/" element={<HomePage />} />
+            <Route path="/classes" element={<ClassesPage />} />
+            <Route path="/teachers" element={<TeachersPage />} />
+            <Route path="/teachers/:classId" element={<TeachersListPage user={user} onOpenLogin={() => setLoginOpen(true)} />} />
+            <Route path="/class/:classId" element={<ClassPage user={user} onOpenLogin={() => setLoginOpen(true)} />} />
+            <Route path="/class/:classId/subject/:subjectId" element={<SubjectPage />} />
+            <Route path="/class/:classId/subject/:subjectId/topic/:topicId" element={<TopicPage user={user} onOpenLogin={() => setLoginOpen(true)} />} />
+            <Route path="/class/:classId/subject/:subjectId/topic/:topicId/book" element={<BookSessionPage />} />
+            <Route path="/teacher-portal" element={<AdminPage />} />
+            <Route path="*" element={<NotFoundPage />} />
+          </Routes>
+        </Suspense>
       </main>
       <Footer />
-      <AIDoubtPanel open={aiOpen} onClose={() => setAiOpen(false)} />
-      <LoginModal open={loginOpen} onClose={() => setLoginOpen(false)} onLogin={handleLogin} />
+      <Suspense fallback={null}>
+        {aiOpen && <AIDoubtPanel open={aiOpen} onClose={() => setAiOpen(false)} />}
+        {loginOpen && <LoginModal open={loginOpen} onClose={() => setLoginOpen(false)} onLogin={handleLogin} />}
+      </Suspense>
     </div>
     </HelmetProvider>
   );

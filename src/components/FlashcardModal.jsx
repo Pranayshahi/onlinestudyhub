@@ -74,16 +74,17 @@ export default function FlashcardModal({ qa, topicTitle, onClose }) {
 
         {/* Controls */}
         <div className="flashcard-controls">
-          <button className="flashcard-nav-btn" onClick={prev} disabled={total <= 1}>
+          <button className="flashcard-nav-btn" onClick={prev} disabled={total <= 1} aria-label="Previous card">
             ← Prev
           </button>
           <button
             className="flashcard-flip-btn"
             onClick={() => setFlipped(f => !f)}
+            aria-label={flipped ? 'Show question' : 'Reveal answer'}
           >
             {flipped ? '🔄 Show Question' : '👁 Reveal Answer'}
           </button>
-          <button className="flashcard-nav-btn" onClick={next} disabled={total <= 1}>
+          <button className="flashcard-nav-btn" onClick={next} disabled={total <= 1} aria-label="Next card">
             Next →
           </button>
         </div>

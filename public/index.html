@@ -58,10 +58,6 @@
     }
     </script>
 
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700;800;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
-    <title>OnlineStudyHub — Best Online Tuition for Class 6-12, JEE & NEET in India</title>
     <style>
       *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
       :root {
@@ -88,16 +84,22 @@
         --gray-900: #111827;
       }
       body {
-        font-family: 'Inter', sans-serif;
+        font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
         background: #f9fafb;
         color: #111827;
         line-height: 1.6;
         -webkit-font-smoothing: antialiased;
       }
       h1, h2, h3, h4, h5, h6 {
-        font-family: 'Nunito', sans-serif;
+        font-family: 'Nunito', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
         line-height: 1.3;
       }
+      /* Critical above-fold styles — prevents flash while main CSS loads */
+      #root { min-height: 100vh; }
+      .app { display: flex; flex-direction: column; min-height: 100vh; }
+      nav, .navbar { background: #1e1b4b; position: sticky; top: 0; z-index: 100; }
+      .page-header { background: linear-gradient(135deg, #1e1b4b 0%, #4f46e5 100%); color: #fff; padding: 3rem 0; }
+      .container { max-width: 1200px; margin: 0 auto; padding: 0 1.25rem; }
       a { text-decoration: none; color: inherit; }
       button { cursor: pointer; border: none; background: none; font-family: inherit; }
       img { max-width: 100%; }

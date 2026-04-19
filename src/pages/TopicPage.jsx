@@ -84,40 +84,8 @@ export default function TopicPage({ user, onOpenLogin }) {
 
   const navigate = useNavigate();
 
-  const [bookingLoading, setBookingLoading] = useState(false);
-
-  const handleBookSession = async () => {
-    if (!user) {
-      onOpenLogin();
-      return;
-    }
-
-    setBookingLoading(true);
-    try {
-      const response = await fetch('/api/bookings', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          studentEmail: user.email,
-          teacherId: relevantTeacher.id,
-          classId,
-          subjectId,
-          topicId,
-        }),
-      });
-
-      const data = await response.json();
-      if (response.ok) {
-        alert(`Success! Your booking request for "${topic.title}" has been sent to ${relevantTeacher.name}.`);
-      } else {
-        alert(`Error: ${data.error || 'Failed to book session'}`);
-      }
-    } catch (err) {
-      alert('Network error. Please check if the server is running.');
-    } finally {
-      setBookingLoading(false);
-    }
-  };
+  // Removed: const [bookingLoading, setBookingLoading] = useState(false);
+  // Removed: const handleBookSession = async () => { ... };
 
   if (!classData || !subject || !topic) {
     return (
@@ -381,22 +349,21 @@ export default function TopicPage({ user, onOpenLogin }) {
                     <span style={{ fontSize: '1.1rem' }}>💰</span> {relevantTeacher.fee}
                   </div>
                 </div>
-                <button
+                <Link
+                  to={`/class/${classId}/subject/${subjectId}/topic/${topicId}/book?teacherId=${relevantTeacher.id}`}
                   className="btn btn-primary"
-                  style={{ 
-                    padding: '0.85rem 2rem', 
-                    fontSize: '1rem', 
-                    borderRadius: 12, 
+                  style={{
+                    padding: '0.85rem 2rem',
+                    fontSize: '1rem',
+                    borderRadius: 12,
                     boxShadow: '0 4px 14px rgba(79, 70, 229, 0.4)',
-                    opacity: bookingLoading ? 0.7 : 1,
-                    cursor: bookingLoading ? 'not-allowed' : 'pointer'
+                    cursor: 'pointer',
+                    textDecoration: 'none',
+                    display: 'inline-block',
                   }}
-                  onClick={handleBookSession}
-                  disabled={bookingLoading}
                 >
-                  {bookingLoading ? '⏳ Processing...' : '🚀 Book a Deep Learn Session'}
-                </button>
-              </div>
+                  🚀 Book a Deep Learn Session with {relevantTeacher.name}
+                </Link>              </div>
             </div>
           </section>
         )}

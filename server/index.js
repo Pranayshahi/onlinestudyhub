@@ -153,6 +153,33 @@ app.post('/api/auth/student/login', async (req, res) => {
   }
 });
 
+// ── Teachers: Get single teacher (public) ─────────────────────
+app.get('/api/teachers/:id', async (req, res) => {
+  try {
+    const teacher = await Teacher.findById(req.params.id)
+      .select('-password_hash -createdAt -updatedAt -__v').lean();
+    if (!teacher) return res.status(404).json({ error: 'Teacher not found' });
+    res.json(formatTeacher({ ...teacher, id: teacher._id.toString(), students: teacher.students_count || 0 }));
+  } catch (err) {
+    res.status(500).json({ error: 'Server error' });
+  }
+});
+
+// ── Teachers: Toggle online status (protected) ─────────────────
+app.patch('/api/teachers/me/online', requireAuth, async (req, res) => {
+  try {
+    const { is_online } = req.body;
+    const teacher = await Teacher.findByIdAndUpdate(
+      req.teacher.id,
+      { is_online: Boolean(is_online), last_seen: new Date() },
+      { new: true }
+    ).select('is_online last_seen').lean();
+    res.json({ is_online: teacher.is_online });
+  } catch (err) {
+    res.status(500).json({ error: 'Server error' });
+  }
+});
+
 // ── Teachers: Get all (public — used by user portal) ───────────
 app.get('/api/teachers', async (req, res) => {
   try {
@@ -251,22 +278,62 @@ app.delete('/api/teachers/me', requireAuth, async (req, res) => {
 // ── Bookings: Create (public) ──────────────────────────────────
 app.post('/api/bookings', async (req, res) => {
   try {
-    const { studentEmail, teacherId, classId, subjectId, topicId } = req.body || {};
+    const { studentName, studentPhone, studentEmail, teacherId, classId, subjectId, topicId, timeSlot, scheduledDate } = req.body || {};
 
-    if (!studentEmail || !teacherId || !classId || !subjectId) {
+    if (!studentName || !studentPhone || !teacherId || !classId || !subjectId || !timeSlot || !scheduledDate) {
       return res.status(400).json({ error: 'Missing required booking information' });
     }
+
+    // Generate a Google Meet-style link
+    const meetCode = Array.from({ length: 3 }, () =>
+      Math.random().toString(36).substring(2, 5)
+    ).join('-');
+    const meetLink = `https://meet.google.com/${meetCode}`;
+
     const booking = await Booking.create({
-      student_email: studentEmail,
+      student_name: studentName,
+      student_phone: studentPhone,
+      student_email: studentEmail || '',
       teacher_id: teacherId,
       class_id: classId,
       subject_id: subjectId,
-      topic_id: topicId || null
+      topic_id: topicId || null,
+      time_slot: timeSlot,
+      scheduled_date: scheduledDate,
+      meet_link: meetLink,
+      status: 'pending',
     });
-    res.status(201).json({ message: 'Booking request sent successfully', bookingId: booking._id });
+
+    res.status(201).json({ bookingId: booking._id, meetLink, message: 'Booking confirmed!' });
   } catch (err) {
     console.error('Booking error:', err);
     res.status(500).json({ error: 'Failed to create booking' });
+  }
+});
+
+// ── Bookings: Get teacher's appointments (protected) ──────────
+app.get('/api/bookings/mine', requireAuth, async (req, res) => {
+  try {
+    const bookings = await Booking.find({ teacher_id: req.teacher.id })
+      .sort({ createdAt: -1 }).lean();
+    res.json(bookings);
+  } catch (err) {
+    res.status(500).json({ error: 'Server error' });
+  }
+});
+
+// ── Bookings: Update status (protected) ───────────────────────
+app.patch('/api/bookings/:id', requireAuth, async (req, res) => {
+  try {
+    const booking = await Booking.findOneAndUpdate(
+      { _id: req.params.id, teacher_id: req.teacher.id },
+      { status: req.body.status },
+      { new: true }
+    );
+    if (!booking) return res.status(404).json({ error: 'Booking not found' });
+    res.json(booking);
+  } catch (err) {
+    res.status(500).json({ error: 'Server error' });
   }
 });
 

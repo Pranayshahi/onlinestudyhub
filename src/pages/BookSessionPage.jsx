@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useParams, Link, useNavigate } from 'react-router-dom';
+import { useParams, Link, useNavigate, useLocation } from 'react-router-dom';
 import { getClass, getSubject, getTopic, getSubjectColor, SUBJECT_META } from '../data/curriculum';
 import { TEACHERS } from '../data/teachers';
 import Breadcrumb from '../components/Breadcrumb';
@@ -91,7 +91,7 @@ function BookingModal({ teacher, topic, classData, subjectMeta, onClose, onSucce
 
         {/* Header */}
         <div style={{ background: 'linear-gradient(135deg, #1e1b4b, #4f46e5)', padding: '1.5rem', borderRadius: '20px 20px 0 0', position: 'relative' }}>
-          <button onClick={onClose} style={{ position: 'absolute', top: '1rem', right: '1rem', background: 'rgba(255,255,255,.15)', border: 'none', color: '#fff', width: 30, height: 30, borderRadius: '50%', cursor: 'pointer', fontSize: '.9rem' }}>✕</button>
+          <button onClick={onClose} aria-label="Close" style={{ position: 'absolute', top: '1rem', right: '1rem', background: 'rgba(255,255,255,.15)', border: 'none', color: '#fff', width: 30, height: 30, borderRadius: '50%', cursor: 'pointer', fontSize: '.9rem' }}>✕</button>
           <div style={{ display: 'flex', alignItems: 'center', gap: '.75rem' }}>
             <div style={{ fontSize: '2.5rem' }}>{teacher.avatar}</div>
             <div>
@@ -233,8 +233,12 @@ function BookingSuccess({ booking, teacher, topic, onClose }) {
 export default function BookSessionPage() {
   const { classId, subjectId, topicId } = useParams();
   const navigate = useNavigate();
+  const location = useLocation();
   const [showBooking, setShowBooking] = useState(false);
   const [bookingDone, setBookingDone] = useState(null);
+
+  const query = new URLSearchParams(location.search);
+  const teacherId = query.get('teacherId');
 
   const classData = getClass(classId);
   const subject = getSubject(classId, subjectId);
@@ -243,10 +247,13 @@ export default function BookSessionPage() {
   const meta = SUBJECT_META[subjectId] || {};
 
   const classTeachers = TEACHERS[classId] || [];
-  const teacher = classTeachers.find(t =>
-    t.subject?.toLowerCase().includes(subjectId?.toLowerCase()) ||
-    (t.topics && t.topics.some(tp => tp.toLowerCase().includes(topic?.title?.toLowerCase())))
-  ) || classTeachers[0];
+  
+  // Prefer teacherId from query, then best match, then first available
+  const teacher = (teacherId && classTeachers.find(t => t.id === teacherId)) || 
+    classTeachers.find(t =>
+      t.subject?.toLowerCase().includes(subjectId?.toLowerCase()) ||
+      (t.topics && t.topics.some(tp => tp.toLowerCase().includes(topic?.title?.toLowerCase())))
+    ) || classTeachers[0];
 
   useEffect(() => { window.scrollTo({ top: 0, behavior: 'smooth' }); }, []);
 

@@ -4,6 +4,8 @@
   "private": true,
   "proxy": "http://localhost:5001",
   "dependencies": {
+    "@fontsource/inter": "^5.2.8",
+    "@fontsource/nunito": "^5.2.7",
     "bcryptjs": "^3.0.3",
     "concurrently": "^9.2.1",
     "cors": "^2.8.6",

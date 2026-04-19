@@ -29,45 +29,195 @@ export const CURRICULUM = {
           {
             id: 'knowing-numbers',
             title: 'Knowing Our Numbers',
-            subtopics: 'Large numbers, Place value, Roman numerals, Estimation',
+            subtopics: 'Comparing Numbers, Large Numbers in Practice, Using Brackets, Roman Numerals',
             definition: 'Numbers are mathematical symbols used to count, measure, and label. Understanding place value and how large numbers are structured is the foundation of all mathematics.',
             content: `<p>Numbers are everywhere in our daily lives — from counting objects to reading prices or checking distances. In Class 6, we explore how numbers are formed and how their position (place value) determines their actual value.</p>
-<h4>Place Value System</h4>
-<p>In the Indian number system, we group digits as: ones, tens, hundreds, thousands, ten-thousands, lakhs, ten-lakhs, crores. For example, the number <strong>45,67,892</strong> is read as "Forty-five lakhs sixty-seven thousand eight hundred ninety-two."</p>
-<h4>Comparing and Ordering Numbers</h4>
-<p>To compare two numbers, first count the digits. A number with more digits is always greater. If digits are equal, compare from the leftmost digit.</p>
+<h4>Comparing Numbers</h4>
+<p>To compare two numbers, first count the digits. A number with more digits is always greater. If digits are equal, compare from the leftmost digit. In the Indian system: ones, tens, hundreds, thousands, ten-thousands, lakhs, ten-lakhs, crores.</p>
+<h4>Large Numbers in Practice</h4>
+<p>Large numbers appear in population figures, distances, and national budgets. For example, <strong>45,67,892</strong> is read as "Forty-five lakhs sixty-seven thousand eight hundred ninety-two."</p>
+<h4>Using Brackets</h4>
+<p>Brackets change the order of operations. Always solve what's inside brackets first: 5 × (3 + 4) = 5 × 7 = 35. Without brackets: 5 × 3 + 4 = 15 + 4 = 19.</p>
 <h4>Roman Numerals</h4>
-<p>Roman numerals use letters: I=1, V=5, X=10, L=50, C=100, D=500, M=1000. Rules: you can repeat I, X, C, M up to 3 times. Never repeat V, L, D. A smaller numeral before a larger one means subtract.</p>
-<div class="example-box"><strong>Example:</strong> Write 2024 in Roman numerals → 2000 = MM, 24 = XXIV → <strong>MMXXIV</strong></div>
-<h4>Estimation</h4>
-<p>Rounding off helps estimate. To round 4,736 to the nearest thousand: look at hundreds digit (7 ≥ 5), so round up → 5,000.</p>`,
+<p>Roman numerals use letters: I=1, V=5, X=10, L=50, C=100, D=500, M=1000. Rules: repeat I, X, C, M up to 3 times; never repeat V, L, D; a smaller numeral before a larger means subtract.</p>
+<div class="example-box"><strong>Example:</strong> Write 2024 in Roman numerals → MM + XXIV = <strong>MMXXIV</strong></div>`,
             qa: [
               { q: 'What is the place value of 7 in 3,72,456?', a: 'The digit 7 is in the ten-thousands place. Its place value = 7 × 10,000 = 70,000.' },
               { q: 'How do you write 49 in Roman numerals?', a: '49 = 50 − 1 = XLIX. (XL = 40, IX = 9, so XLIX = 49)' },
-              { q: 'Which is greater: 4,56,789 or 45,6789?', a: '4,56,789 has 6 digits and 4,56,789 = 456789. The second number 45,6789 = 456789. They are equal. But if written as 456789 vs 456789 — always check digit count first.' },
+              { q: 'Simplify: 18 − (7 + 3) × 2', a: '18 − (10) × 2 = 18 − 20 = −2. Brackets are solved first, then multiplication, then subtraction.' },
               { q: 'Round 6,385 to the nearest hundred.', a: 'Look at the tens digit: 8 ≥ 5, so round up → 6,400.' },
-              { q: 'What is the difference between face value and place value?', a: 'Face value is the digit itself regardless of position. Place value depends on the position of the digit. E.g., in 456, face value of 5 is 5, but place value of 5 is 50.' },
+              { q: 'What is the difference between face value and place value?', a: 'Face value is the digit itself regardless of position. Place value depends on the position. E.g., in 456, face value of 5 is 5, but place value of 5 is 50.' },
               { q: 'Write the greatest 6-digit number using digits 3, 0, 9, 1, 7, 5 (without repeating).', a: 'Arrange digits in descending order → 975310.' },
+            ]
+          },
+          {
+            id: 'whole-numbers',
+            title: 'Whole Numbers',
+            subtopics: 'Whole Numbers, The Number Line, Properties of Whole Numbers, Patterns in Whole Numbers',
+            definition: 'Whole numbers are all natural numbers including zero: 0, 1, 2, 3, 4, … They are represented on a number line and follow important properties like closure, commutativity, and distributivity.',
+            content: `<p>Whole numbers are the building blocks of arithmetic. They include zero and all positive integers. Every whole number has a successor (next number) and every whole number except 0 has a predecessor (previous number).</p>
+<h4>Whole Numbers vs Natural Numbers</h4>
+<p>Natural numbers: 1, 2, 3, 4… Whole numbers: 0, 1, 2, 3, 4… The only difference is that whole numbers include 0.</p>
+<h4>The Number Line</h4>
+<p>A number line is a straight line with numbers placed at equal intervals. Moving right increases the value; moving left decreases it. Addition means moving right, subtraction means moving left.</p>
+<h4>Properties of Whole Numbers</h4>
+<ul>
+<li><strong>Closure:</strong> Sum or product of any two whole numbers is always a whole number.</li>
+<li><strong>Commutativity:</strong> a + b = b + a and a × b = b × a</li>
+<li><strong>Associativity:</strong> (a + b) + c = a + (b + c)</li>
+<li><strong>Distributivity:</strong> a × (b + c) = a×b + a×c</li>
+<li><strong>Identity:</strong> 0 is additive identity. 1 is multiplicative identity.</li>
+</ul>
+<h4>Patterns in Whole Numbers</h4>
+<p>Numbers form interesting patterns on a number grid. Multiples of 2 form a column pattern; triangular numbers (1, 3, 6, 10, 15…) form triangle shapes; square numbers (1, 4, 9, 16…) form squares.</p>
+<div class="example-box"><strong>Example:</strong> 12 × (5 + 3) = 12×5 + 12×3 = 60 + 36 = 96 ✓</div>`,
+            qa: [
+              { q: 'What is the successor of 99?', a: 'The successor of 99 is 100 (99 + 1).' },
+              { q: 'Is subtraction of whole numbers commutative? Give an example.', a: 'No. 7 − 3 = 4 but 3 − 7 = −4 (not a whole number). So subtraction is NOT commutative.' },
+              { q: 'What is the additive identity for whole numbers?', a: '0 is the additive identity. Adding 0 to any whole number gives the same number: a + 0 = a.' },
+              { q: 'Use distributivity to find 15 × 12.', a: '15 × 12 = 15 × (10 + 2) = 150 + 30 = 180.' },
+              { q: 'What is the smallest whole number?', a: '0 is the smallest whole number. Natural numbers start at 1, but whole numbers include 0.' },
+              { q: 'Are whole numbers closed under division?', a: 'No. 5 ÷ 2 = 2.5, which is not a whole number. So whole numbers are NOT closed under division.' },
+            ]
+          },
+          {
+            id: 'playing-with-numbers',
+            title: 'Playing with Numbers',
+            subtopics: 'Factors and Multiples, Prime and Composite Numbers, Tests for Divisibility, Common Factors and Multiples, Prime Factorisation, HCF, LCM, Problems on HCF and LCM',
+            definition: 'Playing with numbers involves exploring factors, multiples, and the special properties of numbers. HCF (Highest Common Factor) and LCM (Lowest Common Multiple) are key tools used in real-life problem solving.',
+            content: `<p>Numbers have fascinating properties. By exploring how numbers can be divided, multiplied, or broken down, we discover patterns that simplify many mathematical problems.</p>
+<h4>Factors and Multiples</h4>
+<p>A <strong>factor</strong> of a number divides it exactly with no remainder. A <strong>multiple</strong> is obtained by multiplying a number by natural numbers. Factors of 12: 1, 2, 3, 4, 6, 12.</p>
+<h4>Prime and Composite Numbers</h4>
+<p><strong>Prime numbers</strong> have exactly 2 factors: 1 and themselves. (2, 3, 5, 7, 11…). <strong>Composite numbers</strong> have more than 2 factors. 1 is neither prime nor composite.</p>
+<h4>Tests for Divisibility</h4>
+<ul>
+<li>By 2: last digit is 0, 2, 4, 6, or 8</li>
+<li>By 3: sum of digits is divisible by 3</li>
+<li>By 5: last digit is 0 or 5</li>
+<li>By 9: sum of digits is divisible by 9</li>
+<li>By 10: last digit is 0</li>
+</ul>
+<h4>Prime Factorisation</h4>
+<p>Writing a number as a product of prime factors. Example: 60 = 2² × 3 × 5.</p>
+<h4>HCF and LCM</h4>
+<p><strong>HCF</strong> = largest number that divides both. <strong>LCM</strong> = smallest number divisible by both.</p>
+<div class="formula">HCF × LCM = Product of the two numbers</div>`,
+            qa: [
+              { q: 'Find all factors of 36.', a: '1, 2, 3, 4, 6, 9, 12, 18, 36. (36 = 1×36 = 2×18 = 3×12 = 4×9 = 6×6)' },
+              { q: 'Is 97 a prime number?', a: 'Yes, 97 is prime. It has no factors other than 1 and 97.' },
+              { q: 'Find the HCF of 48 and 60.', a: 'Factors of 48: 1,2,3,4,6,8,12,16,24,48. Factors of 60: 1,2,3,4,5,6,10,12,15,20,30,60. HCF = 12.' },
+              { q: 'Find the LCM of 8 and 12.', a: '8 = 2³, 12 = 2² × 3. LCM = 2³ × 3 = 24.' },
+              { q: 'A number is divisible by 9. Is it always divisible by 3?', a: 'Yes. If a number is divisible by 9, it is always divisible by 3 (since 9 = 3 × 3). But divisibility by 3 does not guarantee divisibility by 9.' },
+              { q: 'HCF of two numbers is 6 and their LCM is 36. If one number is 12, find the other.', a: 'Product of numbers = HCF × LCM = 6 × 36 = 216. Other number = 216 ÷ 12 = 18.' },
+            ]
+          },
+          {
+            id: 'geometry-basics',
+            title: 'Basic Geometrical Ideas',
+            subtopics: 'Points, A Line Segment, A Line, Intersecting Lines, Parallel Lines, Ray, Curves, Polygons, Angles, Triangles, Quadrilaterals, Circles',
+            definition: 'Geometry is the branch of mathematics that deals with shapes, sizes, positions, and properties of figures in space. It begins with the basic concepts of points, lines, and angles.',
+            content: `<p>Everything around us has a shape. Geometry helps us describe and analyze these shapes mathematically, starting from the most basic elements.</p>
+<h4>Points and Lines</h4>
+<ul>
+<li>A <strong>point</strong> has no size — just a location. Represented by a dot.</li>
+<li>A <strong>line segment</strong> has two endpoints. Written as AB.</li>
+<li>A <strong>line</strong> extends infinitely in both directions — no endpoints. Written as ↔AB.</li>
+<li>A <strong>ray</strong> has one endpoint and extends infinitely in one direction. Written as →AB.</li>
+</ul>
+<h4>Intersecting and Parallel Lines</h4>
+<p><strong>Intersecting lines</strong> meet at a point. <strong>Parallel lines</strong> never meet — they are always the same distance apart. Railway tracks are an example of parallel lines.</p>
+<h4>Curves, Polygons, and Angles</h4>
+<p>A <strong>curve</strong> is a smooth, continuous line (need not be straight). A <strong>polygon</strong> is a closed figure made of straight sides. An <strong>angle</strong> is formed when two rays share a common endpoint (vertex).</p>
+<h4>Triangles, Quadrilaterals, Circles</h4>
+<p>Triangle: 3 sides, sum of angles = 180°. Quadrilateral: 4 sides, sum of angles = 360°. Circle: set of all points equidistant from a centre; key parts: radius, diameter, chord, arc.</p>`,
+            qa: [
+              { q: 'How many lines can pass through a single point?', a: 'Infinite (countless) lines can pass through a single point.' },
+              { q: 'What is the minimum number of points needed to determine a unique line?', a: 'Two distinct points determine exactly one unique line.' },
+              { q: 'What is the difference between a line and a line segment?', a: 'A line extends infinitely in both directions with no endpoints. A line segment has two fixed endpoints and a definite length.' },
+              { q: 'What is a polygon? Give 3 examples.', a: 'A polygon is a closed plane figure bounded by straight line segments. Examples: Triangle, Rectangle, Pentagon.' },
+              { q: 'What is the diameter of a circle with radius 7 cm?', a: 'Diameter = 2 × radius = 2 × 7 = 14 cm.' },
+              { q: 'Name two lines in real life that are parallel.', a: 'Railway tracks, opposite sides of a ruler, edges of a door — these are examples of parallel lines.' },
+            ]
+          },
+          {
+            id: 'elementary-shapes',
+            title: 'Understanding Elementary Shapes',
+            subtopics: 'Measuring Line Segments, Right and Straight Angles, Acute/Obtuse/Reflex Angles, Measuring Angles, Perpendicular Lines, Classification of Triangles, Quadrilaterals, Polygons, Three Dimensional Shapes',
+            definition: 'Elementary shapes form the foundation of geometry. We classify and measure angles, triangles, quadrilaterals, and 3D solids by their properties.',
+            content: `<p>Shapes are all around us. Understanding and classifying them by their properties helps in architecture, art, engineering, and everyday problem-solving.</p>
+<h4>Measuring Line Segments and Angles</h4>
+<p>Line segments are measured using a ruler in cm or mm. Angles are measured using a protractor in degrees (°).</p>
+<h4>Types of Angles</h4>
+<ul>
+<li><strong>Acute:</strong> less than 90°</li>
+<li><strong>Right:</strong> exactly 90°</li>
+<li><strong>Obtuse:</strong> between 90° and 180°</li>
+<li><strong>Straight:</strong> exactly 180°</li>
+<li><strong>Reflex:</strong> between 180° and 360°</li>
+</ul>
+<h4>Perpendicular Lines</h4>
+<p>Two lines are perpendicular if they meet at exactly 90°. Symbol: ⊥. Example: the corner of a page.</p>
+<h4>Classification of Triangles</h4>
+<p><strong>By sides:</strong> Equilateral (all equal), Isosceles (2 equal), Scalene (all different). <strong>By angles:</strong> Acute, Right, Obtuse.</p>
+<h4>Quadrilaterals and Polygons</h4>
+<p>Square (4 equal sides, 90° angles), Rectangle, Rhombus, Parallelogram, Trapezium. Polygons: pentagon (5), hexagon (6), heptagon (7), octagon (8) sides.</p>
+<h4>Three Dimensional Shapes</h4>
+<p>3D shapes have length, width, height. Cube: 6 faces, 12 edges, 8 vertices. Cuboid: 6 rectangular faces. Cylinder: 2 circular + 1 curved face. Sphere: 1 curved surface, no edges or vertices.</p>`,
+            qa: [
+              { q: 'How many edges does a cube have?', a: 'A cube has 12 edges (4 on top, 4 on bottom, 4 vertical).' },
+              { q: 'What is the difference between a square and a rhombus?', a: 'Both have 4 equal sides. But a square has all 90° angles. A rhombus has equal opposite angles that may not be 90°.' },
+              { q: 'A triangle has angles 60°, 60°, 60°. What type is it?', a: 'It is an equilateral triangle (all sides equal) and also an acute triangle (all angles < 90°).' },
+              { q: 'Name a 3D shape with no edges and no vertices.', a: 'A sphere has no edges and no vertices (no flat faces either — just one curved surface).' },
+              { q: 'What is a reflex angle? Give an example.', a: 'A reflex angle is greater than 180° and less than 360°. Example: the larger angle formed by clock hands at 10 o\'clock is a reflex angle.' },
+            ]
+          },
+          {
+            id: 'integers',
+            title: 'Integers',
+            subtopics: 'Integers, Addition of Integers, Subtraction of Integers with the help of a Number Line',
+            definition: 'Integers are the set of all whole numbers and their negatives: …−3, −2, −1, 0, 1, 2, 3… They are used to represent quantities like temperature below zero, depths below sea level, and debts.',
+            content: `<p>Natural numbers and whole numbers only go in one direction (positive). But in real life, we need numbers that go in both directions — below zero temperatures, underground floors, debt. That is where integers come in.</p>
+<h4>Understanding Integers</h4>
+<p>Integers include negative numbers, zero, and positive numbers: …−3, −2, −1, 0, 1, 2, 3… On a number line, negative numbers are to the left of zero. The further right, the greater the value.</p>
+<h4>Addition of Integers</h4>
+<ul>
+<li>Positive + Positive = Positive (3 + 4 = 7)</li>
+<li>Negative + Negative = Negative (−3 + −4 = −7)</li>
+<li>Positive + Negative: subtract and keep the sign of the larger. (7 + (−3) = 4)</li>
+</ul>
+<h4>Subtraction Using a Number Line</h4>
+<p>Subtracting a positive integer means moving left on the number line. Subtracting a negative integer means moving right (adding its opposite).</p>
+<div class="formula">a − (−b) = a + b</div>
+<div class="example-box"><strong>Real life:</strong> Temperature at noon = 4°C. It dropped 9°C at night. Night temp = 4 − 9 = −5°C.</div>`,
+            qa: [
+              { q: 'Which is greater: −8 or −3?', a: '−3 is greater. On a number line, −3 is to the right of −8, so −3 > −8.' },
+              { q: 'Calculate: (−5) + 8', a: '−5 + 8 = 3. (The difference is 3, keep the sign of 8 which is positive.)' },
+              { q: 'Calculate: 6 − (−4)', a: '6 − (−4) = 6 + 4 = 10. (Subtracting a negative = adding a positive.)' },
+              { q: 'What is the additive inverse of −7?', a: 'The additive inverse of −7 is +7. When added, they give 0: −7 + 7 = 0.' },
+              { q: 'A submarine is at −200 m. It rises 75 m. What is its new position?', a: '−200 + 75 = −125 m. The submarine is now at −125 m (125 m below sea level).' },
+              { q: 'Arrange in ascending order: −6, 2, −1, 0, −9, 4', a: '−9, −6, −1, 0, 2, 4' },
             ]
           },
           {
             id: 'fractions',
             title: 'Fractions',
-            subtopics: 'Types of fractions, Equivalent fractions, Comparison, Operations',
+            subtopics: 'A Fraction, Fraction on Number Line, Proper Fractions, Improper and Mixed Fractions, Equivalent Fractions, Simplest Form, Like Fractions, Comparing Fractions, Addition and Subtraction of Fractions',
             definition: 'A fraction represents a part of a whole. It is written as p/q where p is the numerator (part taken) and q is the denominator (total equal parts).',
             content: `<p>When we cut a pizza into 8 equal slices and eat 3, we have eaten 3/8 of the pizza. This is a fraction — it tells us how many parts out of the total we are considering.</p>
+<h4>Fraction on the Number Line</h4>
+<p>Fractions can be shown on a number line. To place 3/4: divide the segment from 0 to 1 into 4 equal parts and mark the 3rd point.</p>
 <h4>Types of Fractions</h4>
 <ul>
-<li><strong>Proper fraction:</strong> Numerator < Denominator. Example: 3/5</li>
+<li><strong>Proper fraction:</strong> Numerator &lt; Denominator. Example: 3/5</li>
 <li><strong>Improper fraction:</strong> Numerator ≥ Denominator. Example: 7/4</li>
 <li><strong>Mixed fraction:</strong> Whole number + proper fraction. Example: 1¾</li>
 <li><strong>Like fractions:</strong> Same denominator. Example: 2/7 and 5/7</li>
-<li><strong>Unlike fractions:</strong> Different denominators. Example: 1/3 and 1/4</li>
 </ul>
-<h4>Equivalent Fractions</h4>
-<p>Fractions that represent the same value: 1/2 = 2/4 = 3/6 = 4/8. Multiply or divide both numerator and denominator by the same number.</p>
-<h4>Adding and Subtracting Fractions</h4>
-<p>For like fractions: just add/subtract numerators. For unlike fractions: first find LCM of denominators, convert to equivalent fractions, then operate.</p>
+<h4>Equivalent Fractions and Simplest Form</h4>
+<p>Fractions representing the same value: 1/2 = 2/4 = 3/6. To simplify (simplest form): divide both numerator and denominator by their HCF.</p>
+<h4>Comparing, Adding and Subtracting Fractions</h4>
+<p>Compare like fractions by numerators. For unlike fractions, find LCM of denominators first. For addition/subtraction of unlike fractions: convert to like fractions, then operate.</p>
 <div class="formula">1/3 + 1/4 = 4/12 + 3/12 = 7/12</div>`,
             qa: [
               { q: 'Convert 17/5 to a mixed fraction.', a: '17 ÷ 5 = 3 remainder 2. So 17/5 = 3 2/5 (three and two-fifths).' },
@@ -75,65 +225,138 @@ export const CURRICULUM = {
               { q: 'Simplify 36/48.', a: 'HCF of 36 and 48 = 12. 36÷12 / 48÷12 = 3/4.' },
               { q: 'Add 2/5 + 3/10.', a: 'LCM of 5 and 10 = 10. 2/5 = 4/10. 4/10 + 3/10 = 7/10.' },
               { q: 'What fraction of an hour is 40 minutes?', a: '40/60 = 2/3. So 40 minutes is 2/3 of an hour.' },
+              { q: 'Show 3/4 on a number line.', a: 'Divide the segment between 0 and 1 into 4 equal parts. The 3rd mark from 0 represents 3/4.' },
+            ]
+          },
+          {
+            id: 'decimals',
+            title: 'Decimals',
+            subtopics: 'Tenths, Hundredths, Comparing Decimals, Using Decimals, Addition of Numbers with Decimals, Subtraction of Decimals',
+            definition: 'A decimal is a number that uses a decimal point to separate the whole number part from the fractional part. Decimals represent fractions with denominators of 10, 100, 1000, etc.',
+            content: `<p>Decimals are an extension of our number system. They allow us to express values between whole numbers — like 3.5 kg of vegetables or ₹47.50 for a snack.</p>
+<h4>Tenths and Hundredths</h4>
+<p><strong>Tenths:</strong> 1/10 = 0.1. Dividing a whole into 10 equal parts gives tenths. <strong>Hundredths:</strong> 1/100 = 0.01. Dividing a whole into 100 equal parts gives hundredths.</p>
+<p>In 45.37: 4 = tens, 5 = ones, 3 = tenths (3/10), 7 = hundredths (7/100).</p>
+<h4>Comparing Decimals</h4>
+<p>First compare whole number parts. If equal, compare tenths digit, then hundredths. 3.47 &gt; 3.39 because 4 &gt; 3 in the tenths place.</p>
+<h4>Using Decimals</h4>
+<p>Decimals are used in money (₹12.50), measurements (1.75 m), and weights (0.5 kg). Converting: 1/4 = 25/100 = 0.25.</p>
+<h4>Addition and Subtraction of Decimals</h4>
+<p>Line up the decimal points and add/subtract column by column. Add trailing zeros if needed: 4.3 + 2.75 = 4.30 + 2.75 = 7.05.</p>`,
+            qa: [
+              { q: 'What is the place value of 6 in 23.067?', a: '6 is in the hundredths place. Its place value = 6/100 = 0.06.' },
+              { q: 'Convert 7/25 to decimal.', a: '7/25 = 28/100 = 0.28.' },
+              { q: 'Which is greater: 0.07 or 0.070?', a: 'They are equal. 0.070 = 0.07 (trailing zeros after the last decimal digit do not change the value).' },
+              { q: 'Add: 12.5 + 3.75 + 0.625', a: '12.500 + 3.750 + 0.625 = 16.875' },
+              { q: 'Subtract: 10 − 3.456', a: '10.000 − 3.456 = 6.544' },
+              { q: 'Express 0.325 as a fraction in lowest terms.', a: '0.325 = 325/1000 = 13/40. (HCF of 325 and 1000 is 25)' },
+            ]
+          },
+          {
+            id: 'data-handling',
+            title: 'Data Handling',
+            subtopics: 'Recording Data, Organisation of Data, Pictograph, Interpretation of a Pictograph, Drawing a Pictograph, A Bar Graph',
+            definition: 'Data handling is the process of collecting, organising, and representing information (data) in a systematic way so it can be easily understood and interpreted.',
+            content: `<p>Every day we encounter data — sports scores, weather reports, exam results. Data handling teaches us to collect, organise, and represent this information meaningfully.</p>
+<h4>Recording and Organising Data</h4>
+<p>Raw data is unorganised. We use <strong>tally marks</strong> to record data as it is collected. Then a <strong>frequency table</strong> shows each item and how many times it appears.</p>
+<p>Tally marks: | | | | = 4, then a diagonal / for the 5th, making groups of 5 for easy counting.</p>
+<h4>Pictograph</h4>
+<p>A pictograph uses pictures or symbols to represent data. Each symbol represents a fixed number of items. Key features: title, key (scale), consistent symbol size. To interpret: count symbols × scale value.</p>
+<h4>Drawing a Pictograph</h4>
+<p>Steps: 1. Choose a suitable symbol and scale. 2. Draw the required number of symbols for each category. 3. Add title and key.</p>
+<h4>Bar Graph</h4>
+<p>A bar graph uses rectangular bars of equal width. The height of each bar shows the frequency. More precise than a pictograph — can represent any number exactly. Key features: title, labelled axes, uniform scale.</p>`,
+            qa: [
+              { q: 'What are tally marks? How do you represent the number 13?', a: 'Tally marks are vertical strokes used to count. 13 = |||| (5) + |||| (5) + ||| (3), written as two groups of 5 and 3 extra.' },
+              { q: 'In a pictograph, each symbol = 5 students. How many symbols for 35 students?', a: '35 ÷ 5 = 7 symbols.' },
+              { q: 'What is the difference between a pictograph and a bar graph?', a: 'A pictograph uses pictures/symbols (limited precision). A bar graph uses rectangular bars and can represent any exact value precisely.' },
+              { q: 'In a bar graph, what does the height of a bar represent?', a: 'The height of a bar represents the frequency (count) of that category.' },
+              { q: 'The mean of 5 numbers is 18. If four are 15, 20, 14, 22, find the fifth.', a: 'Sum = 18 × 5 = 90. Sum of 4 known = 71. Fifth number = 90 − 71 = 19.' },
+              { q: 'Why do we organise data before drawing graphs?', a: 'Organised data (frequency tables) makes it easier to identify patterns, compare values, and draw accurate graphs without missing or double-counting items.' },
+            ]
+          },
+          {
+            id: 'mensuration',
+            title: 'Mensuration',
+            subtopics: 'Perimeter, Area',
+            definition: 'Mensuration is the branch of mathematics that deals with the measurement of geometric figures — their perimeters (boundary lengths) and areas (surface covered).',
+            content: `<p>Whenever we need to fence a garden (perimeter) or carpet a floor (area), we use mensuration. It converts geometry into practical calculations.</p>
+<h4>Perimeter</h4>
+<p>Perimeter is the total length of the boundary of a shape.</p>
+<ul>
+<li><strong>Square:</strong> P = 4 × side</li>
+<li><strong>Rectangle:</strong> P = 2 × (length + breadth)</li>
+<li><strong>Triangle:</strong> P = a + b + c (sum of all 3 sides)</li>
+<li><strong>Regular polygon:</strong> P = number of sides × side length</li>
+</ul>
+<h4>Area</h4>
+<p>Area is the amount of surface enclosed within a boundary. Measured in square units (cm², m², km²).</p>
+<ul>
+<li><strong>Square:</strong> A = side²</li>
+<li><strong>Rectangle:</strong> A = length × breadth</li>
+<li><strong>Triangle:</strong> A = ½ × base × height</li>
+</ul>
+<div class="example-box"><strong>Example:</strong> A rectangular garden is 12 m long and 8 m wide. Perimeter = 2(12+8) = 40 m. Area = 12×8 = 96 m².</div>
+<h4>Units Conversion</h4>
+<p>1 m = 100 cm, 1 m² = 10,000 cm². 1 km = 1000 m, 1 km² = 1,000,000 m².</p>`,
+            qa: [
+              { q: 'Find the perimeter of a square with side 9 cm.', a: 'P = 4 × 9 = 36 cm.' },
+              { q: 'A rectangle has length 15 m and breadth 9 m. Find its area.', a: 'Area = 15 × 9 = 135 m².' },
+              { q: 'The perimeter of a square is 52 cm. Find its area.', a: 'Side = 52 ÷ 4 = 13 cm. Area = 13² = 169 cm².' },
+              { q: 'Find the area of a triangle with base 10 cm and height 6 cm.', a: 'Area = ½ × 10 × 6 = 30 cm².' },
+              { q: 'A room is 5 m × 4 m. How many tiles of size 50 cm × 50 cm are needed?', a: 'Area of room = 20 m² = 200,000 cm². Area of tile = 50×50 = 2500 cm². Tiles needed = 200000 ÷ 2500 = 80 tiles.' },
+              { q: 'Two rectangles have the same area (36 cm²). Can they have different perimeters?', a: 'Yes. e.g., 6×6 (P=24 cm) and 9×4 (P=26 cm) both have area 36 cm² but different perimeters.' },
             ]
           },
           {
             id: 'algebra-basics',
-            title: 'Introduction to Algebra',
-            subtopics: 'Variables, Constants, Expressions, Simple equations',
+            title: 'Algebra',
+            subtopics: 'Matchstick Patterns, The Idea of a Variable, Expressions with Variables, Using Expressions Practically, What is an Equation?, Solution of an Equation',
             definition: 'Algebra is a branch of mathematics that uses letters (variables) to represent unknown numbers, helping us write general rules and solve problems systematically.',
             content: `<p>Algebra is the language of mathematics. When we don't know a number, we use a letter like x, y, or n to represent it. This allows us to write rules and formulas that work for any number.</p>
-<h4>Variables and Constants</h4>
-<p>A <strong>variable</strong> is a letter that can represent different values (e.g., x, y, a). A <strong>constant</strong> is a fixed value that doesn't change (e.g., 3, -7, π).</p>
-<h4>Algebraic Expressions</h4>
-<p>An algebraic expression combines variables, constants, and operations. Examples: 3x + 5, 2a − b, x² + 3x − 7.</p>
-<ul>
-<li><strong>Term:</strong> A single part separated by + or −. In 3x + 5, the terms are 3x and 5.</li>
-<li><strong>Coefficient:</strong> The number multiplied with the variable. In 3x, the coefficient is 3.</li>
-<li><strong>Like terms:</strong> Terms with the same variable part. 3x and 7x are like terms.</li>
-</ul>
-<h4>Simple Equations</h4>
-<p>An equation is a statement that two expressions are equal. To solve, find the value of the variable that makes both sides equal.</p>
-<div class="formula">x + 5 = 12 → x = 12 − 5 = 7</div>
-<div class="example-box"><strong>Example:</strong> Riya has some marbles. If she gets 8 more, she has 20. How many did she start with?<br/>Let marbles = x. Equation: x + 8 = 20 → x = 12.</div>`,
+<h4>Matchstick Patterns</h4>
+<p>Patterns help us discover algebra. To make a row of n squares with matchsticks, we need 3n + 1 matchsticks. Here n is a variable — its value changes as the pattern grows.</p>
+<h4>The Idea of a Variable</h4>
+<p>A <strong>variable</strong> is a letter that can represent different values (e.g., x, y, n, l). A <strong>constant</strong> is a fixed value (e.g., 3, −7). Variables allow us to write general rules.</p>
+<h4>Expressions with Variables</h4>
+<p>An algebraic expression combines variables and constants: 3x + 5, 2a − b. Terms are separated by + or −. The number multiplied with the variable is the coefficient.</p>
+<h4>Using Expressions Practically</h4>
+<p>Rules in geometry can be written as expressions: Perimeter of square = 4l (l = side). Age in n years = current age + n.</p>
+<h4>Equations and Their Solutions</h4>
+<p>An <strong>equation</strong> states two expressions are equal: 2x + 3 = 11. The <strong>solution</strong> is the value of the variable that makes it true. Solve by trial or by performing the same operation on both sides.</p>
+<div class="formula">2x + 3 = 11 → 2x = 8 → x = 4</div>`,
             qa: [
               { q: 'What is the coefficient of y in 7y + 3?', a: 'The coefficient of y is 7. The constant term is 3.' },
               { q: 'Simplify: 4x + 3y − 2x + 5y', a: 'Combine like terms: (4x − 2x) + (3y + 5y) = 2x + 8y' },
               { q: 'Solve: 2x + 3 = 11', a: '2x = 11 − 3 = 8 → x = 8/2 = 4. Check: 2(4)+3 = 11 ✓' },
               { q: 'Write an expression for "5 more than twice a number n"', a: '2n + 5' },
-              { q: 'What is the difference between an expression and an equation?', a: 'An expression has no equal sign (e.g., 3x + 2). An equation has an equal sign showing two expressions are equal (e.g., 3x + 2 = 8).' },
+              { q: 'How many matchsticks are needed to make a row of 6 squares?', a: 'Pattern: 3n + 1 = 3(6) + 1 = 19 matchsticks.' },
               { q: 'If p = 4, find the value of 3p − 7.', a: '3(4) − 7 = 12 − 7 = 5' },
             ]
           },
           {
-            id: 'geometry-basics',
-            title: 'Basic Geometrical Ideas',
-            subtopics: 'Points, Lines, Angles, Curves, Polygons',
-            definition: 'Geometry is the branch of mathematics that deals with shapes, sizes, positions, and properties of figures in space. It begins with the basic concepts of points, lines, and angles.',
-            content: `<p>Everything around us has a shape — from the pages of this book to the screen you read on. Geometry helps us describe and analyze these shapes mathematically.</p>
-<h4>Points, Lines, and Planes</h4>
-<ul>
-<li>A <strong>point</strong> has no size — it's just a location. Represented by a dot and a capital letter.</li>
-<li>A <strong>line</strong> extends infinitely in both directions — no endpoints. Written as ↔AB.</li>
-<li>A <strong>line segment</strong> has two endpoints. Written as AB.</li>
-<li>A <strong>ray</strong> has one endpoint and extends infinitely in one direction. Written as →AB.</li>
-</ul>
-<h4>Angles</h4>
-<p>When two rays share a common endpoint (vertex), they form an angle. Measured in degrees (°).</p>
-<ul>
-<li>Acute angle: less than 90°</li>
-<li>Right angle: exactly 90°</li>
-<li>Obtuse angle: between 90° and 180°</li>
-<li>Straight angle: exactly 180°</li>
-</ul>
-<h4>Curves and Polygons</h4>
-<p>A polygon is a closed figure made of straight line segments. Triangle (3 sides), Quadrilateral (4), Pentagon (5), Hexagon (6).</p>`,
+            id: 'ratio-proportion',
+            title: 'Ratio and Proportion',
+            subtopics: 'Ratio, Proportion, Unitary Method',
+            definition: 'A ratio compares two quantities of the same kind. Proportion is the equality of two ratios. The unitary method finds the value of one unit, then scales it to find any number of units.',
+            content: `<p>Ratios and proportions are everywhere — in recipes (2 cups flour to 1 cup sugar), in maps (1 cm = 5 km), and in mixing paint colours. Understanding them helps us scale quantities up or down.</p>
+<h4>Ratio</h4>
+<p>A ratio compares two quantities: a : b (read as "a is to b"). Both must be in the same unit. Ratio 3:4 means for every 3 parts of one, there are 4 of another.</p>
+<p>To simplify a ratio, divide both terms by their HCF: 12:18 = 2:3 (÷6).</p>
+<h4>Proportion</h4>
+<p>When two ratios are equal, they are in proportion: a:b :: c:d means a/b = c/d. In a proportion, product of means equals product of extremes: b × c = a × d (cross multiplication).</p>
+<div class="formula">If a:b :: c:d then a × d = b × c</div>
+<h4>Unitary Method</h4>
+<p>Step 1: Find the value for 1 unit. Step 2: Multiply by the required number.</p>
+<div class="example-box"><strong>Example:</strong> 5 pens cost ₹35. Cost of 8 pens?<br/>1 pen = ₹35 ÷ 5 = ₹7. 8 pens = 7 × 8 = <strong>₹56</strong>.</div>`,
             qa: [
-              { q: 'How many lines can pass through a single point?', a: 'Infinite (countless) lines can pass through a single point.' },
-              { q: 'What is the minimum number of points needed to determine a unique line?', a: 'Two distinct points determine exactly one unique line.' },
-              { q: 'Name the type of angle formed by clock hands at 3 o\'clock.', a: 'A right angle (90°). The hour hand points to 3 and the minute hand to 12.' },
-              { q: 'What is a polygon? Give 3 examples.', a: 'A polygon is a closed plane figure bounded by straight line segments. Examples: Triangle, Rectangle, Pentagon.' },
-              { q: 'Classify the angle 145°.', a: '145° is an obtuse angle (between 90° and 180°).' },
+              { q: 'Simplify the ratio 45:60.', a: 'HCF of 45 and 60 = 15. 45÷15 : 60÷15 = 3:4.' },
+              { q: 'If 4:7 :: 12:x, find x.', a: '4 × x = 7 × 12 → 4x = 84 → x = 21.' },
+              { q: '15 workers complete a job in 8 days. How many days will 24 workers take?', a: '1 worker takes 15 × 8 = 120 days. 24 workers take 120 ÷ 24 = 5 days.' },
+              { q: 'Divide ₹240 between Amit and Renu in the ratio 3:5.', a: 'Total parts = 8. Amit = 240×3/8 = ₹90. Renu = 240×5/8 = ₹150.' },
+              { q: 'Are 3:5 and 15:25 in proportion?', a: '3/5 = 0.6 and 15/25 = 0.6. Yes, they are in proportion: 3:5 :: 15:25.' },
+              { q: 'A map uses scale 1:500000. What does 3 cm on the map represent?', a: '3 cm × 500000 = 1500000 cm = 15 km.' },
             ]
           },
         ]
