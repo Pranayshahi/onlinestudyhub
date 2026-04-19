@@ -218,7 +218,7 @@ export default function ClassPage({ user, onOpenLogin }) {
           '@type': 'Course',
           name: `${classData.label} — CBSE`,
           description: classData.description,
-          provider: { '@type': 'Organization', name: 'OnlineStudyHub', url: 'https://onlinestudyhub.vercel.app' },
+          provider: { '@type': 'Organization', name: 'OnlineStudyHub', url: 'https://www.onlinestudyhub.com' },
         }}
       />
       {/* Teacher modal */}

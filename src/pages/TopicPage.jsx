@@ -163,13 +163,13 @@ export default function TopicPage({ user, onOpenLogin }) {
           description: topic.definition,
           educationalLevel: classData.label,
           about: { '@type': 'Thing', name: meta.label },
-          provider: { '@type': 'Organization', name: 'OnlineStudyHub', url: 'https://onlinestudyhub.vercel.app' },
+          provider: { '@type': 'Organization', name: 'OnlineStudyHub', url: 'https://www.onlinestudyhub.com' },
           breadcrumb: {
             '@type': 'BreadcrumbList',
             itemListElement: [
-              { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://onlinestudyhub.vercel.app' },
-              { '@type': 'ListItem', position: 2, name: classData.label, item: `https://onlinestudyhub.vercel.app/class/${classId}` },
-              { '@type': 'ListItem', position: 3, name: meta.label, item: `https://onlinestudyhub.vercel.app/class/${classId}/subject/${subjectId}` },
+              { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://www.onlinestudyhub.com' },
+              { '@type': 'ListItem', position: 2, name: classData.label, item: `https://www.onlinestudyhub.com/class/${classId}` },
+              { '@type': 'ListItem', position: 3, name: meta.label, item: `https://www.onlinestudyhub.com/class/${classId}/subject/${subjectId}` },
               { '@type': 'ListItem', position: 4, name: topic.title },
             ],
           },

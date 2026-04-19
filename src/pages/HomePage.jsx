@@ -34,13 +34,13 @@ export default function HomePage() {
           '@type': 'ItemList',
           name: 'Classes Available',
           itemListElement: [
-            { '@type': 'ListItem', position: 1, name: 'Class 6', url: 'https://onlinestudyhub.vercel.app/class/class-6' },
-            { '@type': 'ListItem', position: 2, name: 'Class 7', url: 'https://onlinestudyhub.vercel.app/class/class-7' },
-            { '@type': 'ListItem', position: 3, name: 'Class 8', url: 'https://onlinestudyhub.vercel.app/class/class-8' },
-            { '@type': 'ListItem', position: 4, name: 'Class 9', url: 'https://onlinestudyhub.vercel.app/class/class-9' },
-            { '@type': 'ListItem', position: 5, name: 'Class 10', url: 'https://onlinestudyhub.vercel.app/class/class-10' },
-            { '@type': 'ListItem', position: 6, name: 'JEE', url: 'https://onlinestudyhub.vercel.app/class/jee' },
-            { '@type': 'ListItem', position: 7, name: 'NEET', url: 'https://onlinestudyhub.vercel.app/class/neet' },
+            { '@type': 'ListItem', position: 1, name: 'Class 6', url: 'https://www.onlinestudyhub.com/class/class-6' },
+            { '@type': 'ListItem', position: 2, name: 'Class 7', url: 'https://www.onlinestudyhub.com/class/class-7' },
+            { '@type': 'ListItem', position: 3, name: 'Class 8', url: 'https://www.onlinestudyhub.com/class/class-8' },
+            { '@type': 'ListItem', position: 4, name: 'Class 9', url: 'https://www.onlinestudyhub.com/class/class-9' },
+            { '@type': 'ListItem', position: 5, name: 'Class 10', url: 'https://www.onlinestudyhub.com/class/class-10' },
+            { '@type': 'ListItem', position: 6, name: 'JEE', url: 'https://www.onlinestudyhub.com/class/jee' },
+            { '@type': 'ListItem', position: 7, name: 'NEET', url: 'https://www.onlinestudyhub.com/class/neet' },
           ],
         }}
       />

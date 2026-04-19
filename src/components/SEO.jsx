@@ -1,6 +1,6 @@
 import { Helmet } from 'react-helmet-async';
 
-const BASE_URL = 'https://onlinestudyhub.vercel.app';
+const BASE_URL = 'https://www.onlinestudyhub.com';
 const DEFAULT_IMG = `${BASE_URL}/og-image.png`;
 
 export default function SEO({ title, description, path = '/', image, schema }) {
