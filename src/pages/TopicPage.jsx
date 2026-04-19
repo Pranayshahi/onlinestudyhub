@@ -1,7 +1,10 @@
 import React, { useState, useEffect } from 'react';
-import { useParams, Link } from 'react-router-dom';
+import { useParams, Link, useNavigate } from 'react-router-dom';
 import { getClass, getSubject, getTopic, getSubjectColor, SUBJECT_META } from '../data/curriculum';
+import { TEACHERS } from '../data/teachers';
 import Breadcrumb from '../components/Breadcrumb';
+import FlashcardModal from '../components/FlashcardModal';
+import { useProgress } from '../hooks/useProgress';
 
 // ── Accordion item ──────────────────────────────────────────────
 function AccordionItem({ number, question, answer, subjectColor, isOpen, onToggle }) {
@@ -39,7 +42,6 @@ function AccordionItem({ number, question, answer, subjectColor, isOpen, onToggl
           borderLeft: '3px solid var(--sc)',
           paddingLeft: '1rem',
           fontSize: '.93rem',
-          color: '#374151',
           lineHeight: 1.8,
         }}>
           {answer}
@@ -50,16 +52,19 @@ function AccordionItem({ number, question, answer, subjectColor, isOpen, onToggl
 }
 
 // ── Main TopicPage ──────────────────────────────────────────────
-export default function TopicPage() {
+export default function TopicPage({ user, onOpenLogin }) {
   const { classId, subjectId, topicId } = useParams();
   const [openQA, setOpenQA] = useState(null);
   const [showAllQA, setShowAllQA] = useState(false);
+  const [copied, setCopied] = useState(false);
+  const [showFlashcards, setShowFlashcards] = useState(false);
+  const { isDone, toggle } = useProgress();
 
-  // Scroll to top when topic changes
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
     setOpenQA(null);
     setShowAllQA(false);
+    setCopied(false);
   }, [topicId]);
 
   const classData = getClass(classId);
@@ -67,6 +72,51 @@ export default function TopicPage() {
   const topic = getTopic(classId, subjectId, topicId);
   const subjectColor = getSubjectColor(subjectId);
   const meta = SUBJECT_META[subjectId] || {};
+  const done = isDone(classId, subjectId, topicId);
+
+  // Find relevant teacher
+  const classTeachers = TEACHERS[classId] || [];
+  const relevantTeacher = classTeachers.find(t =>
+    t.subject.toLowerCase().includes(subjectId.toLowerCase()) ||
+    (t.topics && t.topics.some(tp => tp.toLowerCase().includes(topic?.title?.toLowerCase())))
+  ) || classTeachers[0];
+
+  const navigate = useNavigate();
+
+  const [bookingLoading, setBookingLoading] = useState(false);
+
+  const handleBookSession = async () => {
+    if (!user) {
+      onOpenLogin();
+      return;
+    }
+
+    setBookingLoading(true);
+    try {
+      const response = await fetch('/api/bookings', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          studentEmail: user.email,
+          teacherId: relevantTeacher.id,
+          classId,
+          subjectId,
+          topicId,
+        }),
+      });
+
+      const data = await response.json();
+      if (response.ok) {
+        alert(`Success! Your booking request for "${topic.title}" has been sent to ${relevantTeacher.name}.`);
+      } else {
+        alert(`Error: ${data.error || 'Failed to book session'}`);
+      }
+    } catch (err) {
+      alert('Network error. Please check if the server is running.');
+    } finally {
+      setBookingLoading(false);
+    }
+  };
 
   if (!classData || !subject || !topic) {
     return (
@@ -81,12 +131,23 @@ export default function TopicPage() {
     );
   }
 
-  // Neighboring topics for prev/next navigation
   const topicIndex = subject.topics.findIndex(t => t.id === topicId);
   const prevTopic = topicIndex > 0 ? subject.topics[topicIndex - 1] : null;
   const nextTopic = topicIndex < subject.topics.length - 1 ? subject.topics[topicIndex + 1] : null;
-
   const visibleQA = showAllQA ? topic.qa : (topic.qa || []).slice(0, 4);
+
+  async function handleShare() {
+    const url = window.location.href;
+    const title = `${topic.title} — ${meta.label} | OnlineStudyHub`;
+    if (navigator.share) {
+      try { await navigator.share({ title, url }); return; } catch {}
+    }
+    try {
+      await navigator.clipboard.writeText(url);
+      setCopied(true);
+      setTimeout(() => setCopied(false), 2000);
+    } catch {}
+  }
 
   return (
     <div>
@@ -98,21 +159,8 @@ export default function TopicPage() {
         position: 'relative',
         overflow: 'hidden',
       }}>
-        {/* Decorative circles */}
-        <div style={{
-          position: 'absolute', right: '-4rem', top: '-4rem',
-          width: '20rem', height: '20rem',
-          borderRadius: '50%',
-          background: 'rgba(255,255,255,.06)',
-          pointerEvents: 'none',
-        }} />
-        <div style={{
-          position: 'absolute', right: '6rem', bottom: '-6rem',
-          width: '14rem', height: '14rem',
-          borderRadius: '50%',
-          background: 'rgba(255,255,255,.04)',
-          pointerEvents: 'none',
-        }} />
+        <div style={{ position: 'absolute', right: '-4rem', top: '-4rem', width: '20rem', height: '20rem', borderRadius: '50%', background: 'rgba(255,255,255,.06)', pointerEvents: 'none' }} />
+        <div style={{ position: 'absolute', right: '6rem', bottom: '-6rem', width: '14rem', height: '14rem', borderRadius: '50%', background: 'rgba(255,255,255,.04)', pointerEvents: 'none' }} />
 
         <div className="container" style={{ position: 'relative', zIndex: 1 }}>
           <Breadcrumb items={[
@@ -123,40 +171,18 @@ export default function TopicPage() {
           ]} />
 
           <div style={{ display: 'flex', alignItems: 'center', gap: '1rem', marginBottom: '1rem', flexWrap: 'wrap' }}>
-            <span style={{
-              background: 'rgba(255,255,255,.15)',
-              border: '1px solid rgba(255,255,255,.25)',
-              padding: '.3rem .9rem',
-              borderRadius: 999,
-              fontSize: '.78rem', fontWeight: 700,
-              letterSpacing: '.04em', textTransform: 'uppercase',
-            }}>
+            <span style={{ background: 'rgba(255,255,255,.15)', border: '1px solid rgba(255,255,255,.25)', padding: '.3rem .9rem', borderRadius: 999, fontSize: '.78rem', fontWeight: 700, letterSpacing: '.04em', textTransform: 'uppercase' }}>
               {meta.icon} {meta.label}
             </span>
-            <span style={{
-              background: 'rgba(255,255,255,.12)',
-              border: '1px solid rgba(255,255,255,.2)',
-              padding: '.3rem .9rem',
-              borderRadius: 999, fontSize: '.78rem', fontWeight: 600,
-            }}>
+            <span style={{ background: 'rgba(255,255,255,.12)', border: '1px solid rgba(255,255,255,.2)', padding: '.3rem .9rem', borderRadius: 999, fontSize: '.78rem', fontWeight: 600 }}>
               {classData.label}
             </span>
-            <span style={{
-              background: 'rgba(255,255,255,.12)',
-              border: '1px solid rgba(255,255,255,.2)',
-              padding: '.3rem .9rem',
-              borderRadius: 999, fontSize: '.78rem', fontWeight: 600,
-            }}>
+            <span style={{ background: 'rgba(255,255,255,.12)', border: '1px solid rgba(255,255,255,.2)', padding: '.3rem .9rem', borderRadius: 999, fontSize: '.78rem', fontWeight: 600 }}>
               Topic {topicIndex + 1} of {subject.topics.length}
             </span>
           </div>
 
-          <h1 style={{
-            fontFamily: 'Nunito', fontWeight: 900,
-            fontSize: 'clamp(1.8rem, 4.5vw, 2.8rem)',
-            marginBottom: '.75rem',
-            lineHeight: 1.2,
-          }}>
+          <h1 style={{ fontFamily: 'Nunito', fontWeight: 900, fontSize: 'clamp(1.8rem, 4.5vw, 2.8rem)', marginBottom: '.75rem', lineHeight: 1.2 }}>
             {topic.title}
           </h1>
 
@@ -166,12 +192,27 @@ export default function TopicPage() {
             </p>
           )}
 
-          <div style={{ marginTop: '1.5rem', display: 'flex', gap: '1rem', flexWrap: 'wrap' }}>
-            <div style={{ display: 'flex', alignItems: 'center', gap: '.4rem', opacity: .85, fontSize: '.85rem' }}>
+          {/* Action buttons row */}
+          <div style={{ marginTop: '1.5rem', display: 'flex', gap: '.75rem', flexWrap: 'wrap', alignItems: 'center' }}>
+            {/* Progress toggle */}
+            <button
+              onClick={() => toggle(classId, subjectId, topicId)}
+              className={`topic-action-btn ${done ? 'done' : ''}`}
+            >
+              {done ? '✅ Completed' : '○ Mark as Done'}
+            </button>
+
+            {/* Share button */}
+            <button onClick={handleShare} className="topic-action-btn">
+              {copied ? '✓ Link Copied!' : '🔗 Share Topic'}
+            </button>
+
+            {/* Stats */}
+            <div style={{ display: 'flex', alignItems: 'center', gap: '.4rem', opacity: .8, fontSize: '.85rem', marginLeft: 'auto' }}>
               <span>📖</span> Detailed explanation
             </div>
             {topic.qa?.length > 0 && (
-              <div style={{ display: 'flex', alignItems: 'center', gap: '.4rem', opacity: .85, fontSize: '.85rem' }}>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '.4rem', opacity: .8, fontSize: '.85rem' }}>
                 <span>❓</span> {topic.qa.length} exam questions
               </div>
             )}
@@ -195,7 +236,7 @@ export default function TopicPage() {
         {/* ── 2. Learning Content ── */}
         {topic.content && (
           <section style={{ marginBottom: '3rem' }}>
-            <h2 className="topic-section-title" style={{ '--sc': `var(--sc, #4f46e5)` }}>
+            <h2 className="topic-section-title">
               Understanding {topic.title}
             </h2>
             <div
@@ -208,11 +249,7 @@ export default function TopicPage() {
         {/* ── 3. Q&A Accordion ── */}
         {topic.qa && topic.qa.length > 0 && (
           <section style={{ marginTop: '3rem' }}>
-            {/* Section header */}
-            <div style={{
-              display: 'flex', alignItems: 'center', justifyContent: 'space-between',
-              marginBottom: '1.5rem', flexWrap: 'wrap', gap: '.75rem'
-            }}>
+            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '1.5rem', flexWrap: 'wrap', gap: '.75rem' }}>
               <div>
                 <h2 className="topic-section-title" style={{ marginBottom: '.25rem' }}>
                   Important Questions &amp; Answers
@@ -221,36 +258,33 @@ export default function TopicPage() {
                   Frequently asked in exams — {topic.qa.length} questions
                 </p>
               </div>
-              {topic.qa.length > 4 && (
-                <div style={{ display: 'flex', gap: '.5rem' }}>
-                  <button
-                    onClick={() => { setOpenQA(null); }}
-                    style={{
-                      padding: '.35rem .9rem', borderRadius: 8,
-                      border: '1px solid #e5e7eb', background: '#f9fafb',
-                      fontSize: '.8rem', color: '#6b7280', cursor: 'pointer'
-                    }}
-                  >
-                    Collapse all
-                  </button>
-                  <button
-                    onClick={() => {
-                      // Open all visible questions
-                      setOpenQA('all');
-                    }}
-                    style={{
-                      padding: '.35rem .9rem', borderRadius: 8,
-                      border: '1px solid #e5e7eb', background: '#f9fafb',
-                      fontSize: '.8rem', color: '#6b7280', cursor: 'pointer'
-                    }}
-                  >
-                    Expand all
-                  </button>
-                </div>
-              )}
+              <div style={{ display: 'flex', gap: '.5rem', flexWrap: 'wrap' }}>
+                {/* Flashcard mode button */}
+                <button
+                  onClick={() => setShowFlashcards(true)}
+                  className={`btn ${subjectColor}`}
+                  style={{
+                    padding: '.4rem 1rem', borderRadius: 10,
+                    background: 'var(--sc)', color: '#fff',
+                    fontSize: '.82rem', fontWeight: 700, border: 'none',
+                    cursor: 'pointer', display: 'flex', alignItems: 'center', gap: '.4rem',
+                  }}
+                >
+                  🃏 Flashcard Mode
+                </button>
+                {topic.qa.length > 4 && (
+                  <>
+                    <button onClick={() => setOpenQA(null)} style={{ padding: '.35rem .9rem', borderRadius: 8, border: '1px solid #e5e7eb', background: '#f9fafb', fontSize: '.8rem', color: '#6b7280', cursor: 'pointer' }}>
+                      Collapse all
+                    </button>
+                    <button onClick={() => setOpenQA('all')} style={{ padding: '.35rem .9rem', borderRadius: 8, border: '1px solid #e5e7eb', background: '#f9fafb', fontSize: '.8rem', color: '#6b7280', cursor: 'pointer' }}>
+                      Expand all
+                    </button>
+                  </>
+                )}
+              </div>
             </div>
 
-            {/* Accordion items */}
             <div className={subjectColor}>
               {visibleQA.map((item, i) => (
                 <AccordionItem
@@ -265,43 +299,79 @@ export default function TopicPage() {
               ))}
             </div>
 
-            {/* Show more / less */}
             {topic.qa.length > 4 && (
               <div style={{ textAlign: 'center', marginTop: '1.25rem' }}>
                 <button
-                  onClick={() => {
-                    setShowAllQA(s => !s);
-                    setOpenQA(null);
-                  }}
+                  onClick={() => { setShowAllQA(s => !s); setOpenQA(null); }}
                   className="btn btn-secondary"
                   style={{ fontSize: '.9rem' }}
                 >
-                  {showAllQA
-                    ? `Show less ▲`
-                    : `Show all ${topic.qa.length} questions ▼`}
+                  {showAllQA ? `Show less ▲` : `Show all ${topic.qa.length} questions ▼`}
                 </button>
               </div>
             )}
 
-            {/* Exam tip box */}
-            <div style={{
-              marginTop: '2rem',
-              background: '#fffbeb',
-              border: '1.5px solid #fde68a',
-              borderRadius: 14,
-              padding: '1.25rem 1.5rem',
-              display: 'flex', gap: '1rem', alignItems: 'flex-start'
-            }}>
+            <div style={{ marginTop: '2rem', background: '#fffbeb', border: '1.5px solid #fde68a', borderRadius: 14, padding: '1.25rem 1.5rem', display: 'flex', gap: '1rem', alignItems: 'flex-start' }}>
               <span style={{ fontSize: '1.5rem', flexShrink: 0 }}>💡</span>
               <div>
-                <div style={{ fontFamily: 'Nunito', fontWeight: 700, color: '#92400e', marginBottom: '.3rem' }}>
-                  Exam Tip
-                </div>
+                <div style={{ fontFamily: 'Nunito', fontWeight: 700, color: '#92400e', marginBottom: '.3rem' }}>Exam Tip</div>
                 <p style={{ fontSize: '.875rem', color: '#78350f', lineHeight: 1.7 }}>
                   These questions are based on common exam patterns for {classData.label} {meta.label}.
                   Practice writing answers in your own words — don't just memorise.
                   Understanding the concept is more important than memorisation.
                 </p>
+              </div>
+            </div>
+          </section>
+        )}
+
+        {/* ── 4. Deep Learn with Teacher ── */}
+        {relevantTeacher && (
+          <section style={{ marginTop: '4rem', background: 'linear-gradient(135deg, #f8fafc, #f1f5f9)', borderRadius: 24, padding: '2.5rem', border: '1px solid #e2e8f0', boxShadow: '0 10px 25px -5px rgba(0,0,0,0.05)' }}>
+            <div style={{ display: 'flex', gap: '2rem', alignItems: 'center', flexWrap: 'wrap' }}>
+              <div style={{ flexShrink: 0, width: 100, height: 100, borderRadius: '50%', background: '#fff', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '3.5rem', boxShadow: '0 4px 12px rgba(0,0,0,0.1)', border: '4px solid #fff' }}>
+                {relevantTeacher.avatar}
+              </div>
+              <div style={{ flex: 1, minWidth: 280 }}>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '.75rem', marginBottom: '.5rem' }}>
+                  <span style={{ background: '#4f46e5', color: '#fff', fontSize: '.7rem', fontWeight: 800, padding: '.2rem .6rem', borderRadius: 6, textTransform: 'uppercase' }}>Expert Teacher</span>
+                  <div style={{ display: 'flex', color: '#fbbf24', fontSize: '.9rem' }}>
+                    {'★'.repeat(Math.floor(relevantTeacher.rating))}{relevantTeacher.rating % 1 !== 0 ? '½' : ''}
+                    <span style={{ color: '#64748b', marginLeft: '.4rem', fontSize: '.8rem', fontWeight: 600 }}>({relevantTeacher.rating})</span>
+                  </div>
+                </div>
+                <h2 style={{ fontFamily: 'Nunito', fontWeight: 900, fontSize: '1.75rem', color: '#1e1b4b', marginBottom: '.5rem' }}>
+                  Deep Learn with {relevantTeacher.name}
+                </h2>
+                <p style={{ color: '#475569', fontSize: '.95rem', lineHeight: 1.6, marginBottom: '1.25rem' }}>
+                  {relevantTeacher.bio}
+                </p>
+                <div style={{ display: 'flex', gap: '1.5rem', flexWrap: 'wrap', marginBottom: '1.5rem' }}>
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '.5rem', fontSize: '.85rem', color: '#64748b' }}>
+                    <span style={{ fontSize: '1.1rem' }}>🎓</span> {relevantTeacher.qualification}
+                  </div>
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '.5rem', fontSize: '.85rem', color: '#64748b' }}>
+                    <span style={{ fontSize: '1.1rem' }}>⏱️</span> {relevantTeacher.experience} Experience
+                  </div>
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '.5rem', fontSize: '.85rem', color: '#64748b' }}>
+                    <span style={{ fontSize: '1.1rem' }}>💰</span> {relevantTeacher.fee}
+                  </div>
+                </div>
+                <button
+                  className="btn btn-primary"
+                  style={{ 
+                    padding: '0.85rem 2rem', 
+                    fontSize: '1rem', 
+                    borderRadius: 12, 
+                    boxShadow: '0 4px 14px rgba(79, 70, 229, 0.4)',
+                    opacity: bookingLoading ? 0.7 : 1,
+                    cursor: bookingLoading ? 'not-allowed' : 'pointer'
+                  }}
+                  onClick={handleBookSession}
+                  disabled={bookingLoading}
+                >
+                  {bookingLoading ? '⏳ Processing...' : '🚀 Book a Deep Learn Session'}
+                </button>
               </div>
             </div>
           </section>
@@ -317,75 +387,47 @@ export default function TopicPage() {
           borderTop: '1px solid #e5e7eb',
         }}>
           {prevTopic && (
-            <Link
-              to={`/class/${classId}/subject/${subjectId}/topic/${prevTopic.id}`}
-              style={{ textDecoration: 'none' }}
-            >
-              <div className={`card ${subjectColor}`} style={{
-                padding: '1.25rem',
-                border: '1px solid var(--sm)',
-                background: 'var(--sl)',
-                display: 'flex', alignItems: 'center', gap: '.75rem'
-              }}>
+            <Link to={`/class/${classId}/subject/${subjectId}/topic/${prevTopic.id}`} style={{ textDecoration: 'none' }}>
+              <div className={`card ${subjectColor}`} style={{ padding: '1.25rem', border: '1px solid var(--sm)', background: 'var(--sl)', display: 'flex', alignItems: 'center', gap: '.75rem' }}>
                 <span style={{ fontSize: '1.25rem' }}>←</span>
                 <div style={{ flex: 1, minWidth: 0 }}>
-                  <div style={{ fontSize: '.72rem', color: 'var(--sc)', fontWeight: 700, textTransform: 'uppercase', marginBottom: '.2rem' }}>
-                    Previous Topic
-                  </div>
-                  <div style={{ fontFamily: 'Nunito', fontWeight: 700, color: '#1e1b4b', fontSize: '.92rem', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
-                    {prevTopic.title}
-                  </div>
+                  <div style={{ fontSize: '.72rem', color: 'var(--sc)', fontWeight: 700, textTransform: 'uppercase', marginBottom: '.2rem' }}>Previous Topic</div>
+                  <div style={{ fontFamily: 'Nunito', fontWeight: 700, color: '#1e1b4b', fontSize: '.92rem', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{prevTopic.title}</div>
                 </div>
               </div>
             </Link>
           )}
           {nextTopic && (
-            <Link
-              to={`/class/${classId}/subject/${subjectId}/topic/${nextTopic.id}`}
-              style={{ textDecoration: 'none', gridColumn: prevTopic ? 'auto' : '1 / -1' }}
-            >
-              <div className={`card ${subjectColor}`} style={{
-                padding: '1.25rem',
-                border: '1px solid var(--sm)',
-                background: 'var(--sl)',
-                display: 'flex', alignItems: 'center', gap: '.75rem',
-                textAlign: 'right', flexDirection: 'row-reverse'
-              }}>
+            <Link to={`/class/${classId}/subject/${subjectId}/topic/${nextTopic.id}`} style={{ textDecoration: 'none', gridColumn: prevTopic ? 'auto' : '1 / -1' }}>
+              <div className={`card ${subjectColor}`} style={{ padding: '1.25rem', border: '1px solid var(--sm)', background: 'var(--sl)', display: 'flex', alignItems: 'center', gap: '.75rem', textAlign: 'right', flexDirection: 'row-reverse' }}>
                 <span style={{ fontSize: '1.25rem' }}>→</span>
                 <div style={{ flex: 1, minWidth: 0 }}>
-                  <div style={{ fontSize: '.72rem', color: 'var(--sc)', fontWeight: 700, textTransform: 'uppercase', marginBottom: '.2rem' }}>
-                    Next Topic
-                  </div>
-                  <div style={{ fontFamily: 'Nunito', fontWeight: 700, color: '#1e1b4b', fontSize: '.92rem', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
-                    {nextTopic.title}
-                  </div>
+                  <div style={{ fontSize: '.72rem', color: 'var(--sc)', fontWeight: 700, textTransform: 'uppercase', marginBottom: '.2rem' }}>Next Topic</div>
+                  <div style={{ fontFamily: 'Nunito', fontWeight: 700, color: '#1e1b4b', fontSize: '.92rem', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{nextTopic.title}</div>
                 </div>
               </div>
             </Link>
           )}
         </div>
 
-        {/* ── Back to subject / class ── */}
-        <div style={{
-          display: 'flex', gap: '.75rem', marginTop: '1.5rem',
-          flexWrap: 'wrap', justifyContent: 'center'
-        }}>
-          <Link
-            to={`/class/${classId}/subject/${subjectId}`}
-            className="btn btn-ghost"
-            style={{ fontSize: '.88rem', border: '1px solid #e5e7eb' }}
-          >
+        <div style={{ display: 'flex', gap: '.75rem', marginTop: '1.5rem', flexWrap: 'wrap', justifyContent: 'center' }}>
+          <Link to={`/class/${classId}/subject/${subjectId}`} className="btn btn-ghost" style={{ fontSize: '.88rem', border: '1px solid #e5e7eb' }}>
             ← All {meta.label} topics
           </Link>
-          <Link
-            to={`/class/${classId}`}
-            className="btn btn-ghost"
-            style={{ fontSize: '.88rem', border: '1px solid #e5e7eb' }}
-          >
+          <Link to={`/class/${classId}`} className="btn btn-ghost" style={{ fontSize: '.88rem', border: '1px solid #e5e7eb' }}>
             ← Back to {classData.label}
           </Link>
         </div>
       </div>
+
+      {/* ── Flashcard Modal ── */}
+      {showFlashcards && (
+        <FlashcardModal
+          qa={topic.qa}
+          topicTitle={topic.title}
+          onClose={() => setShowFlashcards(false)}
+        />
+      )}
     </div>
   );
 }

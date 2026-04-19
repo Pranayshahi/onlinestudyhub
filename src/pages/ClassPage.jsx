@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { getClass, getSubjectColor, SUBJECT_META } from '../data/curriculum';
 import { TEACHERS } from '../data/teachers';
@@ -164,11 +164,20 @@ function TeacherModal({ teacher, classLabel, onClose }) {
   );
 }
 
-export default function ClassPage() {
+export default function ClassPage({ user, onOpenLogin }) {
   const { classId } = useParams();
   const classData = getClass(classId);
   const [activeSubject, setActiveSubject] = useState(null);
   const [showTeacher, setShowTeacher] = useState(false);
+  const [apiTeacher, setApiTeacher] = useState(null);
+
+  // Try fetching teachers from API; fall back to static data silently
+  useEffect(() => {
+    fetch(`/api/teachers?classId=${classId}`)
+      .then(r => r.ok ? r.json() : null)
+      .then(data => { if (data?.length) setApiTeacher(data[0]); })
+      .catch(() => {});
+  }, [classId]);
 
   if (!classData) {
     return (
@@ -184,7 +193,16 @@ export default function ClassPage() {
   const currentSubject = classData.subjects[currentSubjectId];
   const subjectColor = getSubjectColor(currentSubjectId);
   const meta = SUBJECT_META[currentSubjectId] || SUBJECT_META.mathematics;
-  const teacher = TEACHERS[classId];
+  // API teacher takes priority over static data
+  const teacher = apiTeacher || TEACHERS[classId]?.[0];
+
+  const handleTeacherClick = () => {
+    if (!user) {
+      onOpenLogin();
+    } else {
+      setShowTeacher(true);
+    }
+  };
 
   return (
     <div>
@@ -220,7 +238,7 @@ export default function ClassPage() {
             {/* Find Teacher button */}
             {teacher && (
               <button
-                onClick={() => setShowTeacher(true)}
+                onClick={handleTeacherClick}
                 style={{
                   display: 'flex', alignItems: 'center', gap: '.6rem',
                   background: 'rgba(255,255,255,.15)', border: '1.5px solid rgba(255,255,255,.3)',

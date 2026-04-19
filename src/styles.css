@@ -300,3 +300,277 @@
   .tab-btn { padding: .6rem .9rem; font-size: .82rem; }
   .topics-grid { grid-template-columns: 1fr; }
 }
+
+/* ─── Dark Mode Toggle Button — always visible ─── */
+.dark-toggle-btn {
+  background: rgba(255,255,255,.12);
+  border: 1px solid rgba(255,255,255,.2);
+  color: #fff;
+  width: 36px; height: 36px;
+  border-radius: 10px;
+  font-size: 1rem;
+  display: flex; align-items: center; justify-content: center;
+  cursor: pointer; transition: all .2s;
+  flex-shrink: 0;
+  /* Always visible — NOT inside .nav-actions so never hidden on mobile */
+}
+.dark-toggle-btn:hover { background: rgba(255,255,255,.22); }
+
+/* ─── Topic Action Buttons (Share, Mark Done) ─── */
+.topic-action-btn {
+  display: inline-flex; align-items: center; gap: .4rem;
+  padding: .4rem 1rem;
+  border-radius: 99px;
+  background: rgba(255,255,255,.15);
+  border: 1.5px solid rgba(255,255,255,.3);
+  color: #fff;
+  font-size: .82rem; font-weight: 700;
+  cursor: pointer; transition: all .2s;
+  font-family: 'Nunito', sans-serif;
+}
+.topic-action-btn:hover { background: rgba(255,255,255,.25); }
+.topic-action-btn.done { background: #22c55e; border-color: #16a34a; }
+
+/* ─── Flashcard Modal ─── */
+.flashcard-overlay {
+  position: fixed; inset: 0;
+  background: rgba(0,0,0,.6);
+  z-index: 1000;
+  display: flex; align-items: center; justify-content: center;
+  padding: 1rem;
+  backdrop-filter: blur(4px);
+}
+.flashcard-modal {
+  background: #fff;
+  border-radius: 20px;
+  width: 100%; max-width: 560px;
+  box-shadow: 0 24px 80px rgba(0,0,0,.3);
+  overflow: hidden;
+  display: flex; flex-direction: column;
+  max-height: 90vh;
+}
+.flashcard-header {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 1.25rem 1.5rem;
+  border-bottom: 1px solid #f3f4f6;
+}
+.flashcard-close-btn {
+  background: #f3f4f6; border: none; color: #6b7280;
+  width: 32px; height: 32px; border-radius: 50%;
+  font-size: .9rem; cursor: pointer; transition: all .15s;
+  display: flex; align-items: center; justify-content: center;
+}
+.flashcard-close-btn:hover { background: #e5e7eb; color: #1f2937; }
+.flashcard-scene {
+  perspective: 1200px;
+  padding: 1.5rem;
+  flex: 1;
+  min-height: 240px;
+  cursor: pointer;
+}
+.flashcard-card {
+  position: relative;
+  width: 100%; height: 220px;
+  transform-style: preserve-3d;
+  transition: transform .5s cubic-bezier(.4,0,.2,1);
+}
+.flashcard-card.flipped { transform: rotateY(180deg); }
+.flashcard-face {
+  position: absolute; inset: 0;
+  backface-visibility: hidden;
+  border-radius: 16px;
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  padding: 1.5rem;
+  text-align: center;
+}
+.flashcard-front {
+  background: #f8fafc;
+  border: 2px solid #e5e7eb;
+}
+.flashcard-back {
+  background: linear-gradient(135deg, #4f46e5, #7c3aed);
+  transform: rotateY(180deg);
+}
+.flashcard-label {
+  font-size: .7rem; font-weight: 800; text-transform: uppercase;
+  letter-spacing: .08em; color: #9ca3af;
+  background: #f3f4f6; padding: .2rem .75rem;
+  border-radius: 99px; margin-bottom: 1rem;
+}
+.flashcard-text {
+  font-size: 1.05rem; font-weight: 600; color: #1f2937;
+  line-height: 1.6; font-family: 'Nunito', sans-serif;
+}
+.flashcard-hint {
+  margin-top: 1rem; font-size: .75rem; color: #d1d5db;
+  position: absolute; bottom: 1rem;
+}
+.flashcard-controls {
+  display: flex; gap: .75rem; padding: 1rem 1.5rem;
+  border-top: 1px solid #f3f4f6;
+  align-items: center;
+}
+.flashcard-nav-btn {
+  flex: 1; padding: .55rem 1rem;
+  border: 1.5px solid #e5e7eb; border-radius: 10px;
+  background: #f9fafb; color: #374151;
+  font-size: .85rem; font-weight: 600; cursor: pointer;
+  transition: all .15s; font-family: 'Nunito', sans-serif;
+}
+.flashcard-nav-btn:hover:not(:disabled) { background: #eef2ff; border-color: #4f46e5; color: #4f46e5; }
+.flashcard-nav-btn:disabled { opacity: .35; cursor: default; }
+.flashcard-flip-btn {
+  flex: 2; padding: .55rem 1rem;
+  background: #4f46e5; color: #fff; border: none;
+  border-radius: 10px; font-size: .85rem; font-weight: 700;
+  cursor: pointer; transition: background .15s;
+  font-family: 'Nunito', sans-serif;
+}
+.flashcard-flip-btn:hover { background: #4338ca; }
+
+/* ════════════════════════════════════════════════
+   DARK MODE
+   Uses html[data-theme="dark"] for maximum specificity
+   (higher than body{} in index.html inline <style>)
+   ════════════════════════════════════════════════ */
+
+/* Root-level — sets page background + text, overrides index.html inline style */
+html[data-theme="dark"],
+html[data-theme="dark"] body,
+html[data-theme="dark"] #root,
+html[data-theme="dark"] .app {
+  background: #0f0e1a !important;
+  color: #e2e0f0;
+  color-scheme: dark;
+}
+
+/* Scrollbar */
+html[data-theme="dark"] ::-webkit-scrollbar-track { background: #1a1929; }
+
+/* Cards & surfaces */
+html[data-theme="dark"] .card,
+html[data-theme="dark"] .card-flat { background: #1a1929; border-color: #2d2c42; color: #e2e0f0; }
+html[data-theme="dark"] .card:hover { box-shadow: 0 8px 32px rgba(0,0,0,.4); }
+html[data-theme="dark"] .feature-card { background: #1a1929; border-color: #2d2c42; }
+
+/* Section text */
+html[data-theme="dark"] .section { background: #0f0e1a; }
+html[data-theme="dark"] .section-title { color: #e2e0f0; }
+html[data-theme="dark"] .section-sub { color: #8b89a8; }
+html[data-theme="dark"] .feature-title { color: #e2e0f0; }
+html[data-theme="dark"] .feature-desc { color: #8b89a8; }
+
+/* Tabs */
+html[data-theme="dark"] .tab-bar { border-color: #2d2c42; }
+html[data-theme="dark"] .tab-btn { color: #8b89a8; }
+html[data-theme="dark"] .tab-btn.active { background: #1e1d2e; color: #a5b4fc; border-color: #6366f1; }
+html[data-theme="dark"] .tab-btn:hover { background: #1e1d2e; color: #a5b4fc; }
+
+/* Topic & subject cards */
+html[data-theme="dark"] .topic-card { background: #1a1929; border-color: #2d2c42; }
+html[data-theme="dark"] .topic-card:hover { background: var(--sl); box-shadow: 0 6px 24px rgba(0,0,0,.4); }
+html[data-theme="dark"] .topic-card-title { color: #e2e0f0; }
+html[data-theme="dark"] .topic-card-meta { color: #8b89a8; }
+html[data-theme="dark"] .subject-card { background: #1a1929; border-color: #2d2c42; }
+html[data-theme="dark"] .subject-card:hover { background: var(--sl); }
+html[data-theme="dark"] .subject-card-title { color: #e2e0f0; }
+html[data-theme="dark"] .class-card { background: #1a1929; border-color: #2d2c42; }
+html[data-theme="dark"] .class-card:hover { border-color: #6366f1; }
+html[data-theme="dark"] .class-card-title { color: #e2e0f0; }
+html[data-theme="dark"] .class-card-sub { color: #8b89a8; }
+
+/* Accordion */
+html[data-theme="dark"] .accordion-item { border-color: #2d2c42; }
+html[data-theme="dark"] .accordion-header { background: #1a1929; color: #e2e0f0; }
+html[data-theme="dark"] .accordion-header:hover { background: #1e1d2e; }
+html[data-theme="dark"] .accordion-body { background: #1a1929; color: #c4c2db; }
+
+/* Topic content */
+html[data-theme="dark"] .topic-definition { background: var(--sl); border-color: var(--sm); }
+html[data-theme="dark"] .topic-definition-text { color: #e2e0f0; }
+html[data-theme="dark"] .topic-content { color: #c4c2db; }
+html[data-theme="dark"] .topic-content p,
+html[data-theme="dark"] .topic-content li { color: #c4c2db; }
+html[data-theme="dark"] .topic-content strong { color: #e2e0f0; }
+html[data-theme="dark"] .topic-content h4 { color: #e2e0f0; border-color: #2d2c42; }
+html[data-theme="dark"] .topic-section-title { color: #e2e0f0; }
+html[data-theme="dark"] .topic-content .example-box { background: #1a1929; border-color: #2d2c42; }
+
+/* Page sections that have white backgrounds via class */
+html[data-theme="dark"] .page-header + div,
+html[data-theme="dark"] [style*="background: #f9fafb"],
+html[data-theme="dark"] [style*="background:#f9fafb"] { background: #1a1929 !important; }
+html[data-theme="dark"] [style*="background: #fff"],
+html[data-theme="dark"] [style*="background:#fff"],
+html[data-theme="dark"] [style*="background: white"] { background: #1a1929 !important; }
+html[data-theme="dark"] [style*="color: #374151"],
+html[data-theme="dark"] [style*="color:#374151"] { color: #c4c2db !important; }
+html[data-theme="dark"] [style*="color: #1e1b4b"],
+html[data-theme="dark"] [style*="color:#1e1b4b"] { color: #e2e0f0 !important; }
+html[data-theme="dark"] [style*="color: #1f2937"],
+html[data-theme="dark"] [style*="color:#1f2937"] { color: #e2e0f0 !important; }
+html[data-theme="dark"] [style*="color: #6b7280"],
+html[data-theme="dark"] [style*="color:#6b7280"] { color: #8b89a8 !important; }
+html[data-theme="dark"] [style*="color: #9ca3af"],
+html[data-theme="dark"] [style*="color:#9ca3af"] { color: #5a5876 !important; }
+html[data-theme="dark"] [style*="border: 1px solid #e5e7eb"],
+html[data-theme="dark"] [style*="border:1px solid #e5e7eb"],
+html[data-theme="dark"] [style*="border-top: 1px solid #e5e7eb"] { border-color: #2d2c42 !important; }
+
+/* Buttons */
+html[data-theme="dark"] .btn-secondary { background: #1a1929; color: #a5b4fc; border-color: #6366f1; }
+html[data-theme="dark"] .btn-secondary:hover { background: #1e1d2e; }
+html[data-theme="dark"] .btn-ghost { color: #c4c2db; }
+html[data-theme="dark"] .btn-ghost:hover { background: #1e1d2e; color: #e2e0f0; }
+
+/* Inputs */
+html[data-theme="dark"] input { background: #1a1929; border-color: #2d2c42; color: #e2e0f0; }
+html[data-theme="dark"] input::placeholder { color: #5a5876; }
+html[data-theme="dark"] textarea { background: #1a1929; border-color: #2d2c42; color: #e2e0f0; }
+
+/* AI Panel */
+html[data-theme="dark"] .ai-panel { background: #1a1929; }
+html[data-theme="dark"] .ai-msg-row.assistant .ai-bubble { background: #1e1d2e; color: #e2e0f0; }
+html[data-theme="dark"] .ai-input { background: #1e1d2e; border-color: #2d2c42; color: #e2e0f0; }
+html[data-theme="dark"] .ai-input:focus { border-color: #6366f1; }
+html[data-theme="dark"] .ai-input-row { border-color: #2d2c42; background: #1a1929; }
+html[data-theme="dark"] .ai-suggestion-chip { background: #1e1d2e; border-color: #2d2c42; color: #a5b4fc; }
+html[data-theme="dark"] .ai-suggestion-chip:hover { background: #25243a; border-color: #6366f1; }
+html[data-theme="dark"] .ai-messages { background: #1a1929; }
+
+/* Dropdown menus */
+html[data-theme="dark"] .dropdown { background: #1a1929; border-color: #2d2c42; }
+html[data-theme="dark"] .dropdown-item { color: #c4c2db; }
+html[data-theme="dark"] .dropdown-item:hover { background: #1e1d2e; color: #a5b4fc; }
+html[data-theme="dark"] .dropdown-label { color: #5a5876; }
+html[data-theme="dark"] .dropdown-divider { background: #2d2c42; }
+
+/* Flashcard Modal */
+html[data-theme="dark"] .flashcard-modal { background: #1a1929; }
+html[data-theme="dark"] .flashcard-header { border-color: #2d2c42; }
+html[data-theme="dark"] .flashcard-front { background: #1e1d2e; border-color: #2d2c42; }
+html[data-theme="dark"] .flashcard-text { color: #e2e0f0; }
+html[data-theme="dark"] .flashcard-nav-btn { background: #1e1d2e; border-color: #2d2c42; color: #c4c2db; }
+html[data-theme="dark"] .flashcard-nav-btn:hover:not(:disabled) { background: #25243a; border-color: #6366f1; color: #a5b4fc; }
+html[data-theme="dark"] .flashcard-controls { border-color: #2d2c42; background: #1a1929; }
+html[data-theme="dark"] .flashcard-close-btn { background: #2d2c42; color: #c4c2db; }
+html[data-theme="dark"] .flashcard-close-btn:hover { background: #3d3b56; }
+html[data-theme="dark"] .flashcard-label { background: #2d2c42; color: #8b89a8; }
+
+/* Subject light-background overrides */
+html[data-theme="dark"] .subject-math { --sl: #1a1b3a; }
+html[data-theme="dark"] .subject-physics { --sl: #1c1828; }
+html[data-theme="dark"] .subject-chemistry { --sl: #0f1f1a; }
+html[data-theme="dark"] .subject-biology { --sl: #0f1d21; }
+html[data-theme="dark"] .subject-english { --sl: #1f1a0e; }
+html[data-theme="dark"] .subject-social { --sl: #1f1212; }
+html[data-theme="dark"] .subject-history { --sl: #1f1a0e; }
+html[data-theme="dark"] .subject-geography { --sl: #0f1f14; }
+html[data-theme="dark"] .subject-civics { --sl: #0f1820; }
+html[data-theme="dark"] .subject-economics { --sl: #1c1828; }
+html[data-theme="dark"] .subject-default { --sl: #1a1b3a; }
+
+/* Misc sections with hardcoded light backgrounds */
+html[data-theme="dark"] .mega-teacher-card { background: rgba(255,255,255,.06); }
+html[data-theme="dark"] .ai-context-pill { background: #1e1d2e; color: #a5b4fc; border-color: #2d2c42; }

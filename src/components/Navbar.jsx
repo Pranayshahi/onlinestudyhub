@@ -10,10 +10,12 @@ const ChevronDown = () => (
 );
 
 
-export default function Navbar({ onOpenAI }) {
+export default function Navbar({ onOpenAI, onOpenLogin, user, onLogout, darkMode, onToggleDark }) {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [mobileExpanded, setMobileExpanded] = useState(null);
-  const close = () => setMobileOpen(false);
+  const [userMenuOpen, setUserMenuOpen] = useState(false);
+
+  const close = () => { setMobileOpen(false); setUserMenuOpen(false); };
   const toggleMobile = (key) => setMobileExpanded(p => p === key ? null : key);
 
   return (
@@ -95,9 +97,21 @@ export default function Navbar({ onOpenAI }) {
                 <div className="dropdown-section">
                   <div className="dropdown-label">Find a Teacher</div>
                   {NAV_CLASSES.map(cls => {
-                    const t = TEACHERS[cls.id];
+                    const t = TEACHERS[cls.id]?.[0];
+                    const target = `/class/${cls.id}`;
                     return (
-                      <Link key={cls.id} to={`/class/${cls.id}`} className="dropdown-item" onClick={close}>
+                      <Link 
+                        key={cls.id} 
+                        to={user ? target : '#'} 
+                        className="dropdown-item" 
+                        onClick={(e) => {
+                          if (!user) {
+                            e.preventDefault();
+                            onOpenLogin();
+                          }
+                          close();
+                        }}
+                      >
                         <span style={{ minWidth: 20 }}>{CURRICULUM[cls.id]?.emoji}</span>
                         <span style={{ flex: 1 }}>{cls.label}</span>
                         {t && <span style={{ fontSize: '.75rem', color: '#9ca3af' }}>{t.avatar}</span>}
@@ -110,16 +124,57 @@ export default function Navbar({ onOpenAI }) {
 
           </div>
 
-          {/* AI Doubt Help button */}
+          {/* Actions */}
           <div className="nav-actions">
+            <Link
+              to="/teacher-portal"
+              style={{ fontSize: '.82rem', color: 'rgba(255,255,255,.75)', fontWeight: 700, padding: '.4rem .8rem', borderRadius: 8, border: '1px solid rgba(255,255,255,.2)', whiteSpace: 'nowrap', transition: 'all .2s' }}
+              onMouseEnter={e => { e.currentTarget.style.background='rgba(255,255,255,.12)'; e.currentTarget.style.color='#fff'; }}
+              onMouseLeave={e => { e.currentTarget.style.background='transparent'; e.currentTarget.style.color='rgba(255,255,255,.75)'; }}
+            >
+              👨‍🏫 Teacher Portal
+            </Link>
             <button
-              className="btn btn-primary"
+              className="btn btn-primary btn-ai"
               style={{ padding: '0.5rem 1.25rem', fontSize: '0.88rem' }}
               onClick={onOpenAI}
             >
-              🤖 AI Doubt Help
+              🤖 <span className="hide-mobile">AI Doubt Help</span>
             </button>
+
+            {user && (
+              <div className="nav-item" style={{ position: 'relative' }}>
+                <button 
+                  className="user-btn" 
+                  onClick={() => setUserMenuOpen(!userMenuOpen)}
+                >
+                  <span className="user-avatar">👤</span>
+                  <span className="hide-mobile">{user.name}</span>
+                </button>
+                {userMenuOpen && (
+                  <div className="dropdown user-dropdown" style={{ display: 'block', right: 0, left: 'auto', minWidth: 160 }}>
+                    <div className="dropdown-section">
+                      <div className="dropdown-label" style={{ fontSize: '.7rem' }}>Logged in as</div>
+                      <div style={{ padding: '0.5rem 1rem', fontSize: '.85rem', fontWeight: 700, color: '#1e1b4b' }}>{user.email}</div>
+                      <div className="dropdown-divider" />
+                      <button className="dropdown-item" onClick={() => { onLogout(); close(); }} style={{ width: '100%', textAlign: 'left', color: '#ef4444' }}>
+                        🚪 Logout
+                      </button>
+                    </div>
+                  </div>
+                )}
+              </div>
+            )}
           </div>
+
+          {/* Dark mode toggle */}
+          <button
+            className="dark-toggle-btn"
+            onClick={onToggleDark}
+            aria-label="Toggle dark mode"
+          >
+            {darkMode ? '☀️' : '🌙'}
+          </button>
 
           {/* Mobile menu toggle */}
           <button

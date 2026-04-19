@@ -2,10 +2,12 @@ import React, { useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { getClass, getSubject, getSubjectColor, SUBJECT_META } from '../data/curriculum';
 import Breadcrumb from '../components/Breadcrumb';
+import { useProgress } from '../hooks/useProgress';
 
 export default function SubjectPage() {
   const { classId, subjectId } = useParams();
   const [search, setSearch] = useState('');
+  const { isDone, countDone } = useProgress();
 
   const classData = getClass(classId);
   const subject = getSubject(classId, subjectId);
@@ -61,6 +63,21 @@ export default function SubjectPage() {
               <p style={{ opacity: .8, fontSize: '.95rem' }}>
                 {subject.topics.length} topics · Click any topic to start learning
               </p>
+              {/* Progress bar */}
+              {(() => {
+                const done = countDone(classId, subjectId);
+                const pct = Math.round((done / subject.topics.length) * 100);
+                return done > 0 ? (
+                  <div style={{ marginTop: '.75rem' }}>
+                    <div style={{ fontSize: '.78rem', opacity: .8, marginBottom: '.3rem', fontWeight: 600 }}>
+                      {done} / {subject.topics.length} completed ({pct}%)
+                    </div>
+                    <div style={{ height: 6, background: 'rgba(255,255,255,.2)', borderRadius: 99, maxWidth: 260 }}>
+                      <div style={{ height: '100%', width: `${pct}%`, background: '#4ade80', borderRadius: 99, transition: 'width .4s ease' }} />
+                    </div>
+                  </div>
+                ) : null;
+              })()}
             </div>
           </div>
         </div>
@@ -109,7 +126,16 @@ export default function SubjectPage() {
                   to={`/class/${classId}/subject/${subjectId}/topic/${topic.id}`}
                   style={{ textDecoration: 'none' }}
                 >
-                  <div className={`topic-card ${subjectColor}`} style={{ height: '100%' }}>
+                  <div className={`topic-card ${subjectColor}`} style={{ height: '100%', position: 'relative' }}>
+                    {isDone(classId, subjectId, topic.id) && (
+                      <div style={{
+                        position: 'absolute', top: '.75rem', right: '.75rem',
+                        background: '#22c55e', color: '#fff',
+                        borderRadius: '50%', width: 22, height: 22,
+                        display: 'flex', alignItems: 'center', justifyContent: 'center',
+                        fontSize: '.7rem', fontWeight: 800, flexShrink: 0,
+                      }}>✓</div>
+                    )}
                     <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '.75rem' }}>
                       <div className="topic-card-num">
                         {String(origIndex + 1).padStart(2, '0')}

@@ -1,8 +1,33 @@
 import React, { useState, useRef, useEffect } from 'react';
+import { useLocation } from 'react-router-dom';
+import { getTopic, getClass, SUBJECT_META } from '../data/curriculum';
+
+const BASE_SYSTEM = 'You are a friendly, patient study assistant for Indian school students (Class 6–12, JEE, NEET). Explain concepts clearly and concisely. Use simple language. When helpful, use numbered steps or bullet points. Stay focused on academic topics.';
+
+function buildSystemPrompt(location) {
+  const m = location.pathname.match(/\/class\/([^/]+)\/subject\/([^/]+)\/topic\/([^/]+)/);
+  if (!m) return BASE_SYSTEM;
+
+  const [, classId, subjectId, topicId] = m;
+  const classData = getClass(classId);
+  const topic = getTopic(classId, subjectId, topicId);
+  const meta = SUBJECT_META[subjectId] || {};
+
+  if (!topic) return BASE_SYSTEM;
+
+  return `${BASE_SYSTEM}
+
+CURRENT CONTEXT: The student is studying "${topic.title}" in ${meta.label || subjectId} for ${classData?.label || classId}.
+Topic definition: ${topic.definition || 'N/A'}
+Subtopics covered: ${topic.subtopics || 'N/A'}
+
+Prioritise explanations related to this topic when relevant. If the student asks a question that relates to this topic, explain it in that context.`;
+}
 
 const WELCOME = 'Hi! I\'m your AI study helper 👋\nAsk me any doubt about Maths, Science, History, English — any subject!';
 
 export default function AIDoubtPanel({ open, onClose }) {
+  const location = useLocation();
   const [messages, setMessages] = useState([{ role: 'assistant', content: WELCOME }]);
   const [input, setInput] = useState('');
   const [loading, setLoading] = useState(false);
@@ -12,12 +37,20 @@ export default function AIDoubtPanel({ open, onClose }) {
     bottomRef.current?.scrollIntoView({ behavior: 'smooth' });
   }, [messages, loading]);
 
-  // Close on Escape
   useEffect(() => {
     const handler = (e) => { if (e.key === 'Escape') onClose(); };
     if (open) window.addEventListener('keydown', handler);
     return () => window.removeEventListener('keydown', handler);
   }, [open, onClose]);
+
+  // Show context pill when on a topic page
+  const topicMatch = location.pathname.match(/\/class\/([^/]+)\/subject\/([^/]+)\/topic\/([^/]+)/);
+  let contextLabel = null;
+  if (topicMatch) {
+    const topic = getTopic(topicMatch[1], topicMatch[2], topicMatch[3]);
+    const meta = SUBJECT_META[topicMatch[2]] || {};
+    if (topic) contextLabel = `${meta.icon || ''} ${topic.title}`;
+  }
 
   async function send() {
     const text = input.trim();
@@ -39,7 +72,7 @@ export default function AIDoubtPanel({ open, onClose }) {
       }
 
       const history = messages
-        .filter((m, i) => i > 0)
+        .filter((_, i) => i > 0)
         .concat(userMsg)
         .map(m => ({ role: m.role, content: m.content }));
 
@@ -54,11 +87,12 @@ export default function AIDoubtPanel({ open, onClose }) {
         body: JSON.stringify({
           model: 'claude-haiku-4-5-20251001',
           max_tokens: 1024,
-          system: 'You are a friendly, patient study assistant for Indian school students (Class 6–12, JEE, NEET). Explain concepts clearly and concisely. Use simple language. When helpful, use numbered steps or bullet points. Stay focused on academic topics.',
+          system: buildSystemPrompt(location),
           messages: history,
         }),
       });
 
+      if (!res.ok) throw new Error(`API error ${res.status}: ${res.statusText}`);
       const data = await res.json();
       const reply = data?.content?.[0]?.text || 'Sorry, I could not process that. Please try again.';
       setMessages(prev => [...prev, { role: 'assistant', content: reply }]);
@@ -72,6 +106,11 @@ export default function AIDoubtPanel({ open, onClose }) {
     if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); send(); }
   }
 
+  // Build context-aware suggestions
+  const suggestions = contextLabel
+    ? [`Explain ${topicMatch ? getTopic(topicMatch[1], topicMatch[2], topicMatch[3])?.title : ''}`, 'Give me an example', 'What are common exam questions on this?']
+    : ['Explain Newton\'s laws', 'What is photosynthesis?', 'Solve: 2x + 5 = 15'];
+
   return (
     <>
       <div className={`ai-backdrop ${open ? 'open' : ''}`} onClick={onClose} />
@@ -79,11 +118,13 @@ export default function AIDoubtPanel({ open, onClose }) {
 
         {/* Header */}
         <div className="ai-panel-header">
-          <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '.75rem' }}>
             <div className="ai-panel-avatar">🤖</div>
             <div>
               <div style={{ fontWeight: 800, fontSize: '1rem', color: '#fff' }}>AI Doubt Helper</div>
-              <div style={{ fontSize: '0.75rem', color: 'rgba(255,255,255,0.65)' }}>Ask anything · Class 6–12, JEE, NEET</div>
+              <div style={{ fontSize: '.75rem', color: 'rgba(255,255,255,.65)' }}>
+                {contextLabel ? `Studying: ${contextLabel}` : 'Ask anything · Class 6–12, JEE, NEET'}
+              </div>
             </div>
           </div>
           <button className="ai-close-btn" onClick={onClose} aria-label="Close">
@@ -92,6 +133,19 @@ export default function AIDoubtPanel({ open, onClose }) {
             </svg>
           </button>
         </div>
+
+        {/* Context pill */}
+        {contextLabel && (
+          <div style={{
+            padding: '.5rem 1.25rem',
+            background: '#eef2ff',
+            borderBottom: '1px solid #e5e7eb',
+            fontSize: '.78rem', color: '#4f46e5', fontWeight: 600,
+            display: 'flex', alignItems: 'center', gap: '.4rem',
+          }}>
+            <span>📍</span> Context: {contextLabel}
+          </div>
+        )}
 
         {/* Messages */}
         <div className="ai-messages">
@@ -116,8 +170,8 @@ export default function AIDoubtPanel({ open, onClose }) {
         {/* Suggestions */}
         {messages.length === 1 && (
           <div className="ai-suggestions">
-            {['Explain Newton\'s laws', 'What is photosynthesis?', 'Solve: 2x + 5 = 15'].map(q => (
-              <button key={q} className="ai-suggestion-chip" onClick={() => { setInput(q); }}>
+            {suggestions.filter(Boolean).map(q => (
+              <button key={q} className="ai-suggestion-chip" onClick={() => setInput(q)}>
                 {q}
               </button>
             ))}

@@ -1,0 +1,10 @@
+node_modules
+build
+mobile
+.git
+.gitignore
+README.md
+server/.env
+.env
+.env.local
+testing
