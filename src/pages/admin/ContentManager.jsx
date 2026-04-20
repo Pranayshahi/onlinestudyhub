@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { CURRICULUM, SUBJECT_META, NAV_CLASSES } from '../../data/curriculum';
+import { api } from '../../utils/api';
 
 // ── constants ────────────────────────────────────────────────────
 const RESOURCE_TYPES = [
@@ -286,20 +287,16 @@ export default function ContentManager({ token }) {
   const topics       = subjectData ? subjectData.topics : [];
   const topicObj     = topics.find(t => t.id === selTopic);
 
-  // Load all uploaded items on mount
   useEffect(() => {
-    fetch('/api/media/mine/all', { headers: { Authorization: `Bearer ${token}` } })
-      .then(r => r.ok ? r.json() : [])
+    api('/media/mine/all', { token })
       .then(setAllItems)
       .catch(() => {});
   }, [token]);
 
-  // Load media for selected topic
   useEffect(() => {
     if (!selClass || !selSubject || !selTopic) { setMediaMap({}); return; }
     setLoading(true);
-    fetch(`/api/media/${selClass}/${selSubject}/${selTopic}`)
-      .then(r => r.ok ? r.json() : [])
+    api(`/media/${selClass}/${selSubject}/${selTopic}`)
       .then(items => {
         const map = {};
         items.forEach(i => { map[i.type] = i; });
@@ -314,13 +311,11 @@ export default function ContentManager({ token }) {
   async function handleSave(rtype, payload) {
     setSaving(rtype.type);
     try {
-      const res = await fetch('/api/media', {
+      const saved = await api('/media', {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${token}` },
-        body: JSON.stringify({ classId: selClass, subjectId: selSubject, topicId: selTopic, ...payload }),
+        body: { classId: selClass, subjectId: selSubject, topicId: selTopic, ...payload },
+        token,
       });
-      if (!res.ok) throw new Error((await res.json()).error);
-      const saved = await res.json();
       setMediaMap(m => ({ ...m, [rtype.type]: saved }));
       setAllItems(prev => {
         const idx = prev.findIndex(i => i.type === rtype.type && i.classId === selClass && i.subjectId === selSubject && i.topicId === selTopic);
@@ -337,11 +332,10 @@ export default function ContentManager({ token }) {
   async function handleDelete(id) {
     if (!window.confirm('Remove this resource?')) return;
     try {
-      const res = await fetch(`/api/media/${id}`, {
+      await api(`/media/${id}`, {
         method: 'DELETE',
-        headers: { Authorization: `Bearer ${token}` },
+        token,
       });
-      if (!res.ok) throw new Error('Delete failed');
       setMediaMap(m => {
         const n = { ...m };
         Object.keys(n).forEach(k => { if (n[k]?._id === id) delete n[k]; });

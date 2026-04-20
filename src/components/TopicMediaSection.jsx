@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
+import { api } from '../utils/api';
 
 // ── Resource config ──────────────────────────────────────────────
 const RESOURCES = [
@@ -316,8 +317,7 @@ export default function TopicMediaSection({ classId, subjectId, topicId }) {
 
   useEffect(() => {
     setLoading(true);
-    fetch(`/api/media/${classId}/${subjectId}/${topicId}`)
-      .then(r => r.ok ? r.json() : [])
+    api(`/media/${classId}/${subjectId}/${topicId}`)
       .then(items => {
         if (items.length > 0) {
           const map = {};
@@ -345,8 +345,7 @@ export default function TopicMediaSection({ classId, subjectId, topicId }) {
     }
     setFetchingId(resource.type);
     try {
-      const res = await fetch(`/api/media/item/${item._id}`);
-      const full = await res.json();
+      const full = await api(`/media/item/${item._id}`);
       setActiveItem(full);
       setActiveModal(resource.type);
     } catch {

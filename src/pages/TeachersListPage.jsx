@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { NAV_CLASSES } from '../data/curriculum';
+import { api } from '../utils/api';
 import { TEACHERS } from '../data/teachers';
 import TeacherProfileCard from '../components/TeacherProfileCard';
 import TeacherFinder from '../components/TeacherFinder';
@@ -17,8 +18,7 @@ export default function TeachersListPage({ user, onOpenLogin }) {
 
   useEffect(() => {
     setLoading(true);
-    fetch(`/api/teachers?classId=${classId}`)
-      .then(r => r.ok ? r.json() : null)
+    api(`/teachers?classId=${classId}`)
       .then(data => {
         if (data?.length) setApiTeachers(data);
       })

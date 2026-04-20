@@ -6,3 +6,4 @@ server/.env
 build
 test-results
 testing/report
+.vercel

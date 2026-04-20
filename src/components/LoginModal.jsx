@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { api } from '../utils/api';
 
 export default function LoginModal({ open, onClose, onLogin }) {
   const [isSignup, setIsSignup] = useState(false);
@@ -30,17 +31,15 @@ export default function LoginModal({ open, onClose, onLogin }) {
     e.preventDefault();
     setError('');
     setLoading(true);
-    const endpoint = isSignup ? '/api/auth/student/register' : '/api/auth/student/login';
+    const endpoint = isSignup ? '/auth/student/register' : '/auth/student/login';
     const body = isSignup ? { email, password, name } : { email, password };
     try {
-      const res  = await fetch(endpoint, {
+      const data = await api(endpoint, {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(body),
+        body,
       });
-      const data = await res.json();
-      if (res.ok) { onLogin(data); onClose(); }
-      else setError(data.error || data.message || 'Something went wrong');
+      onLogin(data);
+      onClose();
     } catch {
       setError('Network error — make sure the server is running.');
     } finally {

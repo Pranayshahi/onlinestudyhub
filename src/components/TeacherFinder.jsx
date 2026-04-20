@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { api } from '../utils/api';
 
 const TIME_SLOTS = [
   { period: 'Morning', icon: '🌅', slots: ['7:00 AM', '8:00 AM', '9:00 AM', '10:00 AM', '11:00 AM'] },
@@ -104,10 +105,9 @@ function TeacherDetail({ teacher, classId, subjectId, onBack, onBooked, user, on
     setError('');
     setLoading(true);
     try {
-      const res = await fetch('/api/bookings', {
+      const data = await api('/bookings', {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
+        body: {
           studentName: form.name,
           studentPhone: form.phone,
           teacherId: teacher.id || teacher._id,
@@ -115,10 +115,8 @@ function TeacherDetail({ teacher, classId, subjectId, onBack, onBooked, user, on
           subjectId,
           timeSlot: selectedSlot,
           scheduledDate,
-        }),
+        },
       });
-      const data = await res.json();
-      if (!res.ok) throw new Error(data.error || 'Booking failed');
       setBooking(data);
       setStep('success');
       if (onBooked) onBooked();
@@ -377,8 +375,7 @@ export default function TeacherFinder({ classId, subjectId, onClose, initialTeac
 
   useEffect(() => {
     setLoading(true);
-    fetch(`/api/teachers?classId=${classId}`)
-      .then(r => r.ok ? r.json() : [])
+    api(`/teachers?classId=${classId}`)
       .then(data => { setTeachers(data); setLoading(false); })
       .catch(() => setLoading(false));
   }, [classId]);

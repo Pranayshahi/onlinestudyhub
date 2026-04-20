@@ -1,6 +1,7 @@
 import { useMemo, useState, useEffect } from 'react';
 import { CURRICULUM, SUBJECT_META } from '../data/curriculum';
 import { TEACHERS } from '../data/teachers';
+import { api } from '../utils/api';
 
 function match(text, q) {
   return text?.toLowerCase().includes(q.toLowerCase());
@@ -11,8 +12,7 @@ export function useSearch(query) {
 
   useEffect(() => {
     if (!query || query.trim().length < 2) return;
-    fetch('/api/teachers')
-      .then(r => r.json())
+    api('/teachers')
       .then(data => setDbTeachers(Array.isArray(data) ? data : []))
       .catch(() => {});
   }, [query]);

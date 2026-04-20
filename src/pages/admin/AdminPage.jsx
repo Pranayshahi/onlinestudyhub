@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import ContentManager from './ContentManager';
+import { api } from '../../utils/api';
 
 // ─── Constants ───────────────────────────────────────────────────
 const SUBJECTS = [
@@ -55,29 +56,7 @@ function resizeImage(file, maxSize = 400) {
   });
 }
 
-// ─── API helpers ─────────────────────────────────────────────────
-async function apiCall(path, method = 'GET', body = null, token = null) {
-  const headers = { 'Content-Type': 'application/json' };
-  if (token) headers['Authorization'] = `Bearer ${token}`;
-  
-  const res = await fetch(`/api${path}`, {
-    method,
-    headers,
-    body: body ? JSON.stringify(body) : null,
-  });
-
-  const contentType = res.headers.get('content-type') || '';
-  if (contentType.includes('application/json')) {
-    const data = await res.json();
-    if (!res.ok) {
-      throw new Error(data.message || data.error || `Request failed with status ${res.status}`);
-    }
-    return data;
-  } else {
-    const text = await res.text();
-    throw new Error(`Server returned a non-JSON error (${res.status}): ${text.substring(0, 100)}...`);
-  }
-}
+// API helpers removed — now using centralized src/utils/api.js
 
 // ─── Components ──────────────────────────────────────────────────
 
@@ -428,7 +407,7 @@ function Dashboard({ token, onLogout }) {
   const [saveSuccess, setSaveSuccess] = useState('');
 
   useEffect(() => {
-    apiCall('/teachers/me', 'GET', null, token)
+    api('/teachers/me', { method: 'GET', token })
       .then(setProfile)
       .catch(e => setFetchError(e.message));
   }, [token]);
@@ -436,7 +415,7 @@ function Dashboard({ token, onLogout }) {
   async function handleSave(form) {
     setLoading(true); setSaveError(''); setSaveSuccess('');
     try {
-      const updated = await apiCall('/teachers/me', 'PUT', form, token);
+      const updated = await api('/teachers/me', { method: 'PUT', body: form, token });
       setProfile(updated);
       setEditing(false);
       setSaveSuccess('Profile updated successfully!');
@@ -450,7 +429,7 @@ function Dashboard({ token, onLogout }) {
   async function handleDelete() {
     if (!window.confirm('Delete your account permanently? This cannot be undone.')) return;
     try {
-      await apiCall('/teachers/me', 'DELETE', null, token);
+      await api('/teachers/me', { method: 'DELETE', token });
       onLogout();
     } catch (e) {
       alert(e.message);
@@ -599,20 +578,21 @@ export default function AdminPage() {
 
   // Check if backend is reachable
   useEffect(() => {
-    fetch('/api/health')
-      .then(r => r.ok ? r.json() : null)
+    api('/health')
       .then(d => {
-        if (!d) { setServerOnline(false); setDbOnline(false); return; }
         setServerOnline(true);
         setDbOnline(d.db === 'connected');
       })
-      .catch(() => { setServerOnline(false); setDbOnline(false); });
+      .catch(() => {
+        setServerOnline(false);
+        setDbOnline(false);
+      });
   }, []);
 
   async function handleLogin(form) {
     setLoading(true); setLoginError('');
     try {
-      const { token: t } = await apiCall('/auth/login', 'POST', { email: form.email, password: form.password });
+      const { token: t } = await api('/auth/login', { method: 'POST', body: { email: form.email, password: form.password } });
       localStorage.setItem('admin_token', t);
       setToken(t);
     } catch (e) {
@@ -625,7 +605,7 @@ export default function AdminPage() {
     if (!form.class_ids.length) { setRegisterError('Please select at least one class.'); return; }
     setLoading(true); setRegisterError(''); setRegisterSuccess('');
     try {
-      const { token: t } = await apiCall('/auth/register', 'POST', form);
+      const { token: t } = await api('/auth/register', { method: 'POST', body: form });
       localStorage.setItem('admin_token', t);
       setRegisterSuccess('Account created! Redirecting to your dashboard…');
       setTimeout(() => setToken(t), 1200);
