@@ -153,33 +153,6 @@ app.post('/api/auth/student/login', async (req, res) => {
   }
 });
 
-// ── Teachers: Get single teacher (public) ─────────────────────
-app.get('/api/teachers/:id', async (req, res) => {
-  try {
-    const teacher = await Teacher.findById(req.params.id)
-      .select('-password_hash -createdAt -updatedAt -__v').lean();
-    if (!teacher) return res.status(404).json({ error: 'Teacher not found' });
-    res.json(formatTeacher({ ...teacher, id: teacher._id.toString(), students: teacher.students_count || 0 }));
-  } catch (err) {
-    res.status(500).json({ error: 'Server error' });
-  }
-});
-
-// ── Teachers: Toggle online status (protected) ─────────────────
-app.patch('/api/teachers/me/online', requireAuth, async (req, res) => {
-  try {
-    const { is_online } = req.body;
-    const teacher = await Teacher.findByIdAndUpdate(
-      req.teacher.id,
-      { is_online: Boolean(is_online), last_seen: new Date() },
-      { new: true }
-    ).select('is_online last_seen').lean();
-    res.json({ is_online: teacher.is_online });
-  } catch (err) {
-    res.status(500).json({ error: 'Server error' });
-  }
-});
-
 // ── Teachers: Get all (public — used by user portal) ───────────
 app.get('/api/teachers', async (req, res) => {
   try {
@@ -188,12 +161,12 @@ app.get('/api/teachers', async (req, res) => {
     if (classId) {
       query.class_ids = new RegExp(classId);
     }
-    
+
     const teachers = await Teacher.find(query)
       .select('-password_hash -createdAt -updatedAt -__v')
       .sort({ rating: -1, students_count: -1 })
       .lean();
-      
+
     res.json(teachers.map(t => ({
       ...t,
       id: t._id.toString(),
@@ -210,13 +183,13 @@ app.get('/api/teachers/me', requireAuth, async (req, res) => {
   try {
     const teacher = await Teacher.findById(req.teacher.id).select('-password_hash -createdAt -updatedAt -__v').lean();
     if (!teacher) return res.status(404).json({ error: 'Not found' });
-    
+
     const formattedTeacher = {
       ...teacher,
       id: teacher._id.toString(),
       students: teacher.students_count || 0
     };
-    
+
     res.json(formatTeacher(formattedTeacher));
   } catch (err) {
     console.error('Get me error:', err);
@@ -249,7 +222,7 @@ app.put('/api/teachers/me', requireAuth, async (req, res) => {
       },
       { new: true }
     ).select('-password_hash -createdAt -updatedAt -__v').lean();
-    
+
     if (!teacher) return res.status(404).json({ error: 'Not found' });
 
     const formattedTeacher = {
@@ -270,6 +243,33 @@ app.delete('/api/teachers/me', requireAuth, async (req, res) => {
   try {
     await Teacher.findByIdAndDelete(req.teacher.id);
     res.json({ message: 'Account deleted' });
+  } catch (err) {
+    res.status(500).json({ error: 'Server error' });
+  }
+});
+
+// ── Teachers: Toggle online status (protected) ─────────────────
+app.patch('/api/teachers/me/online', requireAuth, async (req, res) => {
+  try {
+    const { is_online } = req.body;
+    const teacher = await Teacher.findByIdAndUpdate(
+      req.teacher.id,
+      { is_online: Boolean(is_online), last_seen: new Date() },
+      { new: true }
+    ).select('is_online last_seen').lean();
+    res.json({ is_online: teacher.is_online });
+  } catch (err) {
+    res.status(500).json({ error: 'Server error' });
+  }
+});
+
+// ── Teachers: Get single teacher (public) ─────────────────────
+app.get('/api/teachers/:id', async (req, res) => {
+  try {
+    const teacher = await Teacher.findById(req.params.id)
+      .select('-password_hash -createdAt -updatedAt -__v').lean();
+    if (!teacher) return res.status(404).json({ error: 'Teacher not found' });
+    res.json(formatTeacher({ ...teacher, id: teacher._id.toString(), students: teacher.students_count || 0 }));
   } catch (err) {
     res.status(500).json({ error: 'Server error' });
   }
