@@ -36,6 +36,7 @@ export default function TeachersListPage({ user, onOpenLogin }) {
   });
 
   const handleBook = (teacher) => {
+    if (!user) { onOpenLogin(); return; }
     setBookingTeacher(teacher);
   };
 
@@ -47,6 +48,8 @@ export default function TeachersListPage({ user, onOpenLogin }) {
           subjectId={null}
           initialTeacher={bookingTeacher}
           onClose={() => setBookingTeacher(null)}
+          user={user}
+          onOpenLogin={onOpenLogin}
         />
       )}
       <SEO

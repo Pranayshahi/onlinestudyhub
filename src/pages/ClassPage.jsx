@@ -49,6 +49,8 @@ export default function ClassPage({ user, onOpenLogin }) {
           classId={classId}
           subjectId={currentSubjectId}
           onClose={() => setShowFinder(false)}
+          user={user}
+          onOpenLogin={onOpenLogin}
         />
       )}
 

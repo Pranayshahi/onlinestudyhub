@@ -6,6 +6,7 @@ import Breadcrumb from '../components/Breadcrumb';
 import FlashcardModal from '../components/FlashcardModal';
 import { useProgress } from '../hooks/useProgress';
 import SEO from '../components/SEO';
+import TopicMediaSection from '../components/TopicMediaSection';
 
 // ── Accordion item ──────────────────────────────────────────────
 function AccordionItem({ number, question, answer, subjectColor, isOpen, onToggle }) {
@@ -225,7 +226,10 @@ export default function TopicPage({ user, onOpenLogin }) {
           </div>
         </div>
 
-        {/* ── 2. Learning Content ── */}
+        {/* ── 2. Media Resources ── */}
+        <TopicMediaSection classId={classId} subjectId={subjectId} topicId={topicId} />
+
+        {/* ── 3. Learning Content ── */}
         {topic.content && (
           <section style={{ marginBottom: '3rem' }}>
             <h2 className="topic-section-title">
@@ -333,7 +337,22 @@ export default function TopicPage({ user, onOpenLogin }) {
                   </div>
                 </div>
                 <h2 style={{ fontFamily: 'Nunito', fontWeight: 900, fontSize: '1.75rem', color: '#1e1b4b', marginBottom: '.5rem' }}>
-                  Deep Learn with {relevantTeacher.name}
+                  Deep Learn with{' '}
+                  <button
+                    onClick={() => {
+                      if (!user) { onOpenLogin(); return; }
+                      navigate(`/class/${classId}/subject/${subjectId}/topic/${topicId}/book?teacherId=${relevantTeacher.id}`);
+                    }}
+                    style={{
+                      background: 'none', border: 'none', padding: 0,
+                      fontFamily: 'Nunito', fontWeight: 900, fontSize: 'inherit',
+                      color: '#4f46e5', cursor: 'pointer',
+                      textDecoration: 'underline', textDecorationStyle: 'dotted',
+                      textUnderlineOffset: '3px',
+                    }}
+                  >
+                    {relevantTeacher.name}
+                  </button>
                 </h2>
                 <p style={{ color: '#475569', fontSize: '.95rem', lineHeight: 1.6, marginBottom: '1.25rem' }}>
                   {relevantTeacher.bio}
@@ -349,8 +368,11 @@ export default function TopicPage({ user, onOpenLogin }) {
                     <span style={{ fontSize: '1.1rem' }}>💰</span> {relevantTeacher.fee}
                   </div>
                 </div>
-                <Link
-                  to={`/class/${classId}/subject/${subjectId}/topic/${topicId}/book?teacherId=${relevantTeacher.id}`}
+                <button
+                  onClick={() => {
+                    if (!user) { onOpenLogin(); return; }
+                    navigate(`/class/${classId}/subject/${subjectId}/topic/${topicId}/book?teacherId=${relevantTeacher.id}`);
+                  }}
                   className="btn btn-primary"
                   style={{
                     padding: '0.85rem 2rem',
@@ -358,12 +380,11 @@ export default function TopicPage({ user, onOpenLogin }) {
                     borderRadius: 12,
                     boxShadow: '0 4px 14px rgba(79, 70, 229, 0.4)',
                     cursor: 'pointer',
-                    textDecoration: 'none',
-                    display: 'inline-block',
+                    border: 'none',
                   }}
                 >
                   🚀 Book a Deep Learn Session with {relevantTeacher.name}
-                </Link>              </div>
+                </button>              </div>
             </div>
           </section>
         )}

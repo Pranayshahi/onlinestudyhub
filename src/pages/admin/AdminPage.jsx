@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import ContentManager from './ContentManager';
 
 // ─── Constants ───────────────────────────────────────────────────
 const SUBJECTS = [
@@ -418,6 +419,7 @@ function TeacherForm({ initial = EMPTY_FORM, showEmail = true, showPassword = fa
 
 // ─── Dashboard (after login) ──────────────────────────────────────
 function Dashboard({ token, onLogout }) {
+  const [dashTab, setDashTab] = useState('profile');
   const [profile, setProfile] = useState(null);
   const [editing, setEditing] = useState(false);
   const [loading, setLoading] = useState(false);
@@ -510,9 +512,24 @@ function Dashboard({ token, onLogout }) {
         </div>
       </div>
 
+      {/* Dashboard tab bar */}
+      <div style={{ display: 'flex', background: '#f8fafc', border: '1px solid #e5e7eb', borderRadius: 14, padding: '.3rem', marginBottom: '1.75rem', gap: '.25rem' }}>
+        {[['profile', '👤 My Profile'], ['content', '📚 Content Manager']].map(([key, label]) => (
+          <button key={key} onClick={() => setDashTab(key)} style={{
+            flex: 1, padding: '.6rem 1rem', borderRadius: 10, border: 'none',
+            background: dashTab === key ? '#4f46e5' : 'transparent',
+            color: dashTab === key ? '#fff' : '#6b7280',
+            fontFamily: 'Nunito', fontWeight: 800, fontSize: '.9rem',
+            cursor: 'pointer', transition: 'all .2s',
+          }}>{label}</button>
+        ))}
+      </div>
+
       {saveSuccess && <Alert type="success" message={saveSuccess} />}
 
-      {editing ? (
+      {dashTab === 'content' ? (
+        <ContentManager token={token} />
+      ) : editing ? (
         <TeacherForm
           initial={editInitial}
           showEmail={false}

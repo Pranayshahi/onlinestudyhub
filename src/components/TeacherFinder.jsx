@@ -76,13 +76,23 @@ function TeacherCard({ teacher, onSelect }) {
   );
 }
 
-function TeacherDetail({ teacher, classId, subjectId, onBack, onBooked }) {
+function TeacherDetail({ teacher, classId, subjectId, onBack, onBooked, user, onOpenLogin }) {
   const [step, setStep] = useState('detail'); // detail → slots → form → success
   const [selectedSlot, setSelectedSlot] = useState('');
-  const [form, setForm] = useState({ name: '', phone: '' });
+  const [form, setForm] = useState({ name: user?.name || '', phone: '' });
   const [loading, setLoading] = useState(false);
   const [booking, setBooking] = useState(null);
   const [error, setError] = useState('');
+  const [wantsToBook, setWantsToBook] = useState(false);
+
+  // Auto-advance to slots once user logs in
+  useEffect(() => {
+    if (wantsToBook && user) {
+      setForm(f => ({ ...f, name: user.name || f.name }));
+      setStep('slots');
+      setWantsToBook(false);
+    }
+  }, [user, wantsToBook]);
 
   const today = new Date();
   const tomorrow = new Date(today); tomorrow.setDate(today.getDate() + 1);
@@ -163,6 +173,11 @@ function TeacherDetail({ teacher, classId, subjectId, onBack, onBooked }) {
           Session with <strong>{teacher.name}</strong> at <strong>{selectedSlot}</strong> on {scheduledDate}
         </p>
 
+        {user && (
+          <div style={{ background: '#f0fdf4', border: '1px solid #bbf7d0', borderRadius: 10, padding: '.6rem 1rem', marginBottom: '1rem', fontSize: '.82rem', color: '#15803d', fontWeight: 600 }}>
+            ✅ Booking as <strong>{user.name}</strong> ({user.email})
+          </div>
+        )}
         <div style={{ marginBottom: '1rem' }}>
           <label style={{ display: 'block', fontSize: '.82rem', fontWeight: 700, color: '#374151', marginBottom: '.4rem' }}>Your Name *</label>
           <input
@@ -319,21 +334,43 @@ function TeacherDetail({ teacher, classId, subjectId, onBack, onBooked }) {
         </div>
       )}
 
-      <button
-        onClick={() => setStep('slots')}
-        style={{
-          width: '100%', padding: '.9rem', background: 'linear-gradient(135deg, #1e1b4b, #4f46e5)',
-          color: '#fff', border: 'none', borderRadius: 12,
-          fontWeight: 800, fontSize: '1rem', cursor: 'pointer', fontFamily: 'Nunito',
-        }}
-      >
-        📅 Book Appointment
-      </button>
+      {user ? (
+        <button
+          onClick={() => setStep('slots')}
+          style={{
+            width: '100%', padding: '.9rem', background: 'linear-gradient(135deg, #1e1b4b, #4f46e5)',
+            color: '#fff', border: 'none', borderRadius: 12,
+            fontWeight: 800, fontSize: '1rem', cursor: 'pointer', fontFamily: 'Nunito',
+          }}
+        >
+          📅 Book Appointment
+        </button>
+      ) : (
+        <div style={{ border: '1.5px solid #e0e7ff', borderRadius: 14, padding: '1.25rem', background: '#f5f3ff', textAlign: 'center' }}>
+          <div style={{ fontSize: '1.5rem', marginBottom: '.5rem' }}>🔐</div>
+          <div style={{ fontFamily: 'Nunito', fontWeight: 800, fontSize: '1rem', color: '#1e1b4b', marginBottom: '.35rem' }}>
+            Login to Book a Session
+          </div>
+          <p style={{ fontSize: '.82rem', color: '#6b7280', marginBottom: '1rem', lineHeight: 1.5 }}>
+            Create a free student account to book appointments and track your sessions.
+          </p>
+          <button
+            onClick={() => { setWantsToBook(true); onOpenLogin(); }}
+            style={{
+              width: '100%', padding: '.75rem', background: '#4f46e5',
+              color: '#fff', border: 'none', borderRadius: 10,
+              fontWeight: 800, fontSize: '.95rem', cursor: 'pointer', fontFamily: 'Nunito',
+            }}
+          >
+            🎓 Login / Sign Up Free
+          </button>
+        </div>
+      )}
     </div>
   );
 }
 
-export default function TeacherFinder({ classId, subjectId, onClose, initialTeacher = null }) {
+export default function TeacherFinder({ classId, subjectId, onClose, initialTeacher = null, user, onOpenLogin }) {
   const [teachers, setTeachers] = useState([]);
   const [loading, setLoading] = useState(true);
   const [selected, setSelected] = useState(initialTeacher);
@@ -393,6 +430,8 @@ export default function TeacherFinder({ classId, subjectId, onClose, initialTeac
               subjectId={subjectId}
               onBack={() => setSelected(null)}
               onBooked={() => {}}
+              user={user}
+              onOpenLogin={onOpenLogin}
             />
           ) : (
             <div style={{ display: 'flex', flexDirection: 'column', gap: '.75rem' }}>

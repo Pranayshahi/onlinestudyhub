@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import React, { useState, useRef, useEffect } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 import { NAV_CLASSES, CURRICULUM } from '../data/curriculum';
 import { TEACHERS } from '../data/teachers';
 
@@ -14,9 +14,35 @@ export default function Navbar({ onOpenAI, onOpenLogin, user, onLogout, darkMode
   const [mobileOpen, setMobileOpen] = useState(false);
   const [mobileExpanded, setMobileExpanded] = useState(null);
   const [userMenuOpen, setUserMenuOpen] = useState(false);
+  const [searchOpen, setSearchOpen] = useState(false);
+  const [searchQuery, setSearchQuery] = useState('');
+  const searchInputRef = useRef(null);
+  const navigate = useNavigate();
 
   const close = () => { setMobileOpen(false); setUserMenuOpen(false); };
   const toggleMobile = (key) => setMobileExpanded(p => p === key ? null : key);
+
+  useEffect(() => {
+    if (searchOpen) searchInputRef.current?.focus();
+  }, [searchOpen]);
+
+  useEffect(() => {
+    if (!searchOpen) return;
+    const handler = (e) => { if (e.key === 'Escape') setSearchOpen(false); };
+    window.addEventListener('keydown', handler);
+    return () => window.removeEventListener('keydown', handler);
+  }, [searchOpen]);
+
+  const handleSearchSubmit = (e) => {
+    e.preventDefault();
+    const q = searchQuery.trim();
+    if (q) {
+      navigate(`/search?q=${encodeURIComponent(q)}`);
+      setSearchOpen(false);
+      setSearchQuery('');
+      close();
+    }
+  };
 
   return (
     <nav className="navbar">
@@ -33,9 +59,9 @@ export default function Navbar({ onOpenAI, onOpenLogin, user, onLogout, darkMode
 
             {/* ── Classes dropdown ── */}
             <div className={`nav-item ${mobileOpen && mobileExpanded === 'classes' ? 'mobile-expanded' : ''}`}>
-              <div className="nav-link" onClick={() => mobileOpen && toggleMobile('classes')}>
+              <Link to="/classes" className="nav-link" onClick={() => mobileOpen ? toggleMobile('classes') : close()}>
                 Classes <ChevronDown />
-              </div>
+              </Link>
               <div className="dropdown">
                 <div className="dropdown-section">
                   <div className="dropdown-label">Middle School</div>
@@ -98,12 +124,12 @@ export default function Navbar({ onOpenAI, onOpenLogin, user, onLogout, darkMode
                   <div className="dropdown-label">Find a Teacher</div>
                   {NAV_CLASSES.map(cls => {
                     const t = TEACHERS[cls.id]?.[0];
-                    const target = `/class/${cls.id}`;
+                    const target = `/teachers/${cls.id}`;
                     return (
-                      <Link 
-                        key={cls.id} 
-                        to={user ? target : '#'} 
-                        className="dropdown-item" 
+                      <Link
+                        key={cls.id}
+                        to={user ? target : '#'}
+                        className="dropdown-item"
                         onClick={(e) => {
                           if (!user) {
                             e.preventDefault();
@@ -126,6 +152,36 @@ export default function Navbar({ onOpenAI, onOpenLogin, user, onLogout, darkMode
 
           {/* Actions */}
           <div className="nav-actions">
+
+            {/* Search */}
+            {searchOpen ? (
+              <form className="nav-search-form" onSubmit={handleSearchSubmit}>
+                <input
+                  ref={searchInputRef}
+                  className="nav-search-input"
+                  value={searchQuery}
+                  onChange={e => setSearchQuery(e.target.value)}
+                  placeholder="Search topics, teachers..."
+                />
+                <button type="submit" className="nav-search-submit" aria-label="Submit search">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+                    <circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
+                  </svg>
+                </button>
+                <button type="button" className="nav-search-close" onClick={() => { setSearchOpen(false); setSearchQuery(''); }} aria-label="Close search">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+                    <line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>
+                  </svg>
+                </button>
+              </form>
+            ) : (
+              <button className="nav-icon-btn" onClick={() => setSearchOpen(true)} aria-label="Search">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+                  <circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
+                </svg>
+              </button>
+            )}
+
             <Link
               to="/teacher-portal"
               style={{ fontSize: '.82rem', color: 'rgba(255,255,255,.75)', fontWeight: 700, padding: '.4rem .8rem', borderRadius: 8, border: '1px solid rgba(255,255,255,.2)', whiteSpace: 'nowrap', transition: 'all .2s' }}

@@ -5,7 +5,7 @@ const jwt = require('jsonwebtoken');
 require('dotenv').config({ path: require('path').join(__dirname, '.env') });
 
 const connectDB = require('./db');
-const { Student, Teacher, Booking } = require('./models');
+const { Student, Teacher, Booking, TopicMedia } = require('./models');
 
 const app = express();
 const PORT = process.env.PORT || 5001;
@@ -25,7 +25,7 @@ app.use(cors({
   },
   credentials: true,
 }));
-app.use(express.json({ limit: '5mb' }));
+app.use(express.json({ limit: '20mb' }));
 
 // Ensure DB is connected before every request (safe for serverless)
 app.use(async (req, res, next) => {
@@ -356,6 +356,84 @@ function formatTeacher(t) {
     rating: parseFloat(t.rating) || 4.5,
   };
 }
+
+// ── Topic Media: get all for a topic (public) ───────────────────
+app.get('/api/media/:classId/:subjectId/:topicId', async (req, res) => {
+  try {
+    const { classId, subjectId, topicId } = req.params;
+    const items = await TopicMedia.find({ classId, subjectId, topicId })
+      .select('-fileData')   // strip heavy binary on list
+      .lean();
+    res.json(items);
+  } catch (e) {
+    res.status(500).json({ error: e.message });
+  }
+});
+
+// Get single media item with file data (public, used for display)
+app.get('/api/media/item/:id', async (req, res) => {
+  try {
+    const item = await TopicMedia.findById(req.params.id).lean();
+    if (!item) return res.status(404).json({ error: 'Not found' });
+    res.json(item);
+  } catch (e) {
+    res.status(500).json({ error: e.message });
+  }
+});
+
+// Get all media uploaded by this teacher (protected)
+app.get('/api/media/mine/all', requireAuth, async (req, res) => {
+  try {
+    const items = await TopicMedia.find({ uploadedBy: req.teacher.id })
+      .select('-fileData')
+      .sort({ updatedAt: -1 })
+      .lean();
+    res.json(items);
+  } catch (e) {
+    res.status(500).json({ error: e.message });
+  }
+});
+
+// Upsert media for a topic (protected)
+app.post('/api/media', requireAuth, async (req, res) => {
+  try {
+    const { classId, subjectId, topicId, type, title, fileData, fileName, mimeType, fileSize, videoUrl, quiz } = req.body;
+    if (!classId || !subjectId || !topicId || !type) {
+      return res.status(400).json({ error: 'classId, subjectId, topicId, type are required' });
+    }
+    const update = {
+      title: title || '',
+      uploadedBy: req.teacher.id,
+      ...(fileData !== undefined && { fileData, fileName, mimeType, fileSize }),
+      ...(videoUrl !== undefined && { videoUrl }),
+      ...(quiz !== undefined && { quiz }),
+    };
+    const item = await TopicMedia.findOneAndUpdate(
+      { classId, subjectId, topicId, type },
+      { $set: update },
+      { upsert: true, new: true, setDefaultsOnInsert: true }
+    );
+    const { fileData: _fd, ...safe } = item.toObject();
+    res.json(safe);
+  } catch (e) {
+    res.status(500).json({ error: e.message });
+  }
+});
+
+// Delete media item (protected)
+app.delete('/api/media/:id', requireAuth, async (req, res) => {
+  try {
+    const item = await TopicMedia.findById(req.params.id);
+    if (!item) return res.status(404).json({ error: 'Not found' });
+    if (String(item.uploadedBy) !== String(req.teacher.id)) {
+      return res.status(403).json({ error: 'Forbidden' });
+    }
+    await item.deleteOne();
+    res.json({ ok: true });
+  } catch (e) {
+    res.status(500).json({ error: e.message });
+  }
+});
 
 // ── Error Handler ──────────────────────────────────────────────
 app.use((err, req, res, next) => {

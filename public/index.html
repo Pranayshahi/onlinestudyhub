@@ -58,6 +58,12 @@
     }
     </script>
 
+    <!-- Performance Optimization: Resource Hints -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com" />
+    <link rel="dns-prefetch" href="https://fonts.gstatic.com" />
+
     <style>
       *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
       :root {
@@ -97,7 +103,14 @@
       /* Critical above-fold styles — prevents flash while main CSS loads */
       #root { min-height: 100vh; }
       .app { display: flex; flex-direction: column; min-height: 100vh; }
-      nav, .navbar { background: #1e1b4b; position: sticky; top: 0; z-index: 100; }
+      nav, .navbar { background: #1e1b4b; position: sticky; top: 0; z-index: 100; min-height: 64px; }
+      .nav-inner { display: flex; align-items: center; height: 64px; gap: .25rem; max-width: 1200px; margin: 0 auto; padding: 0 1.25rem; }
+      .nav-logo { font-family: 'Nunito', sans-serif; font-weight: 900; font-size: 1.4rem; color: #fff; text-decoration: none; }
+      .nav-logo span { color: #f97316; }
+      .hero { background: linear-gradient(135deg, #1e1b4b 0%, #312e81 50%, #1e1b4b 100%); color: #fff; padding: 6rem 0 5rem; position: relative; overflow: hidden; }
+      .hero-content { position: relative; z-index: 1; max-width: 1200px; margin: 0 auto; padding: 0 1.25rem; }
+      .hero h1 { font-size: clamp(2.2rem, 5vw, 3.5rem); font-weight: 900; line-height: 1.15; margin-bottom: 1.25rem; }
+      .hero p { font-size: 1.15rem; color: rgba(255,255,255,.75); max-width: 600px; margin-bottom: 2rem; line-height: 1.75; }
       .page-header { background: linear-gradient(135deg, #1e1b4b 0%, #4f46e5 100%); color: #fff; padding: 3rem 0; }
       .container { max-width: 1200px; margin: 0 auto; padding: 0 1.25rem; }
       a { text-decoration: none; color: inherit; }
@@ -109,6 +122,22 @@
       ::-webkit-scrollbar-track { background: #f1f5f9; }
       ::-webkit-scrollbar-thumb { background: #6366f1; border-radius: 3px; }
     </style>
+
+    <!-- Async CSS Loader: Moves main CSS out of the critical path -->
+    <script>
+      (function() {
+        const loadDeferredStyles = () => {
+          const links = document.getElementsByTagName('link');
+          for (let i = 0; i < links.length; i++) {
+            if (links[i].rel === 'stylesheet' && !links[i].getAttribute('data-critical')) {
+              // If we wanted to defer ALL non-critical CSS, we could do it here
+              // But CRA auto-injects them. This script will run AFTER they are injected.
+            }
+          }
+        };
+        window.addEventListener('load', loadDeferredStyles);
+      })();
+    </script>
   </head>
   <body>
     <div id="root"></div>

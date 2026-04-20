@@ -41,8 +41,35 @@ const bookingSchema = new mongoose.Schema({
   status: { type: String, enum: ['pending', 'confirmed', 'completed', 'cancelled'], default: 'pending' },
 }, { timestamps: true });
 
+const topicMediaSchema = new mongoose.Schema({
+  classId:   { type: String, required: true },
+  subjectId: { type: String, required: true },
+  topicId:   { type: String, required: true },
+  type: { type: String, enum: ['audio', 'video', 'report', 'infographic', 'quiz'], required: true },
+  title:    { type: String, default: '' },
+  // file-based types (audio, report, infographic)
+  fileData: { type: String, default: null },   // base64 data URI
+  fileName: { type: String, default: null },
+  mimeType: { type: String, default: null },
+  fileSize: { type: Number, default: null },
+  // video
+  videoUrl: { type: String, default: null },
+  // quiz
+  quiz: [{
+    question:    { type: String },
+    options:     [{ type: String }],
+    correct:     { type: Number },
+    explanation: { type: String },
+  }],
+  uploadedBy: { type: mongoose.Schema.Types.ObjectId, ref: 'Teacher', default: null },
+}, { timestamps: true });
+
+// One record per (class, subject, topic, type) — upsert-friendly
+topicMediaSchema.index({ classId: 1, subjectId: 1, topicId: 1, type: 1 }, { unique: true });
+
 const Student = mongoose.model('Student', studentSchema);
 const Teacher = mongoose.model('Teacher', teacherSchema);
 const Booking = mongoose.model('Booking', bookingSchema);
+const TopicMedia = mongoose.model('TopicMedia', topicMediaSchema);
 
-module.exports = { Student, Teacher, Booking };
+module.exports = { Student, Teacher, Booking, TopicMedia };
