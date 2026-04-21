@@ -36,6 +36,13 @@
     },
     {
       "source": "/(.*)",
+      "has": [{ "type": "host", "value": "onlinestudyhub.com" }],
+      "headers": [
+        { "key": "Strict-Transport-Security", "value": "max-age=63072000; includeSubDomains; preload" }
+      ]
+    },
+    {
+      "source": "/(.*)",
       "headers": [
         { "key": "Strict-Transport-Security", "value": "max-age=63072000; includeSubDomains; preload" },
         { "key": "X-Content-Type-Options", "value": "nosniff" },
@@ -50,10 +57,7 @@
       "source": "/(.*)",
       "has": [{ "type": "host", "value": "onlinestudyhub.com" }],
       "destination": "https://www.onlinestudyhub.com/$1",
-      "permanent": true,
-      "headers": [
-        { "key": "Strict-Transport-Security", "value": "max-age=63072000; includeSubDomains; preload" }
-      ]
+      "permanent": true
     }
   ],
   "rewrites": [
