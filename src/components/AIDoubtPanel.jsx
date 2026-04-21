@@ -52,10 +52,19 @@ export default function AIDoubtPanel({ open, onClose }) {
   const [uploadError, setUploadError] = useState('');
   const fileInputRef = useRef(null);
   const bottomRef = useRef(null);
+  const textareaRef = useRef(null);
 
   useEffect(() => {
     bottomRef.current?.scrollIntoView({ behavior: 'smooth' });
   }, [messages, loading]);
+
+  // Auto-resize textarea as user types
+  useEffect(() => {
+    const el = textareaRef.current;
+    if (!el) return;
+    el.style.height = 'auto';
+    el.style.height = Math.min(el.scrollHeight, 140) + 'px';
+  }, [input]);
 
   useEffect(() => {
     const handler = (e) => { if (e.key === 'Escape') onClose(); };
@@ -230,12 +239,12 @@ export default function AIDoubtPanel({ open, onClose }) {
           />
           <div className="ai-compose-box">
             <textarea
+              ref={textareaRef}
               className="ai-input"
               value={input}
               onChange={e => setInput(e.target.value)}
               onKeyDown={handleKey}
-              placeholder="Type your doubt… (Enter to send)"
-              rows={2}
+              placeholder="Ask a doubt… (Enter to send, Shift+Enter for new line)"
               disabled={loading}
             />
             <div className="ai-compose-toolbar">
