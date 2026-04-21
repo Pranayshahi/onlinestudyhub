@@ -61,43 +61,22 @@ export default function AIDoubtPanel({ open, onClose }) {
     setLoading(true);
 
     try {
-      const apiKey = process.env.REACT_APP_ANTHROPIC_API_KEY;
-      if (!apiKey) {
-        setMessages(prev => [...prev, {
-          role: 'assistant',
-          content: '⚠️ API key not set up yet.\n\nTo enable real AI responses, add your key to .env.local:\n\nREACT_APP_ANTHROPIC_API_KEY=your-key-here\n\nThen restart the dev server.'
-        }]);
-        setLoading(false);
-        return;
-      }
-
       const history = messages
         .filter((_, i) => i > 0)
         .concat(userMsg)
         .map(m => ({ role: m.role, content: m.content }));
 
-      const res = await fetch('https://api.anthropic.com/v1/messages', {
+      const res = await fetch('/api/ai-doubt', {
         method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          'x-api-key': apiKey,
-          'anthropic-version': '2023-06-01',
-          'anthropic-dangerous-direct-browser-access': 'true',
-        },
-        body: JSON.stringify({
-          model: 'claude-haiku-4-5-20251001',
-          max_tokens: 1024,
-          system: buildSystemPrompt(location),
-          messages: history,
-        }),
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ messages: history, system: buildSystemPrompt(location) }),
       });
 
-      if (!res.ok) throw new Error(`API error ${res.status}: ${res.statusText}`);
       const data = await res.json();
-      const reply = data?.content?.[0]?.text || 'Sorry, I could not process that. Please try again.';
-      setMessages(prev => [...prev, { role: 'assistant', content: reply }]);
-    } catch {
-      setMessages(prev => [...prev, { role: 'assistant', content: 'Something went wrong. Please check your connection and try again.' }]);
+      if (!res.ok) throw new Error(data.error || 'Request failed');
+      setMessages(prev => [...prev, { role: 'assistant', content: data.reply }]);
+    } catch (err) {
+      setMessages(prev => [...prev, { role: 'assistant', content: `Something went wrong: ${err.message}` }]);
     }
     setLoading(false);
   }

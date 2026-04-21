@@ -457,6 +457,31 @@ app.delete('/api/media/:id', requireAuth, async (req, res) => {
   }
 });
 
+// ── AI Doubt: Groq proxy ───────────────────────────────────────
+app.post('/api/ai-doubt', async (req, res) => {
+  try {
+    const { messages, system } = req.body || {};
+    const groqKey = process.env.GROQ_API_KEY;
+    if (!groqKey) return res.status(503).json({ error: 'AI service not configured' });
+
+    const groqRes = await fetch('https://api.groq.com/openai/v1/chat/completions', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${groqKey}` },
+      body: JSON.stringify({
+        model: 'llama-3.3-70b-versatile',
+        max_tokens: 1024,
+        messages: [{ role: 'system', content: system }, ...(messages || [])],
+      }),
+    });
+
+    const data = await groqRes.json();
+    if (!groqRes.ok) return res.status(groqRes.status).json({ error: data.error?.message || 'Groq error' });
+    res.json({ reply: data.choices?.[0]?.message?.content || 'No response.' });
+  } catch (err) {
+    res.status(500).json({ error: 'AI service error' });
+  }
+});
+
 // ── Error Handler ──────────────────────────────────────────────
 app.use((err, req, res, next) => {
   console.error('Unhandled error:', err);
