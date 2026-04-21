@@ -195,7 +195,7 @@ export default function AIDoubtPanel({ open, onClose }) {
           {messages.map((msg, i) => (
             <div key={i} className={`ai-msg-row ${msg.role}`}>
               {msg.role === 'assistant' && <div className="ai-msg-avatar">🤖</div>}
-              <div>
+              <div className="ai-msg-body">
                 <div className={`ai-bubble${msg.blocked ? ' ai-bubble-blocked' : ''}`}
                   style={msg.blocked ? { background: '#fef2f2', border: '1px solid #fecaca', color: '#991b1b' } : {}}>
                   {msg.content}

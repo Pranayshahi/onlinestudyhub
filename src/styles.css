@@ -165,7 +165,10 @@
 .ai-msg-row { display: flex; align-items: flex-end; gap: .5rem; }
 .ai-msg-row.user { flex-direction: row-reverse; }
 .ai-msg-avatar { font-size: 1.25rem; flex-shrink: 0; }
-.ai-bubble { max-width: 80%; padding: .65rem .9rem; border-radius: 14px; font-size: .875rem; line-height: 1.5; white-space: pre-wrap; word-break: break-word; }
+.ai-msg-body { display: flex; flex-direction: column; max-width: 78%; min-width: 0; }
+.ai-msg-row.user .ai-msg-body { align-items: flex-end; }
+.ai-msg-row.assistant .ai-msg-body { align-items: flex-start; }
+.ai-bubble { display: inline-block; padding: .6rem .9rem; border-radius: 14px; font-size: .875rem; line-height: 1.55; white-space: pre-wrap; word-break: break-word; max-width: 100%; }
 .ai-msg-row.assistant .ai-bubble { background: #f3f4f6; color: #1f2937; border-bottom-left-radius: 4px; }
 .ai-msg-row.user .ai-bubble { background: #4f46e5; color: #fff; border-bottom-right-radius: 4px; }
 .ai-typing-indicator { display: flex; align-items: center; gap: 4px; padding: .75rem .9rem; }
