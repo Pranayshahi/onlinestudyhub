@@ -517,7 +517,7 @@ app.post('/api/ai-doubt/upload', upload.single('file'), async (req, res) => {
 app.post('/api/ai-doubt', async (req, res) => {
   try {
     const { messages, system, uploadId } = req.body || {};
-    const groqKey = process.env.GROQ_API_KEY;
+    const groqKey = (process.env.GROQ_API_KEY || '').trim();
     if (!groqKey) return res.status(503).json({ error: 'AI service not configured.' });
 
     // 1. Firewall — check last user message

@@ -180,19 +180,6 @@ export default function AIDoubtPanel({ open, onClose }) {
           </div>
         )}
 
-        {/* Document badge */}
-        {uploadedFile && (
-          <div style={{ padding: '.5rem 1rem', background: '#eff6ff', borderBottom: '1px solid #bfdbfe', display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: '.5rem' }}>
-            <span style={{ fontSize: '.78rem', color: '#1d4ed8', fontWeight: 600 }}>
-              📄 {uploadedFile.name} <span style={{ fontWeight: 400, color: '#3b82f6' }}>· {uploadedFile.chunks} sections</span>
-            </span>
-            <button
-              onClick={removeDocument}
-              style={{ background: 'none', border: 'none', color: '#93c5fd', cursor: 'pointer', fontSize: '.8rem', padding: '.1rem .3rem', borderRadius: 4 }}
-              title="Remove document"
-            >✕</button>
-          </div>
-        )}
 
         {/* Messages */}
         <div className="ai-messages">
@@ -229,58 +216,65 @@ export default function AIDoubtPanel({ open, onClose }) {
 
         {/* Upload error */}
         {uploadError && (
-          <div style={{ padding: '.4rem 1rem', background: '#fef2f2', fontSize: '.78rem', color: '#dc2626' }}>
-            ⚠️ {uploadError}
-          </div>
+          <div className="ai-upload-error">⚠️ {uploadError}</div>
         )}
 
-        {/* Input row */}
-        <div className="ai-input-row" style={{ flexDirection: 'column', gap: '.5rem', padding: '.75rem 1rem' }}>
-          <div style={{ display: 'flex', gap: '.5rem', alignItems: 'flex-end' }}>
+        {/* Compose box */}
+        <div className="ai-input-row">
+          <input
+            ref={fileInputRef}
+            type="file"
+            accept=".pdf,.docx,.txt"
+            style={{ display: 'none' }}
+            onChange={handleFileUpload}
+          />
+          <div className="ai-compose-box">
             <textarea
               className="ai-input"
               value={input}
               onChange={e => setInput(e.target.value)}
               onKeyDown={handleKey}
-              placeholder="Type your doubt here… (Enter to send)"
+              placeholder="Type your doubt… (Enter to send)"
               rows={2}
               disabled={loading}
-              style={{ flex: 1 }}
             />
-            <button className="ai-send-btn" onClick={send} disabled={!input.trim() || loading} aria-label="Send message">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" aria-hidden="true">
-                <line x1="22" y1="2" x2="11" y2="13"/>
-                <polygon points="22 2 15 22 11 13 2 9 22 2"/>
-              </svg>
-            </button>
-          </div>
+            <div className="ai-compose-toolbar">
+              {/* Left: upload or doc chip */}
+              {uploadedFile ? (
+                <div className="ai-doc-chip">
+                  <span>📄</span>
+                  <span title={uploadedFile.name}>{uploadedFile.name}</span>
+                  <button onClick={removeDocument} title="Remove document">✕</button>
+                </div>
+              ) : (
+                <button
+                  className="ai-upload-btn"
+                  onClick={() => fileInputRef.current?.click()}
+                  disabled={uploading}
+                  title="Upload PDF, DOCX, or TXT"
+                >
+                  {uploading ? (
+                    <>
+                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><circle cx="12" cy="12" r="10"/></svg>
+                      Processing…
+                    </>
+                  ) : (
+                    <>
+                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><path d="M21.44 11.05l-9.19 9.19a6 6 0 0 1-8.49-8.49l9.19-9.19a4 4 0 0 1 5.66 5.66l-9.2 9.19a2 2 0 0 1-2.83-2.83l8.49-8.48"/></svg>
+                      Attach document
+                    </>
+                  )}
+                </button>
+              )}
 
-          {/* Upload button */}
-          <div style={{ display: 'flex', alignItems: 'center', gap: '.5rem' }}>
-            <input
-              ref={fileInputRef}
-              type="file"
-              accept=".pdf,.docx,.txt"
-              style={{ display: 'none' }}
-              onChange={handleFileUpload}
-            />
-            <button
-              onClick={() => fileInputRef.current?.click()}
-              disabled={uploading}
-              style={{
-                display: 'flex', alignItems: 'center', gap: '.35rem',
-                background: 'none', border: '1px dashed #d1d5db', borderRadius: 8,
-                padding: '.3rem .75rem', fontSize: '.75rem', color: '#6b7280',
-                cursor: uploading ? 'default' : 'pointer', transition: 'all .15s',
-              }}
-              onMouseEnter={e => { if (!uploading) { e.currentTarget.style.borderColor = '#4f46e5'; e.currentTarget.style.color = '#4f46e5'; }}}
-              onMouseLeave={e => { e.currentTarget.style.borderColor = '#d1d5db'; e.currentTarget.style.color = '#6b7280'; }}
-            >
-              {uploading ? '⏳ Processing…' : '📎 Upload PDF / DOCX / TXT'}
-            </button>
-            {uploadedFile && (
-              <span style={{ fontSize: '.72rem', color: '#2563eb', fontWeight: 600 }}>✓ Document active</span>
-            )}
+              {/* Right: send */}
+              <button className="ai-send-btn" onClick={send} disabled={!input.trim() || loading} aria-label="Send">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+                  <line x1="22" y1="2" x2="11" y2="13"/>
+                  <polygon points="22 2 15 22 11 13 2 9 22 2"/>
+                </svg>
+              </button>
+            </div>
           </div>
         </div>
 
