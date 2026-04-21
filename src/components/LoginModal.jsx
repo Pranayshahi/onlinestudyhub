@@ -40,8 +40,8 @@ export default function LoginModal({ open, onClose, onLogin }) {
       });
       onLogin(data);
       onClose();
-    } catch {
-      setError('Network error — make sure the server is running.');
+    } catch (err) {
+      setError(err.message || 'Network error — make sure the server is running.');
     } finally {
       setLoading(false);
     }
