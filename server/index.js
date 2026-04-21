@@ -7,7 +7,17 @@ const crypto = require('crypto');
 require('dotenv').config({ path: require('path').join(__dirname, '.env') });
 
 const connectDB = require('./db');
-const { Student, Teacher, Booking, TopicMedia, DocChunk } = require('./models');
+const { Student, Teacher, Booking, TopicMedia } = require('./models');
+
+// In-memory document store: uploadId → { fileName, chunks: string[], expiresAt }
+const docStore = new Map();
+const DOC_TTL_MS = 60 * 60 * 1000; // 1 hour
+setInterval(() => {
+  const now = Date.now();
+  for (const [id, doc] of docStore) {
+    if (doc.expiresAt < now) docStore.delete(id);
+  }
+}, 10 * 60 * 1000); // prune every 10 min
 const { chunkText, retrieveChunks } = require('./rag');
 const { moderateInput, SAFETY_SYSTEM_ADDENDUM } = require('./moderation');
 
@@ -497,14 +507,11 @@ app.post('/api/ai-doubt/upload', upload.single('file'), async (req, res) => {
     if (!chunks.length) return res.status(422).json({ error: 'File has no usable content.' });
 
     const uploadId = crypto.randomUUID();
-    await DocChunk.insertMany(
-      chunks.map((chunkText, chunkIndex) => ({
-        uploadId,
-        fileName: req.file.originalname,
-        chunkText,
-        chunkIndex,
-      }))
-    );
+    docStore.set(uploadId, {
+      fileName: req.file.originalname,
+      chunks,
+      expiresAt: Date.now() + DOC_TTL_MS,
+    });
 
     res.json({ uploadId, fileName: req.file.originalname, chunks: chunks.length });
   } catch (err) {
@@ -534,9 +541,9 @@ app.post('/api/ai-doubt', async (req, res) => {
     let source = 'general';
 
     if (uploadId && lastUserMsg) {
-      const dbChunks = await DocChunk.find({ uploadId }).sort({ chunkIndex: 1 }).lean();
-      if (dbChunks.length) {
-        const relevant = retrieveChunks(lastUserMsg.content, dbChunks.map(c => c.chunkText));
+      const doc = docStore.get(uploadId);
+      if (doc && doc.chunks.length) {
+        const relevant = retrieveChunks(lastUserMsg.content, doc.chunks);
         if (relevant.length) {
           contextBlock = `\n\nRELEVANT DOCUMENT EXCERPTS:\n${relevant.map((r, i) => `[${i + 1}] ${r.chunk}`).join('\n\n')}`;
           source = 'document';
