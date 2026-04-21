@@ -3,6 +3,11 @@ import { Link, useNavigate } from 'react-router-dom';
 import { NAV_CLASSES, CURRICULUM } from '../data/curriculum';
 import { TEACHERS } from '../data/teachers';
 
+function getInitials(name) {
+  if (!name) return '?';
+  return name.split(' ').map(w => w[0]).join('').slice(0, 2).toUpperCase();
+}
+
 const ChevronDown = () => (
   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
     <polyline points="6 9 12 15 18 9" />
@@ -201,26 +206,68 @@ export default function Navbar({ onOpenAI, onOpenLogin, user, onLogout, darkMode
             {user && (
               <div className="nav-item" style={{ position: 'relative' }}>
                 <button
-                  className="user-btn"
+                  className="user-avatar-btn"
                   onClick={() => setUserMenuOpen(!userMenuOpen)}
                   aria-label={`Account menu for ${user.name}`}
                   aria-expanded={userMenuOpen}
                   aria-haspopup="menu"
+                  style={{
+                    width: 36, height: 36, borderRadius: '50%',
+                    background: 'linear-gradient(135deg, #4f46e5, #7c3aed)',
+                    border: '2px solid rgba(255,255,255,.35)',
+                    color: '#fff', fontWeight: 800, fontSize: '.8rem',
+                    cursor: 'pointer', display: 'flex', alignItems: 'center',
+                    justifyContent: 'center', letterSpacing: '.03em',
+                    transition: 'border-color .2s, transform .15s',
+                    flexShrink: 0,
+                  }}
+                  onMouseEnter={e => { e.currentTarget.style.borderColor = '#fff'; e.currentTarget.style.transform = 'scale(1.08)'; }}
+                  onMouseLeave={e => { e.currentTarget.style.borderColor = 'rgba(255,255,255,.35)'; e.currentTarget.style.transform = 'scale(1)'; }}
                 >
-                  <span className="user-avatar" aria-hidden="true">👤</span>
-                  <span className="hide-mobile">{user.name}</span>
+                  {getInitials(user.name)}
                 </button>
                 {userMenuOpen && (
-                  <div className="dropdown user-dropdown" style={{ display: 'block', right: 0, left: 'auto', minWidth: 160 }}>
-                    <div className="dropdown-section">
-                      <div className="dropdown-label" style={{ fontSize: '.7rem' }}>Logged in as</div>
-                      <div style={{ padding: '0.5rem 1rem', fontSize: '.85rem', fontWeight: 700, color: '#1e1b4b' }}>{user.email}</div>
-                      <div className="dropdown-divider" />
-                      <button className="dropdown-item" onClick={() => { onLogout(); close(); }} style={{ width: '100%', textAlign: 'left', color: '#ef4444' }}>
-                        🚪 Logout
-                      </button>
+                  <>
+                    <div style={{ position: 'fixed', inset: 0, zIndex: 99 }} onClick={() => setUserMenuOpen(false)} />
+                    <div style={{
+                      position: 'absolute', right: 0, top: 'calc(100% + 10px)',
+                      background: '#fff', borderRadius: 16, minWidth: 220,
+                      boxShadow: '0 8px 32px rgba(0,0,0,.18)', border: '1px solid #e5e7eb',
+                      zIndex: 100, overflow: 'hidden',
+                    }}>
+                      {/* Profile header */}
+                      <div style={{ padding: '1rem 1.1rem', background: 'linear-gradient(135deg, #1e1b4b, #4f46e5)', display: 'flex', alignItems: 'center', gap: '.75rem' }}>
+                        <div style={{ width: 40, height: 40, borderRadius: '50%', background: 'rgba(255,255,255,.2)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontWeight: 800, fontSize: '.95rem', color: '#fff', flexShrink: 0 }}>
+                          {getInitials(user.name)}
+                        </div>
+                        <div style={{ overflow: 'hidden' }}>
+                          <div style={{ fontWeight: 800, fontSize: '.9rem', color: '#fff', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>{user.name}</div>
+                          <div style={{ fontSize: '.72rem', color: 'rgba(255,255,255,.65)', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>{user.email}</div>
+                        </div>
+                      </div>
+                      {/* Menu items */}
+                      <div style={{ padding: '.4rem 0' }}>
+                        <Link
+                          to="/my-bookings"
+                          onClick={() => setUserMenuOpen(false)}
+                          style={{ display: 'flex', alignItems: 'center', gap: '.65rem', padding: '.65rem 1.1rem', fontSize: '.87rem', color: '#374151', fontWeight: 600, textDecoration: 'none', transition: 'background .15s' }}
+                          onMouseEnter={e => e.currentTarget.style.background = '#f3f4f6'}
+                          onMouseLeave={e => e.currentTarget.style.background = 'transparent'}
+                        >
+                          <span style={{ fontSize: '1rem' }}>📅</span> My Bookings
+                        </Link>
+                        <div style={{ height: 1, background: '#f3f4f6', margin: '.2rem 0' }} />
+                        <button
+                          onClick={() => { onLogout(); setUserMenuOpen(false); }}
+                          style={{ display: 'flex', alignItems: 'center', gap: '.65rem', width: '100%', padding: '.65rem 1.1rem', fontSize: '.87rem', color: '#ef4444', fontWeight: 600, background: 'none', border: 'none', cursor: 'pointer', textAlign: 'left', transition: 'background .15s' }}
+                          onMouseEnter={e => e.currentTarget.style.background = '#fef2f2'}
+                          onMouseLeave={e => e.currentTarget.style.background = 'transparent'}
+                        >
+                          <span style={{ fontSize: '1rem' }}>🚪</span> Logout
+                        </button>
+                      </div>
                     </div>
-                  </div>
+                  </>
                 )}
               </div>
             )}

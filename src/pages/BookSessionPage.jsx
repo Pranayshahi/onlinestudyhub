@@ -3,6 +3,7 @@ import { useParams, Link, useNavigate, useLocation } from 'react-router-dom';
 import { getClass, getSubject, getTopic, getSubjectColor, SUBJECT_META } from '../data/curriculum';
 import { TEACHERS } from '../data/teachers';
 import Breadcrumb from '../components/Breadcrumb';
+import { api } from '../utils/api';
 
 // ── Steps shown on the page ──────────────────────────────────────
 const STEPS = [
@@ -37,8 +38,9 @@ const STEPS = [
 ];
 
 // ── Booking Modal ────────────────────────────────────────────────
-function BookingModal({ teacher, topic, classData, subjectMeta, onClose, onSuccess }) {
-  const [form, setForm] = useState({ name: '', phone: '', date: '', time: '', doubts: '' });
+function BookingModal({ teacher, topic, classData, subjectMeta, classId, subjectId, topicId, onClose, onSuccess }) {
+  const storedUser = (() => { try { return JSON.parse(localStorage.getItem('osh_user') || 'null'); } catch { return null; } })();
+  const [form, setForm] = useState({ name: storedUser?.name || '', phone: '', date: '', time: '', doubts: '' });
   const [loading, setLoading] = useState(false);
   const [errors, setErrors] = useState({});
 
@@ -60,16 +62,32 @@ function BookingModal({ teacher, topic, classData, subjectMeta, onClose, onSucce
     return e;
   }
 
-  function handleSubmit(e) {
+  async function handleSubmit(e) {
     e.preventDefault();
     const errs = validate();
     if (Object.keys(errs).length) { setErrors(errs); return; }
     setLoading(true);
-    // Simulate network request (in production, POST to /api/bookings)
-    setTimeout(() => {
-      setLoading(false);
+    try {
+      await api('/bookings', {
+        method: 'POST',
+        body: {
+          studentName: form.name,
+          studentPhone: form.phone,
+          studentEmail: storedUser?.email || '',
+          teacherId: teacher.id,
+          classId,
+          subjectId,
+          topicId,
+          timeSlot: form.time,
+          scheduledDate: form.date,
+        },
+      });
       onSuccess(form);
-    }, 1200);
+    } catch (err) {
+      setErrors({ submit: err.message || 'Failed to book. Please try again.' });
+    } finally {
+      setLoading(false);
+    }
   }
 
   // Min date = tomorrow
@@ -182,6 +200,7 @@ function BookingModal({ teacher, topic, classData, subjectMeta, onClose, onSucce
             </div>
           </div>
 
+          {errors.submit && <p style={{ color: '#ef4444', fontSize: '.82rem', marginBottom: '.75rem', textAlign: 'center' }}>⚠️ {errors.submit}</p>}
           <button
             type="submit"
             disabled={loading}
@@ -444,6 +463,9 @@ export default function BookSessionPage() {
           topic={topic}
           classData={classData}
           subjectMeta={meta}
+          classId={classId}
+          subjectId={subjectId}
+          topicId={topicId}
           onClose={() => setShowBooking(false)}
           onSuccess={(booking) => { setShowBooking(false); setBookingDone(booking); }}
         />

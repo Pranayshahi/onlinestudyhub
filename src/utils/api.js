@@ -4,8 +4,9 @@
  */
 
 export async function api(path, { method = 'GET', body = null, token = null, headers = {} } = {}) {
-  // Use provided token or fall back to localStorage
-  const activeToken = token || localStorage.getItem('admin_token') || localStorage.getItem('osh_user_token');
+  // Use provided token or fall back to localStorage (teacher or student)
+  const studentData = (() => { try { return JSON.parse(localStorage.getItem('osh_user') || 'null'); } catch { return null; } })();
+  const activeToken = token || localStorage.getItem('admin_token') || studentData?.token;
 
   const defaultHeaders = {
     'Content-Type': 'application/json',

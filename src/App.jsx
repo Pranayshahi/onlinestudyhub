@@ -16,6 +16,7 @@ const BookSessionPage = lazy(() => import('./pages/BookSessionPage'));
 const TeachersPage    = lazy(() => import('./pages/TeachersPage'));
 const TeachersListPage= lazy(() => import('./pages/TeachersListPage'));
 const SearchPage      = lazy(() => import('./pages/SearchPage'));
+const MyBookingsPage  = lazy(() => import('./pages/MyBookingsPage'));
 
 // Heavy panel components — load only when opened
 const AIDoubtPanel = lazy(() => import('./components/AIDoubtPanel'));
@@ -82,6 +83,7 @@ export default function App() {
             <Route path="/class/:classId/subject/:subjectId/topic/:topicId" element={<TopicPage user={user} onOpenLogin={() => setLoginOpen(true)} />} />
             <Route path="/class/:classId/subject/:subjectId/topic/:topicId/book" element={<BookSessionPage />} />
             <Route path="/search" element={<SearchPage />} />
+            <Route path="/my-bookings" element={<MyBookingsPage user={user} />} />
             <Route path="/teacher-portal" element={<AdminPage />} />
             <Route path="*" element={<NotFoundPage />} />
           </Routes>

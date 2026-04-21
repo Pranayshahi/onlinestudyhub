@@ -49,6 +49,17 @@ function requireAuth(req, res, next) {
   }
 }
 
+function requireStudentAuth(req, res, next) {
+  const auth = req.headers.authorization;
+  if (!auth?.startsWith('Bearer ')) return res.status(401).json({ error: 'Unauthorized' });
+  try {
+    req.student = jwt.verify(auth.slice(7), JWT_SECRET);
+    next();
+  } catch {
+    res.status(401).json({ error: 'Invalid or expired token' });
+  }
+}
+
 // ── Auth: Register ──────────────────────────────────────────────
 app.post('/api/auth/register', async (req, res) => {
   try {
@@ -308,6 +319,17 @@ app.post('/api/bookings', async (req, res) => {
   } catch (err) {
     console.error('Booking error:', err);
     res.status(500).json({ error: 'Failed to create booking' });
+  }
+});
+
+// ── Bookings: Get student's own bookings (protected) ──────────
+app.get('/api/bookings/student', requireStudentAuth, async (req, res) => {
+  try {
+    const bookings = await Booking.find({ student_email: req.student.email })
+      .sort({ createdAt: -1 }).lean();
+    res.json(bookings);
+  } catch (err) {
+    res.status(500).json({ error: 'Server error' });
   }
 });
 
