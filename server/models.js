@@ -67,9 +67,19 @@ const topicMediaSchema = new mongoose.Schema({
 // One record per (class, subject, topic, type) — upsert-friendly
 topicMediaSchema.index({ classId: 1, subjectId: 1, topicId: 1, type: 1 }, { unique: true });
 
-const Student = mongoose.model('Student', studentSchema);
-const Teacher = mongoose.model('Teacher', teacherSchema);
-const Booking = mongoose.model('Booking', bookingSchema);
-const TopicMedia = mongoose.model('TopicMedia', topicMediaSchema);
+// Document chunks for RAG — auto-expire after 24 hours
+const docChunkSchema = new mongoose.Schema({
+  uploadId:   { type: String, required: true, index: true },
+  fileName:   { type: String, required: true },
+  chunkText:  { type: String, required: true },
+  chunkIndex: { type: Number, required: true },
+  uploadedAt: { type: Date, default: Date.now, expires: 86400 },
+});
 
-module.exports = { Student, Teacher, Booking, TopicMedia };
+const Student   = mongoose.model('Student', studentSchema);
+const Teacher   = mongoose.model('Teacher', teacherSchema);
+const Booking   = mongoose.model('Booking', bookingSchema);
+const TopicMedia= mongoose.model('TopicMedia', topicMediaSchema);
+const DocChunk  = mongoose.model('DocChunk', docChunkSchema);
+
+module.exports = { Student, Teacher, Booking, TopicMedia, DocChunk };

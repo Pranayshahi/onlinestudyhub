@@ -21,16 +21,36 @@ CURRENT CONTEXT: The student is studying "${topic.title}" in ${meta.label || sub
 Topic definition: ${topic.definition || 'N/A'}
 Subtopics covered: ${topic.subtopics || 'N/A'}
 
-Prioritise explanations related to this topic when relevant. If the student asks a question that relates to this topic, explain it in that context.`;
+Prioritise explanations related to this topic when relevant.`;
 }
 
-const WELCOME = 'Hi! I\'m your AI study helper 👋\nAsk me any doubt about Maths, Science, History, English — any subject!';
+const WELCOME = 'Hi! I\'m your AI study helper 👋\nAsk me any doubt about Maths, Science, History, English — any subject!\n\nYou can also upload a PDF, DOCX, or TXT to ask questions from your own notes or textbook.';
+
+function SourceBadge({ source }) {
+  if (!source) return null;
+  return (
+    <span style={{
+      display: 'inline-block', fontSize: '.68rem', fontWeight: 700,
+      padding: '.2rem .55rem', borderRadius: 99, marginTop: '.35rem',
+      background: source === 'document' ? '#eff6ff' : '#f0fdf4',
+      color: source === 'document' ? '#2563eb' : '#16a34a',
+      border: `1px solid ${source === 'document' ? '#bfdbfe' : '#bbf7d0'}`,
+    }}>
+      {source === 'document' ? '📄 From your document' : '🧠 General knowledge'}
+    </span>
+  );
+}
 
 export default function AIDoubtPanel({ open, onClose }) {
   const location = useLocation();
   const [messages, setMessages] = useState([{ role: 'assistant', content: WELCOME }]);
   const [input, setInput] = useState('');
   const [loading, setLoading] = useState(false);
+  const [uploadId, setUploadId] = useState(null);
+  const [uploadedFile, setUploadedFile] = useState(null);
+  const [uploading, setUploading] = useState(false);
+  const [uploadError, setUploadError] = useState('');
+  const fileInputRef = useRef(null);
   const bottomRef = useRef(null);
 
   useEffect(() => {
@@ -52,6 +72,37 @@ export default function AIDoubtPanel({ open, onClose }) {
     if (topic) contextLabel = `${meta.icon || ''} ${topic.title}`;
   }
 
+  async function handleFileUpload(e) {
+    const file = e.target.files?.[0];
+    if (!file) return;
+    setUploadError('');
+    setUploading(true);
+    try {
+      const formData = new FormData();
+      formData.append('file', file);
+      const res = await fetch('/api/ai-doubt/upload', { method: 'POST', body: formData });
+      const data = await res.json();
+      if (!res.ok) throw new Error(data.error || 'Upload failed');
+      setUploadId(data.uploadId);
+      setUploadedFile({ name: data.fileName, chunks: data.chunks });
+      setMessages(prev => [...prev, {
+        role: 'assistant',
+        content: `✅ Document loaded: **${data.fileName}** (${data.chunks} sections indexed)\n\nNow ask me anything from this document!`,
+      }]);
+    } catch (err) {
+      setUploadError(err.message);
+    } finally {
+      setUploading(false);
+      e.target.value = '';
+    }
+  }
+
+  function removeDocument() {
+    setUploadId(null);
+    setUploadedFile(null);
+    setUploadError('');
+  }
+
   async function send() {
     const text = input.trim();
     if (!text || loading) return;
@@ -69,12 +120,22 @@ export default function AIDoubtPanel({ open, onClose }) {
       const res = await fetch('/api/ai-doubt', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ messages: history, system: buildSystemPrompt(location) }),
+        body: JSON.stringify({
+          messages: history,
+          system: buildSystemPrompt(location),
+          uploadId: uploadId || undefined,
+        }),
       });
 
       const data = await res.json();
-      if (!res.ok) throw new Error(data.error || 'Request failed');
-      setMessages(prev => [...prev, { role: 'assistant', content: data.reply }]);
+
+      if (data.blocked) {
+        setMessages(prev => [...prev, { role: 'assistant', content: `🚫 ${data.reason}`, blocked: true }]);
+      } else if (!res.ok) {
+        throw new Error(data.error || 'Request failed');
+      } else {
+        setMessages(prev => [...prev, { role: 'assistant', content: data.reply, source: data.source }]);
+      }
     } catch (err) {
       setMessages(prev => [...prev, { role: 'assistant', content: `Something went wrong: ${err.message}` }]);
     }
@@ -85,7 +146,6 @@ export default function AIDoubtPanel({ open, onClose }) {
     if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); send(); }
   }
 
-  // Build context-aware suggestions
   const suggestions = contextLabel
     ? [`Explain ${topicMatch ? getTopic(topicMatch[1], topicMatch[2], topicMatch[3])?.title : ''}`, 'Give me an example', 'What are common exam questions on this?']
     : ['Explain Newton\'s laws', 'What is photosynthesis?', 'Solve: 2x + 5 = 15'];
@@ -115,14 +175,22 @@ export default function AIDoubtPanel({ open, onClose }) {
 
         {/* Context pill */}
         {contextLabel && (
-          <div style={{
-            padding: '.5rem 1.25rem',
-            background: '#eef2ff',
-            borderBottom: '1px solid #e5e7eb',
-            fontSize: '.78rem', color: '#4f46e5', fontWeight: 600,
-            display: 'flex', alignItems: 'center', gap: '.4rem',
-          }}>
+          <div style={{ padding: '.5rem 1.25rem', background: '#eef2ff', borderBottom: '1px solid #e5e7eb', fontSize: '.78rem', color: '#4f46e5', fontWeight: 600, display: 'flex', alignItems: 'center', gap: '.4rem' }}>
             <span>📍</span> Context: {contextLabel}
+          </div>
+        )}
+
+        {/* Document badge */}
+        {uploadedFile && (
+          <div style={{ padding: '.5rem 1rem', background: '#eff6ff', borderBottom: '1px solid #bfdbfe', display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: '.5rem' }}>
+            <span style={{ fontSize: '.78rem', color: '#1d4ed8', fontWeight: 600 }}>
+              📄 {uploadedFile.name} <span style={{ fontWeight: 400, color: '#3b82f6' }}>· {uploadedFile.chunks} sections</span>
+            </span>
+            <button
+              onClick={removeDocument}
+              style={{ background: 'none', border: 'none', color: '#93c5fd', cursor: 'pointer', fontSize: '.8rem', padding: '.1rem .3rem', borderRadius: 4 }}
+              title="Remove document"
+            >✕</button>
           </div>
         )}
 
@@ -131,16 +199,20 @@ export default function AIDoubtPanel({ open, onClose }) {
           {messages.map((msg, i) => (
             <div key={i} className={`ai-msg-row ${msg.role}`}>
               {msg.role === 'assistant' && <div className="ai-msg-avatar">🤖</div>}
-              <div className="ai-bubble">{msg.content}</div>
+              <div>
+                <div className={`ai-bubble${msg.blocked ? ' ai-bubble-blocked' : ''}`}
+                  style={msg.blocked ? { background: '#fef2f2', border: '1px solid #fecaca', color: '#991b1b' } : {}}>
+                  {msg.content}
+                </div>
+                {msg.role === 'assistant' && !msg.blocked && i > 0 && <SourceBadge source={msg.source} />}
+              </div>
               {msg.role === 'user' && <div className="ai-msg-avatar user">👤</div>}
             </div>
           ))}
           {loading && (
             <div className="ai-msg-row assistant">
               <div className="ai-msg-avatar">🤖</div>
-              <div className="ai-bubble ai-typing-indicator">
-                <span /><span /><span />
-              </div>
+              <div className="ai-bubble ai-typing-indicator"><span /><span /><span /></div>
             </div>
           )}
           <div ref={bottomRef} />
@@ -150,30 +222,66 @@ export default function AIDoubtPanel({ open, onClose }) {
         {messages.length === 1 && (
           <div className="ai-suggestions">
             {suggestions.filter(Boolean).map(q => (
-              <button key={q} className="ai-suggestion-chip" onClick={() => setInput(q)}>
-                {q}
-              </button>
+              <button key={q} className="ai-suggestion-chip" onClick={() => setInput(q)}>{q}</button>
             ))}
           </div>
         )}
 
-        {/* Input */}
-        <div className="ai-input-row">
-          <textarea
-            className="ai-input"
-            value={input}
-            onChange={e => setInput(e.target.value)}
-            onKeyDown={handleKey}
-            placeholder="Type your doubt here… (Enter to send)"
-            rows={2}
-            disabled={loading}
-          />
-          <button className="ai-send-btn" onClick={send} disabled={!input.trim() || loading} aria-label="Send message">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" aria-hidden="true">
-              <line x1="22" y1="2" x2="11" y2="13"/>
-              <polygon points="22 2 15 22 11 13 2 9 22 2"/>
-            </svg>
-          </button>
+        {/* Upload error */}
+        {uploadError && (
+          <div style={{ padding: '.4rem 1rem', background: '#fef2f2', fontSize: '.78rem', color: '#dc2626' }}>
+            ⚠️ {uploadError}
+          </div>
+        )}
+
+        {/* Input row */}
+        <div className="ai-input-row" style={{ flexDirection: 'column', gap: '.5rem', padding: '.75rem 1rem' }}>
+          <div style={{ display: 'flex', gap: '.5rem', alignItems: 'flex-end' }}>
+            <textarea
+              className="ai-input"
+              value={input}
+              onChange={e => setInput(e.target.value)}
+              onKeyDown={handleKey}
+              placeholder="Type your doubt here… (Enter to send)"
+              rows={2}
+              disabled={loading}
+              style={{ flex: 1 }}
+            />
+            <button className="ai-send-btn" onClick={send} disabled={!input.trim() || loading} aria-label="Send message">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" aria-hidden="true">
+                <line x1="22" y1="2" x2="11" y2="13"/>
+                <polygon points="22 2 15 22 11 13 2 9 22 2"/>
+              </svg>
+            </button>
+          </div>
+
+          {/* Upload button */}
+          <div style={{ display: 'flex', alignItems: 'center', gap: '.5rem' }}>
+            <input
+              ref={fileInputRef}
+              type="file"
+              accept=".pdf,.docx,.txt"
+              style={{ display: 'none' }}
+              onChange={handleFileUpload}
+            />
+            <button
+              onClick={() => fileInputRef.current?.click()}
+              disabled={uploading}
+              style={{
+                display: 'flex', alignItems: 'center', gap: '.35rem',
+                background: 'none', border: '1px dashed #d1d5db', borderRadius: 8,
+                padding: '.3rem .75rem', fontSize: '.75rem', color: '#6b7280',
+                cursor: uploading ? 'default' : 'pointer', transition: 'all .15s',
+              }}
+              onMouseEnter={e => { if (!uploading) { e.currentTarget.style.borderColor = '#4f46e5'; e.currentTarget.style.color = '#4f46e5'; }}}
+              onMouseLeave={e => { e.currentTarget.style.borderColor = '#d1d5db'; e.currentTarget.style.color = '#6b7280'; }}
+            >
+              {uploading ? '⏳ Processing…' : '📎 Upload PDF / DOCX / TXT'}
+            </button>
+            {uploadedFile && (
+              <span style={{ fontSize: '.72rem', color: '#2563eb', fontWeight: 600 }}>✓ Document active</span>
+            )}
+          </div>
         </div>
 
       </div>

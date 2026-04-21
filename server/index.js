@@ -2,10 +2,24 @@ const express = require('express');
 const cors = require('cors');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
+const multer = require('multer');
+const crypto = require('crypto');
 require('dotenv').config({ path: require('path').join(__dirname, '.env') });
 
 const connectDB = require('./db');
-const { Student, Teacher, Booking, TopicMedia } = require('./models');
+const { Student, Teacher, Booking, TopicMedia, DocChunk } = require('./models');
+const { chunkText, retrieveChunks } = require('./rag');
+const { moderateInput, SAFETY_SYSTEM_ADDENDUM } = require('./moderation');
+
+// Multer — store upload in memory (max 10 MB)
+const upload = multer({
+  storage: multer.memoryStorage(),
+  limits: { fileSize: 10 * 1024 * 1024 },
+  fileFilter: (req, file, cb) => {
+    const allowed = ['application/pdf', 'application/vnd.openxmlformats-officedocument.wordprocessingml.document', 'text/plain'];
+    cb(null, allowed.includes(file.mimetype));
+  },
+});
 
 const app = express();
 const PORT = process.env.PORT || 5001;
@@ -457,28 +471,103 @@ app.delete('/api/media/:id', requireAuth, async (req, res) => {
   }
 });
 
-// ── AI Doubt: Groq proxy ───────────────────────────────────────
+// ── AI Doubt: Document upload → parse → chunk → store ─────────
+app.post('/api/ai-doubt/upload', upload.single('file'), async (req, res) => {
+  try {
+    if (!req.file) return res.status(400).json({ error: 'No file uploaded or unsupported type (PDF, DOCX, TXT only).' });
+
+    let text = '';
+    const mime = req.file.mimetype;
+
+    if (mime === 'text/plain') {
+      text = req.file.buffer.toString('utf-8');
+    } else if (mime === 'application/pdf') {
+      const pdfParse = require('pdf-parse');
+      const parsed = await pdfParse(req.file.buffer);
+      text = parsed.text;
+    } else if (mime.includes('wordprocessingml')) {
+      const mammoth = require('mammoth');
+      const result = await mammoth.extractRawText({ buffer: req.file.buffer });
+      text = result.value;
+    }
+
+    if (!text.trim()) return res.status(422).json({ error: 'Could not extract text from the file.' });
+
+    const chunks = chunkText(text);
+    if (!chunks.length) return res.status(422).json({ error: 'File has no usable content.' });
+
+    const uploadId = crypto.randomUUID();
+    await DocChunk.insertMany(
+      chunks.map((chunkText, chunkIndex) => ({
+        uploadId,
+        fileName: req.file.originalname,
+        chunkText,
+        chunkIndex,
+      }))
+    );
+
+    res.json({ uploadId, fileName: req.file.originalname, chunks: chunks.length });
+  } catch (err) {
+    console.error('Upload error:', err);
+    res.status(500).json({ error: 'Failed to process document.' });
+  }
+});
+
+// ── AI Doubt: RAG query with firewall ─────────────────────────
 app.post('/api/ai-doubt', async (req, res) => {
   try {
-    const { messages, system } = req.body || {};
+    const { messages, system, uploadId } = req.body || {};
     const groqKey = process.env.GROQ_API_KEY;
-    if (!groqKey) return res.status(503).json({ error: 'AI service not configured' });
+    if (!groqKey) return res.status(503).json({ error: 'AI service not configured.' });
 
+    // 1. Firewall — check last user message
+    const lastUserMsg = [...(messages || [])].reverse().find(m => m.role === 'user');
+    if (lastUserMsg) {
+      const modResult = moderateInput(lastUserMsg.content);
+      if (modResult.blocked) {
+        return res.status(400).json({ blocked: true, reason: modResult.reason });
+      }
+    }
+
+    // 2. RAG retrieval — if a document is attached
+    let contextBlock = '';
+    let source = 'general';
+
+    if (uploadId && lastUserMsg) {
+      const dbChunks = await DocChunk.find({ uploadId }).sort({ chunkIndex: 1 }).lean();
+      if (dbChunks.length) {
+        const relevant = retrieveChunks(lastUserMsg.content, dbChunks.map(c => c.chunkText));
+        if (relevant.length) {
+          contextBlock = `\n\nRELEVANT DOCUMENT EXCERPTS:\n${relevant.map((r, i) => `[${i + 1}] ${r.chunk}`).join('\n\n')}`;
+          source = 'document';
+        }
+      }
+    }
+
+    // 3. Build system prompt with safety rules + optional doc context
+    const fullSystem = system + SAFETY_SYSTEM_ADDENDUM + contextBlock
+      + (source === 'document'
+        ? '\n\nAnswer primarily using the document excerpts above. If the answer is not in the excerpts, say so and answer from your general knowledge.'
+        : '');
+
+    // 4. Call Groq
     const groqRes = await fetch('https://api.groq.com/openai/v1/chat/completions', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${groqKey}` },
       body: JSON.stringify({
         model: 'llama-3.3-70b-versatile',
         max_tokens: 1024,
-        messages: [{ role: 'system', content: system }, ...(messages || [])],
+        messages: [{ role: 'system', content: fullSystem }, ...(messages || [])],
       }),
     });
 
     const data = await groqRes.json();
     if (!groqRes.ok) return res.status(groqRes.status).json({ error: data.error?.message || 'Groq error' });
-    res.json({ reply: data.choices?.[0]?.message?.content || 'No response.' });
+
+    res.json({ reply: data.choices?.[0]?.message?.content || 'No response.', source });
   } catch (err) {
-    res.status(500).json({ error: 'AI service error' });
+    console.error('AI doubt error:', err);
+    res.status(500).json({ error: 'AI service error.' });
   }
 });
 
