@@ -50,7 +50,10 @@
       "source": "/(.*)",
       "has": [{ "type": "host", "value": "onlinestudyhub.com" }],
       "destination": "https://www.onlinestudyhub.com/$1",
-      "permanent": true
+      "permanent": true,
+      "headers": [
+        { "key": "Strict-Transport-Security", "value": "max-age=63072000; includeSubDomains; preload" }
+      ]
     }
   ],
   "rewrites": [
