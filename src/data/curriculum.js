@@ -1298,6 +1298,117 @@ export const CURRICULUM = {
               { q: 'How many faces does a square pyramid have?', a: 'A square pyramid has 5 faces: 1 square base + 4 triangular faces.' },
             ]
           },
+          {
+            id: 'triangle-properties-7',
+            title: 'The Triangle and Its Properties',
+            subtopics: 'Types of triangles, Angle sum property, Exterior angle, Pythagoras theorem, Triangle inequality',
+            definition: 'A triangle is a polygon with three sides, three angles, and three vertices. The sum of interior angles is always 180°. The triangle is the simplest polygon and is inherently rigid — making it fundamental to engineering and construction.',
+            content: `<p>Triangles are found everywhere in architecture, engineering, and nature — they are the strongest shape because they cannot be deformed without changing side lengths. The Golden Gate Bridge, Eiffel Tower, and bicycle frames all use triangular structures.</p>
+<h4>Types of Triangles</h4>
+<p><strong>By sides:</strong> Equilateral (all equal), Isosceles (two equal), Scalene (all different).<br/>
+<strong>By angles:</strong> Acute (all angles < 90°), Right (one angle = 90°), Obtuse (one angle > 90°).</p>
+<h4>Angle Sum Property</h4>
+<div class="formula">Sum of angles in a triangle = 180°</div>
+<h4>Exterior Angle Property</h4>
+<div class="formula">Exterior angle = sum of the two non-adjacent interior angles</div>
+<h4>Triangle Inequality</h4>
+<p>The sum of any two sides must be greater than the third side. If a, b, c are sides: a+b > c, b+c > a, a+c > b.</p>
+<h4>Pythagoras Theorem (Right Triangle)</h4>
+<div class="formula">Hypotenuse² = Sum of squares of other two sides: c² = a² + b²</div>`,
+            qa: [
+              { q: 'In triangle ABC, angle A = 65°, angle B = 55°. Find angle C.', a: 'Angle sum = 180°. Angle C = 180° - 65° - 55° = 60°.' },
+              { q: 'Can 3cm, 4cm, and 8cm be sides of a triangle?', a: 'Triangle inequality: sum of any two sides must be greater than the third. 3+4 = 7 < 8. This violates the condition. So NO, these cannot form a triangle.' },
+              { q: 'An exterior angle of a triangle is 120°, and one of the opposite interior angles is 45°. Find the other opposite interior angle.', a: 'Exterior angle = sum of two non-adjacent interior angles. 120° = 45° + other angle. Other angle = 75°.' },
+              { q: 'A right triangle has legs 5cm and 12cm. Find the hypotenuse.', a: 'By Pythagoras: hypotenuse² = 5² + 12² = 25 + 144 = 169. Hypotenuse = √169 = 13cm.' },
+            ]
+          },
+          {
+            id: 'congruence-triangles-7',
+            title: 'Congruence of Triangles',
+            subtopics: 'SSS, SAS, ASA, RHS congruence criteria, CPCT',
+            definition: 'Two triangles are congruent if they have the same shape and size — one can be superimposed exactly on the other. Congruence can be established using rules: SSS, SAS, ASA, AAS, or RHS.',
+            content: `<p>Congruence is used in engineering (identical parts), navigation (map triangulation), and construction (ensuring structures are symmetrical). The congruence criteria tell us the minimum information needed to ensure two triangles are identical.</p>
+<h4>Congruence Criteria for Triangles</h4>
+<ul>
+<li><strong>SSS:</strong> All three sides equal → triangles are congruent.</li>
+<li><strong>SAS:</strong> Two sides and the included angle equal → congruent.</li>
+<li><strong>ASA:</strong> Two angles and the included side equal → congruent.</li>
+<li><strong>AAS:</strong> Two angles and a non-included side equal → congruent.</li>
+<li><strong>RHS:</strong> Right angle, Hypotenuse, one Side → congruent (only for right triangles).</li>
+</ul>
+<div class="formula">CPCT: Corresponding Parts of Congruent Triangles are equal</div>
+<p>Once triangles are proven congruent, all their corresponding angles and sides are equal (CPCT).</p>`,
+            qa: [
+              { q: 'What does it mean for two triangles to be congruent?', a: 'Two triangles are congruent if they are identical in shape and size — one can be placed exactly over the other. All corresponding sides are equal and all corresponding angles are equal.' },
+              { q: 'Is AAA (all three angles equal) a congruence criterion?', a: 'No! AAA is NOT a congruence criterion — it only guarantees SIMILARITY (same shape, same angles), not congruence (same size). Two similar triangles can be of completely different sizes (one can be twice as big as the other). You need at least one side measurement for congruence.' },
+              { q: 'In triangles PQR and LMN: PQ=LM, QR=MN, angle Q = angle M. Are they congruent?', a: 'Yes! Two sides PQ=LM, QR=MN, and the INCLUDED angle Q=M. This satisfies the SAS congruence criterion. So ΔPQR ≅ ΔLMN. By CPCT, PR=LN and angles P, R equal angles L, N respectively.' },
+              { q: 'Why is SSA not a valid congruence criterion?', a: 'SSA (two sides and a non-included angle) does not uniquely determine a triangle — two different triangles can have the same two sides and the same angle not between them. This is the "ambiguous case." Hence SSA is not a valid congruence criterion.' },
+            ]
+          },
+          {
+            id: 'data-handling-7',
+            title: 'Data Handling',
+            subtopics: 'Collection and organisation of data, Bar graphs, Mean, Median, Mode, Probability',
+            definition: 'Data handling involves collecting, organising, and representing data, and computing measures of central tendency (mean, median, mode) to summarise data. Probability predicts the likelihood of events.',
+            content: `<p>In an age of big data, understanding how to interpret charts, averages, and probabilities is as important as reading and writing. Data handling gives you the tools to critically evaluate statistics you encounter daily.</p>
+<h4>Collecting and Organising Data</h4>
+<p>Raw data → tally marks → frequency table → graph. Graphs: bar graph, pie chart, histogram, line graph — each suited to different types of data.</p>
+<h4>Mean, Median, Mode</h4>
+<div class="formula">Mean = Sum of all values / Number of values</div>
+<p>Median: middle value when data is arranged in order. Mode: most frequently occurring value.</p>
+<h4>Probability</h4>
+<div class="formula">P(event) = Favourable outcomes / Total equally likely outcomes</div>
+<p>P is always between 0 and 1. P = 0: impossible. P = 1: certain.</p>`,
+            qa: [
+              { q: 'Find the mean, median, and mode of: 4, 7, 3, 7, 9, 7, 4.', a: 'Mean = (4+7+3+7+9+7+4)/7 = 41/7 ≈ 5.86. Arranged: 3,4,4,7,7,7,9. Median = 4th term = 7. Mode = 7 (appears 3 times).' },
+              { q: 'A coin is tossed. What is the probability of getting tails?', a: 'Total outcomes = 2 (H or T). Favourable = 1 (T). P(tails) = 1/2 = 0.5.' },
+              { q: 'When is mode more useful than mean?', a: 'Mode is most useful for categorical data or when you want to know the most common value. Example: finding the most popular shoe size to stock. Mean is affected by extreme values — the mode of shoe sizes 6,7,7,7,8,8,12 is 7 (most stocked), even though mean is 7.7.' },
+              { q: 'A die is rolled. Find P(getting an even number).', a: 'Even numbers on a die: 2, 4, 6 — 3 favourable outcomes. Total outcomes = 6. P(even) = 3/6 = 1/2.' },
+            ]
+          },
+          {
+            id: 'symmetry-7',
+            title: 'Symmetry',
+            subtopics: 'Lines of symmetry, Rotational symmetry, Order of rotation, Regular polygons',
+            definition: 'A figure has line symmetry if one half is the mirror image of the other. It has rotational symmetry if it looks the same after being rotated by less than 360°. These concepts appear in nature, art, and design.',
+            content: `<p>Symmetry is one of nature's most beautiful principles — from snowflakes (6-fold symmetry) to flowers (5-fold) to human faces (bilateral). Artists, architects, and engineers use symmetry to create beautiful, balanced designs.</p>
+<h4>Line Symmetry (Reflection Symmetry)</h4>
+<p>A line of symmetry divides a figure into two mirror images. Examples: circle (infinite lines), square (4 lines), rectangle (2 lines), scalene triangle (0 lines), isosceles triangle (1 line), equilateral triangle (3 lines).</p>
+<h4>Rotational Symmetry</h4>
+<p>A figure has rotational symmetry if it looks the same when rotated by an angle less than 360°.</p>
+<div class="formula">Order of rotation = 360° / angle of rotation</div>
+<p>A square: 4 times in 360° (at 90°, 180°, 270°, 360°) → order 4. A regular pentagon: order 5.</p>
+<h4>Regular Polygons</h4>
+<p>Regular polygon with n sides: n lines of symmetry + rotational symmetry of order n.</p>`,
+            qa: [
+              { q: 'How many lines of symmetry does a regular hexagon have?', a: 'A regular hexagon has 6 lines of symmetry: 3 through opposite vertices and 3 through midpoints of opposite sides. It also has rotational symmetry of order 6 (looks the same when rotated by 60°, 120°, 180°, 240°, 300°, 360°).' },
+              { q: 'What is the order of rotational symmetry of the letter Z?', a: 'The letter Z looks the same when rotated 180°. So it has rotational symmetry of order 2 (360°/180° = 2). It has no line symmetry.' },
+              { q: 'Does a scalene triangle have any symmetry?', a: 'No. A scalene triangle has no line symmetry (all sides different, so no fold gives matching halves) and no rotational symmetry except trivially at 360°. It is completely asymmetric.' },
+              { q: 'What is the difference between line symmetry and rotational symmetry?', a: 'Line symmetry (reflection): fold the figure along the line — both halves match exactly. Rotational symmetry: rotate the figure around a central point — it looks the same before completing a full turn. A figure can have one, both, or neither. A rectangle has line symmetry but only rotational symmetry of order 2.' },
+            ]
+          },
+          {
+            id: 'practical-geometry-7',
+            title: 'Practical Geometry',
+            subtopics: 'Constructing parallel lines, Triangles given different conditions',
+            definition: 'Practical geometry involves constructing geometric figures using a ruler, compass, and protractor. Triangles can be constructed when sufficient measurements are given (SSS, SAS, ASA, RHS).',
+            content: `<p>Practical geometry is the art of drawing precise geometric figures. These constructions — done with only basic tools — develop spatial reasoning and underpin engineering drawing and design.</p>
+<h4>Constructing a Line Parallel to a Given Line</h4>
+<p>Using alternate angles: draw a transversal, copy the angle at the new point. The new line through that angle is parallel to the original.</p>
+<h4>Constructing Triangles</h4>
+<ul>
+<li><strong>SSS (three sides given):</strong> Draw base, draw arcs from both ends with other sides as radii, connect intersection to base ends.</li>
+<li><strong>SAS (two sides and included angle):</strong> Draw base, measure angle at one end, mark other side length.</li>
+<li><strong>ASA (two angles and included side):</strong> Draw base, measure angles at both ends, lines intersect at apex.</li>
+<li><strong>RHS (right angle, hypotenuse, one side):</strong> Draw one leg, make right angle, mark hypotenuse.</li>
+</ul>`,
+            qa: [
+              { q: 'Construct a triangle with sides 5cm, 6cm, and 7cm. Describe the steps.', a: '1. Draw BC = 7cm (longest side). 2. With B as centre, draw arc of radius 5cm. 3. With C as centre, draw arc of radius 6cm. 4. The two arcs intersect at A. 5. Join AB and AC. Triangle ABC is formed.' },
+              { q: 'When can you NOT construct a unique triangle from given measurements?', a: 'You cannot construct a unique triangle when: (1) Three angles given (AAA) — you know the shape but not the size; (2) Two sides given without the angle — multiple triangles possible (ambiguous case: SSA). You CAN construct a unique triangle given SSS, SAS, ASA, AAS, or RHS.' },
+              { q: 'How do you construct a right-angled triangle given the hypotenuse (10cm) and one side (6cm)?', a: 'RHS construction: 1. Draw BC = 6cm. 2. At B, draw a perpendicular (90°). 3. With C as centre, draw an arc of 10cm (hypotenuse). 4. This arc cuts the perpendicular at A. 5. Join AC. Right angle is at B, hypotenuse AC = 10cm.' },
+              { q: 'Why is a compass essential for geometric constructions?', a: 'A compass draws arcs of precise radius — allowing you to mark exact distances and find points equidistant from a given point. This accuracy cannot be achieved with just a ruler. Euclid\'s construction system is based on two operations: drawing a straight line (ruler) and drawing a circle (compass).' },
+            ]
+          },
         ]
       },
       science: {
@@ -1693,6 +1804,51 @@ export const CURRICULUM = {
               { q: 'Who was Guru Nanak and what did he teach?', a: 'Guru Nanak (1469–1539) was the founder of Sikhism. He taught that there is One God for all humans (not different Gods for different religions), that caste is meaningless, and that service (seva) and honest work are forms of worship.' },
             ]
           },
+          {
+            id: 'rulers-buildings-7',
+            title: 'Rulers and Buildings',
+            subtopics: 'Medieval architecture, Temples, Mosques, Forts, Palaces, Craftsmen',
+            definition: 'Medieval rulers expressed their power and wealth through grand architecture — temples, mosques, forts, and palaces. These buildings also show the sophisticated engineering and artistry of medieval India.',
+            content: `<p>The monuments that survive from medieval India — the Red Fort, Qutub Minar, Khajuraho temples, Hampi ruins — are not just beautiful structures. They are documents that tell us about the power, religion, and artistry of their creators.</p>
+<h4>Why Rulers Built</h4>
+<p>Buildings served multiple purposes: (1) Express power and wealth; (2) Religious devotion and piety; (3) Provide public services (mosques, gardens, stepwells); (4) Demonstrate victory (building on conquered land).</p>
+<h4>Temples</h4>
+<p>North Indian style (Nagara): tall curved shikhara over the sanctum. South Indian style (Dravidian): flat-topped pyramid (vimana), elaborate gateways (gopuram). Khajuraho, Konark, Brihadeeswarar temple (Tanjore).</p>
+<h4>Islamic Architecture</h4>
+<p>Mosques, tombs, minarets, domes, arches. Qutub Minar (1193, Delhi — tallest brick minaret). Gol Gumbaz (Bijapur — world's second largest dome). Masjid-i-Jahan-numa (Jama Masjid, Delhi — largest mosque in India).</p>
+<h4>Mughal Architecture</h4>
+<p>Blend of Persian and Indian styles. Taj Mahal (white marble, 1648 — tomb of Mumtaz Mahal). Red Fort, Fatehpur Sikri (Akbar's new capital).</p>`,
+            qa: [
+              { q: 'What is the architectural difference between North and South Indian temples?', a: 'North Indian (Nagara style): tower (shikhara) above sanctum is curved, tapering to a point; flat hall (mandapa) for worshippers; smaller subsidiary shrines. South Indian (Dravidian style): tower (vimana/gopuram) is pyramidal, layered, more angular; elaborate gateways at the entrances are taller than the main tower. Examples: Khajuraho (Nagara), Brihadeeswarar Tanjore (Dravidian).' },
+              { q: 'Why is the Taj Mahal considered a masterpiece of Mughal architecture?', a: 'The Taj Mahal combines: (1) Perfect bilateral symmetry; (2) White marble that changes colour with light; (3) Pietra dura (semi-precious stone inlay) with intricate floral designs; (4) Arabic calligraphy from the Quran; (5) Formal Persian-style charbagh garden with central channel. It took 22 years and 20,000 workers to complete (1648).' },
+              { q: 'What does the Qutub Minar tell us about early Delhi Sultanate?', a: 'The Qutub Minar (72.5m, Delhi, 1193) tells us: (1) The Sultans were powerful and confident enough to build a massive monument; (2) They had access to skilled craftsmen who combined Persian arch-and-dome techniques with Indian stone-carving skills; (3) The first mosque built with columns from destroyed Hindu/Jain temples shows both practicality and symbolic power over previous rulers.' },
+              { q: 'What engineering challenges did medieval builders face?', a: 'Medieval builders solved complex problems without modern technology: (1) Moving massive stones (elephants, ramps, levers, sleds); (2) Building tall structures without cranes (scaffolding, counterweights); (3) Creating domes without steel — used interlocking arches and keystones; (4) Making roofs waterproof — sloping roofs, lime mortar, lead channels.' },
+            ]
+          },
+          {
+            id: 'towns-traders-7',
+            title: 'Towns, Traders and Craftspersons',
+            subtopics: 'Medieval towns, Trade routes, Guilds, Ports, Crafts, Coins',
+            definition: 'Medieval India had a thriving network of towns and trade. Pilgrimage towns, administrative centres, craft centres, and port cities connected India to a global trade network.',
+            content: `<p>Long before globalisation, Indian textiles, spices, and crafts were traded across the world — from China to East Africa to Europe. Medieval India was a trading superpower whose merchants connected continents.</p>
+<h4>Types of Towns</h4>
+<ul>
+<li><strong>Temple towns:</strong> Pilgrimages created demand for goods and services. Madurai, Kanchipuram.</li>
+<li><strong>Administrative centres:</strong> Capitals of kingdoms — Vijayanagara (Hampi), Thanjavur.</li>
+<li><strong>Port towns:</strong> Surat, Masulipatnam, Calicut — international trade hubs.</li>
+<li><strong>Craft centres:</strong> Towns known for specific crafts — Kanchipuram (silk), Masulipatanam (textiles).</li>
+</ul>
+<h4>Trade and Traders</h4>
+<p>India exported: cotton textiles (most valued globally), spices, gems, indigo. Imported: horses (for armies), gold and silver, luxury goods from West Asia. Long-distance trade routes: land (Silk Road), sea (Indian Ocean trade network).</p>
+<h4>Guilds and Craftspersons</h4>
+<p>Craftsmen organised into guilds — associations that set standards, trained apprentices, and negotiated with rulers. Specialised communities: Jains and Baniyas (traders), Chettiars (South India), Marwaris.</p>`,
+            qa: [
+              { q: 'Why was Surat an important port in medieval India?', a: 'Surat (Gujarat) was medieval India\'s most important port (17th century). It was the hub of: Hajj pilgrimages (ships to Mecca), trade with Ottoman Empire and West Asia (exporting textiles, importing gold), European trade (English, Dutch, and Portuguese East India Companies had factories here). Its decline came with Bombay (Mumbai) becoming the main port under British rule.' },
+              { q: 'What role did guilds play in medieval craft production?', a: 'Guilds were associations of craftsmen in the same trade. They: ensured quality of goods (maintained standards), trained new craftsmen (apprenticeship), controlled prices, negotiated with local rulers for rights and protection, and often held corporate identities and their own seals. They were the medieval equivalent of trade unions and professional bodies combined.' },
+              { q: 'What goods did India export to the world in the medieval period?', a: 'India was famous for: cotton textiles (the most sought-after fabric globally — muslin from Dhaka was so fine it was called "woven air"), silk (from Bengal and South India), spices (pepper, cardamom, ginger — worth their weight in silver in Europe), indigo (blue dye), and precious stones (diamonds from Golconda — the Koh-i-Noor came from here). India had a trade surplus for centuries.' },
+              { q: 'Why were horses important to medieval Indian trade?', a: 'Indian armies needed horses urgently but India\'s climate and terrain doesn\'t suit horse breeding. Central Asian and Arabian horses were superior war horses. Kings bought thousands of horses through traders from Persia, Arabia, and Central Asia. Horses were India\'s most valuable import — ensuring military supremacy was worth paying massive amounts of gold.' },
+            ]
+          },
         ]
       },
       geography: {
@@ -1811,6 +1967,51 @@ export const CURRICULUM = {
               { q: 'Why are tropical rainforests called "lungs of the Earth"?', a: 'Tropical rainforests absorb enormous amounts of CO₂ (carbon dioxide) from the atmosphere through photosynthesis and release oxygen. The Amazon alone produces 20% of the world\'s oxygen. Like our lungs exchange CO₂ for oxygen, rainforests clean the atmosphere — hence the name.' },
               { q: 'How is natural vegetation related to climate?', a: 'Climate — especially rainfall and temperature — determines what plants can survive. High rainfall → thick rainforests. Moderate rainfall → grasslands. Very low rainfall → desert shrubs. Cold temperatures → tundra mosses. This is why vegetation maps and climate maps look almost identical.' },
               { q: 'What are biosphere reserves?', a: 'Biosphere reserves are large protected areas where natural ecosystems are conserved while allowing sustainable human use. They have three zones: core (fully protected), buffer (limited research/tourism), transition (sustainable economic activities). India has 18 biosphere reserves including Nilgiris, Sundarbans, and Gulf of Mannar.' },
+            ]
+          },
+          {
+            id: 'air-7',
+            title: 'Air',
+            subtopics: 'Composition of air, Atmosphere layers, Wind, Weather, Air pressure, Cyclones',
+            definition: 'Air is the mixture of gases surrounding the Earth, held by gravity as the atmosphere. It is essential for life and weather. Wind is the movement of air from high pressure to low pressure areas.',
+            content: `<p>We live at the bottom of an ocean of air — the atmosphere — that makes life on Earth possible. Without air, there would be no weather, no sound, no protection from harmful solar radiation.</p>
+<h4>Composition of Air</h4>
+<p>Nitrogen (78%), Oxygen (21%), Argon (0.9%), Carbon dioxide (0.04%), and other trace gases + water vapour + dust particles.</p>
+<h4>Layers of the Atmosphere</h4>
+<ul>
+<li><strong>Troposphere:</strong> 0-12km. All weather occurs here. Temperature decreases with altitude.</li>
+<li><strong>Stratosphere:</strong> 12-50km. Contains ozone layer (absorbs harmful UV). Temperature increases with altitude (ozone absorbs UV).</li>
+<li><strong>Mesosphere:</strong> 50-80km. Coldest layer. Meteors burn up here.</li>
+<li><strong>Thermosphere/Ionosphere:</strong> 80-600km. Auroras occur here.</li>
+</ul>
+<h4>Wind</h4>
+<p>Air moves from high pressure (cold, dense air sinks) to low pressure (warm air rises). This pressure difference drives winds at all scales — local sea breezes to global trade winds and monsoons.</p>
+<h4>Cyclones and Anticyclones</h4>
+<p>Cyclone: Low-pressure system, winds spiral inward and upward (anticlockwise in N. hemisphere), brings heavy rain. Anticyclone: High-pressure system, clear skies.</p>`,
+            qa: [
+              { q: 'Why is nitrogen the most abundant gas in the atmosphere?', a: 'Nitrogen (N₂) is extremely stable — it doesn\'t react easily with other substances at normal conditions. Early in Earth\'s history, reactive gases like oxygen reacted with surface materials. Nitrogen accumulated over billions of years, eventually dominating the atmosphere. Today it acts as a "diluter" of oxygen — pure oxygen would make fires uncontrollable.' },
+              { q: 'What is air pressure and how does it affect weather?', a: 'Air pressure is the weight of air above a given point pressing down. Warm air is less dense → rises → creates low pressure at surface. Cold air is dense → sinks → creates high pressure. Winds blow from high to low pressure. Meteorologists use pressure to forecast weather: falling pressure = approaching rain; rising pressure = clearing skies.' },
+              { q: 'Why does temperature decrease as you go up in the troposphere?', a: 'The atmosphere is heated by the Earth\'s surface (which absorbs solar radiation and re-emits heat). The farther from the surface, the less heat is received. Also, air pressure decreases with altitude — expanding air cools (adiabatic cooling). The rate is about 6.5°C per 1000m altitude.' },
+              { q: 'Why are the trade winds important for human history?', a: 'Trade winds are steady, reliable winds blowing toward the equator from northeast (northern hemisphere) and southeast (southern hemisphere). Sailors used them for centuries: Columbus used them to reach America (westward); ships returned using the westerlies at higher latitudes. The reliability of trade winds made ocean commerce predictable and drove the age of exploration and trade.' },
+            ]
+          },
+          {
+            id: 'life-in-deserts-7',
+            title: 'Life in the Deserts',
+            subtopics: 'Hot deserts (Sahara), Cold deserts (Ladakh), Climate, Vegetation, Wildlife, Human adaptations',
+            definition: 'A desert is an area that receives less than 25cm of rainfall per year. Hot deserts (like the Sahara) have extreme heat; cold deserts (like Ladakh) have extreme cold. Both have sparse vegetation and specialised inhabitants.',
+            content: `<p>Deserts cover about 1/3 of Earth's land surface. Despite being apparently barren, deserts are home to uniquely adapted plants, animals, and people who have developed sophisticated strategies to survive extreme conditions.</p>
+<h4>The Sahara Desert (Hot Desert)</h4>
+<p>World's largest hot desert (9 million km²). Located in North Africa. Climate: extremely hot days (50°C), cold nights, less than 25cm rain/year, sand dunes (ergs), rocky plains (hamada), oases (where underground water reaches surface).</p>
+<p>Vegetation: date palms (oases), cacti, scrub. Wildlife: camel (stores fat in hump for energy, wide feet for sand, long eyelashes for sandstorms), fennec fox (large ears to dissipate heat), sand viper.</p>
+<h4>Ladakh (Cold Desert)</h4>
+<p>A cold desert in northeastern Jammu & Kashmir/Ladakh UT. High altitude (3,000-5,000m). Very cold winters (−45°C), mild summers. Very little rainfall (10cm/year). Strong winds, thin air.</p>
+<p>Vegetation: willows, poplars (in valleys), mosses and lichens. Wildlife: snow leopard (IUCN vulnerable), yak, Pashmina goat, red panda. People: traditional culture, Buddhist monasteries, yak herding.</p>`,
+            qa: [
+              { q: 'How is a camel adapted to desert life?', a: 'Camel adaptations: (1) Hump stores fat (energy reserve, not water!); (2) Wide padded feet don\'t sink in sand; (3) Long eyelashes and closable nostrils block sandstorms; (4) Can drink 100+ litres at once and go weeks without water; (5) Body temperature varies (saves water); (6) Thick lips eat thorny desert plants; (7) Produces dry dung and concentrated urine (saves water).' },
+              { q: 'What is an oasis and why is it important in desert regions?', a: 'An oasis is a fertile area in a desert where underground water (from aquifer) reaches the surface through springs or wells. Oases are vital: they support date palms, crops, and human settlement; they were essential waypoints on ancient caravan routes (water, shade, food); they are the only spots where diverse life exists in otherwise barren desert. Egypt\'s Siwa oasis, Al-Hasa (Saudi Arabia).' },
+              { q: 'Why is Ladakh called a cold desert despite being in India?', a: 'Ladakh is located north of the main Himalayan range. The Himalayas block monsoon winds and rainfall from reaching Ladakh — it receives only about 10cm of rain per year. The extreme altitude (3000-5000m) causes very low temperatures. So Ladakh has a desert climate (dry) combined with extreme cold — a cold desert.' },
+              { q: 'How have people in the Sahara traditionally adapted to desert life?', a: 'Nomadic Tuareg and Bedouin peoples: wear loose, long, light-coloured robes (reflect heat, allow airflow, protect from sun and sandstorms); live in portable tents (move to find water and grazing for animals); keep camels and goats; trade at oases; night travel (cooler); have detailed knowledge of water sources and routes; drink tea (hot beverages help you sweat and cool down).' },
             ]
           },
         ]
@@ -2140,6 +2341,74 @@ export const CURRICULUM = {
               { q: 'Plot the points (0,0), (1,2), (2,4), (3,6) and describe the graph.', a: 'All points lie on a straight line passing through the origin. The graph of y=2x is a straight line with slope 2.' },
               { q: 'What is the difference between a bar graph and a histogram?', a: 'Bar graph: for discrete/separate categories, bars have gaps. Histogram: for continuous data with class intervals, bars touch each other (no gaps between bars).' },
               { q: 'If temperature (°C) vs time (hours) is plotted and the graph is a horizontal line, what does it mean?', a: 'A horizontal line means the temperature is constant — it does not change with time. The slope (rate of change) is zero.' },
+            ]
+          },
+          {
+            id: 'cubes-cube-roots-8',
+            title: 'Cubes and Cube Roots',
+            subtopics: 'Perfect cubes, Cube of a number, Cube root, Prime factorisation method',
+            definition: 'The cube of a number is obtained by multiplying it by itself three times. Cube roots are the inverse operation. A perfect cube is a number that is the cube of an integer.',
+            content: `<p>Cube roots appear in volume calculations (the side length of a cube with volume V is ∛V) and in physics and engineering. Understanding them deepens your understanding of number properties.</p>
+<h4>Cube of a Number</h4>
+<div class="formula">n³ = n × n × n</div>
+<p>Examples: 2³=8, 3³=27, 4³=64, 5³=125, 10³=1000.</p>
+<h4>Perfect Cubes</h4>
+<p>1, 8, 27, 64, 125, 216, 343, 512, 729, 1000... A number is a perfect cube if its prime factorisation has all primes appearing in multiples of 3.</p>
+<h4>Cube Root (∛)</h4>
+<div class="formula">∛n = number which when cubed gives n</div>
+<p>∛27 = 3, ∛125 = 5, ∛1000 = 10.</p>
+<h4>Finding Cube Root by Prime Factorisation</h4>
+<p>Find prime factors → group in triples → take one from each triple. ∛216: 216 = 2×2×2 × 3×3×3 = 2³×3³. ∛216 = 2×3 = 6.</p>`,
+            qa: [
+              { q: 'Find ∛512 using prime factorisation.', a: '512 = 2⁹ = 2×2×2 × 2×2×2 × 2×2×2 = 2³×2³×2³. ∛512 = 2×2×2 = 8.' },
+              { q: 'Is 1728 a perfect cube? If yes, find its cube root.', a: '1728 = 12³. Or: 1728 = 2⁶ × 3³ = (2²)³ × 3³ = 4³ × 3³ = 12³. Yes, perfect cube. ∛1728 = 12.' },
+              { q: 'What is the smallest number by which 243 must be multiplied to make it a perfect cube?', a: '243 = 3⁵ = 3³ × 3². For perfect cube, need 3⁶. Multiply by 3. 243 × 3 = 729 = 9³. Answer: 3.' },
+              { q: 'A cubical box has volume 2197 cm³. Find its side length.', a: 'Volume = side³. Side = ∛2197 = ∛(13³) = 13 cm.' },
+            ]
+          },
+          {
+            id: 'exponents-powers-8',
+            title: 'Exponents and Powers',
+            subtopics: 'Laws of exponents, Negative exponents, Scientific notation, Standard form',
+            definition: 'An exponent (or power) tells us how many times to multiply a number by itself. Exponents have laws that allow simplification of complex expressions. Scientific notation uses powers of 10 to write very large or small numbers.',
+            content: `<p>Exponents are the mathematical language of growth — compound interest, population growth, radioactive decay, and computer storage all involve exponential quantities. Scientific notation allows us to write and compare numbers spanning dozens of orders of magnitude.</p>
+<h4>Laws of Exponents</h4>
+<div class="formula">aᵐ × aⁿ = aᵐ⁺ⁿ</div>
+<div class="formula">aᵐ ÷ aⁿ = aᵐ⁻ⁿ</div>
+<div class="formula">(aᵐ)ⁿ = aᵐⁿ</div>
+<div class="formula">a⁰ = 1 (for a ≠ 0)</div>
+<div class="formula">a⁻ⁿ = 1/aⁿ</div>
+<h4>Scientific Notation</h4>
+<div class="formula">N = a × 10ⁿ, where 1 ≤ a < 10</div>
+<p>Speed of light: 300,000,000 m/s = 3 × 10⁸ m/s. Size of atom: 0.000000001 m = 1 × 10⁻⁹ m.</p>`,
+            qa: [
+              { q: 'Simplify: (3²)³ × 3⁻⁴ ÷ 3²', a: '(3²)³ = 3⁶. 3⁶ × 3⁻⁴ = 3⁶⁻⁴ = 3². 3² ÷ 3² = 3⁰ = 1.' },
+              { q: 'Express 0.00000425 in scientific notation.', a: '0.00000425 = 4.25 × 10⁻⁶. (Move decimal 6 places to the right, so power is −6.)' },
+              { q: 'Why is any number raised to the power zero equal to 1?', a: 'Using the division law: aⁿ ÷ aⁿ = aⁿ⁻ⁿ = a⁰. Also, aⁿ ÷ aⁿ = 1 (any number divided by itself). Therefore a⁰ = 1.' },
+              { q: 'The distance from Earth to Sun is 1.5 × 10⁸ km. How many km is the Sun from Earth?', a: '1.5 × 10⁸ = 150,000,000 km (150 million km). Light takes about 8 minutes to travel this distance.' },
+            ]
+          },
+          {
+            id: 'factorisation-8',
+            title: 'Factorisation',
+            subtopics: 'Common factors, Grouping, Identities, Division of polynomials',
+            definition: 'Factorisation is the process of expressing an algebraic expression as a product of its factors. It is the reverse of multiplication/expansion and is used to simplify expressions and solve equations.',
+            content: `<p>Factorisation is one of the most important skills in algebra — it simplifies complex expressions, solves equations, and reveals mathematical structure. The same principle applies from basic arithmetic to advanced calculus.</p>
+<h4>Methods of Factorisation</h4>
+<p><strong>1. Common factor:</strong> Take out the highest common factor (HCF) from all terms. 4x + 8 = 4(x + 2).</p>
+<p><strong>2. Grouping:</strong> Group terms, take common factor from each group. ax + ay + bx + by = a(x+y) + b(x+y) = (a+b)(x+y).</p>
+<p><strong>3. Using standard identities:</strong></p>
+<div class="formula">a² − b² = (a+b)(a−b)</div>
+<div class="formula">a² + 2ab + b² = (a+b)²</div>
+<div class="formula">a² − 2ab + b² = (a−b)²</div>
+<h4>Division of Polynomials</h4>
+<p>Divide polynomial by monomial: divide each term separately.</p>
+<p>Divide polynomial by polynomial: long division (similar to number division).</p>`,
+            qa: [
+              { q: 'Factorise: x² − 25', a: 'x² − 25 = x² − 5² = (x+5)(x−5). Using a²−b² = (a+b)(a−b).' },
+              { q: 'Factorise: 4x² + 12xy + 9y²', a: '4x² + 12xy + 9y² = (2x)² + 2(2x)(3y) + (3y)² = (2x + 3y)². Using (a+b)² = a²+2ab+b².' },
+              { q: 'Factorise: 6xy − 4y + 6x − 4', a: 'Group: (6xy − 4y) + (6x − 4) = 2y(3x − 2) + 2(3x − 2) = (3x − 2)(2y + 2) = 2(3x − 2)(y + 1).' },
+              { q: 'Divide: (x² + 7x + 12) ÷ (x + 3)', a: 'Factorise numerator: x² + 7x + 12 = (x+3)(x+4). Divide by (x+3): result = (x+4). Verify: (x+3)(x+4) = x²+7x+12 ✓.' },
             ]
           },
         ]
@@ -2532,6 +2801,75 @@ export const CURRICULUM = {
               { q: 'What was the Swadeshi Movement and what triggered it?', a: 'The Swadeshi (own country) movement was triggered by Lord Curzon\'s partition of Bengal in 1905. Indians responded by boycotting British-made goods and promoting Indian industries. It was the first mass agitation involving ordinary people.' },
               { q: 'What was the Non-Cooperation Movement of 1920–22?', a: 'Gandhi\'s first mass movement — Indians surrendered British titles and honours, boycotted legislatures, courts, and schools. Millions participated. Called off by Gandhi after the Chauri Chaura violence (1922) where a mob burned a police station killing 22 policemen.' },
               { q: 'What made Gandhi\'s approach to the freedom struggle revolutionary?', a: 'Gandhi made the freedom struggle a mass movement by involving peasants, workers, and women — not just educated elites. His method of non-violent civil disobedience (Satyagraha) was a unique strategy that exposed British moral hypocrisy to the world.' },
+            ]
+          },
+          {
+            id: 'from-trade-to-territory-8',
+            title: 'From Trade to Territory — The Company Establishes Power',
+            subtopics: 'East India Company, Battle of Plassey, Subsidiary Alliance, Doctrine of Lapse, Administration',
+            definition: 'The British East India Company came to India as a trading company but gradually became a political power — establishing control through military victories, strategic alliances, and administrative policies.',
+            content: `<p>In 1600, the East India Company was a trading company. By 1857, it controlled most of the Indian subcontinent. How did a commercial enterprise become a colonial empire?</p>
+<h4>East India Company's Arrival</h4>
+<p>1600: British East India Company (EIC) got charter to trade with Asia. Competed with Portuguese and Dutch. Established factories (trading posts) at Surat (1608), Madras (1639), Bombay (1661), Calcutta (1690).</p>
+<h4>Battle of Plassey (1757)</h4>
+<p>Robert Clive's victory over Siraj ud-Daulah (Nawab of Bengal) — due partly to treachery of Mir Jafar (Nawab's commander). EIC gained control of Bengal and its enormous revenue. Beginning of territorial empire.</p>
+<h4>Strategies for Expansion</h4>
+<ul>
+<li><strong>Subsidiary Alliance (Wellesley):</strong> Indian rulers accepted British troops for protection, gave up army and foreign policy, paid for the troops. If they couldn't pay → territory was annexed.</li>
+<li><strong>Doctrine of Lapse (Dalhousie):</strong> If a ruler died without a natural male heir, the Company took over the state. Used to annex Jhansi, Awadh, Satara — angered rulers and was a major cause of 1857 revolt.</li>
+</ul>
+<h4>Tipu Sultan's Resistance</h4>
+<p>Tipu Sultan of Mysore resisted British expansion and sought French help. Was defeated and killed at the Battle of Seringapatam (1799). He is remembered as one of the most capable anti-British rulers.</p>`,
+            qa: [
+              { q: 'How did the Battle of Plassey (1757) mark a turning point in Indian history?', a: 'Before Plassey: the EIC was a trading company with permission from Indian rulers. After Plassey: the EIC became a political power controlling Bengal and its revenue. This wealth financed further conquests. It established the template of British rule — using Indian soldiers, dividing Indian opponents, and replacing Indian rulers with loyal puppets.' },
+              { q: 'What was the Doctrine of Lapse?', a: 'Introduced by Lord Dalhousie (1848-1856): if an Indian ruler died without a natural (biological) male heir, the British East India Company would annex (take over) the state. Adopted children could NOT inherit. This policy was used to annex Satara, Jhansi, Awadh, Nagpur, and other states — angering Indian rulers and contributing to the 1857 Revolt.' },
+              { q: 'How did Subsidiary Alliance work as a tool of expansion?', a: 'Lord Wellesley\'s Subsidiary Alliance: An Indian ruler signed an alliance with the Company. The ruler had to: (1) Keep British troops in his territory; (2) Pay for these troops; (3) Give up his own army; (4) Not have foreign relations without British approval. If unable to pay the troops → territory was given as payment. The ruler became dependent, losing real power.' },
+              { q: 'Who was Tipu Sultan and why is he remembered as a hero?', a: 'Tipu Sultan (1750-1799) was the ruler of Mysore and one of the fiercest opponents of British expansion. He: modernised his army (adopted rockets, studied French military tactics); sought alliances with France and Ottoman Empire; refused to submit to British terms; died fighting at Seringapatam (1799). He is remembered as a symbol of anti-colonial resistance and patriotism.' },
+            ]
+          },
+          {
+            id: 'weavers-iron-smelters-8',
+            title: 'Weavers, Iron Smelters and Factory Owners',
+            subtopics: 'Indian textile industry, Decline under British rule, Artisans, Iron and steel, Modern industry',
+            definition: 'India was the world\'s leading textile exporter before British colonialism. Colonial policies — free trade, machine-made goods — deindustrialised India, destroying the livelihoods of millions of weavers and craftspeople.',
+            content: `<p>Before colonialism, India produced 25% of the world\'s manufacturing output. Under British rule, it became a supplier of raw materials and a market for British manufactured goods. This deindustrialisation transformed India from a wealthy manufacturer to an impoverished colony.</p>
+<h4>India\'s Textile Tradition</h4>
+<p>India was famous globally for: muslin (Dhaka — so fine it was called "woven air"), chintz, calico, silk. By the 18th century, Indian textiles dominated global markets. Britain itself banned Indian imports to protect its own weavers!</p>
+<h4>Impact of British Rule on Weavers</h4>
+<ul>
+<li>1813: East India Company's trading monopoly ended — India opened to British manufactured goods</li>
+<li>Machine-made cloth from Lancashire mills was cheaper than handloom cloth</li>
+<li>Indian weavers lost markets: both in India (imports) and export markets (Indian goods now taxed heavily in Britain)</li>
+<li>By 1880s, millions of weavers had lost livelihoods — forced into agriculture</li>
+</ul>
+<h4>Iron and Steel</h4>
+<p>Traditional Indian ironworkers made excellent steel (Wootz steel). British policies restricted the use of forests (for charcoal) and imports of cheap British iron destroyed traditional industry. The first modern steel plant in India was established at Jamshedpur (Tata Iron and Steel Company, 1907).</p>`,
+            qa: [
+              { q: 'Why did India\'s handloom textile industry decline under British rule?', a: 'Multiple causes: (1) British machine-made cloth was cheaper than Indian handloom; (2) British imposed high duties on Indian textiles exported to Britain (while Indian market was flooded with cheap British goods); (3) Weavers lost patronage from Indian rulers (now replaced by British); (4) Indian weavers also lost as raw material (cotton) was increasingly exported to British mills rather than used locally.' },
+              { q: 'What was Dhaka muslin and what happened to it?', a: 'Dhaka muslin (Bangladesh) was the finest cotton fabric in the world — so fine that a whole sari could fit in a matchbox, called "woven air." Entire communities of weavers produced it for royal courts and export. British machine-made cloth destroyed the market. The craft almost disappeared — some attempts at revival are being made today but original quality is lost.' },
+              { q: 'Who was Jamsetji Tata and what was his contribution?', a: 'Jamsetji Tata (1839-1904) was an Indian industrialist who founded India\'s first major steel plant (Tata Iron and Steel Company, 1907 at Jamshedpur). He showed that Indians could build modern industry — important for national self-respect and economy. He also founded the Indian Institute of Science (Bangalore) for science education. The Tata Group remains India\'s largest conglomerate today.' },
+              { q: 'How did colonial policies create "de-industrialisation" in India?', a: 'De-industrialisation: India\'s manufacturing sector shrank under colonial rule. India exported raw materials (cotton, indigo, jute) to Britain and imported finished goods (textiles, machinery). The colonial state supported this with policies: no tariff protection for Indian industry (until WWII), infrastructure built to move raw materials to ports not for internal trade, government purchases went to British suppliers. India\'s share of world manufacturing fell from ~25% to ~2%.' },
+            ]
+          },
+          {
+            id: 'india-after-independence-8',
+            title: 'India After Independence',
+            subtopics: 'Partition, Constitution, Planning, Reorganisation of states, Emergency, Economic development',
+            definition: 'After independence in 1947, India faced enormous challenges: Partition violence, integrating princely states, writing a constitution, and developing a poverty-stricken economy. The choices made in the early decades shaped modern India.',
+            content: `<p>In 1947, India became independent but faced crises: Partition left a million dead, 15 million displaced; 565 princely states needed to join India; the country had 84% illiteracy and was desperately poor. Building a democracy in these conditions was a remarkable achievement.</p>
+<h4>Partition</h4>
+<p>British India was divided into India and Pakistan (August 14-15, 1947). One million killed in communal violence; 15 million Hindus, Muslims, and Sikhs crossed the border. The largest mass migration in history.</p>
+<h4>Integrating Princely States</h4>
+<p>Sardar Vallabhbhai Patel (Home Minister, "Iron Man of India") persuaded/pressured 565 princely states to join India. Hyderabad and Kashmir were special cases — both required military action.</p>
+<h4>The Constitution</h4>
+<p>Constituent Assembly completed the Constitution in 1949. It came into force January 26, 1950. Established democratic republic with universal adult franchise, fundamental rights, secularism.</p>
+<h4>Economic Development</h4>
+<p>Five Year Plans (from 1951) guided development. First: agriculture. Second: heavy industries (Nehru's model — build PSUs like Bhilai, Rourkela steel plants). Mixed economy: both public and private sector.</p>`,
+            qa: [
+              { q: 'What were the major challenges India faced at independence?', a: 'Major challenges: (1) Partition violence — 1 million dead, 15 million displaced; (2) Integrating 565 princely states; (3) Developing a poverty-stricken, largely agrarian economy; (4) 84% illiteracy; (5) Communal tensions; (6) No experience of democratic self-government; (7) Huge army of refugees to rehabilitate. Yet India successfully held elections in 1952 and maintained democracy.' },
+              { q: 'What was Sardar Patel\'s role in building India?', a: 'Sardar Vallabhbhai Patel, as Home Minister, was the "Iron Man of India" who integrated 565 princely states into the Indian Union through a combination of negotiation, persuasion, and firm pressure. He used both carrots (privy purses, titles) and sticks (threat of popular rebellion). Military force was used for Hyderabad (police action) and Kashmir (Pakistani-backed attack triggered accession).' },
+              { q: 'What is the "Nehruvian model" of economic development?', a: 'Jawaharlal Nehru\'s model (1950s-60s): planned economy with five-year plans; public sector investment in heavy industry (steel, coal, power — to build economic foundations); protectionism (high tariffs to protect infant industries from foreign competition); mixed economy (private sector in consumer goods, public in capital goods); non-alignment in foreign policy. This model industrialised India but also created inefficiency and shortages.' },
+              { q: 'What was the Emergency of 1975-77 and why is it significant?', a: 'Prime Minister Indira Gandhi declared a state of Emergency (June 1975-March 1977), citing internal threats. Constitutional rights were suspended, press censored, opposition leaders jailed (including JP Narayan), forced sterilisations occurred. Emergency is significant as India\'s most serious crisis of democracy. But India held elections in 1977, Gandhi\'s party was defeated — showing democratic resilience. The Emergency led to constitutional amendments to prevent its recurrence.' },
             ]
           },
         ]
