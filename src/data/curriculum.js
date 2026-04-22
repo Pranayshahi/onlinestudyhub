@@ -1502,6 +1502,105 @@ export const CURRICULUM = {
               { q: 'Why is cross-pollination considered better than self-pollination?', a: 'Cross-pollination introduces genetic variation — offspring get genes from two different parents. This increases adaptability, disease resistance, and may produce healthier offspring (hybrid vigour). Self-pollination reduces genetic diversity over generations.' },
             ]
           },
+          {
+            id: 'weather-climate-7',
+            title: 'Weather, Climate and Adaptations',
+            subtopics: 'Weather vs climate, Climate zones, Tropical rainforest, Polar regions, Animal adaptations',
+            definition: 'Weather is the short-term state of the atmosphere (temperature, rainfall, wind) at a specific place and time. Climate is the average weather pattern over many years. Different climates create different habitats with organisms specially adapted to survive.',
+            content: `<p>Climate determines which organisms can live where. Over millions of years, animals and plants have evolved remarkable adaptations to even the most extreme environments on Earth.</p>
+<h4>Weather vs Climate</h4>
+<p><strong>Weather:</strong> Day-to-day atmospheric condition — temperature, humidity, rainfall, wind. Can change rapidly. <strong>Climate:</strong> Average weather pattern of a region over 25-30 years. Stable and predictable.</p>
+<h4>Tropical Rainforest</h4>
+<p>Hot (25-35°C), high rainfall (>200cm/year), dense vegetation. Found: Amazon, Congo, Southeast Asia, Western Ghats. Very high biodiversity. Example adaptations: bright coloured birds (camouflage among flowers), long limbs for tree climbing (apes), waxy leaves to shed water.</p>
+<h4>Polar Regions</h4>
+<p>Extremely cold (-50°C to -30°C in winter), very little precipitation (desert of ice). Short summers with continuous daylight. Adaptations: polar bear (white fur for camouflage, thick fat for insulation, small ears to reduce heat loss), penguins (huddle for warmth, waterproof feathers).</p>`,
+            qa: [
+              { q: 'What is the difference between weather and climate?', a: 'Weather is the day-to-day condition of atmosphere (today\'s temperature, whether it rained). Climate is the average pattern of weather over 25-30 years for a region. We can\'t predict weather beyond a week reliably, but climate is stable: "India has a monsoon climate" is a climate statement; "It will rain today in Delhi" is a weather statement.' },
+              { q: 'How are polar bears adapted to survive in the Arctic?', a: 'Polar bear adaptations: (1) White/yellowish fur provides camouflage against snow and ice; (2) Thick layer of fat (up to 11cm) insulates against extreme cold; (3) Small rounded ears reduce heat loss; (4) Fur-covered feet for traction on ice and insulation; (5) Good swimmers with paddle-like paws; (6) Can smell prey (seals) under ice from 1km.' },
+              { q: 'Name any three features of the tropical rainforest that affect the animals living there.', a: '(1) Dense vegetation and tall trees: animals need to be good climbers (monkeys, sloths) or use canopy (toucans, parrots). (2) Constant warmth: cold-blooded animals like snakes and frogs can be active year-round. (3) High rainfall: fish and amphibians find abundant water bodies. (4) Abundant food: large herbivores (tapirs, elephants), large predators (jaguars, leopards) can be sustained.' },
+              { q: 'What is the role of migratory birds in connecting different climate zones?', a: 'Migratory birds travel thousands of km between breeding and feeding grounds as seasons change. They connect ecosystems: Siberian cranes breed in Arctic but winter in India (Bharatpur). They spread seeds, parasites, and genetic material across regions. Climate change is disrupting migration patterns — birds arrive when food is no longer available at destinations.' },
+            ]
+          },
+          {
+            id: 'soil-7',
+            title: 'Soil',
+            subtopics: 'Soil formation, Types, Soil profile, Properties, Soil erosion, Conservation',
+            definition: 'Soil is the uppermost layer of the Earth that supports plant life. It forms over thousands of years from weathered rock particles, humus (decomposed organic matter), water, and air. Different soil types have different properties.',
+            content: `<p>Soil takes 1000 years to form 1cm of topsoil, yet we can lose it in seconds through erosion. Soil health determines food security — without healthy soil, there is no agriculture.</p>
+<h4>Soil Formation</h4>
+<p>Rocks are broken down (weathered) by water, wind, temperature changes, and biological action over thousands of years. Decomposed plant and animal matter (humus) mixes with rock particles to create soil.</p>
+<h4>Soil Profile (Layers)</h4>
+<ul>
+<li><strong>Topsoil (A horizon):</strong> Dark, rich in humus and minerals. Where most plant roots grow. Most fertile.</li>
+<li><strong>Subsoil (B horizon):</strong> Less humus, more minerals. Plant roots penetrate here for water.</li>
+<li><strong>Parent rock (C horizon):</strong> Partially weathered rock.</li>
+<li><strong>Bedrock (R horizon):</strong> Solid, unweathered rock.</li>
+</ul>
+<h4>Properties</h4>
+<p>Texture (sand/silt/clay), moisture content, water absorption and permeability, pH.</p>
+<h4>Soil Erosion</h4>
+<p>Causes: deforestation, overgrazing, heavy rain. Prevention: afforestation, terracing, contour ploughing, bunding.</p>`,
+            qa: [
+              { q: 'Why is humus important for soil?', a: 'Humus (decomposed organic matter) makes soil: more fertile (releases nutrients as it decomposes), better structured (improves water retention and drainage), darker in colour (absorbs more heat), and less compact (allows roots to penetrate). Soil rich in humus is much more productive for farming.' },
+              { q: 'What is soil erosion and what are its main causes?', a: 'Soil erosion is the removal of the topsoil layer by water, wind, or human activity. Main causes: (1) Deforestation — tree roots hold soil, removing trees leaves it exposed; (2) Overgrazing — animals eat ground cover, baring soil; (3) Heavy rainfall — raindrops dislodge soil particles; (4) Strong winds — blow away dry topsoil (dust storms). Effects: loss of fertile land, silting of rivers, floods.' },
+              { q: 'Why does waterlogging harm soil?', a: 'Waterlogging (excess water remaining in soil) fills all air spaces in soil with water. This deprives plant roots of oxygen (they need oxygen for respiration), creates anaerobic conditions where harmful bacteria thrive, and causes salts to accumulate at the surface (salinisation). Waterlogged soil cannot support most crops.' },
+              { q: 'How is soil texture related to water retention?', a: 'Sandy soil: large particles, large spaces — water drains quickly, low retention. Clay soil: very fine particles, tiny spaces — holds water well, can become waterlogged. Loamy soil: mixture of sand, silt, clay — retains enough moisture while allowing drainage. Ideal for agriculture.' },
+            ]
+          },
+          {
+            id: 'forests-lifeline-7',
+            title: 'Forests: Our Lifeline',
+            subtopics: 'Forest ecosystem, Canopy, Crown, Shrub, Decomposers, Forest products, Conservation',
+            definition: 'Forests are complex ecosystems with multiple layers of vegetation (trees, shrubs, herbs) and rich biodiversity. They provide oxygen, regulate climate, conserve water, prevent soil erosion, and support millions of species and livelihoods.',
+            content: `<p>Forests cover 30% of Earth's land surface and contain 80% of terrestrial species. India's forests — from Himalayan alpine forests to tropical rainforests — are crucial for the environment and for millions of people who depend on them.</p>
+<h4>Forest Layers</h4>
+<ul>
+<li><strong>Canopy:</strong> Topmost layer — tall trees receiving maximum sunlight. Eagles, monkeys.</li>
+<li><strong>Understory:</strong> Shorter trees and shrubs in the shade of canopy.</li>
+<li><strong>Shrub layer:</strong> Small plants, bushes.</li>
+<li><strong>Forest floor:</strong> Herbs, mosses, fungi, and decomposers (bacteria, fungi, earthworms).</li>
+</ul>
+<h4>What Forests Provide</h4>
+<ul>
+<li><strong>Ecosystem services:</strong> Produce oxygen, absorb CO₂, regulate water cycle, prevent soil erosion, regulate local climate (cooler, more humid)</li>
+<li><strong>Economic:</strong> Timber, bamboo, medicinal plants, rubber, honey, fruits, paper, fodder</li>
+<li><strong>Livelihoods:</strong> Millions of tribal and forest-dwelling communities depend on forests</li>
+</ul>
+<h4>Decomposers in the Forest</h4>
+<p>Bacteria and fungi break down dead plant and animal matter, releasing nutrients back into the soil — completing the nutrient cycle. Without decomposers, forests would be buried in dead material.</p>`,
+            qa: [
+              { q: 'Why are forests called "the lungs of the Earth"?', a: 'Forests absorb vast amounts of CO₂ through photosynthesis and release oxygen. The Amazon rainforest alone produces 20% of world\'s oxygen. Forests also moderate temperature, regulate rainfall, and sequester carbon — performing functions similar to human lungs for the planet\'s atmosphere.' },
+              { q: 'What happens to a forest ecosystem when the top layer (canopy) is removed?', a: 'Removing the canopy exposes the forest floor to direct sunlight and rainfall — killing shade-adapted understory plants. Soil dries out and erodes. Without trees, there is less transpiration — rainfall decreases. Animals lose habitat and food sources. The entire ecosystem unravels — showing how interdependent forest layers are.' },
+              { q: 'What role do decomposers play in the forest ecosystem?', a: 'Decomposers (bacteria, fungi, earthworms) break down dead plant material (leaves, branches) and animal remains into simpler inorganic substances. These are released into the soil as nutrients (nitrogen, phosphorus) that plants absorb. Without decomposers, nutrients would be locked in dead matter — trees could not grow, and dead material would pile up indefinitely.' },
+              { q: 'How do forests regulate the water cycle?', a: 'Forests: (1) Intercept rainfall — tree leaves slow rainfall, reducing impact erosion; (2) Increase infiltration — roots create channels for water to enter soil; (3) Release water vapour through transpiration — increasing local humidity and cloud formation → rainfall; (4) Store water in roots and soil. Deforestation reduces rainfall, causes floods (less absorption) and droughts (less recycled water).' },
+            ]
+          },
+          {
+            id: 'light-7',
+            title: 'Light',
+            subtopics: 'Reflection, Mirror laws, Plane and spherical mirrors, Refraction, Lens, Human eye',
+            definition: 'Light is a form of electromagnetic radiation visible to the human eye. It travels in straight lines, reflects off smooth surfaces (law of reflection), and bends when passing between different media (refraction). Mirrors and lenses use these properties to form images.',
+            content: `<p>Light enables us to see the world. Understanding how it reflects and refracts allows us to design optical instruments — from simple mirrors to complex telescopes and microscopes.</p>
+<h4>Laws of Reflection</h4>
+<ol>
+<li>Incident ray, reflected ray, and normal lie in the same plane.</li>
+<li>Angle of incidence (i) = Angle of reflection (r).</li>
+</ol>
+<h4>Plane Mirror Images</h4>
+<p>Virtual (behind mirror), erect, same size as object, laterally inverted (left-right reversed), image distance = object distance.</p>
+<h4>Refraction</h4>
+<p>Light bends when passing from one medium to another. Light bends toward normal entering denser medium, away from normal entering rarer medium.</p>
+<h4>Lenses</h4>
+<p>Convex lens (converging): magnifying glass, used in cameras. Concave lens (diverging): used to correct short-sightedness.</p>
+<h4>Dispersion</h4>
+<p>Prism separates white light into seven colours (VIBGYOR). Rainbow: raindrops act as prisms, dispersing sunlight.</p>`,
+            qa: [
+              { q: 'What is lateral inversion? Give an example.', a: 'Lateral inversion is the left-right reversal of an image in a plane mirror. Your right hand appears as the left hand in the mirror. Written words appear backwards (AMBULANCE is written backwards on ambulances so it reads correctly in rear-view mirrors of cars ahead).' },
+              { q: 'Why does a straw appear bent in a glass of water?', a: 'Refraction: light from the part of straw in water travels from water (denser) to air (rarer) and bends away from the normal. Our brain assumes light travels in straight lines, so we perceive the straw as appearing at a different position — it seems bent at the water-air interface.' },
+              { q: 'What is dispersion of light? How does a rainbow form?', a: 'Dispersion: white light splits into component colours when passing through a prism (different colours refract at different angles — violet bends most, red bends least). Rainbow: sunlight enters water droplets (refracted), reflects internally, and exits (refracted again). Each colour comes out at a slightly different angle — we see a spectrum arc. Red outside, violet inside.' },
+              { q: 'What is the difference between a convex and concave mirror?', a: 'Convex mirror: reflecting surface curves outward (like the outside of a ball). Diverges light. Image is always virtual, erect, and smaller. Used as: rear-view mirrors (wider field of view). Concave mirror: reflecting surface curves inward. Converges light. Can form real or virtual images. Used as: shaving mirrors (magnified image), torches (parallel beam), solar concentrators.' },
+            ]
+          },
         ]
       },
       history: {
@@ -1754,6 +1853,51 @@ export const CURRICULUM = {
               { q: 'What is a gender stereotype? Give two examples.', a: 'A gender stereotype is an oversimplified belief about how men or women should behave. Examples: "Science and maths are for boys" (prevents girls from pursuing STEM). "Cooking and childcare are women\'s work" (discourages men from participating in family care). Stereotypes limit individual potential and create unfair expectations.' },
               { q: 'Why is educating the girl child so important for national development?', a: 'Educated women: have fewer and healthier children (lower birth rate), ensure better nutrition and health for their families, earn income and lift families from poverty, keep children in school longer, are more likely to educate their own children. Studies show each additional year of girls\' schooling raises their future earnings by 10-20% and significantly reduces infant and child mortality.' },
               { q: 'What is domestic violence and who is affected?', a: 'Domestic violence is physical, emotional, or sexual abuse by one family member against another, most often by husbands against wives. It is a crime in India (Protection of Women from Domestic Violence Act 2005). It affects women across all classes and religions. Many cases go unreported due to social stigma, economic dependence, and fear. Support: National helpline 181.' },
+            ]
+          },
+          {
+            id: 'state-government-7',
+            title: 'State Government — Legislature and Executive',
+            subtopics: 'MLA, State Assembly, Chief Minister, Governor, State list',
+            definition: 'India is a federal democracy — power is divided between the central government and state governments. States have their own elected legislatures and executives that handle subjects like education, agriculture, and law and order.',
+            content: `<p>While Parliament governs India as a whole, each of India's 28 states and 8 Union Territories has its own government handling local needs. Understanding how state governments work helps citizens engage with the government closest to their daily lives.</p>
+<h4>State Legislature</h4>
+<p>Most states have a unicameral legislature (Vidhan Sabha — Legislative Assembly). Some large states (UP, Bihar, Maharashtra) have a bicameral legislature — Vidhan Sabha + Vidhan Parishad (Legislative Council).</p>
+<h4>MLA (Member of Legislative Assembly)</h4>
+<p>Elected from constituencies within the state. Represents voters in the Assembly. Questions government, debates laws, votes on bills. The party/coalition with majority forms the government.</p>
+<h4>Chief Minister and Cabinet</h4>
+<p>Leader of majority party/coalition becomes Chief Minister — real executive head. CM appoints Cabinet ministers who head departments (Finance, Education, Health). The Council of Ministers is collectively responsible to the Vidhan Sabha.</p>
+<h4>Governor</h4>
+<p>Constitutional head of the state (like President at centre). Appointed by the President. Invites CM to form government. In President's Rule (no majority), Governor can run the state directly.</p>`,
+            qa: [
+              { q: 'What is the difference between an MP and an MLA?', a: 'MP (Member of Parliament): elected to the Lok Sabha/Rajya Sabha; makes laws at the national level; represents India as a whole. MLA (Member of Legislative Assembly): elected to the state assembly (Vidhan Sabha); makes laws for the state; deals with local issues like education, police, agriculture.' },
+              { q: 'What is the difference between the CM and the Governor?', a: 'Chief Minister: elected (leader of majority party in state assembly), real executive power, makes decisions on governance. Governor: appointed by the President, is the constitutional/ceremonial head, acts on CM\'s advice in normal times. Similar relationship as PM and President at the national level.' },
+              { q: 'What subjects can state governments legislate on?', a: 'The Seventh Schedule of the Constitution divides subjects into: Union List (central government only — defence, foreign affairs, currency), State List (states only — police, agriculture, education, public health), Concurrent List (both, with centre\'s law prevailing in conflict — forests, marriage, electricity). States handle subjects that affect daily local life.' },
+              { q: 'What happens if no party gets a majority in state elections?', a: 'If no single party gets majority (called "hung assembly"), coalition governments are formed — multiple parties agree to work together. The Governor plays a key role: invites the party with the best chance of majority to form government. If no stable government can be formed, the Governor can recommend President\'s Rule (direct central government rule) for up to 6 months.' },
+            ]
+          },
+          {
+            id: 'markets-around-us-7',
+            title: 'Markets Around Us',
+            subtopics: 'Types of markets, Buyers and sellers, Weekly markets, Shopping complexes, Chain of traders',
+            definition: 'A market is any place where buyers and sellers come together to exchange goods and services. Markets exist in many forms — from weekly village haats to large shopping malls and online platforms.',
+            content: `<p>Every time you buy something — from a street vendor, a shop, or online — you participate in a market. Understanding markets helps us understand how prices are set and who benefits from trade.</p>
+<h4>Types of Markets</h4>
+<ul>
+<li><strong>Weekly market (haat):</strong> Held on specific days in a fixed location. Small vendors sell fresh produce, utensils, clothes. Low overheads → lower prices. Serves rural communities.</li>
+<li><strong>Neighbourhood shops:</strong> Local kirana stores, convenient, serve daily needs. Higher prices but credit often available.</li>
+<li><strong>Shopping complexes / malls:</strong> Large stores, wide variety. Fixed prices, good service, can return goods. Higher prices than weekly markets.</li>
+<li><strong>Online markets:</strong> E-commerce (Amazon, Flipkart). Convenient, compare prices, delivered home.</li>
+</ul>
+<h4>Chain of Traders</h4>
+<p>Goods travel from producer → wholesale trader → retailer → consumer. Each link adds a margin. The farmer who grows vegetables earns much less than the final consumer pays.</p>
+<h4>Who Benefits?</h4>
+<p>Large buyers and sellers have more bargaining power. Small producers often get low prices; small buyers often pay high prices. Government intervention (minimum support prices, consumer protection laws) can balance this.</p>`,
+            qa: [
+              { q: 'Why are weekly markets cheaper than permanent shops for the same goods?', a: 'Weekly markets have lower overhead costs — no shop rent, electricity, or permanent staff. Vendors often sell directly (eliminating middlemen). They sell in bulk. Competition among many vendors drives prices down. However: no credit, goods cannot be returned, limited variety.' },
+              { q: 'What is the chain of markets? Use an example.', a: 'Example: Potato. Farmer grows potatoes → sells to wholesale market trader (mandi) at ₹10/kg → wholesaler sells to retail shops at ₹15/kg → shop sells to customer at ₹20/kg. Each link adds 30-50% margin. The farmer earns least; the consumer pays most. The middle chain is where most value is added.' },
+              { q: 'What is the difference between a wholesale market and a retail market?', a: 'Wholesale market: large quantities, lower prices per unit, sellers are businesses buying for resale. Retail market: small quantities, higher prices per unit, buyers are final consumers. India\'s famous wholesale markets: Azadpur mandi (Delhi, vegetables), Crawford Market (Mumbai).' },
+              { q: 'How has e-commerce (online shopping) changed traditional markets?', a: 'E-commerce: wider variety, price comparison, convenience (delivered at home), lower prices (fewer middlemen). But: cannot examine goods before buying, returns can be difficult, impact on local shopkeepers (many small shops have closed). E-commerce benefits urban, educated, bank-account-owning consumers most. Rural and elderly consumers may be excluded.' },
             ]
           },
         ]
@@ -2219,6 +2363,82 @@ export const CURRICULUM = {
               { q: 'What is budding? In which organism does it occur?', a: 'Budding is asexual reproduction where a small bud grows from the parent body, develops into a complete organism, and detaches. Occurs in Hydra (animal) and yeast (fungus). Offspring is genetically identical to the parent.' },
             ]
           },
+          {
+            id: 'coal-petroleum-8',
+            title: 'Coal and Petroleum',
+            subtopics: 'Fossil fuels, Formation, Uses, Consequences of overuse, Alternatives, Natural resources',
+            definition: 'Coal and petroleum are fossil fuels — formed from ancient organisms over millions of years. They are non-renewable energy sources that power most of the world\'s industry and transportation, but cause air pollution and climate change.',
+            content: `<p>Our modern world runs on fossil fuels — they power cars, planes, factories, and generate most of our electricity. But these fuels took millions of years to form and are being used up in centuries. What happens when they run out?</p>
+<h4>Formation of Coal</h4>
+<p>Ancient forests were buried under water and soil → compressed and heated over millions of years → coal. It is the remains of ancient plants (peat → lignite → bituminous → anthracite, in order of increasing carbon content).</p>
+<h4>Formation of Petroleum</h4>
+<p>Tiny marine organisms (plankton, algae) died and sank to the ocean floor → buried under sediments → heat and pressure over millions of years → petroleum and natural gas. Found trapped in rock formations.</p>
+<h4>Products from Petroleum (Refining)</h4>
+<p>Petroleum is refined (fractional distillation) to get: petrol (fuel), diesel, kerosene, LPG, lubricants, paraffin wax, bitumen (roads).</p>
+<h4>Consequences of Burning Fossil Fuels</h4>
+<p>CO₂ emissions → greenhouse effect → global warming → climate change. Air pollution: SO₂, NO₂ → acid rain.</p>
+<h4>Need for Conservation</h4>
+<p>Non-renewable — once used, gone forever. Alternative: solar, wind, hydro, nuclear energy. Reduce use: public transport, energy-efficient appliances, insulation.</p>`,
+            qa: [
+              { q: 'Why are coal and petroleum called fossil fuels?', a: 'They are called fossil fuels because they formed from the fossils (remains) of ancient living organisms: coal from ancient forests (plants), petroleum from tiny marine organisms. They took millions of years to form, so once used up they cannot be replenished on any human timescale.' },
+              { q: 'What products are obtained from petroleum refining?', a: 'Petroleum is a mixture of many hydrocarbons. Fractional distillation separates these by boiling point: LPG/natural gas (lowest boiling), petrol/gasoline, kerosene/jet fuel, diesel, lubricating oil, grease/wax, bitumen (asphalt, highest boiling). Each fraction has different uses based on its properties.' },
+              { q: 'Why is burning fossil fuels a problem for the environment?', a: 'Burning fossil fuels releases: CO₂ → adds to greenhouse gases → global warming → climate change; SO₂ and NO₂ → react with water in atmosphere → acid rain (damages buildings, harms lakes and forests); particulate matter → air pollution → respiratory diseases. Also: oil spills harm marine ecosystems.' },
+              { q: 'What can you do to reduce your consumption of fossil fuels?', a: 'Individual actions: use public transport or cycle instead of personal car; turn off lights and appliances when not in use; use energy-efficient LED bulbs and appliances; buy locally produced food (less transport); choose renewable energy if available; reuse and recycle materials (manufacturing uses energy). Together, individual choices multiply into significant impact.' },
+            ]
+          },
+          {
+            id: 'light-reflection-8',
+            title: 'Light — Reflection and Refraction',
+            subtopics: 'Laws of reflection, Regular and diffuse reflection, Multiple images, Refraction, Lenses, Dispersion',
+            definition: 'Light is a form of energy that travels in straight lines and can be reflected (bounced back) and refracted (bent) when it encounters different surfaces or media. These properties allow mirrors and lenses to form images.',
+            content: `<p>Light behaves in predictable ways that allow us to design optical systems — from simple mirrors to sophisticated telescopes. Mastering these rules opens the door to understanding cameras, the human eye, and optical instruments.</p>
+<h4>Laws of Reflection</h4>
+<ol>
+<li>Incident ray, reflected ray, and normal at the point of incidence all lie in the same plane.</li>
+<li>Angle of incidence = Angle of reflection.</li>
+</ol>
+<h4>Regular vs Diffuse Reflection</h4>
+<p><strong>Regular (Specular):</strong> Parallel rays reflect as parallel rays — mirror-like surface (polished metal). Clear images. <strong>Diffuse reflection:</strong> Rough surface reflects in all directions — no clear image but allows objects to be seen from all angles. Most everyday objects show diffuse reflection.</p>
+<h4>Refraction</h4>
+<p>Light bends when passing between media of different optical density. Speed changes → direction changes (unless perpendicular). Causes: apparent depth of water objects, mirages, rainbows.</p>
+<h4>Dispersion</h4>
+<p>White light contains all colours. Prism separates them because different colours refract at different angles. VIBGYOR: Violet (bends most), Indigo, Blue, Green, Yellow, Orange, Red (bends least).</p>`,
+            qa: [
+              { q: 'What is the difference between regular and diffuse reflection? Why can you see your image in a mirror but not in a wall?', a: 'Mirror (polished surface): regular reflection — parallel rays reflect as parallel rays, forming a clear, defined image. Wall (rough surface): diffuse reflection — each tiny bump reflects light in a different direction. You can see the wall because scattered light reaches your eyes, but no clear image forms.' },
+              { q: 'Why does a pencil appear bent when placed in water?', a: 'Refraction: light from the portion of pencil in water travels from water (denser, slower light) to air (rarer, faster light) — it bends away from the normal. Our brain assumes light travels in straight lines, so the pencil appears to be at a different, shallower position — it looks bent at the water surface.' },
+              { q: 'What is a rainbow and how does it form?', a: 'A rainbow forms when sunlight is dispersed by water droplets in the atmosphere. Steps: (1) Light enters droplet and refracts (bends); (2) Reflects inside the droplet (total internal reflection); (3) Refracts again as it exits. Different colours exit at different angles (violet 40°, red 42°). We see a coloured arc — red on outside, violet on inside.' },
+              { q: 'Multiple images in parallel mirrors — how many images form?', a: 'When an object is placed between two parallel plane mirrors, infinite images theoretically form (each image reflects in the opposite mirror). In practice, some light is absorbed at each reflection, so the images get dimmer and eventually disappear. In two mirrors at 90°: 3 images. At 60°: 5 images. Formula: n = (360°/angle) − 1.' },
+            ]
+          },
+          {
+            id: 'stars-solar-system-8',
+            title: 'Stars and the Solar System',
+            subtopics: 'Solar system, Planets, Sun, Stars, Moon, Comets, Meteors, Constellations',
+            definition: 'The solar system consists of the Sun and all objects orbiting it — 8 planets, dwarf planets, moons, asteroids, comets, and meteoroids. The Sun is a medium-sized star at the centre, providing light and heat to all planets.',
+            content: `<p>We live on a tiny blue dot orbiting an average star in one of 2 trillion galaxies. Understanding the solar system gives us perspective on our place in the universe.</p>
+<h4>The Solar System</h4>
+<p>8 planets orbit the Sun: Mercury, Venus, Earth, Mars (inner, rocky), Jupiter, Saturn, Uranus, Neptune (outer, gas giants). Pluto was reclassified as a dwarf planet in 2006.</p>
+<h4>Key Facts</h4>
+<ul>
+<li>The Sun: 99.8% of solar system mass. 1.4 million km diameter (109 × Earth). Core temperature ~15 million°C.</li>
+<li>Moon: Earth's only natural satellite. Reflects sunlight (does not emit light). Distance: ~384,000 km. Phases due to changing angle of sunlit surface visible from Earth.</li>
+<li>Venus: hottest planet (460°C) due to greenhouse gases, not closest to Sun.</li>
+<li>Jupiter: largest planet. Great Red Spot (storm larger than Earth, over 300 years old).</li>
+</ul>
+<h4>Celestial Objects</h4>
+<ul>
+<li><strong>Stars:</strong> Self-luminous (produce their own light by nuclear fusion). Appear to twinkle due to atmospheric refraction.</li>
+<li><strong>Comets:</strong> Icy bodies that develop tails when near the Sun (ice evaporates). Halley's comet: appears every 75-76 years.</li>
+<li><strong>Meteors and Meteorites:</strong> Meteors burn in atmosphere (shooting stars); meteorites reach Earth's surface.</li>
+<li><strong>Constellations:</strong> Patterns of stars — Orion, Ursa Major (Big Dipper), Cassiopeia.</li>
+</ul>`,
+            qa: [
+              { q: 'Why does the Moon appear to change shape during the month?', a: 'The Moon does not change shape — it is always spherical. What changes is the angle at which we see the sunlit half. As the Moon orbits Earth (27.3 days), we see different fractions of the illuminated half: New Moon (Moon between Earth and Sun, dark side faces us), Quarter Moon, Full Moon (Earth between Moon and Sun, fully illuminated half faces us).' },
+              { q: 'What is the difference between a star and a planet?', a: 'Star: self-luminous — generates energy by nuclear fusion (hydrogen → helium) in its core; very large; examples: Sun, Sirius, Polaris. Planet: orbits a star, does not generate its own light (reflects starlight), much smaller than stars. Nine distinguishing features: mass, fusion, luminosity. Stars twinkle; planets generally don\'t (they appear as discs, not points).' },
+              { q: 'Why is Venus the hottest planet despite Mercury being closer to the Sun?', a: 'Mercury has almost no atmosphere — heat from the Sun escapes back to space easily. Venus has a dense atmosphere of 96% CO₂ — this creates an extreme greenhouse effect that traps heat. Venus\'s surface temperature is ~460°C (hot enough to melt lead), compared to Mercury\'s average of 167°C (though its dark side reaches −180°C).' },
+              { q: 'What are constellations? Name two and their significance.', a: 'Constellations are apparent patterns formed by groups of stars as seen from Earth (the stars are not actually close together in space). Orion: visible in winter nights, distinctive 3-star belt; used to locate other stars (Orion\'s belt points to Sirius, the brightest star). Ursa Major (Great Bear / Big Dipper): 7 stars in a ladle shape; the two "pointer stars" point to Polaris (North Star) — used for navigation.' },
+            ]
+          },
         ]
       },
       history: {
@@ -2363,6 +2583,56 @@ export const CURRICULUM = {
               { q: 'Why is Punjab called the "Granary of India"?', a: 'Punjab and Haryana were the main beneficiaries of the Green Revolution. Their flat land, good irrigation (rivers and canals), and adoption of HYV wheat varieties led to massive wheat production — they supply a large share of India\'s food grain to the government buffer stock.' },
               { q: 'What factors determine what crops grow in a region?', a: 'Key factors: Climate (temperature, rainfall), Soil type (alluvial, black, red), Topography (flat for mechanisation), Availability of water (irrigation), Market access, and Tradition/knowledge of farmers.' },
               { q: 'What are the negative consequences of the Green Revolution?', a: 'Over-dependence on chemical fertilisers and pesticides polluted soil and water. Excessive groundwater use lowered water tables. Monoculture (growing one crop) reduced biodiversity. Benefits were unequal — larger farmers benefited more than small farmers.' },
+            ]
+          },
+          {
+            id: 'industries-geo-8',
+            title: 'Industries',
+            subtopics: 'Types of industries, Location factors, Manufacturing, Textiles, Iron and steel, IT industry',
+            definition: 'Industries are economic activities involving the transformation of raw materials into goods (manufacturing) or providing services. Their location is determined by factors like raw materials, labour, markets, power, and transport.',
+            content: `<p>Industries are the engine of a country's economy. India's industrial history spans from handloom cottage industries to IT and pharmaceutical giants — understanding industry helps us understand development.</p>
+<h4>Classification of Industries</h4>
+<ul>
+<li><strong>By size:</strong> Cottage (home-based), small-scale, large-scale</li>
+<li><strong>By type:</strong> Agro-based (cotton, sugar, jute), Mineral-based (iron, steel, cement), Forest-based (paper, furniture), Marine-based (fish processing)</li>
+</ul>
+<h4>Factors of Industrial Location</h4>
+<p>Raw materials, labour, power (coal, electricity), transport (roads, railways), markets, water supply, government policy.</p>
+<h4>Important Industries in India</h4>
+<ul>
+<li><strong>Iron and Steel:</strong> Jamshedpur (Tata), Bhilai, Rourkela. Near coal and iron ore (Jharkhand, Chhattisgarh, Odisha).</li>
+<li><strong>Textile:</strong> Cotton mills in Mumbai, Ahmedabad ("Manchester of India"). Silk in Mysore, Kanchipuram.</li>
+<li><strong>Information Technology:</strong> Bangalore ("Silicon Valley of India"), Hyderabad, Pune, Chennai. Export-oriented, high growth.</li>
+</ul>`,
+            qa: [
+              { q: 'Why is Jamshedpur a major steel centre?', a: 'Jamshedpur (Jharkhand) has: iron ore from Singhbhum, coal from Jharia (Dhanbad), limestone from Chaibasa, water from Subarnarekha and Kharkai rivers, good railway connections to ports and markets. These factors made it ideal for Tata\'s steel plant (established 1907).' },
+              { q: 'Why is Bangalore called the Silicon Valley of India?', a: 'Bangalore has: a large pool of well-educated engineers (IISc, IIM, many engineering colleges), pleasant climate (1000m elevation), good infrastructure, early government investment in electronics (ISRO, HAL, BEL), and is now home to hundreds of IT companies (Infosys, Wipro, TCS offices). Its IT industry employs millions and earns billions in exports.' },
+              { q: 'What is the difference between agro-based and mineral-based industries?', a: 'Agro-based industries use agricultural produce as raw materials: cotton textiles (cotton), sugar mills (sugarcane), jute industry (jute), edible oil (oilseeds). Mineral-based industries use mineral resources: iron and steel (iron ore + coal), cement (limestone + clay), copper and aluminium smelting.' },
+              { q: 'How does the IT industry differ from traditional manufacturing industries?', a: 'IT industry: requires educated workforce not raw materials; can locate anywhere with good internet and airport; exports services not physical goods; generates high value with less environmental impact; employs highly paid workers. Traditional manufacturing: needs raw materials nearby, heavy infrastructure, large factories, more energy-intensive, affects more blue-collar workers.' },
+            ]
+          },
+          {
+            id: 'mineral-resources-8',
+            title: 'Mineral and Power Resources',
+            subtopics: 'Types of minerals, Mining, Power resources, Conventional vs non-conventional',
+            definition: 'Minerals are naturally occurring substances with definite chemical composition. They are essential for industry and must be mined. Power resources (coal, petroleum, hydroelectric) drive modern economies. Conservation is critical as most are non-renewable.',
+            content: `<p>Every metal object, every electronic device, every car — all depend on minerals mined from the Earth. Managing these finite resources responsibly is one of the key challenges of the 21st century.</p>
+<h4>Types of Minerals</h4>
+<ul>
+<li><strong>Ferrous metals:</strong> Contain iron — iron ore, manganese, chromite. Essential for steel industry.</li>
+<li><strong>Non-ferrous metals:</strong> No iron — copper, bauxite (aluminium), gold, silver, lead, zinc.</li>
+<li><strong>Non-metallic minerals:</strong> Mica, limestone, gypsum, potash.</li>
+<li><strong>Energy minerals:</strong> Coal, petroleum, uranium.</li>
+</ul>
+<h4>Mining in India</h4>
+<p>Jharkhand, Chhattisgarh, Odisha — iron ore, coal, manganese. Rajasthan — zinc, lead, copper. Kerala — mineral sands (thorium). Mining provides livelihoods but displaces communities and harms environment.</p>
+<h4>Power Resources</h4>
+<p><strong>Conventional:</strong> Coal (53% of India's power), petroleum, natural gas, hydroelectric. <strong>Non-conventional (Renewable):</strong> Solar, wind, tidal, geothermal, biogas. India is expanding renewable capacity rapidly — solar parks in Rajasthan, wind farms in Tamil Nadu and Gujarat.</p>`,
+            qa: [
+              { q: 'What is the difference between metallic and non-metallic minerals?', a: 'Metallic minerals: contain metals that can be extracted — iron ore, copper ore, bauxite, gold. They are usually found in igneous and metamorphic rocks. Non-metallic minerals: do not contain extractable metals — limestone, mica, salt, gypsum, coal. They are often used directly or in manufacturing.' },
+              { q: 'Why is mica important for industry?', a: 'Mica is an excellent insulator and heat-resistant mineral. It was heavily used in electrical equipment to prevent short circuits. Found mainly in Jharkhand (world\'s largest supplier). However, mining has been associated with child labour in the past — a serious human rights concern now being addressed.' },
+              { q: 'Why is India expanding solar and wind energy rapidly?', a: 'India imports 80% of its petroleum (expensive, affects trade balance, price uncertainty). Coal is polluting and non-renewable. India has abundant sunshine (especially Rajasthan, Gujarat) and wind (coastal Tamil Nadu, Gujarat, Karnataka). Solar and wind are now cheaper than coal per unit in India. National target: 500 GW renewable capacity by 2030. Creates green jobs.' },
+              { q: 'What is open-cast mining and what are its environmental impacts?', a: 'Open-cast (surface) mining: entire surface is stripped away to access minerals close to the surface (coal, iron ore). It is cheaper than underground mining. Environmental impacts: destroys vegetation and topsoil; creates large pits (like Jharia coal mines, Bailadila iron ore mines); pollutes water and air (dust); displaces wildlife and communities; long-term land degradation.' },
             ]
           },
         ]
@@ -2653,6 +2923,198 @@ export const CURRICULUM = {
               { q: 'When is the median a better measure than mean?', a: 'When data has extreme values (outliers). Example: if 5 people earn ₹20,000, ₹25,000, ₹22,000, ₹24,000, and ₹1,00,000, the mean is ₹38,200 which doesn\'t represent most people. Median is ₹24,000 — more representative.' },
             ]
           },
+          {
+            id: 'linear-equations-two-variables-9',
+            title: 'Linear Equations in Two Variables',
+            subtopics: 'Equation ax+by+c=0, Graphical representation, Solutions, Lines through origin',
+            definition: 'A linear equation in two variables is of the form ax + by + c = 0, where a, b, c are real numbers and a, b are not both zero. It has infinitely many solutions, represented graphically as a straight line.',
+            content: `<p>Linear equations in two variables are the foundation of coordinate geometry and algebra. Every straight line on a graph is described by a linear equation.</p>
+<h4>Standard Form</h4>
+<div class="formula">ax + by + c = 0 (a and b are not both zero)</div>
+<p>Examples: 2x + 3y = 6, x − y = 0, y = 5 (b≠0, a=0)</p>
+<h4>Solutions</h4>
+<p>A solution is an ordered pair (x, y) satisfying the equation. There are infinitely many solutions. Each solution is a point on the line.</p>
+<h4>Graphing a Linear Equation</h4>
+<p>1. Find two solutions (choose x, solve for y). 2. Plot the two points. 3. Draw a straight line through them.</p>
+<div class="example-box"><strong>Example:</strong> x + y = 5. Solutions: (0,5), (2,3), (5,0). These all lie on the same straight line.</div>
+<h4>Special Cases</h4>
+<p>y = 0 → equation of x-axis. x = 0 → equation of y-axis. y = k (constant) → horizontal line. x = k → vertical line.</p>`,
+            qa: [
+              { q: 'Write two solutions of 2x + 3y = 12.', a: 'x=0: 3y=12 → y=4. Solution (0,4). x=3: 6+3y=12 → y=2. Solution (3,2).' },
+              { q: 'The cost of 3 pencils and 2 pens is ₹20. Write this as a linear equation.', a: 'Let pencil cost = x, pen = y. 3x + 2y = 20. This is a linear equation in two variables.' },
+              { q: 'Is (2,3) a solution of 4x − 3y = 0? Verify.', a: '4(2) − 3(3) = 8 − 9 = −1 ≠ 0. So (2,3) is NOT a solution of 4x − 3y = 0.' },
+              { q: 'What does the graph of x = 3 look like?', a: 'x = 3 is a vertical line parallel to the y-axis, passing through the point (3,0). Every point on this line has x-coordinate = 3 (y can be anything).' },
+            ]
+          },
+          {
+            id: 'euclids-geometry-9',
+            title: 'Introduction to Euclid\'s Geometry',
+            subtopics: 'Euclid\'s definitions, Postulates, Axioms, Non-Euclidean geometry',
+            definition: 'Euclid\'s geometry (300 BCE) is based on 5 postulates from which all geometric theorems are derived. It is the first example of a formal axiomatic system in mathematics.',
+            content: `<p>Euclid's "Elements" (300 BCE) is one of the most influential books ever written — it established the idea of deriving all knowledge from a few self-evident axioms, influencing science, philosophy, and mathematics for 2000+ years.</p>
+<h4>Euclid's Postulates</h4>
+<ol>
+<li>A straight line may be drawn from any one point to any other point.</li>
+<li>A terminated line can be produced indefinitely.</li>
+<li>A circle can be drawn with any centre and any radius.</li>
+<li>All right angles are equal to one another.</li>
+<li>If a straight line falls on two straight lines making the interior angles on the same side less than two right angles, the two straight lines, if produced indefinitely, will meet on that side.</li>
+</ol>
+<h4>Euclid's Axioms (Common Notions)</h4>
+<p>Things equal to the same thing are equal to each other. If equals are added/subtracted/halved, they remain equal.</p>
+<h4>Non-Euclidean Geometry</h4>
+<p>The 5th postulate (parallel postulate) troubled mathematicians. When it was replaced, new geometries emerged: spherical geometry (on Earth's surface), hyperbolic geometry — used in Einstein's general relativity.</p>`,
+            qa: [
+              { q: 'What is the difference between an axiom and a postulate?', a: 'Axioms (common notions) are universal truths applicable to all subjects (e.g., "the whole is greater than the part"). Postulates are assumptions specific to geometry (e.g., "a line can be drawn between two points"). In modern mathematics, the terms are often used interchangeably.' },
+              { q: 'State the Euclidean parallel postulate and its modern equivalent.', a: 'Euclid\'s 5th postulate: if a transversal falls on two lines making interior angles less than 180° on one side, those lines meet on that side. Modern equivalent (Playfair\'s axiom): through a point not on a given line, there is exactly one line parallel to the given line.' },
+              { q: 'Is Euclid\'s geometry still relevant today?', a: 'Yes. Euclidean geometry accurately describes flat (2D/3D) space at human scales — building construction, engineering, everyday calculations. However, Einstein\'s general relativity showed that spacetime is curved (non-Euclidean) at cosmic scales and near massive objects. Euclid\'s work is also a model of formal axiomatic reasoning used throughout mathematics.' },
+              { q: 'If A, B, C are collinear and B is between A and C, prove AC = AB + BC.', a: 'By Euclid\'s axiom: the whole is equal to the sum of its parts. Since B is between A and C, AB and BC together make up AC. Therefore AC = AB + BC (by the definition of betweenness and Euclid\'s axiom that the whole equals the sum of its parts).' },
+            ]
+          },
+          {
+            id: 'quadrilaterals-9',
+            title: 'Quadrilaterals',
+            subtopics: 'Types, Angle sum property, Parallelogram properties, Mid-point theorem',
+            definition: 'A quadrilateral is a polygon with four sides and four vertices. The sum of all interior angles is 360°. Parallelograms, rectangles, rhombuses, and squares are special types with additional properties.',
+            content: `<p>Quadrilaterals appear everywhere — tiles, windows, fields, rooms. Understanding their properties allows efficient calculation of areas and enables geometric proofs.</p>
+<h4>Angle Sum Property</h4>
+<div class="formula">Sum of all angles of a quadrilateral = 360°</div>
+<h4>Types of Quadrilaterals</h4>
+<ul>
+<li><strong>Parallelogram:</strong> Opposite sides parallel and equal, opposite angles equal, diagonals bisect each other.</li>
+<li><strong>Rectangle:</strong> Parallelogram with all angles = 90°. Diagonals equal and bisect each other.</li>
+<li><strong>Rhombus:</strong> Parallelogram with all sides equal. Diagonals bisect each other perpendicularly.</li>
+<li><strong>Square:</strong> Rectangle + Rhombus. All sides equal, all angles 90°, diagonals equal and perpendicular.</li>
+<li><strong>Trapezium:</strong> One pair of opposite sides parallel.</li>
+</ul>
+<h4>Mid-Point Theorem</h4>
+<p>The line segment joining the midpoints of two sides of a triangle is parallel to the third side and half its length.</p>`,
+            qa: [
+              { q: 'In parallelogram ABCD, angle A = 65°. Find all other angles.', a: 'Opposite angles equal: angle C = 65°. Adjacent angles supplementary: angle B = 180° - 65° = 115°. Angle D = 115°.' },
+              { q: 'Prove that the diagonals of a parallelogram bisect each other.', a: 'In ΔAOB and ΔCOD: AB = CD (opposite sides), angle OAB = angle OCD (alternate angles, AB ∥ CD), angle AOB = angle COD (vertically opposite). By ASA: ΔAOB ≅ ΔCOD. So AO = CO and BO = DO. The diagonals bisect each other.' },
+              { q: 'ABCD is a rectangle. AC = 2x + 5, BD = 3x - 2. Find x.', a: 'Diagonals of rectangle are equal: AC = BD. 2x+5 = 3x-2. x = 7.' },
+              { q: 'State the mid-point theorem and verify with an example.', a: 'If D and E are midpoints of AB and AC in triangle ABC, then DE ∥ BC and DE = BC/2. Example: If BC = 10 cm, then DE = 5 cm. Proof uses the fact that BCED is a parallelogram when another parallel is drawn through D.' },
+            ]
+          },
+          {
+            id: 'circles-9',
+            title: 'Circles — Theorems',
+            subtopics: 'Chord properties, Angles subtended, Cyclic quadrilateral, Equal chords',
+            definition: 'A circle is the locus of all points equidistant from a fixed centre. Circle theorems relate chords, arcs, and angles — equal chords are equidistant from centre; angles in the same segment are equal.',
+            content: `<p>Circle theorems are elegant, powerful results used in architecture, design, and engineering. Mastering them requires understanding how chord length, arc, and angles relate to the centre.</p>
+<h4>Key Theorems</h4>
+<ul>
+<li>Equal chords of a circle are equidistant from the centre.</li>
+<li>The perpendicular from the centre to a chord bisects the chord.</li>
+<li>Angle subtended by a chord at the centre = 2 × angle subtended at any point on the remaining arc.</li>
+<li>Angles in the same segment (same arc) are equal.</li>
+<li>Angle in a semicircle = 90° (Thales' theorem).</li>
+<li>Opposite angles of a cyclic quadrilateral sum to 180°.</li>
+</ul>
+<div class="formula">∠AOB (centre) = 2 × ∠ACB (anywhere on arc)</div>`,
+            qa: [
+              { q: 'Two chords AB = 10cm and CD = 6cm are in a circle of radius 8cm. Which is closer to the centre?', a: 'Longer chords are closer to the centre. AB = 10cm > CD = 6cm, so AB is closer to the centre.' },
+              { q: 'Angle ACB = 40°, where C is on the circle and AB is a chord. Find angle AOB (O = centre).', a: 'Angle at centre = 2 × angle at circumference on same arc. Angle AOB = 2 × 40° = 80°.' },
+              { q: 'ABCD is a cyclic quadrilateral. Angle A = 80°, Angle B = 70°. Find angles C and D.', a: 'Opposite angles of cyclic quadrilateral supplement to 180°. Angle C = 180° - 80° = 100°. Angle D = 180° - 70° = 110°.' },
+              { q: 'Prove that the angle in a semicircle is a right angle.', a: 'If AB is a diameter, then arc AB = 180° (semicircle). Angle at centre AOB = 180°. By the theorem (angle at centre = 2 × angle at circumference): angle ACB = 180°/2 = 90°.' },
+            ]
+          },
+          {
+            id: 'surface-areas-volumes-9',
+            title: 'Surface Areas and Volumes',
+            subtopics: 'Cuboid, Cylinder, Cone, Sphere — surface areas and volumes',
+            definition: 'Surface area is the total area of all faces/surfaces of a 3D solid. Volume is the space occupied by a solid. These measurements are essential for practical applications in engineering, packaging, and construction.',
+            content: `<p>From calculating paint needed for a room to designing fuel tanks, medicine capsules, and water pipes — surface area and volume calculations are indispensable in every engineering and design field.</p>
+<h4>Cuboid</h4>
+<div class="formula">TSA = 2(lb + bh + lh) | Volume = l × b × h</div>
+<h4>Cube</h4>
+<div class="formula">TSA = 6a² | Volume = a³</div>
+<h4>Cylinder</h4>
+<div class="formula">CSA = 2πrh | TSA = 2πr(r + h) | Volume = πr²h</div>
+<h4>Cone</h4>
+<div class="formula">l = √(r² + h²) (slant height)</div>
+<div class="formula">CSA = πrl | TSA = πr(r + l) | Volume = ⅓πr²h</div>
+<h4>Sphere</h4>
+<div class="formula">SA = 4πr² | Volume = (4/3)πr³</div>
+<h4>Hemisphere</h4>
+<div class="formula">CSA = 2πr² | TSA = 3πr² | Volume = (2/3)πr³</div>`,
+            qa: [
+              { q: 'Find volume and TSA of a cylinder with r=7cm, h=10cm. (π=22/7)', a: 'Volume = πr²h = 22/7 × 49 × 10 = 1540 cm³. TSA = 2πr(r+h) = 2 × 22/7 × 7 × 17 = 748 cm².' },
+              { q: 'A cone has r=6cm, h=8cm. Find slant height and CSA. (π=3.14)', a: 'l = √(r²+h²) = √(36+64) = √100 = 10cm. CSA = πrl = 3.14 × 6 × 10 = 188.4 cm².' },
+              { q: 'A sphere has radius 6cm. Find its volume. (π=22/7)', a: 'Volume = (4/3)πr³ = (4/3) × (22/7) × 216 = (4 × 22 × 216)/(3 × 7) = 904.32 cm³.' },
+              { q: 'How many litres of water can a cylindrical tank (r=1m, h=2m) hold?', a: 'Volume = πr²h = 3.14 × 1 × 2 = 6.28 m³ = 6280 litres (1 m³ = 1000 litres).' },
+            ]
+          },
+          {
+            id: 'probability-9',
+            title: 'Probability',
+            subtopics: 'Experiments, Sample space, Events, Empirical probability, Classical probability',
+            definition: 'Probability is the numerical measure of the likelihood of an event, between 0 (impossible) and 1 (certain). Empirical probability is based on experiments; classical probability on equally likely outcomes.',
+            content: `<p>Probability quantifies uncertainty. It is the mathematics of chance, used in weather forecasting, insurance pricing, medical testing, genetics, and machine learning.</p>
+<h4>Basic Concepts</h4>
+<ul>
+<li><strong>Experiment:</strong> Any activity with observable outcome (tossing coin, rolling die)</li>
+<li><strong>Sample space (S):</strong> Set of all possible outcomes</li>
+<li><strong>Event (E):</strong> Any subset of the sample space</li>
+</ul>
+<div class="formula">P(E) = n(E) / n(S) = favourable outcomes / total equally likely outcomes</div>
+<h4>Properties</h4>
+<p>0 ≤ P(E) ≤ 1. P(impossible event) = 0. P(sure event) = 1. P(E) + P(Ē) = 1.</p>
+<h4>Empirical Probability</h4>
+<div class="formula">P(E) = frequency of E / total trials</div>
+<p>Based on actual experiment results. Approaches classical probability with large number of trials (Law of Large Numbers).</p>`,
+            qa: [
+              { q: 'A bag contains 4 red, 3 blue, 2 green balls. One is drawn randomly. Find P(blue).', a: 'Total balls = 9. P(blue) = 3/9 = 1/3.' },
+              { q: 'What is the probability of getting a total of 7 when two dice are thrown?', a: 'Total outcomes = 36. Favourable (sum=7): (1,6),(2,5),(3,4),(4,3),(5,2),(6,1) = 6 outcomes. P(sum=7) = 6/36 = 1/6.' },
+              { q: 'A coin was tossed 100 times and heads appeared 58 times. Find empirical P(heads) and compare to theoretical.', a: 'Empirical P(heads) = 58/100 = 0.58. Theoretical P(heads) = 1/2 = 0.5. Close but not equal — due to random variation. With more trials, empirical value approaches 0.5 (Law of Large Numbers).' },
+              { q: 'A card is drawn from well-shuffled deck of 52. P(face card)?', a: 'Face cards: Jack, Queen, King in 4 suits = 12 face cards. P(face card) = 12/52 = 3/13.' },
+            ]
+          },
+          {
+            id: 'areas-parallelograms-9',
+            title: 'Areas of Parallelograms and Triangles',
+            subtopics: 'Area on same base and parallels, Proof of triangle area = half parallelogram',
+            definition: 'Parallelograms and triangles on the same base and between the same parallel lines have equal areas (for parallelograms) or half-equal areas (triangle = half parallelogram).',
+            content: `<p>The concept of equal areas for figures sharing a base and height is a powerful geometric tool that connects seemingly different shapes and enables elegant proofs.</p>
+<h4>Key Theorems</h4>
+<ul>
+<li>Parallelograms on the same base and between the same parallels are equal in area.</li>
+<li>A triangle on the same base and between the same parallels as a parallelogram has half its area.</li>
+<li>A median of a triangle divides it into two triangles of equal area.</li>
+</ul>
+<div class="formula">Area of parallelogram = base × height</div>
+<div class="formula">Area of triangle = ½ × base × height</div>
+<h4>Proof Idea</h4>
+<p>Two parallelograms ABCD and EFCD on base CD: ABCD = ΔACD + ΔABC. EFCD can be shown to have same total area by showing ΔADF ≅ ΔBCE (by SAS), so areas are equal.</p>`,
+            qa: [
+              { q: 'A triangle and a parallelogram share base 8cm. Triangle height=5cm. Find parallelogram area if they have equal area.', a: 'Triangle area = ½ × 8 × 5 = 20 cm². For equal areas, parallelogram area = 20 cm² (but normally parallelogram = 2 × triangle on same base between same parallels). If areas are equal, parallelogram height = area/base = 20/8 = 2.5 cm.' },
+              { q: 'ABCD is a parallelogram. E is midpoint of BC. Prove: area(ΔADE) = ¾ area(ABCD).', a: 'Draw diagonal AC. Area(ΔABC) = ½ Area(ABCD). E is midpoint of BC, so AE is a median of ΔABC. Area(ΔABE) = ½ Area(ΔABC) = ¼ Area(ABCD). Area(ΔADE) = Area(ABCD) − Area(ΔABE) = Area(ABCD) − ¼Area(ABCD) = ¾ Area(ABCD).' },
+              { q: 'If a triangle and a parallelogram are on the same base and between the same parallels, what is the relationship between their areas?', a: 'The area of the triangle is half the area of the parallelogram. This is because the diagonal of a parallelogram divides it into two congruent triangles, each equal in area to the given triangle.' },
+              { q: 'Prove that the median of a triangle divides it into two triangles of equal area.', a: 'Let D be midpoint of BC in ΔABC. In ΔABD and ΔACD: they share the same height from A. BD = CD (D is midpoint). Area = ½ × base × height. Area(ΔABD) = ½ × BD × h = ½ × CD × h = Area(ΔACD). Equal areas.' },
+            ]
+          },
+          {
+            id: 'constructions-9',
+            title: 'Constructions',
+            subtopics: 'Bisecting angles and segments, Constructing triangles, 60°/90°/45° angles',
+            definition: 'Geometric constructions use only a compass and straightedge (ruler with no markings) to create geometric figures. They are considered pure geometry — no measurement allowed.',
+            content: `<p>Euclidean constructions using only compass and straightedge have fascinated mathematicians for 2500 years. Some problems (trisecting an angle, squaring the circle) were proven impossible in the 19th century.</p>
+<h4>Basic Constructions</h4>
+<ul>
+<li><strong>Bisecting a line segment:</strong> Draw arcs from both ends with equal radii > half length; connect intersections.</li>
+<li><strong>Bisecting an angle:</strong> Draw arc from vertex; from intersection points draw equal arcs; connect vertex to intersection.</li>
+<li><strong>60° angle:</strong> Draw arc from point A; from intersection point draw arc of same radius; connect — gives equilateral triangle, angle = 60°.</li>
+<li><strong>90° angle:</strong> Bisect a straight angle (180°); perpendicular bisector of a segment.</li>
+</ul>
+<h4>Constructing Triangles</h4>
+<p>Given: SSS (all 3 sides), SAS (2 sides + included angle), ASA (2 angles + included side), RHS (right angle, hypotenuse, one side).</p>`,
+            qa: [
+              { q: 'How do you construct an angle of 60° using compass and ruler?', a: '1. Draw a ray OA. 2. With O as centre, draw an arc cutting OA at P. 3. With same radius, centre P, draw an arc cutting the first arc at Q. 4. Join OQ. Angle QOP = 60° (as OPQ is equilateral triangle).' },
+              { q: 'Construct a triangle with sides 4cm, 5cm, and 6cm. Describe steps.', a: '1. Draw BC = 6cm. 2. With B as centre, radius 4cm, draw arc. 3. With C as centre, radius 5cm, draw arc cutting first arc at A. 4. Join AB and AC. ΔABC is the required triangle.' },
+              { q: 'Why are compass and straightedge the only tools allowed in classical constructions?', a: 'This restriction comes from Euclid\'s postulates — a line can be drawn between two points (straightedge) and a circle can be drawn with any centre and radius (compass). These tools embody the purest geometric operations. Using measurement introduces approximation and breaks the logical purity of the axiomatic system.' },
+              { q: 'How do you bisect a given angle?', a: '1. With vertex A, draw arc cutting AB at P and AC at Q. 2. With P and Q as centres, equal radii > PQ/2, draw arcs intersecting at R. 3. Join AR. AR bisects angle BAC. Proof: triangles APR and AQR are congruent by SSS, so angles are equal.' },
+            ]
+          },
         ]
       },
       physics: {
@@ -2760,6 +3222,32 @@ export const CURRICULUM = {
               { q: 'Why is no work done when you carry a heavy bag walking horizontally?', a: 'The force you apply (upward, opposing gravity) is perpendicular to the displacement (horizontal). W = F×s×cos90° = 0. By the physics definition, no work is done by the carrying force.' },
               { q: 'A motor lifts 500 kg of water to a height of 15m in 5 minutes. Find the power.', a: 'W = mgh = 500×10×15 = 75000 J. t = 5×60 = 300s. P = W/t = 75000/300 = 250 W' },
               { q: 'At what point in a pendulum\'s swing is kinetic energy maximum?', a: 'KE is maximum at the lowest point of the swing (equilibrium position). At this point, all the potential energy has converted to kinetic energy. The pendulum moves fastest here.' },
+            ]
+          },
+          {
+            id: 'sound-9',
+            title: 'Sound',
+            subtopics: 'Production and propagation, Longitudinal waves, Speed, Reflection, Echo, Range of hearing, Ultrasound',
+            definition: 'Sound is a mechanical wave produced by vibrating objects, transmitted through a medium as compressions and rarefactions. It requires a material medium — it cannot travel through a vacuum.',
+            content: `<p>Sound is how we communicate, hear music, and even how bats navigate. Understanding sound waves reveals why we hear echoes, how sonar locates submarines, and how ultrasound creates medical images.</p>
+<h4>Production and Propagation</h4>
+<p>Sound is produced by vibrating objects. It travels as a longitudinal wave — compressions (high pressure) and rarefactions (low pressure) move through the medium. Needs a material medium (gas, liquid, or solid).</p>
+<h4>Key Quantities</h4>
+<div class="formula">Speed = Frequency × Wavelength (v = fλ)</div>
+<p>Speed in air at 25°C ≈ 346 m/s. Sound travels fastest in solids, slowest in gases.</p>
+<div class="formula">Frequency (Hz): determines pitch | Amplitude: determines loudness</div>
+<h4>Reflection of Sound — Echo</h4>
+<p>Minimum distance to hear an echo: sound must travel to reflector and back before 1/25 second (persistence of hearing). Minimum distance = v×t/2 = 346×(1/25)/2 ≈ 17.2 m.</p>
+<h4>Range of Hearing</h4>
+<p>Humans: 20 Hz to 20,000 Hz (20 kHz). Infrasound: below 20 Hz (elephants, whales). Ultrasound: above 20 kHz (bats, dogs).</p>
+<h4>Applications of Ultrasound</h4>
+<p>Medical imaging (sonography), SONAR (distance measurement underwater), industrial cleaning, detecting cracks in metal.</p>
+<div class="formula">SONAR: d = v × t / 2 (factor of 2 because signal travels to object and back)</div>`,
+            qa: [
+              { q: 'Why does sound travel faster in solids than in gases?', a: 'In solids, molecules are closely packed and strongly bonded. Vibration of one molecule quickly transfers to neighbours. In gases, molecules are far apart — vibration transfers more slowly. Speed: solids > liquids > gases. Steel: ~5000 m/s, water: ~1500 m/s, air: ~346 m/s.' },
+              { q: 'What minimum distance should you be from a reflecting surface to hear an echo?', a: 'Persistence of hearing = 1/25 s (sound echoes heard separately after this gap). Distance = v × t / 2 = 346 × (1/25) / 2 ≈ 17.2 m ≈ 17 m. The factor of 2 is because sound travels to the wall and back.' },
+              { q: 'A sonar signal sent from a ship returns after 4 seconds. If speed of sound in seawater is 1500 m/s, find distance to the seabed.', a: 'Distance = v × t / 2 = 1500 × 4 / 2 = 3000 m. The factor 2 accounts for the signal going to the seabed and returning.' },
+              { q: 'What are the uses of ultrasound?', a: 'Ultrasound (above 20,000 Hz) uses: (1) Medical imaging (sonography) — safe alternative to X-rays for soft tissue; (2) SONAR — mapping ocean floors, detecting submarines; (3) Industrial — detecting cracks in metal objects, cleaning tiny parts; (4) Breaking kidney stones (lithotripsy) without surgery.' },
             ]
           },
         ]
@@ -2925,6 +3413,69 @@ export const CURRICULUM = {
               { q: 'What was the Quit India Movement?', a: 'Launched on August 9, 1942 during WWII. Gandhi gave the call "Do or Die" — British must leave India immediately. The British immediately arrested all Congress leaders. Despite no organised leadership, massive spontaneous protests, rail disruptions, and strikes spread across India.' },
             ]
           },
+          {
+            id: 'russian-revolution-9',
+            title: 'Socialism and the Russian Revolution',
+            subtopics: 'Marxism, 1905 Revolution, February Revolution, October Revolution, Lenin, Bolsheviks',
+            definition: 'The Russian Revolution of 1917 overthrew the Tsar and led to the world\'s first communist state. Lenin and the Bolsheviks took power, creating the Soviet Union — an experiment that influenced world history until 1991.',
+            content: `<p>The Russian Revolution was the most dramatic political event of the 20th century — it created the world's first communist state, inspired revolutions worldwide, and led to the Cold War that dominated 70 years of global politics.</p>
+<h4>Background</h4>
+<p>Russia in 1900: vast, backward empire under Tsar Nicholas II. 80% peasants in miserable conditions. Industry (in a few cities) with brutal 15-hour workdays. Social Democrats (Marxists) split into Bolsheviks (Lenin's radical majority) and Mensheviks.</p>
+<h4>1905 Revolution and Bloody Sunday</h4>
+<p>January 9, 1905: peaceful workers' march to the Winter Palace (led by Father Gapon) was fired upon — "Bloody Sunday." Triggered strikes, mutinies (Battleship Potemkin). Tsar granted October Manifesto (elected Duma) — but repressed opposition after.</p>
+<h4>1917 February Revolution</h4>
+<p>WWI devastated Russia. Bread shortages, 4 million war deaths. Workers' strikes in Petrograd escalated — soldiers refused to fire. Tsar abdicated. Provisional Government formed (continued war — a fatal mistake).</p>
+<h4>October Revolution (November 7, 1917)</h4>
+<p>Lenin returned from exile (April). Bolsheviks seized power ("April Theses": peace, land, bread, power to Soviets). October Revolution: Bolsheviks took over key locations in Petrograd. Immediate peace with Germany (Treaty of Brest-Litovsk), land redistributed, industries nationalised.</p>`,
+            qa: [
+              { q: 'What was "Bloody Sunday" and what were its consequences?', a: 'January 9, 1905: a peaceful procession of workers led by Father Gapon marched to the Winter Palace to petition the Tsar. Government troops opened fire, killing hundreds. This destroyed the belief that the Tsar cared for his people — triggering the 1905 Revolution. The Tsar was forced to grant the October Manifesto (elected Duma).' },
+              { q: 'Why was Russia\'s continuation in WWI a fatal mistake for the Tsar?', a: 'WWI caused 4 million Russian deaths, mass desertion, economic collapse, and bread shortages. The government was blamed for incompetent leadership. By 1917, soldiers refused orders and joined striking workers. The Tsar lost all support and was forced to abdicate. The Provisional Government made the same mistake — continuing the war — which allowed Lenin and the Bolsheviks to seize power.' },
+              { q: 'What was Lenin\'s April Theses?', a: 'Lenin returned from exile in April 1917 and announced his April Theses: (1) Immediate peace (end WWI); (2) Land to the peasants; (3) Banks to be nationalised; (4) Power to the Soviets (workers\' councils). These demands resonated with exhausted, hungry Russians and guided the October Revolution.' },
+              { q: 'What did socialism mean in practice after the Russian Revolution?', a: 'After 1917: private property in industries abolished, land redistributed to peasants, banks nationalised, workers got 8-hour workdays. Communist Party took control of the state. By 1920s, Stalin implemented forced collectivisation (farms combined into collective farms) and rapid industrialisation — causing millions of deaths from famine and labour camps.' },
+            ]
+          },
+          {
+            id: 'nazism-9',
+            title: 'Nazism and the Rise of Hitler',
+            subtopics: 'Weimar Republic, Rise of Nazism, Nazi ideology, Holocaust, WWII, Nuremberg trials',
+            definition: 'Nazism was a far-right totalitarian ideology that rose in Germany after WWI. Adolf Hitler\'s Nazi party used propaganda, scapegoating, and terror to gain power, leading to WWII and the Holocaust — the murder of 6 million Jews.',
+            content: `<p>How did one of the world's most educated and culturally sophisticated nations commit the most organised genocide in history? Understanding Nazism is essential to ensuring it never happens again.</p>
+<h4>Birth of Weimar Republic (1919)</h4>
+<p>After WWI, Germany became a democracy. Humiliating Treaty of Versailles: huge reparations, loss of territory, "war guilt" clause. The Weimar Republic was blamed for accepting this "diktat." Economic crisis: hyperinflation (1923), Great Depression (1929) — 30% unemployment by 1932.</p>
+<h4>Rise of Hitler</h4>
+<p>Adolf Hitler, an Austrian failed artist, joined the Nazi (National Socialist) Party. 1923 Beer Hall Putsch failed — jailed, wrote Mein Kampf. 1932: Nazis became largest party. January 30, 1933: Hitler appointed Chancellor. Reichstag fire used to suspend rights. March 1933: Enabling Act — Hitler became dictator.</p>
+<h4>Nazi Ideology</h4>
+<p>Racial hierarchy: Aryans (Germans) supreme, Jews at bottom. Racial purity through breeding programs. Expansion (Lebensraum — "living space") — justification for conquest. Anti-communism.</p>
+<h4>The Holocaust</h4>
+<p>Systematic genocide of 6 million Jews (also Roma, disabled, homosexuals, political opponents). Night of Broken Glass (Kristallnacht, 1938). Concentration camps → extermination camps (Auschwitz, Treblinka). 1942: "Final Solution" — total extermination plan.</p>`,
+            qa: [
+              { q: 'What economic conditions allowed Hitler to rise to power?', a: 'Germany suffered: (1) WWI defeat and humiliation (Treaty of Versailles), (2) Hyperinflation (1923) — a loaf of bread cost billions of marks, (3) Great Depression (1929) — 30% unemployment by 1932. Hitler promised to restore German greatness, blamed Jews and Communists for all problems. Desperate people accepted his message.' },
+              { q: 'What was the Holocaust?', a: 'The Holocaust was the systematic, state-sponsored persecution and murder of 6 million Jews (two-thirds of European Jews) by the Nazi German regime from 1933-1945. Also killed: Roma (5 million+), disabled people, political opponents, homosexuals. Jews were progressively stripped of rights, forced into ghettos, then transported to extermination camps.' },
+              { q: 'How did Hitler establish a dictatorship?', a: 'Steps: (1) Became Chancellor Jan 1933; (2) Reichstag fire (Feb 1933) blamed on Communists — used to suspend civil liberties; (3) Enabling Act (March 1933) gave Hitler power to make laws without Parliament; (4) Banned all other parties; (5) Night of Long Knives — eliminated rivals within own party; (6) After Hindenburg died (1934), combined President and Chancellor into "Fuhrer."' },
+              { q: 'What were the Nuremberg trials?', a: 'After WWII ended (1945), Allied powers set up the International Military Tribunal at Nuremberg, Germany. Nazi leaders were tried for: crimes against peace (planning aggressive war), war crimes (violations of laws of war), crimes against humanity (genocide, enslavement). 12 were sentenced to death. Established the principle that individuals are responsible for crimes even when following government orders.' },
+            ]
+          },
+          {
+            id: 'forest-society-colonialism-9',
+            title: 'Forest Society and Colonialism',
+            subtopics: 'Colonial forest laws, Scientific forestry, Tribal resistance, Deforestation',
+            definition: 'British colonial rule transformed India\'s forests — from community-managed resources to state-controlled timber reserves. Forest dwellers lost traditional rights, leading to resistance movements.',
+            content: `<p>Before colonialism, forests were managed by local communities who depended on them. British "scientific forestry" treated forests purely as timber resources, causing ecological damage and tribal displacement that still affects India today.</p>
+<h4>Why the British Changed Forest Laws</h4>
+<p>Massive demand for timber: railway sleepers (millions needed for expanding railway network), ship-building (Royal Navy), commercial exports. By 1850, vast forests were cleared.</p>
+<h4>Indian Forest Act (1878)</h4>
+<p>Divided forests into: Reserved (no access — most productive), Protected, Village forests. Forest dwellers could no longer: hunt, graze animals, collect firewood, use the forest for cultivation (shifting cultivation banned). Forest officers had enormous power.</p>
+<h4>Impact on Forest Communities</h4>
+<p>Communities lost livelihoods and access to resources. Shifting cultivation (slash and burn) was banned — a sustainable agricultural practice of tribal communities. Forest dwellers were criminalised for traditional practices.</p>
+<h4>Resistance</h4>
+<p>Bastar Rebellion (1910): tribal people of Bastar (Chhattisgarh) rose against forest laws and forced labour. Birsa Munda Movement (1890s-1900): tribal leader Birsa Munda led the Munda people to assert rights over their forests. Java and other colonies: similar resistance.</p>`,
+            qa: [
+              { q: 'Why did the British implement strict forest laws?', a: 'Main reasons: (1) Massive demand for timber — railway expansion needed millions of sleepers, Royal Navy needed wood for ships, trade in timber; (2) To bring forests under state control and generate revenue; (3) "Scientific forestry" ideology — treating forests as timber farms rather than ecosystems. Local needs of forest dwellers were ignored.' },
+              { q: 'What was the Bastar Rebellion of 1910?', a: 'The tribal communities of Bastar (now Chhattisgarh) rose in rebellion against the British in 1910. Causes: British reservation of forests (loss of access), forced labour (begar) demands, increased taxes. A leader from the Dhurwa community started the movement. The British crushed the rebellion militarily, killing many, but later slightly relaxed forest restrictions.' },
+              { q: 'What was the significance of Birsa Munda\'s movement?', a: 'Birsa Munda (1875-1900) led the Munda people of Jharkhand against both British colonialism and local landlords (dikus) who had taken tribal land. He declared himself a prophet, preached tribal pride and reform. His movement (ulgulan or "great tumult") demanded return of Munda land, end to forced labour. He died in prison at 25 but inspired tribal rights movements.' },
+              { q: 'How did colonial forest management affect the ecology of Indian forests?', a: 'British "scientific forestry" focused on monoculture timber trees (teak, sal, pine) and eliminated diverse natural forests. Forests were not managed for biodiversity but for maximum timber yield. This reduced biodiversity, disrupted water cycles, caused soil erosion. Mixed natural forests that communities had sustainably managed for generations were replaced by degraded monocultures.' },
+            ]
+          },
         ]
       },
       geography: {
@@ -2978,6 +3529,80 @@ export const CURRICULUM = {
               { q: 'What is the "Loo" and where does it occur?', a: 'Loo is a hot, dry, dusty wind that blows in the afternoons during summer (May-June) in northern India (Punjab, Haryana, Uttar Pradesh). Temperatures can reach 45-48°C and the Loo can cause heatstroke.' },
               { q: 'Why does India have a monsoon type of climate?', a: 'India\'s climate is governed by the monsoon — seasonal reversal of winds. In summer, the landmass heats up, creating low pressure. Moisture-laden winds from the ocean rush in (SW monsoon — June-Sept). In winter, the land cools, high pressure develops, and winds blow from land to sea (NE monsoon).' },
               { q: 'How does the Himalayas influence India\'s climate?', a: 'The Himalayas act as a climatic barrier: (1) They block cold Central Asian winds from reaching India — keeping winters mild. (2) They prevent monsoon winds from escaping northward — forcing them to deposit rain within India. Without the Himalayas, India would be much colder and drier.' },
+            ]
+          },
+          {
+            id: 'drainage-india-9',
+            title: 'Drainage — Rivers of India',
+            subtopics: 'Himalayan rivers, Peninsular rivers, River basins, Drainage patterns, Significance of rivers',
+            definition: 'Drainage refers to the river system of a region. India has two main drainage systems: the Himalayan rivers (perennial, glacier-fed) and the Peninsular rivers (seasonal, rainfall-dependent).',
+            content: `<p>India's rivers are its lifelines — they provide water for irrigation, drinking, industry, and hydroelectric power; they shaped India's ancient civilisations; and they remain central to culture and religion.</p>
+<h4>Himalayan Rivers</h4>
+<p><strong>Indus System:</strong> Indus, Jhelum, Chenab, Ravi, Beas, Sutlej. Origin: Tibet/Himalayas. Mostly in Pakistan (after Partition).</p>
+<p><strong>Ganga System:</strong> Ganga + tributaries (Yamuna, Ghagra, Gandak, Kosi from north; Chambal, Betwa, Son from south). 2525 km. Most sacred river.</p>
+<p><strong>Brahmaputra:</strong> Longest river in India. Flows through Arunachal Pradesh and Assam. Known as Tsangpo in Tibet.</p>
+<h4>Peninsular Rivers</h4>
+<p><strong>West-flowing:</strong> Narmada, Tapi (flow into Arabian Sea, form estuaries). <strong>East-flowing:</strong> Mahanadi, Godavari, Krishna, Cauvery (flow into Bay of Bengal, form deltas — more fertile).</p>
+<h4>River Erosion Features</h4>
+<p>Upper course: V-shaped valleys, gorges. Middle: wide valley, meanders. Lower: delta, floodplains.</p>`,
+            qa: [
+              { q: 'What is the difference between Himalayan and Peninsular rivers?', a: 'Himalayan rivers: perennial (flow year-round) — fed by monsoon + glaciers. Long, carry more water. E.g., Ganga, Brahmaputra. Peninsular rivers: seasonal — fed mainly by monsoon rain, dry in summer. Shorter, shallow. E.g., Godavari, Cauvery. Himalayan rivers form deltas and are more suitable for agriculture and navigation.' },
+              { q: 'Why is the Ganga called India\'s most sacred river?', a: 'The Ganga has been central to Indian civilisation for thousands of years. Ancient cities (Varanasi, Allahabad, Patna, Kolkata) grew on its banks. Hindus believe bathing in the Ganga washes sins. Its source (Gangotri glacier) is a pilgrimage site. It also supports 400+ million people along its basin — about one-third of India\'s population.' },
+              { q: 'Why do east-flowing peninsular rivers form deltas while west-flowing ones form estuaries?', a: 'East-flowing rivers (Godavari, Krishna, Cauvery) travel long distances through gentle slopes — slow enough to deposit sediment, forming fertile deltas. West-flowing rivers (Narmada, Tapi) flow through hard rock, fast-moving, not much sediment — flow straight into the sea forming estuaries. Deltas are more fertile and suitable for agriculture.' },
+              { q: 'What causes flooding in Assam and Bihar every year?', a: 'The Brahmaputra (Assam) carries enormous amounts of water and sediment from the Himalayas. Heavy rainfall during monsoon + melting glaciers fill rivers beyond capacity. The flat plains have little capacity to absorb excess water. In Bihar, the Kosi river frequently shifts course, causing devastating floods — it is called the "Sorrow of Bihar."' },
+            ]
+          },
+          {
+            id: 'natural-vegetation-wildlife-9',
+            title: 'Natural Vegetation and Wildlife',
+            subtopics: 'Types of forests, Flora and fauna, Biosphere reserves, Wildlife sanctuaries, Conservation',
+            definition: 'India has remarkable biodiversity — 8% of world species despite having 2.4% of land area. Different climates create different vegetation types: tropical rainforests, deciduous forests, grasslands, deserts, and mangroves.',
+            content: `<p>India is one of the world's 17 megadiverse countries. From Himalayan snow leopards to Bengal tigers, from mangrove forests to alpine meadows — protecting this diversity is a national priority.</p>
+<h4>Types of Vegetation</h4>
+<ul>
+<li><strong>Tropical Rainforest:</strong> Western Ghats, Andaman Islands. Dense, tall trees, enormous biodiversity. Mahogany, rosewood, ebony.</li>
+<li><strong>Tropical Deciduous (Monsoon Forests):</strong> Most widespread. Teak, sal, peepal, neem. Shed leaves in dry season.</li>
+<li><strong>Tropical Thorn Forests:</strong> Rajasthan, parts of Gujarat, Deccan. Babul, cacti, khejri.</li>
+<li><strong>Mangrove Forests:</strong> Coastal (Sundarbans is world's largest). Roots trap sediment. Protect coastlines. Sundari tree → Sundarbans name.</li>
+<li><strong>Alpine Meadows:</strong> Himalayas above tree line. Sedges, mosses.</li>
+</ul>
+<h4>Wildlife</h4>
+<p>India has: 90 national parks, 500+ wildlife sanctuaries, 18 biosphere reserves. Famous: Project Tiger (1973), Project Elephant. Key species: Bengal tiger, Asiatic lion (Gir), one-horned rhino (Kaziranga), snow leopard, Gangetic dolphin.</p>
+<h4>Threats</h4>
+<p>Deforestation, poaching, habitat fragmentation, human-wildlife conflict, climate change.</p>`,
+            qa: [
+              { q: 'What are mangrove forests and why are they important?', a: 'Mangroves are salt-tolerant trees growing in coastal intertidal zones. Importance: protect coastlines from storms, cyclones, and tsunamis (act as natural buffers); trap sediment, preventing coastal erosion; provide nursery habitat for fish (important for fisheries); support unique biodiversity. Sundarbans (India-Bangladesh) is the world\'s largest mangrove forest.' },
+              { q: 'What is Project Tiger and has it been successful?', a: 'Project Tiger (1973) was launched to protect the endangered Bengal tiger. India\'s tiger population had fallen to just 1827 (1972 census). 50 tiger reserves were created. By 2022, India had 3167 tigers — over 70% of world\'s wild tigers. Considered one of the world\'s most successful wildlife conservation programs.' },
+              { q: 'Why is India considered a biodiversity hotspot?', a: 'India has extraordinary biodiversity: 8% of world\'s species on 2.4% of land. Reasons: diverse climates (tropical to alpine), varied topography, several ancient geological formations, varied rainfall. But: rapid development, deforestation, and pollution threaten this diversity. Two of the world\'s 36 biodiversity hotspots are in India: Western Ghats and Eastern Himalayas.' },
+              { q: 'What is the difference between a National Park, Wildlife Sanctuary, and Biosphere Reserve?', a: 'National Park: strictly protected area — no human activity (grazing, logging) allowed. Wildlife Sanctuary: wildlife protected but some human activities (forestry, tribal grazing) allowed. Biosphere Reserve: largest category — core zone (national park or sanctuary), buffer zone, transition zone (human habitation). Biosphere reserves allow research, education, and sustainable human use in outer zones.' },
+            ]
+          },
+          {
+            id: 'population-india-9',
+            title: 'Population',
+            subtopics: 'Census, Population density, Distribution, Literacy, Occupational structure, Migration',
+            definition: 'India is the world\'s most populous country (since 2023, surpassing China). Population distribution is uneven — high density in plains and coastal areas. The population composition (age, sex, literacy) reveals development challenges.',
+            content: `<p>With 1.4 billion people, India's population is both its greatest resource (young workforce) and its greatest challenge (pressure on resources, infrastructure, and environment).</p>
+<h4>Population Distribution</h4>
+<p>Uneven: High density in — Northern Plains (UP, Bihar, West Bengal), coastal plains. Low density in — Rajasthan, Arunachal Pradesh, Uttarakhand (harsh terrain, desert, mountains).</p>
+<h4>Population Density</h4>
+<div class="formula">Density = Population / Area (persons per km²)</div>
+<p>India average: ~382 persons/km². Bihar: ~1102, Rajasthan: ~200, Arunachal Pradesh: 17.</p>
+<h4>Population Growth Factors</h4>
+<ul>
+<li><strong>Births > deaths:</strong> Improved healthcare reduced death rate faster than birth rate fell</li>
+<li><strong>Migration:</strong> Internal (rural to urban), International</li>
+<li><strong>Age Structure:</strong> Large youth population = high potential fertility</li>
+</ul>
+<h4>Literacy</h4>
+<p>India's literacy rate (2011): 74%. Male: 82%, Female: 65%. Kerala: 94%. Bihar: 61%. Gender gap is narrowing.</p>
+<h4>Age Pyramid</h4>
+<p>India has a youthful age structure — more people in younger age groups. This creates a "demographic dividend" — large working-age population supporting development. But it requires creating jobs for millions entering the workforce.</p>`,
+            qa: [
+              { q: 'Why is population distribution in India uneven?', a: 'Population clusters where life is easier and more productive. High density: fertile plains (Ganga, coastal) where agriculture is productive, climate is moderate, rivers available. Low density: deserts (Rajasthan), mountains (Himachal, Arunachal), dense forests (northeast) — harsh conditions, difficult agriculture.' },
+              { q: 'What is the demographic dividend and how can India benefit?', a: 'Demographic dividend: when a country has a large working-age population (15-64) relative to dependents (children, elderly). India currently has this advantage — 65% of population in working age. To benefit: invest in education and skills (human capital), create sufficient jobs (manufacturing, services), improve healthcare. If this opportunity is missed, it becomes a demographic burden.' },
+              { q: 'What is the difference between census and survey?', a: 'Census: complete enumeration of ALL people in the country at one time. India conducts census every 10 years (last 2011, next due 2021 delayed to 2024). Provides comprehensive data. Survey: data collected from a sample of the population — faster and cheaper but less complete. Example: NFHS (National Family Health Survey) covers sample of households.' },
+              { q: 'Why is the sex ratio in India unfavourable?', a: 'India\'s sex ratio (females per 1000 males) has been declining: 927 (2011). Causes: son preference (female foeticide/infanticide), gender discrimination, maternal mortality. Haryana and Punjab have very low sex ratios due to severe son preference. Kerala has high sex ratio (1084) due to high female literacy and better status of women. PCPNDT Act (1994) bans sex-selective abortion.' },
             ]
           },
         ]
@@ -3036,6 +3661,82 @@ export const CURRICULUM = {
               { q: 'What was Dr. Ambedkar\'s role in drafting the Constitution?', a: 'Dr. B.R. Ambedkar was the Chairman of the Drafting Committee — the principal architect of the Indian Constitution. He guided the committee through detailed deliberations, incorporated the best features from world constitutions, and ensured provisions protecting the rights of marginalised communities.' },
               { q: 'Why did the Constitution makers make the judiciary independent?', a: 'An independent judiciary can impartially decide cases even when the government is a party. If judges were appointed or removed by the government, they would be biased in its favour. Independence (secure tenure, no control by executive) ensures courts protect citizens\' rights even against government overreach.' },
               { q: 'What is the significance of January 26 as Republic Day?', a: 'On January 26, 1950, the Indian Constitution came into force and India became a Republic (a country with an elected head of state — President — rather than a monarch). This date was chosen because on January 26, 1930, the Congress had declared Poorna Swaraj (complete independence) as its goal.' },
+            ]
+          },
+          {
+            id: 'electoral-politics-9',
+            title: 'Electoral Politics',
+            subtopics: 'Why elections, Types of elections, Election Commission, Election process, Voting',
+            definition: 'Elections are the mechanism by which citizens choose their representatives in a democracy. In India, the Election Commission of India independently manages free and fair elections at all levels.',
+            content: `<p>India conducts the world's largest democratic exercise — over 900 million eligible voters, 1 million polling stations, and a 5-week process. The Election Commission makes this miracle happen every 5 years.</p>
+<h4>Why Elections?</h4>
+<p>Elections allow: regular replacement of rulers without violence; accountability (leaders who perform poorly can be voted out); representation of people's diverse choices; legitimacy — people accept the government they chose.</p>
+<h4>Election Commission of India</h4>
+<p>An independent constitutional body — not under government control. Enforces Model Code of Conduct, ensures free and fair elections, can disqualify candidates, transfer government officers during elections.</p>
+<h4>Election Process</h4>
+<ol>
+<li>Announcement of dates</li>
+<li>Candidate nomination and scrutiny</li>
+<li>Campaign (Model Code of Conduct applies)</li>
+<li>Polling (secret ballot, EVMs)</li>
+<li>Vote counting and result announcement</li>
+</ol>
+<h4>First-Past-The-Post System</h4>
+<p>In India, the candidate with the most votes wins — even without a majority. This can lead to a winning candidate with less than 50% of votes.</p>`,
+            qa: [
+              { q: 'What is the role of the Election Commission of India?', a: 'The Election Commission (ECI) is an autonomous constitutional body that: announces election schedule; enforces Model Code of Conduct; registers political parties; allots symbols; deploys security; can order re-polls if irregularities occur; and transfers biased government officials. It makes elections free and fair.' },
+              { q: 'What is the Model Code of Conduct?', a: 'The Model Code of Conduct (MCC) is a set of guidelines issued by the Election Commission once elections are announced. It prohibits: using government resources for campaigns, announcing populist schemes, making communal appeals, and prevents ruling parties from using their incumbency advantage. Violators can be disqualified.' },
+              { q: 'What challenges do Indian elections face?', a: 'Challenges: money power (rich candidates buy votes), muscle power (intimidation), communal and caste appeals, use of government resources by ruling parties, voter ignorance, long process in large country, booth capturing (rare now with EVMs). The ECI has made progress with EVMs, voter ID cards, and VVPAT machines.' },
+              { q: 'Is the first-past-the-post system fair?', a: 'First-past-the-post: candidate with most votes wins (not necessarily majority). It is simple, gives stable governments, and creates accountability. But: a party can win majority of seats with minority of votes; smaller parties are underrepresented; third parties find it hard to grow. Alternative: Proportional representation (seats match vote percentages) — used in many European countries.' },
+            ]
+          },
+          {
+            id: 'working-of-institutions-9',
+            title: 'Working of Institutions',
+            subtopics: 'Parliament, President, Prime Minister, Cabinet, Supreme Court, Separation of powers',
+            definition: 'Democratic government works through institutions — Parliament (makes laws), Executive/Cabinet (implements laws), and Judiciary (interprets laws). These institutions check and balance each other to prevent abuse of power.',
+            content: `<p>India's democratic government is a complex machine with many parts. Understanding how Parliament, the President, the Cabinet, and the Courts work — and how they check each other — explains how democracy actually functions.</p>
+<h4>Parliament</h4>
+<ul>
+<li><strong>Lok Sabha (Lower House):</strong> 545 members, elected directly, controls money bills, 5-year term</li>
+<li><strong>Rajya Sabha (Upper House):</strong> 245 members, elected by state assemblies, represents states, permanent house</li>
+<li>Parliament's functions: Make laws, approve budget, oversee executive (question hour, no-confidence motion)</li>
+</ul>
+<h4>The President</h4>
+<p>Constitutional head — formal power. Real power with the Prime Minister and Cabinet. Elected by MPs and MLAs. Can return a bill once (but must sign if Parliament passes it again).</p>
+<h4>Prime Minister and Cabinet</h4>
+<p>Real executive power. PM appoints ministers. Cabinet collectively responsible to Parliament. PM must have majority in Lok Sabha.</p>
+<h4>Judiciary</h4>
+<p>Supreme Court: interprets Constitution, decides disputes between states and centre. High Courts: state level. District Courts: local. Judges are independent — not elected, appointed through collegium system.</p>`,
+            qa: [
+              { q: 'What is the difference between Lok Sabha and Rajya Sabha?', a: 'Lok Sabha: Lower house, 545 members directly elected, controls money bills and can pass them without Rajya Sabha, 5-year term, dissolved if government falls. Rajya Sabha: Upper house, 245 members elected by state assemblies, represents states, permanent (never fully dissolved), members serve 6-year terms. Both are needed to pass most bills.' },
+              { q: 'Why is the President of India called a constitutional head?', a: 'The President has formal/ceremonial powers — invites PM, addresses Parliament, signs bills. But all real decisions are made by the Cabinet. The President must act on the advice of the Cabinet in nearly all matters. So they are the constitutional head (formal), not the real executive power.' },
+              { q: 'What keeps the Prime Minister accountable to Parliament?', a: 'Several mechanisms: (1) Question Hour — MPs can question ministers daily. (2) No-confidence motion — if a majority votes against the government, it must resign. (3) Budget approval — Parliament must approve government spending. (4) Parliamentary committees — scrutinise government. These mechanisms ensure the PM cannot ignore Parliament.' },
+              { q: 'What is the significance of judicial independence in India?', a: 'Independent judges can rule against the government without fear of removal. This protects citizens\' rights. In India, Supreme Court judges are appointed through the collegium system (senior judges recommend appointments), not by the government, ensuring independence. Security of tenure (up to 65 years) prevents political pressure.' },
+            ]
+          },
+          {
+            id: 'democratic-rights-9',
+            title: 'Democratic Rights',
+            subtopics: 'Fundamental Rights, Right to Equality, Right to Freedom, Right against Exploitation, Directive Principles',
+            definition: 'Fundamental Rights are basic rights guaranteed by the Constitution to every Indian citizen, enforceable in courts. They protect citizens from arbitrary state action and ensure individual dignity and freedom.',
+            content: `<p>Rights transform citizens from subjects (who receive favours from rulers) to rights-holders (who can demand what is legally theirs). The six Fundamental Rights are the heart of Indian democracy.</p>
+<h4>The Six Fundamental Rights</h4>
+<ol>
+<li><strong>Right to Equality (Art 14-18):</strong> Equal before law, no discrimination on basis of religion/caste/sex/place of birth, equal opportunity in government jobs, abolition of untouchability.</li>
+<li><strong>Right to Freedom (Art 19-22):</strong> Freedom of speech, assembly, movement, residence, profession. Right to life and personal liberty.</li>
+<li><strong>Right against Exploitation (Art 23-24):</strong> Prohibition of human trafficking, forced labour, child labour (below 14 in hazardous industries).</li>
+<li><strong>Right to Freedom of Religion (Art 25-28):</strong> Freedom of conscience, practice, and propagation.</li>
+<li><strong>Cultural and Educational Rights (Art 29-30):</strong> Minorities can conserve their culture and run their own schools.</li>
+<li><strong>Right to Constitutional Remedies (Art 32):</strong> Right to approach courts to enforce rights. Called "heart and soul" of constitution by Ambedkar.</li>
+</ol>
+<h4>Directive Principles of State Policy</h4>
+<p>Non-enforceable guidelines for the government (Articles 36-51). Aim at social and economic justice — minimum wages, free education (now a right for ages 6-14), equal pay, welfare state ideals.</p>`,
+            qa: [
+              { q: 'What is Article 32 and why did Ambedkar call it "heart and soul of the Constitution"?', a: 'Article 32 is the Right to Constitutional Remedies — the right to approach the Supreme Court directly when any Fundamental Right is violated. Ambedkar called it "heart and soul" because without enforcement, rights are meaningless. This right itself cannot be suspended (except during Emergency).' },
+              { q: 'What are the restrictions on freedom of speech in India?', a: 'Freedom of speech (Art 19) is not absolute. Restrictions include: speech that threatens sovereignty or integrity of India; causes public disorder; is defamatory; contempt of court; obscene speech; speech that incites hatred against communities. The restrictions must be reasonable and by law.' },
+              { q: 'What is the difference between Fundamental Rights and Directive Principles?', a: 'Fundamental Rights (Part III): Enforceable in courts — citizens can sue the government if rights are violated. Negative obligations — prohibit the state from certain actions. Directive Principles (Part IV): Not enforceable in courts — citizens cannot sue. But government is morally obligated. Positive obligations — direct government to achieve social/economic goals.' },
+              { q: 'Why is the right against exploitation important for India?', a: 'Historical context: India had widespread bonded labour, child labour, and trafficking. Article 23 prohibits forced labour, begar (unpaid work), and human trafficking. Article 24 prohibits child labour in factories, mines, and hazardous industries. These rights protect vulnerable populations — especially poor, rural, Dalit, and tribal communities — from exploitation.' },
             ]
           },
         ]
@@ -3158,6 +3859,61 @@ export const CURRICULUM = {
               { q: 'What is the Tyndall effect and which type of mixture shows it?', a: 'The Tyndall effect is the scattering of light by colloidal particles — making the beam visible. Colloids (milk, fog, aerosols) show Tyndall effect because their particles (1-100nm) are big enough to scatter light but too small to see or settle. True solutions do NOT show it (particles too small). Suspensions do show it but particles settle. Used to distinguish colloids from solutions.' },
               { q: 'What is the difference between a compound and a mixture?', a: 'Compound: elements combined CHEMICALLY in fixed ratio (H₂O always 2:1 H:O). Has new properties different from elements (Na is explosive metal, Cl is poisonous gas, NaCl is safe table salt). Separated only by chemical methods. Mixture: substances combined PHYSICALLY in any ratio. Retains properties of components. Separated by physical methods (filtration, distillation, magnets).' },
               { q: 'How is sea water purified to get drinking water?', a: 'Desalination of seawater: (1) Distillation: seawater is heated, water evaporates as steam, salt stays, steam condenses to give pure water. (2) Reverse osmosis (RO): high pressure forces water through a semi-permeable membrane that blocks salt ions. Used in India\'s coastal areas (Chennai) and Gulf countries. Distillation is energy-intensive; RO is more efficient for large-scale use.' },
+            ]
+          },
+          {
+            id: 'atoms-molecules-9',
+            title: 'Atoms and Molecules',
+            subtopics: 'Laws of chemical combination, Atoms, Molecules, Atomic mass, Mole concept, Formulae',
+            definition: 'Atoms are the smallest particles of an element that can take part in a chemical reaction. Molecules are groups of atoms bonded together. The mole is the unit that allows counting atoms and molecules by weighing.',
+            content: `<p>Atoms are incredibly tiny — a single drop of water contains more water molecules than there are stars in the Milky Way galaxy. The mole concept bridges the atomic world and the practical world of laboratory measurements.</p>
+<h4>Laws of Chemical Combination</h4>
+<ul>
+<li><strong>Law of Conservation of Mass:</strong> Total mass of reactants = total mass of products</li>
+<li><strong>Law of Constant Proportions:</strong> A compound always contains the same elements in the same ratio by mass</li>
+</ul>
+<h4>Atomic Mass</h4>
+<p>Relative atomic mass compared to Carbon-12. Hydrogen = 1u, Carbon = 12u, Oxygen = 16u.</p>
+<h4>Molecules and Chemical Formulae</h4>
+<p>Molecular mass = sum of atomic masses. H₂O = 2(1) + 16 = 18u. NaCl = 23 + 35.5 = 58.5u.</p>
+<h4>The Mole</h4>
+<div class="formula">1 mole = 6.022 × 10²³ particles (Avogadro's number)</div>
+<div class="formula">Molar mass = molecular mass in grams</div>
+<div class="formula">No. of moles = given mass / molar mass</div>
+<p>1 mole of water = 18g = 6.022×10²³ water molecules.</p>`,
+            qa: [
+              { q: 'Calculate the number of molecules in 36g of water.', a: 'Molar mass of H₂O = 18g/mol. Moles = 36/18 = 2 moles. Molecules = 2 × 6.022×10²³ = 12.044×10²³ molecules.' },
+              { q: 'State the law of constant proportions with an example.', a: 'A compound always contains the same elements in the same mass ratio, regardless of the source or method of preparation. Example: Water (H₂O) — whether from sea, rain, or lab, always has H:O = 1:8 by mass. This shows that compounds have a definite chemical composition.' },
+              { q: 'What is the molecular mass of H₂SO₄?', a: 'H₂SO₄: 2H + S + 4O = 2(1) + 32 + 4(16) = 2 + 32 + 64 = 98u.' },
+              { q: 'How many moles are in 56g of iron? (Atomic mass of Fe = 56)', a: 'Moles of Fe = mass / molar mass = 56g / 56g per mol = 1 mole.' },
+            ]
+          },
+          {
+            id: 'structure-of-atom-9',
+            title: 'Structure of the Atom',
+            subtopics: 'Electron, Proton, Neutron, Thomson/Rutherford/Bohr models, Valency, Isotopes',
+            definition: 'An atom consists of a central nucleus (protons + neutrons) surrounded by electrons in shells. The number of protons (atomic number) determines the element. The atomic model evolved from Thomson (1897) to Bohr (1913).',
+            content: `<p>Our understanding of the atom's structure completely changed physics and chemistry in the 20th century, leading to quantum mechanics, nuclear energy, and modern electronics.</p>
+<h4>Subatomic Particles</h4>
+<ul>
+<li><strong>Proton:</strong> +1 charge, 1 unit mass, in nucleus</li>
+<li><strong>Neutron:</strong> No charge, 1 unit mass, in nucleus</li>
+<li><strong>Electron:</strong> −1 charge, negligible mass (1/1837 of proton), orbits nucleus</li>
+</ul>
+<h4>Atomic Models</h4>
+<p><strong>Thomson's model ("plum pudding"):</strong> Positive sphere with electrons embedded. Disproved by Rutherford.</p>
+<p><strong>Rutherford's model:</strong> Nucleus contains positive charge. Electrons orbit around it. Limitation: couldn't explain why electrons don't fall into nucleus.</p>
+<p><strong>Bohr's model:</strong> Electrons move in fixed orbits/shells (K, L, M, N). Each shell has fixed energy. No radiation emitted when in a shell. Works for hydrogen.</p>
+<h4>Electronic Configuration</h4>
+<div class="formula">Shell capacity: K=2, L=8, M=18. Fill shells from inside out.</div>
+<p>Valency = electrons in outermost shell (if ≤4) or 8−outermost electrons (if >4).</p>
+<h4>Isotopes and Isobars</h4>
+<p>Isotopes: same atomic number, different mass number (C-12, C-13, C-14). Isobars: same mass number, different atomic numbers (Ca-40, Ar-40).</p>`,
+            qa: [
+              { q: 'Write the electronic configuration of Chlorine (atomic number 17).', a: 'Total electrons = 17. K shell = 2, L shell = 8, M shell = 7. Configuration: 2, 8, 7. Valency = 8 − 7 = 1.' },
+              { q: 'What was the limitation of Rutherford\'s model?', a: 'Rutherford\'s nuclear model couldn\'t explain why electrons don\'t spiral into the positively charged nucleus (accelerating charges should radiate energy and collapse). Also couldn\'t explain the line spectra of atoms. Bohr resolved this by proposing fixed energy levels where electrons don\'t radiate.' },
+              { q: 'What are isotopes? Give an example and their use.', a: 'Isotopes are atoms of the same element with the same atomic number but different mass numbers (different number of neutrons). Example: Carbon-12 (6p+6n) and Carbon-14 (6p+8n). Uses: Carbon-14 in radiocarbon dating; Uranium-235 in nuclear reactors; Iodine-131 in treating thyroid cancer.' },
+              { q: 'An atom has atomic number 11 and mass number 23. Find: protons, neutrons, electrons.', a: 'Atomic number (Z) = 11 = number of protons. Mass number (A) = 23 = protons + neutrons. Neutrons = 23 − 11 = 12. Electrons = Protons = 11 (neutral atom). This is Sodium (Na).' },
             ]
           },
         ]
@@ -3338,6 +4094,146 @@ export const CURRICULUM = {
               { q: 'Cards numbered 1-25 are placed in a box. Find P(divisible by both 2 and 3).', a: 'Divisible by 6: 6, 12, 18, 24 → 4 outcomes. P = 4/25' },
             ]
           },
+          {
+            id: 'pair-linear-equations-10',
+            title: 'Pair of Linear Equations in Two Variables',
+            subtopics: 'Graphical method, Substitution, Elimination, Cross-multiplication, Consistency',
+            definition: 'A pair of linear equations in two variables represents two straight lines. The solution is the point of intersection (if it exists). Lines may be consistent (one/infinite solutions) or inconsistent (no solution).',
+            content: `<p>Linear equations in two variables model countless real-world situations — from mixing solutions to calculating ages, speeds and distances. The pair of equations gives us two constraints to find two unknowns.</p>
+<h4>Graphical Method</h4>
+<p>Plot both lines. Intersection point = unique solution. Parallel lines = no solution. Coincident lines = infinite solutions.</p>
+<h4>Consistency Conditions</h4>
+<div class="formula">a₁/a₂ ≠ b₁/b₂ → Consistent (unique solution)</div>
+<div class="formula">a₁/a₂ = b₁/b₂ = c₁/c₂ → Consistent (infinite solutions)</div>
+<div class="formula">a₁/a₂ = b₁/b₂ ≠ c₁/c₂ → Inconsistent (no solution)</div>
+<h4>Elimination Method</h4>
+<p>Make coefficients of one variable equal, then add or subtract equations to eliminate that variable.</p>
+<h4>Substitution Method</h4>
+<p>Express one variable in terms of other from one equation, substitute into the other equation.</p>`,
+            qa: [
+              { q: 'Solve: 2x + y = 8 and x − y = 1 by elimination.', a: 'Add both equations: 3x = 9 → x = 3. Substitute: 2(3)+y=8 → y=2. Solution: (3,2).' },
+              { q: 'For what value of k does the system kx + 3y = k−3, 12x + ky = k have no solution?', a: 'No solution: k/12 = 3/k ≠ (k−3)/k. k² = 36 → k = ±6. For k = 6: 6/12 = 3/6 = 1/2 and (6−3)/6 = 1/2 (would be infinite). For k = −6: check not equal → k = −6.' },
+              { q: 'Sum of two numbers is 15, difference is 3. Find the numbers.', a: 'x+y=15, x−y=3. Adding: 2x=18 → x=9. y=6.' },
+              { q: 'A fraction becomes 1/3 when 1 is subtracted from numerator, and 1/4 when 8 is added to denominator. Find the fraction.', a: '(x−1)/y = 1/3 → 3x−y=3. x/(y+8) = 1/4 → 4x−y=8. Subtract: x=5, y=12. Fraction = 5/12.' },
+            ]
+          },
+          {
+            id: 'triangles-10',
+            title: 'Triangles — Similarity',
+            subtopics: 'Similar figures, AAA/AA/SSS/SAS criteria, BPT theorem, Pythagoras theorem proof',
+            definition: 'Two triangles are similar if their corresponding angles are equal and corresponding sides are proportional. Similar triangles have the same shape but may differ in size.',
+            content: `<p>Similarity is used in architecture, map-making, photography, and engineering. The basic proportionality theorem connects parallel lines and triangles in a beautiful way.</p>
+<h4>Basic Proportionality Theorem (BPT / Thales Theorem)</h4>
+<p>If a line is drawn parallel to one side of a triangle, it divides the other two sides in the same ratio.</p>
+<div class="formula">If DE ∥ BC in △ABC, then AD/DB = AE/EC</div>
+<h4>Similarity Criteria</h4>
+<ul>
+<li><strong>AA (Angle-Angle):</strong> Two angles equal → triangles similar</li>
+<li><strong>SSS:</strong> All three pairs of sides proportional → similar</li>
+<li><strong>SAS:</strong> One angle equal, sides including it proportional → similar</li>
+</ul>
+<h4>Areas of Similar Triangles</h4>
+<div class="formula">Area(△1)/Area(△2) = (side1/side2)²</div>
+<h4>Pythagoras Theorem</h4>
+<p>In a right triangle, square of hypotenuse = sum of squares of other two sides. (Proved using similar triangles)</p>`,
+            qa: [
+              { q: 'In △ABC, DE ∥ BC. AD=3, DB=5, AE=x, EC=10. Find x.', a: 'By BPT: AD/DB = AE/EC. 3/5 = x/10. x = 6.' },
+              { q: 'Two similar triangles have sides 4 cm and 6 cm. Find ratio of their areas.', a: 'Ratio of areas = (4/6)² = 16/36 = 4:9.' },
+              { q: 'State and prove the converse of BPT.', a: 'Converse: If a line divides two sides of a triangle in the same ratio, it is parallel to the third side. Proof by contradiction — assume line not parallel, draw a parallel, show this leads to the dividing point being at two different locations, contradiction.' },
+              { q: 'If △ABC ~ △PQR with BC=4, QR=5, area(△PQR)=25 cm². Find area(△ABC).', a: 'Area ratio = (BC/QR)² = (4/5)² = 16/25. Area(△ABC) = 16/25 × 25 = 16 cm².' },
+            ]
+          },
+          {
+            id: 'coordinate-geometry-10',
+            title: 'Coordinate Geometry',
+            subtopics: 'Distance formula, Section formula, Area of triangle, Midpoint',
+            definition: 'Coordinate geometry (analytic geometry) studies geometric figures using coordinates. It connects algebra and geometry, allowing us to solve geometric problems using equations.',
+            content: `<p>Coordinate geometry bridges algebra and geometry. GPS navigation, computer graphics, and machine learning all use coordinate geometry fundamentally.</p>
+<h4>Distance Formula</h4>
+<div class="formula">d = √[(x₂−x₁)² + (y₂−y₁)²]</div>
+<h4>Section Formula (internal division)</h4>
+<p>Point P dividing AB in ratio m:n internally:</p>
+<div class="formula">P = [(mx₂+nx₁)/(m+n), (my₂+ny₁)/(m+n)]</div>
+<h4>Midpoint Formula</h4>
+<div class="formula">Midpoint = [(x₁+x₂)/2, (y₁+y₂)/2]</div>
+<h4>Area of Triangle</h4>
+<div class="formula">Area = ½|x₁(y₂−y₃) + x₂(y₃−y₁) + x₃(y₁−y₂)|</div>
+<p>If area = 0, the three points are collinear.</p>`,
+            qa: [
+              { q: 'Find distance between (3,4) and (−2,−1) using distance formula.', a: 'd = √[(3−(−2))²+(4−(−1))²] = √[25+25] = √50 = 5√2 units.' },
+              { q: 'Find the midpoint of the segment joining (2,3) and (8,7).', a: 'Midpoint = ((2+8)/2, (3+7)/2) = (5, 5).' },
+              { q: 'Point P divides A(1,2) and B(7,8) in ratio 2:1 internally. Find P.', a: 'P = [(2×7+1×1)/(2+1), (2×8+1×2)/(2+1)] = [15/3, 18/3] = (5, 6).' },
+              { q: 'Find area of triangle with vertices (0,0), (4,0), (0,3).', a: 'Area = ½|0(0−3)+4(3−0)+0(0−0)| = ½|0+12+0| = 6 sq. units.' },
+            ]
+          },
+          {
+            id: 'circles-10',
+            title: 'Circles — Tangents and Chords',
+            subtopics: 'Tangent, Chord, Tangent from external point, Angle subtended, Cyclic quadrilateral',
+            definition: 'A tangent to a circle is a line that touches the circle at exactly one point (point of tangency). The tangent is perpendicular to the radius at the point of contact.',
+            content: `<p>Circle theorems are used in architecture (dome designs, wheel mechanics), engineering (gear systems), and astronomy (planetary orbits). These properties were known to ancient Greeks and remain fundamental.</p>
+<h4>Key Theorems</h4>
+<ul>
+<li><strong>Tangent ⊥ Radius:</strong> The tangent to a circle at any point is perpendicular to the radius at that point.</li>
+<li><strong>Two tangents from external point:</strong> Both have equal length. PA = PB if P is external point, A and B are tangent points.</li>
+<li><strong>Angle in semicircle:</strong> Angle subtended by a diameter is 90°.</li>
+<li><strong>Angles in same segment:</strong> Angles subtended by the same chord on the same side are equal.</li>
+</ul>
+<h4>Cyclic Quadrilateral</h4>
+<div class="formula">Opposite angles of a cyclic quadrilateral sum to 180°</div>`,
+            qa: [
+              { q: 'A tangent PA is drawn from external point P to circle with centre O. If PA=6 cm and OA=4 cm, find OP.', a: 'OA ⊥ PA (tangent ⊥ radius). By Pythagoras: OP² = OA²+PA² = 16+36 = 52. OP = 2√13 cm.' },
+              { q: 'From external point P, two tangents PA and PB are drawn to a circle. If PA=5 cm, find PB.', a: 'Tangents from an external point to a circle are equal. PB = PA = 5 cm.' },
+              { q: 'Prove that the tangent at any point of a circle is perpendicular to the radius at the point of contact.', a: 'Let O be centre, P be point of tangency, T be tangent. For any other point Q on line T, OQ > OP (since Q lies outside circle). So OP is the shortest distance from O to line T, which means OP ⊥ T.' },
+              { q: 'ABCD is a cyclic quadrilateral. If angle A = 75°, find angle C.', a: 'Opposite angles of cyclic quadrilateral are supplementary. Angle A + Angle C = 180°. Angle C = 180° − 75° = 105°.' },
+            ]
+          },
+          {
+            id: 'applications-trigonometry-10',
+            title: 'Applications of Trigonometry — Heights and Distances',
+            subtopics: 'Angle of elevation, Angle of depression, Line of sight, Solving real-world problems',
+            definition: 'Heights and distances is an application of trigonometry where angles of elevation and depression are used to calculate inaccessible heights and distances using trigonometric ratios.',
+            content: `<p>Before GPS, surveyors used trigonometry to map mountains, calculate distances across rivers, and determine heights of buildings. The same principles are still used in engineering and navigation.</p>
+<h4>Key Terms</h4>
+<ul>
+<li><strong>Line of sight:</strong> Imaginary line from observer to object</li>
+<li><strong>Angle of elevation:</strong> Angle above horizontal (looking up)</li>
+<li><strong>Angle of depression:</strong> Angle below horizontal (looking down)</li>
+</ul>
+<h4>Standard Approach</h4>
+<p>1. Draw a clear diagram. 2. Identify the right triangle. 3. Apply appropriate trig ratio. 4. Solve the equation.</p>
+<div class="example-box"><strong>Example:</strong> A 50m building casts a shadow of 50√3 m. Find angle of elevation of sun.<br/>tan θ = 50/(50√3) = 1/√3. θ = 30°.</div>`,
+            qa: [
+              { q: 'A ladder 10 m long makes a 60° angle with the ground. How high does it reach on the wall?', a: 'sin 60° = height/10. height = 10 × (√3/2) = 5√3 ≈ 8.66 m.' },
+              { q: 'From the top of a 75 m high lighthouse, angle of depression of a ship is 30°. Find distance of ship from the base.', a: 'tan 30° = 75/d. 1/√3 = 75/d. d = 75√3 ≈ 129.9 m.' },
+              { q: 'A boy standing 40 m from a tower sees the top at 60° elevation. What is the tower height?', a: 'tan 60° = h/40. √3 = h/40. h = 40√3 ≈ 69.28 m.' },
+              { q: 'Two poles of equal height h are on opposite sides of a road of width d. From a point between them, angles of elevation are 60° and 30°. Find ratio of distances.', a: 'Let distances be x and (d−x). tan 60°=h/x → x=h/√3. tan 30°=h/(d−x) → d−x=h√3. Ratio x:(d−x) = h/√3 : h√3 = 1:3.' },
+            ]
+          },
+          {
+            id: 'statistics-10',
+            title: 'Statistics — Mean, Median, Mode',
+            subtopics: 'Mean (direct/assumed mean/step deviation), Median using ogive, Mode, Cumulative frequency',
+            definition: 'Statistics for Class 10 focuses on computing measures of central tendency (mean, median, mode) for grouped data and representing data graphically using cumulative frequency curves (ogives).',
+            content: `<p>Statistics enables informed decision-making in medicine (clinical trials), business (market research), government (census), and science. The three averages each capture different aspects of a data set.</p>
+<h4>Mean for Grouped Data</h4>
+<div class="formula">Mean = Σfᵢxᵢ / Σfᵢ (direct method)</div>
+<div class="formula">Mean = a + (Σfᵢdᵢ/Σfᵢ) where dᵢ = xᵢ−a (assumed mean method)</div>
+<h4>Mode</h4>
+<div class="formula">Mode = l + [(f₁−f₀)/(2f₁−f₀−f₂)] × h</div>
+<p>Where l = lower class boundary of modal class, f₁ = frequency of modal class, f₀ = preceding frequency, f₂ = following frequency, h = class width.</p>
+<h4>Median</h4>
+<div class="formula">Median = l + [(n/2 − cf)/f] × h</div>
+<p>Where cf = cumulative frequency before median class, f = frequency of median class.</p>
+<h4>Ogive (Cumulative Frequency Curve)</h4>
+<p>Plot cumulative frequency vs upper class boundary. Median = x-value at n/2 cumulative frequency.</p>`,
+            qa: [
+              { q: 'Find mean of: class 0-10 (freq 5), 10-20 (10), 20-30 (15), 30-40 (8), 40-50 (2). Total = 40.', a: 'Midpoints: 5,15,25,35,45. Σfx = 25+150+375+280+90 = 920. Mean = 920/40 = 23.' },
+              { q: 'Modal class has frequency 25, preceding 12, following 10, lower bound 30, width 10. Find mode.', a: 'Mode = 30 + [(25−12)/(2×25−12−10)] × 10 = 30 + [13/28] × 10 = 30 + 4.64 = 34.64' },
+              { q: 'What is the difference between median and mean?', a: 'Mean = sum/count (affected by extreme values). Median = middle value (not affected by extremes, better for skewed data). Mode = most frequent value (for categorical data). The relationship is: Mode ≈ 3(Median) − 2(Mean) for moderately skewed data.' },
+              { q: 'What is an ogive? How is median found from it?', a: 'Ogive is the cumulative frequency curve. Plot upper class limits on x-axis vs cumulative frequencies on y-axis. Draw a horizontal line from n/2 on y-axis to the curve, drop a vertical to x-axis. That x-value is the median.' },
+            ]
+          },
         ]
       },
       chemistry: {
@@ -3448,6 +4344,34 @@ export const CURRICULUM = {
               { q: 'What is ethanol and what are its uses?', a: 'Ethanol (C₂H₅OH) is a simple alcohol. Uses: alcoholic beverages, industrial solvent, antiseptic (surgical spirit), fuel additive (flex-fuel cars), raw material for making vinegar (acetic acid). It is produced by fermentation of glucose using yeast.' },
             ]
           },
+          {
+            id: 'periodic-classification-10',
+            title: 'Periodic Classification of Elements',
+            subtopics: 'Dobereiner triads, Newlands octaves, Mendeleev periodic table, Modern periodic table, Trends',
+            definition: 'The periodic table organises elements by atomic number in periods (rows) and groups (columns). Elements in the same group have similar chemical properties. Modern periodic law: properties of elements are periodic functions of their atomic numbers.',
+            content: `<p>Mendeleev predicted the existence of undiscovered elements based on gaps in his periodic table — one of the greatest predictive achievements in science. The modern periodic table has 118 confirmed elements.</p>
+<h4>History of Periodic Classification</h4>
+<ul>
+<li><strong>Dobereiner Triads (1829):</strong> Groups of three elements where middle element has atomic mass = average of other two. E.g., Li(7), Na(23), K(39): avg = (7+39)/2 = 23 ✓. But only 3 triads found.</li>
+<li><strong>Newlands Octaves (1865):</strong> Every 8th element has similar properties (like musical octaves). Failed beyond calcium.</li>
+<li><strong>Mendeleev (1869):</strong> Arranged by atomic mass, left gaps for undiscovered elements, predicted their properties. Limitation: couldn't explain hydrogen's position, isotopes had same position.</li>
+<li><strong>Moseley / Modern (1913+):</strong> Atomic number (not mass) is basis. Modern periodic law.</li>
+</ul>
+<h4>Modern Periodic Table</h4>
+<p>18 groups (columns), 7 periods (rows). 118 elements: metals (left), metalloids (diagonal), non-metals (right). Noble gases (Group 18).</p>
+<h4>Periodic Trends</h4>
+<ul>
+<li>Atomic size: increases down a group; decreases across a period (left to right)</li>
+<li>Metallic character: increases down a group; decreases left to right</li>
+<li>Valency: increases then decreases across a period (1→4→0)</li>
+</ul>`,
+            qa: [
+              { q: 'State the modern periodic law.', a: 'The properties of elements are a periodic function of their atomic numbers. This means when elements are arranged in order of increasing atomic number, elements with similar properties recur at regular intervals.' },
+              { q: 'Explain Dobereiner Triads with an example.', a: 'Dobereiner found groups of three elements with similar properties where the middle element\'s atomic mass ≈ average of the other two. Example: Calcium (Ca=40), Strontium (Sr=88), Barium (Ba=137). Average of Ca and Ba = (40+137)/2 = 88.5 ≈ 88 (Sr). This suggested a relationship but covered only 3 triads.' },
+              { q: 'Why was Mendeleev\'s periodic table considered a great achievement?', a: 'Mendeleev arranged elements by atomic mass and left gaps for undiscovered elements, accurately predicting their properties. When Gallium (eka-aluminium) and Germanium (eka-silicon) were discovered, their properties matched Mendeleev\'s predictions almost exactly. He also corrected some known atomic masses based on expected positions.' },
+              { q: 'How does atomic size change across a period and down a group?', a: 'Across a period (left to right): atomic size decreases because nuclear charge (protons) increases while electrons are added to the same shell — stronger pull draws electrons closer. Down a group: atomic size increases because new electron shells are added (larger shells), and inner electrons shield outer electrons from nuclear pull.' },
+            ]
+          },
         ]
       },
       physics: {
@@ -3526,6 +4450,68 @@ export const CURRICULUM = {
               { q: 'Why is AC used for transmission of electricity over long distances?', a: 'AC voltage can be stepped up (high voltage = low current) using transformers. High-voltage, low-current transmission significantly reduces energy loss in wires (P=I²R — less current means much less heat loss). At destination, voltage is stepped down for safe use.' },
             ]
           },
+          {
+            id: 'human-eye-10',
+            title: 'The Human Eye and the Colourful World',
+            subtopics: 'Structure of eye, Defects of vision, Atmospheric refraction, Scattering of light, Rainbow',
+            definition: 'The human eye is an optical instrument that focuses light on the retina to form images. Defects like myopia and hypermetropia are corrected by lenses. Atmospheric refraction explains twinkling stars and the colourful sky.',
+            content: `<p>The eye is nature's masterpiece optical instrument. Understanding how it works explains why we see what we see — from the blue sky to rainbows and the apparent size of the rising moon.</p>
+<h4>Structure of the Eye</h4>
+<ul>
+<li><strong>Cornea:</strong> Transparent outer surface — does most of the focusing</li>
+<li><strong>Iris:</strong> Coloured ring that controls pupil size (controls light entry)</li>
+<li><strong>Lens:</strong> Fine-tunes focus by changing shape (accommodation)</li>
+<li><strong>Retina:</strong> Screen at back — contains rods (dim light) and cones (colour)</li>
+<li><strong>Optic nerve:</strong> Sends signals to brain</li>
+</ul>
+<h4>Defects of Vision</h4>
+<ul>
+<li><strong>Myopia (short-sightedness):</strong> Cannot see distant objects. Eyeball too long or lens too curved → image forms in front of retina. Corrected by concave (diverging) lens.</li>
+<li><strong>Hypermetropia (long-sightedness):</strong> Cannot see nearby objects. Eyeball too short → image forms behind retina. Corrected by convex (converging) lens.</li>
+<li><strong>Presbyopia:</strong> Loss of near-vision with age. Bifocal lenses used.</li>
+</ul>
+<h4>Atmospheric Refraction</h4>
+<p>Stars twinkle because their light passes through air layers of varying density (and thus varying refractive index) — path bends, causing twinkling. Planets don't twinkle because they're close enough to appear as extended sources (their different rays average out).</p>
+<h4>Scattering of Light</h4>
+<p>Rayleigh scattering: shorter wavelengths scatter more. Blue light (short wavelength) scatters most → sky looks blue. Red light scatters least → sunsets/sunrises are red.</p>`,
+            qa: [
+              { q: 'Why is the sky blue?', a: 'Sunlight contains all colours. Blue light has shorter wavelength and scatters much more than red light when hitting air molecules (Rayleigh scattering). This scattered blue light comes to us from all directions → we see blue sky. Red scatters least, reaching us directly → sunsets appear red.' },
+              { q: 'A person cannot see objects beyond 2m. What defect is this and how corrected?', a: 'Myopia (short-sightedness). They can see objects within 2m (near point normal, far point 2m instead of infinity). Corrected by concave (diverging) lens of appropriate focal length. The lens shifts the image of distant objects to within the persons far point (2m).' },
+              { q: 'Why do stars twinkle but planets do not?', a: 'Stars are very far away and appear as point sources. Light from a single point bends differently as it passes through turbulent air layers — causing apparent position to shift rapidly (twinkle). Planets are closer and appear as extended discs. Light from different parts averages out the atmospheric distortions → steady light.' },
+              { q: 'What is the power of accommodation of the human eye?', a: 'The ability of the eye lens to change its focal length (by changing shape using ciliary muscles) to focus objects at different distances. Near point (minimum distance of clear vision) = 25 cm for a normal eye. Far point = infinity. Range of accommodation = from 25 cm to infinity.' },
+            ]
+          },
+          {
+            id: 'sources-energy-10',
+            title: 'Sources of Energy',
+            subtopics: 'Conventional vs non-conventional, Fossil fuels, Solar, Wind, Hydro, Nuclear, Biomass',
+            definition: 'Energy sources are classified as conventional (fossil fuels, hydro) and non-conventional (solar, wind, tidal, nuclear). Renewable sources are replenished naturally; non-renewable sources are finite and will run out.',
+            content: `<p>Every device you use — phone, light, vehicle — runs on energy. As fossil fuels run out and climate change accelerates, the world is urgently transitioning to cleaner, renewable energy sources.</p>
+<h4>Conventional Sources</h4>
+<ul>
+<li><strong>Fossil fuels (coal, petroleum, natural gas):</strong> High energy, but non-renewable, polluting, cause climate change. Formed from ancient organisms over millions of years.</li>
+<li><strong>Hydroelectric power:</strong> Dams use falling water to generate electricity. Renewable but causes habitat disruption and displacement.</li>
+<li><strong>Thermal power:</strong> Burns coal/oil to heat water → steam → turbine → electricity.</li>
+</ul>
+<h4>Non-Conventional (Renewable) Sources</h4>
+<ul>
+<li><strong>Solar energy:</strong> Photovoltaic cells convert sunlight → electricity. Solar water heaters. Inexhaustible, clean.</li>
+<li><strong>Wind energy:</strong> Wind turbines. Clean, but wind must be strong and consistent (speed > 15 km/h).</li>
+<li><strong>Biomass:</strong> Wood, dung, crop waste. Biogas plants produce methane (cleaner burning than firewood).</li>
+<li><strong>Tidal/Wave/Geothermal:</strong> Limited locations but promising.</li>
+</ul>
+<h4>Nuclear Energy</h4>
+<div class="formula">Nuclear fission: Uranium-235 + neutron → splits → energy + more neutrons → chain reaction</div>
+<p>Enormous energy from tiny mass (E = mc²). Issues: radioactive waste, safety concerns (Chernobyl, Fukushima), high setup cost.</p>
+<h4>A Good Fuel Should Be:</h4>
+<p>High calorific value, easily combustible at moderate temperature, low pollution, cheap and easily available, stable in storage, safe to handle.</p>`,
+            qa: [
+              { q: 'What are the advantages of using biogas over firewood?', a: 'Biogas burns completely (no smoke, no respiratory diseases), has higher calorific value than wood, produces no residue, is clean and environmentally friendly. The slurry remaining is an excellent fertiliser. Firewood produces smoke (health hazard), leaves ash, and contributes to deforestation.' },
+              { q: 'What are the limitations of solar energy?', a: 'Solar energy depends on sunlight — not available at night, reduced on cloudy days. Solar cells are expensive to manufacture. Energy storage (batteries) is costly and limited. Large areas needed for significant power generation. However: free fuel, no pollution, maintenance is low.' },
+              { q: 'Why is nuclear energy considered high risk despite its high power output?', a: 'Risks: radioactive waste stays dangerous for thousands of years (safe disposal is unsolved). Accidents (Chernobyl 1986, Fukushima 2011) can contaminate vast areas. Uranium mining is hazardous. Nuclear material can be misused for weapons. However: produces no greenhouse gases during operation, very high energy density.' },
+              { q: 'What is meant by calorific value?', a: 'Calorific value (or heating value) is the amount of heat energy produced per unit mass of fuel when it is completely burned. Measured in kJ/kg or kcal/g. Higher calorific value = more energy per kg. LPG ≈ 55,000 kJ/kg, wood ≈ 17,000 kJ/kg, coal ≈ 25,000 kJ/kg.' },
+            ]
+          },
         ]
       },
       biology: {
@@ -3571,6 +4557,124 @@ export const CURRICULUM = {
               { q: 'What is natural selection? Give an example.', a: 'Natural selection: organisms with traits better suited to their environment survive, reproduce, and pass traits to offspring. Example: peppered moths in industrial Britain — before industry, white moths survived (camouflage on lichen-covered trees). After pollution blackened trees, dark moths survived better. Dark moths became dominant.' },
               { q: 'What is the difference between analogous and homologous organs?', a: 'Homologous organs: same basic structure/origin but different functions — suggest common ancestry (human arm, bat wing, whale flipper — same bones, different use). Analogous organs: different structure/origin but same function — result of convergent evolution (butterfly wing and bird wing — both for flight but structurally very different).' },
               { q: 'How does DNA copying lead to evolution?', a: 'DNA replication is not perfect — small errors (mutations) occur. Most are neutral or harmful, but occasionally a mutation improves adaptation. If the individual with the mutation survives and reproduces, the mutation spreads in the population. Over millions of years, accumulated mutations create new species.' },
+            ]
+          },
+          {
+            id: 'control-coordination-10',
+            title: 'Control and Coordination',
+            subtopics: 'Nervous system, Reflex arc, Brain, Hormones, Endocrine glands',
+            definition: 'Control and coordination involves the nervous system (electrical signals via neurons) and endocrine system (chemical signals via hormones) working together to regulate all body functions.',
+            content: `<p>The brain processes 86 billion neurons' worth of information every moment, controlling everything from breathing to love. Hormones chemically co-ordinate slower, long-term responses.</p>
+<h4>Nervous System</h4>
+<p><strong>Neuron</strong> = basic unit. Dendrites receive signals → cell body processes → axon transmits → synapse (gap between neurons).</p>
+<p>Central Nervous System (CNS) = brain + spinal cord. Peripheral NS = nerves to/from body.</p>
+<h4>Reflex Arc</h4>
+<div class="formula">Receptor → Sensory nerve → Spinal cord → Motor nerve → Effector (muscle)</div>
+<p>Bypasses brain for fast, automatic responses (withdrawing hand from heat). Brain learns about it after the action.</p>
+<h4>Brain</h4>
+<ul>
+<li><strong>Cerebrum:</strong> Thinking, memory, voluntary actions</li>
+<li><strong>Cerebellum:</strong> Balance and coordination</li>
+<li><strong>Medulla oblongata:</strong> Involuntary functions (heartbeat, breathing)</li>
+</ul>
+<h4>Hormones (Endocrine System)</h4>
+<p>Chemical messengers secreted by glands directly into blood. Slower but longer-lasting than nervous system.</p>
+<ul>
+<li>Pituitary: master gland (growth hormone, controls other glands)</li>
+<li>Thyroid: thyroxine (metabolism)</li>
+<li>Pancreas: insulin (blood glucose regulation)</li>
+<li>Adrenal: adrenaline (fight-or-flight response)</li>
+</ul>
+<h4>Plant Hormones (Phytohormones)</h4>
+<p>Auxin (phototropism, growth), Gibberellin (stem elongation), Cytokinin (cell division), Abscisic acid (stomata closing, dormancy).</p>`,
+            qa: [
+              { q: 'What is a reflex action? Give an example.', a: 'A reflex action is an automatic, involuntary rapid response to a stimulus. It is controlled by the spinal cord (not brain), allowing faster response. Example: touching a hot object — the signal goes sensory nerve → spinal cord → motor nerve → muscle contracts to withdraw hand. Brain is informed later.' },
+              { q: 'What are the functions of adrenaline hormone?', a: 'Adrenaline (epinephrine) is released by adrenal glands in emergency/stress situations ("fight-or-flight"). It: increases heart rate and blood pressure; dilates pupils; increases blood sugar (for energy); slows digestion; diverts blood to muscles. Prepares body for rapid action.' },
+              { q: 'Why is brain called the control centre of the body?', a: 'The brain receives information from all body parts via sensory nerves, processes it, and sends appropriate commands via motor nerves. Cerebrum handles conscious thought, memory, speech. Cerebellum coordinates balance/movement. Medulla controls vital automatic functions (breathing, heartbeat). It regulates all body activities.' },
+              { q: 'How do plants show tropism?', a: 'Tropism is directional growth response to a stimulus. Phototropism: stems grow toward light (auxin accumulates on shaded side, causing faster cell elongation there → stem bends toward light). Geotropism: roots grow downward (toward gravity), shoots grow upward. Hydrotropism: roots grow toward water.' },
+            ]
+          },
+          {
+            id: 'reproduction-10',
+            title: 'How do Organisms Reproduce?',
+            subtopics: 'Asexual reproduction, Sexual reproduction, Reproductive health, Contraception',
+            definition: 'Reproduction is the production of new organisms from existing ones. Asexual reproduction involves one parent (no gametes); sexual reproduction involves two parents and fusion of gametes (fertilisation).',
+            content: `<p>Reproduction is the fundamental property of life that ensures the continuation of species. The diversity of reproductive strategies — from binary fission to viviparity — shows evolution's creativity.</p>
+<h4>Asexual Reproduction</h4>
+<ul>
+<li><strong>Binary fission:</strong> One organism splits into two (bacteria, Amoeba)</li>
+<li><strong>Budding:</strong> New organism grows as a bud (Hydra, yeast)</li>
+<li><strong>Fragmentation:</strong> Body breaks and each part grows (Planaria, algae)</li>
+<li><strong>Spore formation:</strong> Spores germinate into new organisms (Rhizopus/bread mould)</li>
+<li><strong>Vegetative propagation:</strong> New plants from roots/stems/leaves (potato — stems, rose — cutting)</li>
+</ul>
+<h4>Sexual Reproduction in Flowering Plants</h4>
+<p>Pollination → fertilisation → seed formation. Self-pollination (same flower) or cross-pollination (different flowers). Fruit develops from ovary; seed from ovule.</p>
+<h4>Human Reproductive System</h4>
+<p><strong>Male:</strong> Testes (sperm + testosterone), vas deferens, prostate, penis.<br/>
+<strong>Female:</strong> Ovaries (egg + oestrogen/progesterone), fallopian tubes, uterus, vagina.</p>
+<p>Fertilisation → zygote → embryo → foetus → birth (9 months).</p>
+<h4>Reproductive Health</h4>
+<p>STIs (STDs), contraception methods: barrier (condom), hormonal (pills), surgical (vasectomy, tubectomy), IUDs.</p>`,
+            qa: [
+              { q: 'What is the difference between asexual and sexual reproduction?', a: 'Asexual: one parent, no gametes, offspring genetically identical to parent (clone), faster, e.g., bacteria, Hydra. Sexual: two parents, involves gametes (sperm + egg), offspring have genetic variation (better for evolution/adaptation), slower, more complex.' },
+              { q: 'What is vegetative propagation? Give advantages.', a: 'Vegetative propagation is asexual reproduction in plants where new plants grow from roots, stems, or leaves. Examples: potato (tubers), rose (stem cuttings), grass (runners), ginger (rhizomes). Advantages: faster growth, maintains parent plant traits (used for seedless grapes, roses of specific colour), no need for seeds.' },
+              { q: 'What happens during fertilisation in humans?', a: 'A sperm cell fuses with an egg cell (ovum) in the fallopian tube. Their nuclei merge, combining genetic material (23+23=46 chromosomes). The resulting zygote begins dividing as it travels to the uterus, where it implants and develops into an embryo over 9 months.' },
+              { q: 'What is the role of the placenta?', a: 'The placenta is a special organ connecting the embryo to the mother\'s uterus. It allows: nutrients (glucose, amino acids) and oxygen to pass from mother\'s blood to foetus; waste (CO₂, urea) from foetus to mother\'s blood for removal. It also produces hormones to maintain pregnancy.' },
+            ]
+          },
+          {
+            id: 'our-environment-10',
+            title: 'Our Environment',
+            subtopics: 'Ecosystem, Food chains, Food webs, Ozone depletion, Waste management, Trophic levels',
+            definition: 'An ecosystem is a community of living organisms interacting with each other and their physical environment. Energy flows through food chains; matter is cycled. Human activities are disrupting ecosystems worldwide.',
+            content: `<p>Every organism is part of multiple food chains in a complex web of life. Understanding ecosystems tells us how our choices affect the planet — from plastic pollution to climate change.</p>
+<h4>Ecosystem Components</h4>
+<ul>
+<li><strong>Producers (autotrophs):</strong> Plants, algae — make food by photosynthesis</li>
+<li><strong>Consumers (heterotrophs):</strong> Herbivores, carnivores, omnivores</li>
+<li><strong>Decomposers:</strong> Bacteria, fungi — break down dead matter, return nutrients to soil</li>
+</ul>
+<h4>Food Chain and Trophic Levels</h4>
+<div class="formula">Grass → Grasshopper → Frog → Snake → Hawk</div>
+<p>Each step = one trophic level. Energy is lost at each level (only ~10% transferred — rest used for metabolism/heat). So food chains are short (3-4 levels).</p>
+<h4>Biological Magnification</h4>
+<p>Non-biodegradable chemicals (DDT, mercury) accumulate and concentrate at each higher trophic level. Top predators get the highest concentration — causing reproductive failure, cancer.</p>
+<h4>Ozone Depletion</h4>
+<p>Chlorofluorocarbons (CFCs) from ACs, refrigerators → react with ozone (O₃) in stratosphere → ozone hole → more UV radiation → skin cancer, cataracts, harm to marine ecosystems.</p>
+<h4>Waste Management</h4>
+<p>Biodegradable waste (food, paper) → composting. Non-biodegradable (plastics, metals) → reduce, reuse, recycle.</p>`,
+            qa: [
+              { q: 'Why are food chains usually limited to 4-5 trophic levels?', a: 'At each trophic level, only about 10% of energy is transferred to the next level. The rest (90%) is used for the organism\'s own metabolism or lost as heat. By the 4th-5th level, so little energy remains that it cannot support a large enough population of organisms.' },
+              { q: 'What is biological magnification? Give an example.', a: 'Biological magnification (bioaccumulation) is the increasing concentration of non-biodegradable chemicals at higher trophic levels. Example: DDT (pesticide) — small amount in water → plankton concentrate it → small fish eat many plankton (more DDT) → large fish eat many small fish (even more DDT) → bird eats large fish (very high concentration) → causes thin eggshells, reproductive failure.' },
+              { q: 'What are the effects of ozone layer depletion?', a: 'Ozone layer in stratosphere absorbs harmful UV radiation. Depletion (by CFCs) leads to: increased UV-B radiation reaching Earth; more skin cancers and cataracts in humans; damage to immune systems; harm to phytoplankton (base of marine food chain); crop yield reduction. Solutions: ban on CFCs (Montreal Protocol 1987).' },
+              { q: 'Distinguish between biodegradable and non-biodegradable waste.', a: 'Biodegradable: broken down by decomposers (bacteria, fungi) into simpler substances. Examples: food scraps, paper, cotton, wood. Non-biodegradable: not broken down (or very slowly). Examples: plastics, metals, DDT, glass. Non-biodegradable waste accumulates, pollutes soil and water, and causes biological magnification in food chains.' },
+            ]
+          },
+          {
+            id: 'natural-resources-management-10',
+            title: 'Management of Natural Resources',
+            subtopics: 'Conservation, Forest management, Water harvesting, Coal and petroleum, Sustainable development',
+            definition: 'Natural resource management involves using resources wisely so they are available for future generations (sustainable development). This includes managing forests, water bodies, soil, coal, and petroleum sustainably.',
+            content: `<p>India\'s rapidly growing population and economy put enormous pressure on natural resources. The challenge is meeting today\'s needs without destroying the resource base for future generations.</p>
+<h4>The Three Rs</h4>
+<div class="formula">Reduce → Reuse → Recycle</div>
+<p>The most effective is Reduce (use less in the first place). Reuse (use multiple times before discarding). Recycle (process used materials into new products — energy-intensive but better than landfills).</p>
+<h4>Forests</h4>
+<p>Forests are biodiversity hotspots providing: timber, medicine, oxygen, climate regulation, soil conservation, flood control. Deforestation → soil erosion, floods, climate change. Community forest management (e.g., Bishnoi community in Rajasthan, Chipko movement) is more effective than government-only management.</p>
+<h4>Water Conservation</h4>
+<ul>
+<li>Rainwater harvesting: collecting rain in tanks or recharging groundwater</li>
+<li>Traditional water systems: kuls (Himachal), khadins (Rajasthan), johads (Delhi region)</li>
+<li>Narmada Bachao Andolan: controversy of large dams — benefits (irrigation, power) vs costs (displacement, ecosystem disruption)</li>
+</ul>
+<h4>Coal and Petroleum</h4>
+<p>Non-renewable, formed over millions of years. At current rates: coal ~200 years, petroleum ~50 years. Conservation: use public transport, efficient appliances, alternative fuels.</p>`,
+            qa: [
+              { q: 'What is the Chipko Movement and why was it significant?', a: 'The Chipko Movement began in 1973 in Uttarakhand, India. Villagers (led by Gaura Devi and supported by Sunderlal Bahuguna) hugged trees to prevent contractors from cutting them. It was significant as: it stopped deforestation; showed power of community action; influenced government forest policy; was one of the first successful environmental movements in India.' },
+              { q: 'What are the advantages and disadvantages of large dams?', a: 'Advantages: irrigation (food security), hydroelectric power (clean energy), flood control, water storage for dry seasons. Disadvantages: displacement of communities (often tribals), loss of forest and agricultural land (submerged), ecosystem disruption (stops fish migration), seismic activity risk, benefits often don\'t reach nearby communities.' },
+              { q: 'Why is water conservation important in India?', a: 'India has 18% of world population but only 4% of freshwater resources. Population growth, agriculture (70% of water use), industry, and climate change are increasing water stress. Many regions face water scarcity. Traditional water harvesting systems (johads, kuls) show that communities have managed water sustainably for centuries — these methods need revival.' },
+              { q: 'What does sustainable development mean?', a: 'Sustainable development means meeting the needs of the present without compromising the ability of future generations to meet their own needs. It means using resources at a rate that allows natural replenishment: don\'t fish more than can reproduce; don\'t pollute faster than nature can clean; use renewable energy instead of fossil fuels; maintain biodiversity.' },
             ]
           },
         ]
@@ -3803,24 +4907,113 @@ export const CURRICULUM = {
               { q: 'What are unfair trade practices? Give examples.', a: 'Unfair trade practices include: false advertising (showing product better than it is), selling goods below cost to eliminate competition, hoarding to create artificial scarcity, adulteration (adding inferior materials to food — mixing chalk in flour, water in milk), short-weighing (selling 900g as 1kg), and charging above MRP. All are illegal under COPRA and consumer courts can award compensation.' },
             ]
           },
+        ]
+      },
+      history: {
+        id: 'history', topics: [
+          {
+            id: 'rise-nationalism-europe',
+            title: 'The Rise of Nationalism in Europe',
+            subtopics: 'French Revolution, Napoleon, Romanticism, Unification of Italy and Germany, Balkans',
+            definition: 'Nationalism is the idea that people sharing a common language, history, and culture constitute a nation and deserve political self-determination. It was the dominant force reshaping Europe in the 19th century.',
+            content: `<p>The 19th century saw the map of Europe completely redrawn as nationalist movements dissolved old empires and created new nation-states. The ideas born in this era still shape the world today.</p>
+<h4>French Revolution and Napoleon</h4>
+<p>The French Revolution (1789) introduced ideas of liberty, equality, and nationalism. Napoleon's armies spread these ideas across Europe, also provoking nationalist reactions against French domination.</p>
+<h4>Romanticism and Cultural Nationalism</h4>
+<p>Romantic artists, poets, and musicians (Herder, Grimm brothers, Chopin) promoted the idea of a national culture based on shared language, folk tales, and music. "Imagined communities" bound by culture, not just territory.</p>
+<h4>Unification of Italy (1870)</h4>
+<p>Key figures: Mazzini (idealist visionary), Garibaldi (military force), Cavour (political strategist). Italy unified from many small states. Rome became capital in 1871.</p>
+<h4>Unification of Germany (1871)</h4>
+<p>Prussia's Bismarck used "blood and iron" policy — wars against Denmark, Austria, France. After defeating France (1871), German princes proclaimed the German Empire in Versailles.</p>`,
+            qa: [
+              { q: 'How did Napoleon both spread and provoke nationalism?', a: 'Napoleon spread nationalism by: carrying ideals of French Revolution (liberty, equality) across Europe, codifying laws (Napoleonic Code), reducing feudal privileges. He provoked nationalism by: subjugating other peoples, imposing French culture, triggering resentment. European peoples under French rule developed nationalist movements to expel the French — showing that nationalism cuts both ways.' },
+              { q: 'What role did Romanticism play in the growth of nationalism?', a: 'Romantic thinkers rejected pure reason and emphasised emotion, culture, and belonging. Herder argued each nation has its own unique spirit (Volksgeist) expressed in language, folk songs, and poetry. Grimm brothers collected German folk tales. Composers like Chopin used Polish folk themes. This cultural nationalism gave people a sense of distinct national identity beyond just political boundaries.' },
+            ]
+          },
           {
             id: 'nationalism-india-10',
             title: 'Nationalism in India',
-            subtopics: 'Non-Cooperation Movement, Civil Disobedience, Quit India, Gandhi\'s methods, Participation of peasants, workers, women, tribes',
-            definition: 'Indian nationalism was the movement to end British colonial rule and establish an independent nation. Led mainly by the Indian National Congress and Mahatma Gandhi, it mobilised millions of Indians across classes, regions, and religions.',
-            content: `<p>How did India gain independence from the most powerful empire in history? Through one of the most remarkable mass movements ever seen — millions of ordinary Indians refusing to cooperate with colonial rule. The story of Indian nationalism is the story of people power.</p>
+            subtopics: 'Non-Cooperation Movement, Civil Disobedience, Quit India, Gandhi\'s methods, Diverse participation',
+            definition: 'Indian nationalism was the movement to end British colonial rule. Mahatma Gandhi transformed it into a mass movement involving millions of ordinary Indians across all classes, regions, and religions.',
+            content: `<p>How did India gain independence from the most powerful empire in history? Through one of the most remarkable mass movements ever seen — non-violent civil disobedience by millions of Indians.</p>
 <h4>Non-Cooperation Movement (1920-22)</h4>
-<p>Gandhi's first mass movement. Indians refused to: cooperate with British institutions (courts, legislative councils, schools), buy British goods (boycott), hold government titles. Ended abruptly after Chauri Chaura violence (1922) — Gandhi called it off, showing commitment to non-violence.</p>
+<p>Gandhi's first mass movement. Indians refused to cooperate with British institutions, boycotted foreign goods, returned titles. Ended after Chauri Chaura violence (1922) — Gandhi prioritised non-violence above all.</p>
 <h4>Civil Disobedience Movement (1930)</h4>
-<p>Gandhi's Dandi March (240 miles, 24 days) — broke the Salt Law, showing colonialism's injustice. Followed by mass civil disobedience: breaking salt laws, boycotting British goods, refusing to pay taxes. Women participated massively for first time.</p>
+<p>Gandhi's Dandi March — 240 miles in 24 days to make salt, defying the Salt Law. Mass civil disobedience followed. Women participated in large numbers for the first time.</p>
 <h4>Quit India Movement (1942)</h4>
-<p>"Do or Die" — Gandhi's most radical call. Complete rupture with British rule during WWII. British arrested all Congress leaders immediately. But movement continued spontaneously, showing Indians were ready for self-rule.</p>
+<p>"Do or Die" — Gandhi's most radical call during WWII. All Congress leaders arrested immediately but the movement continued spontaneously.</p>
 <h4>Diverse Participation</h4>
-<p>Peasants (against high rents, taxes), Workers (strikes in mills), Women (joined in large numbers — transcended purdah), Tribal communities (against forest laws), Students and youth.</p>`,
+<p>Peasants, industrial workers, women, tribal communities, students — each participated for their own reasons yet united under the national movement.</p>`,
             qa: [
-              { q: 'What was the significance of Gandhi\'s Dandi March?', a: 'The Dandi March (1930): Gandhi walked 240 miles in 24 days from Sabarmati Ashram to Dandi on the coast to make salt from seawater, defying the British Salt Law (which gave the British monopoly on salt and taxed it). The march was significant because: (1) salt was used by every Indian — making it the perfect symbol of colonial exploitation, (2) it drew worldwide media attention, (3) it inspired millions to join Civil Disobedience, (4) proved Indians could resist peacefully but effectively.' },
-              { q: 'What was the Rowlatt Act and why did it anger Indians?', a: 'The Rowlatt Act (1919) allowed the British government to arrest and imprison Indians without trial or due process — no defence, no appeal. It was seen as a direct violation of elementary civil liberties. Gandhi called it "black law." It triggered the first major nationwide agitation against British rule, including the tragic Jallianwala Bagh massacre (April 13, 1919) where British troops fired on a peaceful crowd, killing hundreds.' },
-              { q: 'How did women participate in the independence movement?', a: 'Women participated in all major movements: Non-Cooperation (boycotted foreign cloth, spun khadi), Civil Disobedience (picketed foreign cloth and liquor shops, made salt, defied police — thousands were arrested), Quit India (led underground activities when male leaders were jailed). The movement broke purdah restrictions for many women — giving them public roles and confidence that shaped post-independence women\'s rights movements.' },
+              { q: 'What was the significance of Gandhi\'s Dandi March?', a: 'Gandhi walked 240 miles to make salt from seawater, defying the Salt Law (British monopoly on salt). Significant because: salt was used by every Indian (powerful symbol of colonial exploitation), drew worldwide media attention, inspired millions to join Civil Disobedience, proved peaceful resistance was effective.' },
+              { q: 'What was the Rowlatt Act and why did it anger Indians?', a: 'The Rowlatt Act (1919) allowed the British to arrest and imprison Indians without trial. It triggered India\'s first major nationwide agitation including the Jallianwala Bagh massacre (April 13, 1919) where British troops fired on a peaceful crowd, killing hundreds.' },
+              { q: 'How did different groups participate in the independence movement?', a: 'Peasants joined Non-Cooperation (against high rents and taxes). Workers struck in mills. Women picketed foreign cloth shops and made salt — breaking purdah restrictions. Tribal communities protested against forest laws. Students and youth formed the vanguard. Each group had specific grievances but united under the national movement.' },
+            ]
+          },
+          {
+            id: 'making-global-world',
+            title: 'The Making of a Global World',
+            subtopics: 'Pre-modern world trade, Colonialism and trade, 19th century economy, Interwar period, Post-WWII Bretton Woods',
+            definition: 'Globalisation — economic integration of the world — is not new. Trade, migration, and capital flows have connected distant parts of the world for centuries, though its scale and speed have increased dramatically.',
+            content: `<p>The world has been "globalised" for longer than we think. Silk Road trade, the Columbian exchange, and colonial trade networks all linked distant economies centuries before the internet.</p>
+<h4>Pre-modern World</h4>
+<p>Silk Roads connected China, Central Asia, and Europe (spices, silk, ideas). The Indian Ocean was a major trade route. Bubonic Plague (1347) spread along trade routes, killing 1/3 of Europe's population.</p>
+<h4>Colonialism and the 19th Century Economy</h4>
+<p>European colonialism created a deeply unequal global economy. Colonies supplied raw materials; manufactured goods flowed from Europe. India: cotton, opium, indigo. Americas: silver, cotton. Australia: wool. Railways, telegraph, and steamships connected the world.</p>
+<h4>Interwar Period (1919-1939)</h4>
+<p>WWI disrupted global trade. Great Depression (1929) — US stock market crash caused global economic collapse. Trade fell by 66%. Unemployment soared. Countries turned to protectionism.</p>
+<h4>Post-WWII: Bretton Woods System</h4>
+<p>1944: IMF and World Bank established. Fixed exchange rates (gold standard). Rebuilt international trade. But primarily benefited developed countries.</p>`,
+            qa: [
+              { q: 'How did the Great Depression affect India?', a: 'India\'s agricultural prices collapsed — farmers could not repay loans. Export earnings fell sharply. Unemployment rose in cities. Yet the colonial government insisted on collecting taxes and loan repayments. This hardship radicalised the independence movement — many peasants joined the Civil Disobedience Movement (1930) partly due to economic distress caused by the Depression.' },
+              { q: 'What was the Bretton Woods system?', a: 'The Bretton Woods Conference (1944) established: (1) IMF (International Monetary Fund) — to stabilise exchange rates and lend to countries with payment deficits; (2) World Bank — to fund post-war reconstruction. The US dollar became the world reserve currency (linked to gold at $35/ounce). This system governed the global economy until 1971 when Nixon ended dollar-gold convertibility.' },
+            ]
+          },
+          {
+            id: 'age-industrialisation',
+            title: 'The Age of Industrialisation',
+            subtopics: 'Proto-industrialisation, Britain\'s Industrial Revolution, Indian textiles, Colonial impact on Indian industry',
+            definition: 'Industrialisation — production by machines in factories — transformed Britain first, then spread worldwide. Colonial rule shaped India\'s industrialisation in specific ways, destroying some industries while promoting others.',
+            content: `<p>The Industrial Revolution began in Britain around 1780 and transformed the world. By the 19th century, factories replaced hand production, cities grew explosively, and the relationship between colonisers and colonies was redefined by industrial power.</p>
+<h4>Proto-industrialisation</h4>
+<p>Before factories: merchants gave raw materials to rural families to produce goods at home (putting-out system). Entire families worked — spinning, weaving, stitching. Seasonal employment.</p>
+<h4>Britain's Industrial Revolution</h4>
+<p>Key factors: coal and iron (resources), colonies (markets and raw materials), capital (accumulated through trade), enclosures (agricultural labour displaced to cities), technological innovation (steam engine, spinning jenny, power loom).</p>
+<h4>Impact on Indian Textiles</h4>
+<p>India had the world's finest textile industry — Dacca muslin, Calicut calico. British machine-made cloth flooded India (cheap, subsidised by colonial policy). Indian weavers lost livelihoods. Hand-weaving declined massively in 19th century.</p>
+<h4>Industrial Growth in India</h4>
+<p>Some Indian industries grew: jute (Bengal), cotton mills (Bombay-Ahmedabad), iron and steel (Tata Steel, 1907). But under colonial policy, India remained primarily a raw material supplier and market for British goods.</p>`,
+            qa: [
+              { q: 'How did British policies hurt Indian textile industry?', a: 'British policies deliberately destroyed Indian textile competition: (1) imposed high tariffs on Indian cloth exported to Britain while Indian market was open to British cloth; (2) railway freight rates favoured British imports; (3) colonial government did not protect Indian industry. Result: from world\'s leading textile exporter, India became a raw cotton exporter and British cloth importer.' },
+              { q: 'Why did industries first develop in Britain rather than elsewhere?', a: 'Britain had unique advantages: (1) abundant coal and iron (energy and raw material for machines); (2) vast colonial empire (markets for goods, cheap raw materials); (3) accumulated capital from trade; (4) Protestant work ethic and entrepreneurship; (5) political stability (no major wars on British soil after 1688); (6) key inventions (steam engine — Watt, 1765; spinning jenny — Hargreaves, 1764).' },
+            ]
+          },
+        ]
+      },
+      geography: {
+        id: 'geography', topics: [
+          {
+            id: 'resources-development',
+            title: 'Resources and Development',
+            subtopics: 'Types of resources, Resource planning, Land resources, Soil types, Soil conservation',
+            definition: 'Resources are materials available in nature that can be used to satisfy human needs. Resource development is the process of utilising resources sustainably while conserving them for future generations.',
+            content: `<p>Everything from the air we breathe to the coal we burn is a resource. Managing Earth's limited resources sustainably is one of the greatest challenges of the 21st century.</p>
+<h4>Classification of Resources</h4>
+<ul>
+<li><strong>By origin:</strong> Biotic (living — forests, fish) vs Abiotic (non-living — rocks, wind)</li>
+<li><strong>By exhaustibility:</strong> Renewable (solar, wind, water) vs Non-renewable (coal, petroleum, minerals)</li>
+<li><strong>By ownership:</strong> Individual, Community, National, International</li>
+</ul>
+<h4>Resource Planning in India</h4>
+<p>Three-stage resource planning: (1) identification and inventory of resources (mapping); (2) evolving a planning structure with appropriate technology and skills; (3) matching resource development plans with overall national development plans.</p>
+<h4>Land Resources and Soil</h4>
+<p>India has 8 major soil types. Alluvial soil (most fertile, river plains — 40% of land) supports most of India's agriculture. Black soil (Deccan — good for cotton). Red and yellow soil (Odisha, Chhattisgarh). Laterite soil (hills — tea and coffee). Mountain soil.</p>
+<h4>Soil Conservation</h4>
+<p>Soil erosion problems: deforestation, overgrazing, mining, poor farming. Conservation: contour ploughing, terrace farming, shelter belts, afforestation, check dams.</p>`,
+            qa: [
+              { q: 'Distinguish between renewable and non-renewable resources with examples.', a: 'Renewable resources: can be replenished naturally — solar energy (sun will shine for billions of years), wind, water, forests (if managed sustainably), fish populations. Non-renewable resources: exist in finite quantities and cannot be replenished at human timescales — coal (formed over 300 million years), petroleum, natural gas, minerals. Overuse of non-renewables threatens future generations.' },
+              { q: 'What is alluvial soil and why is it India\'s most important soil type?', a: 'Alluvial soil is deposited by rivers and is rich in nutrients (potash, phosphoric acid, lime). It covers 40% of India\'s land area — the entire Indo-Gangetic plain from Punjab to West Bengal, and coastal plains. It supports wheat, rice, sugarcane, jute, cotton, and vegetables. India\'s agricultural heartland and home to 60%+ of the population is on alluvial soil.' },
+              { q: 'How can soil erosion be prevented?', a: 'Soil conservation methods: (1) Contour ploughing — ploughing along contour lines (not up-down slope) slows water runoff. (2) Terrace farming — cutting steps on hillsides creates flat land and prevents runoff. (3) Shelter belts — rows of trees planted around fields break wind velocity (important in Rajasthan). (4) Afforestation — tree roots hold soil. (5) Contour bunding and check dams — slow water flow and trap sediment.' },
             ]
           },
           {
@@ -3828,44 +5021,284 @@ export const CURRICULUM = {
             title: 'Water Resources',
             subtopics: 'Fresh water distribution, Dams, Multipurpose projects, Rainwater harvesting, Water scarcity',
             definition: 'Water is one of Earth\'s most precious renewable resources. India receives monsoon rainfall unevenly — water resource management through dams, canals, and rainwater harvesting is crucial for meeting India\'s water needs.',
-            content: `<p>India has 4% of the world's fresh water but 18% of the world's population. Seasonal and regional unevenness of rainfall makes water management critical. India's rivers, dams, and groundwater are all under increasing pressure.</p>
+            content: `<p>India has 4% of the world's fresh water but 18% of the world's population. Seasonal and regional unevenness of rainfall makes water management critical.</p>
 <h4>Water Scarcity in India</h4>
-<p>Despite adequate average rainfall, India faces water stress because: monsoon is concentrated in 3-4 months, many regions are dry for the rest; groundwater is overextracted (30% of India's districts have falling water tables); rivers are polluted; inequality — farmers lack irrigation while cities waste water.</p>
-<h4>Multipurpose River Projects (Dams)</h4>
-<p>Dams serve multiple purposes: irrigation, drinking water supply, hydroelectric power, flood control, navigation, tourism (reservoirs). Major projects: Bhakra Nangal (Punjab), Hirakud (Odisha), Sardar Sarovar (Gujarat).</p>
+<p>Despite adequate average rainfall, India faces water stress: monsoon concentrated in 3-4 months; groundwater overextracted; rivers polluted.</p>
+<h4>Multipurpose River Projects</h4>
+<p>Dams serve multiple purposes: irrigation, drinking water, hydroelectric power, flood control, navigation. Major projects: Bhakra Nangal (Punjab), Hirakud (Odisha), Sardar Sarovar (Gujarat).</p>
 <h4>Criticism of Big Dams</h4>
-<p>Submerge forests and agricultural land, displace millions (mostly tribal communities), destroy aquatic ecosystems, silt up over decades, do not benefit those who sacrifice (displacement vs benefit inequality).</p>
+<p>Submerge forests and farmland, displace millions (mostly tribal), destroy aquatic ecosystems, silt up over decades.</p>
 <h4>Rainwater Harvesting</h4>
-<p>Traditional methods: johads, bawdis, tankas (Rajasthan), kuls (HP), surangam (Kerala). Modern rooftop harvesting. Tamil Nadu made rooftop harvesting compulsory. Chennai's groundwater improved significantly.</p>`,
+<p>Traditional: johads, bawdis, tankas (Rajasthan), kuls (HP), surangam (Kerala). Tamil Nadu made rooftop harvesting compulsory — improved Chennai's groundwater significantly.</p>`,
             qa: [
-              { q: 'Why are multipurpose river projects both praised and criticised?', a: 'Praised for: irrigation (food security), hydroelectric power (clean energy), flood control, drinking water supply, employment. Criticised for: displacing millions of poor/tribal people from their land and homes, submerging forests and fertile farmland, disrupting river ecosystems (blocking fish migration, changing silt patterns), high cost overruns, and favouring downstream populations over those displaced upstream.' },
-              { q: 'What traditional water harvesting methods have been used in India?', a: 'India has rich tradition of water harvesting: Johads/ponds (Rajasthan — rainwater collection pits), Bawdis/stepwells (Rajasthan, Gujarat — deep wells with steps to access water in dry seasons), Kuls (HP — channels diverting glacial melt to fields), Surangam (Kerala — horizontal tunnels into hillsides for groundwater), Tankas (Rajasthan — underground cisterns for rainwater). These managed water sustainably for centuries.' },
-              { q: 'What measures has India taken to address water scarcity?', a: 'India\'s water management measures: (1) Jal Jeevan Mission — piped water to every rural home by 2024. (2) Pradhan Mantri Krishi Sinchai Yojana — irrigation to every farm. (3) Making rooftop rainwater harvesting mandatory in many cities. (4) Promoting drip irrigation (reduces water use by 30-50%). (5) Jal Shakti Abhiyan — water conservation campaigns. (6) Interlinking of rivers project (controversial).' },
+              { q: 'Why are multipurpose river projects both praised and criticised?', a: 'Praised for: irrigation, hydroelectric power (clean energy), flood control, drinking water, employment. Criticised for: displacing millions of poor/tribal people, submerging forests and fertile farmland, disrupting river ecosystems, high cost overruns, and benefiting downstream populations while displacing those upstream.' },
+              { q: 'What traditional water harvesting methods have been used in India?', a: 'India\'s traditions: Johads (Rajasthan — rainwater pits), Bawdis/stepwells (Gujarat, Rajasthan), Kuls (HP — channels from glacial melt), Surangam (Kerala — horizontal tunnels into hillsides), Tankas (Rajasthan — underground cisterns). These managed water sustainably for centuries before modern dams.' },
+              { q: 'What is water scarcity and what causes it in India?', a: 'Water scarcity = insufficient water for population\'s needs. In India causes: (1) Uneven rainfall — some areas get excess during monsoon, others remain dry. (2) Groundwater overextraction — falling water tables in 30% of districts. (3) River pollution — industrial effluents make water unusable. (4) Poor infrastructure — water lost in leaky pipes. (5) Wasteful agriculture — flood irrigation wastes 70% of water.' },
+            ]
+          },
+          {
+            id: 'agriculture-10',
+            title: 'Agriculture',
+            subtopics: 'Types of farming, Cropping patterns, Major crops, Green Revolution, Agricultural reforms, Food security',
+            definition: 'Agriculture is the cultivation of crops and rearing of animals for food, fibre, and other products. India is an agrarian economy — farming employs over 50% of the workforce though its GDP share has fallen.',
+            content: `<p>India is one of the world's largest agricultural producers. Yet farmers face poverty, crop failure, debt, and climate change. Understanding Indian agriculture is understanding the lives of 60 crore people.</p>
+<h4>Types of Farming</h4>
+<ul>
+<li><strong>Subsistence farming:</strong> For own consumption — primitive subsistence (shifting cultivation) and intensive subsistence.</li>
+<li><strong>Commercial farming:</strong> For market sale — plantation agriculture (tea, coffee, rubber), commercial grain farming.</li>
+</ul>
+<h4>Cropping Seasons in India</h4>
+<p><strong>Kharif:</strong> June–September (monsoon crops) — rice, maize, cotton, jute, sugarcane. <strong>Rabi:</strong> October–March (winter crops) — wheat, barley, mustard, peas. <strong>Zaid:</strong> March–June (summer crops) — watermelon, cucumber, fodder crops.</p>
+<h4>Major Crops</h4>
+<p>Rice (main food crop, eastern and southern India), Wheat (north India — Punjab, Haryana, UP), Millets (semi-arid regions), Pulses (main protein source — India is largest producer), Oilseeds, Tea (Assam), Coffee (Karnataka), Cotton (Gujarat, Maharashtra).</p>
+<h4>Challenges</h4>
+<p>Small farm size, dependence on monsoon, market price volatility, input costs, farmer debt, climate change.</p>`,
+            qa: [
+              { q: 'What is the Green Revolution and what were its limitations?', a: 'Green Revolution (1960s-70s): introduced HYV seeds, irrigation, chemical fertilisers. Dramatically increased wheat and rice production — India became food self-sufficient. Limitations: (1) benefited mainly large farmers in Punjab, Haryana, UP who could afford inputs; (2) widened rural inequality; (3) increased soil degradation (overuse of fertilisers); (4) depleted groundwater; (5) genetic uniformity made crops vulnerable to new pests.' },
+              { q: 'What is shifting cultivation and why is it considered unsustainable?', a: 'Shifting cultivation (jhum/slash-and-burn): forest is cleared, land cultivated for 2-3 years, then abandoned to recover while farmers move to a new area. Unsustainable because: (1) increasing population means less recovery time — permanent forest loss; (2) deforestation causes soil erosion; (3) contributes to climate change. Practised by tribal communities in Northeast India, MP, Odisha.' },
+              { q: 'Name and explain the three cropping seasons of India.', a: 'Kharif (June-September): grown in monsoon season. Crops: rice, maize, cotton, jute, sugarcane, soybean. Example states: West Bengal, Odisha, Kerala (rice). Rabi (October-March): grown in winter using soil moisture or irrigation. Crops: wheat, barley, mustard, peas. Punjab, Haryana, UP are major producers. Zaid (March-June): summer crops grown between kharif and rabi. Short duration. Crops: watermelon, cucumber, fodder.' },
+            ]
+          },
+          {
+            id: 'minerals-energy',
+            title: 'Minerals and Energy Resources',
+            subtopics: 'Types of minerals, Mining, Coal, Petroleum, Natural gas, Nuclear, Non-conventional energy',
+            definition: 'Minerals are naturally occurring substances with a definite chemical composition. Energy resources (coal, petroleum, natural gas) are fossil fuels formed over millions of years. Both are essential for industrialisation but are non-renewable.',
+            content: `<p>India's industrial growth depends on its mineral and energy wealth. Understanding where they are found, how they are extracted, and why we must conserve them is essential for every informed citizen.</p>
+<h4>Types of Minerals</h4>
+<p>Metallic: Iron ore, Bauxite (aluminium), Copper, Manganese, Gold. Non-metallic: Mica, Limestone, Gypsum. Fuel minerals: Coal, Petroleum, Natural gas.</p>
+<h4>Major Mining Regions in India</h4>
+<p>Iron ore: Jharkhand, Odisha, Chhattisgarh. Bauxite: Odisha, Jharkhand. Coal: Jharkhand, Odisha, West Bengal (Gondwana fields), Assam. Petroleum: Mumbai High (offshore), Assam, Rajasthan.</p>
+<h4>Conventional Energy Sources</h4>
+<p>Coal: India is world's 3rd largest producer. Used in thermal power stations (55% of India's electricity). Petroleum: refined into petrol, diesel, kerosene, LPG. India imports 80% of crude oil needs. Natural gas: cleaner burning, used for cooking (CNG) and power.</p>
+<h4>Non-Conventional / Renewable Energy</h4>
+<p>Solar (India has 300 sunny days/year — huge potential), Wind (Tamil Nadu, Rajasthan), Hydropower (Himalayan rivers), Tidal, Geothermal, Biogas. India is among the world's largest solar power producers.</p>`,
+            qa: [
+              { q: 'Why are minerals described as "gifts of nature" that must be used carefully?', a: 'Minerals took millions of years to form under specific geological conditions. They exist in finite quantities and once used, cannot be replenished in human lifetimes. Mining also causes environmental damage: land degradation, water table disruption, air and water pollution, displacement of communities. Careful use means: using minimum needed, recycling where possible (aluminium, steel), and developing renewable energy to reduce dependence on fuel minerals.' },
+              { q: 'Why is India promoting solar energy?', a: 'India has exceptional solar resources — most of the country gets 250-300 sunny days per year. Solar advantages: (1) inexhaustible and free fuel, (2) no greenhouse gas emissions, (3) distributed generation (rooftop solar for villages), (4) costs have fallen 90% since 2010. India\'s target: 500 GW renewable energy by 2030. The International Solar Alliance — India\'s global initiative — coordinates solar development among tropical countries.' },
+            ]
+          },
+          {
+            id: 'lifelines-economy',
+            title: 'Lifelines of National Economy',
+            subtopics: 'Transport (roads, railways, airways, waterways), Communication, Trade, Tourism',
+            definition: 'Transport and communication are the lifelines of national economy — they connect producers to consumers, raw materials to factories, and people to opportunities. A well-developed transport network is essential for economic growth.',
+            content: `<p>Without roads, railways, and communication networks, a country cannot function. India has the world's largest road network and second-largest railway network — essential for a country its size.</p>
+<h4>Roadways</h4>
+<p>India has 63 lakh km of roads (world's largest network). National Highways (NH): connect state capitals and major cities. NH 44 (Kashmir to Kanyakumari, 3745 km) is the longest. Golden Quadrilateral: connects Delhi, Mumbai, Chennai, Kolkata by 4-6 lane highways.</p>
+<h4>Railways</h4>
+<p>Indian Railways: world's largest single state-owned railway network. 68,000+ km track length. Connects all major cities. Essential for transporting coal, food grains, steel. Konkan Railway (760 km along west coast) is an engineering marvel.</p>
+<h4>Airways</h4>
+<p>Air India (international), IndiGo, SpiceJet (domestic). Connects remote areas (Ladakh, Northeast). Fastest growing aviation market globally.</p>
+<h4>Waterways</h4>
+<p>Cheapest mode for heavy goods. India has 14,500 km of navigable inland waterways. Major: Ganga-Bhagirathi-Hooghly, Brahmaputra. Sea ports: Mumbai (largest), Kandla, Chennai, Visakhapatnam.</p>
+<h4>Communication and Trade</h4>
+<p>India has world's 2nd largest telecom network. Digital India aims to connect all villages. Exports: software, textiles, engineering goods. Imports: crude oil, gold, electronics.</p>`,
+            qa: [
+              { q: 'Why are roadways considered the most important mode of transport in India?', a: 'Roadways are most important because: (1) reach remote areas railways cannot (hills, forests, villages); (2) provide door-to-door service (no transshipment needed); (3) cheaper for short distances; (4) essential for last-mile connectivity — even train passengers need roads to reach stations; (5) carry perishables (vegetables, milk) that cannot wait for train schedules. India has 63 lakh km of roads vs 68,000 km of railway track.' },
+              { q: 'How does tourism benefit India\'s economy?', a: 'Tourism is India\'s largest service industry and a major foreign exchange earner. Benefits: (1) creates employment directly (hotels, guides, transport) and indirectly (food, craft, entertainment); (2) earns foreign exchange — India earns ~$30 billion annually from tourism; (3) preserves cultural heritage (Taj Mahal, Ajanta, etc.); (4) develops infrastructure in remote areas. India has diverse tourism: heritage (Rajasthan), spiritual (Varanasi, Tirupati), beaches (Goa, Kerala), wildlife (Ranthambore), adventure (Himalayas).' },
+            ]
+          },
+        ]
+      },
+      political_science: {
+        id: 'political_science', topics: [
+          {
+            id: 'power-sharing',
+            title: 'Power Sharing',
+            subtopics: 'Why share power, Belgium vs Sri Lanka, Horizontal and vertical power sharing, Community governments',
+            definition: 'Power sharing is the distribution of political power among different organs, levels, and groups in a society. It is the spirit of democracy — preventing the concentration of power in a single person or group.',
+            content: `<p>Why should power be shared? History shows that concentrated power leads to abuse, instability, and often violence. The stories of Belgium and Sri Lanka illustrate both the success and failure of power sharing.</p>
+<h4>Belgium vs Sri Lanka</h4>
+<p><strong>Belgium:</strong> Dutch-speaking (59%), French-speaking (40%), German-speaking (1%). Wisely adopted power sharing — equal representation in central government, regional governments for each community. Result: peace and prosperity.</p>
+<p><strong>Sri Lanka:</strong> Sinhalese (74%), Tamil (18%). Sinhalese-dominated government imposed Sinhala as only official language, favoured Sinhalese in jobs. Tamils felt alienated → civil war from 1983. Thousands killed. Costly lesson in why power sharing matters.</p>
+<h4>Forms of Power Sharing</h4>
+<ul>
+<li><strong>Horizontal:</strong> Between legislature, executive, judiciary (checks and balances).</li>
+<li><strong>Vertical:</strong> Between central, state, and local governments (federalism).</li>
+<li><strong>Among social groups:</strong> Reserved constituencies for minorities, SC/ST.</li>
+<li><strong>Among political parties:</strong> Coalition governments, opposition's role.</li>
+</ul>`,
+            qa: [
+              { q: 'What lessons does the Belgium experience teach about power sharing?', a: 'Belgium: a small country with complex linguistic divisions (Dutch, French, German speakers). Instead of one group dominating, Belgium created: equal representation in central cabinet regardless of population ratio, separate state governments for Flemish (Dutch) and Wallonia (French), a special Brussels government with equal representation, and a community government for cultural matters. This accommodation prevented civil conflict and Belgium remained united and prosperous. Lesson: power sharing reduces conflict and builds stability.' },
+              { q: 'What are the two main reasons for power sharing?', a: 'Prudential reason: power sharing is good because it reduces conflict and ensures political stability. Moral/democratic reason: power sharing is the very essence of democracy — it gives everyone a say in decisions that affect them. Concentrated power violates human dignity and leads to tyranny. Democracy without power sharing is meaningless.' },
+            ]
+          },
+          {
+            id: 'federalism',
+            title: 'Federalism',
+            subtopics: 'Features of federalism, Coming together vs holding together, India as federation, Linguistic reorganisation, Local government',
+            definition: 'Federalism is a system of government where power is constitutionally divided between a national (central) government and regional (state) governments. Each level has its own sphere of authority.',
+            content: `<p>India is a vast country with enormous diversity. Managing it as a centralised state would be impossible and undemocratic. Federalism allows states to govern themselves while being part of a unified nation.</p>
+<h4>Key Features of Federalism</h4>
+<ul>
+<li>Two or more levels of government, each with its own powers</li>
+<li>Different levels govern the same citizens</li>
+<li>Constitutional guarantee of powers at each level</li>
+<li>Courts as umpires to resolve disputes</li>
+<li>Financial independence of each level</li>
+</ul>
+<h4>Coming Together vs Holding Together</h4>
+<p><strong>Coming together:</strong> Independent states voluntarily unite (USA, Switzerland, Australia). States have more power.<br><strong>Holding together:</strong> Large country divides powers to maintain unity (India, Spain, Belgium). Central government tends to be stronger.</p>
+<h4>Indian Federalism</h4>
+<p>Three lists: Union List (defence, foreign affairs — 97 subjects), State List (police, agriculture, trade — 66 subjects), Concurrent List (both — 47 subjects). Residual powers with Centre.</p>`,
+            qa: [
+              { q: 'How was the linguistic reorganisation of states in 1956 a success of Indian federalism?', a: 'After independence, India inherited states based on British administrative convenience, not linguistic-cultural identity. People demanded states based on their language. The States Reorganisation Act (1956) created states largely on linguistic lines: Maharashtra (Marathi), Gujarat (Gujarati), Karnataka (Kannada), etc. This was a peaceful democratic solution — recognising diversity and giving people states where their language was official — unlike many countries that used force to suppress minorities.' },
+              { q: 'What is the difference between a federal and unitary system?', a: 'Federal system: constitutional division of power between national and regional governments — each has its own sphere, neither can encroach the other. USA, India. States have guaranteed powers. Unitary system: one central government has all power — regional governments exist at central government\'s discretion and can be abolished. UK, France, Japan. India is predominantly federal but with stronger centre — "quasi-federal" (Granville Austin\'s term).' },
             ]
           },
           {
             id: 'political-parties-10',
             title: 'Political Parties',
-            subtopics: 'Need for parties, Functions, National and state parties, Two-party vs multi-party system, Challenges, Party reform',
-            definition: 'Political parties are organised groups of people with shared political ideas who contest elections and seek to form government. They are essential to democracy — they connect citizens to government and organise political competition.',
-            content: `<p>Modern democracy is unthinkable without political parties. They translate diverse citizen interests into policies, provide organised alternatives for voters, and make government accountable. India has a rich and complex multi-party system.</p>
+            subtopics: 'Functions, Types (national, state), Party systems, Challenges, Electoral reforms',
+            definition: 'Political parties are organised groups contesting elections to gain power and implement their policies. They are essential to democracy — connecting citizens to government and organising political competition.',
+            content: `<p>Modern democracy cannot function without political parties. They aggregate diverse citizen interests, provide electoral choices, and make government accountable. India's vibrant multi-party democracy reflects its extraordinary diversity.</p>
 <h4>Functions of Political Parties</h4>
 <ul>
-<li>Contest elections — provide candidates</li>
-<li>Formulate policies — provide a vision for governance</li>
-<li>Form and run government when they win majority</li>
-<li>Play opposition when they lose — hold government accountable</li>
+<li>Contest elections and form governments</li>
+<li>Formulate policies — present vision for governance</li>
+<li>Play opposition — hold government accountable (Question Hour, debates)</li>
+<li>Shape public opinion through rallies and media</li>
 <li>Represent different groups in society</li>
-<li>Shape public opinion through rallies, media</li>
 </ul>
-<h4>Party Systems</h4>
-<p>One-party (China), Two-party (USA — Republican/Democrat, UK — Conservative/Labour), Multi-party (India — BJP, Congress, many regional parties). India's diversity requires many parties to represent different regions, castes, religions, and ideologies.</p>
-<h4>National vs State Parties in India</h4>
-<p>National parties (recognised in 4+ states): BJP, Congress, CPI(M), BSP, NCP, etc. State/Regional parties: TMC (Bengal), DMK (Tamil Nadu), TRS (Telangana), YSRCP (AP), Shiv Sena.</p>`,
+<h4>National vs Regional Parties</h4>
+<p>National parties: recognised in 4+ states — BJP, Congress, CPI(M), BSP, NCP. Regional parties: TMC (Bengal), DMK (Tamil Nadu), TRS (Telangana). India's diversity makes regional parties essential.</p>
+<h4>Challenges</h4>
+<p>Dynastic politics, money power in elections, criminalisation of politics, lack of internal democracy within parties.</p>`,
             qa: [
-              { q: 'Why do we need political parties in a democracy?', a: 'In a large country like India, millions of people have diverse interests. Political parties: (1) gather people with similar views, (2) formulate coherent policies representing those views, (3) present clear choices to voters at election time, (4) provide organised government (majority party), and (5) provide organised opposition that holds government accountable. Without parties, elections would be chaotic and government impossible to form or hold accountable.' },
-              { q: 'What are the challenges facing political parties in India?', a: 'Major challenges: (1) Dynastic politics — leaders\' sons/daughters given party tickets regardless of merit. (2) Money power — wealthy candidates buy votes; parties spend crores on elections. (3) Criminalization — many MPs/MLAs have criminal cases. (4) Lack of internal democracy — ordinary party members have little say; high command decides everything. (5) Defection — elected members switch parties for money/positions (though limited by anti-defection law).' },
-              { q: 'What is the role of the Election Commission of India?', a: 'The Election Commission of India is a constitutional body responsible for conducting free and fair elections. It: (1) Announces election schedule, (2) enforces model code of conduct, (3) monitors election spending, (4) recognises and de-recognises political parties, (5) takes action against candidates for electoral malpractices, (6) ensures level playing field. The ECI is independent of government — commissioners can only be removed like Supreme Court judges.' },
+              { q: 'Why do we need political parties?', a: 'Political parties: (1) aggregate diverse citizen interests into coherent policies; (2) provide clear choices to voters at election time; (3) provide organised government (majority party) and organised opposition; (4) hold government accountable — without opposition parties, there would be no one to question the ruling party. Without parties, elections would be chaotic and stable government impossible.' },
+              { q: 'What challenges do political parties face in India?', a: 'Major challenges: (1) Dynastic politics — party leadership passes within families regardless of merit. (2) Money power — wealthy candidates/parties dominate elections; parties spend crores on campaigns. (3) Criminalization — many MPs/MLAs have criminal cases. (4) Lack of internal democracy — high command takes all decisions; ordinary members have no voice. (5) Party defections — elected members switch parties for money or positions (limited by anti-defection law).' },
+            ]
+          },
+          {
+            id: 'outcomes-democracy',
+            title: 'Outcomes of Democracy',
+            subtopics: 'Economic outcomes, Social outcomes, Dignity and equality, Democratic vs non-democratic, Limits of democracy',
+            definition: 'Does democracy actually deliver on its promises? Does it produce better governance, economic development, and social equality than non-democratic alternatives? Evaluating democracy\'s outcomes honestly is essential for citizens.',
+            content: `<p>Democracy is celebrated worldwide, but does it actually work better than alternatives? Comparing democratic and non-democratic countries across economic, social, and political outcomes gives us evidence-based answers.</p>
+<h4>Economic Outcomes</h4>
+<p>Democracies do not always produce better economic growth than non-democracies (China grows fast but is not democratic). However, democracies rarely suffer famines (famines happen in dictatorships where people cannot freely demand food). Democracies tend to produce more equal distribution of economic growth.</p>
+<h4>Social Outcomes</h4>
+<p>Democracies: generally better at reducing social conflict (power sharing reduces friction), protecting minority rights, and allowing peaceful resolution of disputes. Sri Lanka (non-power-sharing) vs Belgium (power-sharing) illustrates this.</p>
+<h4>Political Outcomes</h4>
+<p>Democracies ensure: accountability (elections hold rulers answerable), peaceful transfer of power, rule of law, protection of fundamental rights, freedom of press.</p>
+<h4>Dignity and Equality</h4>
+<p>Democracy is the only form of government that formally recognises and promotes the equal dignity of all citizens. The mere act of voting makes every citizen equal for that moment.</p>`,
+            qa: [
+              { q: 'Is democracy the best form of government? Give balanced arguments.', a: 'Arguments FOR democracy: (1) accountable government — elections hold rulers answerable to people; (2) protects rights and freedoms; (3) peaceful power transfer; (4) adapts to changing needs; (5) gives equal dignity to all citizens. Limitations: (1) slow decision-making; (2) often captured by money and powerful interests; (3) focus on short-term (next election) rather than long-term; (4) can oppress minorities if not designed carefully. Churchill: "Democracy is the worst form of government, except for all the others."' },
+              { q: 'Why do democracies rarely suffer from famines?', a: 'Amartya Sen (Nobel Prize winner) observed that no functioning democracy has ever suffered a major famine. In democracies: (1) a free press can report food shortages, pressuring government to respond; (2) opposition parties can campaign against incompetent food policy; (3) governments face elections — if people starve, they lose power. In dictatorships: media censorship, no opposition, no accountability. This explains China\'s Great Leap Forward famine (1959-61, ~15-45 million deaths) — the government knew but suppressed information.' },
+            ]
+          },
+        ]
+      },
+      economics: {
+        id: 'economics', topics: [
+          {
+            id: 'development',
+            title: 'Development',
+            subtopics: 'Development goals, Per capita income, HDI, Sustainability, Different groups, different goals',
+            definition: 'Development means improvement in the quality of human life — not just income growth but also health, education, security, freedom, and dignity. Different people and groups have different development goals.',
+            content: `<p>What does "development" mean? For a farmer, it might mean reliable irrigation. For a landless labourer, it might mean job security. For a woman, it might mean safety and education for her children. Development is not one-size-fits-all.</p>
+<h4>Development Goals</h4>
+<p>Development goals vary by person: farmers want good crop prices and irrigation; factory workers want fair wages and job security; students want good schools and employment opportunities; women want freedom from discrimination and safety.</p>
+<h4>Per Capita Income</h4>
+<p>World Bank classifies countries: Low income (<$1,135/year), Middle income, High income (>$13,845/year). India is lower-middle income. BUT per capita income misses inequality — averages hide how wealth is distributed.</p>
+<h4>Human Development Index (HDI)</h4>
+<p>UNDP's HDI combines: per capita income + life expectancy + education (years of schooling). A better measure than income alone. India ranks ~132 out of 191 (2022) — much lower than its economic rank, revealing gaps in health and education.</p>
+<h4>Sustainable Development</h4>
+<p>Development that meets present needs without compromising future generations' ability to meet theirs. Cannot use up all fossil fuels, forests, and groundwater — future generations also need them.</p>`,
+            qa: [
+              { q: 'Why is per capita income alone insufficient to measure development?', a: 'Per capita income (total income ÷ population) is an average. It hides: (1) inequality — if a country\'s income is all held by 10%, most people are still poor; (2) non-income dimensions — health, education, security, freedom are equally important; (3) environmental degradation — a country can boost income by mining all its resources, destroying future sustainability. The HDI and other measures address these limitations by including health and education alongside income.' },
+              { q: 'What is the HDI and how does India perform?', a: 'Human Development Index (HDI): developed by Mahbub ul Haq and Amartya Sen, published by UNDP. Combines three dimensions: (1) Long and healthy life (life expectancy); (2) Access to education (mean years of schooling + expected years); (3) Decent standard of living (GNI per capita). India\'s HDI rank 2022: 132 out of 191. India performs much better on economic growth than on HDI — indicating inadequate conversion of economic growth into human welfare (health, education, equality).' },
+            ]
+          },
+          {
+            id: 'sectors-economy',
+            title: 'Sectors of the Indian Economy',
+            subtopics: 'Primary, Secondary, Tertiary sectors, GDP, Organised vs unorganised, Public vs private sector',
+            definition: 'Economic activities are divided into three sectors: primary (natural resources), secondary (manufacturing), and tertiary (services). The share of each sector in GDP and employment tells us about the stage of economic development.',
+            content: `<p>India's economy has shifted dramatically — from 70% agriculture at independence to services being the largest GDP contributor today. Yet agriculture still employs over 40% of the workforce. This disconnect is a key challenge.</p>
+<h4>Three Sectors</h4>
+<ul>
+<li><strong>Primary sector:</strong> Directly uses natural resources — farming, fishing, mining, forestry. India: 14% GDP, 45% employment.</li>
+<li><strong>Secondary sector:</strong> Manufacturing — converting raw materials to finished goods. 29% GDP, 25% employment.</li>
+<li><strong>Tertiary (Service) sector:</strong> Services — banking, trade, transport, education, IT. 57% GDP, 30% employment.</li>
+</ul>
+<h4>GDP (Gross Domestic Product)</h4>
+<p>Total value of all goods and services produced in a country in a year. GDP per capita = GDP ÷ population.</p>
+<h4>Disguised Unemployment</h4>
+<p>More people employed than actually needed — common in agriculture. If 5 people do a job 3 could do, 2 are "disguisedly unemployed". Removing them wouldn't reduce output.</p>
+<h4>Organised vs Unorganised Sector</h4>
+<p>Organised: registered enterprises with fixed working hours, job security, social security (PF, ESI). Unorganised: informal — domestic workers, street vendors, farm labourers. 93% of India's workforce is unorganised!</p>`,
+            qa: [
+              { q: 'Why does the tertiary sector have the largest share of India\'s GDP but not employment?', a: 'The service sector (IT, banking, finance, telecom, trade) produces high value per worker — a software engineer or banker creates far more GDP than a farmer. However, services require education and skills that many Indians lack, limiting service sector employment. Agriculture, despite low productivity, still employs 45% of the workforce as the sector of last resort for those without skills or education. This mismatch is a central challenge for India\'s development.' },
+              { q: 'What is the difference between organised and unorganised sectors?', a: 'Organised sector: registered under government, follows labour laws (minimum wage, working hours, leave, provident fund, health insurance). Workers have job security. Examples: government offices, factories, banks, schools. Unorganised sector: no registration, no fixed hours, no job security, no social security. Workers are vulnerable. Examples: farm labourers, construction workers, domestic workers, street vendors. Shocking fact: 93% of India\'s workers are in the unorganised sector.' },
+            ]
+          },
+          {
+            id: 'money-credit',
+            title: 'Money and Credit',
+            subtopics: 'Money as medium of exchange, Banks, Credit, Terms of credit, Formal vs informal credit, SHGs',
+            definition: 'Money is anything widely accepted as a medium of exchange, removing the need for barter. Credit enables investment and growth but its terms (interest, collateral) determine who benefits and who gets trapped in debt.',
+            content: `<p>Money and credit are the lifeblood of a modern economy. But access to credit on fair terms is highly unequal — this inequality explains why the rich get richer and the poor remain trapped.</p>
+<h4>Functions of Money</h4>
+<ul>
+<li>Medium of exchange (solves barter's double coincidence of wants problem)</li>
+<li>Measure of value (price in money)</li>
+<li>Store of value (save for future)</li>
+<li>Standard of deferred payment (repay loans later)</li>
+</ul>
+<h4>Credit: Formal vs Informal</h4>
+<p>Formal: banks, cooperative societies — lower interest (10-15%), regulated, requires collateral. Informal: moneylenders, landlords — high interest (40-100% in rural areas!), no regulation, exploitative. Poor rely more on informal credit (no collateral for banks).</p>
+<h4>Self-Help Groups (SHGs)</h4>
+<p>Groups of 15-20 rural poor (mostly women) who pool savings and lend to members at reasonable rates. Grameen Bank model (Bangladesh's Muhammad Yunus — Nobel Peace Prize 2006). Microfinance: provides credit without collateral to the poor.</p>`,
+            qa: [
+              { q: 'Why is money called a medium of exchange?', a: 'Barter requires "double coincidence of wants" — I must want what you have AND you must want what I have. Money solves this: sell goods for money, use money to buy anything. Money is universally accepted, so any trade can happen without finding a perfect barter match.' },
+              { q: 'What is collateral and why can\'t poor people access formal credit?', a: 'Collateral is an asset (land, property, gold) a borrower pledges as loan security. If unable to repay, the lender takes the collateral. Poor people often have no property to pledge → banks won\'t lend → they must borrow from moneylenders at extremely high interest rates, often getting trapped in debt cycles.' },
+              { q: 'What is the role of the Reserve Bank of India?', a: 'RBI is India\'s central bank: (1) Issues currency notes, (2) sets Cash Reserve Ratio (how much banks must keep), (3) sets repo rate (interest at which it lends to banks), (4) regulates all banks, (5) acts as lender of last resort. The RBI ensures the banking system is stable and credit reaches all sectors.' },
+            ]
+          },
+          {
+            id: 'globalisation-10',
+            title: 'Globalisation and the Indian Economy',
+            subtopics: 'What is globalisation, MNCs, Trade and investment, WTO, Impact on India, Liberalisation 1991',
+            definition: 'Globalisation is the rapid integration of countries through trade, investment, technology, and movement of people. India\'s 1991 liberalisation opened it to globalisation — with mixed results.',
+            content: `<p>Globalisation connects economies worldwide. The smartphone you use, the clothes you wear, the software in your apps — all are products of a globalised world. India's position in this system shapes millions of lives.</p>
+<h4>What is Globalisation?</h4>
+<p>Integration through: trade (imports/exports), FDI (MNCs setting up factories), technology transfer, migration.</p>
+<h4>Role of MNCs</h4>
+<p>MNCs produce where costs are lowest, sell globally. Create global supply chains. Bring investment and technology but repatriate profits.</p>
+<h4>1991 Liberalisation (LPG Reforms)</h4>
+<p>Liberalisation (removed licence raj), Privatisation (reduced government role), Globalisation (opened to foreign trade and investment). Led to rapid GDP growth but also increased inequality.</p>
+<h4>Impact: Winners and Losers</h4>
+<p>Winners: IT sector, large companies, urban middle class. Losers: small manufacturers (couldn't compete with cheap imports), some farmers.</p>`,
+            qa: [
+              { q: 'What were the 1991 LPG reforms?', a: 'In 1991, India faced a balance of payments crisis. Reforms under PM Narasimha Rao and FM Manmohan Singh: Liberalisation (removed industrial licensing — the "licence raj"), Privatisation (reduced government business ownership), Globalisation (opened to FDI, reduced import duties). India\'s GDP growth accelerated from ~3.5% (before) to 6-8% (after). But benefits were unequally distributed.' },
+              { q: 'How has globalisation benefited India?', a: 'India has benefited from globalisation through: (1) IT boom — Bengaluru, Hyderabad became global software hubs ($200+ billion annual exports); (2) manufacturing growth — auto parts, pharmaceuticals, textiles; (3) foreign investment creating jobs; (4) technology transfer; (5) broader consumer choice and lower prices. India\'s middle class has grown enormously. However, many informal workers and small producers have been harmed.' },
+            ]
+          },
+          {
+            id: 'consumer-rights',
+            title: 'Consumer Rights',
+            subtopics: 'Six consumer rights, COPRA, Consumer courts, ISI and Agmark marks, Unfair trade practices',
+            definition: 'A consumer is anyone who buys goods or services for personal use. Consumer rights protect buyers from unfair trade practices — exploitation, substandard goods, misleading advertisements, and fraud.',
+            content: `<p>Every time you buy something, you are a consumer. Consumer protection laws ensure that buyers have rights and can seek justice when exploited. COPRA (1986) established India's consumer protection framework.</p>
+<h4>Six Consumer Rights</h4>
+<ul>
+<li>Right to Safety — protection from hazardous products</li>
+<li>Right to Information — true, complete product information</li>
+<li>Right to Choose — variety at competitive prices</li>
+<li>Right to be Heard — consumer interests in government</li>
+<li>Right to Redressal — compensation for exploitation</li>
+<li>Right to Education — awareness of rights</li>
+</ul>
+<h4>Consumer Protection Act (COPRA)</h4>
+<p>Three-tier courts: District Forum (up to ₹20 lakh), State Commission (₹20 lakh–₹1 crore), National Commission (above ₹1 crore). Consumers can represent themselves; no lawyer needed.</p>
+<h4>Quality Marks</h4>
+<p>ISI (industrial products), Agmark (food — honey, ghee), Hallmark (gold), BIS standard.</p>`,
+            qa: [
+              { q: 'What is COPRA and why is it important for consumers?', a: 'COPRA (Consumer Protection Act, 1986, updated 2019): establishes consumer courts for complaints against defective products, deficient services, unfair trade practices, overcharging, hazardous goods. Important because: (1) consumers can file cases without a lawyer; (2) quick resolution (90-150 days); (3) compensation is mandatory; (4) creates fear among sellers of consequences for exploitation.' },
+              { q: 'What action can a consumer take if cheated?', a: 'Steps: (1) Write to company/seller — document complaint. (2) Approach consumer forum — District Forum (claim up to ₹20 lakh), State Commission (₹20 lakh–₹1 crore), National Commission (above ₹1 crore). (3) File complaint online at consumerhelpline.gov.in. (4) Call National Consumer Helpline 1800-11-4000 (toll-free). Consumer can get: replacement/repair of product, refund, compensation for damages, removal of defect in service.' },
             ]
           },
         ]
