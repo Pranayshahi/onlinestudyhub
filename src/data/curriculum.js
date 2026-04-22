@@ -695,6 +695,81 @@ export const CURRICULUM = {
               { q: 'How is wind formed?', a: 'When air in one area is heated (by the sun), it expands, becomes lighter and rises. Cooler, denser air from nearby areas rushes in to fill the space. This movement of air is wind.' },
             ]
           },
+          {
+            id: 'fibre-to-fabric-6',
+            title: 'Fibre to Fabric',
+            subtopics: 'Types of fibres, Natural vs synthetic, Cotton, Jute, Silk, Wool, Weaving, Spinning',
+            definition: 'Fibres are thin thread-like structures that are woven or knitted into fabrics. Natural fibres come from plants (cotton, jute, flax) or animals (silk, wool). Synthetic fibres are made from chemicals (polyester, nylon).',
+            content: `<p>The clothes you wear have a fascinating journey from raw material to finished fabric. Understanding fibres helps you make better choices about clothing and understand India's important textile industry.</p>
+<h4>Sources of Natural Fibres</h4>
+<ul>
+<li><strong>Plant fibres:</strong> Cotton (from cotton bolls/seeds), Jute (from stem — used for sacks and rope), Flax/Linen (from stem), Coir (from coconut husk)</li>
+<li><strong>Animal fibres:</strong> Wool (from sheep, goat, camel), Silk (from silkworm cocoons)</li>
+</ul>
+<h4>How Cotton Becomes Cloth</h4>
+<ol>
+<li>Ginning: separating cotton fibres from seeds</li>
+<li>Spinning: twisting fibres into yarn using charkha or spinning machine</li>
+<li>Weaving: interlacing two sets of yarn on a loom</li>
+<li>Knitting: making loops of yarn with needles</li>
+</ol>
+<h4>Sericulture (Silk)</h4>
+<p>Silkworms are fed mulberry leaves → spin cocoons → cocoon is boiled → silk thread unravelled → woven into silk fabric. Silk is lustrous, strong, and expensive.</p>`,
+            qa: [
+              { q: 'What is the difference between natural and synthetic fibres?', a: 'Natural fibres: obtained from plants or animals — cotton (plant), wool and silk (animal). Breathable, biodegradable, comfortable. Synthetic fibres: made from chemicals — nylon, polyester, acrylic. Cheaper, durable, but not as breathable, don\'t absorb sweat well, and take much longer to break down in environment.' },
+              { q: 'How is silk obtained from silkworms?', a: 'Sericulture (silk farming): Silkworms (Bombyx mori) are raised on mulberry leaves. They spin a protective cocoon around themselves from a single continuous thread of silk (1-1.5 km long!). Cocoons are boiled to loosen the gum holding threads, then unwound and several threads are twisted into silk yarn. Silk is one of the strongest natural fibres.' },
+              { q: 'What is jute and why is it important?', a: 'Jute is a plant fibre extracted from the stem of the jute plant. It is: soft, strong, biodegradable, and cheap. Uses: sacks and bags (rice, wheat), ropes, mat and rugs, backing for carpets. India and Bangladesh are the world\'s largest jute producers. Jute is eco-friendly (biodegradable) and is called the "golden fibre."' },
+              { q: 'Why do we wear cotton clothes in summer and woollen clothes in winter?', a: 'Cotton is a poor conductor of heat — it has hollow fibres that trap air but also absorb moisture (sweat), keeping you cool. Wool also traps air in its curly fibres, acting as an insulator that keeps body warmth in and cold out. Both materials also control moisture differently — cotton absorbs, wool repels water while staying warm.' },
+            ]
+          },
+          {
+            id: 'water-6',
+            title: 'Water',
+            subtopics: 'Sources of water, Water cycle, Rainwater harvesting, Water conservation, Drought and flood',
+            definition: 'Water is essential for all living things. It exists in three states (solid, liquid, gas) and continuously moves through the water cycle — evaporation, condensation, and precipitation. Freshwater is a scarce resource that must be conserved.',
+            content: `<p>Though 71% of Earth's surface is covered by water, only 3% is fresh water — and most of that is locked in ice caps. Access to clean water is one of the greatest challenges facing humanity.</p>
+<h4>Sources of Water</h4>
+<ul>
+<li>Surface water: rivers, lakes, ponds, reservoirs</li>
+<li>Groundwater: wells, tube wells, springs</li>
+<li>Rainwater (precipitation)</li>
+</ul>
+<h4>The Water Cycle</h4>
+<div class="formula">Evaporation → Condensation → Precipitation → Collection → Evaporation</div>
+<p>The sun heats water (lakes, oceans, rivers) → water evaporates → water vapour rises and cools → condenses into clouds (tiny water droplets) → falls as rain/snow → flows into rivers/soaks into ground → cycle repeats.</p>
+<h4>Rainwater Harvesting</h4>
+<p>Collecting and storing rainwater for future use. Methods: rooftop collection into tanks, percolation pits (recharging groundwater), johads and stepwells (traditional Indian systems).</p>
+<h4>Conservation</h4>
+<p>Reduce use: fix leaking taps, use bucket instead of shower, reuse water for garden. Preserve: don't pollute water bodies, reduce industrial effluents.</p>`,
+            qa: [
+              { q: 'What is the water cycle?', a: 'The water cycle is the continuous movement of water through the environment. Steps: (1) Evaporation: heat of sun turns surface water to vapour; (2) Transpiration: plants release water vapour; (3) Condensation: vapour cools and forms clouds (tiny droplets); (4) Precipitation: water falls as rain, hail, or snow; (5) Collection in rivers/lakes and groundwater; cycle repeats. It ensures water is recycled continuously.' },
+              { q: 'Why is groundwater important and how is it recharged?', a: 'Groundwater (stored in underground aquifers) provides water for wells, bore wells, and springs — essential during dry season when rivers and ponds dry up. Recharge happens naturally when rainwater seeps through soil (percolates). Excessive extraction (more than recharge) depletes aquifers — the water table falls. Rainwater harvesting recharges groundwater: digging percolation pits, check dams, constructing johads.' },
+              { q: 'Why should we conserve water?', a: 'Only 3% of Earth\'s water is fresh, and most of that is frozen (ice caps, glaciers). Available freshwater is only about 0.3% of all water on Earth. Population growth increases water demand. Agriculture uses 70% of freshwater. Many regions face water shortages. Climate change is making droughts more frequent. Once groundwater is depleted, it takes centuries to recharge.' },
+              { q: 'What is a drought and what causes it?', a: 'A drought is a prolonged period of abnormally low rainfall, leading to water shortage. Causes: disruption of monsoon patterns, deforestation (less transpiration, less local rain), overuse of groundwater, climate change (warming causes more evaporation). Effects: crop failure → food shortage → migration → economic hardship. Rainwater harvesting and drought-resistant crops can mitigate drought impact.' },
+            ]
+          },
+          {
+            id: 'living-organisms-surroundings-6',
+            title: 'The Living Organisms and Their Surroundings',
+            subtopics: 'Habitat, Adaptations, Aquatic, Terrestrial, Desert organisms',
+            definition: 'Every organism lives in a specific habitat — an environment that provides food, shelter, water, and other requirements. Organisms have special features (adaptations) that help them survive in their habitats.',
+            content: `<p>Why do fish have gills and not lungs? Why do camels have humps? Every feature of an organism is the result of millions of years of evolution adapting to its environment. Life is amazingly diverse precisely because environments are so diverse.</p>
+<h4>Habitat and Adaptations</h4>
+<p><strong>Habitat:</strong> The place where an organism lives — its home environment. It provides all the organism's needs.</p>
+<p><strong>Adaptation:</strong> Special features of an organism that help it survive in its habitat.</p>
+<h4>Aquatic Habitats</h4>
+<p><strong>Fish:</strong> Streamlined body, fins (movement), gills (breathe dissolved oxygen). <strong>Whales:</strong> Breathe through blowhole, streamlined body. <strong>Frogs:</strong> Moist skin for breathing (semi-aquatic), webbed feet for swimming.</p>
+<h4>Desert Adaptations</h4>
+<p>Cacti: leaves modified to spines (reduce water loss), thick stem stores water, deep/wide roots. Camels: see previous topic.</p>
+<h4>Mountain Adaptations</h4>
+<p>Snow leopards: thick fur, wide paws (snowshoes), strong grip. Mountain goats: hooves adapted to grip rocks. Trees: conical shape sheds snow.</p>`,
+            qa: [
+              { q: 'What is meant by adaptation? Give two examples.', a: 'Adaptation is a special structural, behavioural, or physiological feature of an organism that helps it survive in its environment. Examples: (1) Fish have gills — adapted to breathe oxygen dissolved in water; (2) Polar bears have thick white fur — adapted for insulation against Arctic cold and camouflage against snow.' },
+              { q: 'How are cacti adapted to survive in deserts?', a: 'Cactus adaptations: (1) Leaves are modified into spines — greatly reduces water loss (leaves have large surface area that loses water); (2) Thick, fleshy stem stores water; (3) Stem has chlorophyll for photosynthesis (leaves do not); (4) Deep or wide-spreading roots absorb rainwater quickly over a large area; (5) Waxy coating on stem prevents evaporation.' },
+              { q: 'Why are fish not able to survive out of water?', a: 'Fish breathe through gills which extract oxygen dissolved in water. Outside water, gills collapse and cannot absorb oxygen from air. Also, fish\'s body is adapted to water (streamlined, fins, no legs, scales). Without water: gills dry out, fish cannot breathe, fins cannot move it, and dehydration sets in. Some fish (catfish, lungfish) have limited ability to breathe air.' },
+              { q: 'What is a biotic component and an abiotic component of a habitat?', a: 'Biotic components: living parts of the habitat — plants, animals, microorganisms. Abiotic components: non-living parts — soil, water, air, temperature, sunlight, minerals. Both interact to make up a habitat. Example: pond habitat: biotic (fish, frogs, algae, insects), abiotic (water, mud, sunlight, temperature).' },
+            ]
+          },
         ]
       },
       english: {
@@ -3071,6 +3146,49 @@ export const CURRICULUM = {
               { q: 'Why is Bengaluru called the Silicon Valley of India?', a: 'Bengaluru has the highest concentration of IT companies in India — Infosys, Wipro, HCL, and offices of global companies (IBM, Google, Microsoft). Reasons: pleasant climate, many engineering colleges, early government investment in electronics (ISRO, HAL, BEL), and good infrastructure. It generates the largest share of India\'s software exports.' },
               { q: 'What are cottage industries and why are they important in India?', a: 'Cottage industries are small-scale industries run from homes using simple skills: handlooms, pottery, basket-weaving, Khadi (hand-spun cloth). They: employ millions in rural areas (including women and artisans), require little capital, preserve traditional crafts, and reduce urban migration. India\'s handloom sector employs ~43 lakh weavers, the second largest rural employer after agriculture.' },
               { q: 'How do industries cause pollution?', a: 'Air pollution: factory chimneys release SO₂, CO, particulate matter. Water pollution: industrial effluents discharged into rivers (the Ganga and Yamuna are heavily polluted this way). Soil pollution: dumping of toxic waste and chemicals. Noise pollution: heavy machinery. Solutions: effluent treatment plants, cleaner technologies, strict enforcement of pollution norms.' },
+            ]
+          },
+          {
+            id: 'marginalisation-8',
+            title: 'Understanding Marginalisation',
+            subtopics: 'Social marginalisation, Adivasis, Minorities, Dalits, Stigma, Constitutional rights',
+            definition: 'Marginalisation is the process by which certain groups are pushed to the edges of society and denied full participation in social, economic, and political life. Marginalised groups include Dalits, Adivasis (tribal people), and religious minorities.',
+            content: `<p>Marginalisation keeps some groups permanently disadvantaged — not just by poverty, but by social stigma, discrimination, and exclusion. Understanding it is the first step to creating a truly equal society.</p>
+<h4>Who Are Marginalised Groups?</h4>
+<p><strong>Adivasis (Tribal communities):</strong> India's indigenous people (~8.6% of population). Practice forest-based livelihoods. Marginalised by: loss of forests (to mining, projects), displacement, discrimination, poor access to education and healthcare.</p>
+<p><strong>Religious minorities:</strong> Muslims, Christians, Sikhs, Buddhists, Jains in India. May face: discrimination in jobs/housing, communal violence, stereotyping in media.</p>
+<p><strong>Dalits:</strong> Historically classified as "untouchables" — faced severe discrimination and exclusion from temples, wells, schools. Despite constitutional protections, discrimination persists.</p>
+<h4>What Makes Marginalisation?</h4>
+<ul>
+<li>Low social status (caste, religion, gender)</li>
+<li>Economic poverty and lack of assets</li>
+<li>Political powerlessness</li>
+<li>Cultural stereotyping and stigma</li>
+</ul>`,
+            qa: [
+              { q: 'Who are Adivasis and what challenges do they face?', a: 'Adivasis are India\'s indigenous communities — tribal peoples who have lived in forests and hills for thousands of years. They face: displacement from their lands by mining, dams, and national parks (without adequate compensation or rehabilitation); loss of traditional forest-based livelihoods when forest rights are denied; low literacy rates; lack of quality healthcare; discrimination in mainstream society.' },
+              { q: 'What is social marginalisation?', a: 'Social marginalisation is the process of pushing certain groups to the margins (edge) of society — denying them access to resources, opportunities, and social recognition enjoyed by mainstream society. Marginalised groups often face: exclusion from better jobs and education; lower social status; discrimination; stereotyping; and limited political representation.' },
+              { q: 'How does the Constitution protect marginalised groups in India?', a: 'The Constitution: Article 17 abolishes untouchability; Article 15 prohibits discrimination based on religion, race, caste, sex, place of birth; Article 46 directs the state to promote education and economic interests of SC/STs; Fifth and Sixth Schedules give special protection to tribal areas; reservation (quotas) in education and government jobs under Articles 15(4) and 16(4).' },
+              { q: 'Why is cultural stereotyping harmful to marginalised communities?', a: 'Cultural stereotyping (e.g., showing all Adivasis as primitive, all Muslims as violent, all Dalits as low-caste) creates prejudice, reinforces discrimination, and denies the diversity within these communities. It: affects how people treat members of these groups; influences hiring decisions; can become self-fulfilling (people internalise negative stereotypes); and prevents society from seeing and addressing systemic causes of inequality.' },
+            ]
+          },
+          {
+            id: 'public-facilities-8',
+            title: 'Public Facilities',
+            subtopics: 'What are public facilities, Water supply, Healthcare, Sanitation, Role of government',
+            definition: 'Public facilities are services provided to all citizens by the government — water supply, sanitation, electricity, public transport, education, and healthcare. They are essential for a life of dignity and rights.',
+            content: `<p>Some things are too important to leave entirely to markets. Public facilities like safe water, education, and healthcare must be guaranteed to everyone — not just those who can afford them. This is what a welfare state does.</p>
+<h4>Why Public Facilities?</h4>
+<p>If left to markets: expensive, only the rich can afford them. But education, healthcare, clean water affect everyone — even other people's access to them affects you (e.g., if poor people can't afford vaccines, contagious diseases spread to everyone). Government must ensure access for all.</p>
+<h4>Water as a Public Facility</h4>
+<p>A human right — essential for survival. The Indian Constitution (through the Right to Life, Article 21) has been interpreted to include the right to clean water. Yet millions lack access to safe water. The poor often pay MORE per litre (to private vendors) than the rich (who have piped connections).</p>
+<h4>Healthcare</h4>
+<p>India has both public (government hospitals/PHCs — free or subsidised) and private healthcare. Public healthcare is underfunded — doctor shortages, poor infrastructure. The poor have little choice but to use expensive private healthcare or substandard public facilities.</p>`,
+            qa: [
+              { q: 'What are public facilities and why should the government provide them?', a: 'Public facilities are services essential for human well-being: clean water, sanitation, roads, electricity, schools, hospitals, public transport. Government must provide them because: (1) Market provision excludes the poor; (2) Some services have public goods characteristics (everyone benefits from disease control); (3) Basic dignity requires access to these; (4) It is the government\'s constitutional responsibility.' },
+              { q: 'How does lack of clean water affect people\'s lives?', a: 'Without clean water: people drink contaminated water → waterborne diseases (cholera, typhoid, diarrhoea) → deaths, especially children under 5. Women and girls spend hours collecting water → less time for education and work. Lack of water in schools → girls drop out. Water scarcity → social conflicts, migration. 200,000 Indians die from waterborne diseases annually (preventable with clean water and sanitation).' },
+              { q: 'Why do the poor often pay more for water than the rich?', a: 'Rich households have piped connections and pay subsidised municipal rates. Poor urban families in slums (without connections) buy from private tankers or vendors at 10-20× the municipal price per litre. This paradox — the poor paying more for essential services — exists because: slums lack infrastructure; landlords don\'t invest in connections; municipal water doesn\'t reach informal settlements.' },
+              { q: 'What is the difference between public and private healthcare in India?', a: 'Public healthcare (government): hospitals, primary health centres, district hospitals — free or very cheap. Underfunded, understaffed, poor infrastructure, long queues. Private healthcare: expensive, better equipment and staff, accessible to those who can pay. 70% of Indian healthcare spending is by patients out-of-pocket (much of it for private care). Medical bills are the second biggest cause of rural indebtedness.' },
             ]
           },
         ]
