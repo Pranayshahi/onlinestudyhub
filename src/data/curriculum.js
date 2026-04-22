@@ -1002,6 +1002,53 @@ export const CURRICULUM = {
               { q: 'Why is diversity considered an asset for India?', a: 'Diversity brings: varied skills, knowledge traditions, cultural richness, and different perspectives that help solve problems creatively. It also makes India uniquely vibrant and helps in fields like art, cuisine, languages, and innovation.' },
             ]
           },
+          {
+            id: 'what-is-government',
+            title: 'What is Government?',
+            subtopics: 'Levels of government, Democratic vs non-democratic, Elections, Representative democracy, Responsibilities of government',
+            definition: 'Government is the group of people who have the authority to make and enforce laws for a country or region. A democratic government derives its power from the consent of the people through elections.',
+            content: `<p>Government affects every part of our daily life — the roads we use, the schools we attend, the hospitals that treat us. Understanding how government works is the foundation of active citizenship.</p>
+<h4>What Does Government Do?</h4>
+<ul>
+<li>Makes laws that everyone must follow</li>
+<li>Maintains peace and order (police, courts)</li>
+<li>Provides public services (schools, hospitals, roads)</li>
+<li>Collects taxes and manages public money</li>
+<li>Represents the country internationally</li>
+</ul>
+<h4>Levels of Government in India</h4>
+<p><strong>Central (Union):</strong> Parliament — makes national laws. <strong>State:</strong> Legislative Assembly — makes state laws. <strong>Local:</strong> Panchayat (rural) or Municipality (urban) — manages local needs.</p>
+<h4>Types of Government</h4>
+<p><strong>Democratic:</strong> People elect their representatives. All citizens have equal vote. Government accountable to people. Examples: India, USA.</p>
+<p><strong>Non-democratic:</strong> One person or group rules without elections. E.g., monarchy, military dictatorship.</p>`,
+            qa: [
+              { q: 'Why do we need a government?', a: 'Without government, there would be no laws, so anyone could harm others without punishment. Government provides order (police, courts), essential services (schools, hospitals, roads), protects rights, manages resources, and represents citizens in dealing with other countries.' },
+              { q: 'What makes a government democratic?', a: 'A democratic government: (1) is elected by all adult citizens through free and fair elections, (2) represents people\'s interests, (3) is accountable to citizens, (4) respects fundamental rights, (5) has rule of law — same laws apply to everyone including rulers.' },
+              { q: 'Name the three levels of government in India. What does each handle?', a: 'Central Government: national issues — defence, foreign affairs, currency, railways. State Government: state issues — police, health, education, agriculture. Local Government (Panchayat/Municipality): local issues — local roads, water supply, sanitation, local schools.' },
+            ]
+          },
+          {
+            id: 'panchayati-raj',
+            title: 'Panchayati Raj and Rural Governance',
+            subtopics: 'Gram Panchayat, Gram Sabha, Panchayat Samiti, Zila Parishad, Elections, Functions',
+            definition: 'Panchayati Raj is the system of local self-government in rural India. It allows villages to govern themselves through elected representatives — bringing democracy to the grassroots level.',
+            content: `<p>India has over 600,000 villages. Managing them from Delhi or a state capital is impossible. Panchayati Raj devolves power to village level — empowering local communities to solve local problems.</p>
+<h4>Three Tiers of Panchayati Raj</h4>
+<ul>
+<li><strong>Gram Panchayat:</strong> Village level. Elected members (Panch) and elected head (Sarpanch/Gram Pradhan). Manages village roads, water, sanitation, schools.</li>
+<li><strong>Panchayat Samiti (Block level):</strong> Group of villages. Coordinates activities of Gram Panchayats.</li>
+<li><strong>Zila Parishad (District level):</strong> Entire district. Supervises all panchayats in a district.</li>
+</ul>
+<h4>Gram Sabha</h4>
+<p>All adult voters in a village form the Gram Sabha — the base of Panchayati Raj. Meets at least twice a year to review Panchayat work, approve plans, discuss local issues. Every voice matters.</p>
+<h4>73rd Constitutional Amendment (1992)</h4>
+<p>Made Panchayati Raj constitutional. Mandated elections every 5 years, reserved seats for women (1/3), SC, and ST communities.</p>`,
+            qa: [
+              { q: 'What is the Gram Sabha and why is it important?', a: 'The Gram Sabha consists of all registered voters in a village. It is the foundation of democracy at village level — it can question the Panchayat, approve budgets, identify beneficiaries for schemes, and hold elected members accountable. True democracy means all villagers have a voice, not just elected members.' },
+              { q: 'Why are seats reserved for women in Panchayati Raj?', a: 'Historically, women were excluded from public decision-making. Reserving at least 1/3 of seats ensures women\'s voices are included in local governance. This has led to decisions that better reflect women\'s needs — water points closer to homes, better sanitation, more girls\' toilets in schools.' },
+              { q: 'What are the main functions of a Gram Panchayat?', a: 'Gram Panchayat: maintains village roads and public buildings, manages water supply, oversees sanitation and cleanliness, runs local schools and primary health centres, implements government welfare schemes (ration cards, MGNREGA), settles local disputes, and collects local taxes.' },
+            ]
+          },
         ]
       },
     }
@@ -1623,6 +1670,92 @@ export const CURRICULUM = {
               { q: 'What is the difference between erosion and deposition?', a: 'Erosion is the process of carrying away weathered rock material by agents like water, wind, or glaciers. Deposition is when these agents lose energy and drop/deposit the material they were carrying — forming new landforms like deltas, sand dunes, and flood plains.' },
             ]
           },
+          {
+            id: 'water-7',
+            title: 'Water',
+            subtopics: 'Water cycle, Groundwater, Rivers, Seas and oceans, Distribution of water, Water scarcity, Conservation',
+            definition: 'Water is essential for all life. Though 71% of Earth\'s surface is covered by water, only 2.5% is fresh water. The water cycle continuously moves water between the atmosphere, land, and oceans.',
+            content: `<p>Fresh water is one of Earth's most precious resources. As the global population grows and climate changes, water scarcity is becoming one of the most serious challenges humanity faces.</p>
+<h4>The Water Cycle</h4>
+<p>Evaporation (water → water vapour) → Condensation (water vapour → clouds) → Precipitation (rain/snow) → Collection (rivers, lakes, oceans) → repeat. Solar energy drives evaporation; gravity drives precipitation and flow.</p>
+<h4>Distribution of Water</h4>
+<p>97.5% salt water (oceans). 2.5% fresh water. Of fresh water: 68.7% in glaciers and ice caps, 30.1% underground (groundwater), only 0.3% in rivers and lakes (accessible surface water).</p>
+<h4>Groundwater</h4>
+<p>Water that seeps into the ground and is stored in aquifers (porous rock layers). Extracted by wells and tubewells. Overextraction is lowering water tables dangerously in many Indian cities.</p>
+<h4>Water Scarcity and Conservation</h4>
+<p>Many parts of India face water shortages due to: uneven rainfall, overuse, pollution, deforestation. Solutions: rainwater harvesting, drip irrigation, treating wastewater, reducing use, traditional methods (stepwells, bawdis).</p>`,
+            qa: [
+              { q: 'Trace the path of water in the water cycle.', a: 'Solar energy evaporates water from oceans/lakes/rivers → water vapour rises and cools → condensation forms clouds → precipitation (rain/snow) falls → water collects in rivers/lakes/groundwater → flows back to ocean. The cycle then repeats continuously.' },
+              { q: 'Why is fresh water scarce despite 71% of Earth being covered with water?', a: '97.5% of Earth\'s water is salt water (oceans) — not directly drinkable. Of the 2.5% fresh water, 68.7% is locked in glaciers and ice, and 30.1% is groundwater. Only 0.3% is accessible surface fresh water in rivers and lakes — and much of that is already polluted or in remote areas.' },
+              { q: 'What is rainwater harvesting and why is it important?', a: 'Rainwater harvesting collects rainwater from rooftops or land into tanks, ponds, or lets it seep into ground to recharge aquifers. It: conserves fresh water, reduces runoff and flooding, reduces dependence on groundwater, and provides water in dry seasons. Traditional systems like johads, kunds, and baolis in India stored rainwater effectively for centuries.' },
+            ]
+          },
+          {
+            id: 'natural-vegetation-wildlife',
+            title: 'Natural Vegetation and Wildlife',
+            subtopics: 'Types of forests, Grasslands, Deserts, Importance of forests, Wildlife conservation, Deforestation',
+            definition: 'Natural vegetation refers to plants that grow naturally in a region without human intervention. Wildlife is the diverse animal life of a region. Both are inseparably linked to the climate and soil of their habitat.',
+            content: `<p>Forests cover 31% of Earth's land area and are home to 80% of terrestrial biodiversity. They are our planet's lungs — absorbing CO₂ and releasing oxygen. Protecting them is protecting life itself.</p>
+<h4>Major Types of Natural Vegetation</h4>
+<ul>
+<li><strong>Tropical Rainforests:</strong> Heavy rainfall, dense canopy. Amazon, Congo, Western Ghats. Highest biodiversity.</li>
+<li><strong>Temperate forests:</strong> Moderate rainfall, deciduous or coniferous trees.</li>
+<li><strong>Grasslands:</strong> Moderate rainfall, insufficient for forests. African savanna, Indian grass plains.</li>
+<li><strong>Desert vegetation:</strong> Thorny shrubs, cacti — adapted to extreme drought. Camels, lizards.</li>
+<li><strong>Tundra:</strong> Polar regions, permafrost. Mosses, lichens only.</li>
+</ul>
+<h4>Importance of Forests</h4>
+<p>Forests: provide oxygen, absorb CO₂, regulate climate, hold soil (prevent erosion), store water, provide habitat for wildlife, supply timber, medicines, and food for millions of people.</p>
+<h4>Deforestation and Conservation</h4>
+<p>Deforestation: clearing forests for farming, logging, urbanisation. Causes: floods, soil erosion, species extinction, climate change. Conservation: protected areas (national parks, biosphere reserves), social forestry, reforestation.</p>`,
+            qa: [
+              { q: 'Why are tropical rainforests called "lungs of the Earth"?', a: 'Tropical rainforests absorb enormous amounts of CO₂ (carbon dioxide) from the atmosphere through photosynthesis and release oxygen. The Amazon alone produces 20% of the world\'s oxygen. Like our lungs exchange CO₂ for oxygen, rainforests clean the atmosphere — hence the name.' },
+              { q: 'How is natural vegetation related to climate?', a: 'Climate — especially rainfall and temperature — determines what plants can survive. High rainfall → thick rainforests. Moderate rainfall → grasslands. Very low rainfall → desert shrubs. Cold temperatures → tundra mosses. This is why vegetation maps and climate maps look almost identical.' },
+              { q: 'What are biosphere reserves?', a: 'Biosphere reserves are large protected areas where natural ecosystems are conserved while allowing sustainable human use. They have three zones: core (fully protected), buffer (limited research/tourism), transition (sustainable economic activities). India has 18 biosphere reserves including Nilgiris, Sundarbans, and Gulf of Mannar.' },
+            ]
+          },
+        ]
+      },
+      civics: {
+        id: 'civics', topics: [
+          {
+            id: 'equality-7',
+            title: 'On Equality',
+            subtopics: 'Equality in democracy, Discrimination, Right to equality, Dignity, Universal adult franchise',
+            definition: 'Equality means every person has the same worth and dignity, and is entitled to the same rights and opportunities. In a democracy, equality is both a value and a legal guarantee.',
+            content: `<p>Equality is the cornerstone of Indian democracy. Yet in practice, caste, gender, religion, and class continue to create deep inequalities. Understanding what equality means — and why it is often not achieved — is crucial for citizens.</p>
+<h4>Equality in Democracy</h4>
+<p>India's Constitution grants equal rights to all citizens: one person, one vote. The Prime Minister's vote is equal to a daily-wage worker's vote. This political equality is radical in a society that historically had rigid caste hierarchies.</p>
+<h4>Civil Equality vs Social Reality</h4>
+<p>While law guarantees equality, social discrimination persists. Dalits face discrimination despite legal protection. Women are paid less for the same work. Poor children have fewer educational opportunities. Recognising this gap is the first step to addressing it.</p>
+<h4>Dignity</h4>
+<p>Every person deserves to be treated with dignity — not just equality of rights but equality of respect. Discrimination violates dignity. The Indian Constitution specifically addresses discrimination on grounds of religion, race, caste, sex, and place of birth.</p>`,
+            qa: [
+              { q: 'What does the Indian Constitution say about equality?', a: 'Article 14: The State shall not deny any person equality before the law. Article 15: No discrimination based on religion, race, caste, sex, or place of birth. Article 17: Abolishes untouchability. Article 21: Right to life and personal liberty with dignity. Together, these guarantee formal legal equality to all citizens.' },
+              { q: 'Why does formal legal equality not always lead to real equality?', a: 'Laws against discrimination exist, but: social prejudices are deeply ingrained and not easily changed by law; historical disadvantages (poverty, lack of education) persist across generations; those discriminated against may not know their rights or lack resources to fight cases; and enforcement is often weak. True equality requires both legal changes and social change.' },
+              { q: 'What is universal adult franchise?', a: 'Universal adult franchise means every adult citizen (18+) has the right to vote, regardless of gender, caste, religion, education, or wealth. India adopted this from its first election (1952) — unique among many countries that initially limited voting to the educated or wealthy. It is a powerful equaliser — every person\'s vote counts equally.' },
+            ]
+          },
+          {
+            id: 'womens-roles',
+            title: 'Women Change the World',
+            subtopics: 'Gender stereotypes, Women in education and work, Campaigns for women\'s rights, Discrimination at home and workplace',
+            definition: 'Gender refers to social roles and expectations assigned to males and females by society. Gender discrimination — treating people unequally based on gender — limits opportunities for both boys and girls, but especially girls.',
+            content: `<p>For most of history, women were excluded from education, voting, property ownership, and public life. The struggle for gender equality has achieved remarkable progress but deep inequalities remain worldwide and in India.</p>
+<h4>Gender Stereotypes</h4>
+<p>Society assigns roles: "Women should cook and care for children; men should work and earn." These stereotypes: prevent girls from pursuing science/sports; make boys feel they cannot be nurses or dancers; limit human potential.</p>
+<h4>Education and Opportunity</h4>
+<p>In many parts of India, girls are still taken out of school to work at home or marry early. Yet studies consistently show: educating girls is one of the most powerful tools for development — it reduces infant mortality, improves child nutrition, and reduces poverty.</p>
+<h4>Women in the Workforce</h4>
+<p>Women often receive lower pay for equal work (gender pay gap). Women's work at home (cooking, childcare) is not counted in economic statistics, making it "invisible." Women face sexual harassment in workplaces.</p>
+<h4>Campaigns and Achievements</h4>
+<p>Beti Bachao Beti Padhao, Self-Help Groups, Panchayat reservations, Maternity Benefit Act — steps toward gender equality.</p>`,
+            qa: [
+              { q: 'What is a gender stereotype? Give two examples.', a: 'A gender stereotype is an oversimplified belief about how men or women should behave. Examples: "Science and maths are for boys" (prevents girls from pursuing STEM). "Cooking and childcare are women\'s work" (discourages men from participating in family care). Stereotypes limit individual potential and create unfair expectations.' },
+              { q: 'Why is educating the girl child so important for national development?', a: 'Educated women: have fewer and healthier children (lower birth rate), ensure better nutrition and health for their families, earn income and lift families from poverty, keep children in school longer, are more likely to educate their own children. Studies show each additional year of girls\' schooling raises their future earnings by 10-20% and significantly reduces infant and child mortality.' },
+              { q: 'What is domestic violence and who is affected?', a: 'Domestic violence is physical, emotional, or sexual abuse by one family member against another, most often by husbands against wives. It is a crime in India (Protection of Women from Domestic Violence Act 2005). It affects women across all classes and religions. Many cases go unreported due to social stigma, economic dependence, and fear. Support: National helpline 181.' },
+            ]
+          },
         ]
       },
     }
@@ -2040,6 +2173,52 @@ export const CURRICULUM = {
               { q: 'Why does sound travel faster in solids than in air?', a: 'In solids, particles are closely packed and tightly bonded. Vibrations pass from one particle to the next more quickly. In air, particles are far apart and loosely connected, so vibrations travel more slowly.' },
             ]
           },
+          {
+            id: 'synthetic-fibres',
+            title: 'Synthetic Fibres and Plastics',
+            subtopics: 'Natural vs synthetic fibres, Types of synthetic fibres, Plastics, Biodegradable vs non-biodegradable, Environmental impact',
+            definition: 'Synthetic fibres are man-made fibres produced from petrochemicals (crude oil and coal). Plastics are synthetic polymers that can be moulded. Both have transformed modern life but also created serious environmental problems.',
+            content: `<p>Synthetic materials are everywhere — from the clothes we wear to the packaging we use. Understanding their properties and environmental impact helps us make better choices as consumers and citizens.</p>
+<h4>Natural vs Synthetic Fibres</h4>
+<p>Natural fibres come from plants (cotton, jute) or animals (wool, silk). Synthetic fibres are made from chemicals derived from petroleum: nylon, polyester, acrylic, rayon.</p>
+<h4>Common Synthetic Fibres</h4>
+<ul>
+<li><strong>Nylon:</strong> Strong, elastic, resistant to moisture. Ropes, parachutes, toothbrushes.</li>
+<li><strong>Polyester:</strong> Wrinkle-resistant, easy to wash/dry. Most common in clothing. PET bottles.</li>
+<li><strong>Acrylic:</strong> Resembles wool, light, warm. Sweaters, blankets.</li>
+<li><strong>Rayon:</strong> Semi-synthetic (from wood pulp). Called "artificial silk." Saris, dress materials.</li>
+</ul>
+<h4>Plastics: Thermoplastic vs Thermosetting</h4>
+<p>Thermoplastics (can be remoulded when heated — PVC, polythene) vs Thermosetting plastics (cannot be remoulded — Bakelite, Melamine).</p>
+<h4>Environmental Problem</h4>
+<p>Plastics are non-biodegradable — they persist for 500-1000 years. Microplastics enter food chains. Solutions: reduce, reuse, recycle, ban single-use plastics.</p>`,
+            qa: [
+              { q: 'What are the advantages of synthetic fibres over natural fibres?', a: 'Synthetic fibres: are stronger and more durable, dry quickly, are wrinkle-resistant, are less expensive, can be made in any colour, are not damaged by moths/fungi, and are easy to wash. However, they are less breathable, melt near fire, and are non-biodegradable.' },
+              { q: 'Why is plastic a serious environmental problem?', a: 'Plastic is non-biodegradable — bacteria cannot break it down. It persists for 500-1000 years. Animals mistake plastic for food. Plastics fragment into microplastics (<5mm) that contaminate water, soil, and enter food chains. 8 million tonnes of plastic enter the oceans every year.' },
+              { q: 'What is the difference between thermoplastics and thermosetting plastics?', a: 'Thermoplastics: soften and can be remoulded when heated — PET, PVC, polythene. Can be recycled. Thermosetting plastics: once set, cannot be softened by heating — Bakelite, Melamine. Cannot be recycled. Used where heat resistance is needed (electrical switches, cookware handles).' },
+            ]
+          },
+          {
+            id: 'reproduction-animals',
+            title: 'Reproduction in Animals',
+            subtopics: 'Sexual and asexual reproduction, Fertilisation, Development of embryo, Viviparous vs oviparous, Metamorphosis',
+            definition: 'Reproduction is the process by which organisms produce offspring to continue their species. Animals reproduce sexually (involving two parents and fusion of gametes) or asexually (one parent, no gametes).',
+            content: `<p>Every organism — from bacteria to blue whales — reproduces. Without reproduction, species would become extinct. This chapter explores the remarkable diversity of reproductive strategies.</p>
+<h4>Sexual Reproduction</h4>
+<p>Involves two parents, fusion of male gamete (sperm) and female gamete (egg/ovum). Produces offspring with genetic variation — important for evolution.</p>
+<h4>Internal vs External Fertilisation</h4>
+<p><strong>Internal fertilisation:</strong> Sperm and egg fuse inside female's body. E.g., humans, dogs. Fewer offspring, more parental care.</p>
+<p><strong>External fertilisation:</strong> Sperm and egg meet outside body in water. E.g., fish, frogs. Large numbers of eggs — most don't survive.</p>
+<h4>Oviparous vs Viviparous</h4>
+<p>Oviparous: lay eggs (birds, reptiles, fish). Viviparous: young develop inside mother, born live (humans, dogs, whales).</p>
+<h4>Metamorphosis</h4>
+<p>Dramatic change in body form. Frog: egg → tadpole → froglet → frog. Butterfly: egg → caterpillar → pupa → butterfly.</p>`,
+            qa: [
+              { q: 'What is the difference between internal and external fertilisation?', a: 'Internal fertilisation: sperm enters female body and fuses with egg inside (reptiles, birds, mammals). Better protection. External fertilisation: sperm and eggs released into water where they meet (most fish, frogs). Large numbers of eggs needed as many are lost to predators.' },
+              { q: 'How does a frog undergo metamorphosis?', a: 'Frog life cycle: fertilised egg in water → tadpole hatches (breathes through gills, lives in water) → hind legs then fore legs form; lungs develop, gills disappear; tail reabsorbed → adult frog (breathes air, lives on land and water).' },
+              { q: 'What is budding? In which organism does it occur?', a: 'Budding is asexual reproduction where a small bud grows from the parent body, develops into a complete organism, and detaches. Occurs in Hydra (animal) and yeast (fungus). Offspring is genetically identical to the parent.' },
+            ]
+          },
         ]
       },
       history: {
@@ -2238,6 +2417,52 @@ export const CURRICULUM = {
               { q: 'Why must the judiciary be independent of the executive?', a: 'If the judiciary were controlled by the government (executive), it could not impartially judge cases involving the government. Independence ensures judges make decisions based on the Constitution and law — not political convenience — protecting citizens\' rights from government overreach.' },
               { q: 'What is a Public Interest Litigation (PIL)?', a: 'A PIL is a legal action filed in court for the enforcement of public interest or general welfare — even by a person not directly affected. It has been used to address issues like environmental pollution, bonded labour, police brutality, and corruption in India.' },
               { q: 'What is the difference between civil and criminal cases?', a: 'Civil cases: disputes between individuals or organisations (property, divorce, contract breach). The case is filed by the aggrieved party. Criminal cases: offences against society/state (theft, murder). The state prosecutes the accused. Punishment in criminal cases can include imprisonment.' },
+            ]
+          },
+          {
+            id: 'parliament-laws',
+            title: 'Why Do We Need a Parliament?',
+            subtopics: 'Functions of Parliament, Lok Sabha, Rajya Sabha, Making laws, Accountability, Opposition',
+            definition: 'Parliament is the supreme law-making body in India. It consists of two Houses — Lok Sabha (House of the People) and Rajya Sabha (Council of States) — and the President. Parliament makes laws, controls the government, and represents the people.',
+            content: `<p>Parliament is the heart of Indian democracy. It is where the people's elected representatives debate, question, and make laws that govern over a billion people. Understanding Parliament is understanding how Indian democracy works.</p>
+<h4>Two Houses of Parliament</h4>
+<p><strong>Lok Sabha (Lower House):</strong> 545 members, directly elected by voters, 5-year term. Controls the government — if PM loses majority here, government falls. Passes the budget.</p>
+<p><strong>Rajya Sabha (Upper House):</strong> 245 members, indirectly elected (by state legislatures), continuous body (1/3 retire every 2 years). Represents states' interests.</p>
+<h4>Functions of Parliament</h4>
+<ul>
+<li><strong>Legislation:</strong> Makes laws for the country.</li>
+<li><strong>Control of Executive:</strong> Holds government accountable through Question Hour, debates, no-confidence motions.</li>
+<li><strong>Budget approval:</strong> Government cannot spend money without Parliament's approval.</li>
+<li><strong>Constituent power:</strong> Can amend the Constitution.</li>
+</ul>
+<h4>How a Bill Becomes a Law</h4>
+<p>Bill introduced → discussed (debate) → passed in both Houses → President gives assent → becomes Act (law).</p>`,
+            qa: [
+              { q: 'What is the difference between Lok Sabha and Rajya Sabha?', a: 'Lok Sabha: 545 members, directly elected by people, 5-year term, more powerful (controls budget and government). Rajya Sabha: 245 members, elected by state legislatures, permanent body (members serve 6 years, 1/3 retire every 2 years). Rajya Sabha represents states and provides second look at legislation. Only Lok Sabha can pass money bills alone.' },
+              { q: 'What is the Question Hour in Parliament?', a: 'The first hour of each Parliament session is Question Hour, when MPs question ministers about their work. Starred questions get verbal answers (ministers must be ready); unstarred get written answers. It is a powerful accountability tool — ministers must explain government policies and actions publicly. Zero Hour follows — MPs raise urgent public matters without prior notice.' },
+              { q: 'Why does India need a Parliament if we have an elected Prime Minister?', a: 'The PM is just one person. Parliament ensures: (1) many voices (543 MPs) represent different regions, communities, parties; (2) the government is held accountable — PM must maintain majority support in Lok Sabha or resign; (3) laws are debated by many perspectives before passing; (4) no single person can accumulate unchecked power. Parliament is collective democracy in action.' },
+            ]
+          },
+          {
+            id: 'industries-8',
+            title: 'Industries',
+            subtopics: 'Types of industries, Factors of industrial location, Major industries in India, Industrial pollution',
+            definition: 'Industries transform raw materials into finished goods using labour, capital, and technology. Industrial development drives economic growth and employment, but can also cause pollution and environmental damage.',
+            content: `<p>Industrialisation transformed the world from an agricultural to a modern economy. India's industrial development since independence has created millions of jobs but also brought environmental challenges.</p>
+<h4>Types of Industries</h4>
+<ul>
+<li><strong>By raw material:</strong> Agro-based (cotton textile, jute), Mineral-based (iron & steel, cement), Marine-based (fish products), Forest-based (paper, furniture).</li>
+<li><strong>By size:</strong> Large-scale (steel plants, automobile), Medium, Small-scale (cottage industries — handlooms, pottery).</li>
+<li><strong>By ownership:</strong> Public sector (government-owned — SAIL, ONGC), Private (Tata, Reliance), Joint (Maruti Suzuki).</li>
+</ul>
+<h4>Factors of Industrial Location</h4>
+<p>Industries locate where: raw materials are available, power is cheap, transport is easy, labour is available, market is nearby, government policies are favourable, water is sufficient.</p>
+<h4>Major Industries in India</h4>
+<p>Iron & Steel (Bhilai, Bokaro, Rourkela), Cotton Textile (Mumbai, Ahmedabad — "Manchester of India"), Information Technology (Bengaluru — "Silicon Valley of India"), Sugar (UP, Maharashtra).</p>`,
+            qa: [
+              { q: 'Why is Bengaluru called the Silicon Valley of India?', a: 'Bengaluru has the highest concentration of IT companies in India — Infosys, Wipro, HCL, and offices of global companies (IBM, Google, Microsoft). Reasons: pleasant climate, many engineering colleges, early government investment in electronics (ISRO, HAL, BEL), and good infrastructure. It generates the largest share of India\'s software exports.' },
+              { q: 'What are cottage industries and why are they important in India?', a: 'Cottage industries are small-scale industries run from homes using simple skills: handlooms, pottery, basket-weaving, Khadi (hand-spun cloth). They: employ millions in rural areas (including women and artisans), require little capital, preserve traditional crafts, and reduce urban migration. India\'s handloom sector employs ~43 lakh weavers, the second largest rural employer after agriculture.' },
+              { q: 'How do industries cause pollution?', a: 'Air pollution: factory chimneys release SO₂, CO, particulate matter. Water pollution: industrial effluents discharged into rivers (the Ganga and Yamuna are heavily polluted this way). Soil pollution: dumping of toxic waste and chemicals. Noise pollution: heavy machinery. Solutions: effluent treatment plants, cleaner technologies, strict enforcement of pollution norms.' },
             ]
           },
         ]
@@ -2622,6 +2847,31 @@ export const CURRICULUM = {
               { q: 'What is the atomicity of ozone?', a: 'Ozone is O₃ — its molecule contains 3 oxygen atoms. Atomicity = 3. Oxygen gas (O₂) has atomicity 2.' },
             ]
           },
+          {
+            id: 'diversity-living',
+            title: 'Diversity in Living Organisms',
+            subtopics: 'Need for classification, Hierarchy, Whittaker\'s kingdoms, Plantae divisions, Animalia phyla, Nomenclature',
+            definition: 'Classification is the systematic grouping of organisms based on similarities and differences. It helps organise the enormous diversity of life and reveals evolutionary relationships between organisms.',
+            content: `<p>Earth has about 8.7 million species of living organisms. Without classification, studying them would be impossible. Taxonomy brings order to this immense diversity.</p>
+<h4>Hierarchy of Classification</h4>
+<div class="formula">Kingdom → Phylum → Class → Order → Family → Genus → Species</div>
+<p>Mnemonic: "King Philip Came Over For Good Soup"</p>
+<h4>Plantae — Major Groups</h4>
+<ul>
+<li><strong>Thallophyta:</strong> No well-differentiated body — Algae.</li>
+<li><strong>Bryophyta:</strong> No vascular tissue — Mosses, Liverworts.</li>
+<li><strong>Pteridophyta:</strong> Has vascular tissue, no seeds — Ferns.</li>
+<li><strong>Gymnosperms:</strong> Naked seeds — Pines, Cycads.</li>
+<li><strong>Angiosperms:</strong> Seeds in fruits — Monocots and Dicots.</li>
+</ul>
+<h4>Animalia — Major Phyla</h4>
+<p>Porifera → Coelenterata → Platyhelminthes → Nematoda → Annelida → Arthropoda (largest phylum) → Mollusca → Echinodermata → Chordata (vertebrates).</p>`,
+            qa: [
+              { q: 'Why is classification of living organisms necessary?', a: 'With ~8.7 million species, classification organises them for study, helps identify unknown organisms, reveals evolutionary relationships, makes communication universal (scientific names work across languages), and helps predict properties based on classification.' },
+              { q: 'What distinguishes angiosperms from gymnosperms?', a: 'Gymnosperms: seeds not enclosed in fruit — naked on cones (pine, cycas). Angiosperms: seeds enclosed within a fruit, they have flowers. Most common plants — wheat, mango, rose, grass. Angiosperms are the most evolved and diverse plant group.' },
+              { q: 'Which is the largest phylum in the animal kingdom?', a: 'Arthropoda — over 1 million species. Includes insects (beetles, ants), arachnids (spiders), crustaceans (crabs, lobsters). Success due to: jointed limbs, protective exoskeleton, small size, high reproductive rate, ability to adapt to diverse habitats.' },
+            ]
+          },
         ]
       },
       history: {
@@ -2836,6 +3086,78 @@ export const CURRICULUM = {
               { q: 'What is MGNREGA and how does it help the poor?', a: 'MGNREGA (Mahatma Gandhi National Rural Employment Guarantee Act, 2005) guarantees every rural household 100 days of unskilled wage employment per year. It provides income to the rural poor, creates productive assets (roads, water bodies), reduces distress migration, and strengthens bargaining power of labourers.' },
               { q: 'Why are women and children more vulnerable to poverty?', a: 'Women often have lower wages, less property rights, less access to education and credit, and face social discrimination. Children in poor families drop out of school to work, perpetuating the poverty cycle. Both women and children are disproportionately affected by malnutrition and lack of healthcare in poor households.' },
               { q: 'Has India made progress in reducing poverty?', a: 'Yes. India\'s poverty rate fell from about 45% (1993) to under 22% (2012) and continues to decline. Reasons: economic growth, MGNREGA, PDS, improved infrastructure, and social welfare schemes. However, hundreds of millions still lack basic amenities.' },
+            ]
+          },
+          {
+            id: 'food-security',
+            title: 'Food Security in India',
+            subtopics: 'Food security meaning, Buffer stock, PDS, Food production, Hunger and malnutrition, Green Revolution',
+            definition: 'Food security means all people at all times have access to sufficient, safe, and nutritious food. India achieved food self-sufficiency through the Green Revolution, but food insecurity and malnutrition still affect millions.',
+            content: `<p>India produces enough food to feed every citizen, yet malnutrition affects millions. The challenge is not just producing enough food — it is ensuring everyone can access and afford it.</p>
+<h4>Three Pillars of Food Security</h4>
+<ul>
+<li><strong>Availability:</strong> Enough food produced, imported, or stored.</li>
+<li><strong>Access:</strong> People can afford to buy food (income/prices).</li>
+<li><strong>Absorption:</strong> Body can utilise food (clean water, sanitation, healthcare needed).</li>
+</ul>
+<h4>Green Revolution</h4>
+<p>In the 1960s, India faced severe food shortages. The Green Revolution introduced: High Yielding Varieties (HYV) of wheat and rice, irrigation expansion, chemical fertilisers and pesticides. India went from food-importing to food self-sufficient by the 1980s.</p>
+<h4>Buffer Stock and PDS</h4>
+<p>Government buys grain at Minimum Support Price (MSP) and stores it as buffer stock (food reserves). This grain is distributed through Public Distribution System (PDS) — ration shops selling rice, wheat, sugar, kerosene to the poor at subsidised prices.</p>`,
+            qa: [
+              { q: 'What is the Green Revolution and what did it achieve?', a: 'The Green Revolution (1960s-70s) introduced High Yielding Variety (HYV) seeds (mainly wheat by Norman Borlaug and M.S. Swaminathan), expanded irrigation, and promoted fertiliser use. India\'s wheat production tripled and rice production doubled. India moved from food-dependent to food self-sufficient — averting the famines predicted for the 1970s. However, it benefited mainly large farmers in Punjab, Haryana, and UP.' },
+              { q: 'What is the Public Distribution System (PDS)?', a: 'PDS is a government system of ration shops that sell essential commodities (rice, wheat, sugar, kerosene) to eligible households at subsidised prices. BPL (Below Poverty Line) families get the most subsidy. Government procures grain from farmers at MSP, stores it, and distributes through ~5 lakh fair price shops across India. It is the world\'s largest food distribution system.' },
+              { q: 'Despite high food production, why do many Indians go hungry?', a: 'India produces enough food for all citizens, but hunger persists because: (1) Food is not distributed equitably — some regions have surpluses while others face shortages. (2) The poorest cannot afford food even when available — lack of purchasing power. (3) PDS has leakages and inefficiencies. (4) Malnutrition occurs even with enough calories — poor diet quality and lack of clean water worsen absorption.' },
+            ]
+          },
+        ]
+      },
+      chemistry: {
+        id: 'chemistry', topics: [
+          {
+            id: 'matter-surroundings',
+            title: 'Matter in Our Surroundings',
+            subtopics: 'States of matter, Properties, Interconversion, Evaporation, Latent heat, Plasma and BEC',
+            definition: 'Matter is anything that has mass and occupies space. It exists in three common states — solid, liquid, and gas — which differ in the arrangement and energy of their particles. Changes of state involve absorption or release of heat energy.',
+            content: `<p>Everything you see around you — from the air you breathe to the iron in blood — is matter. Understanding the three states of matter and how energy causes them to transform is fundamental to all science.</p>
+<h4>States of Matter</h4>
+<ul>
+<li><strong>Solid:</strong> Fixed shape and volume. Particles tightly packed, vibrate in place. Strong inter-molecular forces.</li>
+<li><strong>Liquid:</strong> Fixed volume, no fixed shape (takes container shape). Particles close but can slide. Moderate forces.</li>
+<li><strong>Gas:</strong> No fixed shape or volume. Particles very far apart, move randomly at high speed. Very weak forces.</li>
+</ul>
+<h4>Changes of State</h4>
+<div class="formula">Solid ⇌ Liquid ⇌ Gas</div>
+<p>Melting (solid→liquid), Freezing (liquid→solid), Vaporisation (liquid→gas), Condensation (gas→liquid), Sublimation (solid→gas directly, e.g., dry ice, camphor).</p>
+<h4>Latent Heat</h4>
+<p>Heat absorbed/released during change of state WITHOUT change in temperature. Latent heat of fusion (melting ice), latent heat of vaporisation (boiling water).</p>
+<h4>Evaporation and Cooling</h4>
+<p>Evaporation causes cooling — energetic surface molecules escape, leaving slower (cooler) molecules. Why we sweat to cool down; why earthen pots cool water.</p>`,
+            qa: [
+              { q: 'Why does a steel spoon feel colder than a wooden spoon at the same room temperature?', a: 'Both are at room temperature, but steel conducts heat much faster than wood. When you touch steel, heat flows rapidly from your warm fingers to the steel — making your fingers feel cold. Wood conducts heat slowly, so little heat is transferred — it feels closer to body temperature. It\'s not temperature but heat conductivity that makes the difference.' },
+              { q: 'What is sublimation? Give two examples.', a: 'Sublimation is the direct change from solid to gas without passing through the liquid state. Examples: (1) Dry ice (solid CO₂) sublimes at −78.5°C — used in fog machines and food preservation. (2) Camphor (placed in a dish gradually disappears). (3) Naphthalene balls in wardrobes. (4) Ammonium chloride sublimes on heating.' },
+              { q: 'Why does a bottle of cold water left outside on a humid day become wet on the outside?', a: 'The outside of the cold bottle is below the dew point of the surrounding air. Water vapour in the warm humid air comes in contact with the cold surface, loses energy, and condenses (gas → liquid) into water droplets on the bottle surface. This is condensation — the reverse of evaporation.' },
+            ]
+          },
+          {
+            id: 'is-matter-pure',
+            title: 'Is Matter Around Us Pure?',
+            subtopics: 'Pure substances vs mixtures, Elements, Compounds, Solutions, Suspensions, Colloids, Separation methods',
+            definition: 'A pure substance contains only one type of matter with definite properties. Most things around us are mixtures — combinations of two or more substances. Understanding this helps in separating and purifying materials.',
+            content: `<p>The water from your tap, the air you breathe, the food you eat — all are mixtures. Chemistry involves separating mixtures into pure substances and understanding why pure substances behave differently from mixtures.</p>
+<h4>Pure Substances vs Mixtures</h4>
+<p><strong>Pure substance:</strong> Fixed composition, definite properties. Elements (one type of atom — gold, oxygen) or Compounds (chemically combined elements — water H₂O, salt NaCl).</p>
+<p><strong>Mixture:</strong> Variable composition, properties are combination of components. Can be separated by physical methods. Homogeneous (uniform — solution like saltwater) or Heterogeneous (non-uniform — sand in water).</p>
+<h4>Types of Solutions</h4>
+<p>Solution: solute dissolved in solvent. Concentrated/dilute. Saturated (maximum dissolved at that temperature). Solubility increases with temperature (mostly).</p>
+<h4>Colloids and Suspensions</h4>
+<p>Colloid: particles 1–100 nm — cannot be seen, do not settle. Scatters light (Tyndall effect). Examples: milk, fog, jelly. Suspension: particles >100 nm — settle on standing. Example: muddy water.</p>
+<h4>Separation Methods</h4>
+<p>Filtration (solid from liquid), Evaporation (soluble solid from solution), Distillation (liquid from solution by boiling), Chromatography (coloured mixtures), Centrifugation (cream from milk).</p>`,
+            qa: [
+              { q: 'What is the Tyndall effect and which type of mixture shows it?', a: 'The Tyndall effect is the scattering of light by colloidal particles — making the beam visible. Colloids (milk, fog, aerosols) show Tyndall effect because their particles (1-100nm) are big enough to scatter light but too small to see or settle. True solutions do NOT show it (particles too small). Suspensions do show it but particles settle. Used to distinguish colloids from solutions.' },
+              { q: 'What is the difference between a compound and a mixture?', a: 'Compound: elements combined CHEMICALLY in fixed ratio (H₂O always 2:1 H:O). Has new properties different from elements (Na is explosive metal, Cl is poisonous gas, NaCl is safe table salt). Separated only by chemical methods. Mixture: substances combined PHYSICALLY in any ratio. Retains properties of components. Separated by physical methods (filtration, distillation, magnets).' },
+              { q: 'How is sea water purified to get drinking water?', a: 'Desalination of seawater: (1) Distillation: seawater is heated, water evaporates as steam, salt stays, steam condenses to give pure water. (2) Reverse osmosis (RO): high pressure forces water through a semi-permeable membrane that blocks salt ions. Used in India\'s coastal areas (Chennai) and Gulf countries. Distillation is energy-intensive; RO is more efficient for large-scale use.' },
             ]
           },
         ]
@@ -3434,6 +3756,116 @@ export const CURRICULUM = {
               { q: 'What is collateral and why can\'t poor people access formal credit?', a: 'Collateral is an asset (land, property, gold) a borrower pledges as security for a loan. If unable to repay, the lender takes the collateral. Poor people often have no property to pledge → banks won\'t lend → they must borrow from informal moneylenders at extremely high interest rates.' },
               { q: 'What is a Self-Help Group (SHG) and how does it help the rural poor?', a: 'An SHG is a group of 15-20 rural neighbours (often women) who pool savings and lend to members at reasonable rates. This provides formal credit without collateral, empowers women (members control funds), breaks the moneylender cycle, and builds community solidarity.' },
               { q: 'What is the role of the Reserve Bank of India?', a: 'RBI is India\'s central bank: (1) Issues currency notes and controls money supply, (2) Sets cash reserve ratio (how much banks must keep in reserve), (3) Sets interest rates (repo rate), (4) Regulates all banks — ensuring they follow rules and don\'t take excessive risks, (5) Lender of last resort to banks in crisis.' },
+            ]
+          },
+          {
+            id: 'globalisation',
+            title: 'Globalisation and the Indian Economy',
+            subtopics: 'What is globalisation, MNCs, Trade and investment, WTO, Impact on India, Liberalisation',
+            definition: 'Globalisation is the process of rapid integration and interconnection of countries through trade, investment, technology, and movement of people. It has both benefited and harmed different groups in India.',
+            content: `<p>The smartphone you use, the clothes you wear, the software powering your apps — globalisation connects every part of your life to the world economy. Understanding its causes and effects is essential for any informed citizen.</p>
+<h4>What is Globalisation?</h4>
+<p>Integration of national economies through: trade (importing/exporting goods), foreign investment (MNCs setting up factories), technology transfer, and migration of people.</p>
+<h4>Role of MNCs (Multinational Corporations)</h4>
+<p>MNCs are companies operating in multiple countries. They: set up production where costs are lowest (global supply chains), seek large markets, bring investment and technology, but also repatriate profits and may displace local businesses.</p>
+<h4>1991 Liberalisation in India</h4>
+<p>India opened its economy in 1991 (LPG reforms: Liberalisation, Privatisation, Globalisation). Removed trade barriers, allowed FDI, privatised public sector companies. Led to rapid economic growth but also increased inequality.</p>
+<h4>Impact: Winners and Losers</h4>
+<p>Winners: IT sector, large industries, urban middle class. Losers: small manufacturers unable to compete with cheap Chinese imports, some farmers, workers in labour-intensive industries who faced job loss.</p>`,
+            qa: [
+              { q: 'What were the LPG reforms of 1991 in India?', a: 'In 1991, India faced a severe balance of payments crisis. PM Narasimha Rao and Finance Minister Manmohan Singh introduced LPG reforms: Liberalisation (removed licence raj, reduced regulations), Privatisation (reduced government\'s role in business, sold public sector companies), Globalisation (opened economy to foreign trade and investment, reduced import duties). These reforms transformed India into one of the fastest-growing economies.' },
+              { q: 'How have MNCs changed production and trade globally?', a: 'MNCs create global supply chains: design in USA, manufacture components in China, assemble in India, sell worldwide. A Dell laptop might have: processor from USA (Intel), screen from South Korea, assembly in China, software from India. This international division of production makes goods cheaper but concentrates profits in wealthy countries where MNCs are headquartered.' },
+              { q: 'What is the WTO and what does it do?', a: 'The World Trade Organisation (WTO) is an international organisation (164 member countries) that sets rules for international trade. It: negotiates reduction of trade barriers (tariffs, import duties), settles trade disputes between countries, promotes "free trade." Critics argue WTO rules favour rich countries that can subsidise their farmers and manufacturers while demanding poor countries open their markets.' },
+            ]
+          },
+          {
+            id: 'consumer-rights',
+            title: 'Consumer Rights',
+            subtopics: 'Consumer rights, Consumer Protection Act, COPRA, Consumer courts, Redressal, ISI and Agmark',
+            definition: 'A consumer is anyone who buys goods or services for personal use. Consumer rights protect buyers from unfair trade practices — exploitation, substandard goods, misleading advertisements, and fraud.',
+            content: `<p>You are a consumer every time you buy a product or use a service. Consumer protection ensures that buyers have rights and can seek justice when those rights are violated. In India, COPRA (1986) established this framework.</p>
+<h4>Six Consumer Rights</h4>
+<ul>
+<li><strong>Right to Safety:</strong> Protection from hazardous goods and services.</li>
+<li><strong>Right to Information:</strong> True and complete information about products.</li>
+<li><strong>Right to Choose:</strong> Access to variety of goods at competitive prices.</li>
+<li><strong>Right to be Heard:</strong> Consumer interests represented in government.</li>
+<li><strong>Right to Redressal:</strong> Compensation for exploitation or injury.</li>
+<li><strong>Right to Education:</strong> Knowledge about rights and how to exercise them.</li>
+</ul>
+<h4>Consumer Protection Act (COPRA 1986)</h4>
+<p>Three-tier consumer court system: District Forum (claims up to ₹20 lakh), State Commission (₹20 lakh–₹1 crore), National Commission (above ₹1 crore). Consumer can file complaint themselves, no lawyer needed.</p>
+<h4>Quality Marks</h4>
+<p>ISI (industrial products — electrical items, helmets), Agmark (agricultural products — honey, ghee), Hallmark (gold jewellery), BIS (Bureau of Indian Standards). These assure quality and safety.</p>`,
+            qa: [
+              { q: 'What is COPRA and what consumer rights does it protect?', a: 'COPRA (Consumer Protection Act, 1986, updated 2019) is India\'s main consumer protection law. It establishes consumer courts where consumers can file complaints against: defective products, deficient services, unfair trade practices (false advertising), overcharging, hazardous goods. The law makes it easy for consumers — they can represent themselves, cases are heard in 90-150 days, and compensation can be awarded.' },
+              { q: 'What should you check before buying an electrical appliance?', a: 'Check for: (1) ISI mark (Bureau of Indian Standards certification — ensures the product meets safety and quality standards). (2) Manufacturing date and expiry/warranty. (3) MRP (Maximum Retail Price) — you cannot be charged more. (4) Contact details of manufacturer. (5) Instructions and warnings. ISI mark on electrical goods is mandatory for safety.' },
+              { q: 'What are unfair trade practices? Give examples.', a: 'Unfair trade practices include: false advertising (showing product better than it is), selling goods below cost to eliminate competition, hoarding to create artificial scarcity, adulteration (adding inferior materials to food — mixing chalk in flour, water in milk), short-weighing (selling 900g as 1kg), and charging above MRP. All are illegal under COPRA and consumer courts can award compensation.' },
+            ]
+          },
+          {
+            id: 'nationalism-india-10',
+            title: 'Nationalism in India',
+            subtopics: 'Non-Cooperation Movement, Civil Disobedience, Quit India, Gandhi\'s methods, Participation of peasants, workers, women, tribes',
+            definition: 'Indian nationalism was the movement to end British colonial rule and establish an independent nation. Led mainly by the Indian National Congress and Mahatma Gandhi, it mobilised millions of Indians across classes, regions, and religions.',
+            content: `<p>How did India gain independence from the most powerful empire in history? Through one of the most remarkable mass movements ever seen — millions of ordinary Indians refusing to cooperate with colonial rule. The story of Indian nationalism is the story of people power.</p>
+<h4>Non-Cooperation Movement (1920-22)</h4>
+<p>Gandhi's first mass movement. Indians refused to: cooperate with British institutions (courts, legislative councils, schools), buy British goods (boycott), hold government titles. Ended abruptly after Chauri Chaura violence (1922) — Gandhi called it off, showing commitment to non-violence.</p>
+<h4>Civil Disobedience Movement (1930)</h4>
+<p>Gandhi's Dandi March (240 miles, 24 days) — broke the Salt Law, showing colonialism's injustice. Followed by mass civil disobedience: breaking salt laws, boycotting British goods, refusing to pay taxes. Women participated massively for first time.</p>
+<h4>Quit India Movement (1942)</h4>
+<p>"Do or Die" — Gandhi's most radical call. Complete rupture with British rule during WWII. British arrested all Congress leaders immediately. But movement continued spontaneously, showing Indians were ready for self-rule.</p>
+<h4>Diverse Participation</h4>
+<p>Peasants (against high rents, taxes), Workers (strikes in mills), Women (joined in large numbers — transcended purdah), Tribal communities (against forest laws), Students and youth.</p>`,
+            qa: [
+              { q: 'What was the significance of Gandhi\'s Dandi March?', a: 'The Dandi March (1930): Gandhi walked 240 miles in 24 days from Sabarmati Ashram to Dandi on the coast to make salt from seawater, defying the British Salt Law (which gave the British monopoly on salt and taxed it). The march was significant because: (1) salt was used by every Indian — making it the perfect symbol of colonial exploitation, (2) it drew worldwide media attention, (3) it inspired millions to join Civil Disobedience, (4) proved Indians could resist peacefully but effectively.' },
+              { q: 'What was the Rowlatt Act and why did it anger Indians?', a: 'The Rowlatt Act (1919) allowed the British government to arrest and imprison Indians without trial or due process — no defence, no appeal. It was seen as a direct violation of elementary civil liberties. Gandhi called it "black law." It triggered the first major nationwide agitation against British rule, including the tragic Jallianwala Bagh massacre (April 13, 1919) where British troops fired on a peaceful crowd, killing hundreds.' },
+              { q: 'How did women participate in the independence movement?', a: 'Women participated in all major movements: Non-Cooperation (boycotted foreign cloth, spun khadi), Civil Disobedience (picketed foreign cloth and liquor shops, made salt, defied police — thousands were arrested), Quit India (led underground activities when male leaders were jailed). The movement broke purdah restrictions for many women — giving them public roles and confidence that shaped post-independence women\'s rights movements.' },
+            ]
+          },
+          {
+            id: 'water-resources-10',
+            title: 'Water Resources',
+            subtopics: 'Fresh water distribution, Dams, Multipurpose projects, Rainwater harvesting, Water scarcity',
+            definition: 'Water is one of Earth\'s most precious renewable resources. India receives monsoon rainfall unevenly — water resource management through dams, canals, and rainwater harvesting is crucial for meeting India\'s water needs.',
+            content: `<p>India has 4% of the world's fresh water but 18% of the world's population. Seasonal and regional unevenness of rainfall makes water management critical. India's rivers, dams, and groundwater are all under increasing pressure.</p>
+<h4>Water Scarcity in India</h4>
+<p>Despite adequate average rainfall, India faces water stress because: monsoon is concentrated in 3-4 months, many regions are dry for the rest; groundwater is overextracted (30% of India's districts have falling water tables); rivers are polluted; inequality — farmers lack irrigation while cities waste water.</p>
+<h4>Multipurpose River Projects (Dams)</h4>
+<p>Dams serve multiple purposes: irrigation, drinking water supply, hydroelectric power, flood control, navigation, tourism (reservoirs). Major projects: Bhakra Nangal (Punjab), Hirakud (Odisha), Sardar Sarovar (Gujarat).</p>
+<h4>Criticism of Big Dams</h4>
+<p>Submerge forests and agricultural land, displace millions (mostly tribal communities), destroy aquatic ecosystems, silt up over decades, do not benefit those who sacrifice (displacement vs benefit inequality).</p>
+<h4>Rainwater Harvesting</h4>
+<p>Traditional methods: johads, bawdis, tankas (Rajasthan), kuls (HP), surangam (Kerala). Modern rooftop harvesting. Tamil Nadu made rooftop harvesting compulsory. Chennai's groundwater improved significantly.</p>`,
+            qa: [
+              { q: 'Why are multipurpose river projects both praised and criticised?', a: 'Praised for: irrigation (food security), hydroelectric power (clean energy), flood control, drinking water supply, employment. Criticised for: displacing millions of poor/tribal people from their land and homes, submerging forests and fertile farmland, disrupting river ecosystems (blocking fish migration, changing silt patterns), high cost overruns, and favouring downstream populations over those displaced upstream.' },
+              { q: 'What traditional water harvesting methods have been used in India?', a: 'India has rich tradition of water harvesting: Johads/ponds (Rajasthan — rainwater collection pits), Bawdis/stepwells (Rajasthan, Gujarat — deep wells with steps to access water in dry seasons), Kuls (HP — channels diverting glacial melt to fields), Surangam (Kerala — horizontal tunnels into hillsides for groundwater), Tankas (Rajasthan — underground cisterns for rainwater). These managed water sustainably for centuries.' },
+              { q: 'What measures has India taken to address water scarcity?', a: 'India\'s water management measures: (1) Jal Jeevan Mission — piped water to every rural home by 2024. (2) Pradhan Mantri Krishi Sinchai Yojana — irrigation to every farm. (3) Making rooftop rainwater harvesting mandatory in many cities. (4) Promoting drip irrigation (reduces water use by 30-50%). (5) Jal Shakti Abhiyan — water conservation campaigns. (6) Interlinking of rivers project (controversial).' },
+            ]
+          },
+          {
+            id: 'political-parties-10',
+            title: 'Political Parties',
+            subtopics: 'Need for parties, Functions, National and state parties, Two-party vs multi-party system, Challenges, Party reform',
+            definition: 'Political parties are organised groups of people with shared political ideas who contest elections and seek to form government. They are essential to democracy — they connect citizens to government and organise political competition.',
+            content: `<p>Modern democracy is unthinkable without political parties. They translate diverse citizen interests into policies, provide organised alternatives for voters, and make government accountable. India has a rich and complex multi-party system.</p>
+<h4>Functions of Political Parties</h4>
+<ul>
+<li>Contest elections — provide candidates</li>
+<li>Formulate policies — provide a vision for governance</li>
+<li>Form and run government when they win majority</li>
+<li>Play opposition when they lose — hold government accountable</li>
+<li>Represent different groups in society</li>
+<li>Shape public opinion through rallies, media</li>
+</ul>
+<h4>Party Systems</h4>
+<p>One-party (China), Two-party (USA — Republican/Democrat, UK — Conservative/Labour), Multi-party (India — BJP, Congress, many regional parties). India's diversity requires many parties to represent different regions, castes, religions, and ideologies.</p>
+<h4>National vs State Parties in India</h4>
+<p>National parties (recognised in 4+ states): BJP, Congress, CPI(M), BSP, NCP, etc. State/Regional parties: TMC (Bengal), DMK (Tamil Nadu), TRS (Telangana), YSRCP (AP), Shiv Sena.</p>`,
+            qa: [
+              { q: 'Why do we need political parties in a democracy?', a: 'In a large country like India, millions of people have diverse interests. Political parties: (1) gather people with similar views, (2) formulate coherent policies representing those views, (3) present clear choices to voters at election time, (4) provide organised government (majority party), and (5) provide organised opposition that holds government accountable. Without parties, elections would be chaotic and government impossible to form or hold accountable.' },
+              { q: 'What are the challenges facing political parties in India?', a: 'Major challenges: (1) Dynastic politics — leaders\' sons/daughters given party tickets regardless of merit. (2) Money power — wealthy candidates buy votes; parties spend crores on elections. (3) Criminalization — many MPs/MLAs have criminal cases. (4) Lack of internal democracy — ordinary party members have little say; high command decides everything. (5) Defection — elected members switch parties for money/positions (though limited by anti-defection law).' },
+              { q: 'What is the role of the Election Commission of India?', a: 'The Election Commission of India is a constitutional body responsible for conducting free and fair elections. It: (1) Announces election schedule, (2) enforces model code of conduct, (3) monitors election spending, (4) recognises and de-recognises political parties, (5) takes action against candidates for electoral malpractices, (6) ensures level playing field. The ECI is independent of government — commissioners can only be removed like Supreme Court judges.' },
             ]
           },
         ]
