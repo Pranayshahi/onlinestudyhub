@@ -4267,6 +4267,29 @@ export const CURRICULUM = {
               { q: 'Despite high food production, why do many Indians go hungry?', a: 'India produces enough food for all citizens, but hunger persists because: (1) Food is not distributed equitably — some regions have surpluses while others face shortages. (2) The poorest cannot afford food even when available — lack of purchasing power. (3) PDS has leakages and inefficiencies. (4) Malnutrition occurs even with enough calories — poor diet quality and lack of clean water worsen absorption.' },
             ]
           },
+          {
+            id: 'unemployment-9',
+            title: 'People as Resource',
+            subtopics: 'Human capital, Education, Health, Employment, Unemployment, Women as resource',
+            definition: 'People are resources — their education, skills, and health make them productive. Investment in human capital (education and health) increases economic productivity. Unemployment — when people want to work but cannot find jobs — is a major economic problem.',
+            content: `<p>India's large population is often seen as a problem. But a healthy, educated, skilled population is a resource — the human capital that drives economic development. The key is investing in people.</p>
+<h4>Human Capital</h4>
+<p>People become economic assets when they are educated, skilled, and healthy. Investment in human capital: education, healthcare, job training. Returns: higher productivity, innovation, economic growth.</p>
+<h4>Types of Unemployment</h4>
+<ul>
+<li><strong>Seasonal:</strong> Work only during certain seasons — agricultural labourers (no work in off-season)</li>
+<li><strong>Disguised:</strong> More workers than needed — marginal productivity is zero. Common in Indian agriculture (family farms)</li>
+<li><strong>Open:</strong> Persons actively looking for work but cannot find it. More in urban areas.</li>
+</ul>
+<h4>Women as Resource</h4>
+<p>Women are severely underutilised as economic resources. Women perform unpaid household work, childcare. When women enter paid workforce: household incomes rise, children's education improves, birth rates fall, economy grows. India's female labour force participation rate is among the world's lowest (23%).</p>`,
+            qa: [
+              { q: 'What is human capital and why is it important?', a: 'Human capital is the knowledge, skills, health, and experience of workers — their productive capacity. Investment in human capital (through education and healthcare) increases productivity, innovation, and economic growth. Countries with high human capital (Japan, South Korea) transformed from poor to wealthy in 2-3 generations, despite lacking natural resources.' },
+              { q: 'What is disguised unemployment? Give an example.', a: 'Disguised unemployment is when more workers are employed than actually needed — the marginal productivity of additional workers is zero. Example: a family farm where 5 family members work but the work could be done by 3. If 2 move to a different job, agricultural output does not fall. Very common in Indian agriculture (60% of workers, 17% of GDP).' },
+              { q: 'Why is female education important for economic development?', a: 'Educated women: earn income (reduces household poverty), invest more in their children\'s education and health, have fewer children (reducing population pressure), participate in civic life (better governance). UNICEF data: each additional year of girls\' schooling raises wages by 10-20% and reduces child mortality. Uneducated women remain economically dependent, contributing to a poverty cycle.' },
+              { q: 'How does unemployment affect individuals and the economy?', a: 'Individual effects: loss of income → poverty, debt, hunger; loss of self-esteem; health deterioration; family stress. Economic effects: GDP is below potential (output lost); tax revenue decreases while welfare spending increases; social problems (crime, migration) increase. Youth unemployment is especially damaging — lost years of skill development. India needs to create 7-10 million jobs annually to absorb new entrants to the workforce.' },
+            ]
+          },
         ]
       },
       chemistry: {
