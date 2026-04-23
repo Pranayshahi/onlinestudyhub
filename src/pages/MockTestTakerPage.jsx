@@ -254,8 +254,8 @@ export default function MockTestTakerPage() {
   return (
     <div style={{ display: 'flex', flexDirection: 'column', height: '100vh', background: '#f9fafb', overflow: 'hidden' }}>
       {/* Top bar */}
-      <div style={{ background: '#1e1b4b', color: '#fff', padding: '.75rem 1.25rem', display: 'flex', alignItems: 'center', gap: '1rem', flexWrap: 'wrap', zIndex: 20, boxShadow: '0 2px 12px rgba(0,0,0,.3)' }}>
-        <div style={{ fontFamily: 'Nunito, sans-serif', fontWeight: 800, fontSize: '1rem', flex: 1 }}>{test.title}</div>
+      <div style={{ background: '#1e1b4b', color: '#fff', padding: '.6rem 1rem', display: 'flex', alignItems: 'center', gap: '.75rem', flexWrap: 'wrap', zIndex: 20, boxShadow: '0 2px 12px rgba(0,0,0,.3)' }}>
+        <div style={{ fontFamily: 'Nunito, sans-serif', fontWeight: 800, fontSize: '.9rem', flex: 1, minWidth: 80, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{test.title}</div>
 
         <div style={{ display: 'flex', gap: '1.25rem', alignItems: 'center' }}>
           <div style={{ fontSize: '.78rem', color: 'rgba(255,255,255,.6)' }}>
@@ -341,9 +341,9 @@ export default function MockTestTakerPage() {
           </div>
         </div>
 
-        {/* Side nav */}
+        {/* Side nav — overlays on mobile, inline on desktop */}
         {navOpen && (
-          <div style={{ width: 280, background: '#fff', borderLeft: '1px solid #e5e7eb', overflow: 'auto', padding: '1rem', flexShrink: 0 }}>
+          <div style={{ width: 'min(280px, 100vw)', background: '#fff', borderLeft: '1px solid #e5e7eb', overflow: 'auto', padding: '1rem', flexShrink: 0, position: 'relative', zIndex: 10 }}>
             <div style={{ fontFamily: 'Nunito, sans-serif', fontWeight: 800, marginBottom: '1rem', color: '#1f2937', fontSize: '.95rem' }}>Question Navigator</div>
             <div style={{ display: 'flex', gap: '.35rem', flexWrap: 'wrap', marginBottom: '1rem' }}>
               {[{ label: '✓ Answered', bg: '#dcfce7', color: '#15803d' }, { label: '⚑ Marked', bg: '#fef3c7', color: '#92400e' }, { label: '○ Not Attempted', bg: '#f3f4f6', color: '#9ca3af' }].map(l => (

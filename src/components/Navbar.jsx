@@ -156,6 +156,23 @@ export default function Navbar({ onOpenAI, onOpenLogin, user, onLogout, darkMode
               </div>
             </div>
 
+            {/* ── Mobile-only bottom links ── */}
+            <div className="nav-mobile-bottom">
+              <Link to="/teacher-portal" className="nav-mobile-action-link" onClick={close}>
+                <span>👨‍🏫</span> Teacher Portal
+              </Link>
+              {user && (
+                <Link to="/my-bookings" className="nav-mobile-action-link" onClick={close}>
+                  <span>📅</span> My Bookings
+                </Link>
+              )}
+              {!user && (
+                <button className="nav-mobile-action-link nav-mobile-login" onClick={() => { close(); onOpenLogin(); }}>
+                  <span>🔑</span> Login / Sign Up
+                </button>
+              )}
+            </div>
+
           </div>
 
           {/* Actions */}
@@ -190,24 +207,25 @@ export default function Navbar({ onOpenAI, onOpenLogin, user, onLogout, darkMode
               </button>
             )}
 
+            {/* Teacher Portal — desktop only */}
             <Link
               to="/teacher-portal"
+              className="nav-desktop-only"
               style={{ fontSize: '.82rem', color: 'rgba(255,255,255,.75)', fontWeight: 700, padding: '.4rem .8rem', borderRadius: 8, border: '1px solid rgba(255,255,255,.2)', whiteSpace: 'nowrap', transition: 'all .2s' }}
               onMouseEnter={e => { e.currentTarget.style.background='rgba(255,255,255,.12)'; e.currentTarget.style.color='#fff'; }}
               onMouseLeave={e => { e.currentTarget.style.background='transparent'; e.currentTarget.style.color='rgba(255,255,255,.75)'; }}
             >
               👨‍🏫 Teacher Portal
             </Link>
-            <button
-              className="btn btn-primary btn-ai"
-              style={{ padding: '0.5rem 1.25rem', fontSize: '0.88rem' }}
-              onClick={onOpenAI}
-            >
-              🤖 <span className="hide-mobile">AI Doubt Help</span>
+
+            {/* AI Doubt — icon on mobile, full button on desktop */}
+            <button className="nav-ai-btn" onClick={onOpenAI} aria-label="AI Doubt Help">
+              🤖 <span className="nav-ai-text">AI Doubt</span>
             </button>
 
-            {user && (
-              <div className="nav-item" style={{ position: 'relative' }}>
+            {/* User avatar / login */}
+            {user ? (
+              <div className="nav-user-item nav-item" style={{ position: 'relative' }}>
                 <button
                   className="user-avatar-btn"
                   onClick={() => setUserMenuOpen(!userMenuOpen)}
@@ -238,7 +256,6 @@ export default function Navbar({ onOpenAI, onOpenLogin, user, onLogout, darkMode
                       boxShadow: '0 8px 32px rgba(0,0,0,.18)', border: '1px solid #e5e7eb',
                       zIndex: 100, overflow: 'hidden',
                     }}>
-                      {/* Profile header */}
                       <div style={{ padding: '1rem 1.1rem', background: 'linear-gradient(135deg, #1e1b4b, #4f46e5)', display: 'flex', alignItems: 'center', gap: '.75rem' }}>
                         <div style={{ width: 40, height: 40, borderRadius: '50%', background: 'rgba(255,255,255,.2)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontWeight: 800, fontSize: '.95rem', color: '#fff', flexShrink: 0 }}>
                           {getInitials(user.name)}
@@ -248,7 +265,6 @@ export default function Navbar({ onOpenAI, onOpenLogin, user, onLogout, darkMode
                           <div style={{ fontSize: '.72rem', color: 'rgba(255,255,255,.65)', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>{user.email}</div>
                         </div>
                       </div>
-                      {/* Menu items */}
                       <div style={{ padding: '.4rem 0' }}>
                         <Link
                           to="/my-bookings"
@@ -273,6 +289,15 @@ export default function Navbar({ onOpenAI, onOpenLogin, user, onLogout, darkMode
                   </>
                 )}
               </div>
+            ) : (
+              <button
+                className="nav-login-btn"
+                onClick={onOpenLogin}
+                aria-label="Login"
+              >
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg>
+                <span className="nav-ai-text">Login</span>
+              </button>
             )}
           </div>
 
