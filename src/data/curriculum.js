@@ -770,6 +770,67 @@ export const CURRICULUM = {
               { q: 'What is a biotic component and an abiotic component of a habitat?', a: 'Biotic components: living parts of the habitat — plants, animals, microorganisms. Abiotic components: non-living parts — soil, water, air, temperature, sunlight, minerals. Both interact to make up a habitat. Example: pond habitat: biotic (fish, frogs, algae, insects), abiotic (water, mud, sunlight, temperature).' },
             ]
           },
+          {
+            id: 'changes-around-us-6',
+            title: 'Changes Around Us',
+            subtopics: 'Reversible changes, Irreversible changes, Slow and fast changes, Periodic and non-periodic changes',
+            definition: 'Changes happen all around us — some can be reversed (ice melting, folding paper) while others cannot (burning wood, cooking food). Understanding types of change helps us manage materials wisely.',
+            content: `<p>The world is constantly changing. Some changes are useful, some are harmful, some happen naturally, and some are caused by humans. Learning to classify changes is a key scientific skill.</p>
+<h4>Reversible Changes</h4>
+<p>Changes that can be undone — the original substance can be recovered.</p>
+<ul>
+<li>Ice melting → water (freeze it back to get ice)</li>
+<li>Folding a paper (unfold it back)</li>
+<li>Stretching a rubber band (releases back)</li>
+<li>Dissolving sugar in water (evaporate water to get sugar back)</li>
+</ul>
+<h4>Irreversible Changes</h4>
+<p>Changes that cannot be undone — original substance cannot be recovered.</p>
+<ul>
+<li>Burning wood → ash (cannot get wood back from ash)</li>
+<li>Cooking an egg (raw egg cannot be recovered)</li>
+<li>Rusting of iron</li>
+<li>Ripening of a fruit</li>
+<li>Bursting of a cracker</li>
+</ul>
+<h4>Slow and Fast Changes</h4>
+<p><strong>Slow:</strong> Rusting, growth of a plant, formation of coal. <strong>Fast:</strong> Burning, bursting of a cracker, lightning.</p>
+<h4>Periodic and Non-Periodic Changes</h4>
+<p><strong>Periodic:</strong> Repeat regularly — heartbeat, seasons, day and night. <strong>Non-periodic:</strong> No fixed pattern — earthquake, flood, volcanic eruption.</p>`,
+            qa: [
+              { q: 'Give two examples each of reversible and irreversible changes.', a: 'Reversible: (1) Melting of ice — freeze it to get ice back; (2) Dissolving salt in water — evaporate water to recover salt. Irreversible: (1) Burning of paper — ash cannot become paper again; (2) Cooking rice — cooked rice cannot become raw rice.' },
+              { q: 'Is the growth of a plant a reversible or irreversible change? Why?', a: 'Growth of a plant is an irreversible change. Once a seed grows into a plant, it cannot revert to a seed. The change involves complex chemical processes (cell division, synthesis of new matter) that cannot be undone.' },
+              { q: 'What type of change is the rusting of iron — slow or fast? Reversible or irreversible?', a: 'Rusting of iron is a slow change (takes days to weeks) and an irreversible change (the original iron cannot be recovered from rust without complex chemical treatment). It is also a chemical change because a new substance (iron oxide/rust) is formed.' },
+              { q: 'Classify: (a) Day and night (b) Volcanic eruption (c) Heartbeat', a: '(a) Day and night — periodic change (repeats every 24 hours regularly). (b) Volcanic eruption — non-periodic change (no fixed time of occurrence). (c) Heartbeat — periodic change (repeats rhythmically approximately 72 times per minute).' },
+            ]
+          },
+          {
+            id: 'garbage-in-garbage-out-6',
+            title: 'Garbage In, Garbage Out',
+            subtopics: 'Waste management, Landfill, Composting, Recycling, Vermicomposting, 3Rs',
+            definition: 'Garbage management is the process of collecting, treating, and disposing of waste properly. Poor garbage management causes disease, pollution, and environmental damage — making it a critical civic responsibility.',
+            content: `<p>We generate enormous amounts of garbage every day. Where does it all go? Understanding waste management is essential for a cleaner, healthier India.</p>
+<h4>Types of Waste</h4>
+<p><strong>Biodegradable:</strong> Can be broken down by microorganisms — vegetable peels, food scraps, paper. <strong>Non-biodegradable:</strong> Cannot be broken down easily — plastic, glass, metals, chemicals.</p>
+<h4>Landfills</h4>
+<p>Low-lying open areas where garbage is dumped and covered with soil. Problems: leaching of harmful substances into groundwater, methane gas production, breeding of disease-causing organisms, loss of land.</p>
+<h4>Composting</h4>
+<p>Biodegradable waste is converted into compost (manure) through natural decomposition by microorganisms. Excellent for gardening. Reduces kitchen waste going to landfill.</p>
+<h4>Vermicomposting</h4>
+<p>Earthworms eat biodegradable waste and produce vermicompost — an extremely rich, natural fertiliser. The worms are the "workers"!</p>
+<h4>Recycling and the 3 Rs</h4>
+<ul>
+<li><strong>Reduce:</strong> Use less — buy only what you need, choose products with less packaging.</li>
+<li><strong>Reuse:</strong> Use items more than once — cloth bags instead of plastic, repair instead of discard.</li>
+<li><strong>Recycle:</strong> Convert waste into new products — paper, glass, metal can all be recycled.</li>
+</ul>`,
+            qa: [
+              { q: 'What is the difference between biodegradable and non-biodegradable waste? Give two examples of each.', a: 'Biodegradable waste: broken down by microorganisms — (1) vegetable and fruit peels, (2) paper. Non-biodegradable waste: not broken down by microorganisms — (1) plastic bags, (2) glass bottles. Biodegradable waste can be composted; non-biodegradable must be recycled or reduces to landfill.' },
+              { q: 'What is vermicomposting? How is it useful?', a: 'Vermicomposting uses earthworms to break down biodegradable waste (kitchen scraps, paper) into vermicompost — a rich, dark, crumbly fertiliser. It is useful because: (1) reduces organic waste going to landfill, (2) produces excellent fertiliser for plants, (3) improves soil structure, (4) is chemical-free and natural.' },
+              { q: 'Why is throwing garbage anywhere harmful to health?', a: 'Unmanaged garbage: (1) provides breeding grounds for mosquitoes (malaria, dengue) and flies (typhoid, cholera); (2) contaminates nearby water bodies and groundwater; (3) releases methane (greenhouse gas); (4) causes bad odour; (5) degrades neighbourhood beauty; (6) spreads diseases through rats and other animals feeding on it.' },
+              { q: 'What are the 3 Rs? Give one example of each applied in daily life.', a: 'Reduce: Buy only what you need — do not take extra paper napkins at restaurants. Reuse: Use items multiple times — carry a cloth bag for shopping instead of taking a new plastic bag each time. Recycle: Send materials for reprocessing — put old newspapers in the recycling bin instead of throwing them in regular garbage.' },
+            ]
+          },
         ]
       },
       english: {
@@ -878,6 +939,87 @@ export const CURRICULUM = {
               { q: 'What are the essential parts of a formal letter?', a: 'Sender\'s address, Date, Receiver\'s address, Subject line, Salutation (Dear Sir/Madam), Body (3 paragraphs: introduction, main content, conclusion), Yours faithfully/sincerely, Signature and name.' },
               { q: 'What makes a good topic sentence for a paragraph?', a: 'A good topic sentence introduces the main idea of the paragraph clearly and specifically. All other sentences must support or explain this main idea. It should neither be too broad nor too narrow.' },
               { q: 'What is the difference between "Yours faithfully" and "Yours sincerely"?', a: '"Yours faithfully" is used when the salutation is "Dear Sir/Madam" (recipient unknown). "Yours sincerely" is used when the recipient\'s name is used in salutation (Dear Mr. Sharma).' },
+            ]
+          },
+          {
+            id: 'nouns-pronouns-articles-6',
+            title: 'Nouns, Pronouns and Articles',
+            subtopics: 'Types of nouns, Pronouns, Articles (a, an, the), Countable and uncountable nouns',
+            definition: 'Nouns name people, places, things, and ideas. Pronouns replace nouns to avoid repetition. Articles (a, an, the) are used before nouns to show whether we mean something specific or general.',
+            content: `<p>Nouns, pronouns, and articles form the foundation of every English sentence. Mastering them removes the most common grammar errors in writing.</p>
+<h4>Types of Nouns</h4>
+<ul>
+<li><strong>Common noun:</strong> General name — city, dog, river</li>
+<li><strong>Proper noun:</strong> Specific name — Mumbai, Laika, Ganga (always capitalised)</li>
+<li><strong>Abstract noun:</strong> Ideas, feelings — courage, happiness, honesty</li>
+<li><strong>Collective noun:</strong> Group — a flock of birds, a team of players, a bunch of grapes</li>
+<li><strong>Countable noun:</strong> Can be counted — book, pen, apple</li>
+<li><strong>Uncountable noun:</strong> Cannot be counted — water, sugar, air, advice</li>
+</ul>
+<h4>Pronouns</h4>
+<p>Personal pronouns: I, we, you, he, she, it, they. Use to avoid repeating the noun: "Riya is smart. <em>She</em> studies hard." (not "Riya studies hard").</p>
+<h4>Articles</h4>
+<p><strong>a/an (Indefinite):</strong> Refers to any one of a class. Use <em>a</em> before consonant sounds, <em>an</em> before vowel sounds: a cat, an elephant, an hour (h is silent), a university (u sounds like 'yoo').</p>
+<p><strong>the (Definite):</strong> Refers to a specific thing already known: "I saw <em>a</em> dog. <em>The</em> dog was brown."</p>`,
+            qa: [
+              { q: 'Give one example each of common, proper, abstract, and collective nouns.', a: 'Common: river. Proper: Amazon. Abstract: freedom. Collective: a pride of lions.' },
+              { q: 'Why do we use "an hour" but "a hotel"?', a: 'Articles depend on sound, not spelling. "Hour" starts with a silent h — the word sounds like it begins with a vowel (our), so we use an. "Hotel" starts with an h sound (hoh-tel), so we use a.' },
+              { q: 'Fill in: "He is ___ honest man who works at ___ United Nations."', a: 'He is AN honest man (honest starts with vowel sound) who works at THE United Nations (specific, unique organisation).' },
+              { q: 'Is "furniture" countable or uncountable? How do we quantify it?', a: 'Furniture is uncountable — we cannot say "one furniture, two furnitures." We quantify it using phrases: a piece of furniture, some furniture, much furniture, a lot of furniture.' },
+            ]
+          },
+          {
+            id: 'adjectives-adverbs-6',
+            title: 'Adjectives and Adverbs',
+            subtopics: 'Degrees of comparison, Types of adjectives, Adverbs of manner/time/place/frequency',
+            definition: 'Adjectives describe nouns (the tall girl, a red apple). Adverbs modify verbs, adjectives, or other adverbs (she ran quickly, very tall). Knowing the difference improves both speaking and writing.',
+            content: `<p>Adjectives and adverbs add detail and precision to writing. Without them, every sentence would be flat and colourless.</p>
+<h4>Degrees of Comparison of Adjectives</h4>
+<ul>
+<li><strong>Positive:</strong> Basic form — tall, fast, good, beautiful</li>
+<li><strong>Comparative:</strong> Comparing two — taller, faster, better, more beautiful</li>
+<li><strong>Superlative:</strong> Comparing three or more — tallest, fastest, best, most beautiful</li>
+</ul>
+<p>Short adjectives (1–2 syllables): add -er/-est. Long adjectives (3+ syllables): use more/most.</p>
+<h4>Types of Adjectives</h4>
+<p>Descriptive (kind), Numeral (three), Demonstrative (this, that), Possessive (my, his), Interrogative (which, what), Distributive (each, every).</p>
+<h4>Types of Adverbs</h4>
+<ul>
+<li><strong>Manner:</strong> How? — quickly, silently, carefully</li>
+<li><strong>Time:</strong> When? — yesterday, now, soon, already</li>
+<li><strong>Place:</strong> Where? — here, there, nearby, everywhere</li>
+<li><strong>Frequency:</strong> How often? — always, never, often, sometimes</li>
+</ul>`,
+            qa: [
+              { q: 'Give the comparative and superlative of: good, bad, many.', a: 'good → better → best. bad → worse → worst. many → more → most. (These are irregular — they change form completely.)' },
+              { q: 'Identify the adverb and state its type: "She always speaks softly."', a: '"always" — adverb of frequency (tells how often). "softly" — adverb of manner (tells how she speaks).' },
+              { q: 'Correct the sentence: "She is more taller than her brother."', a: 'Correct: "She is taller than her brother." Using both "more" and "-er" is a double comparative error — only one form is used at a time.' },
+              { q: 'What is the difference between an adjective and an adverb? Give an example.', a: 'Adjective modifies a noun: "He is a quick runner" (quick describes the noun runner). Adverb modifies a verb: "He runs quickly" (quickly describes the verb runs). Test: if it modifies a noun/pronoun → adjective. If it modifies verb/adjective/adverb → adverb.' },
+            ]
+          },
+          {
+            id: 'sentence-types-punctuation-6',
+            title: 'Sentences, Types and Punctuation',
+            subtopics: 'Declarative, Interrogative, Imperative, Exclamatory, Subject and predicate, Punctuation marks',
+            definition: 'A sentence is a group of words that makes complete sense. Every sentence has a subject (who/what) and predicate (what is said). Punctuation marks are symbols that organise writing for clarity.',
+            content: `<p>Good writing depends on knowing how to form correct sentences and punctuate them properly. These are skills every student needs across all subjects.</p>
+<h4>Types of Sentences</h4>
+<ul>
+<li><strong>Declarative:</strong> Makes a statement. Ends with a full stop. "The Earth revolves around the Sun."</li>
+<li><strong>Interrogative:</strong> Asks a question. Ends with ?. "Where are you going?"</li>
+<li><strong>Imperative:</strong> Gives a command or request. "Please sit down." "Do not litter."</li>
+<li><strong>Exclamatory:</strong> Expresses strong feeling. Ends with !. "What a beautiful sunset!"</li>
+</ul>
+<h4>Subject and Predicate</h4>
+<p><strong>Subject:</strong> Who or what the sentence is about. <strong>Predicate:</strong> What is said about the subject.</p>
+<div class="example-box">The hungry lion | roared loudly in the forest.<br><em>Subject: The hungry lion. Predicate: roared loudly in the forest.</em></div>
+<h4>Punctuation Marks</h4>
+<p>Full stop (.), Comma (,) — separates items in a list or clauses. Apostrophe (') — possession or contraction (Ram's, can't). Quotation marks (" ") — direct speech. Question mark (?). Exclamation mark (!). Colon (:) — introduces a list.</p>`,
+            qa: [
+              { q: 'Identify the type: "How wonderful this painting is!"', a: 'Exclamatory sentence — expresses a strong feeling of admiration. Ends with an exclamation mark.' },
+              { q: 'Identify subject and predicate: "The old woman walked slowly across the road."', a: 'Subject: The old woman. Predicate: walked slowly across the road.' },
+              { q: 'Where is the apostrophe used? Give two examples.', a: 'Apostrophe used for: (1) Possession — "Priya\'s bag" (bag belonging to Priya); (2) Contraction — "can\'t" = cannot, "it\'s" = it is. Note: "its" without apostrophe is the possessive pronoun (the cat licked its paw).' },
+              { q: 'Convert to interrogative: "She is studying for her exams."', a: '"Is she studying for her exams?" (In interrogative, helping verb comes before subject. Here "is" moves before "she".)' },
             ]
           },
         ]
@@ -1122,6 +1264,205 @@ export const CURRICULUM = {
               { q: 'What is the Gram Sabha and why is it important?', a: 'The Gram Sabha consists of all registered voters in a village. It is the foundation of democracy at village level — it can question the Panchayat, approve budgets, identify beneficiaries for schemes, and hold elected members accountable. True democracy means all villagers have a voice, not just elected members.' },
               { q: 'Why are seats reserved for women in Panchayati Raj?', a: 'Historically, women were excluded from public decision-making. Reserving at least 1/3 of seats ensures women\'s voices are included in local governance. This has led to decisions that better reflect women\'s needs — water points closer to homes, better sanitation, more girls\' toilets in schools.' },
               { q: 'What are the main functions of a Gram Panchayat?', a: 'Gram Panchayat: maintains village roads and public buildings, manages water supply, oversees sanitation and cleanliness, runs local schools and primary health centres, implements government welfare schemes (ration cards, MGNREGA), settles local disputes, and collects local taxes.' },
+            ]
+          },
+          {
+            id: 'what-books-burials-tell-us-6',
+            title: 'What Books and Burials Tell Us',
+            subtopics: 'Vedas, Rigveda, Megalithic burials, Inamgaon, Social differences, Archaeologists',
+            definition: 'Ancient books like the Vedas and burial sites give us insight into the lives, beliefs, and social structures of people who lived thousands of years ago in the Indian subcontinent.',
+            content: `<p>We learn about the past from two very different sources — written texts and physical remains like burial sites. Together they paint a picture of ancient Indian society.</p>
+<h4>The Vedas</h4>
+<p>The Vedas are among the oldest texts in the world, composed in Sanskrit. There are four Vedas: <strong>Rigveda</strong> (hymns to gods), Samaveda (melodies), Yajurveda (rituals), Atharvaveda (charms/spells). The Rigveda was composed around 3500 years ago.</p>
+<h4>Rigveda — What It Tells Us</h4>
+<p>The Rigveda contains 1028 hymns (suktas) to gods like Agni (fire), Indra (storm), Soma (a plant). It was composed and preserved orally — recited from memory for generations before being written down. It tells us about battles, rivers, prayers, and early social divisions.</p>
+<h4>Megalithic Burials</h4>
+<p>Megalith means "large stone." Megaliths are stone structures built over burial sites, found across South India and parts of the Northeast. Objects buried with the dead (pots, tools, ornaments, skeletons of animals) tell us about beliefs in life after death and social inequality.</p>
+<h4>Inamgaon</h4>
+<p>A chalcolithic (copper-stone age) site in Maharashtra (3600–2700 years ago). Excavations revealed houses, crops (wheat, barley, rice), and burials inside houses — adults buried with pots, children buried in urns under house floors.</p>`,
+            qa: [
+              { q: 'Name the four Vedas and state what the Rigveda mainly contains.', a: 'Four Vedas: Rigveda, Samaveda, Yajurveda, Atharvaveda. The Rigveda contains 1028 hymns (suktas) addressed to various gods like Agni (fire) and Indra (rain/storm). It was transmitted orally for generations and gives us information about early Aryan society, rivers, battles, and rituals.' },
+              { q: 'What is a megalith? What do megalithic burials tell us?', a: 'A megalith (mega = large, lithos = stone) is a large stone structure erected over a burial site. Megalithic burials tell us: (1) people believed in life after death (they buried useful objects with the dead); (2) there were social differences (some burials had more objects — indicating higher status); (3) cattle and horses were valued (buried with owners).' },
+              { q: 'How were the Vedas preserved without writing for so long?', a: 'The Vedas were preserved through careful oral transmission — teacher (guru) recited hymns and students (shishyas) memorised and repeated them exactly. Special techniques were developed to ensure accuracy: each word was recited in different patterns and combinations to prevent mistakes. This oral tradition continued for centuries before writing was used.' },
+            ]
+          },
+          {
+            id: 'new-questions-ideas-6',
+            title: 'New Questions and Ideas',
+            subtopics: 'Upanishads, Buddhism, Jainism, Mahavira, Gautama Buddha, Monasteries, Sangha',
+            definition: 'Around 2500 years ago, thinkers across India began questioning Vedic rituals and asked fundamental questions about life, death, and the universe. This led to the rise of Buddhism and Jainism.',
+            content: `<p>Around 2500 years ago, a remarkable intellectual revolution swept across India. Thinkers rejected elaborate rituals and began seeking inner truth through meditation, self-discipline, and philosophy.</p>
+<h4>Upanishads</h4>
+<p>The Upanishads (means "sitting near" a teacher) are philosophical texts questioning the nature of the universe and the self (atman). They ask: What is the ultimate reality? What happens after death? They form the end of Vedic thought (Vedanta).</p>
+<h4>Mahavira and Jainism</h4>
+<p>Vardhamana Mahavira (599–527 BCE) was a kshatriya prince who left home at 30 to seek truth. After 12 years of meditation and penance, he attained enlightenment (kaivalya). Jain beliefs: <strong>Ahimsa</strong> (non-violence), truth, non-stealing, celibacy, non-possession. Jains believe the soul can be liberated from the cycle of rebirth through right conduct.</p>
+<h4>Gautama Buddha and Buddhism</h4>
+<p>Siddhartha Gautama (563–483 BCE), a kshatriya prince of Kapilavastu (Nepal), left his palace after seeing suffering. After 6 years of searching, he attained enlightenment under a peepal tree at Bodh Gaya. He gave his first sermon at Sarnath (Deer Park). His teachings: the <strong>Four Noble Truths</strong> (life involves suffering; desire causes it; suffering can end; follow the Middle Path) and the <strong>Eightfold Path</strong>.</p>
+<h4>The Sangha</h4>
+<p>The community of Buddhist monks and nuns. Monks and nuns lived in monasteries (viharas), studied, meditated, and spread the Buddha's teachings.</p>`,
+            qa: [
+              { q: 'What are the Four Noble Truths of Buddhism?', a: '1. Life involves suffering (dukkha). 2. The cause of suffering is desire/craving (tanha). 3. Suffering can be ended by eliminating desire. 4. The way to end suffering is the Eightfold Path (right thought, right speech, right action, right livelihood, right effort, right mindfulness, right concentration, right understanding).' },
+              { q: 'What is ahimsa and why is it central to Jainism?', a: 'Ahimsa means non-violence — not harming any living being in thought, word, or action. It is central to Jainism because Jains believe all living beings have souls and causing harm to any living being generates bad karma, binding the soul to the cycle of rebirth. Jain monks even wear cloth masks and sweep the ground to avoid harming microorganisms.' },
+              { q: 'Where did Buddha attain enlightenment and what was his first sermon about?', a: 'Buddha attained enlightenment (nirvana) under a peepal tree (Bodhi tree) at Bodh Gaya in Bihar. His first sermon was at Sarnath (Deer Park near Varanasi), called Dhammachakka Pavattana (setting the wheel of dharma in motion). It explained the Four Noble Truths and the Eightfold Path.' },
+            ]
+          },
+          {
+            id: 'ashoka-emperor-6',
+            title: 'Ashoka: The Emperor Who Gave Up War',
+            subtopics: 'Maurya Empire, Chandragupta, Ashokan edicts, Kalinga War, Dhamma, Pillars',
+            definition: 'Ashoka (304–232 BCE) was the greatest Mauryan emperor who, after the bloody Kalinga War, converted to Buddhism, gave up military conquest, and spread a message of peace and dhamma across Asia.',
+            content: `<p>Ashoka's transformation from conqueror to peacemaker is one of history's most remarkable stories. He ruled an empire from Afghanistan to Tamil Nadu but chose compassion over conquest.</p>
+<h4>The Maurya Empire</h4>
+<p>Founded by <strong>Chandragupta Maurya</strong> around 321 BCE with the help of Chanakya (Kautilya). The empire had a well-organised administration with a capital at Pataliputra (modern Patna). Ashoka was Chandragupta's grandson.</p>
+<h4>The Kalinga War (261 BCE)</h4>
+<p>Ashoka conquered Kalinga (modern Odisha). Over 100,000 people were killed, 150,000 captured, and many more died of disease and starvation. Seeing the destruction, Ashoka was deeply distressed. He converted to Buddhism and vowed never to wage war again.</p>
+<h4>Dhamma</h4>
+<p>Ashoka's policy of Dhamma (Pali for dharma) included: respect for all religions, kindness to animals, honesty, generosity, and care for the elderly and sick. He had dhamma officials (Dhamma Mahamattas) appointed to spread these values.</p>
+<h4>Ashokan Edicts</h4>
+<p>Ashoka had his teachings inscribed on rocks and stone pillars across his empire — in local languages (Prakrit, Greek, Aramaic). These edicts are our main source of information about Ashoka's rule. The Lion Capital of Sarnath (4 lions back-to-back) is now India's national emblem.</p>`,
+            qa: [
+              { q: 'What was the Kalinga War and how did it change Ashoka?', a: 'The Kalinga War (261 BCE) was Ashoka\'s conquest of Kalinga (Odisha). It caused massive destruction — 100,000+ killed, 150,000 captured. Seeing the suffering, Ashoka felt deep remorse. He converted to Buddhism, adopted a policy of dhamma (non-violence, compassion), gave up military conquest, and instead sent missions to spread peace — even to Sri Lanka, Greece, and Egypt.' },
+              { q: 'What are Ashokan edicts? Why are they important?', a: 'Ashokan edicts are inscriptions carved on rocks and stone pillars throughout the Mauryan Empire. They contain Ashoka\'s teachings, policies, and moral guidelines. They are important because: (1) they tell us directly about Ashoka\'s ideas and policies; (2) they were written in local languages — accessible to people; (3) they are among the oldest surviving inscriptions in India; (4) they show Ashoka treated all religions equally.' },
+              { q: 'What is Ashoka\'s Dhamma? Name three principles of Dhamma.', a: 'Dhamma is Ashoka\'s policy of righteous conduct and compassion. Three principles: (1) Respect for elders and teachers; (2) Kind treatment of animals — Ashoka banned animal sacrifice, set up animal hospitals; (3) Tolerance for all religions — Ashoka gave donations to Buddhist, Jain, and Brahmanical institutions equally.' },
+            ]
+          },
+          {
+            id: 'maps-6',
+            title: 'Maps: Types and Uses',
+            subtopics: 'Physical maps, Political maps, Thematic maps, Scale, Symbols, Compass, Atlas',
+            definition: 'A map is a flat representation of the Earth or part of it drawn to scale. Maps use symbols, colours, and scale to represent features of the real world in a compact, readable form.',
+            content: `<p>Maps are among the most useful tools humans have invented. They help us navigate, plan, understand geography, and study the world without travelling it.</p>
+<h4>Types of Maps</h4>
+<ul>
+<li><strong>Physical map:</strong> Shows natural features — mountains, rivers, plains, deserts. Uses colour (green for plains, brown for mountains, blue for water).</li>
+<li><strong>Political map:</strong> Shows countries, states, capitals, boundaries.</li>
+<li><strong>Thematic map:</strong> Shows specific information — rainfall, population density, crops grown, roads.</li>
+<li><strong>Atlas:</strong> A book of maps covering different areas and themes.</li>
+</ul>
+<h4>Components of a Map</h4>
+<ul>
+<li><strong>Scale:</strong> The ratio between map distance and real distance. 1:10,000 means 1 cm = 10,000 cm (100 m) on the ground.</li>
+<li><strong>Compass (Direction):</strong> Shows North, South, East, West. North is at the top by convention.</li>
+<li><strong>Symbols (Legend/Key):</strong> Small signs representing real features — blue line for river, star for capital city, triangle for mountain peak.</li>
+</ul>
+<h4>Sketch Maps</h4>
+<p>A simple map not drawn to exact scale — used for rough guidance (map to a friend's house). Different from a proper map which uses exact scale.</p>`,
+            qa: [
+              { q: 'What is the difference between a physical map and a political map?', a: 'Physical map: shows natural features of the Earth — mountains, rivers, plains, deserts, ocean depths. Uses colour coding (brown/orange for mountains, green for plains, blue for water). Political map: shows human-made divisions — countries, state boundaries, capitals, cities. Uses different colours to distinguish regions.' },
+              { q: 'What does a scale of 1:50,000 mean on a map?', a: 'A scale of 1:50,000 means 1 unit on the map represents 50,000 of the same units on the ground. So 1 cm on the map = 50,000 cm = 500 m = 0.5 km in real life. The larger the second number, the smaller the scale and the larger the area shown.' },
+              { q: 'What are the three essential components of a map?', a: 'Three essential components: (1) Scale — ratio of map distance to ground distance, allows calculation of real distances; (2) Direction — usually a north arrow or compass rose shows orientation; (3) Symbols/Legend — the key explaining what each symbol, colour, or pattern on the map represents.' },
+            ]
+          },
+          {
+            id: 'major-domains-earth-6',
+            title: 'Major Domains of the Earth',
+            subtopics: 'Lithosphere, Hydrosphere, Atmosphere, Biosphere, Oceans, Continents, Interaction',
+            definition: 'The Earth has four major domains: the lithosphere (land), hydrosphere (water), atmosphere (air), and biosphere (living things). All life exists where these four domains interact.',
+            content: `<p>Earth is unique in the solar system because of the way its four domains interact to create conditions that support life. Understanding each domain helps us understand our planet.</p>
+<h4>Lithosphere (Land)</h4>
+<p>The solid rocky crust of the Earth. Includes continents and ocean floors. Divided into tectonic plates. There are 7 continents: Asia (largest), Africa, North America, South America, Antarctica (coldest), Europe, Australia (smallest). Minerals, soil, rocks — all part of the lithosphere.</p>
+<h4>Hydrosphere (Water)</h4>
+<p>All water on Earth — oceans, seas, rivers, lakes, glaciers, groundwater. About 71% of Earth's surface is water. Oceans: Pacific (largest and deepest), Atlantic, Indian, Arctic, Antarctic/Southern. The Pacific is larger than all land combined!</p>
+<h4>Atmosphere (Air)</h4>
+<p>The blanket of gases surrounding Earth. Contains nitrogen (78%), oxygen (21%), and other gases (CO₂, argon). Protects from harmful UV rays, regulates temperature, provides air to breathe. Extends up to 10,000 km, but most weather occurs in lowest 12 km (troposphere).</p>
+<h4>Biosphere (Life)</h4>
+<p>The zone where life exists — found at the intersection of lithosphere, hydrosphere, and atmosphere. Extends from deepest ocean trenches to mountain peaks. Includes all living organisms.</p>`,
+            qa: [
+              { q: 'Name the four major domains of the Earth and give one feature of each.', a: 'Lithosphere (land) — solid rocky outer layer, contains continents and minerals. Hydrosphere (water) — all water bodies, covers 71% of Earth\'s surface. Atmosphere (air) — blanket of gases around Earth, provides oxygen and protects from UV rays. Biosphere (life) — the zone where all living organisms exist, where the other three domains interact.' },
+              { q: 'Which is the largest ocean and which continent is the largest?', a: 'Largest ocean: Pacific Ocean — it is larger than all of Earth\'s land areas combined. Deepest point: Mariana Trench (about 11 km deep). Largest continent: Asia — covers about 1/3 of Earth\'s total land area and contains more than half the world\'s population.' },
+              { q: 'Why is the atmosphere important for life on Earth?', a: 'The atmosphere: (1) provides oxygen for breathing (21% oxygen); (2) contains CO₂ needed for photosynthesis by plants; (3) shields Earth from harmful UV radiation (ozone layer in stratosphere); (4) traps heat — greenhouse effect keeps Earth warm enough for life; (5) the troposphere (lowest layer) is where all weather occurs — rain, wind, clouds that support life.' },
+            ]
+          },
+          {
+            id: 'major-landforms-6',
+            title: 'Major Landforms of the Earth',
+            subtopics: 'Mountains, Plateaus, Plains, Valleys, Rivers, Formation of landforms',
+            definition: 'Landforms are natural features of the Earth\'s surface. The major landforms — mountains, plateaus, and plains — were formed by internal forces (tectonic movements, volcanoes) and external forces (erosion by wind, water, ice).',
+            content: `<p>The surface of the Earth is not flat — it is shaped by millions of years of geological forces into a dramatic variety of landforms, each with different characteristics and uses for humans.</p>
+<h4>Mountains</h4>
+<p>High-rising landforms with steep slopes and a narrow summit (peak). Types:</p>
+<ul>
+<li><strong>Fold mountains:</strong> Formed when tectonic plates collide and crust folds upward — Himalayas, Alps, Rockies (young, still growing).</li>
+<li><strong>Block mountains:</strong> Formed when a block of land is lifted or surrounding land sinks — Vindhyas, Black Forest (Germany).</li>
+<li><strong>Volcanic mountains:</strong> Formed by volcanic eruptions — Mount Fuji (Japan), Mount Kilimanjaro (Africa).</li>
+</ul>
+<h4>Plateaus</h4>
+<p>Elevated flat-topped areas. Surrounded by steep cliffs or escarpments. Examples: Deccan Plateau (India), Tibetan Plateau (highest in the world — "Roof of the World"), East African Plateau. Rich in minerals — coal, iron ore.</p>
+<h4>Plains</h4>
+<p>Large flat or gently rolling lowlands. Formed by river deposition over thousands of years. Very fertile — best for farming. Examples: Indo-Gangetic Plain (most densely populated), Great Plains (USA). Plains support most of the world's population.</p>`,
+            qa: [
+              { q: 'How are fold mountains formed? Give two examples.', a: 'Fold mountains are formed when two tectonic plates collide — the force of collision causes the Earth\'s crust to bend, buckle, and fold upward. Examples: Himalayas (formed by collision of Indian and Eurasian plates, still rising), Alps (European mountains formed by African and Eurasian plate collision). These are the youngest and highest mountains on Earth.' },
+              { q: 'Why are plains the most densely populated areas?', a: 'Plains are most densely populated because: (1) flat land is ideal for farming — easy to plough, irrigate, and harvest; (2) fertile soil deposited by rivers (alluvial soil); (3) flat terrain makes building roads, railways, and cities easy; (4) river water is easily accessible for drinking and irrigation. The Indo-Gangetic Plain is one of the world\'s most fertile and most populated regions.' },
+              { q: 'What is the difference between a mountain and a plateau?', a: 'Mountain: high elevation with steep slopes and narrow peak/summit, formed by folding, faulting, or volcanic activity. Plateau: high but flat-topped elevated land, surrounded by steep cliffs, formed by lava flows or uplift. Key difference: mountains are peaked and uneven at the top, plateaus are flat at the top. Examples: Himalayas (mountain), Deccan Plateau (plateau).' },
+            ]
+          },
+          {
+            id: 'our-country-india-6',
+            title: 'Our Country — India',
+            subtopics: 'Location, Neighbours, States and UTs, Capital cities, Physical features',
+            definition: 'India is the 7th largest country in the world by area and 2nd most populous. It lies in South Asia, between latitudes 8°N and 37°N and longitudes 68°E and 97°E, giving it great geographical diversity.',
+            content: `<p>India is an incredibly diverse country — geographically, climatically, culturally, and linguistically. Understanding its geography helps us appreciate why different parts of India look, feel, and live so differently.</p>
+<h4>Location and Size</h4>
+<p>India lies entirely in the Northern and Eastern Hemispheres. Area: 3.28 million km² (7th largest). The Tropic of Cancer (23.5°N) passes through the middle of India. The Standard Meridian of India is 82.5°E (IST = GMT + 5.5 hours).</p>
+<h4>Neighbouring Countries</h4>
+<p>Land neighbours (7): Pakistan (NW), Afghanistan (NW), China (N), Nepal (N), Bhutan (NE), Myanmar (E), Bangladesh (E). Sea neighbours: Sri Lanka (separated by Palk Strait), Maldives.</p>
+<h4>Physical Divisions</h4>
+<ul>
+<li><strong>The Himalayas:</strong> Northern mountain wall — three ranges (Himadri, Himachal, Shivaliks)</li>
+<li><strong>The Northern Plains:</strong> Formed by Indus, Ganga, Brahmaputra — most fertile region</li>
+<li><strong>The Peninsular Plateau:</strong> Deccan Plateau — oldest and most stable landmass</li>
+<li><strong>The Coastal Plains:</strong> Malabar Coast (west), Coromandel Coast (east)</li>
+<li><strong>The Islands:</strong> Andaman & Nicobar (Bay of Bengal), Lakshadweep (Arabian Sea)</li>
+</ul>`,
+            qa: [
+              { q: 'Name India\'s seven land neighbours and two sea neighbours.', a: 'Land neighbours: Pakistan, Afghanistan, China, Nepal, Bhutan, Myanmar, Bangladesh. Sea neighbours: Sri Lanka (separated by Palk Strait — 25 km wide), Maldives (in the Indian Ocean). India has the longest land borders with Bangladesh and China.' },
+              { q: 'Through which states does the Tropic of Cancer pass in India?', a: 'The Tropic of Cancer (23.5°N) passes through 8 Indian states: Gujarat, Rajasthan, Madhya Pradesh, Chhattisgarh, Jharkhand, West Bengal, Tripura, and Mizoram. It divides India roughly into the tropical south and subtropical north.' },
+              { q: 'What is the Standard Meridian of India and why is it needed?', a: 'The Standard Meridian of India is 82.5°E longitude, passing through Mirzapur (Uttar Pradesh). It is needed because India spans ~30° of longitude (68°E to 97°E) — that is about 2 hours of time difference. Using a standard meridian gives the whole country one single time (IST = GMT +5:30), avoiding confusion.' },
+            ]
+          },
+          {
+            id: 'diversity-discrimination-6',
+            title: 'Diversity and Discrimination',
+            subtopics: 'Prejudice, Stereotypes, Discrimination, Untouchability, Constitution and equality, India\'s diversity',
+            definition: 'Diversity means differences in language, religion, food, customs, and traditions. Discrimination means treating people unequally based on these differences. India celebrates diversity but must also fight discrimination.',
+            content: `<p>India is one of the most diverse nations on Earth — with hundreds of languages, dozens of religions, and countless traditions. While this diversity is a strength, it can also lead to prejudice and discrimination that must be actively fought.</p>
+<h4>Prejudice and Stereotypes</h4>
+<p><strong>Prejudice:</strong> A pre-formed opinion about a group without proper basis — often negative. <strong>Stereotype:</strong> A fixed, oversimplified image of a group. Examples: "All girls are emotional" (gender stereotype), "People from X state are lazy" (regional prejudice). Stereotypes are harmful because they ignore individual differences.</p>
+<h4>Discrimination</h4>
+<p>When prejudice leads to unequal treatment of people based on religion, caste, gender, language, or disability. Types: caste-based (untouchability — declaring Dalits "impure"), religious discrimination, gender discrimination (not allowing girls to study), regional discrimination.</p>
+<h4>Untouchability</h4>
+<p>Dalit communities were historically denied access to wells, temples, schools, and forced into menial jobs. Dr. B.R. Ambedkar (himself a Dalit) fought against this and included anti-discrimination provisions in the Constitution.</p>
+<h4>The Constitution and Equality</h4>
+<p>The Constitution of India (1950) declares all citizens equal regardless of religion, caste, gender, or place of birth. Untouchability is abolished (Article 17). The Right to Equality (Articles 14–18) protects every citizen.</p>`,
+            qa: [
+              { q: 'What is the difference between prejudice and discrimination?', a: 'Prejudice is an attitude — a pre-formed negative opinion or feeling about a group based on characteristics like religion, caste, gender, or region without proper reason. Discrimination is the action that follows prejudice — actually treating people unequally, denying them opportunities or rights. Example: believing women cannot be good engineers (prejudice) → refusing to hire a qualified female engineer (discrimination).' },
+              { q: 'What is untouchability and how did the Constitution address it?', a: 'Untouchability was the practice of declaring Dalit (lower caste) people "impure" — denying them access to wells, temples, public spaces, and forcing them into degrading occupations. The Constitution abolished untouchability under Article 17 and made its practice a punishable offence. The Right to Equality (Articles 14-18) also prohibits discrimination on grounds of caste, religion, gender, or place of birth.' },
+              { q: 'Why is India\'s diversity considered a strength?', a: 'India\'s diversity — in languages (22 official languages, hundreds of dialects), religions (Hindu, Muslim, Christian, Sikh, Buddhist, Jain, others), food, festivals, traditions, and geography — is a strength because: (1) it brings richness of ideas and creativity; (2) it means India has adapted to many environments and conditions; (3) it teaches tolerance and coexistence; (4) it creates cultural richness that attracts the world. Tagore called India "where the world makes its home in a single nest."' },
+            ]
+          },
+          {
+            id: 'rural-urban-livelihoods-6',
+            title: 'Rural and Urban Livelihoods',
+            subtopics: 'Farming, Agricultural labour, Fishing, Crafts, Self-employed, Regular wage workers, Urban livelihoods',
+            definition: 'Livelihoods refer to the ways people earn their living — through farming, wage labour, business, or service. Rural livelihoods depend mostly on agriculture; urban livelihoods are more diverse.',
+            content: `<p>Most Indians live in villages and depend on farming. But India is also rapidly urbanising, creating new types of work and new challenges. Understanding how people earn a living helps us understand inequality and development.</p>
+<h4>Rural Livelihoods</h4>
+<p>About 60% of Indians live in rural areas. Main livelihoods:</p>
+<ul>
+<li><strong>Farming (cultivators):</strong> Own land and grow crops. Big farmers own much land and use hired labour. Small/marginal farmers own very little land — struggle to make ends meet.</li>
+<li><strong>Agricultural labourers:</strong> Own no land — work on others' farms for daily wages. Most vulnerable to poverty.</li>
+<li><strong>Fishing:</strong> Coastal and river communities depend on fishing — often seasonal.</li>
+<li><strong>Crafts:</strong> Potters, weavers, carpenters, blacksmiths — traditional occupations, many struggling due to factory goods.</li>
+<li><strong>Trade and services:</strong> Shop owners, money-lenders, teachers, health workers.</li>
+</ul>
+<h4>Urban Livelihoods</h4>
+<p>Cities have diverse occupations: factory workers, street vendors, domestic workers, construction workers (often from rural areas — migrant workers), government employees, private sector workers, business owners, professionals (doctors, lawyers, engineers).</p>
+<h4>Self-employed vs Wage Workers</h4>
+<p><strong>Self-employed:</strong> Run their own business — street vendors, small shop owners. <strong>Regular salaried:</strong> Government/company employees with fixed salary, benefits. <strong>Casual wage workers:</strong> Hired daily, no job security — construction workers, farm labourers.</p>`,
+            qa: [
+              { q: 'What is the difference between a big farmer and an agricultural labourer?', a: 'Big farmer: owns large amounts of land, grows crops, and often hires agricultural labourers. Has surplus produce to sell in market. Agricultural labourer: owns no land, works on others\' farms for daily wages. Has no job security — only works during sowing and harvest seasons. Agricultural labourers are among the most vulnerable and poorest people in rural India.' },
+              { q: 'Why do many rural people migrate to cities?', a: 'Rural people migrate to cities because: (1) agricultural work is seasonal — no income for months; (2) not enough land to support all family members; (3) cities offer more diverse work — construction, factories, domestic work; (4) urban wages are higher than agricultural wages; (5) better access to schools and hospitals. This is called rural-urban migration.' },
+              { q: 'Give two examples each of self-employed workers and regular salaried workers.', a: 'Self-employed: (1) a street vendor selling vegetables (owns no land or big shop — works independently); (2) a tailor with a small shop. Regular salaried workers: (1) a school teacher employed by government (fixed monthly salary, job security, pension); (2) a bank employee. Self-employed have more flexibility but no job security; regular workers have stability but less flexibility.' },
             ]
           },
         ]
