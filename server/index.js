@@ -543,18 +543,26 @@ app.post('/api/ai-doubt', async (req, res) => {
     if (uploadId && lastUserMsg) {
       const doc = docStore.get(uploadId);
       if (doc && doc.chunks.length) {
-        const relevant = retrieveChunks(lastUserMsg.content, doc.chunks);
-        if (relevant.length) {
-          contextBlock = `\n\nRELEVANT DOCUMENT EXCERPTS:\n${relevant.map((r, i) => `[${i + 1}] ${r.chunk}`).join('\n\n')}`;
-          source = 'document';
+        const query = lastUserMsg.content;
+        const META_RE = /\b(summary|summarize|summarise|overview|what is this|define this|about this|what('s| is) (this|the) (file|document|doc)|describe (this|the) (file|document)|explain (this|the) (file|document))\b/i;
+        const isMeta = META_RE.test(query);
+
+        let relevant = isMeta ? [] : retrieveChunks(query, doc.chunks);
+
+        // Fallback: if BM25 found nothing (or meta query), use first 3 chunks as document overview
+        if (!relevant.length) {
+          relevant = doc.chunks.slice(0, 3).map(chunk => ({ chunk, score: 0 }));
         }
+
+        contextBlock = `\n\nDOCUMENT: "${doc.fileName}"\n${relevant.map((r, i) => `[${i + 1}] ${r.chunk}`).join('\n\n')}`;
+        source = 'document';
       }
     }
 
     // 3. Build system prompt with safety rules + optional doc context
     const fullSystem = system + SAFETY_SYSTEM_ADDENDUM + contextBlock
       + (source === 'document'
-        ? '\n\nAnswer primarily using the document excerpts above. If the answer is not in the excerpts, say so and answer from your general knowledge.'
+        ? '\n\nThe student has uploaded a document. Answer using the document excerpts above. For meta questions (summary, overview, what is this file), give a helpful summary based on the content shown.'
         : '');
 
     // 4. Call Groq

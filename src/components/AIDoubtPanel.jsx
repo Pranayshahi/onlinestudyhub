@@ -47,6 +47,7 @@ export default function AIDoubtPanel({ open, onClose }) {
   const [input, setInput] = useState('');
   const [loading, setLoading] = useState(false);
   const [uploadId, setUploadId] = useState(null);
+  const uploadIdRef = useRef(null);
   const [uploadedFile, setUploadedFile] = useState(null);
   const [uploading, setUploading] = useState(false);
   const [uploadError, setUploadError] = useState('');
@@ -92,6 +93,7 @@ export default function AIDoubtPanel({ open, onClose }) {
       const res = await fetch('/api/ai-doubt/upload', { method: 'POST', body: formData });
       const data = await res.json();
       if (!res.ok) throw new Error(data.error || 'Upload failed');
+      uploadIdRef.current = data.uploadId;
       setUploadId(data.uploadId);
       setUploadedFile({ name: data.fileName, chunks: data.chunks });
       setMessages(prev => [...prev, {
@@ -107,6 +109,7 @@ export default function AIDoubtPanel({ open, onClose }) {
   }
 
   function removeDocument() {
+    uploadIdRef.current = null;
     setUploadId(null);
     setUploadedFile(null);
     setUploadError('');
@@ -132,7 +135,7 @@ export default function AIDoubtPanel({ open, onClose }) {
         body: JSON.stringify({
           messages: history,
           system: buildSystemPrompt(location),
-          uploadId: uploadId || undefined,
+          uploadId: uploadIdRef.current || undefined,
         }),
       });
 
