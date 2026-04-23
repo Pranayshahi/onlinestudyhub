@@ -98,7 +98,7 @@ export default function MockTestTakerPage() {
           <h2 style={{ fontFamily: 'Nunito, sans-serif', fontWeight: 900, fontSize: '1.5rem', color: '#1f2937', marginBottom: '.5rem' }}>{test.title}</h2>
           <p style={{ color: '#6b7280', fontSize: '.9rem', marginBottom: '1.5rem', lineHeight: 1.6 }}>{test.description}</p>
 
-          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1rem', marginBottom: '1.5rem' }}>
+          <div className="mock-start-stats" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1rem', marginBottom: '1.5rem' }}>
             {[
               { label: 'Questions', val: questions.length },
               { label: 'Duration', val: `${test.duration} min` },
@@ -158,7 +158,7 @@ export default function MockTestTakerPage() {
           </div>
 
           {/* Stats row */}
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: '1rem', marginBottom: '1.5rem' }}>
+          <div className="mock-result-stats" style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: '1rem', marginBottom: '1.5rem' }}>
             {[
               { label: 'Correct', val: result.correct, color: '#16a34a', bg: '#f0fdf4', icon: '✅' },
               { label: 'Wrong', val: result.wrong, color: '#dc2626', bg: '#fef2f2', icon: '❌' },

@@ -52,7 +52,7 @@ export default function MockTestListPage() {
         </div>
 
         {/* Test list */}
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(340px, 1fr))', gap: '1.25rem' }}>
+        <div className="mock-test-list-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(340px, 1fr))', gap: '1.25rem' }}>
           {tests.map(test => {
             const result = getResult(test.id);
             const pct = result ? Math.round((result.score / test.totalMarks) * 100) : null;

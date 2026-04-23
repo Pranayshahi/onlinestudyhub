@@ -340,9 +340,42 @@
   .ai-panel { width: 100vw; }
   .nav-search-input { width: 130px; }
 
+  /* Dark mode toggle — hidden on mobile */
+  .dark-toggle-btn { display: none; }
+
   /* Layout */
   .footer-grid { grid-template-columns: 1fr 1fr; gap: 2rem; }
   .hero-stats { gap: 1.5rem; }
+
+  /* ── Page-level mobile fixes ── */
+
+  /* MockTestTakerPage: result stats 4-col → 2x2 */
+  .mock-result-stats { grid-template-columns: 1fr 1fr !important; }
+  /* MockTestTakerPage: start screen stats 2-col → 1-col on very small */
+  .mock-start-stats { grid-template-columns: 1fr 1fr !important; }
+
+  /* MockTestListPage: card grid full-width */
+  .mock-test-list-grid { grid-template-columns: 1fr !important; }
+
+  /* PYQPage: filter row stacks, search full width */
+  .pyq-filter-row { flex-direction: column !important; }
+  .pyq-filter-row input { min-width: unset !important; width: 100% !important; }
+  .pyq-filter-row select { width: 100% !important; }
+  .pyq-options-grid { grid-template-columns: 1fr !important; }
+
+  /* ExamHub / Weightage: grids go single column */
+  .exam-feature-grid { grid-template-columns: 1fr !important; }
+  .exam-stats-grid { grid-template-columns: repeat(3, 1fr) !important; }
+
+  /* BookSessionPage: date+time stack */
+  .book-datetime-grid { grid-template-columns: 1fr !important; }
+
+  /* TopicPage: decorative circles hidden on mobile */
+  .topic-hero-circle { display: none !important; }
+
+  /* WeightagePage: summary cards wrap tighter */
+  .weightage-summary { gap: 1rem !important; }
+  .weightage-chapter-right { display: none !important; }
 }
 
 @media (max-width: 480px) {
@@ -452,7 +485,7 @@ html[data-theme="dark"] .teacher-profile-card:hover {
   .topics-grid { grid-template-columns: 1fr; }
 }
 
-/* ─── Dark Mode Toggle Button — always visible ─── */
+/* ─── Dark Mode Toggle Button ─── */
 .dark-toggle-btn {
   background: rgba(255,255,255,.12);
   border: 1px solid rgba(255,255,255,.2);
@@ -463,7 +496,6 @@ html[data-theme="dark"] .teacher-profile-card:hover {
   display: flex; align-items: center; justify-content: center;
   cursor: pointer; transition: all .2s;
   flex-shrink: 0;
-  /* Always visible — NOT inside .nav-actions so never hidden on mobile */
 }
 .dark-toggle-btn:hover { background: rgba(255,255,255,.22); }
 

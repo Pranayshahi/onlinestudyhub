@@ -152,8 +152,8 @@ export default function TopicPage({ user, onOpenLogin }) {
         position: 'relative',
         overflow: 'hidden',
       }}>
-        <div style={{ position: 'absolute', right: '-4rem', top: '-4rem', width: '20rem', height: '20rem', borderRadius: '50%', background: 'rgba(255,255,255,.06)', pointerEvents: 'none' }} />
-        <div style={{ position: 'absolute', right: '6rem', bottom: '-6rem', width: '14rem', height: '14rem', borderRadius: '50%', background: 'rgba(255,255,255,.04)', pointerEvents: 'none' }} />
+        <div className="topic-hero-circle" style={{ position: 'absolute', right: '-4rem', top: '-4rem', width: '20rem', height: '20rem', borderRadius: '50%', background: 'rgba(255,255,255,.06)', pointerEvents: 'none' }} />
+        <div className="topic-hero-circle" style={{ position: 'absolute', right: '6rem', bottom: '-6rem', width: '14rem', height: '14rem', borderRadius: '50%', background: 'rgba(255,255,255,.04)', pointerEvents: 'none' }} />
 
         <div className="container" style={{ position: 'relative', zIndex: 1 }}>
           <Breadcrumb items={[

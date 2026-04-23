@@ -144,7 +144,7 @@ function BookingModal({ teacher, topic, classData, subjectMeta, classId, subject
           </div>
 
           {/* Date + Time */}
-          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1rem', marginBottom: '1rem' }}>
+          <div className="book-datetime-grid" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1rem', marginBottom: '1rem' }}>
             <div>
               <label style={{ display: 'block', fontWeight: 700, fontSize: '.82rem', color: '#374151', marginBottom: '.35rem' }}>
                 Date <span style={{ color: '#ef4444' }}>*</span>

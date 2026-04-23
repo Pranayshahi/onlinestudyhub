@@ -80,7 +80,7 @@ export default function WeightagePage() {
         </div>
 
         {/* Subject summary card */}
-        <div style={{ background: '#fff', border: '1px solid #e5e7eb', borderRadius: 14, padding: '1rem 1.5rem', marginBottom: '1.5rem', display: 'flex', gap: '2rem', flexWrap: 'wrap' }}>
+        <div className="weightage-summary" style={{ background: '#fff', border: '1px solid #e5e7eb', borderRadius: 14, padding: '1rem 1.5rem', marginBottom: '1.5rem', display: 'flex', gap: '2rem', flexWrap: 'wrap' }}>
           <div><div style={{ fontSize: '.78rem', color: '#9ca3af', fontWeight: 600 }}>TOTAL CHAPTERS</div><div style={{ fontFamily: 'Nunito, sans-serif', fontWeight: 800, fontSize: '1.5rem', color: exam.color }}>{chapters.length}</div></div>
           <div><div style={{ fontSize: '.78rem', color: '#9ca3af', fontWeight: 600 }}>MUST-DO</div><div style={{ fontFamily: 'Nunito, sans-serif', fontWeight: 800, fontSize: '1.5rem', color: '#dc2626' }}>{chapters.filter(c => c.priority === 'must').length}</div></div>
           <div><div style={{ fontSize: '.78rem', color: '#9ca3af', fontWeight: 600 }}>AVG QUESTIONS</div><div style={{ fontFamily: 'Nunito, sans-serif', fontWeight: 800, fontSize: '1.5rem', color: '#1f2937' }}>{Math.round(chapters.reduce((s,c) => s + c.avgQuestions, 0) / chapters.length * 10)/10}</div></div>
@@ -120,7 +120,7 @@ export default function WeightagePage() {
                     </div>
                   </div>
 
-                  <div style={{ textAlign: 'right', minWidth: 100 }}>
+                  <div className="weightage-chapter-right" style={{ textAlign: 'right', minWidth: 100 }}>
                     <div style={{ fontSize: '.72rem', color: '#9ca3af', fontWeight: 600 }}>AVG QUESTIONS</div>
                     <div style={{ fontFamily: 'Nunito, sans-serif', fontWeight: 900, fontSize: '1.8rem', color: '#1f2937' }}>{ch.avgQuestions}</div>
                     <div style={{ fontSize: '.7rem', color: '#9ca3af' }}>per paper</div>

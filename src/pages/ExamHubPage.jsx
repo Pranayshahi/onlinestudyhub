@@ -99,7 +99,7 @@ export default function ExamHubPage() {
         <h2 style={{ fontFamily: 'Nunito, sans-serif', fontWeight: 800, fontSize: '1.4rem', color: '#1f2937', marginBottom: '1.25rem' }}>
           {exam.shortLabel} Preparation Tools
         </h2>
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(280px, 1fr))', gap: '1.25rem', marginBottom: '3rem' }}>
+        <div className="exam-feature-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(280px, 1fr))', gap: '1.25rem', marginBottom: '3rem' }}>
           {cards.map(card => (
             <Link key={card.title} to={card.link} style={{ textDecoration: 'none' }}>
               <div className="card" style={{ padding: '1.75rem', cursor: 'pointer', borderTop: `4px solid ${card.color}`, height: '100%' }}>
@@ -115,7 +115,7 @@ export default function ExamHubPage() {
         {/* Quick stats */}
         <div style={{ background: '#fff', border: '1px solid #e5e7eb', borderRadius: 16, padding: '1.5rem 2rem' }}>
           <h3 style={{ fontFamily: 'Nunito, sans-serif', fontWeight: 800, marginBottom: '1rem', color: '#1f2937' }}>Quick Stats</h3>
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(140px, 1fr))', gap: '1rem' }}>
+          <div className="exam-stats-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(140px, 1fr))', gap: '1rem' }}>
             {[
               { label: 'Total Questions', value: exam.totalQuestions, icon: '❓' },
               { label: 'Total Marks', value: exam.totalMarks, icon: '🏅' },

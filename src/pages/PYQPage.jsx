@@ -79,7 +79,7 @@ export default function PYQPage() {
         )}
 
         {/* Filters */}
-        <div style={{ background: '#fff', border: '1px solid #e5e7eb', borderRadius: 14, padding: '1.25rem 1.5rem', marginBottom: '1.5rem', display: 'flex', gap: '1rem', flexWrap: 'wrap', alignItems: 'center' }}>
+        <div className="pyq-filter-row" style={{ background: '#fff', border: '1px solid #e5e7eb', borderRadius: 14, padding: '1.25rem 1.5rem', marginBottom: '1.5rem', display: 'flex', gap: '1rem', flexWrap: 'wrap', alignItems: 'center' }}>
           <input
             value={search} onChange={e => setSearch(e.target.value)}
             placeholder="Search questions or chapters..."
@@ -144,7 +144,7 @@ export default function PYQPage() {
                   </div>
 
                   {/* Options */}
-                  <div style={{ padding: '0 1.5rem 1.25rem', display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(280px, 1fr))', gap: '.6rem' }}>
+                  <div className="pyq-options-grid" style={{ padding: '0 1.5rem 1.25rem', display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(280px, 1fr))', gap: '.6rem' }}>
                     {q.options.map((opt, i) => {
                       let bg = '#f9fafb', border = '#e5e7eb', color = '#374151';
                       if (isRevealed) {
