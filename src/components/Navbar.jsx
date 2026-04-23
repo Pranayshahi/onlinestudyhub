@@ -96,25 +96,20 @@ export default function Navbar({ onOpenAI, onOpenLogin, user, onLogout, darkMode
               <div className="dropdown">
                 <div className="dropdown-section">
                   <div className="dropdown-label">JEE</div>
-                  <Link to="/class/jee" className="dropdown-item" onClick={close}>
-                    🏆 JEE Main
-                  </Link>
-                  <Link to="/class/jee" className="dropdown-item" onClick={close}>
-                    🎯 JEE Advanced
-                  </Link>
+                  <Link to="/exam/jee" className="dropdown-item" onClick={close}>🏆 JEE Hub</Link>
+                  <Link to="/exam/jee/weightage" className="dropdown-item" onClick={close}>📊 Chapter Weightage</Link>
+                  <Link to="/exam/jee/pyq" className="dropdown-item" onClick={close}>📝 PYQ Bank</Link>
+                  <Link to="/exam/jee/mock-test" className="dropdown-item" onClick={close}>⏱️ Mock Tests</Link>
+                  <Link to="/class/jee" className="dropdown-item" onClick={close}>📚 Study Topics</Link>
                 </div>
                 <div className="dropdown-divider" />
                 <div className="dropdown-section">
                   <div className="dropdown-label">NEET</div>
-                  <Link to="/class/neet" className="dropdown-item" onClick={close}>
-                    🌿 NEET Biology
-                  </Link>
-                  <Link to="/class/neet" className="dropdown-item" onClick={close}>
-                    ⚡ NEET Physics
-                  </Link>
-                  <Link to="/class/neet" className="dropdown-item" onClick={close}>
-                    🧪 NEET Chemistry
-                  </Link>
+                  <Link to="/exam/neet" className="dropdown-item" onClick={close}>🩺 NEET Hub</Link>
+                  <Link to="/exam/neet/weightage" className="dropdown-item" onClick={close}>📊 Chapter Weightage</Link>
+                  <Link to="/exam/neet/pyq" className="dropdown-item" onClick={close}>📝 PYQ Bank</Link>
+                  <Link to="/exam/neet/mock-test" className="dropdown-item" onClick={close}>⏱️ Mock Tests</Link>
+                  <Link to="/class/neet" className="dropdown-item" onClick={close}>📚 Study Topics</Link>
                 </div>
               </div>
             </div>

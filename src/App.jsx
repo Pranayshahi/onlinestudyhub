@@ -16,7 +16,12 @@ const BookSessionPage = lazy(() => import('./pages/BookSessionPage'));
 const TeachersPage    = lazy(() => import('./pages/TeachersPage'));
 const TeachersListPage= lazy(() => import('./pages/TeachersListPage'));
 const SearchPage      = lazy(() => import('./pages/SearchPage'));
-const MyBookingsPage  = lazy(() => import('./pages/MyBookingsPage'));
+const MyBookingsPage     = lazy(() => import('./pages/MyBookingsPage'));
+const ExamHubPage        = lazy(() => import('./pages/ExamHubPage'));
+const WeightagePage      = lazy(() => import('./pages/WeightagePage'));
+const PYQPage            = lazy(() => import('./pages/PYQPage'));
+const MockTestListPage   = lazy(() => import('./pages/MockTestListPage'));
+const MockTestTakerPage  = lazy(() => import('./pages/MockTestTakerPage'));
 
 // Heavy panel components — load only when opened
 const AIDoubtPanel = lazy(() => import('./components/AIDoubtPanel'));
@@ -85,6 +90,11 @@ export default function App() {
             <Route path="/search" element={<SearchPage />} />
             <Route path="/my-bookings" element={<MyBookingsPage user={user} />} />
             <Route path="/teacher-portal" element={<AdminPage />} />
+            <Route path="/exam/:examId" element={<ExamHubPage />} />
+            <Route path="/exam/:examId/weightage" element={<WeightagePage />} />
+            <Route path="/exam/:examId/pyq" element={<PYQPage />} />
+            <Route path="/exam/:examId/mock-test" element={<MockTestListPage />} />
+            <Route path="/exam/:examId/mock-test/:testId" element={<MockTestTakerPage />} />
             <Route path="*" element={<NotFoundPage />} />
           </Routes>
         </Suspense>
