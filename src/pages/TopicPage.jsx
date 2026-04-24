@@ -227,7 +227,7 @@ export default function TopicPage({ user, onOpenLogin }) {
         </div>
 
         {/* ── 2. Media Resources ── */}
-        <TopicMediaSection classId={classId} subjectId={subjectId} topicId={topicId} />
+        <TopicMediaSection classId={classId} subjectId={subjectId} topicId={topicId} user={user} onOpenLogin={onOpenLogin} />
 
         {/* ── 3. Learning Content ── */}
         {topic.content && (

@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
+import { Link } from 'react-router-dom';
 import { api } from '../utils/api';
 
 // ── Resource config ──────────────────────────────────────────────
@@ -9,6 +10,8 @@ const RESOURCES = [
   { type: 'quiz',        label: 'Take a Quiz',     icon: '🧠', color: '#059669', bg: '#ecfdf5', border: '#a7f3d0' },
   { type: 'infographic', label: 'Infographic',     icon: '🖼️', color: '#d97706', bg: '#fffbeb', border: '#fde68a' },
 ];
+
+const RES_MAP = Object.fromEntries(RESOURCES.map(r => [r.type, r]));
 
 function youtubeId(url) {
   if (!url) return null;
@@ -22,7 +25,6 @@ function AudioModal({ item, onClose }) {
   const [playing, setPlaying] = useState(false);
   const [progress, setProgress] = useState(0);
   const [duration, setDuration] = useState(0);
-
   const fmt = (s) => `${Math.floor(s/60)}:${String(Math.floor(s%60)).padStart(2,'0')}`;
 
   return (
@@ -150,7 +152,6 @@ function QuizModal({ item, onClose }) {
 
   const q = questions[idx];
   const score = Object.entries(answers).filter(([i, a]) => a === questions[i]?.correct).length;
-  const done = submitted;
 
   if (!questions.length) {
     return (
@@ -160,7 +161,7 @@ function QuizModal({ item, onClose }) {
     );
   }
 
-  if (done) {
+  if (submitted) {
     const pct = Math.round((score / questions.length) * 100);
     return (
       <ModalShell onClose={onClose} title="Quiz Results" icon="🏆" color="#059669">
@@ -258,151 +259,239 @@ function ModalShell({ children, onClose, title, icon, color, wide }) {
   );
 }
 
-// ── Demo fallback data ────────────────────────────────────────────
-const DEMO_MEDIA = {
-  audio: {
-    _id: 'demo-audio', type: 'audio', title: 'Topic Audio Overview (Demo)',
-    fileData: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3',
-    _isDemo: true,
-  },
-  video: {
-    _id: 'demo-video', type: 'video', title: 'Video Explanation (Demo)',
-    videoUrl: 'https://www.youtube.com/watch?v=NybHckSEQBI',
-    _isDemo: true,
-  },
-  report: {
-    _id: 'demo-report', type: 'report', title: 'Study Notes PDF (Demo)',
-    fileData: 'https://www.w3.org/WAI/WCAG21/Techniques/pdf/PDF1',
-    fileName: 'study-notes-demo.pdf', _isDemo: true,
-  },
-  infographic: {
-    _id: 'demo-infographic', type: 'infographic', title: 'Visual Summary (Demo)',
-    fileData: 'https://picsum.photos/seed/studyhub/900/600',
-    fileName: 'infographic-demo.png', _isDemo: true,
-  },
-  quiz: {
-    _id: 'demo-quiz', type: 'quiz', title: 'Practice Quiz (Demo)',
-    _isDemo: true,
-    quiz: [
-      {
-        question: 'Which of the following best describes the core concept of this topic?',
-        options: ['A foundational principle used across many problems', 'An advanced technique for competitive exams only', 'A formula memorised without understanding', 'A concept only relevant to higher classes'],
-        correct: 0,
-        explanation: 'Core concepts are foundational — understanding them deeply helps solve a wide range of problems.',
-      },
-      {
-        question: 'What is the most effective way to study this topic?',
-        options: ['Rote memorisation of formulas', 'Understanding the concept and practising varied problems', 'Reading once before the exam', 'Skipping derivations and focusing on answers only'],
-        correct: 1,
-        explanation: 'Conceptual understanding combined with practice is the proven method for long-term retention.',
-      },
-      {
-        question: 'How many questions are typically asked from this chapter in board exams?',
-        options: ['0–1 questions', '1–2 questions', '2–4 questions', '5+ questions'],
-        correct: 2,
-        explanation: 'Most chapters in this subject contribute 2–4 marks in board exams through short-answer or MCQ format.',
-      },
-    ],
-  },
-};
+// ── Teacher Resource Card ─────────────────────────────────────────
+function TeacherResourceCard({ item, res, isBestRated, onOpen, fetching }) {
+  const teacher = item.uploadedBy;
+  const teacherName = teacher?.name || 'Teacher';
+  const teacherAvatar = teacher?.avatar || '👨‍🏫';
+  const rating = teacher?.rating ?? 4.5;
+  const teacherId = teacher?._id;
+
+  return (
+    <div className="teacher-resource-card" style={{ '--trc': res.color, '--trb': res.bg, '--trbo': res.border }}>
+      {isBestRated && (
+        <div className="teacher-resource-best-badge">⭐ Best Rated</div>
+      )}
+      <div className="teacher-resource-top">
+        <span className="teacher-resource-icon">{res.icon}</span>
+        <div className="teacher-resource-info">
+          <div className="teacher-resource-title">{item.title || res.label}</div>
+          <div className="teacher-resource-type">{res.label}</div>
+        </div>
+      </div>
+      <div className="teacher-resource-teacher">
+        <span className="teacher-resource-avatar">{teacherAvatar}</span>
+        <div>
+          <div className="teacher-resource-tname">{teacherName}</div>
+          <div className="teacher-resource-rating">
+            {'★'.repeat(Math.round(rating))}{'☆'.repeat(5 - Math.round(rating))} {rating.toFixed(1)}
+          </div>
+        </div>
+        {teacherId && (
+          <Link to={`/teachers?highlight=${teacherId}`} className="teacher-resource-book-btn">Book</Link>
+        )}
+      </div>
+      <button
+        className="teacher-resource-open-btn"
+        onClick={() => onOpen(item, res.type)}
+        disabled={fetching}
+      >
+        {fetching ? '⏳ Loading…' : `${res.icon} Open ${res.label}`}
+      </button>
+    </div>
+  );
+}
+
+// ── Login Gate Banner ─────────────────────────────────────────────
+function LoginGateBanner({ onOpenLogin }) {
+  return (
+    <section className="topic-media-section">
+      <div className="topic-media-header">
+        <h2 className="topic-section-title" style={{ marginBottom: 0 }}>📚 Learning Resources</h2>
+        <p className="topic-media-sub">Videos, audio, notes, quizzes and more — uploaded by our teachers</p>
+      </div>
+      <div className="media-login-gate">
+        <div className="media-login-gate-icons">
+          {RESOURCES.map(r => (
+            <span key={r.type} className="media-login-gate-icon" style={{ background: r.bg, color: r.color }}>{r.icon}</span>
+          ))}
+        </div>
+        <h3 className="media-login-gate-title">Login to access learning resources</h3>
+        <p className="media-login-gate-desc">
+          Sign in to unlock video lessons, audio overviews, study notes, practice quizzes, and infographics uploaded by our expert teachers.
+        </p>
+        <button className="media-login-gate-btn" onClick={onOpenLogin}>
+          🔐 Login / Sign Up — It's Free
+        </button>
+        <p className="media-login-gate-note">Already have an account? Click above to sign in instantly.</p>
+      </div>
+    </section>
+  );
+}
 
 // ── Main TopicMediaSection ────────────────────────────────────────
-export default function TopicMediaSection({ classId, subjectId, topicId }) {
-  const [mediaMap, setMediaMap] = useState({});
+export default function TopicMediaSection({ classId, subjectId, topicId, user, onOpenLogin }) {
+  const [items, setItems] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [isDemo, setIsDemo] = useState(false);
   const [activeModal, setActiveModal] = useState(null);
   const [activeItem, setActiveItem] = useState(null);
   const [fetchingId, setFetchingId] = useState(null);
+  const [filterTeacher, setFilterTeacher] = useState('all');
 
   useEffect(() => {
+    if (!user) { setLoading(false); return; }
     setLoading(true);
     api(`/media/${classId}/${subjectId}/${topicId}`)
-      .then(items => {
-        if (items.length > 0) {
-          const map = {};
-          items.forEach(item => { map[item.type] = item; });
-          setMediaMap(map);
-          setIsDemo(false);
-        } else {
-          // No real content yet — show demo so teachers/students see how it looks
-          setMediaMap(DEMO_MEDIA);
-          setIsDemo(true);
-        }
-      })
-      .catch(() => { setMediaMap(DEMO_MEDIA); setIsDemo(true); })
+      .then(data => setItems(Array.isArray(data) ? data : []))
+      .catch(() => setItems([]))
       .finally(() => setLoading(false));
-  }, [classId, subjectId, topicId]);
+  }, [classId, subjectId, topicId, user]);
 
-  async function openModal(resource) {
-    const item = mediaMap[resource.type];
-    if (!item) return;
-    // Demo items and quiz/video open directly — no API fetch needed
-    if (item._isDemo || resource.type === 'quiz' || resource.type === 'video') {
-      setActiveModal(resource.type);
+  // Not logged in → show gate
+  if (!user) return <LoginGateBanner onOpenLogin={onOpenLogin} />;
+
+  if (loading) return null;
+
+  // No content yet
+  if (!items.length) {
+    return (
+      <section className="topic-media-section">
+        <div className="topic-media-header">
+          <h2 className="topic-section-title" style={{ marginBottom: 0 }}>📚 Learning Resources</h2>
+          <p className="topic-media-sub">No content uploaded for this topic yet — check back soon!</p>
+        </div>
+        <div style={{ background: '#f9fafb', border: '2px dashed #e5e7eb', borderRadius: 16, padding: '2.5rem', textAlign: 'center', color: '#9ca3af' }}>
+          <div style={{ fontSize: '2.5rem', marginBottom: '.75rem' }}>📭</div>
+          <div style={{ fontWeight: 600, marginBottom: '.25rem' }}>No resources yet</div>
+          <div style={{ fontSize: '.85rem' }}>Teachers will upload videos, notes, and quizzes soon.</div>
+        </div>
+      </section>
+    );
+  }
+
+  // Gather unique teachers across all items
+  const teacherMap = {};
+  items.forEach(item => {
+    const t = item.uploadedBy;
+    if (t?._id && !teacherMap[t._id]) teacherMap[t._id] = t;
+  });
+  const teachers = Object.values(teacherMap);
+
+  // Filter items by selected teacher
+  const visibleItems = filterTeacher === 'all'
+    ? items
+    : items.filter(item => String(item.uploadedBy?._id) === filterTeacher);
+
+  // Group visible items by type
+  const byType = {};
+  visibleItems.forEach(item => {
+    if (!byType[item.type]) byType[item.type] = [];
+    byType[item.type].push(item);
+  });
+
+  // Best-rated item per type (highest teacher rating)
+  const bestRatedId = {};
+  Object.entries(byType).forEach(([type, typeItems]) => {
+    const best = typeItems.reduce((a, b) => (b.uploadedBy?.rating ?? 0) > (a.uploadedBy?.rating ?? 0) ? b : a, typeItems[0]);
+    bestRatedId[type] = best._id;
+  });
+
+  async function openModal(item, type) {
+    if (type === 'quiz' || type === 'video') {
+      setActiveModal(type);
       setActiveItem(item);
       return;
     }
-    setFetchingId(resource.type);
+    setFetchingId(item._id);
     try {
       const full = await api(`/media/item/${item._id}`);
       setActiveItem(full);
-      setActiveModal(resource.type);
+      setActiveModal(type);
     } catch {
       setActiveItem(item);
-      setActiveModal(resource.type);
+      setActiveModal(type);
     } finally {
       setFetchingId(null);
     }
   }
 
-  if (loading) return null;
+  const closeModal = () => { setActiveModal(null); setActiveItem(null); };
+
+  // Ordered resource types that have content
+  const activeTypes = RESOURCES.filter(r => byType[r.type]?.length > 0);
+  const emptyTypes = RESOURCES.filter(r => !byType[r.type]?.length);
 
   return (
     <section className="topic-media-section">
       <div className="topic-media-header">
         <h2 className="topic-section-title" style={{ marginBottom: 0 }}>📚 Learning Resources</h2>
         <p className="topic-media-sub">
-          {isDemo
-            ? 'Preview — upload real content from the Teacher Portal → Content Manager'
-            : 'Interactive materials uploaded for this topic'}
+          {items.length} resource{items.length !== 1 ? 's' : ''} from {teachers.length} teacher{teachers.length !== 1 ? 's' : ''}
         </p>
-        {isDemo && (
-          <div className="topic-media-demo-banner">
-            🎨 Demo Preview — click any card to see how it works
-          </div>
-        )}
       </div>
 
-      <div className="topic-media-grid">
-        {RESOURCES.map(res => {
-          const item = mediaMap[res.type];
-          const available = Boolean(item);
-          const isFetching = fetchingId === res.type;
-          return (
+      {/* Teacher filter */}
+      {teachers.length > 1 && (
+        <div className="teacher-filter-bar">
+          <span className="teacher-filter-label">Filter by teacher:</span>
+          <div className="teacher-filter-pills">
             <button
-              key={res.type}
-              className={`topic-media-card ${available ? 'available' : 'unavailable'} ${item?._isDemo ? 'demo-card' : ''}`}
-              style={{ '--mc': res.color, '--mb': res.bg, '--mbo': res.border }}
-              onClick={() => available && openModal(res)}
-              disabled={!available || isFetching}
+              className={`teacher-filter-pill ${filterTeacher === 'all' ? 'active' : ''}`}
+              onClick={() => setFilterTeacher('all')}
             >
-              <div className="topic-media-card-icon">{isFetching ? '⏳' : res.icon}</div>
-              <div className="topic-media-card-label">{res.label}</div>
-              {item?.title && <div className="topic-media-card-title">{item.title}</div>}
-              <div className={`topic-media-card-badge ${available ? 'badge-ready' : 'badge-soon'}`}>
-                {available ? (item?._isDemo ? '👁 Preview' : '▶ Open') : 'Coming Soon'}
-              </div>
+              All Teachers
             </button>
-          );
-        })}
-      </div>
+            {teachers.map(t => (
+              <button
+                key={t._id}
+                className={`teacher-filter-pill ${filterTeacher === String(t._id) ? 'active' : ''}`}
+                onClick={() => setFilterTeacher(String(t._id))}
+              >
+                {t.avatar} {t.name}
+              </button>
+            ))}
+          </div>
+        </div>
+      )}
 
-      {activeModal === 'audio'       && activeItem && <AudioModal       item={activeItem} onClose={() => { setActiveModal(null); setActiveItem(null); }} />}
-      {activeModal === 'video'       && activeItem && <VideoModal       item={activeItem} onClose={() => { setActiveModal(null); setActiveItem(null); }} />}
-      {activeModal === 'report'      && activeItem && <ReportModal      item={activeItem} onClose={() => { setActiveModal(null); setActiveItem(null); }} />}
-      {activeModal === 'infographic' && activeItem && <InfographicModal item={activeItem} onClose={() => { setActiveModal(null); setActiveItem(null); }} />}
-      {activeModal === 'quiz'        && activeItem && <QuizModal        item={activeItem} onClose={() => { setActiveModal(null); setActiveItem(null); }} />}
+      {/* Resources by type */}
+      {activeTypes.map(res => (
+        <div key={res.type} className="teacher-resource-type-section">
+          <div className="teacher-resource-type-header" style={{ color: res.color }}>
+            {res.icon} {res.label}
+            <span className="teacher-resource-type-count">{byType[res.type].length} version{byType[res.type].length > 1 ? 's' : ''}</span>
+          </div>
+          <div className="teacher-resource-cards">
+            {byType[res.type].map(item => (
+              <TeacherResourceCard
+                key={item._id}
+                item={item}
+                res={res}
+                isBestRated={byType[res.type].length > 1 && item._id === bestRatedId[res.type]}
+                onOpen={openModal}
+                fetching={fetchingId === item._id}
+              />
+            ))}
+          </div>
+        </div>
+      ))}
+
+      {/* Coming soon types */}
+      {emptyTypes.length > 0 && (
+        <div className="teacher-resource-coming-soon">
+          {emptyTypes.map(res => (
+            <div key={res.type} className="teacher-resource-soon-pill" style={{ background: res.bg, color: res.color, border: `1px solid ${res.border}` }}>
+              {res.icon} {res.label} — Coming Soon
+            </div>
+          ))}
+        </div>
+      )}
+
+      {activeModal === 'audio'       && activeItem && <AudioModal       item={activeItem} onClose={closeModal} />}
+      {activeModal === 'video'       && activeItem && <VideoModal       item={activeItem} onClose={closeModal} />}
+      {activeModal === 'report'      && activeItem && <ReportModal      item={activeItem} onClose={closeModal} />}
+      {activeModal === 'infographic' && activeItem && <InfographicModal item={activeItem} onClose={closeModal} />}
+      {activeModal === 'quiz'        && activeItem && <QuizModal        item={activeItem} onClose={closeModal} />}
     </section>
   );
 }

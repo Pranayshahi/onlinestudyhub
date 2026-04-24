@@ -341,7 +341,7 @@
   .nav-search-input { width: 130px; }
 
   /* Dark mode toggle — hidden on mobile */
-  .dark-toggle-btn { display: none; }
+  .dark-toggle-btn { display: none !important; }
 
   /* Layout */
   .footer-grid { grid-template-columns: 1fr 1fr; gap: 2rem; }
@@ -1001,6 +1001,142 @@ html[data-theme="dark"] .badge-soon { background: #1e1d2e; color: #5a5876; }
 .topic-media-demo-banner { display: inline-flex; align-items: center; gap: .5rem; margin-top: .6rem; background: #fffbeb; border: 1px solid #fde68a; border-radius: 8px; padding: .35rem .85rem; font-size: .78rem; color: #92400e; font-weight: 600; }
 .topic-media-card.demo-card { opacity: 1; border-style: dashed; }
 .topic-media-card.demo-card .badge-ready { background: #f59e0b; }
+
+/* ── Media Login Gate ──────────────────────────────────────────── */
+.media-login-gate {
+  background: linear-gradient(135deg, #f0f9ff 0%, #faf5ff 100%);
+  border: 2px dashed #c4b5fd;
+  border-radius: 20px;
+  padding: 2.5rem 2rem;
+  text-align: center;
+}
+.media-login-gate-icons {
+  display: flex; justify-content: center; gap: .75rem; margin-bottom: 1.25rem; flex-wrap: wrap;
+}
+.media-login-gate-icon {
+  width: 48px; height: 48px; border-radius: 14px;
+  display: flex; align-items: center; justify-content: center; font-size: 1.4rem;
+}
+.media-login-gate-title {
+  font-family: 'Nunito', sans-serif; font-weight: 800; font-size: 1.25rem;
+  color: #1f2937; margin-bottom: .5rem;
+}
+.media-login-gate-desc {
+  color: #6b7280; font-size: .9rem; line-height: 1.7; max-width: 440px;
+  margin: 0 auto 1.5rem;
+}
+.media-login-gate-btn {
+  background: linear-gradient(135deg, #4f46e5, #7c3aed);
+  color: #fff; border: none; border-radius: 12px;
+  padding: .8rem 2rem; font-family: 'Nunito', sans-serif;
+  font-weight: 800; font-size: 1rem; cursor: pointer;
+  transition: opacity .15s; display: inline-block; margin-bottom: .75rem;
+}
+.media-login-gate-btn:hover { opacity: .9; }
+.media-login-gate-note { font-size: .78rem; color: #9ca3af; margin: 0; }
+
+/* ── Teacher resource cards ──────────────────────────────────────── */
+.teacher-filter-bar {
+  display: flex; align-items: center; gap: .75rem; flex-wrap: wrap;
+  margin-bottom: 1.5rem; padding: .75rem 1rem;
+  background: #f9fafb; border: 1px solid #e5e7eb; border-radius: 12px;
+}
+.teacher-filter-label { font-size: .8rem; font-weight: 700; color: #6b7280; white-space: nowrap; }
+.teacher-filter-pills { display: flex; gap: .5rem; flex-wrap: wrap; }
+.teacher-filter-pill {
+  padding: .3rem .85rem; border-radius: 99px; border: 1.5px solid #e5e7eb;
+  background: #fff; font-size: .8rem; font-weight: 600; color: #4b5563;
+  cursor: pointer; transition: all .15s;
+}
+.teacher-filter-pill.active {
+  background: #4f46e5; border-color: #4f46e5; color: #fff;
+}
+.teacher-filter-pill:hover:not(.active) { border-color: #4f46e5; color: #4f46e5; }
+
+.teacher-resource-type-section { margin-bottom: 1.75rem; }
+.teacher-resource-type-header {
+  display: flex; align-items: center; gap: .5rem;
+  font-family: 'Nunito', sans-serif; font-weight: 800; font-size: 1rem;
+  margin-bottom: .85rem;
+}
+.teacher-resource-type-count {
+  font-size: .72rem; font-weight: 600; color: #9ca3af;
+  background: #f3f4f6; border-radius: 99px; padding: .15rem .55rem;
+}
+.teacher-resource-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: .85rem;
+}
+.teacher-resource-card {
+  position: relative;
+  background: var(--trb);
+  border: 1.5px solid var(--trbo);
+  border-radius: 16px;
+  padding: 1rem 1rem .85rem;
+  display: flex; flex-direction: column; gap: .6rem;
+  transition: transform .18s, box-shadow .18s;
+}
+.teacher-resource-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(0,0,0,.1);
+}
+.teacher-resource-best-badge {
+  position: absolute; top: -.5rem; right: .75rem;
+  background: #f59e0b; color: #fff;
+  font-size: .68rem; font-weight: 800;
+  padding: .2rem .6rem; border-radius: 99px;
+}
+.teacher-resource-top {
+  display: flex; align-items: center; gap: .6rem;
+}
+.teacher-resource-icon { font-size: 1.5rem; line-height: 1; }
+.teacher-resource-info { flex: 1; min-width: 0; }
+.teacher-resource-title {
+  font-family: 'Nunito', sans-serif; font-weight: 700; font-size: .88rem;
+  color: #1f2937; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+}
+.teacher-resource-type {
+  font-size: .72rem; color: var(--trc); font-weight: 600;
+}
+.teacher-resource-teacher {
+  display: flex; align-items: center; gap: .5rem;
+  background: rgba(255,255,255,.7); border-radius: 10px; padding: .4rem .6rem;
+}
+.teacher-resource-avatar { font-size: 1.2rem; line-height: 1; }
+.teacher-resource-tname { font-size: .78rem; font-weight: 700; color: #1f2937; }
+.teacher-resource-rating { font-size: .68rem; color: #f59e0b; letter-spacing: .02em; }
+.teacher-resource-book-btn {
+  margin-left: auto; font-size: .7rem; font-weight: 700;
+  background: #4f46e5; color: #fff; border-radius: 7px;
+  padding: .2rem .55rem; text-decoration: none; white-space: nowrap;
+  transition: background .15s;
+}
+.teacher-resource-book-btn:hover { background: #4338ca; }
+.teacher-resource-open-btn {
+  width: 100%; padding: .5rem; border: none; border-radius: 10px;
+  background: var(--trc); color: #fff;
+  font-family: 'Nunito', sans-serif; font-weight: 700; font-size: .83rem;
+  cursor: pointer; transition: opacity .15s;
+}
+.teacher-resource-open-btn:hover { opacity: .88; }
+.teacher-resource-open-btn:disabled { opacity: .6; cursor: default; }
+
+.teacher-resource-coming-soon {
+  display: flex; flex-wrap: wrap; gap: .6rem; margin-top: 1rem;
+}
+.teacher-resource-soon-pill {
+  padding: .35rem .9rem; border-radius: 99px;
+  font-size: .78rem; font-weight: 600;
+}
+
+@media (max-width: 768px) {
+  .teacher-resource-cards { grid-template-columns: 1fr 1fr; }
+  .media-login-gate { padding: 2rem 1rem; }
+}
+@media (max-width: 480px) {
+  .teacher-resource-cards { grid-template-columns: 1fr !important; }
+}
 
 /* ── Login Modal (lm-*) ──────────────────────────────────────────────── */
 .lm-backdrop {

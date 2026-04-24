@@ -408,7 +408,9 @@ app.get('/api/media/:classId/:subjectId/:topicId', async (req, res) => {
   try {
     const { classId, subjectId, topicId } = req.params;
     const items = await TopicMedia.find({ classId, subjectId, topicId })
-      .select('-fileData')   // strip heavy binary on list
+      .select('-fileData')
+      .populate('uploadedBy', 'name avatar rating _id')
+      .sort({ createdAt: -1 })
       .lean();
     res.json(items);
   } catch (e) {
@@ -455,7 +457,7 @@ app.post('/api/media', requireAuth, async (req, res) => {
       ...(quiz !== undefined && { quiz }),
     };
     const item = await TopicMedia.findOneAndUpdate(
-      { classId, subjectId, topicId, type },
+      { classId, subjectId, topicId, type, uploadedBy: req.teacher.id },
       { $set: update },
       { upsert: true, new: true, setDefaultsOnInsert: true }
     );

@@ -64,8 +64,9 @@ const topicMediaSchema = new mongoose.Schema({
   uploadedBy: { type: mongoose.Schema.Types.ObjectId, ref: 'Teacher', default: null },
 }, { timestamps: true });
 
-// One record per (class, subject, topic, type) — upsert-friendly
-topicMediaSchema.index({ classId: 1, subjectId: 1, topicId: 1, type: 1 }, { unique: true });
+// One record per (teacher, class, subject, topic, type) — multiple teachers allowed
+topicMediaSchema.index({ classId: 1, subjectId: 1, topicId: 1, type: 1 });
+topicMediaSchema.index({ classId: 1, subjectId: 1, topicId: 1, uploadedBy: 1 });
 
 const Student   = mongoose.model('Student', studentSchema);
 const Teacher   = mongoose.model('Teacher', teacherSchema);
