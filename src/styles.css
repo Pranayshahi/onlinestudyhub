@@ -342,7 +342,7 @@
 
   /* Dark mode toggle + search — hidden on mobile */
   .dark-toggle-btn { display: none !important; }
-  .nav-search-form { display: none !important; }
+  .nav-search-wrapper { display: none !important; }
 
   /* Layout */
   .footer-grid { grid-template-columns: 1fr 1fr; gap: 2rem; }
