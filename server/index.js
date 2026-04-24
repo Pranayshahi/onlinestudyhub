@@ -9,6 +9,12 @@ require('dotenv').config({ path: require('path').join(__dirname, '.env') });
 const connectDB = require('./db');
 const { Student, Teacher, Booking, TopicMedia, Review, ForumPost } = require('./models');
 const Razorpay = require('razorpay');
+const {
+  notifyStudentBookingReceived,
+  notifyTeacherNewBooking,
+  notifyStudentSessionConfirmed,
+  notifyStudentSessionCancelled,
+} = require('./whatsapp');
 
 // In-memory document store: uploadId → { fileName, chunks: string[], expiresAt }
 const docStore = new Map();
@@ -340,6 +346,29 @@ app.post('/api/bookings', async (req, res) => {
       status: 'pending',
     });
 
+    // WhatsApp notifications (fire-and-forget — don't block response)
+    const teacher = await Teacher.findById(teacherId).select('name contact').lean();
+    const topicLabel = topicId ? topicId.replace(/-/g, ' ').replace(/\b\w/g, c => c.toUpperCase()) : 'Personalised Session';
+    notifyStudentBookingReceived({
+      studentPhone,
+      studentName,
+      teacherName: teacher?.name || 'your teacher',
+      topicTitle: topicLabel,
+      date: scheduledDate,
+      time: timeSlot,
+    });
+    if (teacher?.contact) {
+      notifyTeacherNewBooking({
+        teacherPhone: teacher.contact,
+        teacherName: teacher.name,
+        studentName,
+        studentPhone,
+        topicTitle: topicLabel,
+        date: scheduledDate,
+        time: timeSlot,
+      });
+    }
+
     res.status(201).json({ bookingId: booking._id, meetLink, message: 'Booking confirmed!' });
   } catch (err) {
     console.error('Booking error:', err);
@@ -372,12 +401,40 @@ app.get('/api/bookings/mine', requireAuth, async (req, res) => {
 // ── Bookings: Update status (protected) ───────────────────────
 app.patch('/api/bookings/:id', requireAuth, async (req, res) => {
   try {
+    const newStatus = req.body.status;
     const booking = await Booking.findOneAndUpdate(
       { _id: req.params.id, teacher_id: req.teacher.id },
-      { status: req.body.status },
+      { status: newStatus },
       { new: true }
     );
     if (!booking) return res.status(404).json({ error: 'Booking not found' });
+
+    // WhatsApp notifications on status change (fire-and-forget)
+    const teacher = await Teacher.findById(req.teacher.id).select('name').lean();
+    const topicLabel = booking.topic_id
+      ? booking.topic_id.replace(/-/g, ' ').replace(/\b\w/g, c => c.toUpperCase())
+      : 'Personalised Session';
+
+    if (newStatus === 'confirmed') {
+      notifyStudentSessionConfirmed({
+        studentPhone: booking.student_phone,
+        studentName:  booking.student_name,
+        teacherName:  teacher?.name || 'your teacher',
+        topicTitle:   topicLabel,
+        date:         booking.scheduled_date,
+        time:         booking.time_slot,
+        meetLink:     booking.meet_link,
+      });
+    } else if (newStatus === 'cancelled') {
+      notifyStudentSessionCancelled({
+        studentPhone: booking.student_phone,
+        studentName:  booking.student_name,
+        teacherName:  teacher?.name || 'your teacher',
+        date:         booking.scheduled_date,
+        time:         booking.time_slot,
+      });
+    }
+
     res.json(booking);
   } catch (err) {
     res.status(500).json({ error: 'Server error' });
