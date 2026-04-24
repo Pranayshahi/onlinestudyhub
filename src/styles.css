@@ -340,8 +340,9 @@
   .ai-panel { width: 100vw; }
   .nav-search-input { width: 130px; }
 
-  /* Dark mode toggle — hidden on mobile */
+  /* Dark mode toggle + search — hidden on mobile */
   .dark-toggle-btn { display: none !important; }
+  .nav-search-form { display: none !important; }
 
   /* Layout */
   .footer-grid { grid-template-columns: 1fr 1fr; gap: 2rem; }
