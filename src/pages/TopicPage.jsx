@@ -7,6 +7,7 @@ import FlashcardModal from '../components/FlashcardModal';
 import { useProgress } from '../hooks/useProgress';
 import SEO from '../components/SEO';
 import TopicMediaSection from '../components/TopicMediaSection';
+import ForumSection from '../components/ForumSection';
 
 // ── Accordion item ──────────────────────────────────────────────
 function AccordionItem({ number, question, answer, subjectColor, isOpen, onToggle }) {
@@ -68,6 +69,22 @@ export default function TopicPage({ user, onOpenLogin }) {
     setShowAllQA(false);
     setCopied(false);
   }, [topicId]);
+
+  // Track last visited topic for dashboard "resume" card
+  useEffect(() => {
+    if (!classId || !subjectId || !topicId) return;
+    const classData = getClass(classId);
+    const subject = getSubject(classId, subjectId);
+    const topic = getTopic(classId, subjectId, topicId);
+    if (!topic) return;
+    try {
+      localStorage.setItem('osh_last_topic', JSON.stringify({
+        classId, subjectId, topicId,
+        topicTitle: topic.title,
+        path: `/class/${classId}/subject/${subjectId}/topic/${topicId}`,
+      }));
+    } catch {}
+  }, [classId, subjectId, topicId]);
 
   const classData = getClass(classId);
   const subject = getSubject(classId, subjectId);
@@ -421,6 +438,9 @@ export default function TopicPage({ user, onOpenLogin }) {
             </Link>
           )}
         </div>
+
+        {/* ── Forum / Community Q&A ── */}
+        <ForumSection classId={classId} subjectId={subjectId} topicId={topicId} user={user} onOpenLogin={onOpenLogin} />
 
         <div style={{ display: 'flex', gap: '.75rem', marginTop: '1.5rem', flexWrap: 'wrap', justifyContent: 'center' }}>
           <Link to={`/class/${classId}/subject/${subjectId}`} className="btn btn-ghost" style={{ fontSize: '.88rem', border: '1px solid #e5e7eb' }}>

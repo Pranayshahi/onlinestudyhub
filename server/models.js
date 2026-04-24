@@ -68,9 +68,43 @@ const topicMediaSchema = new mongoose.Schema({
 topicMediaSchema.index({ classId: 1, subjectId: 1, topicId: 1, type: 1 });
 topicMediaSchema.index({ classId: 1, subjectId: 1, topicId: 1, uploadedBy: 1 });
 
-const Student   = mongoose.model('Student', studentSchema);
-const Teacher   = mongoose.model('Teacher', teacherSchema);
-const Booking   = mongoose.model('Booking', bookingSchema);
-const TopicMedia= mongoose.model('TopicMedia', topicMediaSchema);
+const reviewSchema = new mongoose.Schema({
+  teacherId:   { type: mongoose.Schema.Types.ObjectId, ref: 'Teacher', required: true },
+  bookingId:   { type: mongoose.Schema.Types.ObjectId, ref: 'Booking', required: true, unique: true },
+  studentEmail:{ type: String, required: true },
+  studentName: { type: String, required: true },
+  rating:      { type: Number, required: true, min: 1, max: 5 },
+  review:      { type: String, default: '' },
+}, { timestamps: true });
 
-module.exports = { Student, Teacher, Booking, TopicMedia };
+const forumAnswerSchema = new mongoose.Schema({
+  authorName:  { type: String, required: true },
+  authorEmail: { type: String, required: true },
+  isTeacher:   { type: Boolean, default: false },
+  text:        { type: String, required: true },
+  upvotes:     { type: Number, default: 0 },
+  upvotedBy:   [{ type: String }],
+  createdAt:   { type: Date, default: Date.now },
+});
+
+const forumPostSchema = new mongoose.Schema({
+  classId:     { type: String, required: true },
+  subjectId:   { type: String, required: true },
+  topicId:     { type: String, required: true },
+  authorName:  { type: String, required: true },
+  authorEmail: { type: String, required: true },
+  question:    { type: String, required: true },
+  upvotes:     { type: Number, default: 0 },
+  upvotedBy:   [{ type: String }],
+  answers:     [forumAnswerSchema],
+}, { timestamps: true });
+forumPostSchema.index({ classId: 1, subjectId: 1, topicId: 1 });
+
+const Student   = mongoose.model('Student',   studentSchema);
+const Teacher   = mongoose.model('Teacher',   teacherSchema);
+const Booking   = mongoose.model('Booking',   bookingSchema);
+const TopicMedia= mongoose.model('TopicMedia',topicMediaSchema);
+const Review    = mongoose.model('Review',    reviewSchema);
+const ForumPost = mongoose.model('ForumPost', forumPostSchema);
+
+module.exports = { Student, Teacher, Booking, TopicMedia, Review, ForumPost };

@@ -17,6 +17,7 @@ const TeachersPage    = lazy(() => import('./pages/TeachersPage'));
 const TeachersListPage= lazy(() => import('./pages/TeachersListPage'));
 const SearchPage      = lazy(() => import('./pages/SearchPage'));
 const MyBookingsPage     = lazy(() => import('./pages/MyBookingsPage'));
+const DashboardPage      = lazy(() => import('./pages/DashboardPage'));
 const ExamHubPage        = lazy(() => import('./pages/ExamHubPage'));
 const WeightagePage      = lazy(() => import('./pages/WeightagePage'));
 const PYQPage            = lazy(() => import('./pages/PYQPage'));
@@ -88,7 +89,8 @@ export default function App() {
             <Route path="/class/:classId/subject/:subjectId/topic/:topicId" element={<TopicPage user={user} onOpenLogin={() => setLoginOpen(true)} />} />
             <Route path="/class/:classId/subject/:subjectId/topic/:topicId/book" element={<BookSessionPage />} />
             <Route path="/search" element={<SearchPage />} />
-            <Route path="/my-bookings" element={<MyBookingsPage user={user} />} />
+            <Route path="/my-bookings" element={<MyBookingsPage user={user} onOpenLogin={() => setLoginOpen(true)} />} />
+            <Route path="/dashboard" element={<DashboardPage user={user} onOpenLogin={() => setLoginOpen(true)} />} />
             <Route path="/teacher-portal" element={<AdminPage />} />
             <Route path="/exam/:examId" element={<ExamHubPage />} />
             <Route path="/exam/:examId/weightage" element={<WeightagePage />} />

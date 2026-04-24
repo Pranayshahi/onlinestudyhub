@@ -68,18 +68,64 @@ function BookingModal({ teacher, topic, classData, subjectMeta, classId, subject
     if (Object.keys(errs).length) { setErrors(errs); return; }
     setLoading(true);
     try {
+      const fee = teacher.fee || 500;
+      // Try Razorpay payment if gateway is configured
+      let paymentId = null;
+      try {
+        const order = await api('/payments/create-order', {
+          method: 'POST',
+          body: { amount: fee, teacherId: teacher._id || teacher.id },
+        });
+        paymentId = await new Promise((resolve, reject) => {
+          const script = document.createElement('script');
+          script.src = 'https://checkout.razorpay.com/v1/checkout.js';
+          script.onload = () => {
+            const rzp = new window.Razorpay({
+              key: order.keyId,
+              amount: order.amount,
+              currency: order.currency,
+              name: 'OnlineStudyHub',
+              description: `Session: ${topic.title} with ${teacher.name}`,
+              order_id: order.orderId,
+              prefill: { name: form.name, contact: form.phone, email: storedUser?.email || '' },
+              theme: { color: '#4f46e5' },
+              handler: async (response) => {
+                try {
+                  await api('/payments/verify', { method: 'POST', body: response });
+                  resolve(response.razorpay_payment_id);
+                } catch { reject(new Error('Payment verification failed')); }
+              },
+              modal: { ondismiss: () => reject(new Error('Payment cancelled')) },
+            });
+            rzp.open();
+          };
+          script.onerror = () => reject(new Error('Failed to load payment gateway'));
+          document.body.appendChild(script);
+        });
+      } catch (payErr) {
+        // If payment gateway not configured or cancelled, proceed without payment
+        if (payErr.message !== 'Payment cancelled' && !payErr.message.includes('not configured')) {
+          throw payErr;
+        }
+        if (payErr.message === 'Payment cancelled') {
+          setLoading(false);
+          return;
+        }
+      }
+
       await api('/bookings', {
         method: 'POST',
         body: {
           studentName: form.name,
           studentPhone: form.phone,
           studentEmail: storedUser?.email || '',
-          teacherId: teacher.id,
+          teacherId: teacher.id || teacher._id,
           classId,
           subjectId,
           topicId,
           timeSlot: form.time,
           scheduledDate: form.date,
+          paymentId,
         },
       });
       onSuccess(form);

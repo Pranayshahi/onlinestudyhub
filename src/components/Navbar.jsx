@@ -162,9 +162,14 @@ export default function Navbar({ onOpenAI, onOpenLogin, user, onLogout, darkMode
                 <span>👨‍🏫</span> Teacher Portal
               </Link>
               {user && (
-                <Link to="/my-bookings" className="nav-mobile-action-link" onClick={close}>
-                  <span>📅</span> My Bookings
-                </Link>
+                <>
+                  <Link to="/dashboard" className="nav-mobile-action-link" onClick={close}>
+                    <span>🏠</span> My Dashboard
+                  </Link>
+                  <Link to="/my-bookings" className="nav-mobile-action-link" onClick={close}>
+                    <span>📅</span> My Bookings
+                  </Link>
+                </>
               )}
               {!user && (
                 <button className="nav-mobile-action-link nav-mobile-login" onClick={() => { close(); onOpenLogin(); }}>
@@ -268,6 +273,15 @@ export default function Navbar({ onOpenAI, onOpenLogin, user, onLogout, darkMode
                         </div>
                       </div>
                       <div style={{ padding: '.4rem 0' }}>
+                        <Link
+                          to="/dashboard"
+                          onClick={() => setUserMenuOpen(false)}
+                          style={{ display: 'flex', alignItems: 'center', gap: '.65rem', padding: '.65rem 1.1rem', fontSize: '.87rem', color: '#374151', fontWeight: 600, textDecoration: 'none', transition: 'background .15s' }}
+                          onMouseEnter={e => e.currentTarget.style.background = '#f3f4f6'}
+                          onMouseLeave={e => e.currentTarget.style.background = 'transparent'}
+                        >
+                          <span style={{ fontSize: '1rem' }}>🏠</span> My Dashboard
+                        </Link>
                         <Link
                           to="/my-bookings"
                           onClick={() => setUserMenuOpen(false)}

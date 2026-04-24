@@ -7,7 +7,8 @@ const crypto = require('crypto');
 require('dotenv').config({ path: require('path').join(__dirname, '.env') });
 
 const connectDB = require('./db');
-const { Student, Teacher, Booking, TopicMedia } = require('./models');
+const { Student, Teacher, Booking, TopicMedia, Review, ForumPost } = require('./models');
+const Razorpay = require('razorpay');
 
 // In-memory document store: uploadId → { fileName, chunks: string[], expiresAt }
 const docStore = new Map();
@@ -586,6 +587,144 @@ app.post('/api/ai-doubt', async (req, res) => {
     console.error('AI doubt error:', err);
     res.status(500).json({ error: 'AI service error.' });
   }
+});
+
+// ── Reviews ────────────────────────────────────────────────────
+app.post('/api/reviews', requireStudentAuth, async (req, res) => {
+  try {
+    const { teacherId, bookingId, rating, review } = req.body;
+    if (!teacherId || !bookingId || !rating) return res.status(400).json({ error: 'Missing fields' });
+    const booking = await Booking.findById(bookingId);
+    if (!booking) return res.status(404).json({ error: 'Booking not found' });
+    if (booking.student_email !== req.student.email) return res.status(403).json({ error: 'Forbidden' });
+    if (booking.status !== 'completed') return res.status(400).json({ error: 'Session not completed yet' });
+    const r = await Review.create({ teacherId, bookingId, studentEmail: req.student.email, studentName: req.student.name, rating, review: review || '' });
+    // Recompute teacher average rating
+    const all = await Review.find({ teacherId });
+    const avg = all.reduce((s, x) => s + x.rating, 0) / all.length;
+    await Teacher.findByIdAndUpdate(teacherId, { rating: Math.round(avg * 10) / 10 });
+    res.json(r);
+  } catch (e) {
+    if (e.code === 11000) return res.status(409).json({ error: 'Already reviewed this session' });
+    res.status(500).json({ error: e.message });
+  }
+});
+
+app.get('/api/reviews/teacher/:teacherId', async (req, res) => {
+  try {
+    const reviews = await Review.find({ teacherId: req.params.teacherId }).sort({ createdAt: -1 }).lean();
+    res.json(reviews);
+  } catch (e) { res.status(500).json({ error: e.message }); }
+});
+
+app.get('/api/reviews/booking/:bookingId', requireStudentAuth, async (req, res) => {
+  try {
+    const review = await Review.findOne({ bookingId: req.params.bookingId }).lean();
+    res.json(review || null);
+  } catch (e) { res.status(500).json({ error: e.message }); }
+});
+
+// ── Forum ───────────────────────────────────────────────────────
+app.get('/api/forum/:classId/:subjectId/:topicId', async (req, res) => {
+  try {
+    const { classId, subjectId, topicId } = req.params;
+    const posts = await ForumPost.find({ classId, subjectId, topicId }).sort({ createdAt: -1 }).lean();
+    res.json(posts);
+  } catch (e) { res.status(500).json({ error: e.message }); }
+});
+
+app.post('/api/forum', requireStudentAuth, async (req, res) => {
+  try {
+    const { classId, subjectId, topicId, question } = req.body;
+    if (!classId || !subjectId || !topicId || !question?.trim()) return res.status(400).json({ error: 'Missing fields' });
+    const post = await ForumPost.create({ classId, subjectId, topicId, authorName: req.student.name, authorEmail: req.student.email, question: question.trim() });
+    res.json(post);
+  } catch (e) { res.status(500).json({ error: e.message }); }
+});
+
+app.post('/api/forum/:postId/answers', requireStudentAuth, async (req, res) => {
+  try {
+    const { text } = req.body;
+    if (!text?.trim()) return res.status(400).json({ error: 'Answer text required' });
+    const post = await ForumPost.findByIdAndUpdate(req.params.postId, {
+      $push: { answers: { authorName: req.student.name, authorEmail: req.student.email, text: text.trim(), isTeacher: false } }
+    }, { new: true });
+    if (!post) return res.status(404).json({ error: 'Post not found' });
+    res.json(post);
+  } catch (e) { res.status(500).json({ error: e.message }); }
+});
+
+app.post('/api/forum/:postId/answers/teacher', requireAuth, async (req, res) => {
+  try {
+    const { text } = req.body;
+    if (!text?.trim()) return res.status(400).json({ error: 'Answer text required' });
+    const teacher = await Teacher.findById(req.teacher.id).lean();
+    const post = await ForumPost.findByIdAndUpdate(req.params.postId, {
+      $push: { answers: { authorName: teacher.name, authorEmail: teacher.email, text: text.trim(), isTeacher: true } }
+    }, { new: true });
+    if (!post) return res.status(404).json({ error: 'Post not found' });
+    res.json(post);
+  } catch (e) { res.status(500).json({ error: e.message }); }
+});
+
+app.patch('/api/forum/:postId/upvote', requireStudentAuth, async (req, res) => {
+  try {
+    const post = await ForumPost.findById(req.params.postId);
+    if (!post) return res.status(404).json({ error: 'Not found' });
+    const email = req.student.email;
+    const idx = post.upvotedBy.indexOf(email);
+    if (idx > -1) { post.upvotedBy.splice(idx, 1); post.upvotes = Math.max(0, post.upvotes - 1); }
+    else { post.upvotedBy.push(email); post.upvotes++; }
+    await post.save();
+    res.json({ upvotes: post.upvotes, upvotedBy: post.upvotedBy });
+  } catch (e) { res.status(500).json({ error: e.message }); }
+});
+
+app.patch('/api/forum/:postId/answers/:answerId/upvote', requireStudentAuth, async (req, res) => {
+  try {
+    const post = await ForumPost.findById(req.params.postId);
+    if (!post) return res.status(404).json({ error: 'Not found' });
+    const answer = post.answers.id(req.params.answerId);
+    if (!answer) return res.status(404).json({ error: 'Answer not found' });
+    const email = req.student.email;
+    const idx = answer.upvotedBy.indexOf(email);
+    if (idx > -1) { answer.upvotedBy.splice(idx, 1); answer.upvotes = Math.max(0, answer.upvotes - 1); }
+    else { answer.upvotedBy.push(email); answer.upvotes++; }
+    await post.save();
+    res.json({ upvotes: answer.upvotes });
+  } catch (e) { res.status(500).json({ error: e.message }); }
+});
+
+// ── Razorpay Payments ───────────────────────────────────────────
+const razorpay = process.env.RAZORPAY_KEY_ID ? new Razorpay({
+  key_id: process.env.RAZORPAY_KEY_ID,
+  key_secret: process.env.RAZORPAY_KEY_SECRET,
+}) : null;
+
+app.post('/api/payments/create-order', requireStudentAuth, async (req, res) => {
+  try {
+    if (!razorpay) return res.status(503).json({ error: 'Payment gateway not configured' });
+    const { amount, teacherId, currency = 'INR' } = req.body;
+    if (!amount || amount < 1) return res.status(400).json({ error: 'Invalid amount' });
+    const order = await razorpay.orders.create({
+      amount: Math.round(amount * 100), // paise
+      currency,
+      receipt: `osh_${Date.now()}`,
+      notes: { teacherId, studentEmail: req.student.email },
+    });
+    res.json({ orderId: order.id, amount: order.amount, currency: order.currency, keyId: process.env.RAZORPAY_KEY_ID });
+  } catch (e) { res.status(500).json({ error: e.message }); }
+});
+
+app.post('/api/payments/verify', requireStudentAuth, async (req, res) => {
+  try {
+    if (!razorpay) return res.status(503).json({ error: 'Payment gateway not configured' });
+    const { razorpay_order_id, razorpay_payment_id, razorpay_signature } = req.body;
+    const body = razorpay_order_id + '|' + razorpay_payment_id;
+    const expected = crypto.createHmac('sha256', process.env.RAZORPAY_KEY_SECRET).update(body).digest('hex');
+    if (expected !== razorpay_signature) return res.status(400).json({ error: 'Payment verification failed' });
+    res.json({ ok: true, paymentId: razorpay_payment_id });
+  } catch (e) { res.status(500).json({ error: e.message }); }
 });
 
 // ── Error Handler ──────────────────────────────────────────────

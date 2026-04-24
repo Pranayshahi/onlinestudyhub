@@ -9,18 +9,85 @@ const STATUS_STYLE = {
   completed: { bg: '#eff6ff', color: '#2563eb', label: '🎓 Completed' },
 };
 
-function BookingCard({ booking }) {
+// ── Rating Modal ─────────────────────────────────────────────────
+function RatingModal({ booking, onClose, onSubmitted }) {
+  const [rating, setRating] = useState(0);
+  const [hovered, setHovered] = useState(0);
+  const [review, setReview] = useState('');
+  const [submitting, setSubmitting] = useState(false);
+  const [error, setError] = useState('');
+
+  async function submit() {
+    if (!rating) { setError('Please select a star rating'); return; }
+    setSubmitting(true);
+    setError('');
+    try {
+      await api('/reviews', {
+        method: 'POST',
+        body: { teacherId: booking.teacher_id, bookingId: booking._id, rating, review },
+      });
+      onSubmitted(booking._id);
+      onClose();
+    } catch (e) {
+      setError(e.message || 'Failed to submit review');
+    } finally {
+      setSubmitting(false);
+    }
+  }
+
+  return (
+    <div className="media-modal-backdrop" onClick={e => e.target === e.currentTarget && onClose()}>
+      <div className="media-modal" style={{ maxWidth: 420 }}>
+        <div className="media-modal-header" style={{ borderColor: '#f59e0b', color: '#d97706' }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '.6rem' }}>
+            <span style={{ fontSize: '1.4rem' }}>⭐</span>
+            <span className="media-modal-title">Rate Your Session</span>
+          </div>
+          <button className="media-modal-close" onClick={onClose}>✕</button>
+        </div>
+        <div className="media-modal-body">
+          <p style={{ color: '#6b7280', fontSize: '.88rem', marginBottom: '1.25rem', lineHeight: 1.6 }}>
+            How was your session on <strong>{booking.topic_id?.replace(/-/g, ' ').replace(/\b\w/g, c => c.toUpperCase()) || 'this topic'}</strong>?
+            Your review helps other students choose the right teacher.
+          </p>
+          <div style={{ display: 'flex', justifyContent: 'center', gap: '.5rem', marginBottom: '1.25rem' }}>
+            {[1, 2, 3, 4, 5].map(star => (
+              <button key={star}
+                style={{ fontSize: '2rem', background: 'none', border: 'none', cursor: 'pointer', color: star <= (hovered || rating) ? '#f59e0b' : '#e5e7eb', transition: 'color .15s, transform .1s', transform: star <= (hovered || rating) ? 'scale(1.15)' : 'scale(1)' }}
+                onMouseEnter={() => setHovered(star)}
+                onMouseLeave={() => setHovered(0)}
+                onClick={() => setRating(star)}
+              >★</button>
+            ))}
+          </div>
+          <div style={{ textAlign: 'center', fontSize: '.82rem', color: '#9ca3af', marginBottom: '1rem', minHeight: '1.2em' }}>
+            {['', 'Poor', 'Fair', 'Good', 'Very Good', 'Excellent!'][rating]}
+          </div>
+          <textarea
+            style={{ width: '100%', border: '1.5px solid #e5e7eb', borderRadius: 12, padding: '.75rem', fontSize: '.88rem', resize: 'vertical', minHeight: 90, boxSizing: 'border-box', fontFamily: 'inherit', outline: 'none' }}
+            placeholder="Write a short review (optional) — what did you like most?"
+            value={review}
+            onChange={e => setReview(e.target.value)}
+          />
+          {error && <p style={{ color: '#dc2626', fontSize: '.8rem', margin: '.4rem 0 0' }}>{error}</p>}
+          <button onClick={submit} disabled={submitting || !rating}
+            style={{ width: '100%', marginTop: '1rem', padding: '.8rem', background: rating ? 'linear-gradient(135deg, #f59e0b, #d97706)' : '#e5e7eb', color: rating ? '#fff' : '#9ca3af', border: 'none', borderRadius: 12, fontFamily: 'Nunito, sans-serif', fontWeight: 800, fontSize: '1rem', cursor: rating ? 'pointer' : 'default', transition: 'all .2s' }}>
+            {submitting ? 'Submitting…' : 'Submit Review ⭐'}
+          </button>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function BookingCard({ booking, onRate, reviewed }) {
   const status = STATUS_STYLE[booking.status] || STATUS_STYLE.pending;
   const date = booking.scheduled_date
     ? new Date(booking.scheduled_date).toLocaleDateString('en-IN', { day: 'numeric', month: 'short', year: 'numeric' })
     : '—';
 
   return (
-    <div style={{
-      background: '#fff', border: '1px solid #e5e7eb', borderRadius: 16,
-      padding: '1.25rem 1.5rem', display: 'flex', flexDirection: 'column', gap: '.75rem',
-      boxShadow: '0 1px 6px rgba(0,0,0,.06)', transition: 'box-shadow .2s',
-    }}
+    <div style={{ background: '#fff', border: '1px solid #e5e7eb', borderRadius: 16, padding: '1.25rem 1.5rem', display: 'flex', flexDirection: 'column', gap: '.75rem', boxShadow: '0 1px 6px rgba(0,0,0,.06)', transition: 'box-shadow .2s' }}
       onMouseEnter={e => e.currentTarget.style.boxShadow = '0 4px 20px rgba(0,0,0,.1)'}
       onMouseLeave={e => e.currentTarget.style.boxShadow = '0 1px 6px rgba(0,0,0,.06)'}
     >
@@ -46,15 +113,24 @@ function BookingCard({ booking }) {
         <div><span style={{ color: '#9ca3af' }}>Phone</span><br /><strong>{booking.student_phone}</strong></div>
       </div>
 
-      {booking.meet_link && booking.status === 'confirmed' && (
-        <a
-          href={booking.meet_link}
-          target="_blank"
-          rel="noopener noreferrer"
-          style={{ display: 'inline-flex', alignItems: 'center', gap: '.4rem', background: '#1e1b4b', color: '#fff', fontSize: '.82rem', fontWeight: 700, padding: '.45rem 1rem', borderRadius: 8, textDecoration: 'none', width: 'fit-content' }}
-        >
+      {booking.status === 'confirmed' && booking.meet_link && (
+        <a href={booking.meet_link} target="_blank" rel="noopener noreferrer"
+          style={{ display: 'inline-flex', alignItems: 'center', gap: '.4rem', background: '#1e1b4b', color: '#fff', fontSize: '.82rem', fontWeight: 700, padding: '.45rem 1rem', borderRadius: 8, textDecoration: 'none', width: 'fit-content' }}>
           📹 Join Meet
         </a>
+      )}
+
+      {booking.status === 'completed' && (
+        reviewed ? (
+          <div style={{ display: 'inline-flex', alignItems: 'center', gap: '.4rem', background: '#f0fdf4', color: '#16a34a', fontSize: '.8rem', fontWeight: 700, padding: '.35rem .85rem', borderRadius: 8 }}>
+            ✅ Reviewed — Thank you!
+          </div>
+        ) : (
+          <button onClick={() => onRate(booking)}
+            style={{ display: 'inline-flex', alignItems: 'center', gap: '.4rem', background: 'linear-gradient(135deg, #f59e0b, #d97706)', color: '#fff', fontSize: '.82rem', fontWeight: 700, padding: '.45rem 1rem', borderRadius: 8, border: 'none', cursor: 'pointer', width: 'fit-content' }}>
+            ⭐ Rate This Session
+          </button>
+        )
       )}
     </div>
   );
@@ -64,6 +140,8 @@ export default function MyBookingsPage({ user }) {
   const [bookings, setBookings] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
+  const [ratingBooking, setRatingBooking] = useState(null);
+  const [reviewed, setReviewed] = useState(new Set());
 
   useEffect(() => {
     if (!user) { setLoading(false); return; }
@@ -84,9 +162,11 @@ export default function MyBookingsPage({ user }) {
     );
   }
 
+  const upcoming = bookings.filter(b => b.status === 'confirmed' || b.status === 'pending');
+  const past = bookings.filter(b => b.status === 'completed' || b.status === 'cancelled');
+
   return (
     <div style={{ minHeight: '80vh', background: '#f8fafc' }}>
-      {/* Header */}
       <div style={{ background: 'linear-gradient(135deg, #1e1b4b, #4f46e5)', color: '#fff', padding: '2.5rem 0' }}>
         <div className="container">
           <div style={{ display: 'flex', alignItems: 'center', gap: '.75rem', marginBottom: '.5rem' }}>
@@ -105,13 +185,9 @@ export default function MyBookingsPage({ user }) {
             Loading your bookings…
           </div>
         )}
-
         {error && (
-          <div style={{ background: '#fef2f2', border: '1px solid #fecaca', borderRadius: 12, padding: '1rem 1.25rem', color: '#dc2626', fontSize: '.9rem', marginBottom: '1.5rem' }}>
-            ⚠️ {error}
-          </div>
+          <div style={{ background: '#fef2f2', border: '1px solid #fecaca', borderRadius: 12, padding: '1rem 1.25rem', color: '#dc2626', fontSize: '.9rem', marginBottom: '1.5rem' }}>⚠️ {error}</div>
         )}
-
         {!loading && !error && bookings.length === 0 && (
           <div style={{ textAlign: 'center', padding: '4rem 1rem' }}>
             <div style={{ fontSize: '3.5rem', marginBottom: '1rem' }}>📭</div>
@@ -120,18 +196,27 @@ export default function MyBookingsPage({ user }) {
             <Link to="/teachers" className="btn btn-primary">Find a Teacher</Link>
           </div>
         )}
-
-        {!loading && bookings.length > 0 && (
-          <>
-            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '1.25rem', flexWrap: 'wrap', gap: '.5rem' }}>
-              <p style={{ color: '#6b7280', fontSize: '.9rem', margin: 0 }}>{bookings.length} booking{bookings.length !== 1 ? 's' : ''} found</p>
-            </div>
+        {!loading && upcoming.length > 0 && (
+          <div style={{ marginBottom: '2rem' }}>
+            <h2 style={{ fontFamily: 'Nunito', fontWeight: 800, fontSize: '1.1rem', color: '#1f2937', marginBottom: '1rem' }}>Upcoming ({upcoming.length})</h2>
             <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
-              {bookings.map(b => <BookingCard key={b._id} booking={b} />)}
+              {upcoming.map(b => <BookingCard key={b._id} booking={b} onRate={setRatingBooking} reviewed={reviewed.has(b._id)} />)}
             </div>
-          </>
+          </div>
+        )}
+        {!loading && past.length > 0 && (
+          <div>
+            <h2 style={{ fontFamily: 'Nunito', fontWeight: 800, fontSize: '1.1rem', color: '#1f2937', marginBottom: '1rem' }}>Past Sessions ({past.length})</h2>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
+              {past.map(b => <BookingCard key={b._id} booking={b} onRate={setRatingBooking} reviewed={reviewed.has(b._id)} />)}
+            </div>
+          </div>
         )}
       </div>
+
+      {ratingBooking && (
+        <RatingModal booking={ratingBooking} onClose={() => setRatingBooking(null)} onSubmitted={id => setReviewed(s => new Set([...s, id]))} />
+      )}
     </div>
   );
 }
