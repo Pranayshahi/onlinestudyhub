@@ -8,6 +8,8 @@ import { useProgress } from '../hooks/useProgress';
 import SEO from '../components/SEO';
 import TopicMediaSection from '../components/TopicMediaSection';
 import ForumSection from '../components/ForumSection';
+import TopicQuiz from '../components/TopicQuiz';
+import TopicPoll from '../components/TopicPoll';
 
 // ── Accordion item ──────────────────────────────────────────────
 function AccordionItem({ number, question, answer, subjectColor, isOpen, onToggle }) {
@@ -364,7 +366,12 @@ export default function TopicPage({ user, onOpenLogin }) {
           </section>
         )}
 
-        {/* ── 4. Deep Learn with Teacher ── */}
+        {/* ── 4. Topic Quiz ── */}
+        {topic.qa && topic.qa.length > 0 && (
+          <TopicQuiz qa={topic.qa} topicTitle={topic.title} />
+        )}
+
+        {/* ── 5. Deep Learn with Teacher ── */}
         {relevantTeacher && (
           <section style={{ marginTop: '4rem', background: 'linear-gradient(135deg, #f8fafc, #f1f5f9)', borderRadius: 24, padding: '2.5rem', border: '1px solid #e2e8f0', boxShadow: '0 10px 25px -5px rgba(0,0,0,0.05)' }}>
             <div style={{ display: 'flex', gap: '2rem', alignItems: 'center', flexWrap: 'wrap' }}>
@@ -431,6 +438,14 @@ export default function TopicPage({ user, onOpenLogin }) {
             </div>
           </section>
         )}
+
+        {/* ── Topic Confidence Poll ── */}
+        <TopicPoll
+          classId={classId}
+          subjectId={subjectId}
+          topicId={topicId}
+          topicTitle={topic.title}
+        />
 
         {/* ── Prev / Next navigation ── */}
         <div style={{
