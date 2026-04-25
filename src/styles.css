@@ -1495,4 +1495,38 @@ html[data-theme="dark"] .lm-input::placeholder { color: #5a5876; }
 html[data-theme="dark"] .lm-pwd-toggle { color: #5a5876; }
 html[data-theme="dark"] .lm-error { background: #2d1515; border-color: #7f1d1d; color: #fca5a5; }
 html[data-theme="dark"] .lm-footer { color: #8b89a8; }
+
+/* Font size controls */
+.topic-content-header {
+  display: flex; align-items: center; justify-content: space-between;
+  gap: 1rem; margin-bottom: 1rem; flex-wrap: wrap;
+}
+.topic-content-header h2 { margin: 0; }
+.font-size-controls {
+  display: flex; align-items: center; gap: 6px;
+  background: #f3f4f6; border: 1px solid #e5e7eb;
+  border-radius: 8px; padding: 4px 10px;
+  flex-shrink: 0;
+}
+.font-size-label { font-size: .75rem; color: #9ca3af; font-weight: 600; letter-spacing: .03em; margin-right: 2px; }
+.font-size-btn {
+  background: #fff; border: 1px solid #d1d5db; border-radius: 5px;
+  cursor: pointer; font-size: .82rem; font-weight: 700; color: #4f46e5;
+  padding: 2px 8px; line-height: 1.4; transition: background .15s, border-color .15s;
+  font-family: inherit;
+}
+.font-size-btn:hover { background: #ede9fe; border-color: #a5b4fc; }
+.font-size-value { font-size: .78rem; color: #6b7280; min-width: 34px; text-align: center; }
+.font-size-reset {
+  background: none; border: none; cursor: pointer; font-size: .72rem;
+  color: #9ca3af; padding: 2px 4px; border-radius: 4px; font-family: inherit;
+  text-decoration: underline; transition: color .15s;
+}
+.font-size-reset:hover { color: #4f46e5; }
+html[data-theme="dark"] .font-size-controls { background: #1e1d2e; border-color: #2d2c42; }
+html[data-theme="dark"] .font-size-btn { background: #2d2c42; border-color: #3d3b56; color: #a5b4fc; }
+html[data-theme="dark"] .font-size-btn:hover { background: #3d3b56; border-color: #6366f1; }
+html[data-theme="dark"] .font-size-value { color: #8b89a8; }
+html[data-theme="dark"] .font-size-reset { color: #5a5876; }
+html[data-theme="dark"] .font-size-reset:hover { color: #a5b4fc; }
 html[data-theme="dark"] .lm-note { color: #5a5876; }
