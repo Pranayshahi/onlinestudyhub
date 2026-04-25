@@ -220,16 +220,19 @@ export default function HomePage() {
       </div>
 
       {/* ── TRENDING TOPICS ──────────────────────────────────────── */}
-      <div style={{ background: '#fff', borderBottom: '1px solid #f3f4f6', padding: '.85rem 0', overflow: 'hidden' }}>
+      <div style={{ background: '#fff', borderBottom: '1px solid #f3f4f6', padding: '.85rem 0' }}>
         <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
           <div style={{ flexShrink: 0, paddingLeft: '1.25rem', fontSize: '.78rem', fontWeight: 800, color: '#4f46e5', textTransform: 'uppercase', letterSpacing: '.06em', whiteSpace: 'nowrap' }}>🔥 Trending</div>
-          <div className="trending-track">
-            {[...TRENDING, ...TRENDING].map((t, i) => (
-              <Link key={i} to={`/search?q=${encodeURIComponent(t)}`}
-                style={{ textDecoration: 'none', flexShrink: 0 }}>
-                <span className="trending-pill">{t}</span>
-              </Link>
-            ))}
+          {/* overflow:hidden must wrap ONLY the scrolling track, not the label */}
+          <div style={{ flex: 1, overflow: 'hidden' }}>
+            <div className="trending-track">
+              {[...TRENDING, ...TRENDING].map((t, i) => (
+                <Link key={i} to={`/search?q=${encodeURIComponent(t)}`}
+                  style={{ textDecoration: 'none', flexShrink: 0 }}>
+                  <span className="trending-pill">{t}</span>
+                </Link>
+              ))}
+            </div>
           </div>
         </div>
       </div>

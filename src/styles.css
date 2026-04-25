@@ -274,10 +274,24 @@
 @media (max-width: 640px) { .stats-trust-grid { grid-template-columns: 1fr 1fr; } }
 
 /* ── Trending pills marquee ── */
-.trending-track { display: flex; gap: .6rem; animation: marquee 28s linear infinite; white-space: nowrap; }
+.trending-track {
+  display: flex;
+  gap: .6rem;
+  width: max-content;       /* lets transform:-50% work on real content width */
+  animation: marquee 32s linear infinite;
+  will-change: transform;
+}
 .trending-track:hover { animation-play-state: paused; }
-@keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
-.trending-pill { display: inline-block; background: #f9fafb; border: 1px solid #e5e7eb; color: #4b5563; border-radius: 99px; padding: .3rem .9rem; font-size: .78rem; font-weight: 600; transition: all .15s; }
+@keyframes marquee {
+  0%   { transform: translateX(0); }
+  100% { transform: translateX(-50%); }  /* exactly half = seamless loop */
+}
+.trending-pill {
+  display: inline-block; white-space: nowrap;
+  background: #f9fafb; border: 1px solid #e5e7eb; color: #4b5563;
+  border-radius: 99px; padding: .3rem .9rem; font-size: .78rem; font-weight: 600;
+  transition: all .15s;
+}
 .trending-pill:hover { background: #eef2ff; border-color: #4f46e5; color: #4f46e5; }
 
 /* ── Section eyebrow ── */
