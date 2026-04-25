@@ -61,6 +61,7 @@ export default function TopicPage({ user, onOpenLogin }) {
   const [showAllQA, setShowAllQA] = useState(false);
   const [copied, setCopied] = useState(false);
   const [showFlashcards, setShowFlashcards] = useState(false);
+  const [fontSize, setFontSize] = useState(16);
   const { isDone, toggle } = useProgress();
 
   useEffect(() => {
@@ -249,11 +250,36 @@ export default function TopicPage({ user, onOpenLogin }) {
         {/* ── 3. Learning Content ── */}
         {topic.content && (
           <section style={{ marginBottom: '3rem' }}>
-            <h2 className="topic-section-title">
-              Understanding {topic.title}
-            </h2>
+            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: '.75rem', marginBottom: '.75rem' }}>
+              <h2 className="topic-section-title" style={{ margin: 0 }}>
+                Understanding {topic.title}
+              </h2>
+              {/* Font size controls */}
+              <div className="font-size-controls">
+                <span className="font-size-label">A</span>
+                <button
+                  className="font-size-btn"
+                  onClick={() => setFontSize(s => Math.max(12, s - 2))}
+                  aria-label="Decrease font size"
+                  title="Smaller text"
+                >A−</button>
+                <span className="font-size-value">{fontSize}px</span>
+                <button
+                  className="font-size-btn"
+                  onClick={() => setFontSize(s => Math.min(24, s + 2))}
+                  aria-label="Increase font size"
+                  title="Larger text"
+                >A+</button>
+                <button
+                  className="font-size-reset"
+                  onClick={() => setFontSize(16)}
+                  title="Reset to default"
+                >Reset</button>
+              </div>
+            </div>
             <div
               className={`topic-content ${subjectColor}`}
+              style={{ fontSize: `${fontSize}px`, lineHeight: fontSize > 18 ? 1.85 : 1.75 }}
               dangerouslySetInnerHTML={{ __html: topic.content }}
             />
           </section>
