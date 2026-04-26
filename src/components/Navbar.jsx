@@ -2,6 +2,7 @@ import React, { useState, useRef, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { NAV_CLASSES, CURRICULUM } from '../data/curriculum';
 import { TEACHERS } from '../data/teachers';
+import NotificationBell from './NotificationBell';
 
 function getInitials(name) {
   if (!name) return '?';
@@ -230,6 +231,9 @@ export default function Navbar({ onOpenAI, onOpenLogin, user, onLogout, darkMode
               <img src="/img/ai-robot.png" alt="AI" style={{ width: 32, height: 32, objectFit: 'contain', flexShrink: 0 }} />
               <span className="nav-ai-text">AI Doubt</span>
             </button>
+
+            {/* Notification Bell */}
+            <NotificationBell user={user} />
 
             {/* User avatar / login */}
             {user ? (

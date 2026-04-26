@@ -10,6 +10,7 @@ import TopicMediaSection from '../components/TopicMediaSection';
 import ForumSection from '../components/ForumSection';
 import TopicQuiz from '../components/TopicQuiz';
 import TopicPoll from '../components/TopicPoll';
+import { useNotifications } from '../context/NotificationsContext';
 
 // ── Accordion item ──────────────────────────────────────────────
 function AccordionItem({ number, question, answer, subjectColor, isOpen, onToggle }) {
@@ -65,6 +66,7 @@ export default function TopicPage({ user, onOpenLogin }) {
   const [showFlashcards, setShowFlashcards] = useState(false);
   const [fontSize, setFontSize] = useState(16);
   const { isDone, toggle } = useProgress();
+  const { addNotification, settings } = useNotifications();
 
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -209,7 +211,17 @@ export default function TopicPage({ user, onOpenLogin }) {
           <div style={{ marginTop: '1.5rem', display: 'flex', gap: '.75rem', flexWrap: 'wrap', alignItems: 'center' }}>
             {/* Progress toggle */}
             <button
-              onClick={() => toggle(classId, subjectId, topicId)}
+              onClick={() => {
+                const justDone = toggle(classId, subjectId, topicId);
+                if (justDone && settings.achievementAlerts) {
+                  addNotification({
+                    type: 'achievement',
+                    title: '🎉 Topic Completed!',
+                    body: `Great job! You completed "${topic.title}". Keep going!`,
+                    link: `/class/${classId}/subject/${subjectId}`,
+                  });
+                }
+              }}
               className={`topic-action-btn ${done ? 'done' : ''}`}
             >
               {done ? '✅ Completed' : '○ Mark as Done'}

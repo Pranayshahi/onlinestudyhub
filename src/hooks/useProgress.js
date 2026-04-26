@@ -17,9 +17,11 @@ export function useProgress() {
   function toggle(classId, subjectId, topicId) {
     const p = load();
     const k = `${classId}/${subjectId}/${topicId}`;
+    const justCompleted = !p[k];
     if (p[k]) delete p[k]; else p[k] = true;
     localStorage.setItem(KEY, JSON.stringify(p));
     tick(n => n + 1);
+    return justCompleted; // true = marked done, false = unmarked
   }
 
   function countDone(classId, subjectId) {

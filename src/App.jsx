@@ -3,6 +3,7 @@ import { Routes, Route } from 'react-router-dom';
 import { HelmetProvider } from 'react-helmet-async';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
+import { NotificationsProvider } from './context/NotificationsContext';
 
 // Lazy-load every page — each becomes its own JS chunk, loaded only when visited
 const HomePage        = lazy(() => import('./pages/HomePage'));
@@ -68,6 +69,7 @@ export default function App() {
 
   return (
     <HelmetProvider>
+    <NotificationsProvider>
     <div className="app">
       <Navbar
         onOpenAI={() => setAiOpen(true)}
@@ -107,6 +109,7 @@ export default function App() {
         {loginOpen && <LoginModal open={loginOpen} onClose={() => setLoginOpen(false)} onLogin={handleLogin} />}
       </Suspense>
     </div>
+    </NotificationsProvider>
     </HelmetProvider>
   );
 }
