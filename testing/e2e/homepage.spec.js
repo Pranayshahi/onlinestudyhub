@@ -16,7 +16,7 @@ test.describe('Homepage', () => {
 
   test('Teacher Portal link navigates to /teacher-portal', async ({ page }) => {
     await page.goto('/');
-    await page.click('text=Teacher Portal');
+    await page.click('.nav-desktop-only');
     await expect(page).toHaveURL(/teacher-portal/);
   });
 
@@ -32,7 +32,7 @@ test.describe('Homepage', () => {
 
   test('AI Doubt Help button opens panel', async ({ page }) => {
     await page.goto('/');
-    await page.click('.btn-ai');
+    await page.click('.nav-ai-btn');
     await expect(page.locator('text=AI Doubt Helper')).toBeVisible();
   });
 

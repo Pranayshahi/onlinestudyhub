@@ -1,6 +1,17 @@
 const { test, expect } = require('@playwright/test');
 
 test.describe('Book Session Flow', () => {
+  test.beforeEach(async ({ page }) => {
+    await page.goto('/');
+    await page.evaluate(() => {
+      localStorage.setItem('osh_user', JSON.stringify({
+        id: 'mock-user-id',
+        name: 'Mock User',
+        email: 'mock@example.com'
+      }));
+    });
+  });
+
   async function getToTopic(page) {
     await page.goto('/class/class-6');
     await page.locator('.subject-card').first().click();

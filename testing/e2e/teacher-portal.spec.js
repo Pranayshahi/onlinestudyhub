@@ -9,7 +9,7 @@ test.describe('Teacher Portal', () => {
   test('shows Register and Login tabs', async ({ page }) => {
     await page.goto('/teacher-portal');
     await expect(page.locator('text=Register as Teacher')).toBeVisible();
-    await expect(page.locator('text=Login').first()).toBeVisible();
+    await expect(page.locator('button:text-is("🔑 Login")').first()).toBeVisible();
   });
 
   test('register form has required fields', async ({ page }) => {
