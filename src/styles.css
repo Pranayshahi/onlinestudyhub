@@ -312,10 +312,10 @@
 
 /* ── How it works ── */
 .how-steps-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; position: relative; }
-.how-step-card { background: #fff; border: 1px solid #e5e7eb; border-radius: 20px; padding: 2rem 1.75rem; text-align: center; position: relative; transition: box-shadow .2s, transform .2s; }
-.how-step-card:hover { box-shadow: 0 12px 36px rgba(79,70,229,.12); transform: translateY(-4px); }
-.how-step-number { font-family: 'Nunito', sans-serif; font-size: 3rem; font-weight: 900; color: #e0e7ff; line-height: 1; margin-bottom: .5rem; }
-.how-step-icon { font-size: 2.5rem; margin-bottom: .85rem; }
+.how-step-card { background: #fff; border: 1px solid #e5e7eb; border-radius: 20px; padding: 1.5rem 1.5rem 2rem; text-align: center; position: relative; transition: box-shadow .2s, transform .2s; }
+.how-step-card:hover { box-shadow: 0 16px 48px rgba(79,70,229,.14); transform: translateY(-6px); }
+.how-step-number { font-family: 'Nunito', sans-serif; font-size: 2.5rem; font-weight: 900; color: #e0e7ff; line-height: 1; margin-bottom: .5rem; }
+.how-step-illustration { width: 100%; height: 180px; margin-bottom: 1.25rem; border-radius: 14px; overflow: hidden; }
 .how-step-title { font-family: 'Nunito', sans-serif; font-weight: 800; font-size: 1.1rem; color: #1f2937; margin-bottom: .5rem; }
 .how-step-desc { font-size: .88rem; color: #6b7280; line-height: 1.65; }
 .how-step-arrow { position: absolute; right: -1.35rem; top: 50%; transform: translateY(-50%); font-size: 1.5rem; color: #c7d2fe; z-index: 2; }

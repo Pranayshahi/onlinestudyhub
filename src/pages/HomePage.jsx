@@ -12,10 +12,153 @@ const SUBJECTS = [
   { icon: '🌍', name: 'Social Sci.', desc: 'History · Geography · Civics',   color: '#dc2626', bg: '#fef2f2', link: '/class/class-8' },
 ];
 
+// ── Step illustrations (inline SVG) ────────────────────────────
+function IllustrationChoose() {
+  return (
+    <svg viewBox="0 0 220 180" fill="none" xmlns="http://www.w3.org/2000/svg" style={{width:'100%',height:'100%'}}>
+      {/* Background */}
+      <rect width="220" height="180" rx="20" fill="url(#bg1)"/>
+      <defs>
+        <linearGradient id="bg1" x1="0" y1="0" x2="220" y2="180" gradientUnits="userSpaceOnUse">
+          <stop stopColor="#eef2ff"/>
+          <stop offset="1" stopColor="#e0e7ff"/>
+        </linearGradient>
+      </defs>
+      {/* Laptop body */}
+      <rect x="35" y="30" width="150" height="100" rx="10" fill="#1e1b4b"/>
+      <rect x="40" y="35" width="140" height="90" rx="7" fill="#fff"/>
+      {/* Laptop base */}
+      <rect x="20" y="130" width="180" height="10" rx="5" fill="#c7d2fe"/>
+      <rect x="85" y="138" width="50" height="6" rx="3" fill="#a5b4fc"/>
+      {/* Screen content – grid of subject cards */}
+      <rect x="48" y="42" width="38" height="28" rx="5" fill="#eef2ff"/>
+      <rect x="91" y="42" width="38" height="28" rx="5" fill="#ecfdf5"/>
+      <rect x="134" y="42" width="38" height="28" rx="5" fill="#fff7ed"/>
+      <rect x="48" y="76" width="38" height="28" rx="5" fill="#f5f3ff"/>
+      <rect x="91" y="76" width="38" height="28" rx="5" fill="#fef2f2"/>
+      <rect x="134" y="76" width="38" height="28" rx="5" fill="#ecfeff"/>
+      {/* Subject labels */}
+      <text x="67" y="60" textAnchor="middle" fontSize="14" fill="#4f46e5">📐</text>
+      <text x="110" y="60" textAnchor="middle" fontSize="14" fill="#059669">🧪</text>
+      <text x="153" y="60" textAnchor="middle" fontSize="14" fill="#d97706">⚡</text>
+      <text x="67" y="94" textAnchor="middle" fontSize="14" fill="#7c3aed">🧬</text>
+      <text x="110" y="94" textAnchor="middle" fontSize="14" fill="#dc2626">📖</text>
+      <text x="153" y="94" textAnchor="middle" fontSize="14" fill="#0891b2">🌍</text>
+      {/* Cursor / selection glow on Math */}
+      <rect x="46" y="40" width="42" height="32" rx="6" fill="none" stroke="#4f46e5" strokeWidth="2.5" strokeDasharray="0"/>
+      {/* Cursor pointer */}
+      <polygon points="155,148 163,162 166,155 174,158" fill="#4f46e5"/>
+      {/* Floating badge "CBSE" */}
+      <rect x="155" y="18" width="46" height="18" rx="9" fill="#4f46e5"/>
+      <text x="178" y="30" textAnchor="middle" fontSize="9" fill="#fff" fontWeight="bold" fontFamily="sans-serif">CBSE ✓</text>
+      {/* Floating badge "JEE" */}
+      <rect x="18" y="18" width="36" height="18" rx="9" fill="#7c3aed"/>
+      <text x="36" y="30" textAnchor="middle" fontSize="9" fill="#fff" fontWeight="bold" fontFamily="sans-serif">JEE 🏆</text>
+    </svg>
+  );
+}
+
+function IllustrationStudy() {
+  return (
+    <svg viewBox="0 0 220 180" fill="none" xmlns="http://www.w3.org/2000/svg" style={{width:'100%',height:'100%'}}>
+      <rect width="220" height="180" rx="20" fill="url(#bg2)"/>
+      <defs>
+        <linearGradient id="bg2" x1="0" y1="0" x2="220" y2="180" gradientUnits="userSpaceOnUse">
+          <stop stopColor="#f5f3ff"/>
+          <stop offset="1" stopColor="#ede9fe"/>
+        </linearGradient>
+        <linearGradient id="bookL" x1="110" y1="55" x2="60" y2="140" gradientUnits="userSpaceOnUse">
+          <stop stopColor="#818cf8"/>
+          <stop offset="1" stopColor="#4f46e5"/>
+        </linearGradient>
+        <linearGradient id="bookR" x1="110" y1="55" x2="160" y2="140" gradientUnits="userSpaceOnUse">
+          <stop stopColor="#a5b4fc"/>
+          <stop offset="1" stopColor="#6366f1"/>
+        </linearGradient>
+      </defs>
+      {/* Open book left page */}
+      <path d="M110 55 L55 65 L50 140 L110 130 Z" fill="url(#bookL)" rx="4"/>
+      {/* Open book right page */}
+      <path d="M110 55 L165 65 L170 140 L110 130 Z" fill="url(#bookR)"/>
+      {/* Book spine */}
+      <rect x="107" y="53" width="6" height="79" rx="3" fill="#312e81"/>
+      {/* Lines on left page */}
+      <line x1="65" y1="83" x2="102" y2="81" stroke="rgba(255,255,255,.5)" strokeWidth="2" strokeLinecap="round"/>
+      <line x1="63" y1="93" x2="100" y2="91" stroke="rgba(255,255,255,.5)" strokeWidth="2" strokeLinecap="round"/>
+      <line x1="61" y1="103" x2="98" y2="101" stroke="rgba(255,255,255,.5)" strokeWidth="2" strokeLinecap="round"/>
+      <line x1="59" y1="113" x2="96" y2="111" stroke="rgba(255,255,255,.5)" strokeWidth="2" strokeLinecap="round"/>
+      {/* Formula on right page */}
+      <text x="138" y="90" textAnchor="middle" fontSize="10" fill="#fff" fontWeight="bold" fontFamily="monospace">E=mc²</text>
+      <text x="138" y="107" textAnchor="middle" fontSize="9" fill="rgba(255,255,255,.8)" fontFamily="monospace">F=ma</text>
+      <text x="138" y="122" textAnchor="middle" fontSize="9" fill="rgba(255,255,255,.8)" fontFamily="monospace">v²=u²+2as</text>
+      {/* Lightbulb floating */}
+      <circle cx="172" cy="38" r="16" fill="#fef9c3" stroke="#fbbf24" strokeWidth="2"/>
+      <text x="172" y="44" textAnchor="middle" fontSize="16">💡</text>
+      {/* Checklist floating left */}
+      <rect x="18" y="85" width="28" height="44" rx="6" fill="#fff" stroke="#c7d2fe" strokeWidth="1.5"/>
+      <text x="24" y="101" fontSize="8" fill="#4f46e5">✓</text>
+      <text x="24" y="113" fontSize="8" fill="#4f46e5">✓</text>
+      <text x="24" y="125" fontSize="8" fill="#9ca3af">○</text>
+      {/* Stars */}
+      <text x="30" y="35" fontSize="12" fill="#fbbf24">★</text>
+      <text x="185" y="130" fontSize="10" fill="#fbbf24">★</text>
+      <text x="48" y="158" fontSize="10" fill="#a5b4fc">★</text>
+    </svg>
+  );
+}
+
+function IllustrationBook() {
+  return (
+    <svg viewBox="0 0 220 180" fill="none" xmlns="http://www.w3.org/2000/svg" style={{width:'100%',height:'100%'}}>
+      <rect width="220" height="180" rx="20" fill="url(#bg3)"/>
+      <defs>
+        <linearGradient id="bg3" x1="0" y1="0" x2="220" y2="180" gradientUnits="userSpaceOnUse">
+          <stop stopColor="#fff7ed"/>
+          <stop offset="1" stopColor="#ffedd5"/>
+        </linearGradient>
+      </defs>
+      {/* Video call frame */}
+      <rect x="22" y="28" width="176" height="112" rx="12" fill="#1e1b4b"/>
+      <rect x="27" y="33" width="166" height="102" rx="8" fill="#0f172a"/>
+      {/* Teacher side (left half) */}
+      <rect x="27" y="33" width="80" height="102" rx="8" fill="#1e293b"/>
+      {/* Teacher avatar */}
+      <circle cx="67" cy="72" r="22" fill="#334155"/>
+      <circle cx="67" cy="65" r="12" fill="#94a3b8"/>
+      <ellipse cx="67" cy="88" rx="18" ry="10" fill="#475569"/>
+      {/* Teacher name tag */}
+      <rect x="40" y="108" width="54" height="16" rx="4" fill="#f97316"/>
+      <text x="67" y="119" textAnchor="middle" fontSize="7.5" fill="#fff" fontWeight="bold" fontFamily="sans-serif">Mr. Sharma</text>
+      {/* Student side (right half) */}
+      <rect x="111" y="33" width="82" height="102" rx="8" fill="#1a1929"/>
+      {/* Student avatar */}
+      <circle cx="152" cy="72" r="22" fill="#312e81"/>
+      <circle cx="152" cy="65" r="12" fill="#818cf8"/>
+      <ellipse cx="152" cy="88" rx="18" ry="10" fill="#4338ca"/>
+      {/* Student name */}
+      <rect x="126" y="108" width="52" height="16" rx="4" fill="#4f46e5"/>
+      <text x="152" y="119" textAnchor="middle" fontSize="7.5" fill="#fff" fontWeight="bold" fontFamily="sans-serif">You (Student)</text>
+      {/* Control bar */}
+      <rect x="27" y="126" width="166" height="9" rx="0" fill="#0f172a"/>
+      {/* Mic/Video icons */}
+      <circle cx="90" cy="130" r="5" fill="#ef4444"/>
+      <circle cx="110" cy="130" r="5" fill="#22c55e"/>
+      <circle cx="130" cy="130" r="5" fill="#3b82f6"/>
+      {/* Calendar badge floating */}
+      <rect x="148" y="14" width="46" height="20" rx="8" fill="#f97316"/>
+      <text x="171" y="27" textAnchor="middle" fontSize="8.5" fill="#fff" fontWeight="bold" fontFamily="sans-serif">📅 Book Now</text>
+      {/* Signal / wifi dots */}
+      <text x="22" y="158" fontSize="9" fill="#fb923c">● Live</text>
+      {/* Star rating */}
+      <text x="155" y="158" fontSize="9" fill="#fbbf24">★★★★★</text>
+    </svg>
+  );
+}
+
 const HOW_IT_WORKS = [
-  { step: '01', icon: '🎯', title: 'Pick your class & subject', desc: 'Choose from Class 6–12, JEE or NEET. All CBSE curriculum covered.' },
-  { step: '02', icon: '📚', title: 'Study topic-by-topic', desc: 'Clear explanations, formulas, diagrams and exam-important Q&A for every topic.' },
-  { step: '03', icon: '👨‍🏫', title: 'Book a 1-on-1 session', desc: 'Still confused? Book a live session with an expert teacher. Doubts cleared instantly.' },
+  { step: '01', Illustration: IllustrationChoose, title: 'Pick your class & subject', desc: 'Choose from Class 6–12, JEE or NEET. All CBSE curriculum covered with topic-wise notes.' },
+  { step: '02', Illustration: IllustrationStudy,  title: 'Study topic-by-topic',     desc: 'Clear explanations, formulas, diagrams and exam-important Q&A for every topic.' },
+  { step: '03', Illustration: IllustrationBook,   title: 'Book a 1-on-1 session',   desc: 'Still confused? Book a live video session with an expert teacher. Doubts cleared instantly.' },
 ];
 
 const TESTIMONIALS = [
@@ -262,7 +405,9 @@ export default function HomePage() {
             {HOW_IT_WORKS.map((step, i) => (
               <div key={step.step} className="how-step-card">
                 <div className="how-step-number">{step.step}</div>
-                <div className="how-step-icon">{step.icon}</div>
+                <div className="how-step-illustration">
+                  <step.Illustration />
+                </div>
                 <h3 className="how-step-title">{step.title}</h3>
                 <p className="how-step-desc">{step.desc}</p>
                 {i < HOW_IT_WORKS.length - 1 && <div className="how-step-arrow">→</div>}
