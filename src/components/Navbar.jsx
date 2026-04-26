@@ -227,7 +227,7 @@ export default function Navbar({ onOpenAI, onOpenLogin, user, onLogout, darkMode
 
             {/* AI Doubt — icon on mobile, full button on desktop */}
             <button className="nav-ai-btn" onClick={onOpenAI} aria-label="AI Doubt Help">
-              <img src="/img/ai-robot.png" alt="AI" style={{ width: 22, height: 22, objectFit: 'contain', flexShrink: 0 }} />
+              <img src="/img/ai-robot.png" alt="AI" style={{ width: 32, height: 32, objectFit: 'contain', flexShrink: 0 }} />
               <span className="nav-ai-text">AI Doubt</span>
             </button>
 

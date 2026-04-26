@@ -170,7 +170,9 @@ export default function AIDoubtPanel({ open, onClose }) {
         {/* Header */}
         <div className="ai-panel-header">
           <div style={{ display: 'flex', alignItems: 'center', gap: '.75rem' }}>
-            <div className="ai-panel-avatar">🤖</div>
+            <div className="ai-panel-avatar">
+              <img src="/img/ai-robot.png" alt="AI Robot" style={{width: 52, height: 52, objectFit: 'contain', display: 'block'}} />
+            </div>
             <div>
               <div style={{ fontWeight: 800, fontSize: '1rem', color: '#fff' }}>AI Doubt Helper</div>
               <div style={{ fontSize: '.75rem', color: 'rgba(255,255,255,.65)' }}>
@@ -197,7 +199,7 @@ export default function AIDoubtPanel({ open, onClose }) {
         <div className="ai-messages">
           {messages.map((msg, i) => (
             <div key={i} className={`ai-msg-row ${msg.role}`}>
-              {msg.role === 'assistant' && <div className="ai-msg-avatar">🤖</div>}
+              {msg.role === 'assistant' && <div className="ai-msg-avatar"><img src="/img/ai-robot.png" alt="AI Robot" style={{width: 36, height: 36, objectFit: 'contain'}} /></div>}
               <div className="ai-msg-body">
                 <div className={`ai-bubble${msg.blocked ? ' ai-bubble-blocked' : ''}`}
                   style={msg.blocked ? { background: '#fef2f2', border: '1px solid #fecaca', color: '#991b1b' } : {}}>
@@ -210,7 +212,7 @@ export default function AIDoubtPanel({ open, onClose }) {
           ))}
           {loading && (
             <div className="ai-msg-row assistant">
-              <div className="ai-msg-avatar">🤖</div>
+              <div className="ai-msg-avatar"><img src="/img/ai-robot.png" alt="AI Robot" style={{width: 36, height: 36, objectFit: 'contain'}} /></div>
               <div className="ai-bubble ai-typing-indicator"><span /><span /><span /></div>
             </div>
           )}
