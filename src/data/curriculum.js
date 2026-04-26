@@ -7496,6 +7496,288 @@ export const CURRICULUM = {
               { q: 'A train sounds 500 Hz horn. If train moves at 30 m/s toward stationary observer (v_sound=340 m/s), what frequency does the observer hear?', a: 'f = 500×340/(340−30) = 500×340/310 = 548.4 Hz (higher pitch as train approaches).' },
             ]
           },
+          {
+            id: 'kinematics',
+            title: 'Kinematics & Projectile Motion',
+            subtopics: 'Motion in 1D & 2D, Equations of motion, Projectile motion, Relative velocity, Circular motion',
+            definition: 'Kinematics is the study of motion without considering its causes. It describes position, velocity, and acceleration of objects in one, two, or three dimensions.',
+            content: `<p>Kinematics forms the foundation of mechanics. Every JEE problem on projectile, circular motion, or collisions starts here.</p>
+<h4>Equations of Uniformly Accelerated Motion</h4>
+<div class="formula">v = u + at | s = ut + ½at² | v² = u² + 2as | s_nth = u + a(2n−1)/2</div>
+<h4>Projectile Motion</h4>
+<p>Horizontal: uniform velocity (aₓ = 0). Vertical: uniform acceleration (aᵧ = g↓).</p>
+<div class="formula">Range R = u²sin2θ/g | Max height H = u²sin²θ/2g | Time of flight T = 2u sinθ/g</div>
+<p>Range is maximum at θ = 45°. Complementary angles (θ and 90°−θ) give the same range.</p>
+<h4>Relative Velocity</h4>
+<div class="formula">v_AB = v_A − v_B (velocity of A relative to B)</div>
+<h4>Circular Motion</h4>
+<div class="formula">Centripetal acceleration a_c = v²/r = ω²r | Centripetal force = mv²/r</div>
+<p>Banking of roads: tan θ = v²/rg (for frictionless banked road)</p>`,
+            qa: [
+              { q: 'A ball is thrown at 45° with speed 20 m/s. Find range. (g=10 m/s²)', a: 'R = u²sin2θ/g = 400×sin90°/10 = 400/10 = 40 m.' },
+              { q: 'Two trains approach each other at 60 km/h and 40 km/h. What is their relative speed?', a: 'Relative speed = 60 + 40 = 100 km/h (moving towards each other, speeds add).' },
+              { q: 'A car rounds a flat curve of radius 50 m at 10 m/s. What is centripetal acceleration?', a: 'a_c = v²/r = 100/50 = 2 m/s².' },
+              { q: 'The displacement in the 4th second of uniformly accelerated motion with u=2 m/s, a=3 m/s² is?', a: 's₄ = u + a(2n−1)/2 = 2 + 3×(7)/2 = 2 + 10.5 = 12.5 m.' },
+            ]
+          },
+          {
+            id: 'laws-of-motion',
+            title: 'Laws of Motion & Friction',
+            subtopics: 'Newton\'s three laws, Momentum, Impulse, Friction, Circular dynamics, Free body diagrams',
+            definition: 'Newton\'s Laws of Motion describe the relationship between forces acting on a body and the resulting motion. They are the cornerstone of classical mechanics.',
+            content: `<p>Every mechanics problem in JEE requires a clear understanding of Newton's laws and how to draw free body diagrams.</p>
+<h4>Newton's Three Laws</h4>
+<ul>
+<li><strong>1st Law (Inertia):</strong> A body remains at rest or uniform motion unless acted on by an external net force.</li>
+<li><strong>2nd Law:</strong> F = ma (net force = mass × acceleration). Impulse J = FΔt = Δp.</li>
+<li><strong>3rd Law:</strong> Every action has an equal and opposite reaction. Forces are on different bodies.</li>
+</ul>
+<h4>Friction</h4>
+<div class="formula">f_static ≤ μ_s N | f_kinetic = μ_k N (μ_k < μ_s always)</div>
+<p>Friction acts opposite to the direction of (impending) motion. Static friction is self-adjusting up to its maximum.</p>
+<h4>Circular Motion Dynamics</h4>
+<div class="formula">At top of vertical circle: mg + N = mv²/r | Minimum speed at top: v_min = √(gr)</div>
+<h4>Connected Bodies</h4>
+<p>For two blocks M and m connected by a string on a frictionless surface: a = F/(M+m). Tension T = mF/(M+m).</p>`,
+            qa: [
+              { q: 'A 10 kg block on a surface (μ=0.3) is pulled by 50 N. Find acceleration. (g=10 m/s²)', a: 'Friction = μmg = 0.3×10×10 = 30 N. Net force = 50−30 = 20 N. a = 20/10 = 2 m/s².' },
+              { q: 'A 5 kg ball swings in a vertical circle of radius 2 m. Find minimum speed at the top. (g=10)', a: 'v_min = √(gr) = √(10×2) = √20 = 2√5 m/s.' },
+              { q: 'Two masses 4 kg and 6 kg are connected by a string over a frictionless pulley. Find acceleration. (g=10)', a: 'Atwood machine: a = (m₂−m₁)g/(m₁+m₂) = (6−4)×10/10 = 2 m/s².' },
+              { q: 'A 2 kg block is on a 30° incline (μ=0.2). Find acceleration down the incline. (g=10)', a: 'a = g(sinθ − μcosθ) = 10(0.5 − 0.2×0.866) = 10(0.5 − 0.173) = 3.27 m/s².' },
+            ]
+          },
+          {
+            id: 'work-energy-power',
+            title: 'Work, Energy and Power',
+            subtopics: 'Work-energy theorem, Conservative forces, Potential energy, Conservation of energy, Elastic & inelastic collisions, Power',
+            definition: 'Work is done when a force causes displacement. The work-energy theorem connects net work to change in kinetic energy. Conservation of energy is one of the most powerful principles in physics.',
+            content: `<p>Work, Energy and Power has direct applications in every branch of physics and is heavily tested in JEE.</p>
+<h4>Work</h4>
+<div class="formula">W = F·d·cosθ (for constant force) | W = ∫F·dx (for variable force)</div>
+<h4>Work-Energy Theorem</h4>
+<div class="formula">W_net = ΔKE = ½mv² − ½mu²</div>
+<h4>Conservative Forces and Potential Energy</h4>
+<p>A force is conservative if work done is path-independent. For conservative forces: W = −ΔPE.</p>
+<div class="formula">Gravitational PE: U = mgh | Spring PE: U = ½kx²</div>
+<h4>Conservation of Mechanical Energy</h4>
+<div class="formula">KE + PE = constant (when only conservative forces act)</div>
+<h4>Collisions</h4>
+<p><strong>Elastic:</strong> Both momentum AND KE conserved. <strong>Inelastic:</strong> Only momentum conserved.</p>
+<div class="formula">Coefficient of restitution e = relative speed of separation / relative speed of approach</div>`,
+            qa: [
+              { q: 'A 2 kg block falls from height 5 m. What is its speed just before hitting the ground? (g=10)', a: 'Energy: mgh = ½mv² → v = √(2gh) = √(2×10×5) = √100 = 10 m/s.' },
+              { q: 'A spring (k=500 N/m) is compressed by 0.1 m. How much energy is stored?', a: 'PE = ½kx² = ½×500×0.01 = 2.5 J.' },
+              { q: 'A 3 kg ball moving at 4 m/s collides elastically with a stationary 3 kg ball. What happens?', a: 'In elastic collision between equal masses, the first stops and the second moves with the initial velocity of the first. Ball 1: 0 m/s. Ball 2: 4 m/s.' },
+              { q: 'A 1000 W motor pumps water 10 m high in 100 s. How much water is lifted? (g=10)', a: 'Work = Power × time = 1000×100 = 10⁵ J. W = mgh → m = W/gh = 10⁵/(10×10) = 1000 kg.' },
+            ]
+          },
+          {
+            id: 'gravitation',
+            title: 'Gravitation',
+            subtopics: 'Newton\'s law of gravitation, Gravitational field, Potential, Kepler\'s laws, Orbital velocity, Escape velocity, Satellites',
+            definition: 'Gravitation is the fundamental attractive force between any two masses. Newton\'s Law of Gravitation and Kepler\'s Laws of Planetary Motion govern the motion of planets, moons, and satellites.',
+            content: `<p>Gravitation connects terrestrial physics to astronomy. JEE tests orbital mechanics and energy concepts of satellites.</p>
+<h4>Newton's Law of Gravitation</h4>
+<div class="formula">F = GMm/r² | G = 6.67 × 10⁻¹¹ N·m²/kg²</div>
+<h4>Gravitational Field and Potential</h4>
+<div class="formula">g = GM/r² (outside sphere) | V = −GM/r (gravitational potential)</div>
+<p>g at height h: g_h = g(1 − 2h/R) for h << R. g at depth d: g_d = g(1 − d/R).</p>
+<h4>Kepler's Laws</h4>
+<ol>
+<li>Planets orbit the Sun in ellipses with Sun at one focus.</li>
+<li>Radius vector sweeps equal areas in equal times (angular momentum conserved).</li>
+<li>T² ∝ a³ (T = period, a = semi-major axis)</li>
+</ol>
+<h4>Orbital and Escape Velocity</h4>
+<div class="formula">v_orbital = √(GM/r) = √(gR²/r) | v_escape = √(2GM/R) = √(2gR) = 11.2 km/s</div>
+<p>v_escape = √2 × v_orbital (at surface)</p>`,
+            qa: [
+              { q: 'A satellite orbits Earth at radius 2R (R=Earth\'s radius). Find its orbital speed in terms of g and R.', a: 'v = √(GM/r) = √(gR²/2R) = √(gR/2).' },
+              { q: 'The escape velocity from Earth\'s surface is 11.2 km/s. What is it from a planet twice the mass and same radius?', a: 'v_e = √(2GM/R). Doubling M → v_e multiplied by √2. New v_e = 11.2√2 ≈ 15.8 km/s.' },
+              { q: 'A planet takes 8 years to orbit the Sun. Its orbital radius compared to Earth\'s?', a: 'Kepler\'s 3rd law: T² ∝ r³. (8/1)² = (r/1)³ → r³ = 64 → r = 4 AU.' },
+              { q: 'At what height is g reduced to 1/4 of its surface value?', a: 'g_h = g(R/(R+h))² = g/4 → (R/(R+h))² = 1/4 → R/(R+h) = 1/2 → R+h = 2R → h = R.' },
+            ]
+          },
+          {
+            id: 'fluid-mechanics',
+            title: 'Fluid Mechanics & Properties of Matter',
+            subtopics: 'Pressure, Archimedes\' principle, Bernoulli\'s equation, Viscosity, Surface tension, Elasticity, Young\'s modulus',
+            definition: 'Fluid mechanics deals with the behaviour of fluids (liquids and gases) at rest and in motion. Properties of matter covers the elastic behaviour of solids under stress.',
+            content: `<p>Fluid mechanics appears in many JEE problems, from hydraulic lifts to aeroplane wings. Surface tension and viscosity are also key topics.</p>
+<h4>Pressure and Archimedes' Principle</h4>
+<div class="formula">P = P₀ + ρgh | Buoyant force = ρ_fluid × V_submerged × g</div>
+<p>A body floats when buoyant force = weight: ρ_body × V_body = ρ_fluid × V_submerged.</p>
+<h4>Bernoulli's Equation</h4>
+<div class="formula">P + ½ρv² + ρgh = constant (along a streamline)</div>
+<p>Applications: Venturimeter, aerofoil lift, Torricelli's theorem (v = √(2gh) for hole in a tank).</p>
+<h4>Viscosity and Stokes' Law</h4>
+<div class="formula">Stokes' drag: F = 6πηrv | Terminal velocity: v_t = 2r²(ρ−σ)g / 9η</div>
+<h4>Surface Tension</h4>
+<div class="formula">T = F/l | Excess pressure in soap bubble: ΔP = 4T/r | In liquid drop: ΔP = 2T/r</div>
+<h4>Elasticity</h4>
+<div class="formula">Young's modulus Y = Stress/Strain = (F/A)/(ΔL/L) | Bulk modulus B = −P/(ΔV/V)</div>`,
+            qa: [
+              { q: 'A block of wood (density 600 kg/m³) is placed in water (1000 kg/m³). What fraction floats above water?', a: 'Fraction submerged = ρ_wood/ρ_water = 600/1000 = 0.6. Fraction above water = 1 − 0.6 = 0.4 = 40%.' },
+              { q: 'Water flows through a pipe of area 0.01 m² at 2 m/s. It enters a wider section of area 0.04 m². Find speed there.', a: 'Continuity: A₁v₁ = A₂v₂. v₂ = 0.01×2/0.04 = 0.5 m/s.' },
+              { q: 'A steel wire (Y=2×10¹¹ Pa) of length 2 m and cross-section 10⁻⁶ m² is stretched by 1 mm. Find force.', a: 'F = YAΔl/l = 2×10¹¹ × 10⁻⁶ × 10⁻³/2 = 100 N.' },
+              { q: 'Find excess pressure inside a soap bubble of radius 4 cm if surface tension T = 0.03 N/m.', a: 'ΔP = 4T/r = 4×0.03/0.04 = 3 Pa.' },
+            ]
+          },
+          {
+            id: 'thermodynamics',
+            title: 'Heat and Thermodynamics',
+            subtopics: 'Thermal expansion, Calorimetry, Heat transfer, Laws of thermodynamics, Thermodynamic processes, Kinetic theory of gases',
+            definition: 'Thermodynamics studies the relationship between heat, work, and internal energy. The four laws of thermodynamics govern all thermal processes in the universe.',
+            content: `<p>Thermodynamics is a high-weightage chapter in JEE. Master the processes (isothermal, adiabatic, isochoric, isobaric) and the P-V diagrams.</p>
+<h4>Thermodynamic Processes</h4>
+<table style="width:100%;border-collapse:collapse">
+<tr><th>Process</th><th>Condition</th><th>ΔU</th><th>Q</th><th>W</th></tr>
+<tr><td>Isothermal</td><td>ΔT=0</td><td>0</td><td>W</td><td>nRT ln(V₂/V₁)</td></tr>
+<tr><td>Adiabatic</td><td>Q=0</td><td>−W</td><td>0</td><td>(P₁V₁−P₂V₂)/(γ−1)</td></tr>
+<tr><td>Isochoric</td><td>ΔV=0</td><td>nCᵥΔT</td><td>ΔU</td><td>0</td></tr>
+<tr><td>Isobaric</td><td>ΔP=0</td><td>nCᵥΔT</td><td>nCₚΔT</td><td>PΔV</td></tr>
+</table>
+<h4>First Law of Thermodynamics</h4>
+<div class="formula">ΔU = Q − W (Q = heat absorbed by system, W = work done by system)</div>
+<h4>Kinetic Theory of Gases</h4>
+<div class="formula">PV = nRT | v_rms = √(3RT/M) | v_avg = √(8RT/πM) | v_mp = √(2RT/M)</div>
+<p>Degrees of freedom: Monoatomic f=3, Diatomic f=5. Cᵥ = (f/2)R, Cₚ = Cᵥ + R, γ = Cₚ/Cᵥ.</p>`,
+            qa: [
+              { q: 'An ideal gas absorbs 500 J of heat and does 200 J of work. Change in internal energy?', a: 'ΔU = Q − W = 500 − 200 = 300 J.' },
+              { q: 'RMS speed of hydrogen (M=2 g/mol) at 300 K? (R=8.314)', a: 'v_rms = √(3RT/M) = √(3×8.314×300/0.002) = √(3742300) ≈ 1934 m/s.' },
+              { q: 'In an adiabatic process, if gas is compressed, what happens to temperature?', a: 'In adiabatic compression, Q=0. Work is done on the gas (W<0), so ΔU = −W > 0. Internal energy increases → temperature rises.' },
+              { q: 'What is the molar specific heat ratio γ for a diatomic gas?', a: 'Diatomic: f = 5 degrees of freedom. Cᵥ = 5R/2, Cₚ = 7R/2. γ = Cₚ/Cᵥ = 7/5 = 1.4.' },
+            ]
+          },
+          {
+            id: 'electrostatics',
+            title: 'Electrostatics',
+            subtopics: 'Coulomb\'s law, Electric field, Gauss\'s law, Electric potential, Capacitors, Dielectrics',
+            definition: 'Electrostatics studies electric charges at rest, their forces, fields, and potentials. It is the foundation for understanding electric circuits, electronics, and electromagnetic waves.',
+            content: `<p>Electrostatics is one of the highest-weightage topics in JEE Physics. It directly connects to current electricity and electromagnetic induction.</p>
+<h4>Coulomb's Law</h4>
+<div class="formula">F = kq₁q₂/r² = q₁q₂/(4πε₀r²) | k = 9×10⁹ N·m²/C²</div>
+<h4>Electric Field</h4>
+<div class="formula">E = F/q₀ = kQ/r² (point charge) | E_inside conductor = 0 | E_surface = σ/ε₀</div>
+<h4>Gauss's Law</h4>
+<div class="formula">∮E·dA = Q_enclosed/ε₀</div>
+<p>Applications: Infinite plane (E = σ/2ε₀), infinite cylinder, spherical shell (E=kQ/r² outside, 0 inside).</p>
+<h4>Electric Potential</h4>
+<div class="formula">V = kQ/r | E = −dV/dr | V at multiple charges = algebraic sum of individual V's</div>
+<h4>Capacitors</h4>
+<div class="formula">C = Q/V | Parallel: C = C₁+C₂ | Series: 1/C = 1/C₁+1/C₂</div>
+<div class="formula">Energy stored: U = ½CV² = Q²/2C | With dielectric: C = κε₀A/d</div>`,
+            qa: [
+              { q: 'Two charges 4μC and 9μC are 1m apart. Find the point on the line between them where E=0.', a: 'Let distance from 4μC be x. k×4×10⁻⁶/x² = k×9×10⁻⁶/(1−x)². 4(1−x)² = 9x² → 2(1−x) = 3x (taking roots) → 2−2x = 3x → x = 0.4 m.' },
+              { q: 'A parallel plate capacitor (A=0.02 m², d=1mm, κ=4) is connected to 100V. Find charge stored.', a: 'C = κε₀A/d = 4×8.85×10⁻¹²×0.02/10⁻³ = 708 pF. Q = CV = 708×10⁻¹²×100 = 70.8 nC.' },
+              { q: 'Three capacitors of 3μF each are connected in series. Find equivalent capacitance.', a: '1/C = 1/3+1/3+1/3 = 1. C = 1 μF.' },
+              { q: 'Find electric potential at a point 0.3 m from a charge of 6μC. (k=9×10⁹)', a: 'V = kQ/r = 9×10⁹ × 6×10⁻⁶ / 0.3 = 180,000 V = 1.8 × 10⁵ V.' },
+            ]
+          },
+          {
+            id: 'current-electricity',
+            title: 'Current Electricity',
+            subtopics: 'Ohm\'s law, Kirchhoff\'s laws, Resistors in series/parallel, Wheatstone bridge, EMF and internal resistance, Potentiometer',
+            definition: 'Current electricity deals with the flow of electric charge through conductors. Understanding circuits, resistance, and EMF is essential for every branch of electrical engineering.',
+            content: `<p>Current electricity is one of the most application-heavy chapters in JEE. Master circuit analysis methods — they appear in every paper.</p>
+<h4>Ohm's Law and Resistance</h4>
+<div class="formula">V = IR | R = ρL/A | Effect of temperature: R_T = R₀(1 + αΔT)</div>
+<p>Resistors in series: R_eff = R₁+R₂+... | In parallel: 1/R_eff = 1/R₁+1/R₂+...</p>
+<h4>Kirchhoff's Laws</h4>
+<ul>
+<li><strong>KCL (Junction rule):</strong> Sum of currents entering a junction = sum leaving. (Conservation of charge)</li>
+<li><strong>KVL (Loop rule):</strong> Sum of potential differences around any closed loop = 0. (Conservation of energy)</li>
+</ul>
+<h4>EMF and Internal Resistance</h4>
+<div class="formula">Terminal voltage: V = E − Ir | Power delivered to external: P = I²R | Max power: when R = r</div>
+<h4>Wheatstone Bridge</h4>
+<div class="formula">Balanced condition: P/Q = R/S (no current through galvanometer)</div>
+<h4>Potentiometer</h4>
+<p>Measures EMF without drawing current. Compares EMFs: E₁/E₂ = l₁/l₂.</p>`,
+            qa: [
+              { q: 'A battery of EMF 12V and internal resistance 2Ω is connected to 4Ω resistor. Find current.', a: 'I = E/(R+r) = 12/(4+2) = 2 A.' },
+              { q: 'Three resistors of 6Ω each — two in parallel, that combination in series with the third. Find R_eff.', a: 'Two 6Ω in parallel: R₁₂ = 6×6/(6+6) = 3Ω. In series with 6Ω: R_eff = 3+6 = 9Ω.' },
+              { q: 'In a Wheatstone bridge P=3Ω, Q=6Ω, R=4Ω. Find S for balance.', a: 'P/Q = R/S → 3/6 = 4/S → S = 8Ω.' },
+              { q: 'A wire of resistivity 2×10⁻⁸ Ω·m, length 4m, cross-section 2×10⁻⁶ m². Find resistance.', a: 'R = ρL/A = 2×10⁻⁸ × 4 / 2×10⁻⁶ = 0.04 Ω.' },
+            ]
+          },
+          {
+            id: 'magnetism-emi',
+            title: 'Magnetism & Electromagnetic Induction',
+            subtopics: 'Biot-Savart law, Ampere\'s law, Magnetic force, Faraday\'s law, Lenz\'s law, Self-inductance, AC circuits',
+            definition: 'Magnetism and electromagnetic induction describe how moving charges create magnetic fields and how changing magnetic fields create electric currents. These principles power generators, motors, and transformers.',
+            content: `<p>EMI is the bridge between mechanics and electricity. It is among the most heavily tested topics in JEE Advanced.</p>
+<h4>Biot-Savart Law</h4>
+<div class="formula">dB = μ₀I dl sinθ / 4πr² | B at centre of circular loop: B = μ₀I/2R</div>
+<h4>Ampere's Law</h4>
+<div class="formula">∮B·dl = μ₀I_enclosed | B inside solenoid: B = μ₀nI</div>
+<h4>Force on Charges and Conductors</h4>
+<div class="formula">Lorentz force: F = q(v × B) | Force on wire: F = IL × B = BIL sinθ</div>
+<p>Charged particle in magnetic field: moves in circle. r = mv/qB.</p>
+<h4>Faraday's Law and Lenz's Law</h4>
+<div class="formula">EMF = −dΦ/dt | Motional EMF: ε = BLv</div>
+<p>Lenz's law: induced current opposes the change in flux (conservation of energy).</p>
+<h4>Self-Inductance and AC Circuits</h4>
+<div class="formula">L = NΦ/I | ε = −L dI/dt | X_L = ωL | X_C = 1/ωC</div>
+<div class="formula">Impedance: Z = √(R² + (X_L − X_C)²) | Resonance: ω₀ = 1/√(LC)</div>`,
+            qa: [
+              { q: 'A conducting rod of length 0.5m moves at 4 m/s perpendicular to B=0.3T. Find induced EMF.', a: 'ε = BLv = 0.3 × 0.5 × 4 = 0.6 V.' },
+              { q: 'A solenoid has 1000 turns/m carrying 5A. Find B inside. (μ₀=4π×10⁻⁷)', a: 'B = μ₀nI = 4π×10⁻⁷ × 1000 × 5 = 2π×10⁻³ ≈ 6.28 mT.' },
+              { q: 'An inductor of 0.5H carries current changing at 2 A/s. Find back-EMF.', a: 'ε = L dI/dt = 0.5 × 2 = 1 V.' },
+              { q: 'In a series RLC circuit: R=10Ω, L=0.1H, C=1000μF. Find resonant frequency.', a: 'ω₀ = 1/√(LC) = 1/√(0.1×10⁻³) = 1/√(10⁻⁴) = 100 rad/s. f₀ = 100/2π ≈ 15.9 Hz.' },
+            ]
+          },
+          {
+            id: 'ray-optics',
+            title: 'Ray Optics & Wave Optics',
+            subtopics: 'Reflection, Refraction, Mirror and lens formulae, Total internal reflection, Prism, Interference, Diffraction, Polarisation',
+            definition: 'Ray optics treats light as rays traveling in straight lines. Wave optics accounts for the wave nature of light, explaining interference, diffraction, and polarisation phenomena.',
+            content: `<p>Optics is a broad chapter combining geometry (ray optics) and wave physics. YDSE and TIR problems are JEE staples.</p>
+<h4>Mirror Formula</h4>
+<div class="formula">1/v + 1/u = 1/f | m = −v/u | f = R/2</div>
+<p>Sign convention: distances measured from pole; incident light direction is positive.</p>
+<h4>Refraction — Snell's Law</h4>
+<div class="formula">n₁sinθ₁ = n₂sinθ₂ | n = c/v | Apparent depth = real depth/n</div>
+<h4>Total Internal Reflection (TIR)</h4>
+<div class="formula">sin(C) = n₂/n₁ (C = critical angle) | TIR when θ > C and going from denser to rarer</div>
+<h4>Lens Formula</h4>
+<div class="formula">1/v − 1/u = 1/f | Lensmaker's: 1/f = (n−1)[1/R₁ − 1/R₂] | Lens in contact: 1/f = 1/f₁ + 1/f₂</div>
+<h4>Young's Double Slit Experiment (YDSE)</h4>
+<div class="formula">Fringe width β = λD/d | Bright fringe: Δ = nλ | Dark fringe: Δ = (2n−1)λ/2</div>
+<h4>Prism</h4>
+<div class="formula">At minimum deviation: μ = sin[(A+δm)/2] / sin(A/2)</div>`,
+            qa: [
+              { q: 'An object is 30cm in front of a concave mirror of focal length 15cm. Find image distance.', a: '1/v = 1/f − 1/u = 1/(−15) − 1/(−30) = −2/30 + 1/30 = −1/30. v = −30 cm (real, inverted).' },
+              { q: 'In YDSE with λ=600nm, slit separation 0.3mm, screen 1m away. Find fringe width.', a: 'β = λD/d = 600×10⁻⁹×1/0.3×10⁻³ = 2×10⁻³ m = 2 mm.' },
+              { q: 'Find critical angle for glass-air interface if n_glass = 1.5.', a: 'sin(C) = 1/n = 1/1.5 = 2/3. C = sin⁻¹(2/3) ≈ 41.8°.' },
+              { q: 'A convex lens (f=20cm) and concave lens (f=−30cm) are in contact. Find combined focal length.', a: '1/f = 1/20 + 1/(−30) = 3/60 − 2/60 = 1/60. f = 60 cm (converging).' },
+            ]
+          },
+          {
+            id: 'modern-physics',
+            title: 'Modern Physics & Semiconductors',
+            subtopics: 'Photoelectric effect, de Broglie waves, Bohr model, Hydrogen spectrum, Nuclear physics, Radioactivity, P-N junction',
+            definition: 'Modern physics begins where classical physics breaks down — at atomic and nuclear scales. It includes quantum mechanics, atomic models, nuclear reactions, and semiconductor devices.',
+            content: `<p>Modern physics is a rich source of JEE questions. The photoelectric effect and Bohr model are perennial favourites.</p>
+<h4>Photoelectric Effect (Einstein)</h4>
+<div class="formula">KE_max = hν − φ = eV_stop | φ = hν₀ (work function)</div>
+<p>Threshold frequency ν₀ = φ/h. Light below ν₀ cannot eject electrons regardless of intensity.</p>
+<h4>de Broglie Wavelength</h4>
+<div class="formula">λ = h/p = h/mv | For electron accelerated through V: λ = 12.27/√V Å</div>
+<h4>Bohr's Model of Hydrogen</h4>
+<div class="formula">rₙ = 0.529 n²/Z Å | Eₙ = −13.6 Z²/n² eV | v_n = 2.18×10⁶ Z/n m/s</div>
+<p>Spectral series: Lyman (n→1, UV), Balmer (n→2, visible), Paschen (n→3, IR)</p>
+<h4>Radioactive Decay</h4>
+<div class="formula">N = N₀e^(−λt) | t₁/₂ = 0.693/λ | Activity A = λN</div>
+<h4>Semiconductors</h4>
+<p>P-type (holes as majority), N-type (electrons as majority). P-N junction: forward bias → conducts; reverse bias → blocks. Depletion layer forms at junction.</p>`,
+            qa: [
+              { q: 'Light of frequency 8×10¹⁴ Hz falls on metal (φ=4.5 eV). Find KE of emitted electrons. (h=6.6×10⁻³⁴)', a: 'KE = hν − φ = 6.6×10⁻³⁴×8×10¹⁴/1.6×10⁻¹⁹ − 4.5 = 3.3 − 4.5 = negative. No emission (frequency below threshold).' },
+              { q: 'Find energy of electron in 3rd orbit of hydrogen atom.', a: 'E₃ = −13.6/n² = −13.6/9 = −1.51 eV.' },
+              { q: 'A radioactive substance has half-life 10 days. After 30 days, what fraction remains?', a: 'n = 30/10 = 3 half-lives. Fraction = (1/2)³ = 1/8.' },
+              { q: 'Find de Broglie wavelength of an electron accelerated through 400V.', a: 'λ = 12.27/√400 = 12.27/20 = 0.614 Å.' },
+            ]
+          },
         ]
       },
       chemistry: {
@@ -7525,6 +7807,264 @@ export const CURRICULUM = {
               { q: 'Why is benzene unusually stable?', a: 'Benzene has complete delocalisation of 6 π-electrons over the ring (resonance). This aromaticity gives extra stability (resonance energy ≈ 150 kJ/mol). Benzene resists addition reactions that would disrupt this aromaticity.' },
             ]
           },
+          {
+            id: 'atomic-structure-bonding',
+            title: 'Atomic Structure & Chemical Bonding',
+            subtopics: 'Bohr model, Quantum numbers, Electronic configuration, VSEPR, Hybridization, Molecular Orbital Theory, Hydrogen bonding',
+            definition: 'Atomic structure explains how electrons are arranged in atoms. Chemical bonding describes how atoms combine through sharing or transfer of electrons to form stable molecules.',
+            content: `<p>Atomic structure and bonding are fundamental to understanding all of chemistry. Master hybridisation and MOT for JEE.</p>
+<h4>Quantum Numbers</h4>
+<ul>
+<li><strong>n</strong> (principal): shell number, energy, size</li>
+<li><strong>l</strong> (azimuthal): subshell shape (0=s,1=p,2=d,3=f)</li>
+<li><strong>m_l</strong> (magnetic): orientation (−l to +l)</li>
+<li><strong>m_s</strong> (spin): +½ or −½</li>
+</ul>
+<h4>Electronic Configuration Rules</h4>
+<p>Aufbau (fill lowest energy first), Hund's rule (maximise unpaired spins in same subshell), Pauli exclusion (no two electrons with same 4 quantum numbers).</p>
+<h4>Hybridisation and Geometry</h4>
+<div class="formula">sp³ → tetrahedral (109.5°) | sp² → trigonal planar (120°) | sp → linear (180°)</div>
+<p>Lone pairs reduce bond angles: NH₃ (107°), H₂O (104.5°).</p>
+<h4>VSEPR Theory</h4>
+<p>Electron pairs (bonding + lone pairs) repel → minimise repulsion → geometry. LP-LP > LP-BP > BP-BP repulsion.</p>
+<h4>Molecular Orbital Theory (MOT)</h4>
+<p>Bond order = (bonding e⁻ − antibonding e⁻)/2. Bond order > 0 → stable. O₂ has 2 unpaired e⁻ → paramagnetic.</p>`,
+            qa: [
+              { q: 'Predict the geometry of SF₄ using VSEPR.', a: 'S has 4 bond pairs and 1 lone pair → sp³d hybridisation → see-saw (seesaw) geometry due to lone pair.' },
+              { q: 'What is the bond order of N₂?', a: 'N₂ MOT: σ1s², σ*1s², σ2s², σ*2s², σ2p², π2p⁴. Bonding e⁻=10, antibonding=4. BO = (10−4)/2 = 3.' },
+              { q: 'Write electronic configuration of Fe (Z=26) and Fe²⁺.', a: 'Fe: [Ar] 3d⁶ 4s². Fe²⁺: electrons lost from 4s first → [Ar] 3d⁶.' },
+              { q: 'Why does HF have an anomalously high boiling point?', a: 'F is the most electronegative element. HF molecules form strong intermolecular hydrogen bonds (F-H···F), requiring much more energy to break → high boiling point (19.5°C vs −85°C for HCl).' },
+            ]
+          },
+          {
+            id: 'chemical-thermodynamics',
+            title: 'Chemical Thermodynamics',
+            subtopics: 'System & surroundings, Enthalpy, Hess\'s law, Bond energy, Entropy, Gibbs free energy, Spontaneity',
+            definition: 'Chemical thermodynamics studies energy changes in chemical reactions, determining whether reactions are spontaneous and how much work they can produce.',
+            content: `<p>Thermodynamics tells us whether a reaction will occur spontaneously. Gibbs energy is the key criterion at constant T and P.</p>
+<h4>First Law Applied to Chemistry</h4>
+<div class="formula">ΔH = ΔU + ΔngRT | ΔH = negative → exothermic | ΔH = positive → endothermic</div>
+<h4>Hess's Law</h4>
+<p>ΔH for a reaction is the same regardless of the path taken — it only depends on initial and final states.</p>
+<div class="formula">ΔH_rxn = Σ ΔH_f(products) − Σ ΔH_f(reactants)</div>
+<h4>Bond Enthalpy</h4>
+<div class="formula">ΔH_rxn = Σ Bond energies broken − Σ Bond energies formed</div>
+<h4>Entropy (S)</h4>
+<p>Entropy is a measure of disorder. ΔS positive → disorder increases. Gas > liquid > solid entropy.</p>
+<h4>Gibbs Free Energy</h4>
+<div class="formula">ΔG = ΔH − TΔS | Spontaneous when ΔG < 0 | ΔG° = −RT ln K = −nFE°</div>
+<p>At equilibrium: ΔG = 0. ΔG° < 0 → K > 1 → products favoured.</p>`,
+            qa: [
+              { q: 'ΔH = −300 kJ and ΔS = −100 J/K at 500K. Is the reaction spontaneous?', a: 'ΔG = ΔH − TΔS = −300000 − 500×(−100) = −300000 + 50000 = −250000 J. ΔG < 0 → spontaneous.' },
+              { q: 'Calculate ΔH if bond energies: H-H = 436, Cl-Cl = 243, H-Cl = 432 kJ/mol for H₂ + Cl₂ → 2HCl.', a: 'ΔH = (436+243) − 2×432 = 679 − 864 = −185 kJ/mol. Exothermic.' },
+              { q: 'For a reaction ΔG° = −20 kJ/mol at 300K. Find equilibrium constant K. (R=8.314)', a: 'ΔG° = −RT lnK → lnK = −ΔG°/RT = 20000/(8.314×300) = 8.02 → K = e^8.02 ≈ 3025.' },
+              { q: 'A reaction is spontaneous at high temperature but not at low temperature. What are signs of ΔH and ΔS?', a: 'ΔG = ΔH − TΔS < 0 at high T requires ΔS > 0 (positive). For it not to be spontaneous at low T, ΔH > 0. So ΔH > 0, ΔS > 0.' },
+            ]
+          },
+          {
+            id: 'chemical-equilibrium',
+            title: 'Chemical Equilibrium & Ionic Equilibrium',
+            subtopics: 'Equilibrium constant, Le Chatelier\'s principle, Kp vs Kc, Ionic equilibrium, pH, Buffer solutions, Solubility product',
+            definition: 'Chemical equilibrium occurs when forward and reverse reaction rates are equal and concentrations remain constant. Ionic equilibrium deals with dissociation of weak acids, bases, and sparingly soluble salts.',
+            content: `<p>Equilibrium and pH calculations are among the most calculation-intensive chapters in JEE Chemistry.</p>
+<h4>Equilibrium Constant</h4>
+<div class="formula">For aA + bB ⇌ cC + dD: Kc = [C]c[D]d / [A]a[B]b</div>
+<div class="formula">Kp = Kc(RT)^Δn | Δn = moles of gaseous products − moles of gaseous reactants</div>
+<h4>Le Chatelier's Principle</h4>
+<p>If a system at equilibrium is disturbed, it shifts to counteract the disturbance:</p>
+<ul><li>Add reactant → shifts right | Remove product → shifts right</li>
+<li>Increase pressure → shifts towards fewer moles of gas</li>
+<li>Increase temperature → shifts in endothermic direction</li></ul>
+<h4>Ionic Equilibrium</h4>
+<div class="formula">Weak acid: Ka = [H⁺][A⁻]/[HA] | pH = ½(pKa − log C) | [H⁺] = √(Ka·C)</div>
+<h4>Buffer Solutions</h4>
+<div class="formula">Henderson-Hasselbalch: pH = pKa + log([A⁻]/[HA])</div>
+<h4>Solubility Product (Ksp)</h4>
+<div class="formula">For AxBy ⇌ xA⁺ + yB⁻: Ksp = [A⁺]x[B⁻]y | s (molar solubility) from Ksp</div>`,
+            qa: [
+              { q: 'For N₂ + 3H₂ ⇌ 2NH₃, Kc=0.5 at 400°C. Find Kp if Δn = 2−4 = −2. (RT=40)', a: 'Kp = Kc(RT)^Δn = 0.5 × (40)^(−2) = 0.5/1600 = 3.125×10⁻⁴.' },
+              { q: 'Calculate pH of 0.1M acetic acid (Ka = 1.8×10⁻⁵).', a: '[H⁺] = √(Ka×C) = √(1.8×10⁻⁵×0.1) = √(1.8×10⁻⁶) = 1.34×10⁻³. pH = −log(1.34×10⁻³) ≈ 2.87.' },
+              { q: 'Ksp of AgCl = 1.8×10⁻¹⁰. Find molar solubility.', a: 'AgCl ⇌ Ag⁺ + Cl⁻. Ksp = s². s = √(1.8×10⁻¹⁰) = 1.34×10⁻⁵ mol/L.' },
+              { q: 'A buffer is made of 0.2M CH₃COOH and 0.1M CH₃COONa (pKa=4.74). Find pH.', a: 'pH = pKa + log([A⁻]/[HA]) = 4.74 + log(0.1/0.2) = 4.74 + log(0.5) = 4.74 − 0.30 = 4.44.' },
+            ]
+          },
+          {
+            id: 'electrochemistry',
+            title: 'Electrochemistry',
+            subtopics: 'Electrochemical cells, EMF, Nernst equation, Electrolysis, Faraday\'s laws, Kohlrausch\'s law, Corrosion',
+            definition: 'Electrochemistry studies the interconversion of chemical and electrical energy. It encompasses galvanic cells (batteries), electrolytic cells, and the factors affecting electrode potentials.',
+            content: `<p>Electrochemistry is a high-scoring chapter in JEE. Focus on Nernst equation calculations and electrolysis stoichiometry.</p>
+<h4>Galvanic Cell and EMF</h4>
+<div class="formula">E°cell = E°cathode − E°anode | ΔG° = −nFE° | K = e^(nFE°/RT)</div>
+<h4>Nernst Equation</h4>
+<div class="formula">E = E° − (RT/nF)lnQ = E° − (0.0592/n)log Q (at 25°C)</div>
+<p>At equilibrium: E = 0, Q = K → ΔG = 0.</p>
+<h4>Faraday's Laws of Electrolysis</h4>
+<div class="formula">1st law: m = ZQ = ZIt | 2nd law: m₁/m₂ = E₁/E₂ (equivalent weights)</div>
+<p>1 Faraday = 96500 C = charge of 1 mole of electrons.</p>
+<h4>Conductance</h4>
+<div class="formula">Molar conductance Λm = κ×1000/M | Kohlrausch: Λ°m = λ°+ + λ°−</div>
+<p>Kohlrausch's law of independent migration: each ion contributes independently to conductance.</p>
+<h4>Corrosion</h4>
+<p>Iron rusts in the presence of O₂ and moisture. Iron acts as anode, carbon/impurities as cathode. Prevention: galvanisation, painting, sacrificial anode (Zn).</p>`,
+            qa: [
+              { q: 'Find E°cell for Zn|Zn²⁺||Cu²⁺|Cu. (E°Zn²⁺/Zn = −0.76V, E°Cu²⁺/Cu = +0.34V)', a: 'E°cell = E°cathode − E°anode = 0.34 − (−0.76) = 1.10 V.' },
+              { q: 'Using Nernst equation, find E for Zn|Zn²⁺(0.1M)||Cu²⁺(0.01M)|Cu. (E°=1.10V)', a: 'E = 1.10 − (0.0592/2)log([Zn²⁺]/[Cu²⁺]) = 1.10 − 0.0296×log(0.1/0.01) = 1.10 − 0.0296×1 = 1.07 V.' },
+              { q: 'How many grams of copper are deposited when 2A current flows for 30 min through CuSO₄? (Cu=64, n=2)', a: 'Q = It = 2×1800 = 3600C. m = M×Q/nF = 64×3600/(2×96500) = 1.19 g.' },
+              { q: 'Why does specific conductance decrease with dilution for strong electrolytes, but molar conductance increases?', a: 'Dilution reduces ions per unit volume → specific conductance (κ) decreases. But molar conductance = κ/concentration; inter-ionic attractions decrease with dilution → ions move more freely → Λm increases.' },
+            ]
+          },
+          {
+            id: 'chemical-kinetics',
+            title: 'Chemical Kinetics',
+            subtopics: 'Rate of reaction, Rate laws, Order of reaction, Integrated rate laws, Arrhenius equation, Activation energy, Catalysis',
+            definition: 'Chemical kinetics studies the rate of chemical reactions and the factors that affect them. It helps understand reaction mechanisms and the role of catalysts.',
+            content: `<p>Kinetics involves mathematical treatment of reaction rates. Master integrated rate laws and Arrhenius equation for JEE.</p>
+<h4>Rate Expression</h4>
+<div class="formula">For aA + bB → products: Rate = k[A]m[B]n</div>
+<p>m, n = orders (determined experimentally). Overall order = m + n.</p>
+<h4>Integrated Rate Laws</h4>
+<div class="formula">Zero order: [A] = [A]₀ − kt | t₁/₂ = [A]₀/2k</div>
+<div class="formula">First order: ln[A] = ln[A]₀ − kt | t₁/₂ = 0.693/k</div>
+<div class="formula">Second order: 1/[A] = 1/[A]₀ + kt | t₁/₂ = 1/k[A]₀</div>
+<h4>Arrhenius Equation</h4>
+<div class="formula">k = Ae^(−Ea/RT) | ln k = ln A − Ea/RT</div>
+<p>A = frequency factor, Ea = activation energy. Higher Ea → slower reaction at given T.</p>
+<p>Rule of thumb: Rate doubles for every 10°C rise (for many reactions).</p>
+<h4>Catalysis</h4>
+<p>Catalyst lowers activation energy (Ea) without being consumed. Does NOT change ΔG or equilibrium constant.</p>`,
+            qa: [
+              { q: 'A first-order reaction has k = 0.01 min⁻¹. Find time for 75% completion.', a: 't₇₅% = 2 × t₁/₂ = 2 × 0.693/0.01 = 138.6 min.' },
+              { q: 'Rate = k[A][B]². If [A] doubles and [B] halves, how does rate change?', a: 'New rate = k[2A][B/2]² = k×2[A]×[B]²/4 = rate/2. Rate becomes half.' },
+              { q: 'Arrhenius: k₁=10⁻³, T₁=300K. If Ea=40kJ/mol find k₂ at 310K. (R=8.314)', a: 'ln(k₂/k₁) = Ea/R × (1/T₁−1/T₂) = 40000/8.314 × (1/300−1/310) = 4810×1.075×10⁻⁴ ≈ 0.517. k₂ = k₁×e^0.517 = 10⁻³ × 1.68 = 1.68×10⁻³.' },
+              { q: 'How can you determine the order of a reaction experimentally?', a: 'Method of initial rates: keep all but one concentration constant, vary one, measure initial rate. Order w.r.t. that reactant = n if rate ∝ [A]ⁿ. Alternatively, use integrated rate laws and check which gives linear plot (ln[A] vs t → 1st order, 1/[A] vs t → 2nd order).' },
+            ]
+          },
+          {
+            id: 'solid-state-solutions',
+            title: 'Solid State & Solutions',
+            subtopics: 'Crystal systems, Unit cells, Packing efficiency, Ionic radii, Colligative properties, Raoult\'s law, Osmotic pressure',
+            definition: 'Solid state studies the structure of crystalline solids. Solutions examines how solutes dissolve and alter the physical properties of solvents through colligative effects.',
+            content: `<p>Solid state and solutions are conceptually distinct but both appear in JEE as calculation-based questions.</p>
+<h4>Crystal Structures</h4>
+<div class="formula">BCC: atoms/cell = 2 | FCC: atoms/cell = 4 | Simple cubic: atoms/cell = 1</div>
+<div class="formula">Packing efficiency: FCC = 74% | BCC = 68% | SC = 52.4%</div>
+<h4>Density of Crystal</h4>
+<div class="formula">ρ = Z × M / (Nₐ × a³) where Z = atoms per cell, a = edge length, Nₐ = Avogadro's number</div>
+<h4>Colligative Properties</h4>
+<p>Depend only on number of solute particles, not nature:</p>
+<div class="formula">Relative lowering of vapour pressure: ΔP/P° = x_solute (Raoult's law)</div>
+<div class="formula">Boiling point elevation: ΔTb = Kb × m × i</div>
+<div class="formula">Freezing point depression: ΔTf = Kf × m × i</div>
+<div class="formula">Osmotic pressure: π = iMRT</div>
+<p>Van't Hoff factor i: degree of dissociation α: i = 1 + α(n−1) where n = ions produced</p>`,
+            qa: [
+              { q: 'Fe forms BCC crystal (a = 2.87 Å, M = 56 g/mol). Find density. (Nₐ = 6×10²³)', a: 'Z=2 for BCC. ρ = ZM/(Nₐ a³) = 2×56/(6×10²³×(2.87×10⁻⁸)³) = 112/(6×10²³×2.365×10⁻²³) = 112/14.19 = 7.89 g/cm³.' },
+              { q: '2 g of glucose (M=180) dissolved in 100g water. Find boiling point elevation. (Kb=0.52)', a: 'm = (2/180)/(100/1000) = 0.0111/0.1 = 0.111 mol/kg. ΔTb = 0.52×0.111 = 0.0578 K.' },
+              { q: 'NaCl (completely dissociated) 0.1m solution — find i and ΔTf. (Kf=1.86)', a: 'NaCl → Na⁺ + Cl⁻, i=2. ΔTf = i×Kf×m = 2×1.86×0.1 = 0.372 K.' },
+              { q: 'What is Raoult\'s law? Does ethanol-water mixture follow it?', a: 'Raoult\'s law: vapour pressure of solvent above solution = mole fraction of solvent × vapour pressure of pure solvent. Ethanol-water shows positive deviation (P > Raoult predicted) due to weaker ethanol-water interactions than pure component interactions.' },
+            ]
+          },
+          {
+            id: 'p-block-elements',
+            title: 'p-Block Elements',
+            subtopics: 'Groups 13-18, Oxoacids of N, P, S, Cl, Allotropes of C, S, P, Noble gases, Industrial uses',
+            definition: 'p-Block elements (Groups 13–18) include many non-metals, metalloids, and a few metals. They show diverse chemistry with multiple oxidation states and form important industrial compounds.',
+            content: `<p>p-Block is a memory-intensive chapter. Focus on anomalous behaviour of first elements and oxoacids for JEE.</p>
+<h4>Group 15 — Nitrogen Family</h4>
+<p>N₂ is very stable (triple bond). Ammonia: sp³, pyramidal. HNO₃ (oxidising acid). Oxoacids: HNO₂ (N=+3), HNO₃ (N=+5).</p>
+<p>Phosphorus allotropes: white P (P₄), red P, black P. P₄O₁₀ is strong dehydrating agent.</p>
+<h4>Group 16 — Oxygen Family</h4>
+<p>O₃ (ozone): angular, oxidising agent, sp² hybridised, resonance. SO₂ (V-shaped), SO₃ (planar). H₂SO₄ is diprotic, dehydrating, oxidising acid.</p>
+<h4>Group 17 — Halogens</h4>
+<p>Oxidising power: F₂ > Cl₂ > Br₂ > I₂. Fluorine shows only −1 (no d-orbitals). Cl₂ used in bleaching, water purification.</p>
+<div class="formula">Oxoacids of Cl: HClO (hypochlorous) < HClO₂ < HClO₃ < HClO₄ (perchloric) — acidity and oxidising power increase</div>
+<h4>Group 18 — Noble Gases</h4>
+<p>XeF₂ (linear), XeF₄ (square planar), XeF₆ (distorted octahedral). Xenon compounds only for Xe (largest, most reactive noble gas).</p>`,
+            qa: [
+              { q: 'Arrange HClO, HClO₂, HClO₃, HClO₄ in order of increasing acid strength.', a: 'HClO < HClO₂ < HClO₃ < HClO₄. As oxidation state of Cl increases, more O atoms withdraw electron density → O-H bond weakens → stronger acid.' },
+              { q: 'Why does N not form pentavalent compounds while P does?', a: 'Nitrogen has no d-orbitals in its valence shell (2nd period) and cannot expand octet. Phosphorus (3rd period) has 3d orbitals available, allowing sp³d hybridisation and pentavalent compounds like PCl₅.' },
+              { q: 'What is the geometry of XeF₄?', a: 'Xe in XeF₄: 4 bond pairs + 2 lone pairs → sp³d² hybridisation. 2 lone pairs in axial positions → square planar geometry.' },
+              { q: 'Why is fluorine always −1 but other halogens can show positive oxidation states?', a: 'Fluorine is the most electronegative element and has no d-orbitals to expand its octet. It cannot show positive oxidation states. Cl, Br, I have d-orbitals and can form bonds with more electronegative oxygen → positive oxidation states in oxoacids.' },
+            ]
+          },
+          {
+            id: 'coordination-compounds',
+            title: 'd-Block Elements & Coordination Compounds',
+            subtopics: 'Transition metals, Variable oxidation states, Ligands, Werner\'s theory, VBT, CFT, IUPAC nomenclature, Isomerism',
+            definition: 'Transition metals occupy d-block and show variable oxidation states, coloured ions, and catalytic properties. Coordination compounds contain a central metal ion bonded to ligands.',
+            content: `<p>Coordination chemistry is high-weightage in JEE. Focus on IUPAC nomenclature, isomerism, and Crystal Field Theory.</p>
+<h4>Transition Metal Characteristics</h4>
+<ul>
+<li>Variable oxidation states (partially filled d-orbitals)</li>
+<li>Coloured ions (d-d transitions) — e.g. Cu²⁺ blue, Cr³⁺ green</li>
+<li>Catalytic activity (due to variable valency and surface properties)</li>
+<li>Paramagnetism (unpaired d-electrons)</li>
+</ul>
+<h4>Ligands and Coordination Number</h4>
+<p>Ligand: species donating lone pair to metal. Monodentate (Cl⁻, NH₃), bidentate (en, ox), polydentate (EDTA). Coordination number = number of bonds to central metal.</p>
+<h4>IUPAC Nomenclature</h4>
+<p>Order: anionic ligands first, then neutral, alphabetically. Metal name last with oxidation state in brackets. Anion complex: "-ate" suffix for metal.</p>
+<h4>Crystal Field Theory (CFT)</h4>
+<p>In octahedral field: d-orbitals split into t₂g (lower, 3 orbitals) and eg (higher, 2 orbitals). Δ₀ = crystal field splitting energy.</p>
+<p>Strong field ligands (CN⁻, CO) → large Δ₀ → low spin. Weak field (F⁻, Cl⁻) → small Δ₀ → high spin.</p>`,
+            qa: [
+              { q: 'Name the complex [Co(NH₃)₄Cl₂]Cl.', a: 'Tetraamminedichloridocobalt(III) chloride. (NH₃ = ammine, Cl⁻ = chlorido, 4+2+oxidation state: Co is +3. Outer Cl⁻ is the counter ion).' },
+              { q: 'How many unpaired electrons in [Fe(CN)₆]³⁻? (Strong field ligand CN⁻)', a: 'Fe³⁺ has d⁵ configuration. CN⁻ is strong field → low spin → t₂g⁵ eg⁰. Only 1 unpaired electron.' },
+              { q: 'Distinguish between geometrical and optical isomerism in coordination compounds.', a: 'Geometrical (cis-trans): different spatial arrangement of same ligands (e.g. cis/trans-[Pt(NH₃)₂Cl₂]). Optical (enantiomers): non-superimposable mirror images (e.g. [Co(en)₃]³⁺) — rotate plane-polarised light differently.' },
+              { q: 'What is the EAN rule and why is it less reliable for 3d metals?', a: 'EAN rule: central metal tends to achieve noble gas electron count. 18-electron rule works well for CO complexes and 4d/5d metals but is often violated by 3d transition metals that form 16- or 17-electron complexes (e.g. many Ni and Cu complexes).' },
+            ]
+          },
+          {
+            id: 'aldehydes-ketones',
+            title: 'Aldehydes, Ketones & Carboxylic Acids',
+            subtopics: 'Preparation, Nucleophilic addition, Aldol condensation, Cannizzaro reaction, Acidity of carboxylic acids, Fischer esterification, Named reactions',
+            definition: 'Aldehydes and ketones contain the carbonyl group (C=O). They undergo characteristic nucleophilic addition reactions. Carboxylic acids are more oxidised and show high acidity due to resonance stabilisation of carboxylate ion.',
+            content: `<p>Carbonyl compounds are central to JEE Organic Chemistry. Named reactions (Aldol, Cannizzaro, Wolff-Kishner) are frequently asked.</p>
+<h4>Nucleophilic Addition to Carbonyl</h4>
+<p>C=O is polarised (δ+ on C). Nucleophiles attack carbon. Aldehydes more reactive than ketones (less steric, more electrophilic).</p>
+<p>Important additions: HCN (cyanohydrin), NaHSO₃ (bisulphite adduct), Grignard (RMgX), water (gem-diol).</p>
+<h4>Named Reactions</h4>
+<ul>
+<li><strong>Aldol condensation:</strong> α-H containing carbonyl + base → β-hydroxy carbonyl (aldol) → dehydration → α,β-unsaturated carbonyl</li>
+<li><strong>Cannizzaro reaction:</strong> Aromatic/non-enolisable aldehyde + strong base → one molecule oxidised, one reduced (disproportionation)</li>
+<li><strong>Clemmensen reduction:</strong> C=O → CH₂ (using Zn-Hg/HCl)</li>
+<li><strong>Wolff-Kishner reduction:</strong> C=O → CH₂ (using N₂H₄/KOH)</li>
+</ul>
+<h4>Carboxylic Acids</h4>
+<div class="formula">pKa ≈ 4-5 for carboxylic acids | Resonance stabilises RCOO⁻ | Electron withdrawing groups ↑ acidity</div>
+<p>Fischer esterification: RCOOH + R'OH ⇌ RCOOR' + H₂O (acid catalyst, reversible)</p>`,
+            qa: [
+              { q: 'Why is formaldehyde (HCHO) more reactive towards nucleophilic addition than acetaldehyde?', a: 'Formaldehyde has no alkyl group on carbonyl carbon → no steric hindrance, no +I effect to reduce electrophilicity. More reactive than acetaldehyde (CH₃CHO) and much more than ketones.' },
+              { q: 'Write the product of Cannizzaro reaction of benzaldehyde with NaOH.', a: 'C₆H₅CHO (no α-H) + NaOH → C₆H₅CH₂OH (benzyl alcohol, reduced) + C₆H₅COONa (sodium benzoate, oxidised). One molecule acts as hydride donor, other as acceptor.' },
+              { q: 'Arrange in order of acidity: HCOOH, CH₃COOH, ClCH₂COOH, Cl₂CHCOOH.', a: 'Cl₂CHCOOH > ClCH₂COOH > HCOOH > CH₃COOH. Electron-withdrawing Cl increases acidity; more Cl atoms = more acidic. CH₃ is electron-donating, making CH₃COOH less acidic than HCOOH.' },
+              { q: 'How is a carboxylic acid converted to an amide?', a: 'RCOOH + SOCl₂ → RCOCl (acid chloride) + NH₃ → RCONH₂ (amide). Or directly: RCOOH + NH₃ → RCOONH₄ (ammonium salt) → heat → RCONH₂ + H₂O.' },
+            ]
+          },
+          {
+            id: 'amines-haloalkanes',
+            title: 'Amines, Haloalkanes & Haloarenes',
+            subtopics: 'Classification of amines, Basicity, Gabriel synthesis, Diazonium salts, SN1 vs SN2, Elimination reactions, Aryl halides',
+            definition: 'Amines are nitrogen-containing organic bases derived from ammonia. Haloalkanes and haloarenes contain C-X bonds and undergo substitution and elimination reactions.',
+            content: `<p>Amines and halogen compounds are high-scoring in JEE. The SN1 vs SN2 distinction and basicity order of amines are key concepts.</p>
+<h4>Basicity of Amines</h4>
+<p>In gas phase: 3° > 2° > 1° > NH₃ (inductive effect dominates). In water: 2° > 1° > 3° > NH₃ (solvation effect for 3° is less).</p>
+<p>Aniline (C₆H₅NH₂) is a weaker base than aliphatic amines — lone pair delocalised into benzene ring.</p>
+<h4>Diazonium Salts</h4>
+<p>ArNH₂ + NaNO₂ + HCl → ArN₂⁺Cl⁻ + 2H₂O (0–5°C). Diazonium salts are highly versatile intermediates.</p>
+<p>Sandmeyer reaction: ArN₂⁺ + CuCN → ArCN, + CuBr → ArBr, + CuCl → ArCl.</p>
+<h4>SN1 vs SN2</h4>
+<div class="formula">SN2: bimolecular, one step, backside attack, inversion, 1° > 2° >> 3°</div>
+<div class="formula">SN1: unimolecular, two steps, racemisation, 3° > 2° >> 1°, favoured by polar protic solvents</div>
+<h4>Elimination Reactions</h4>
+<p>E2 (one step, strong base, anti-periplanar H and X), E1 (two step, forms carbocation first). Saytzeff's rule: more substituted alkene is major product.</p>`,
+            qa: [
+              { q: 'Arrange in order of basicity in water: CH₃NH₂, (CH₃)₂NH, (CH₃)₃N, C₆H₅NH₂.', a: '(CH₃)₂NH > CH₃NH₂ > (CH₃)₃N > C₆H₅NH₂. Secondary aliphatic amine is most basic in aqueous solution. Aniline is weakest (delocalisation of lone pair into ring).' },
+              { q: '(CH₃)₃CBr undergoes SN1 or SN2? Explain.', a: 'SN1. Tertiary carbocation (CH₃)₃C⁺ is very stable (3 alkyl groups providing hyperconjugation and inductive stabilisation). Backside attack (SN2) is sterically impossible for tertiary substrate.' },
+              { q: 'What is Gabriel phthalimide synthesis used for?', a: 'Preparation of pure primary amines (no 2° or 3° amines formed). Phthalimide + KOH → potassium salt + RX → N-alkyl phthalimide → hydrazine hydrolysis → pure primary amine (RNH₂).' },
+              { q: 'Why are aryl halides much less reactive towards nucleophilic substitution than alkyl halides?', a: 'In aryl halides, C-X carbon is sp² hybridised (shorter, stronger bond). Lone pair of X is delocalised into benzene ring (partial double bond character). The ring π-electron density repels incoming nucleophiles. All three factors make SN2 impossible and SN1 very difficult.' },
+            ]
+          },
         ]
       },
       mathematics: {
@@ -7552,6 +8092,253 @@ export const CURRICULUM = {
               { q: 'Find lim[x→∞] (3x²+2x+1)/(5x²−4)', a: 'Divide top and bottom by x²: (3+2/x+1/x²)/(5−4/x²) → 3/5 as x→∞.' },
               { q: 'Evaluate lim[x→0] (eˣ − 1 − x)/x²', a: 'Using Taylor series: eˣ = 1+x+x²/2+... So (eˣ−1−x)/x² = (x²/2+...)/x² → 1/2.' },
               { q: 'Is f(x) = |x−2| continuous and differentiable at x=2?', a: 'Continuous: f(2)=0, lim f(x)=0 ✓. Not differentiable: Left derivative = −1, right derivative = +1. They are unequal → not differentiable at x=2.' },
+            ]
+          },
+          {
+            id: 'differentiation',
+            title: 'Differentiation & Applications',
+            subtopics: 'Rules of differentiation, Chain rule, Implicit differentiation, Maxima & Minima, Monotonicity, Tangents & Normals, Rate of change',
+            definition: 'Differentiation is the process of finding the rate of change of a function. Its applications span finding extreme values, curve sketching, and solving optimisation problems.',
+            content: `<p>Differentiation applications are heavily tested in JEE — maxima/minima, tangent-normal problems, and monotonicity appear every year.</p>
+<h4>Standard Derivatives</h4>
+<div class="formula">d/dx(xⁿ) = nxⁿ⁻¹ | d/dx(eˣ) = eˣ | d/dx(ln x) = 1/x</div>
+<div class="formula">d/dx(sin x) = cos x | d/dx(cos x) = −sin x | d/dx(tan x) = sec²x</div>
+<h4>Chain, Product and Quotient Rules</h4>
+<div class="formula">Chain: d/dx[f(g(x))] = f'(g(x))·g'(x)</div>
+<div class="formula">Product: (uv)' = u'v + uv' | Quotient: (u/v)' = (u'v − uv')/v²</div>
+<h4>Applications</h4>
+<p><strong>Maxima/Minima:</strong> Find f'(x) = 0 (critical points). If f''(x) > 0 → local min; f''(x) < 0 → local max.</p>
+<p><strong>Monotonicity:</strong> f'(x) > 0 → increasing; f'(x) < 0 → decreasing.</p>
+<p><strong>Tangent:</strong> y − y₁ = f'(x₁)(x − x₁). Normal has slope −1/f'(x₁).</p>`,
+            qa: [
+              { q: 'Find dy/dx if y = x³ sin x.', a: 'Product rule: dy/dx = 3x² sin x + x³ cos x.' },
+              { q: 'Find the maximum value of f(x) = x³ − 3x² + 2 on [0, 3].', a: 'f\'(x) = 3x² − 6x = 3x(x−2) = 0 → x = 0, 2. f(0)=2, f(2)=8−12+2=−2, f(3)=27−27+2=2. Max = 2 (at x=0 and x=3).' },
+              { q: 'Find the equation of tangent to y = x² at x = 2.', a: 'f(2) = 4. f\'(x) = 2x → slope at x=2 is 4. Tangent: y − 4 = 4(x − 2) → y = 4x − 4.' },
+              { q: 'For what values of x is f(x) = x³ − 6x² + 9x + 5 increasing?', a: 'f\'(x) = 3x² − 12x + 9 = 3(x−1)(x−3). f\'(x) > 0 when x < 1 or x > 3. Increasing on (−∞, 1) ∪ (3, ∞).' },
+            ]
+          },
+          {
+            id: 'integral-calculus',
+            title: 'Integral Calculus',
+            subtopics: 'Indefinite integrals, Integration by substitution, Integration by parts, Partial fractions, Definite integrals, Properties, Area under curves',
+            definition: 'Integration is the reverse of differentiation. Definite integrals compute area under curves. The Fundamental Theorem of Calculus connects differentiation and integration.',
+            content: `<p>Integration is the single highest-weightage topic in JEE Maths. Master all techniques — especially by parts and definite integral properties.</p>
+<h4>Standard Integrals</h4>
+<div class="formula">∫xⁿdx = xⁿ⁺¹/(n+1)+C | ∫eˣdx = eˣ+C | ∫1/x dx = ln|x|+C</div>
+<div class="formula">∫sinx dx = −cosx+C | ∫cosx dx = sinx+C | ∫sec²x dx = tanx+C</div>
+<h4>Integration by Parts</h4>
+<div class="formula">∫u·v dx = u∫v dx − ∫(u'·∫v dx) dx (ILATE: Inverse, Log, Algebraic, Trig, Exponential)</div>
+<h4>Properties of Definite Integrals</h4>
+<div class="formula">∫ₐᵇ f(x)dx = ∫ₐᵇ f(a+b−x)dx | ∫₀²ᵃ f(x)dx = 2∫₀ᵃ f(x)dx if f(2a−x)=f(x)</div>
+<div class="formula">∫₋ₐᵃ f(x)dx = 2∫₀ᵃ f(x)dx (even f) = 0 (odd f)</div>
+<h4>Area Under Curves</h4>
+<div class="formula">Area = ∫ₐᵇ |f(x)| dx | Area between curves = ∫ₐᵇ |f(x)−g(x)| dx</div>`,
+            qa: [
+              { q: 'Evaluate ∫ x/(1+x²) dx.', a: 'Let t = 1+x², dt = 2x dx. ∫ x/(1+x²)dx = ½∫dt/t = ½ln|1+x²| + C.' },
+              { q: 'Evaluate ∫ x·cos x dx.', a: 'By parts (u=x, dv=cosx dx): ∫x·cosx dx = x·sinx − ∫sinx dx = x sinx + cosx + C.' },
+              { q: 'Find area enclosed between y=x² and y=x.', a: 'Intersection: x²=x → x=0,1. Area = ∫₀¹(x−x²)dx = [x²/2 − x³/3]₀¹ = 1/2 − 1/3 = 1/6 sq. units.' },
+              { q: 'Evaluate ∫₀^π sin x dx.', a: '∫₀^π sin x dx = [−cos x]₀^π = −cos π + cos 0 = 1 + 1 = 2.' },
+            ]
+          },
+          {
+            id: 'differential-equations',
+            title: 'Differential Equations',
+            subtopics: 'Order and degree, Variable separable, Homogeneous equations, Linear differential equations, Applications',
+            definition: 'A differential equation relates a function with its derivatives. Solving a differential equation means finding the function that satisfies the equation, often representing a physical law.',
+            content: `<p>Differential equations appear in JEE as application problems (growth/decay, motion). Variable separable and linear DEs are the key types.</p>
+<h4>Order and Degree</h4>
+<p>Order = highest derivative present. Degree = power of highest-order derivative (after clearing fractions/radicals).</p>
+<h4>Variable Separable</h4>
+<div class="formula">dy/dx = f(x)g(y) → ∫dy/g(y) = ∫f(x)dx + C</div>
+<h4>Homogeneous Equations</h4>
+<p>dy/dx = f(y/x). Substitute y = vx → separable in v and x.</p>
+<h4>Linear Differential Equations</h4>
+<div class="formula">dy/dx + P(x)y = Q(x) | Integrating factor: IF = e^(∫P dx)</div>
+<div class="formula">Solution: y × IF = ∫Q × IF dx + C</div>
+<h4>Applications</h4>
+<p>Population growth: dP/dt = kP → P = P₀eᵏᵗ. Radioactive decay: dN/dt = −λN → N = N₀e^(−λt).</p>`,
+            qa: [
+              { q: 'Solve: dy/dx = (x+1)/(2−y)', a: '(2−y)dy = (x+1)dx. Integrate: 2y − y²/2 = x²/2 + x + C.' },
+              { q: 'Solve: dy/dx + y = eˣ', a: 'Linear DE: P=1, Q=eˣ. IF = e^(∫1dx) = eˣ. y·eˣ = ∫eˣ·eˣdx = ∫e²ˣdx = e²ˣ/2 + C. y = eˣ/2 + Ce⁻ˣ.' },
+              { q: 'Find order and degree of (d²y/dx²)³ + (dy/dx)² = x.', a: 'Highest derivative = d²y/dx² → order = 2. Power of d²y/dx² is 3 → degree = 3.' },
+              { q: 'A population grows at 5% per year. After how many years does it double?', a: 'dP/dt = 0.05P → P = P₀e^(0.05t). When P = 2P₀: e^(0.05t) = 2 → t = ln2/0.05 = 0.693/0.05 ≈ 13.86 years.' },
+            ]
+          },
+          {
+            id: 'complex-numbers',
+            title: 'Complex Numbers & Quadratic Equations',
+            subtopics: 'Algebra of complex numbers, Modulus, Argument, Argand plane, Polar form, De Moivre\'s theorem, Quadratic formula, Nature of roots',
+            definition: 'Complex numbers extend real numbers by introducing i = √(−1). They are essential in algebra, physics, and engineering. Quadratic equations with complex roots use complex number theory.',
+            content: `<p>Complex numbers and quadratic equations together form a large chunk of JEE Algebra. De Moivre's theorem and properties of roots are key.</p>
+<h4>Complex Number Basics</h4>
+<div class="formula">z = a + bi | |z| = √(a²+b²) | arg(z) = θ = tan⁻¹(b/a)</div>
+<div class="formula">Conjugate z̄ = a − bi | z·z̄ = |z|² | 1/z = z̄/|z|²</div>
+<h4>Polar Form and De Moivre's Theorem</h4>
+<div class="formula">z = r(cosθ + i sinθ) = re^(iθ) | zⁿ = rⁿ(cos nθ + i sin nθ)</div>
+<div class="formula">Cube roots of unity: ω = e^(2πi/3), ω² = e^(4πi/3) | 1 + ω + ω² = 0 | ω³ = 1</div>
+<h4>Quadratic Equations</h4>
+<div class="formula">x = (−b ± √(b²−4ac))/2a | Discriminant D = b²−4ac</div>
+<p>D > 0: real distinct roots. D = 0: equal roots. D < 0: complex conjugate roots.</p>
+<p>Sum of roots α+β = −b/a. Product αβ = c/a.</p>
+<h4>Location of Roots</h4>
+<p>Both roots positive: α+β > 0, αβ > 0, D ≥ 0. Both negative: α+β < 0, αβ > 0, D ≥ 0.</p>`,
+            qa: [
+              { q: 'Find modulus and argument of z = 1 + i√3.', a: '|z| = √(1+3) = 2. arg(z) = tan⁻¹(√3/1) = π/3.' },
+              { q: 'If ω is a cube root of unity, find (1+ω)(1+ω²).', a: '(1+ω)(1+ω²) = 1 + ω² + ω + ω³ = 1 + (ω+ω²) + 1 = 1 + (−1) + 1 = 1. (Using 1+ω+ω² = 0 and ω³=1)' },
+              { q: 'Find the quadratic equation whose roots are 3+2i and 3−2i.', a: 'Sum = 6, Product = (3+2i)(3−2i) = 9+4 = 13. Equation: x²−6x+13 = 0.' },
+              { q: 'For what values of k does x²−2kx+k²+k−5 = 0 have real roots?', a: 'D ≥ 0: 4k² − 4(k²+k−5) ≥ 0 → 4k²−4k²−4k+20 ≥ 0 → −4k+20 ≥ 0 → k ≤ 5.' },
+            ]
+          },
+          {
+            id: 'sequences-series',
+            title: 'Sequences, Series & Binomial Theorem',
+            subtopics: 'AP, GP, HP, AGP, Special series, Binomial theorem, General term, Middle term, Binomial coefficients',
+            definition: 'Sequences and series describe ordered lists of numbers and their sums. The binomial theorem provides an efficient way to expand powers of binomial expressions.',
+            content: `<p>Sequences and series along with binomial theorem form a large algebra block in JEE. Special series and AGP are trickier topics.</p>
+<h4>Arithmetic Progression (AP)</h4>
+<div class="formula">aₙ = a + (n−1)d | Sₙ = n/2 × [2a + (n−1)d] = n/2 × (a+l)</div>
+<h4>Geometric Progression (GP)</h4>
+<div class="formula">aₙ = arⁿ⁻¹ | Sₙ = a(rⁿ−1)/(r−1) | S∞ = a/(1−r) for |r| < 1</div>
+<h4>AM-GM-HM Inequality</h4>
+<div class="formula">AM ≥ GM ≥ HM | AM = (a+b)/2, GM = √(ab), HM = 2ab/(a+b)</div>
+<h4>Binomial Theorem</h4>
+<div class="formula">(x+y)ⁿ = Σ C(n,r) xⁿ⁻ʳ yʳ (r from 0 to n)</div>
+<div class="formula">General term: T_{r+1} = C(n,r) aⁿ⁻ʳ bʳ</div>
+<div class="formula">Middle term: T_{n/2+1} if n even | Two middle terms T_{(n+1)/2} & T_{(n+3)/2} if n odd</div>
+<h4>Important Results</h4>
+<div class="formula">Sum of binomial coefficients: 2ⁿ | Sum of alternate terms: 2ⁿ⁻¹</div>`,
+            qa: [
+              { q: 'Find the sum of first 20 terms of AP: 5, 8, 11, ...', a: 'a=5, d=3, n=20. S₂₀ = 20/2 × [2×5 + 19×3] = 10 × [10+57] = 10×67 = 670.' },
+              { q: 'Find the sum to infinity of GP: 1, 1/2, 1/4, ...', a: 'a=1, r=1/2. S∞ = a/(1−r) = 1/(1−1/2) = 2.' },
+              { q: 'Find the middle term in (x + 1/x)¹⁰.', a: 'n=10, middle term = T₆ (r=5). T₆ = C(10,5)·x⁵·(1/x)⁵ = 252·x⁰ = 252.' },
+              { q: 'Find the term independent of x in (x + 1/x²)¹²', a: 'T_{r+1} = C(12,r)·x^{12-r}·(1/x²)^r = C(12,r)·x^{12-3r}. Independent of x: 12−3r=0 → r=4. Term = C(12,4) = 495.' },
+            ]
+          },
+          {
+            id: 'permutations-combinations',
+            title: 'Permutations, Combinations & Probability',
+            subtopics: 'Fundamental principle, Permutations, Combinations, Circular arrangements, Probability, Conditional probability, Bayes\' theorem, Binomial distribution',
+            definition: 'Permutations count ordered arrangements; combinations count unordered selections. Probability theory quantifies the likelihood of events and is the language of statistics and machine learning.',
+            content: `<p>P&C and Probability together form a 3–4 question block in JEE. Master Bayes' theorem and conditional probability carefully.</p>
+<h4>Fundamental Counting Principle</h4>
+<p>If event A can occur in m ways and event B in n ways, both together can occur in m × n ways (AND rule) or m + n ways if mutually exclusive (OR rule).</p>
+<h4>Permutations and Combinations</h4>
+<div class="formula">ⁿPr = n!/(n−r)! | ⁿCr = n!/(r!(n−r)!) | ⁿCr = ⁿC_{n−r}</div>
+<p>Circular permutations: (n−1)! | With repetition allowed: nʳ ways for r objects from n.</p>
+<h4>Probability</h4>
+<div class="formula">P(A) = n(A)/n(S) | P(A∪B) = P(A)+P(B)−P(A∩B)</div>
+<div class="formula">Conditional: P(A|B) = P(A∩B)/P(B)</div>
+<h4>Bayes' Theorem</h4>
+<div class="formula">P(Aᵢ|B) = P(Aᵢ)·P(B|Aᵢ) / Σ P(Aⱼ)·P(B|Aⱼ)</div>
+<h4>Binomial Distribution</h4>
+<div class="formula">P(X=r) = C(n,r)·pʳ·qⁿ⁻ʳ | Mean = np | Variance = npq</div>`,
+            qa: [
+              { q: 'In how many ways can 5 boys and 3 girls be seated so that no two girls sit together?', a: 'Arrange 5 boys first: 5! = 120 ways. 6 gaps created. Choose 3 gaps for girls: ⁶P₃ = 6×5×4 = 120. Total = 120×120 = 14400.' },
+              { q: 'A bag has 4 red and 6 blue balls. Two drawn without replacement. P(both red)?', a: 'P = C(4,2)/C(10,2) = 6/45 = 2/15.' },
+              { q: 'A coin is tossed 6 times. Find P(exactly 4 heads).', a: 'P = C(6,4)×(1/2)⁴×(1/2)² = 15/64.' },
+              { q: 'P(A)=0.4, P(B)=0.3, P(A∩B)=0.1. Find P(A|B) and P(B|A).', a: 'P(A|B) = P(A∩B)/P(B) = 0.1/0.3 = 1/3. P(B|A) = P(A∩B)/P(A) = 0.1/0.4 = 1/4.' },
+            ]
+          },
+          {
+            id: 'coordinate-geometry',
+            title: 'Coordinate Geometry — Conic Sections',
+            subtopics: 'Parabola, Ellipse, Hyperbola, Straight lines, Circles, Tangents, Normals, Pair of straight lines',
+            definition: 'Conic sections are curves formed by intersecting a plane with a double cone. They include parabola, ellipse, and hyperbola — each with a focus-directrix definition and rich tangent-normal theory.',
+            content: `<p>Coordinate geometry is a 4+ question chapter in JEE. Conics require memorising standard forms and using properties efficiently.</p>
+<h4>Parabola: y² = 4ax</h4>
+<div class="formula">Focus (a, 0) | Directrix x = −a | Vertex (0,0) | Latus rectum = 4a</div>
+<p>Parametric: (at², 2at). Tangent at (at², 2at): ty = x + at².</p>
+<h4>Ellipse: x²/a² + y²/b² = 1 (a > b)</h4>
+<div class="formula">c² = a²−b² | e = c/a < 1 | Foci (±c, 0) | Latus rectum = 2b²/a</div>
+<h4>Hyperbola: x²/a² − y²/b² = 1</h4>
+<div class="formula">c² = a²+b² | e = c/a > 1 | Asymptotes: y = ±(b/a)x</div>
+<h4>Circle</h4>
+<div class="formula">General: x²+y²+2gx+2fy+c = 0 | Centre (−g,−f) | Radius = √(g²+f²−c)</div>
+<p>Tangent at (x₁,y₁) on x²+y²=r²: xx₁+yy₁ = r².</p>
+<h4>Straight Lines</h4>
+<div class="formula">Distance from (x₁,y₁) to ax+by+c=0: |ax₁+by₁+c|/√(a²+b²)</div>`,
+            qa: [
+              { q: 'Find the focus and directrix of the parabola y² = 12x.', a: '4a=12 → a=3. Focus (3,0). Directrix: x = −3.' },
+              { q: 'Find eccentricity of ellipse x²/25 + y²/16 = 1.', a: 'a²=25, b²=16. c²=25−16=9, c=3. e = c/a = 3/5.' },
+              { q: 'Find the equation of tangent to x²+y²=25 at point (3,4).', a: 'Tangent: x·3 + y·4 = 25 → 3x + 4y = 25.' },
+              { q: 'Find the distance between parallel lines 3x+4y=5 and 3x+4y=10.', a: 'Distance = |5−10|/√(9+16) = 5/5 = 1.' },
+            ]
+          },
+          {
+            id: 'vectors-3d',
+            title: 'Vectors & 3D Geometry',
+            subtopics: 'Vector operations, Dot product, Cross product, Scalar triple product, Lines in 3D, Planes, Distance formulae, Direction cosines',
+            definition: 'Vectors describe quantities with both magnitude and direction. 3D geometry uses vectors to describe lines and planes in space — essential for physics and engineering applications.',
+            content: `<p>Vectors and 3D are a natural pair in JEE. The scalar triple product and angle between planes are frequently tested.</p>
+<h4>Vector Operations</h4>
+<div class="formula">|a+b|² = |a|²+2a·b+|b|² | a·b = |a||b|cosθ | a×b = |a||b|sinθ n̂</div>
+<div class="formula">a·b = a₁b₁+a₂b₂+a₃b₃ | |a×b| = area of parallelogram</div>
+<h4>Scalar Triple Product</h4>
+<div class="formula">[a b c] = a·(b×c) = volume of parallelepiped | Coplanar if [a b c] = 0</div>
+<h4>Line in 3D</h4>
+<div class="formula">Vector form: r = a + λb | Cartesian: (x−x₁)/l = (y−y₁)/m = (z−z₁)/n</div>
+<h4>Plane</h4>
+<div class="formula">r·n̂ = d (vector) | ax+by+cz = d (cartesian) | Normal vector (a,b,c)</div>
+<div class="formula">Angle between planes: cosθ = |n₁·n₂|/(|n₁||n₂|) | Distance from point to plane: |ax₁+by₁+cz₁−d|/√(a²+b²+c²)</div>
+<h4>Direction Cosines</h4>
+<div class="formula">l=cosα, m=cosβ, n=cosγ | l²+m²+n² = 1</div>`,
+            qa: [
+              { q: 'Find angle between a = î + 2ĵ + 2k̂ and b = 2î + ĵ + 2k̂.', a: 'a·b = 2+2+4 = 8. |a|=|b|=3. cosθ = 8/9. θ = cos⁻¹(8/9).' },
+              { q: 'Find volume of parallelepiped with edges a=(1,0,0), b=(0,1,0), c=(0,0,1).', a: '[a b c] = det of identity matrix = 1. Volume = 1 cubic unit.' },
+              { q: 'Find the distance from point (2,3,−1) to plane x−2y+2z=4.', a: 'Distance = |2−6−2−4|/√(1+4+4) = |−10|/3 = 10/3.' },
+              { q: 'Find the equation of plane passing through (1,2,3) with normal vector (2,−1,1).', a: '2(x−1) − 1(y−2) + 1(z−3) = 0 → 2x−y+z = 3.' },
+            ]
+          },
+          {
+            id: 'matrices-determinants',
+            title: 'Matrices & Determinants',
+            subtopics: 'Matrix operations, Transpose, Adjoint, Inverse, Determinants, Cofactors, Cramer\'s rule, System of linear equations',
+            definition: 'Matrices are rectangular arrays of numbers that encode linear transformations. Determinants are scalar values computed from square matrices, essential for solving systems of linear equations.',
+            content: `<p>Matrices appear in JEE with 2–3 direct questions. Focus on inverse computation, properties of determinants, and Cramer's rule.</p>
+<h4>Matrix Operations</h4>
+<p>Addition, subtraction, scalar multiplication (element-wise). Matrix multiplication AB: entry (i,j) = row i of A · column j of B. AB ≠ BA in general.</p>
+<h4>Determinant Properties</h4>
+<ul>
+<li>If two rows/columns are identical → det = 0</li>
+<li>Interchanging two rows → det changes sign</li>
+<li>det(AB) = det(A)·det(B) | det(kA) = kⁿ det(A) for n×n</li>
+<li>det(A) ≠ 0 → A is invertible</li>
+</ul>
+<h4>Inverse of a Matrix</h4>
+<div class="formula">A⁻¹ = adj(A)/det(A) | adj(A) = transpose of cofactor matrix</div>
+<h4>System of Linear Equations</h4>
+<div class="formula">Cramer's rule: x = Dₓ/D, y = Dᵧ/D, z = D_z/D</div>
+<p>Consistent (unique solution) when D ≠ 0. Infinite solutions when D=0 and Dₓ=Dᵧ=Dz=0. No solution when D=0 but any of Dₓ,Dᵧ,Dz ≠ 0.</p>`,
+            qa: [
+              { q: 'Find det of [[1,2,3],[0,1,4],[5,6,0]].', a: 'Expanding along row 1: 1×(1×0−4×6) − 2×(0×0−4×5) + 3×(0×6−1×5) = 1×(−24) − 2×(−20) + 3×(−5) = −24+40−15 = 1.' },
+              { q: 'If A = [[1,2],[3,4]], find A⁻¹.', a: 'det(A) = 4−6 = −2. adj(A) = [[4,−2],[−3,1]]. A⁻¹ = (1/−2)[[4,−2],[−3,1]] = [[−2,1],[3/2,−1/2]].' },
+              { q: 'Use Cramer\'s rule to solve: x+y=3, 2x−y=0.', a: 'D = 1×(−1)−1×2 = −3. Dₓ = 3×(−1)−1×0 = −3. Dᵧ = 1×0−3×2 = −6. x = −3/−3 = 1, y = −6/−3 = 2.' },
+              { q: 'For what value of k is the system x+y=1, 2x+2y=k inconsistent?', a: 'D = 1×2−1×2 = 0. For inconsistency, Dₓ ≠ 0. Dₓ = 1×k−1×2 = k−2. Inconsistent when k ≠ 2.' },
+            ]
+          },
+          {
+            id: 'trigonometry',
+            title: 'Trigonometry & Inverse Trigonometric Functions',
+            subtopics: 'Trigonometric identities, Equations, Compound angles, Transform formulae, Heights & distances, Inverse trig, Principal values',
+            definition: 'Trigonometry studies the relationships between angles and sides in triangles. Inverse trigonometric functions extend trig to solve equations and appear in calculus.',
+            content: `<p>Trigonometry permeates all of JEE Maths. Compound angle formulae and general solutions of trig equations are the most tested subtopics.</p>
+<h4>Key Identities</h4>
+<div class="formula">sin²x + cos²x = 1 | 1+tan²x = sec²x | 1+cot²x = cosec²x</div>
+<div class="formula">sin(A±B) = sinA cosB ± cosA sinB | cos(A±B) = cosA cosB ∓ sinA sinB</div>
+<div class="formula">tan(A+B) = (tanA+tanB)/(1−tanA tanB)</div>
+<h4>Double and Half Angle Formulae</h4>
+<div class="formula">sin 2A = 2 sinA cosA | cos 2A = cos²A−sin²A = 2cos²A−1 = 1−2sin²A</div>
+<div class="formula">sin²A = (1−cos2A)/2 | cos²A = (1+cos2A)/2</div>
+<h4>General Solutions</h4>
+<div class="formula">sinθ = sinα → θ = nπ+(−1)ⁿα | cosθ = cosα → θ = 2nπ±α | tanθ = tanα → θ = nπ+α</div>
+<h4>Inverse Trig</h4>
+<div class="formula">sin⁻¹(sinx) = x for x∈[−π/2,π/2] | sin⁻¹x+cos⁻¹x = π/2</div>
+<div class="formula">tan⁻¹x+tan⁻¹y = tan⁻¹[(x+y)/(1−xy)] for xy < 1</div>`,
+            qa: [
+              { q: 'Find all solutions of 2sin²x − sinx − 1 = 0 in [0, 2π].', a: '(2sinx+1)(sinx−1) = 0 → sinx = −1/2 or sinx = 1. sinx=1: x=π/2. sinx=−1/2: x=7π/6, 11π/6. Solutions: π/2, 7π/6, 11π/6.' },
+              { q: 'Prove: sin3A = 3sinA − 4sin³A.', a: 'sin3A = sin(2A+A) = sin2A cosA + cos2A sinA = 2sinA cos²A + (1−2sin²A)sinA = 2sinA(1−sin²A) + sinA − 2sin³A = 3sinA − 4sin³A.' },
+              { q: 'Find tan⁻¹(1/2) + tan⁻¹(1/3).', a: 'Using formula: tan⁻¹[(1/2+1/3)/(1−1/6)] = tan⁻¹[(5/6)/(5/6)] = tan⁻¹(1) = π/4.' },
+              { q: 'In a triangle, if A=60°, a=7, b=8, find angle B using sine rule.', a: 'sinB/b = sinA/a → sinB = 8×sin60°/7 = 8×(√3/2)/7 = 4√3/7 ≈ 0.990. B ≈ sin⁻¹(0.990) ≈ 82° (or 98°, check using triangle angle sum).' },
             ]
           },
         ]
