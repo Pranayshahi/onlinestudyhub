@@ -24,7 +24,20 @@ const TESTIMONIALS = [
   { name: 'Ananya Iyer',  class: 'NEET Aspirant, Chennai', avatar: '👩‍🔬', rating: 5, text: 'NEET Biology coverage is incredible. The AI doubt solver saved me hours every day. I got into my dream medical college!' },
 ];
 
-const TRENDING = ['Quadratic Equations','Newton\'s Laws','Organic Chemistry','Cell Division','Photosynthesis','Trigonometry','Electrostatics','Periodic Table','Human Anatomy','Integration','Wave Optics','Genetics'];
+const TRENDING = [
+  { label: 'Quadratic Equations', path: '/class/class-10/subject/mathematics/topic/quadratic-equations' },
+  { label: "Newton's Laws",       path: '/class/class-11/subject/physics/topic/laws-of-motion-11' },
+  { label: 'Organic Chemistry',   path: '/class/class-12/subject/chemistry/topic/organic-chemistry-12' },
+  { label: 'Cell Biology',        path: '/class/class-11/subject/biology/topic/cell-biology-11' },
+  { label: 'Photosynthesis',      path: '/class/class-12/subject/biology/topic/photosynthesis-neet' },
+  { label: 'Trigonometry',        path: '/class/class-11/subject/mathematics/topic/trigonometry' },
+  { label: 'Electrostatics',      path: '/class/class-12/subject/physics/topic/electrostatics' },
+  { label: 'Periodic Table',      path: '/class/class-10/subject/chemistry/topic/periodic-classification-10' },
+  { label: 'Life Processes',      path: '/class/class-10/subject/biology/topic/life-processes' },
+  { label: 'Integration',         path: '/class/class-12/subject/mathematics/topic/integrals' },
+  { label: 'Wave Optics',         path: '/class/class-12/subject/physics/topic/optics-12' },
+  { label: 'Genetics',            path: '/class/class-12/subject/biology/topic/genetics' },
+];
 
 const STATS = [
   { num: '50,000+', label: 'Students Learning', icon: '🎓' },
@@ -227,9 +240,9 @@ export default function HomePage() {
           <div style={{ flex: 1, overflow: 'hidden' }}>
             <div className="trending-track">
               {[...TRENDING, ...TRENDING].map((t, i) => (
-                <Link key={i} to={`/search?q=${encodeURIComponent(t)}`}
+                <Link key={i} to={t.path}
                   style={{ textDecoration: 'none', flexShrink: 0 }}>
-                  <span className="trending-pill">{t}</span>
+                  <span className="trending-pill">{t.label}</span>
                 </Link>
               ))}
             </div>
