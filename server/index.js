@@ -167,7 +167,7 @@ app.post('/api/auth/student/register', async (req, res) => {
     const hash = await bcrypt.hash(password, 10);
     const student = await Student.create({ email, password_hash: hash, name });
 
-    const token = jwt.sign({ id: student._id.toString(), email, role: 'student' }, JWT_SECRET, { expiresIn: '30d' });
+    const token = jwt.sign({ id: student._id.toString(), email, name, role: 'student' }, JWT_SECRET, { expiresIn: '30d' });
     res.status(201).json({ token, id: student._id, email, name, role: 'student' });
   } catch (err) {
     console.error('Student Register error:', err);
@@ -187,7 +187,7 @@ app.post('/api/auth/student/login', async (req, res) => {
     const valid = await bcrypt.compare(password, student.password_hash);
     if (!valid) return res.status(401).json({ error: 'Invalid credentials' });
 
-    const token = jwt.sign({ id: student._id.toString(), email: student.email, role: 'student' }, JWT_SECRET, { expiresIn: '30d' });
+    const token = jwt.sign({ id: student._id.toString(), email: student.email, name: student.name, role: 'student' }, JWT_SECRET, { expiresIn: '30d' });
     res.json({ token, id: student._id, email: student.email, name: student.name, role: 'student' });
   } catch (err) {
     console.error('Student Login error:', err);
@@ -699,7 +699,13 @@ app.post('/api/forum', requireStudentAuth, async (req, res) => {
   try {
     const { classId, subjectId, topicId, question } = req.body;
     if (!classId || !subjectId || !topicId || !question?.trim()) return res.status(400).json({ error: 'Missing fields' });
-    const post = await ForumPost.create({ classId, subjectId, topicId, authorName: req.student.name, authorEmail: req.student.email, question: question.trim() });
+    // name may be absent in old tokens — fall back to DB lookup
+    let authorName = req.student.name;
+    if (!authorName) {
+      const s = await Student.findById(req.student.id).lean();
+      authorName = s?.name || req.student.email.split('@')[0];
+    }
+    const post = await ForumPost.create({ classId, subjectId, topicId, authorName, authorEmail: req.student.email, question: question.trim() });
     res.json(post);
   } catch (e) { res.status(500).json({ error: e.message }); }
 });
@@ -708,8 +714,13 @@ app.post('/api/forum/:postId/answers', requireStudentAuth, async (req, res) => {
   try {
     const { text } = req.body;
     if (!text?.trim()) return res.status(400).json({ error: 'Answer text required' });
+    let authorName = req.student.name;
+    if (!authorName) {
+      const s = await Student.findById(req.student.id).lean();
+      authorName = s?.name || req.student.email.split('@')[0];
+    }
     const post = await ForumPost.findByIdAndUpdate(req.params.postId, {
-      $push: { answers: { authorName: req.student.name, authorEmail: req.student.email, text: text.trim(), isTeacher: false } }
+      $push: { answers: { authorName, authorEmail: req.student.email, text: text.trim(), isTeacher: false } }
     }, { new: true });
     if (!post) return res.status(404).json({ error: 'Post not found' });
     res.json(post);
