@@ -8675,6 +8675,375 @@ export const CURRICULUM = {
               { q: 'What is the difference between Monera and Protista?', a: 'Monera: Prokaryotes (no membrane-bound nucleus), unicellular, 70S ribosomes, no membrane-bound organelles, cell wall present (peptidoglycan in bacteria), all are microscopic. Examples: Bacteria, Cyanobacteria, Mycoplasma. Protista: Eukaryotes (membrane-bound nucleus), mainly unicellular, 80S ribosomes, membrane-bound organelles present. Examples: Amoeba (pseudopods), Paramecium (cilia), Euglena (flagella), Plasmodium.' },
             ]
           },
+          {
+            id: 'structural-organisation-plants',
+            title: 'Structural Organisation in Plants',
+            subtopics: 'Morphology of flowering plants, Root, Stem, Leaf, Flower, Fruit, Seed, Anatomy of root/stem/leaf, Secondary growth',
+            definition: 'Structural organisation in plants covers the external (morphology) and internal (anatomy) structure of flowering plants. Understanding root, stem, leaf, flower, fruit, and seed anatomy is essential for NEET.',
+            content: `<p>Morphology and anatomy of plants accounts for 5–8% of NEET Biology. Know the diagrams and differences between monocot and dicot structures.</p>
+<h4>Root</h4>
+<p>Functions: Anchorage, absorption of water and minerals, storage. Types: Taproot (dicots — Mustard), Fibrous root (monocots — Wheat), Adventitious (Banyan). Regions: Root cap → Meristematic zone → Elongation zone → Maturation zone (root hairs). Internal: Epidermis → Cortex → Endodermis (Casparian strip) → Pericycle → Vascular bundle.</p>
+<h4>Stem</h4>
+<p>Functions: Support, conduction, photosynthesis (green stems), storage. Modifications: Rhizome (Ginger), Tuber (Potato), Corm (Colocasia), Tendril (Cucumber), Thorn (Citrus). Anatomy: Dicot — ring of vascular bundles, open, endarch. Monocot — scattered vascular bundles, closed, endarch.</p>
+<h4>Leaf</h4>
+<p>Parts: Leaf base (stipules), Petiole, Lamina (blade). Venation: Reticulate (dicots), Parallel (monocots). Phyllotaxy: Alternate, Opposite, Whorled. Modifications: Tendril (Peas), Spine (Cactus), Pitcher (Nepenthes). Anatomy: Upper epidermis → Palisade mesophyll → Spongy mesophyll → Lower epidermis (stomata). Stomata: Guard cells regulate opening/closing.</p>
+<h4>Flower, Fruit & Seed</h4>
+<p>Flower parts: Calyx (sepals) + Corolla (petals) + Androecium (stamens) + Gynoecium (carpels/pistil). Fruit: Develops from ovary after fertilisation. True fruit (from ovary alone); False fruit (from thalamus — Apple, Strawberry). Seed: Testa + Tegmen + Embryo (radicle, plumule, cotyledons). Monocot seed: 1 cotyledon (endospermic); Dicot: 2 cotyledons (non-endospermic — Pea; endospermic — Castor).</p>
+<h4>Secondary Growth (Dicots only)</h4>
+<p>Vascular cambium produces secondary xylem (wood) outward and secondary phloem inward. Cork cambium (phellogen) produces cork (phellem). Annual rings = growth rings visible in cross section of wood.</p>`,
+            qa: [
+              { q: 'What is the Casparian strip and what is its function?', a: 'The Casparian strip is a band of suberin (waxy substance) present in the radial and transverse walls of endodermal cells of roots. It prevents apoplastic movement of water and solutes into the vascular tissue, forcing them through the symplastic pathway (through cells). This allows selective absorption of minerals.' },
+              { q: 'Distinguish between monocot and dicot stem anatomy.', a: 'Dicot stem: Vascular bundles arranged in a ring, open (have cambium between xylem and phloem), bundle sheath absent, ground tissue differentiated into cortex and pith, secondary growth possible. Monocot stem: Vascular bundles scattered throughout ground tissue, closed (no cambium), bundle sheath present, ground tissue not differentiated, no secondary growth.' },
+              { q: 'What is meant by phyllotaxy? Give examples of each type.', a: 'Phyllotaxy is the pattern of arrangement of leaves on the stem. Types: (1) Alternate — one leaf per node, alternate sides (China rose, Sunflower). (2) Opposite — two leaves per node, opposite each other (Calotropis, Guava). (3) Whorled — three or more leaves per node in a whorl (Alstonia, Nerium).' },
+              { q: 'What is a false fruit? Give two examples.', a: 'A false fruit (pseudocarp) develops from parts of the flower other than (or in addition to) the ovary. Examples: Apple — thalamus (receptacle) forms the fleshy part; Strawberry — also develops from thalamus; Cashew nut — the "fruit" is actually an enlarged peduncle (pedicel), the true fruit is the cashew nut.' },
+              { q: 'What are the different types of root modifications and their functions?', a: 'Roots are modified for: (1) Storage — Fusiform (Radish), Napiform (Turnip), Conical (Carrot), Fasciculated (Dahlia). (2) Support — Prop roots/pillar roots (Banyan), Stilt roots (Maize, Sugarcane). (3) Respiration — Pneumatophores (Rhizophora — mangrove, for breathing in waterlogged soil). (4) Symbiosis — Nodulated roots (Legumes, Nitrogen fixation with Rhizobium).' },
+            ]
+          },
+          {
+            id: 'structural-organisation-animals',
+            title: 'Structural Organisation in Animals',
+            subtopics: 'Animal tissues (epithelial, connective, muscular, neural), Cockroach morphology and anatomy, Earthworm, Frog',
+            definition: 'Animal tissues are groups of similar cells performing a specific function. The study of cockroach, earthworm, and frog anatomy provides model examples of organ system organisation in animals.',
+            content: `<p>Animal tissues and cockroach anatomy together constitute 5–7% of NEET marks. Master tissue types and their examples precisely.</p>
+<h4>Epithelial Tissue</h4>
+<p>Covers body surfaces, lines cavities, forms glands. Types based on cell shape: Squamous (flat — skin, blood vessels), Cuboidal (cube-shaped — kidney tubules, salivary glands), Columnar (column-shaped — intestinal lining). Based on layers: Simple (one layer) vs Stratified (multiple layers — skin). Special: Ciliated columnar (respiratory tract — mucus movement), Glandular epithelium (secretion).</p>
+<h4>Connective Tissue</h4>
+<p>Connects, supports, and binds other tissues. Matrix-based. Types: (1) Loose connective — Areolar (between organs, fibroblasts, collagen/elastic fibres), Adipose (fat storage). (2) Dense connective — Tendons (muscle to bone, white collagen), Ligaments (bone to bone, yellow elastic). (3) Specialised — Cartilage (chondrocytes in lacunae, avascular), Bone (osteocytes, Haversian canal, calcified matrix), Blood (fluid matrix = plasma, RBC, WBC, platelets).</p>
+<h4>Muscular Tissue</h4>
+<table style="width:100%;border-collapse:collapse;font-size:.85rem">
+<tr style="background:#f3f4f6"><th style="padding:.4rem">Feature</th><th>Skeletal</th><th>Smooth</th><th>Cardiac</th></tr>
+<tr><td style="padding:.3rem">Control</td><td>Voluntary</td><td>Involuntary</td><td>Involuntary</td></tr>
+<tr style="background:#f9fafb"><td style="padding:.3rem">Striations</td><td>Yes</td><td>No</td><td>Yes</td></tr>
+<tr><td style="padding:.3rem">Nuclei</td><td>Multi, peripheral</td><td>Single, central</td><td>Single, central</td></tr>
+<tr style="background:#f9fafb"><td style="padding:.3rem">Location</td><td>Attached to bones</td><td>Visceral organs</td><td>Heart only</td></tr>
+</table>
+<h4>Neural Tissue</h4>
+<p>Neurons (nerve cells): Cell body (cyton) with Nissl granules + Dendrites (receive signals) + Axon (transmit signals, covered by myelin sheath). Neuroglia: Supporting cells (Schwann cells form myelin). Transmission: Electrical impulse along axon; Chemical synapse at junction (neurotransmitter release).</p>
+<h4>Cockroach (Periplaneta americana)</h4>
+<p>Arthropod, omnivore. Body: Head (compound eyes, antennae, mouthparts) + Thorax (3 segments, 3 pairs legs, 2 pairs wings) + Abdomen (10 segments). Digestive system: Mouth → Pharynx → Oesophagus → Crop (storage) → Gizzard (grinding) → Stomach (8 gastric coecea) → Intestine → Rectum → Anus. Malpighian tubules: excretion (uric acid). Nervous system: Cerebral ganglia (brain) + Double ventral nerve cord. Reproduction: Oviparous; egg case = ootheca.</p>`,
+            qa: [
+              { q: 'What are Malpighian tubules? What is their function in cockroach?', a: 'Malpighian tubules are yellow-coloured, thin filamentous structures attached at the junction of midgut and hindgut in cockroach (about 100–150 in number). They are the excretory organs — absorb nitrogenous wastes (mainly uric acid) from haemolymph and discharge them into the hindgut for elimination. Cockroach is uricotelic.' },
+              { q: 'Distinguish between tendons and ligaments.', a: 'Tendons: Made of white fibrous connective tissue (dense collagen fibres), connect skeletal muscle to bone, inelastic but strong, enable muscle force transmission to bone. Ligaments: Made of yellow elastic connective tissue (elastin fibres + some collagen), connect bone to bone at joints, provide flexibility while holding joints together, slightly elastic.' },
+              { q: 'What is the significance of the Haversian canal system in bone?', a: 'Bone is composed of Haversian systems (osteons). Each Haversian canal runs longitudinally through the bone and contains blood vessels and nerves. Concentric rings of calcified matrix (lamellae) surround it. Osteocytes sit in spaces called lacunae between lamellae. Canaliculi connect lacunae, allowing nutrient exchange. This system gives bone strength while allowing blood supply to living osteocytes.' },
+              { q: 'What is the difference between cartilage and bone?', a: 'Cartilage: Connective tissue with semi-solid/flexible matrix (chondrin, proteoglycans). Cells = chondrocytes in lacunae. Avascular (no blood supply — nutrients by diffusion). Flexible and compressible. Examples: ear pinna, tip of nose, larynx, intervertebral discs. Bone: Hard rigid matrix (collagen + calcium phosphate/hydroxyapatite). Cells = osteocytes. Vascular (Haversian canals with blood vessels). Rigid. Examples: femur, skull.' },
+              { q: 'Describe the nervous system of cockroach.', a: 'The nervous system of cockroach consists of: (1) Supra-oesophageal ganglion (cerebral ganglia/brain) — above oesophagus in head, controls compound eyes, antennae. (2) Sub-oesophageal ganglion — below oesophagus. These are connected by circumoesophageal connectives forming a nerve ring. (3) Double ventral nerve cord runs along the ventral midline with segmental ganglia in each thoracic and abdominal segment. Ten abdominal ganglia control respective segments.' },
+            ]
+          },
+          {
+            id: 'biomolecules',
+            title: 'Biomolecules',
+            subtopics: 'Carbohydrates, Proteins, Lipids, Nucleic acids, Enzymes (structure, mechanism, factors), Vitamins',
+            definition: 'Biomolecules are the organic molecules that form the structural and functional basis of living organisms. They include carbohydrates, proteins, lipids, and nucleic acids, each with specific roles in cellular metabolism.',
+            content: `<p>Biomolecules is a high-weightage NEET topic (~8%). Master enzyme kinetics and the classification of each biomolecule.</p>
+<h4>Carbohydrates</h4>
+<p>General formula: Cₙ(H₂O)ₙ. Energy source and structural molecules.</p>
+<ul>
+<li><strong>Monosaccharides:</strong> Glucose (C₆H₁₂O₆), Fructose, Galactose, Ribose (C₅ — in RNA), Deoxyribose (C₅ — in DNA)</li>
+<li><strong>Disaccharides:</strong> Sucrose (Glucose + Fructose), Maltose (Glucose + Glucose), Lactose (Glucose + Galactose)</li>
+<li><strong>Polysaccharides:</strong> Starch (storage in plants — amylose + amylopectin), Glycogen (storage in animals — "animal starch"), Cellulose (structural in plant cell wall), Chitin (fungal cell wall, arthropod exoskeleton)</li>
+</ul>
+<h4>Proteins</h4>
+<p>Made of amino acids joined by peptide bonds. 20 amino acids (8 essential — must be obtained from diet). Structure levels: Primary (amino acid sequence) → Secondary (α-helix or β-pleated sheet, H-bonds) → Tertiary (3D folding, disulphide bonds, hydrophobic interactions) → Quaternary (multiple polypeptide chains — Haemoglobin). Functions: Structural (collagen, keratin), Enzymatic (pepsin), Transport (haemoglobin), Hormonal (insulin), Immunological (antibodies), Motor (actin, myosin).</p>
+<h4>Lipids</h4>
+<p>Insoluble in water, soluble in organic solvents. Types: Fats/Oils (glycerol + 3 fatty acids — triglycerides; saturated vs unsaturated), Phospholipids (cell membrane — hydrophilic head + hydrophobic tail), Steroids (cholesterol — membrane fluidity; hormones — testosterone, estrogen), Waxes (cuticle of plants, earwax).</p>
+<h4>Enzymes</h4>
+<p>Biological catalysts — protein in nature (except ribozymes — RNA). Characteristics: Highly specific (one enzyme–one substrate), reusable, sensitive to temperature and pH.</p>
+<p><strong>Lock and Key Model:</strong> (Emil Fischer) — Active site has rigid complementary shape to substrate.</p>
+<p><strong>Induced Fit Model:</strong> (Koshland) — Active site changes shape upon substrate binding.</p>
+<div class="formula">Km (Michaelis constant) = substrate concentration at half-maximum velocity. Lower Km → higher enzyme affinity.</div>
+<p><strong>Factors:</strong> Temperature (optimum ~37°C in humans), pH (pepsin opt. pH 2, salivary amylase pH 6.8, trypsin pH 8), Substrate conc., Inhibitors (Competitive — blocks active site; Non-competitive — binds allosteric site, changes shape).</p>
+<p><strong>Classification:</strong> Oxidoreductases, Transferases, Hydrolases (most digestive enzymes), Lyases, Isomerases, Ligases.</p>`,
+            qa: [
+              { q: 'What is the difference between competitive and non-competitive inhibition of enzymes?', a: 'Competitive inhibition: Inhibitor molecule resembles substrate, competes for and binds active site. Effect can be overcome by increasing substrate concentration. Example: Malonate inhibits succinate dehydrogenase (succinate is normal substrate). Non-competitive inhibition: Inhibitor binds allosteric site (not active site), changes enzyme shape → reduces activity. Cannot be overcome by increasing substrate. Example: Cyanide inhibits cytochrome oxidase.' },
+              { q: 'What are essential amino acids? Name any four.', a: 'Essential amino acids cannot be synthesised by the human body and must be obtained from diet. There are 8 essential amino acids: Valine, Leucine, Isoleucine, Phenylalanine, Tryptophan, Methionine, Threonine, Lysine. (Mnemonic: PVT TIM HaLL). A 9th — Histidine — is essential in children. Deficiency causes Kwashiorkor (protein deficiency disease).' },
+              { q: 'Distinguish between starch and cellulose.', a: 'Starch: Storage polysaccharide in plants. Made of α-glucose units. Two components: Amylose (linear, α-1,4 glycosidic bonds) and Amylopectin (branched, α-1,4 and α-1,6 bonds). Digestible by humans (amylase enzyme). Cellulose: Structural polysaccharide in plant cell walls. Made of β-glucose units with β-1,4 glycosidic bonds. Forms straight chains (H-bonding between chains → rigid fibres). Not digestible by humans (no cellulase enzyme) but is dietary fibre.' },
+              { q: 'What is the role of phospholipids in cell membranes?', a: 'Phospholipids are the primary structural component of cell membranes. Each phospholipid has a hydrophilic (water-loving) phosphate head and two hydrophobic (water-fearing) fatty acid tails. In aqueous environments, they spontaneously arrange into a bilayer — heads facing outward (water), tails facing inward. This bilayer is selectively permeable — allows passage of small nonpolar molecules but restricts ions and large polar molecules. The fluid nature allows membrane protein movement.' },
+              { q: 'What is Km and what does a low Km value indicate about an enzyme?', a: 'Km (Michaelis constant) is the substrate concentration at which the reaction rate is half the maximum velocity (Vmax). It is a measure of enzyme-substrate affinity. A LOW Km means the enzyme reaches half-maximum velocity at low substrate concentration → enzyme has HIGH affinity for its substrate (binds tightly). A HIGH Km means LOW affinity — enzyme needs high substrate concentration to be effective. Km is specific for a given enzyme-substrate pair at defined temperature and pH.' },
+            ]
+          },
+          {
+            id: 'plant-physiology-remaining',
+            title: 'Plant Physiology — Respiration, Mineral Nutrition & Growth',
+            subtopics: 'Respiration in plants (glycolysis, Krebs cycle, ETC), Mineral nutrition (macro/micronutrients, deficiency), Transport in plants (osmosis, transpiration), Plant growth regulators (auxin, gibberellin, cytokinin, ABA, ethylene)',
+            definition: 'Plant physiology covers how plants carry out vital processes: respiration to release energy, mineral absorption for growth, water transport through the plant body, and hormonal regulation of growth and development.',
+            content: `<p>Plant physiology accounts for ~10% of NEET. Respiration biochemistry and plant hormones are particularly high-yield.</p>
+<h4>Respiration in Plants</h4>
+<p><strong>Glycolysis (in cytoplasm):</strong> Glucose (6C) → 2 Pyruvate (3C). Net yield: 2 ATP + 2 NADH. Occurs in all living cells, does not require O₂.</p>
+<p><strong>Krebs Cycle / TCA cycle (in mitochondrial matrix):</strong> 2 Pyruvate → Acetyl-CoA → Citrate → ... → Oxaloacetate. Per glucose: 2 ATP, 6 NADH, 2 FADH₂, 4 CO₂ released.</p>
+<p><strong>Electron Transport Chain (inner mitochondrial membrane):</strong> NADH and FADH₂ donate electrons → O₂ is final electron acceptor → H₂O formed. Oxidative phosphorylation produces 32–34 ATP via ATP synthase (chemiosmosis).</p>
+<div class="formula">Total ATP from complete aerobic respiration: ~36–38 ATP per glucose</div>
+<p><strong>Fermentation (anaerobic):</strong> Yeast: Pyruvate → Ethanol + CO₂. Animals/bacteria: Pyruvate → Lactate. Only 2 ATP produced.</p>
+<p><strong>Respiratory Quotient (RQ):</strong> RQ = CO₂ released / O₂ consumed. Carbohydrates: RQ = 1; Fats: RQ < 1 (~0.7); Proteins: RQ ≈ 0.9; Organic acids: RQ > 1.</p>
+<h4>Mineral Nutrition</h4>
+<p><strong>Macronutrients</strong> (needed in large amounts): N, P, K, Ca, Mg, S. <strong>Micronutrients</strong> (trace amounts): Fe, Mn, Cu, Zn, Mo, B, Cl, Ni.</p>
+<p>Essential criteria: (1) Necessary for normal growth/reproduction, (2) Cannot be replaced by another element, (3) Directly involved in metabolism. N is most commonly deficient (yellowing — chlorosis). Fe deficiency → interveinal chlorosis. N, K, Mg = mobile (deficiency in old leaves first); Ca, Fe = immobile (deficiency in young leaves first).</p>
+<h4>Transport in Plants</h4>
+<p>Water absorption: Osmosis (passive, from high ψ to low ψ — water potential). Apoplast pathway (through cell walls, faster) vs Symplast pathway (through cytoplasm, via plasmodesmata). Ascent of sap: Cohesion-tension theory (Dixon & Joly) — transpiration pull + cohesion of water molecules. Phloem transport: Pressure flow hypothesis (Münch) — sugar loaded at source, unloaded at sink, mass flow of phloem sap.</p>
+<h4>Plant Growth Regulators</h4>
+<table style="width:100%;border-collapse:collapse;font-size:.85rem">
+<tr style="background:#f3f4f6"><th style="padding:.4rem">Hormone</th><th>Site of production</th><th>Major functions</th></tr>
+<tr><td style="padding:.3rem"><strong>Auxin (IAA)</strong></td><td>Shoot apices</td><td>Cell elongation, apical dominance, root initiation, phototropism, fruit development (parthenocarpy)</td></tr>
+<tr style="background:#f9fafb"><td style="padding:.3rem"><strong>Gibberellin (GA₃)</strong></td><td>Young leaves, seeds</td><td>Stem elongation (bolting), seed germination, fruit growth, breaks dormancy, delays senescence</td></tr>
+<tr><td style="padding:.3rem"><strong>Cytokinin</strong></td><td>Root apices, seeds</td><td>Cell division (cytokinesis), delays senescence (Richmond-Lang effect), lateral bud growth</td></tr>
+<tr style="background:#f9fafb"><td style="padding:.3rem"><strong>ABA</strong></td><td>Leaves, roots, seeds</td><td>Stomatal closure (stress response), seed dormancy, promotes senescence — "stress hormone"</td></tr>
+<tr><td style="padding:.3rem"><strong>Ethylene</strong></td><td>Ripening fruits</td><td>Fruit ripening (commercial use), leaf/fruit abscission, inhibits elongation, promotes root growth</td></tr>
+</table>`,
+            qa: [
+              { q: 'What is the net ATP yield from complete aerobic respiration of one glucose molecule?', a: 'Complete aerobic respiration of one glucose yields approximately 36–38 ATP. Breakdown: Glycolysis = 2 ATP (net) + 2 NADH. Pyruvate oxidation = 2 NADH. Krebs cycle = 2 ATP + 6 NADH + 2 FADH₂. ETC: Each NADH → ~2.5 ATP; each FADH₂ → ~1.5 ATP. Total from 10 NADH = 25 ATP; from 2 FADH₂ = 3 ATP; substrate-level = 4 ATP. Grand total ≈ 32–38 ATP (textbook value = 36).' },
+              { q: 'Explain the cohesion-tension theory for ascent of sap.', a: 'Proposed by Dixon & Joly. Water molecules have strong cohesion (attraction to each other due to H-bonds) and adhesion (to xylem walls). Transpiration from leaves creates negative pressure (tension) in leaf mesophyll cells, reducing their water potential. This tension is transmitted as a "pull" through the continuous column of water in xylem, from roots to leaves. The cohesive properties of water prevent the column from breaking. Root pressure provides additional push from below.' },
+              { q: 'What is apical dominance and which hormone is responsible?', a: 'Apical dominance is the suppression of growth of lateral (axillary) buds by the presence of the apical bud. It is caused by auxin (IAA) produced by the apical bud, which diffuses downward and inhibits lateral bud growth. When the apical bud is removed (pruning), auxin supply stops → lateral buds grow → bushier plant. Cytokinins counteract apical dominance by promoting lateral bud growth.' },
+              { q: 'What is the Respiratory Quotient (RQ) and what does an RQ > 1 indicate?', a: 'RQ = CO₂ released / O₂ consumed during respiration. For carbohydrates: RQ = 1 (equal volumes of CO₂ and O₂). For fats: RQ ≈ 0.7 (less CO₂, more O₂ needed). For proteins: RQ ≈ 0.9. An RQ > 1 indicates anaerobic respiration or respiration of organic acids (like malic acid in succulent plants). During heavy exercise: partial anaerobic respiration → more CO₂, less O₂ → RQ > 1.' },
+              { q: 'Name two mobile and two immobile mineral elements in plants and explain why this matters.', a: 'Mobile minerals: N (nitrogen), K (potassium), P (phosphorus), Mg (magnesium). These can be remobilised from older leaves to younger growing tissues → deficiency symptoms appear first in older (lower) leaves (chlorosis, necrosis). Immobile minerals: Ca (calcium), Fe (iron), S (sulphur). Cannot be remobilised → deficiency appears first in younger (upper) leaves and growing tips (tip burn, interveinal chlorosis). This helps diagnose deficiency symptoms.' },
+            ]
+          },
+          {
+            id: 'sexual-reproduction-plants',
+            title: 'Sexual Reproduction in Flowering Plants',
+            subtopics: 'Flower structure, Microsporogenesis, Megasporogenesis, Pollination, Double fertilisation, Embryo development, Fruits and seeds, Apomixis, Polyembryony',
+            definition: 'Sexual reproduction in flowering plants involves formation of male (pollen) and female (ovule) gametes, their transfer (pollination), double fertilisation unique to angiosperms, and development into seeds and fruits.',
+            content: `<p>This chapter is one of the highest-weightage NEET Biology topics (~8%). Double fertilisation and embryo development are most commonly tested.</p>
+<h4>Flower Structure</h4>
+<p>Stamen (male) = Filament + Anther (contains pollen sacs — microsporangia). Pistil/Carpel (female) = Stigma + Style + Ovary (contains ovule). Ovule parts: Funicle + Hilum + Integuments (2) + Nucellus + Embryo sac.</p>
+<h4>Microsporogenesis (Pollen formation)</h4>
+<p>Pollen mother cell (2n) → Meiosis → Tetrad of microspores (n) → Each microspore → Pollen grain. Pollen grain = 2-celled: Vegetative cell (large, controls germination) + Generative cell (divides to form 2 male gametes). Pollen wall: Exine (sporopollenin — very resistant) + Intine (cellulose + pectin).</p>
+<h4>Megasporogenesis (Ovule formation)</h4>
+<p>Megaspore mother cell (2n, in nucellus) → Meiosis → 4 megaspores (n) → 3 degenerate → 1 functional megaspore → 3 mitotic divisions → 7-celled, 8-nucleate embryo sac (Polygonum type). Cells: 3 antipodals + 2 synergids + 1 egg cell + 1 central cell (2 polar nuclei).</p>
+<h4>Pollination</h4>
+<p>Transfer of pollen from anther to stigma. Self-pollination (autogamy) vs Cross-pollination (allogamy). Agents: Wind (anemophily — light pollen, feathery stigma — Maize, Wheat), Water (hydrophily — Vallisneria), Insects (entomophily — colourful, fragrant flowers — most angiosperms), Animals (zoophily). Outbreeding devices: Self-incompatibility, Dioecy, Protandry, Protogyny.</p>
+<h4>Double Fertilisation (Unique to Angiosperms)</h4>
+<p>Pollen tube grows through stigma → style → enters ovule through micropyle → discharges 2 male gametes into embryo sac.</p>
+<div class="formula">Syngamy: 1 male gamete (n) + Egg cell (n) → Zygote (2n) → Embryo</div>
+<div class="formula">Triple fusion: 1 male gamete (n) + 2 polar nuclei (n+n) → Primary endosperm nucleus (3n) → Endosperm</div>
+<h4>Embryo Development & Seed</h4>
+<p>Zygote → Proembryo → Globular → Heart-shaped → Torpedo → Mature embryo. Seed = Testa + Tegmen + Embryo + Endosperm (food reserve). Fruit: Ovary wall (pericarp) = Epicarp + Mesocarp + Endocarp encloses seed.</p>
+<h4>Special Cases</h4>
+<p><strong>Apomixis:</strong> Seed formation without fertilisation (e.g., Citrus, Mango). <strong>Polyembryony:</strong> More than one embryo in a seed (Citrus). <strong>Parthenocarpy:</strong> Fruit development without fertilisation → seedless fruits (Banana, Grapes treated with auxin).</p>`,
+            qa: [
+              { q: 'What is double fertilisation? Why is it significant?', a: 'Double fertilisation is unique to angiosperms (flowering plants). Two male gametes from pollen tube participate in two separate fusion events: (1) Syngamy — one male gamete fuses with egg cell (n) → zygote (2n) → develops into embryo. (2) Triple fusion — second male gamete fuses with two polar nuclei (n+n) → Primary Endosperm Nucleus (3n) → develops into endosperm (food reserve for embryo). Significance: Both embryo AND food reserve are formed, ensuring nutritional support for the germinating seed.' },
+              { q: 'Describe the structure of a mature embryo sac (Polygonum type).', a: 'The mature embryo sac is 7-celled and 8-nucleate: (1) Egg apparatus at micropylar end — 1 egg cell (female gamete) + 2 synergids (have filiform apparatus, guide pollen tube). (2) Central cell — largest cell with 2 polar nuclei (will form endosperm after triple fusion). (3) Antipodal cells — 3 cells at chalazal end (nutritive role, degenerate after fertilisation). Total: 7 cells, 8 nuclei.' },
+              { q: 'What is sporopollenin and why is it ecologically important?', a: 'Sporopollenin is the highly resistant organic polymer that forms the outer wall (exine) of pollen grains. It is one of the most chemically inert biological substances known — resistant to high temperature, strong acids, alkalis, and biological decay. Ecological importance: Pollen grains are preserved for millions of years in sediment as microfossils, used in Palaeobotany and Palynology to study past vegetation and climate (Pollen analysis/Palynology). Sporopollenin is synthesised by the tapetum cells of anther.' },
+              { q: 'What is apomixis? Give examples and its agricultural significance.', a: 'Apomixis is the production of seeds without fertilisation (asexual reproduction through seeds). Types: Agamospermy (embryo develops from unfertilised egg or nucellus), Vegetative propagation. Examples: Citrus, Mango (polyembryony — nucellus embryos + zygotic embryo), Grasses (Poa). Agricultural significance: (1) Hybrid seeds need not be bought every season — apomictic hybrids maintain hybrid vigour. (2) All offspring genetically identical to mother (true-breeding). (3) Economically important for maintaining crop varieties.' },
+              { q: 'What is the difference between self-pollination and cross-pollination? What mechanisms promote cross-pollination?', a: 'Self-pollination (autogamy): Transfer of pollen from anther to stigma of the same flower or different flowers on the same plant. Ensures pollination, maintains pure traits, reduces variation. Cross-pollination (allogamy): Transfer of pollen to stigma of a different plant. Promotes genetic variation, better adaptation. Mechanisms promoting cross-pollination: (1) Dioecy — male and female flowers on separate plants (Papaya, Date palm). (2) Dichogamy — anther and stigma mature at different times: Protandry (anther first — Sunflower) or Protogyny (stigma first — Rose). (3) Self-incompatibility — pollen tube rejected by same plant. (4) Heterostyly — different style lengths.' },
+            ]
+          },
+          {
+            id: 'reproductive-health',
+            title: 'Reproductive Health',
+            subtopics: 'Reproductive health, Population explosion, Contraception methods, STIs/STDs, Infertility and ART (IVF, ZIFT, GIFT, AI)',
+            definition: 'Reproductive health refers to a total well-being in all aspects of reproduction — physical, emotional, behavioural and social. It includes family planning, prevention of STDs, and assisted reproductive technologies.',
+            content: `<p>Reproductive health is a concise but important NEET chapter (~4%). Focus on contraceptive methods and ART procedures.</p>
+<h4>Population Explosion</h4>
+<p>India's population crossed 1 billion by 2000. Causes: Decline in death rate (better healthcare), high birth rate, improved sanitation. MMR (Maternal Mortality Rate) and IMR (Infant Mortality Rate) have declined. Government programmes: National Population Policy 2000, RCH (Reproductive and Child Health) programme. Ideal age: Marriage not below 18 (girls) and 21 (boys).</p>
+<h4>Contraception Methods</h4>
+<table style="width:100%;border-collapse:collapse;font-size:.85rem">
+<tr style="background:#f3f4f6"><th style="padding:.4rem">Method</th><th>Examples</th><th>Mechanism</th></tr>
+<tr><td style="padding:.3rem">Natural</td><td>Periodic abstinence, coitus interruptus, lactational amenorrhoea</td><td>Avoid fertilisation by timing</td></tr>
+<tr style="background:#f9fafb"><td style="padding:.3rem">Barrier</td><td>Condoms (male/female), diaphragm, cervical cap, vaults</td><td>Block sperm entry; condom also prevents STDs</td></tr>
+<tr><td style="padding:.3rem">IUDs</td><td>Copper-T, LNG-20 (hormone), Lippes Loop</td><td>Prevent fertilisation/implantation</td></tr>
+<tr style="background:#f9fafb"><td style="padding:.3rem">Oral pills</td><td>Combined pill (estrogen + progesterone), mini-pill</td><td>Inhibit ovulation, alter cervical mucus</td></tr>
+<tr><td style="padding:.3rem">Injectables/Implants</td><td>DMPA injections, Norplant implants</td><td>Slow hormone release, inhibit ovulation</td></tr>
+<tr style="background:#f9fafb"><td style="padding:.3rem">Emergency</td><td>i-pill (levonorgestrel within 72 hrs), MTP (up to 12 weeks)</td><td>Prevent implantation or terminate pregnancy</td></tr>
+<tr><td style="padding:.3rem">Surgical</td><td>Vasectomy (male), Tubectomy/Tubal ligation (female)</td><td>Permanent; cut/tie vas deferens or fallopian tube</td></tr>
+</table>
+<h4>STDs/STIs</h4>
+<p>Sexually transmitted infections: AIDS (HIV — retrovirus, destroys CD4+ T-cells), Gonorrhoea (Neisseria gonorrhoeae), Syphilis (Treponema pallidum), Genital herpes (HSV-2), HPV (genital warts, cervical cancer), Hepatitis B, Trichomoniasis, Chlamydia. Prevention: Condom use, avoid multiple partners, early treatment, blood screening.</p>
+<h4>Infertility and Assisted Reproductive Technologies (ART)</h4>
+<ul>
+<li><strong>IVF (In Vitro Fertilisation):</strong> "Test tube baby" — egg + sperm fertilised in lab → embryo transferred to uterus (ET = Embryo Transfer)</li>
+<li><strong>ZIFT (Zygote Intrafallopian Transfer):</strong> Zygote transferred to fallopian tube</li>
+<li><strong>GIFT (Gamete Intrafallopian Transfer):</strong> Ovum from donor transferred to fallopian tube of infertile woman</li>
+<li><strong>ICSI (Intracytoplasmic Sperm Injection):</strong> Single sperm injected directly into ovum</li>
+<li><strong>AI (Artificial Insemination):</strong> Semen (from husband or donor) introduced into vagina or uterus</li>
+</ul>`,
+            qa: [
+              { q: 'What is the mechanism of action of copper-T as a contraceptive?', a: 'Copper-T (Copper IUD) is an intrauterine device placed inside the uterus. Mechanism: (1) Copper ions released are spermicidal — inhibit sperm motility and fertilising capacity. (2) IUD itself creates a local inflammatory response in uterus that is hostile to sperm and prevents fertilisation. (3) May also prevent implantation by altering the uterine environment. It is a highly effective, reversible, long-term contraceptive method.' },
+              { q: 'What is MTP and under what conditions is it legally permitted in India?', a: 'MTP (Medical Termination of Pregnancy) is the medical/surgical termination of a pregnancy. In India, it is legally permitted under the MTP Act (1971, amended 2021): (1) Up to 20 weeks: decision of one registered medical practitioner. (2) 20–24 weeks: opinion of two medical practitioners required. (3) Conditions: Risk to life/health of pregnant woman, foetal abnormalities, rape, failure of contraception (in married women or partner). MTP cannot be used as a routine contraceptive method.' },
+              { q: 'Distinguish between IVF and ZIFT.', a: 'IVF (In Vitro Fertilisation): Eggs collected from wife/donor, fertilised with sperm in laboratory (in vitro), embryo (at 8-cell stage) transferred into the uterus (Embryo Transfer — ET) for development. ZIFT (Zygote Intrafallopian Transfer): Eggs fertilised in vitro as in IVF, but the ZYGOTE (fertilised egg) — not a later-stage embryo — is transferred into the fallopian tube (not uterus). In ZIFT, embryo travels to uterus naturally. Both are "test tube baby" techniques.' },
+              { q: 'Why is lactational amenorrhoea considered a natural contraceptive method?', a: 'During intense lactation (breastfeeding) after childbirth, high prolactin levels suppress GnRH release from hypothalamus → FSH and LH are not released → ovulation does not occur (amenorrhoea = absence of menstruation). So a breastfeeding mother is unlikely to conceive. However, this method is effective only for up to 6 months post-partum and only if the mother is fully breastfeeding (no supplementary feeding). Its efficacy decreases with time and is unreliable.' },
+              { q: 'Name the causative agent of syphilis and describe its stages.', a: 'Syphilis is caused by Treponema pallidum (bacterium). Stages: Primary — painless sore (chancre) at infection site (usually genitals), heals spontaneously. Secondary — skin rash (including palms and soles), fever, swollen lymph nodes (2–10 weeks later). Latent — no symptoms but bacteria persist (can last years). Tertiary — serious complications: cardiovascular syphilis (aortic aneurysm), neurosyphilis (brain/spinal cord damage), gummas (rubbery growths). Congenital syphilis: Passed from mother to foetus. Treated with penicillin (antibiotics).' },
+            ]
+          },
+          {
+            id: 'human-health-disease',
+            title: 'Human Health & Disease',
+            subtopics: 'Immunity (innate, acquired, active, passive), Vaccines, Antibodies, AIDS (HIV), Cancer, Drugs and alcohol abuse',
+            definition: 'Health is a state of complete physical, mental and social well-being. Disease disrupts normal functioning. Immunity — the ability to resist disease — is the body\'s primary defence mechanism.',
+            content: `<p>Human Health & Disease is one of the highest-weightage NEET Biology chapters (~9%). Immunity types, AIDS, and cancer are almost always tested.</p>
+<h4>Immunity</h4>
+<p><strong>Innate (Non-specific) Immunity:</strong> Present from birth, first line of defence.</p>
+<ul>
+<li>Barriers: Physical (skin, mucus), Physiological (body temperature, stomach acid pH), Cellular (phagocytes — neutrophils, macrophages), Cytokine (interferons)</li>
+</ul>
+<p><strong>Acquired (Specific/Adaptive) Immunity:</strong> Develops after exposure to antigen.</p>
+<ul>
+<li><strong>Humoral immunity (B-cells):</strong> B lymphocytes → Plasma cells → Antibodies (immunoglobulins — IgG, IgA, IgM, IgE, IgD)</li>
+<li><strong>Cell-mediated immunity (T-cells):</strong> T lymphocytes — Helper T (CD4+), Cytotoxic T (CD8+), Memory T cells. Important in organ transplant rejection, graft rejection.</li>
+</ul>
+<p><strong>Active immunity:</strong> Produced by body after exposure/vaccination; slow, long-lasting. <strong>Passive immunity:</strong> Preformed antibodies from another organism; immediate but short-lived. Examples: Colostrum (mother's milk — IgA), Anti-tetanus, Anti-snake venom sera (passive).</p>
+<h4>Vaccines</h4>
+<p>Principle: Introduce weakened/killed pathogen or antigen → stimulate memory B and T cells → rapid immune response on re-exposure. Types: Live attenuated (BCG, polio oral, MMR), Killed/Inactivated (Salk polio vaccine, Hepatitis A), Subunit (Hepatitis B), Toxoid (Tetanus, Diphtheria). Herd immunity achieved when majority vaccinated.</p>
+<h4>AIDS (Acquired Immunodeficiency Syndrome)</h4>
+<p>Caused by HIV (Human Immunodeficiency Virus) — a retrovirus (RNA virus, uses reverse transcriptase to make DNA). Attacks and destroys CD4+ Helper T-cells → immune system collapses → opportunistic infections (Pneumocystis pneumonia, tuberculosis, fungal infections) and cancers (Kaposi's sarcoma).</p>
+<p>Transmission: Sexual contact, blood transfusion/sharing needles, mother to child (transplacental/breast milk). NOT by: shaking hands, mosquitoes, sharing food. Diagnosis: ELISA, Western blot. Treatment: ART (Antiretroviral therapy — not a cure, suppresses viral load).</p>
+<h4>Cancer</h4>
+<p>Uncontrolled cell division due to mutations in proto-oncogenes (→ oncogenes) and tumour suppressor genes (e.g., p53, BRCA1). Types: Benign tumour (localised, non-invasive), Malignant tumour (invasive, metastasize via blood/lymph). Carcinogens: Physical (radiation — UV, X-rays), Chemical (tobacco smoke, benzene, asbestos), Biological (oncogenic viruses — HPV, HBV, EBV). Diagnosis: Biopsy, histopathology, CT scan, MRI, tumour markers (PSA, CA-125). Treatment: Surgery, Radiation therapy, Chemotherapy (kill dividing cells), Immunotherapy, Targeted therapy.</p>
+<h4>Drugs and Alcohol Abuse</h4>
+<p>Opioids (Heroin/smack, Morphine, Codeine) — depressants, highly addictive. Cannabinoids (Cannabis, Marijuana, Charas, Ganja) — psychoactive, from Cannabis sativa. Cocaine — stimulant, local anaesthetic. Barbiturates, Amphetamines, LSD. Alcohol: Ethanol — depressant, liver damage (cirrhosis), Wernicke-Korsakoff syndrome. Anabolic steroids: abused by athletes to increase muscle mass — liver damage, aggression, infertility.</p>`,
+            qa: [
+              { q: 'What is the difference between active and passive immunity? Give one example of each.', a: 'Active immunity: Body produces its own antibodies and memory cells after exposure to an antigen (natural infection) or vaccination. It is slow to develop (takes days to weeks) but is long-lasting (years to life). Example: Vaccination with BCG vaccine against tuberculosis. Passive immunity: Preformed antibodies produced by another organism/person are transferred. It is immediate but short-lived (weeks). Examples: (1) Mother\'s colostrum (IgA) to newborn. (2) Anti-tetanus serum (ATS) — preformed antibodies injected after tetanus exposure. (3) Anti-snake venom — horse-derived antibodies.' },
+              { q: 'How does HIV destroy the immune system?', a: 'HIV (a retrovirus) selectively infects and destroys CD4+ Helper T-lymphocytes. Entry: HIV gp120 protein binds CD4 receptors on Helper T-cells → virus enters → uses reverse transcriptase to convert RNA genome to DNA → viral DNA integrates into host genome (provirus) → viral replication → new virus particles bud off → host cell destroyed. As CD4+ count falls below 200/mm³: humoral and cell-mediated immunity collapse → body cannot fight infections → opportunistic infections (Pneumocystis, TB, candidiasis) and AIDS-defining cancers occur. HIV does not directly kill, but the resulting immunodeficiency is fatal.' },
+              { q: 'What are oncogenes? How are they related to cancer?', a: 'Proto-oncogenes are normal cellular genes that regulate cell growth and division (e.g., genes encoding growth factors, growth factor receptors, cell cycle regulators like Ras, Myc). When mutated, amplified, or abnormally expressed, they become oncogenes, which drive uncontrolled cell proliferation. Examples of mutations: point mutation in Ras gene (colon cancer), amplification of HER2/neu (breast cancer), chromosomal translocation (Philadelphia chromosome — CML: BCR-ABL fusion). Cancer also involves inactivation of tumour suppressor genes (p53, Rb) that normally brake cell division.' },
+              { q: 'What is metastasis and why does it make cancer difficult to treat?', a: 'Metastasis is the spread of cancer cells from the primary tumour to other organs via blood or lymph, forming secondary tumours (metastases). Process: Cancer cells detach from primary tumour → invade surrounding tissue (invasiveness) → enter blood/lymph vessels → travel to distant sites → re-attach and proliferate → secondary tumour. This makes treatment difficult because: (1) Cancer is now spread throughout body — surgery cannot remove all tumours. (2) Different metastatic sites may require different treatments. (3) Metastatic cancer cells may have additional mutations increasing drug resistance.' },
+              { q: 'What are the health consequences of chronic alcohol abuse?', a: 'Chronic alcohol (ethanol) abuse causes: (1) Liver: Alcoholic hepatitis → Liver cirrhosis (irreversible scarring, liver failure). (2) Brain: Wernicke-Korsakoff syndrome (thiamine/Vitamin B1 deficiency → memory loss, confusion, ataxia). (3) Neurological: Peripheral neuropathy, cerebellar degeneration. (4) Cardiovascular: Cardiomyopathy, arrhythmias, hypertension. (5) GI: Gastritis, pancreatitis, oesophageal cancer. (6) Foetal Alcohol Syndrome: Drinking during pregnancy → birth defects, intellectual disability. (7) Social: Addiction, domestic violence, accidents. Alcohol is a CNS depressant — slows brain activity.' },
+            ]
+          },
+          {
+            id: 'food-production-strategies',
+            title: 'Strategies for Enhancement in Food Production',
+            subtopics: 'Animal husbandry (dairy, poultry, apiculture, fisheries), Plant breeding (hybridisation, mutation breeding, polyploidy), Tissue culture, Biofortification, Single cell protein',
+            definition: 'Strategies for enhancement in food production involve improving quantity and quality of food through animal husbandry practices and advanced plant breeding techniques including tissue culture and genetic improvement.',
+            content: `<p>This chapter contributes ~5% to NEET. Focus on definitions, examples of improved varieties, and tissue culture techniques.</p>
+<h4>Animal Husbandry</h4>
+<p><strong>Dairy:</strong> Management of milch animals. Exotic/foreign breeds (higher milk yield — Holstein Friesian, Jersey) × Indigenous breeds (disease resistance, adaptability — Sahiwal, Red Sindhi) = Crossbreeds (e.g., Karan Swiss, Karan Fries). Artificial Insemination widely used.</p>
+<p><strong>Poultry:</strong> Chicken, turkey, duck for eggs and meat. White Leghorn (egg), Plymouth Rock (dual purpose). Poultry birds need protein-rich diet, balanced minerals, vitamins. Disease management critical.</p>
+<p><strong>Apiculture (Beekeeping):</strong> Apis mellifera (Italian bee — most common), A. cerana indica (Indian bee). Products: Honey (source of sugars + minerals), Beeswax (cosmetics, polish). Apiculture also helps in crop pollination.</p>
+<p><strong>Fisheries:</strong> Aquaculture (inland — freshwater: Catla, Rohu, Mrigal; coastal — Hilsa, Sardines, Bombay duck, Mackerel). Pisciculture (fish farming). Blue Revolution — increased fish production.</p>
+<h4>Plant Breeding</h4>
+<p><strong>Steps:</strong> (1) Collection of variability (germplasm collection), (2) Evaluation & selection of parents, (3) Hybridisation (cross-pollination between selected parents), (4) Selection of superior recombinants, (5) Testing, release and commercialisation.</p>
+<p><strong>Mutation breeding:</strong> Use mutagens (radiation — X-rays, gamma rays; chemicals — EMS) to induce useful mutations. Example: Sharbati Sonora (wheat variety — gamma radiation → semi-dwarf, high yield).</p>
+<p><strong>Polyploidy:</strong> Colchicine induces polyploidy (blocks spindle formation). Triticale (wheat × rye, first man-made crop). Seedless watermelon (triploid).</p>
+<p><strong>Success stories:</strong> IR-8 ("miracle rice" — semi-dwarf, high yielding — Green Revolution), Sonalika/Kalyan Sona (wheat — Norman Borlaug), Pusa Komal (cowpea — disease resistant), Pusa Sawani (okra — aphid resistant).</p>
+<h4>Tissue Culture</h4>
+<p>Growing plant parts in sterile nutrient medium in vitro. Totipotency = ability of any living cell to develop into a complete organism. Explant = part used for culture. Callus = undifferentiated mass of cells. Somatic hybridisation: Protoplasts from two different species fused → hybrid cell → pomato (potato + tomato). Micropropagation: Mass production of disease-free plants (orchids, banana).</p>
+<h4>Biofortification & SCP</h4>
+<p><strong>Biofortification:</strong> Breeding crops with higher nutritional value. Examples: Maize hybrids (higher lysine/tryptophan), Wheat Atlas 66 (higher protein), Iron-rich rice, Golden Rice (β-carotene). <strong>SCP (Single Cell Protein):</strong> Protein-rich biomass from microorganisms (Spirulina, Methylophilus methylotrophus) — alternative protein source.</p>`,
+            qa: [
+              { q: 'What is Green Revolution and which scientists are associated with it?', a: 'The Green Revolution refers to the introduction of high-yielding varieties (HYV) of wheat and rice in the 1960s–70s that dramatically increased food grain production, particularly in developing countries. Key scientists: Norman Borlaug (Nobel Peace Prize 1970) — developed semi-dwarf, disease-resistant wheat varieties (Sonalika, Kalyan Sona). In India: M.S. Swaminathan led the adoption of HYV wheat. IR-8 (International Rice 8 — "miracle rice") developed at IRRI. Features of HYV: Semi-dwarf (lodging resistant), high grain-to-straw ratio, responsive to fertilisers, shorter maturation period.' },
+              { q: 'What is totipotency and how is it exploited in plant tissue culture?', a: 'Totipotency is the inherent capacity of every living plant cell to develop into a complete organism when provided with appropriate physical, chemical, and nutritional conditions. Demonstrated by F.C. Steward using carrot cells. In tissue culture, a small piece of plant tissue (explant) is placed in sterile nutrient medium containing phytohormones → cells divide to form callus (undifferentiated mass) → callus undergoes differentiation (organogenesis) → shoots and roots form → complete plant. This enables micropropagation (thousands of clonal plants from a single plant — disease-free, mass production).' },
+              { q: 'What is somatic hybridisation? Give an example.', a: 'Somatic hybridisation involves the fusion of protoplasts (plant cells without cell wall, isolated using cellulase and pectinase enzymes) from two different plant species to create a hybrid cell with combined genomes. The hybrid cell is then cultured using tissue culture techniques to regenerate a complete hybrid plant. Example: Pomato — somatic hybrid of potato (Solanum tuberosum) and tomato (Lycopersicum esculentum). It was created to combine desirable traits but has not been successfully commercialised as the fruits were not edible and did not produce viable seeds.' },
+              { q: 'What is biofortification? Give two examples of biofortified crops.', a: 'Biofortification is the practice of developing crops with higher levels of essential nutrients (vitamins, minerals, proteins, essential amino acids) through plant breeding or genetic engineering, to address nutritional deficiencies in populations. Examples: (1) Golden Rice — genetically engineered to produce β-carotene (provitamin A) in the endosperm, developed to combat Vitamin A deficiency in developing countries. (2) Maize hybrids — bred with higher lysine and tryptophan content (essential amino acids normally low in maize) to improve protein quality. (3) Wheat variety Atlas 66 — high protein content. (4) Iron-fortified rice varieties.' },
+              { q: 'What is mutation breeding? Give an example of a variety developed through it.', a: 'Mutation breeding is the use of physical (X-rays, gamma rays, UV radiation) or chemical mutagens (EMS — ethylmethane sulphonate, colchicine) to induce mutations in crop plants and then select useful mutant varieties. Process: Expose seeds/plants to mutagen → grow plants → screen for desirable traits (disease resistance, yield, nutritional value) → select and develop into a new variety. Example: Sharbati Sonora — wheat variety developed by treating seeds with gamma radiation; gave semi-dwarf, high-yielding plants with better quality grain. Mung bean varieties resistant to yellow mosaic virus and powdery mildew developed through mutation breeding.' },
+            ]
+          },
+          {
+            id: 'microbes-human-welfare',
+            title: 'Microbes in Human Welfare',
+            subtopics: 'Microbes in household products, Industrial production (antibiotics, enzymes, chemicals), Sewage treatment, Biogas production, Biocontrol agents, Biofertilizers',
+            definition: 'Microorganisms play vital beneficial roles in human life — from producing antibiotics and fermenting food, to treating sewage, generating biogas, and fixing atmospheric nitrogen as biofertilizers.',
+            content: `<p>Microbes in Human Welfare carries ~5% NEET weightage. Know the specific microorganism for each application.</p>
+<h4>Household Products</h4>
+<ul>
+<li><strong>Curd/Yoghurt:</strong> Lactobacillus acidophilus, L. bulgaricus — ferment lactose → lactic acid → curd</li>
+<li><strong>Bread:</strong> Saccharomyces cerevisiae (Baker's yeast) — ferments sugar → CO₂ (leavening)</li>
+<li><strong>Toddy:</strong> Fermentation of coconut palm sap by natural yeast</li>
+<li><strong>Cheese:</strong> Propionibacterium shermanii (Swiss cheese — CO₂ holes + flavour), Penicillium roqueforti (Roquefort cheese — blue-green colour and flavour), Penicillium camemberti (Camembert)</li>
+<li><strong>Idli/Dosa:</strong> Leuconostoc mesenteroides — fermentation of rice and black gram batter</li>
+</ul>
+<h4>Industrial Microbiology</h4>
+<ul>
+<li><strong>Antibiotics:</strong> Penicillin (from Penicillium notatum — Fleming 1928), Streptomycin (Streptomyces griseus), Tetracycline, Chloramphenicol, Erythromycin, Bacitracin</li>
+<li><strong>Enzymes:</strong> Lipases (detergents — remove fat stains), Proteases (detergents, cheese), Streptokinase (clot-buster from Streptococcus — dissolves blood clots), Pectinases/Cellulases (clear fruit juices)</li>
+<li><strong>Chemicals:</strong> Ethanol (yeast — Saccharomyces), Acetic acid (vinegar — Acetobacter aceti), Citric acid (Aspergillus niger), Lactic acid (Lactobacillus), Statins — lovastatin (cholesterol-lowering from Monascus purpureus)</li>
+<li><strong>Cyclosporin A:</strong> Immunosuppressant from Trichoderma polysporum (used in organ transplants)</li>
+</ul>
+<h4>Sewage Treatment</h4>
+<p><strong>Primary treatment (Physical):</strong> Filtration and sedimentation → primary sludge. <strong>Secondary treatment (Biological):</strong> Effluent passes into aeration tanks → aerobic microorganisms form flocs (masses of bacteria + fungal filaments) → decompose organic matter → BOD (Biochemical Oxygen Demand) reduced significantly (measure of organic matter in water). Remaining effluent → settling tank → activated sludge → anaerobic sludge digesters (bacteria digest sludge → produce biogas).</p>
+<h4>Biogas</h4>
+<p>Produced by anaerobic decomposition of organic matter by methanogens (e.g., Methanobacterium). Biogas composition: Mainly CH₄ (methane, ~75%) + CO₂ + H₂S. Biogas plants — cattle dung (gobar gas) widely used in rural India. Uses: Cooking fuel, electricity generation.</p>
+<h4>Biocontrol Agents</h4>
+<ul>
+<li><strong>Baculovirus:</strong> Nucleo Polyhedrosis Virus (NPV) — kills specific insect pests, safe for non-target organisms</li>
+<li><strong>Trichoderma:</strong> Free-living fungus in soil, controls fungal plant pathogens (biological control of damping off)</li>
+<li><strong>Bacillus thuringiensis (Bt):</strong> Produces Bt toxin (crystal proteins/Cry proteins) lethal to specific insect larvae (Lepidoptera, Diptera). Bt cotton uses Bt gene. Also used as biopesticide spray.</li>
+<li><strong>Ladybird/Dragonfly:</strong> Predators used against aphids/mosquitoes respectively</li>
+</ul>
+<h4>Biofertilizers</h4>
+<ul>
+<li><strong>Rhizobium:</strong> Symbiotic N₂-fixer in root nodules of legumes (pea, soybean, groundnut)</li>
+<li><strong>Azospirillum, Azotobacter:</strong> Free-living N₂-fixers in soil</li>
+<li><strong>Anabaena, Nostoc:</strong> Cyanobacteria — fix N₂ in paddy fields and soil (also in Azolla water fern)</li>
+<li><strong>Mycorrhiza:</strong> Fungal symbiosis with plant roots — enhances phosphate absorption (Glomus sp.)</li>
+</ul>`,
+            qa: [
+              { q: 'What is BOD? How does its measurement help assess water quality?', a: 'BOD (Biochemical Oxygen Demand) is the amount of oxygen consumed by microorganisms to decompose the organic matter present in a given volume of water sample at a given temperature over 5 days. High BOD = high organic matter = heavily polluted water. Clean river water: BOD < 1 mg/L. Mildly polluted: 2–8 mg/L. Highly polluted (sewage): >200 mg/L. Secondary sewage treatment is effective when it reduces BOD by 80–90%. BOD is a standard measure of water quality and is used to monitor river pollution and treatment plant efficiency.' },
+              { q: 'Name the microorganism and the product in: (a) making curd, (b) producing penicillin, (c) producing biogas, (d) producing statins.', a: '(a) Curd: Lactobacillus acidophilus (and L. bulgaricus) — converts lactose to lactic acid, which denatures milk proteins (casein) → curd forms. (b) Penicillin: Penicillium notatum (discovered by Alexander Fleming, 1928; purified by Chain & Florey). (c) Biogas: Methanobacterium (and other methanogens) — anaerobic decomposition of organic waste → methane (CH₄) = main component of biogas. (d) Statins: Monascus purpureus (red yeast rice) — produces lovastatin, which inhibits cholesterol synthesis (HMG-CoA reductase inhibitor). Used to lower blood cholesterol.' },
+              { q: 'What are Bt toxins and how do they work as biopesticides?', a: 'Bt toxins (crystal proteins / Cry proteins) are insecticidal proteins produced by the bacterium Bacillus thuringiensis. Mechanism: Bt bacteria produce protoxin crystals during sporulation → when ingested by susceptible insect larva, the alkaline pH of insect gut activates the protoxin → active toxin binds to epithelial cells of midgut → creates pores in cell membrane → cell swells and lyses → insect larva dies. Highly specific to target insects (certain Lepidoptera, Diptera, Coleoptera larvae) and harmless to humans, birds, mammals. Bt gene has been incorporated into Bt cotton to produce toxin within the plant.' },
+              { q: 'What is the role of Rhizobium in agriculture?', a: 'Rhizobium is a symbiotic nitrogen-fixing bacterium that infects root hair cells of leguminous plants (pea, soybean, groundnut, lentil) and forms root nodules. Inside nodules, Rhizobium fixes atmospheric nitrogen (N₂) into ammonia (NH₃) using the enzyme nitrogenase, in an anaerobic micro-environment maintained by leghaemoglobin (pink pigment — acts as O₂ scavenger). The plant provides carbohydrates to Rhizobium; Rhizobium provides fixed nitrogen to the plant. Agricultural benefit: Legume crops enrich soil with nitrogen → reduces need for chemical nitrogenous fertilisers → sustainable agriculture, lower cost.' },
+              { q: 'Explain the secondary treatment of sewage.', a: 'Secondary treatment is biological treatment of sewage effluent (primary-treated liquid). Process: Primary effluent is pumped into large aeration tanks → air is bubbled in → aerobic microorganisms (bacteria, fungi) grow vigorously and form mesh-like masses called flocs → these microorganisms consume organic matter (decompose it aerobically) → BOD of effluent drops significantly (80–90% reduction). The effluent then passes to settling tank where flocs settle → activated sludge (microbial biomass). A portion of activated sludge is returned to aeration tank (as inoculum); rest is pumped to anaerobic sludge digesters where bacteria break it down → biogas (methane + CO₂) is produced as useful by-product.' },
+            ]
+          },
+          {
+            id: 'locomotion-movement',
+            title: 'Locomotion and Movement',
+            subtopics: 'Types of movement, Muscle types, Structure of skeletal muscle, Sliding filament theory, Neuromuscular junction, Skeletal system, Joints, Disorders',
+            definition: 'Movement is a characteristic of all living organisms. In humans, locomotion (movement of the whole body) and movement of body parts are brought about by the coordinated action of muscles and the skeletal system.',
+            content: `<p>Locomotion accounts for ~5% of NEET. The sliding filament theory and muscle structure are most important.</p>
+<h4>Types of Movement</h4>
+<p>Amoeboid (pseudopods — macrophages, amoeba), Ciliary (cilia — in trachea, fallopian tube), Muscular (skeletal, cardiac, smooth muscles).</p>
+<h4>Structure of Skeletal Muscle</h4>
+<p>Muscle → Fascicles → Muscle fibres (cells) → Myofibrils → Sarcomeres (functional unit). Each myofibril has alternating light (I band, contains only Actin) and dark (A band, contains both Myosin + Actin) bands. H zone (only myosin, in centre of A band). M line (in H zone). Z line (boundary of sarcomere).</p>
+<p>Thin filament = Actin + Troponin + Tropomyosin. Thick filament = Myosin (meromyosin — LMM + HMM with globular head).</p>
+<h4>Sliding Filament Theory</h4>
+<ol>
+<li>Nerve impulse → Neuromuscular junction → ACh released → Motor end plate → Action potential in muscle</li>
+<li>Ca²⁺ released from Sarcoplasmic Reticulum into sarcoplasm</li>
+<li>Ca²⁺ binds Troponin → shifts Tropomyosin → exposes active sites on Actin</li>
+<li>Myosin head (using ATP hydrolysis) attaches to actin → Power stroke → Thin filament pulled toward M line</li>
+<li>Sarcomere shortens → I band and H zone narrow → A band unchanged → Muscle contracts</li>
+<li>Ca²⁺ pumped back → Tropomyosin covers actin sites → Muscle relaxes</li>
+</ol>
+<div class="formula">Muscle contraction: ATP → ADP + Pi (energy for cross-bridge cycling)</div>
+<h4>Skeletal System</h4>
+<p>206 bones in adult human. Axial skeleton (80): Skull (22) + Vertebral column (26) + Ribs (12 pairs = 24) + Sternum. Appendicular skeleton (126): Shoulder girdle (Clavicle + Scapula) + Upper limb (30 each side) + Pelvic girdle (2 hip bones) + Lower limb (30 each side).</p>
+<p>Joints: Fibrous (immovable — skull sutures), Cartilaginous (slightly movable — intervertebral discs), Synovial (freely movable — ball & socket: shoulder, hip; hinge: elbow, knee; pivot: atlas-axis).</p>
+<h4>Disorders</h4>
+<p>Myasthenia gravis (autoimmune — ACh receptors attacked → progressive muscle weakness). Muscular dystrophy (genetic — progressive muscle wasting). Tetany (low Ca²⁺ → muscle spasms). Arthritis: Osteoarthritis (cartilage degeneration), Rheumatoid (autoimmune). Gout: Uric acid crystals in joints. Osteoporosis: Decreased bone mass (postmenopausal women — oestrogen decrease).</p>`,
+            qa: [
+              { q: 'Describe the sliding filament theory of muscle contraction.', a: 'Sliding filament theory (Huxley, 1954): Muscle contraction occurs by sliding of thin filaments (actin) over thick filaments (myosin), shortening the sarcomere. Steps: (1) Nerve impulse → ACh released at NMJ → action potential in muscle → Ca²⁺ released from sarcoplasmic reticulum. (2) Ca²⁺ binds troponin-C → troponin-tropomyosin complex shifts → active sites on actin exposed. (3) Energised myosin head (from ATP hydrolysis) binds actin → forms cross-bridge → power stroke: myosin head tilts, pulling actin toward M line. (4) ATP binds myosin → cross-bridge detaches → myosin head "re-cocked." (5) Cycle repeats → sarcomere shortens → I band and H zone narrow; A band stays the same.' },
+              { q: 'What changes occur in different bands of the sarcomere during muscle contraction?', a: 'During muscle contraction (shortening of sarcomere): I band (only actin): NARROWS (actin slides toward M line, so less of I band is visible). H zone (only myosin in centre): NARROWS or disappears (actin filaments overlap into H zone). A band (region of myosin, including where actin overlaps): REMAINS UNCHANGED (myosin filaments do not change length). Z lines: Move CLOSER together (sarcomere shortens). M line: Remains in centre. Muscle relaxation: All changes are reversed.' },
+              { q: 'What is the role of calcium ions in muscle contraction?', a: 'Calcium ions (Ca²⁺) are the key trigger for muscle contraction. At rest: Tropomyosin lies over actin filament, blocking myosin-binding sites on actin. Upon nerve stimulation: Action potential travels into T-tubules → triggers Ca²⁺ release from sarcoplasmic reticulum into sarcoplasm. Ca²⁺ binds to Troponin-C (component of troponin complex on actin filament) → causes conformational change in troponin-tropomyosin complex → tropomyosin moves away, exposing myosin-binding sites on actin → cross-bridge formation → contraction. When stimulus stops: Ca²⁺ actively pumped back into SR → troponin-tropomyosin re-covers actin sites → muscle relaxes.' },
+              { q: 'Name the bones of the pelvic girdle and state how many bones make up the human skeleton.', a: 'Pelvic girdle consists of two coxal/hip bones (also called os coxae or innominate bones), each formed by fusion of three bones: Ilium (large upper flattened part), Ischium (lower posterior part, forms "sitting bone"), and Pubis (anterior part, meeting at pubic symphysis). The two hip bones along with sacrum and coccyx form the pelvis. Human skeleton: 206 bones in adults. Axial skeleton = 80 bones (skull 22 + vertebral column 26 + ribs 24 + sternum 1 + hyoid 1). Appendicular skeleton = 126 bones (pectoral girdle 4 + upper limbs 60 + pelvic girdle 2 + lower limbs 60).' },
+              { q: 'What is myasthenia gravis? How does it affect muscle function?', a: 'Myasthenia gravis is an autoimmune neuromuscular disorder. The immune system produces antibodies that attack and destroy nicotinic acetylcholine receptors (nAChR) at the neuromuscular junction. Result: When motor nerve fires, ACh is released normally but fewer receptors are available → reduced/weak muscle action potential → progressive muscle weakness and fatigue, worsening with activity and improving with rest. Characteristic features: ptosis (drooping eyelid), diplopia (double vision), difficulty swallowing/speaking, limb weakness. Treatment: Acetylcholinesterase inhibitors (increase available ACh), immunosuppressants, thymectomy (thymus often enlarged and involved).' },
+            ]
+          },
+          {
+            id: 'organisms-populations',
+            title: 'Organisms and Populations',
+            subtopics: 'Habitat vs niche, Population attributes, Growth models (exponential vs logistic), Population interactions (mutualism, competition, predation, parasitism, commensalism, amensalism)',
+            definition: 'Ecology at the organism level covers adaptations to the environment. Population ecology studies how populations grow, interact, and are regulated in nature.',
+            content: `<p>Organisms & Populations covers ~6% of NEET. Focus on population growth equations and interaction types with examples.</p>
+<h4>Habitat and Niche</h4>
+<p><strong>Habitat:</strong> Physical place where an organism lives (address). <strong>Niche:</strong> Total functional role of an organism in its ecosystem — what it does, what it eats, what eats it, its environmental tolerances (profession). No two species can occupy the exact same niche in the same habitat for long (Gause's Competitive Exclusion Principle).</p>
+<h4>Adaptations</h4>
+<p>Desert plants (Xerophytes): CAM photosynthesis, thick cuticle, sunken stomata, succulent stems (water storage), reduced leaves (spines). High altitude: More RBCs, more haemoglobin, lower body temperature. Deep sea: Bioluminescence, pressure adaptations. Thermoregulation: Homeotherms (warm-blooded — birds, mammals, maintain constant body temperature) vs Poikilotherms (cold-blooded — fish, reptiles, amphibians — body temperature varies with environment).</p>
+<h4>Population Attributes</h4>
+<p>Birth rate (natality), Death rate (mortality), Age structure (pre-reproductive, reproductive, post-reproductive), Sex ratio, Population density.</p>
+<p><strong>Age pyramid:</strong> Expanding (young base — rapidly growing), Stable (uniform), Declining (narrow base).</p>
+<h4>Population Growth Models</h4>
+<p><strong>Exponential growth (J-shaped):</strong> Unlimited resources, no competition.</p>
+<div class="formula">dN/dt = rN | N(t) = N₀ × e^(rt)</div>
+<p>r = intrinsic rate of natural increase; N = population size. Observed in newly introduced species, bacteria in lab, invasive species.</p>
+<p><strong>Logistic growth (S-shaped / Sigmoid):</strong> Limited resources, intraspecific competition.</p>
+<div class="formula">dN/dt = rN × (K − N)/K</div>
+<p>K = Carrying capacity (maximum sustainable population). Population grows slowly at first, rapidly in the middle, slows as it approaches K. More realistic model (Verhulst-Pearl equation).</p>
+<h4>Population Interactions</h4>
+<table style="width:100%;border-collapse:collapse;font-size:.85rem">
+<tr style="background:#f3f4f6"><th style="padding:.4rem">Interaction</th><th>Species A</th><th>Species B</th><th>Example</th></tr>
+<tr><td style="padding:.3rem">Mutualism</td><td>+</td><td>+</td><td>Mycorrhizae-plant, Lichen (algae+fungus), Bees-flowers, Rhizobium-legume</td></tr>
+<tr style="background:#f9fafb"><td style="padding:.3rem">Competition</td><td>−</td><td>−</td><td>Flamingoes vs Resident fish (food), Abingdon tortoise vs goats (Galapagos)</td></tr>
+<tr><td style="padding:.3rem">Predation</td><td>+</td><td>−</td><td>Lion-Deer, Sparrow-insects, Pitcher plant-insects</td></tr>
+<tr style="background:#f9fafb"><td style="padding:.3rem">Parasitism</td><td>+</td><td>−</td><td>Plasmodium-human, Tapeworm-pig, Cuscuta-host plant, Lice-human</td></tr>
+<tr><td style="padding:.3rem">Commensalism</td><td>+</td><td>0</td><td>Orchid on tree, Barnacle on whale, Cattle egret-cattle, Sucker fish-shark</td></tr>
+<tr style="background:#f9fafb"><td style="padding:.3rem">Amensalism</td><td>−</td><td>0</td><td>Penicillium inhibits Bacteria, Tall trees shade smaller plants</td></tr>
+</table>`,
+            qa: [
+              { q: 'Write the logistic growth equation and explain each term.', a: 'Logistic growth (Verhulst-Pearl equation): dN/dt = rN(K−N)/K. Terms: dN/dt = rate of change of population size; N = current population size; r = intrinsic rate of natural increase (birth rate − death rate); K = carrying capacity (maximum population the environment can support). (K−N)/K = "unused" fraction of carrying capacity (environmental resistance factor). When N is small: (K−N)/K ≈ 1, so population grows almost exponentially. As N approaches K: (K−N)/K approaches 0 → growth rate slows to zero. When N = K: dN/dt = 0 (population stable).' },
+              { q: 'What is the competitive exclusion principle? Give an example.', a: 'Gause\'s Competitive Exclusion Principle states that two species competing for the same limiting resources cannot coexist indefinitely — the species with even a slight competitive advantage will eventually eliminate or displace the other (competitive exclusion). Example: G.F. Gause showed that when Paramecium aurelia and P. caudatum were cultured together competing for the same food, P. aurelia always drove P. caudatum to extinction due to its competitive superiority. In nature, competing species coexist through resource partitioning (ecological character displacement) — occupying slightly different niches.' },
+              { q: 'Distinguish between predation and parasitism.', a: 'Predation: Predator (benefits: +) kills and consumes prey (harmed: −) usually quickly. Predator is typically larger than prey and lives separately from it. Examples: Lion kills deer; Spider eats fly; Pitcher plant digests insects. Parasitism: Parasite (benefits: +) lives on or in the host (harmed: −) and derives nutrients without immediately killing it. Parasite depends on host for its life cycle. Ectoparasites (on surface): Lice, ticks, Cuscuta. Endoparasites (inside): Ascaris (intestine), Plasmodium (blood), Taenia (intestine). Key difference: Parasite rarely kills host immediately (dead host = no home) vs predator kills prey.' },
+              { q: 'What is Batesian mimicry? Give an example.', a: 'Batesian mimicry is a form of mimicry where a harmless, palatable species (mimic) resembles a dangerous or unpalatable species (model) to avoid predation. Predators that have had bad experiences with the model learn to avoid the mimic as well. Example: Viceroy butterfly (edible, harmless) closely resembles the Monarch butterfly (unpalatable — feeds on toxic milkweed plants). Predators that have eaten and rejected Monarchs avoid Viceroys too. Another example: King Snake (non-venomous) has similar colour banding to Coral Snake (highly venomous). This is different from Müllerian mimicry (two unpalatable species resemble each other — mutual benefit).' },
+              { q: 'What is r and K selection? Give examples of r-selected and K-selected species.', a: 'r-selection: Species adapted for rapid reproduction in unstable, unpredictable environments (boom-bust populations). High r (intrinsic growth rate), small body size, short life span, many small offspring, little parental care, opportunistic. Examples: Insects, bacteria, weeds, small rodents — thrive in disturbed habitats. K-selection: Species adapted to live near carrying capacity (K) in stable, competitive environments. Low r, large body size, long life span, few large offspring, high parental investment, strong competitors. Examples: Elephants, whales, humans, large trees — stable populations near K. r-strategists are "quantity" species; K-strategists are "quality" species.' },
+            ]
+          },
         ]
       },
       physics: {
@@ -8704,6 +9073,394 @@ export const CURRICULUM = {
               { q: 'Find the energy of photon emitted when hydrogen electron jumps from n=3 to n=2.', a: 'E = 13.6(1/n₁² − 1/n₂²) = 13.6(1/4 − 1/9) = 13.6(5/36) = 1.89 eV. (Red line of Balmer series)' },
               { q: 'A radioactive element has a half-life of 30 minutes. What fraction remains after 2 hours?', a: '2 hours = 120 min. Number of half-lives = 120/30 = 4. Fraction remaining = (1/2)⁴ = 1/16.' },
               { q: 'What is meant by mass defect and binding energy?', a: 'Mass defect: actual mass of nucleus < sum of masses of individual protons and neutrons. The "missing mass" (Δm) is converted to binding energy by E=Δmc². Higher binding energy per nucleon → more stable nucleus.' },
+            ]
+          },
+          {
+            id: 'kinematics-laws-motion',
+            title: 'Kinematics & Laws of Motion',
+            subtopics: 'Displacement, velocity, acceleration, Projectile motion, Circular motion, Newton\'s laws, Friction, Work-energy theorem',
+            definition: 'Kinematics describes motion without considering its cause. Newton\'s Laws of Motion describe the relationship between forces and motion — the foundation of classical mechanics.',
+            content: `<p>Mechanics is the largest portion of NEET Physics (~25%). Master the equations of motion and Newton's laws thoroughly.</p>
+<h4>Equations of Motion (Uniform Acceleration)</h4>
+<div class="formula">v = u + at | s = ut + ½at² | v² = u² + 2as | s_nth = u + a(2n−1)/2</div>
+<h4>Projectile Motion</h4>
+<p>Horizontal: No acceleration. uₓ = u cosθ (constant). Vertical: Acceleration = g downward. uy = u sinθ.</p>
+<div class="formula">Range R = u²sin2θ/g | Max range at θ=45° | Time of flight T = 2u sinθ/g | Max height H = u²sin²θ/2g</div>
+<h4>Newton's Laws</h4>
+<ul>
+<li><strong>First Law (Inertia):</strong> Body at rest stays at rest; body in motion stays in uniform motion unless acted upon by external force. Defines inertial frames.</li>
+<li><strong>Second Law:</strong> F = ma (net force = mass × acceleration). Impulse J = FΔt = Δp (change in momentum).</li>
+<li><strong>Third Law:</strong> Every action has equal and opposite reaction (simultaneous, on different bodies).</li>
+</ul>
+<h4>Friction</h4>
+<p>Static friction (fs ≤ μsN) > Kinetic friction (fk = μkN). Rolling friction smallest. Angle of friction (λ): tan λ = μ. Angle of repose = angle of friction.</p>
+<h4>Circular Motion</h4>
+<div class="formula">ac = v²/r = ω²r (centripetal acceleration) | Fc = mv²/r</div>
+<p>Banking of roads: tan θ = v²/rg. Conical pendulum: T = 2π√(L cosθ/g). Minimum speed at top of vertical circle: v = √(rg).</p>`,
+            qa: [
+              { q: 'A ball is thrown at 30° to the horizontal with speed 20 m/s. Find the range (g=10 m/s²).', a: 'R = u²sin2θ/g = (20)²×sin60°/10 = 400×(√3/2)/10 = 20√3 ≈ 34.6 m.' },
+              { q: 'State Newton\'s second law in terms of momentum.', a: 'F = dp/dt — net force equals rate of change of linear momentum. For constant mass: F = ma. Impulse-momentum theorem: FΔt = Δp = m(v−u). This form is more general (applies to variable mass systems like rockets).' },
+              { q: 'A body of mass 5 kg rests on a surface with μs=0.4, μk=0.3. Find static and kinetic friction (g=10).', a: 'Normal force N = mg = 50 N. Max static friction = μsN = 0.4×50 = 20 N. Kinetic friction = μkN = 0.3×50 = 15 N. Body will not move until applied force exceeds 20 N; once moving, friction is 15 N.' },
+              { q: 'Why does a car need banking on a curved road?', a: 'On a flat road, only friction provides centripetal force for turning. For high speed or wet roads, friction may be insufficient → skidding. Banking (inclination of road) provides a component of normal force as centripetal force. Optimum banking angle: tan θ = v²/rg. At this angle, no friction is needed for safe turning at speed v. Maximum safe speed with friction: vmax = √[rg(tanθ+μ)/(1−μtanθ)].' },
+            ]
+          },
+          {
+            id: 'work-energy-gravitation',
+            title: 'Work, Energy, Power & Gravitation',
+            subtopics: 'Work-energy theorem, Conservative forces, Potential energy, Conservation of energy, Power, Gravitation, Orbital motion, Satellites, Escape velocity',
+            definition: 'Work is done when a force causes displacement. Energy is the capacity to do work. Gravitation is the universal attractive force between masses — governing planetary and satellite motion.',
+            content: `<p>These two topics together form ~12% of NEET Physics. Focus on energy conservation problems and gravitational concepts.</p>
+<h4>Work and Energy</h4>
+<div class="formula">W = F·s·cosθ | KE = ½mv² | Work-Energy Theorem: W_net = ΔKE</div>
+<p>Conservative force: Work done is path-independent (gravity, spring force). Non-conservative: work depends on path (friction, viscosity).</p>
+<p>Potential Energy: PE = mgh (gravity), PE = ½kx² (spring). Conservation of mechanical energy: KE + PE = constant (no non-conservative forces).</p>
+<div class="formula">Power P = W/t = Fv | 1 HP = 746 W</div>
+<h4>Collisions</h4>
+<p>Elastic: Both KE and momentum conserved. Inelastic: Only momentum conserved (KE lost). Perfectly inelastic: Bodies stick together.</p>
+<div class="formula">Coefficient of restitution e = (v₂−v₁)/(u₁−u₂); e=1 elastic, e=0 perfectly inelastic</div>
+<h4>Gravitation</h4>
+<div class="formula">F = Gm₁m₂/r² | G = 6.67×10⁻¹¹ N·m²/kg²</div>
+<p>Gravitational field intensity: g = GM/R². g decreases with altitude (g' = g(R/R+h)²) and depth (g' = g(1−d/R)).</p>
+<h4>Orbital & Escape</h4>
+<div class="formula">Orbital velocity: v₀ = √(GM/R) = √(gR) ≈ 7.9 km/s (near earth)</div>
+<div class="formula">Escape velocity: ve = √(2GM/R) = √(2gR) ≈ 11.2 km/s</div>
+<p>Kepler's Laws: (1) Elliptical orbits, Sun at focus. (2) Equal areas in equal times (L conserved). (3) T² ∝ a³ (T²/a³ = constant for all planets).</p>
+<div class="formula">Time period of satellite: T = 2π√(R³/GM) | Geostationary orbit: T = 24 h, height ≈ 36000 km</div>`,
+            qa: [
+              { q: 'A 2 kg ball falls from 20 m height. Find speed just before hitting ground (g=10 m/s²).', a: 'Using energy conservation: mgh = ½mv² → v = √(2gh) = √(2×10×20) = √400 = 20 m/s.' },
+              { q: 'What is escape velocity? Calculate it for Earth (R=6400 km, g=9.8 m/s²).', a: 'Escape velocity is the minimum velocity needed to escape Earth\'s gravitational field without further propulsion. ve = √(2gR) = √(2×9.8×6.4×10⁶) = √(125.44×10⁶) ≈ 11.2 km/s. At this speed, KE = gravitational PE: ½mve² = GMm/R.' },
+              { q: 'State Kepler\'s third law and write its mathematical form.', a: 'Kepler\'s Third Law (Law of Periods): The square of the period of revolution of a planet is directly proportional to the cube of the semi-major axis of its orbit. T² ∝ a³, or T²/a³ = constant (same for all planets orbiting the same star). For circular orbit: T² = 4π²a³/GM. This law can be used to find planetary masses from orbital data.' },
+              { q: 'How does acceleration due to gravity vary with depth below Earth\'s surface?', a: 'At depth d below surface: g_d = g(1 − d/R). At centre (d=R): g = 0. g decreases linearly with depth. This contrasts with altitude h above surface where g_h = g/(1+h/R)² ≈ g(1−2h/R) for small h — also decreases but more slowly than at depth.' },
+            ]
+          },
+          {
+            id: 'thermodynamics-kinetic',
+            title: 'Thermodynamics & Properties of Matter',
+            subtopics: 'Thermal expansion, Specific heat, Heat transfer, Laws of thermodynamics, Carnot engine, Kinetic theory, Mechanical properties (elasticity, viscosity, surface tension)',
+            definition: 'Thermodynamics deals with heat, work, and energy transformations in macroscopic systems. Kinetic theory explains macroscopic properties of gases using molecular motion.',
+            content: `<p>Thermodynamics contributes ~10% to NEET Physics. The laws of thermodynamics and Carnot efficiency are commonly tested.</p>
+<h4>Thermal Properties</h4>
+<div class="formula">Q = mcΔT (specific heat) | ΔL = LαΔT (linear expansion) | ΔV = VγΔT (volume expansion)</div>
+<p>Heat transfer: Conduction (Q/t = KA·ΔT/L), Convection (fluids, winds, sea breeze), Radiation (Stefan's law: P = εσAT⁴; σ = 5.67×10⁻⁸ W/m²K⁴). Newton's Law of Cooling: Rate of cooling ∝ (T_body − T_surroundings).</p>
+<h4>Laws of Thermodynamics</h4>
+<p><strong>Zeroth Law:</strong> If A is in thermal equilibrium with B, and B with C, then A is in equilibrium with C. Defines temperature.</p>
+<p><strong>First Law:</strong> ΔU = Q − W. Energy is conserved. Q = heat added; W = work done by system; ΔU = change in internal energy.</p>
+<p><strong>Second Law:</strong> Heat flows spontaneously from hot to cold. No engine can be 100% efficient. Entropy of universe always increases.</p>
+<p><strong>Third Law:</strong> Entropy of a perfect crystal approaches zero at absolute zero.</p>
+<h4>Thermodynamic Processes</h4>
+<div class="formula">Isothermal: ΔT=0, ΔU=0, Q=W | Adiabatic: Q=0, ΔU=−W | Isochoric: W=0, ΔU=Q | Isobaric: W=PΔV</div>
+<h4>Carnot Engine</h4>
+<div class="formula">η = 1 − T₂/T₁ = (T₁−T₂)/T₁ | COP of refrigerator = T₂/(T₁−T₂)</div>
+<p>T₁ = source temperature, T₂ = sink temperature (both in Kelvin). Carnot is the most efficient possible heat engine between two temperatures.</p>
+<h4>Kinetic Theory of Gases</h4>
+<div class="formula">PV = nRT | P = ρ(v_rms)²/3 | v_rms = √(3RT/M) | v_mp = √(2RT/M) | v_avg = √(8RT/πM)</div>
+<p>Degrees of freedom: Monatomic = 3 (Cv = 3R/2), Diatomic = 5 (Cv = 5R/2), Triatomic = 6 (Cv = 3R). Mean free path: λ = 1/(√2·π·d²·n).</p>
+<h4>Mechanical Properties</h4>
+<p>Stress = F/A; Strain = ΔL/L; Young's modulus Y = Stress/Strain. Stokes' Law: F = 6πηrv (viscous drag). Terminal velocity: v_t = 2r²(ρ−σ)g/9η. Surface tension: T = F/L; excess pressure in bubble = 4T/r (soap bubble, 2 surfaces), 2T/r (droplet).</p>`,
+            qa: [
+              { q: 'State the first law of thermodynamics and explain each term.', a: 'First Law: ΔU = Q − W. ΔU = change in internal energy of the system (sum of kinetic + potential energies of all molecules). Q = heat absorbed BY the system from surroundings (positive if heat flows in). W = work done BY the system on surroundings (positive if system expands). This is conservation of energy: energy supplied as heat = energy stored as internal energy + energy used to do work. Sign convention: Q > 0 (heat absorbed), W > 0 (system expands and does work).' },
+              { q: 'What is the efficiency of a Carnot engine working between 500 K and 300 K?', a: 'η = 1 − T₂/T₁ = 1 − 300/500 = 1 − 0.6 = 0.4 = 40%. This is the maximum possible efficiency for any heat engine working between these temperatures. No real engine can achieve this efficiency. The Carnot cycle consists of two isothermal and two adiabatic processes and is completely reversible.' },
+              { q: 'What happens to internal energy in an isothermal expansion of an ideal gas?', a: 'In an isothermal process, temperature remains constant. For an ideal gas, internal energy depends only on temperature (kinetic energy of molecules). Therefore, ΔU = 0 (no change in internal energy). From first law: ΔU = Q − W → 0 = Q − W → Q = W. All heat absorbed by the gas is converted into work done by the gas during expansion. This is possible only if the gas expands slowly in contact with a heat reservoir at constant temperature.' },
+              { q: 'What is terminal velocity? On what factors does it depend?', a: 'Terminal velocity is the constant maximum velocity reached by a body falling through a viscous fluid when the viscous drag force equals the net downward force (gravity minus buoyancy). At terminal velocity: 6πηrv_t = (4/3)πr³(ρ−σ)g. Therefore: v_t = 2r²(ρ−σ)g/9η. Factors: (1) r² — terminal velocity increases with square of radius (larger objects fall faster). (2) (ρ−σ) — density difference between body and fluid. (3) Inversely proportional to η (coefficient of viscosity) — higher viscosity → lower terminal velocity. (4) g — higher gravity → faster terminal velocity.' },
+            ]
+          },
+          {
+            id: 'waves-oscillations',
+            title: 'Oscillations & Waves',
+            subtopics: 'SHM, Simple pendulum, Spring systems, Wave properties, Sound waves, Doppler effect, Superposition, Standing waves, Resonance',
+            definition: 'Oscillations are periodic to-and-fro motions about a mean position. Waves are disturbances that transfer energy through a medium without net transfer of matter.',
+            content: `<p>Oscillations and Waves contribute ~8% to NEET Physics. SHM equations and Doppler effect are frequently tested.</p>
+<h4>Simple Harmonic Motion (SHM)</h4>
+<div class="formula">x = A sin(ωt + φ) | v = Aω cos(ωt+φ) | a = −ω²x</div>
+<div class="formula">ω = 2π/T = 2πf | T = 1/f | KE = ½mω²(A²−x²) | PE = ½mω²x²</div>
+<p>Total energy = ½mω²A² = constant. At mean position: v = max, a = 0, KE = max, PE = 0. At extreme: v = 0, |a| = max, PE = max, KE = 0.</p>
+<h4>Pendulum & Spring</h4>
+<div class="formula">Simple pendulum: T = 2π√(L/g) | Spring: T = 2π√(m/k)</div>
+<p>Springs in series: 1/k_eff = 1/k₁ + 1/k₂. Springs in parallel: k_eff = k₁ + k₂.</p>
+<h4>Wave Properties</h4>
+<div class="formula">v = fλ | y = A sin(kx − ωt) | k = 2π/λ (wave number)</div>
+<p>Speed of sound: v = √(γP/ρ) (in gas). Increases with temperature: v ∝ √T. In solids: v = √(Y/ρ). Intensity ∝ A².</p>
+<h4>Doppler Effect</h4>
+<div class="formula">f_observed = f_source × (v ± v_observer)/(v ∓ v_source)</div>
+<p>Source approaching: f increases. Source receding: f decreases. Use + for observer approaching source; − for observer moving away. (Upper signs: approaching; lower: receding).</p>
+<h4>Superposition & Standing Waves</h4>
+<p>Beats: f_beat = |f₁ − f₂|. Standing waves: nodes (zero displacement), antinodes (max displacement). Closed pipe: harmonics = only odd (f₁, 3f₁, 5f₁...). Open pipe: all harmonics (f₁, 2f₁, 3f₁...). Resonance occurs when driving frequency = natural frequency.</p>`,
+            qa: [
+              { q: 'A simple pendulum has length 1 m. Find its time period (g = 9.8 m/s²).', a: 'T = 2π√(L/g) = 2π√(1/9.8) = 2π × 0.319 = 2.007 ≈ 2 s. This is why a seconds pendulum (T = 2 s) has length ≈ 1 m. Pendulum period is independent of mass and amplitude (for small oscillations).' },
+              { q: 'A police siren emits at 500 Hz. A car approaches at 20 m/s. Find the observed frequency (v_sound = 340 m/s).', a: 'Observer (car) approaching stationary source: f_obs = f × (v + v_observer)/v = 500 × (340+20)/340 = 500 × 360/340 = 500 × 1.059 ≈ 529 Hz. As the car moves away: f_obs = 500 × (340−20)/340 ≈ 471 Hz. The siren sounds higher-pitched approaching, lower-pitched receding.' },
+              { q: 'What is resonance? Give an example of resonance in daily life.', a: 'Resonance occurs when the frequency of external periodic force equals the natural frequency of an oscillating system → amplitude of oscillation becomes maximum. Energy transfer is most efficient at resonance. Examples: (1) Soldiers break step while crossing bridges (to avoid resonance with bridge\'s natural frequency — Tacoma Narrows bridge collapse 1940). (2) Radio tuning — LC circuit tuned to station frequency (resonance). (3) Microwave oven — microwaves at 2.45 GHz match resonant frequency of water molecules (O-H bond). (4) MRI — nuclear magnetic resonance of H atoms.' },
+              { q: 'What is the difference in harmonics produced by open and closed organ pipes?', a: 'Open organ pipe (both ends open): Antinodes at both ends. Fundamental frequency f₁ = v/2L. Harmonics: f₁, 2f₁, 3f₁, 4f₁ ... (all harmonics present — both odd and even). Closed organ pipe (one end closed): Node at closed end, antinode at open end. Fundamental f₁ = v/4L. Harmonics: f₁, 3f₁, 5f₁ ... (only ODD harmonics). An open pipe produces a richer, fuller sound. Given same length: open pipe fundamental = twice that of closed pipe.' },
+            ]
+          },
+          {
+            id: 'electrostatics-current',
+            title: 'Electrostatics & Current Electricity',
+            subtopics: 'Coulomb\'s law, Electric field, Potential, Capacitance, Ohm\'s law, Kirchhoff\'s laws, Wheatstone bridge, Potentiometer',
+            definition: 'Electrostatics studies charges at rest and the forces, fields, and potentials they create. Current electricity deals with charges in motion — the flow of electric current and the laws governing circuits.',
+            content: `<p>Electrostatics and Current Electricity together contribute ~18% to NEET Physics — the highest-weightage physics area.</p>
+<h4>Electrostatics</h4>
+<div class="formula">Coulomb's Law: F = kq₁q₂/r² | k = 1/4πε₀ = 9×10⁹ N·m²/C²</div>
+<div class="formula">Electric field E = F/q = kQ/r² | Potential V = kQ/r | Relation: E = −dV/dr</div>
+<p>Gauss's Law: φ = Q_enclosed/ε₀. Applications: Field of infinite sheet (σ/2ε₀ each side), infinite wire (λ/2πε₀r), sphere (kQ/r² outside, 0 inside conductor).</p>
+<h4>Capacitors</h4>
+<div class="formula">C = Q/V | Parallel plate: C = ε₀A/d | With dielectric: C = Kε₀A/d</div>
+<div class="formula">Series: 1/C_eff = 1/C₁+1/C₂ | Parallel: C_eff = C₁+C₂ | Energy = ½CV² = Q²/2C</div>
+<h4>Current Electricity</h4>
+<div class="formula">I = Q/t | Ohm's law: V = IR | Resistivity: R = ρL/A</div>
+<div class="formula">Series: R_eff = R₁+R₂ | Parallel: 1/R_eff = 1/R₁+1/R₂</div>
+<p><strong>Kirchhoff's Laws:</strong> KCL — sum of currents at junction = 0. KVL — sum of EMFs = sum of IR drops in a loop.</p>
+<div class="formula">Power: P = VI = I²R = V²/R | Cells in series: EMF_eff = nε, r_eff = nr</div>
+<h4>Wheatstone Bridge & Potentiometer</h4>
+<p>Balanced bridge: P/Q = R/S (no current through galvanometer). Potentiometer: null deflection method — measures EMF without drawing current (infinite resistance). Used to compare EMFs, find internal resistance.</p>`,
+            qa: [
+              { q: 'Two charges +4μC and −4μC are 10 cm apart. Find force between them.', a: 'F = kq₁q₂/r² = 9×10⁹ × 4×10⁻⁶ × 4×10⁻⁶ / (0.1)² = 9×10⁹ × 16×10⁻¹² / 0.01 = 144×10⁻³/0.01 = 14.4 N (attractive, opposite charges).' },
+              { q: 'State and explain Kirchhoff\'s Voltage Law.', a: 'Kirchhoff\'s Voltage Law (KVL): The algebraic sum of all EMFs and potential drops in any closed loop of a circuit is zero. Σ(EMF) = Σ(IR). Basis: Conservation of energy — a charge traversing a complete loop returns to the same potential. Sign convention: Traverse in direction of current through resistance → −IR (drop). EMF source in direction of current → +ε. This law, combined with KCL, can solve any circuit.' },
+              { q: 'Why is a potentiometer preferred over a voltmeter for measuring EMF?', a: 'A voltmeter, however high its resistance, always draws some current from the cell being measured → measures terminal voltage (V = ε − Ir) rather than true EMF. A potentiometer measures EMF at null deflection (zero current condition) → no current flows from the cell → no internal resistance drop → true EMF is measured. It has effectively infinite input impedance at the null point, making it more accurate for comparing EMFs and finding internal resistance.' },
+              { q: 'Three resistors of 2Ω, 3Ω, and 6Ω are connected in parallel. Find the effective resistance.', a: '1/R_eff = 1/2 + 1/3 + 1/6 = 3/6 + 2/6 + 1/6 = 6/6 = 1. Therefore R_eff = 1 Ω. In parallel combination: effective resistance is always less than the smallest individual resistance (here < 2Ω). The 1Ω result confirms this.' },
+            ]
+          },
+          {
+            id: 'magnetism-optics',
+            title: 'Magnetism, EMI & Optics',
+            subtopics: 'Magnetic field, Biot-Savart law, Ampere\'s law, Electromagnetic induction, Faraday\'s law, Lenz\'s law, Transformers, Ray optics (mirrors, lenses), Wave optics (interference, diffraction)',
+            definition: 'Magnetism arises from moving charges. Electromagnetic induction is the production of EMF by changing magnetic flux. Optics studies the behaviour of light — its reflection, refraction, and wave nature.',
+            content: `<p>Magnetism and Optics together contribute ~20% to NEET Physics. Focus on formula application and lens/mirror sign conventions.</p>
+<h4>Magnetic Field</h4>
+<div class="formula">Biot-Savart: dB = μ₀Idl×r̂/4πr² | B at centre of circle = μ₀I/2R</div>
+<div class="formula">Ampere's Law: ∮B·dl = μ₀I_enclosed | Solenoid: B = μ₀nI (n = turns/length)</div>
+<div class="formula">Force on charge: F = q(v×B) | Force on wire: F = BIL sinθ | Torque on loop: τ = NIAB sinθ</div>
+<h4>Electromagnetic Induction</h4>
+<div class="formula">Faraday's Law: EMF = −dφ/dt | φ = BAcosθ</div>
+<p>Lenz's Law: Induced current opposes the change in flux (conservation of energy). Motional EMF = BLv. Self-inductance: EMF = −L(dI/dt). Energy in inductor = ½LI².</p>
+<p>Transformer: V₂/V₁ = N₂/N₁ = I₁/I₂ (ideal). Step-up: N₂>N₁. Step-down: N₂<N₁. Power transmission uses step-up (high V, low I → less I²R loss).</p>
+<h4>Ray Optics</h4>
+<div class="formula">Mirror: 1/f = 1/v + 1/u | m = −v/u | f = R/2</div>
+<div class="formula">Snell's Law: n₁sinθ₁ = n₂sinθ₂ | n = c/v</div>
+<div class="formula">Lens: 1/f = 1/v − 1/u | m = v/u | Lens maker's: 1/f = (n−1)(1/R₁−1/R₂)</div>
+<p>TIR (Total Internal Reflection): When light goes from denser to rarer medium at angle > critical angle (sin C = 1/n). Applications: Optical fibre, diamond brilliance, mirage.</p>
+<h4>Wave Optics</h4>
+<p>Huygens' principle: Every point on a wavefront acts as a source of secondary wavelets. Young's Double Slit: fringe width β = λD/d. Constructive: path diff = nλ; Destructive: (2n+1)λ/2. Single slit diffraction: first minima at sinθ = λ/a.</p>`,
+            qa: [
+              { q: 'A concave mirror has focal length 20 cm. Object is 30 cm in front. Find image position and nature.', a: 'Using mirror formula: 1/f = 1/v + 1/u. Sign convention: f = −20 cm (concave), u = −30 cm. 1/(−20) = 1/v + 1/(−30) → 1/v = −1/20 + 1/30 = −3/60+2/60 = −1/60 → v = −60 cm. Image is 60 cm in front of mirror (real, same side as object), magnification m = −v/u = −(−60)/(−30) = −2. Image is real, inverted, magnified (2×).' },
+              { q: 'State Lenz\'s law and explain how it is consistent with energy conservation.', a: 'Lenz\'s Law: The direction of induced current is such that it opposes the change in magnetic flux that caused it. If flux increases → induced current creates a magnetic field opposing the increase (opposing the cause). If flux decreases → induced current creates field to sustain the flux. Energy conservation: To maintain the induced current that opposes motion, external agent must do work against the opposing force — this work is converted to electrical energy. If the induced current aided the change, it would accelerate the magnet indefinitely without energy input — violating conservation of energy.' },
+              { q: 'What is total internal reflection? What is the critical angle for glass (n=1.5)?', a: 'TIR occurs when light travels from a denser medium to a rarer medium at an angle of incidence greater than the critical angle. At the critical angle, the refracted ray grazes along the interface (90°). sin C = n₂/n₁ = 1/1.5 = 2/3 → C = sin⁻¹(0.667) ≈ 41.8°. For angles > 41.8°, all light is reflected back — no refraction. Applications: Optical fibres (communications — light trapped by TIR), diamond cutting (maximise TIR for brilliance), medical endoscopy.' },
+              { q: 'In Young\'s double slit experiment, slits are 0.5 mm apart, screen 1 m away, λ=500 nm. Find fringe width.', a: 'β = λD/d = (500×10⁻⁹ × 1)/(0.5×10⁻³) = 500×10⁻⁹/5×10⁻⁴ = 10⁻³ m = 1 mm. Each bright or dark fringe is 1 mm wide. To verify: central bright → 1st bright at y = λD/d = 1 mm. This experiment confirms light\'s wave nature — interference patterns impossible if light were only particles.' },
+            ]
+          },
+          {
+            id: 'modern-physics-semiconductor',
+            title: 'Modern Physics & Electronic Devices',
+            subtopics: 'Photoelectric effect, de Broglie waves, X-rays, Semiconductors, p-n junction, Diodes, Transistors, Logic gates',
+            definition: 'Modern physics covers quantum phenomena — the particle nature of light and wave nature of matter. Electronic devices exploit semiconductor properties for signal processing and switching.',
+            content: `<p>Modern physics and electronics contribute ~12% to NEET Physics. Photoelectric effect and transistor applications are most tested.</p>
+<h4>Photoelectric Effect (Einstein, 1905)</h4>
+<div class="formula">E = hf = hc/λ | KE_max = hf − φ (work function) | eV₀ = KE_max</div>
+<p>φ = hf₀ (threshold frequency). Observations: (1) Instantaneous emission (no time delay). (2) KE depends on frequency, not intensity. (3) No emission below threshold frequency. (4) Photocurrent proportional to intensity. Explained by photon model — light consists of discrete quanta (photons).</p>
+<h4>de Broglie Wave-Particle Duality</h4>
+<div class="formula">λ = h/p = h/mv | For electron accelerated through V: λ = h/√(2meV)</div>
+<p>Davisson-Germer experiment (1927): Electron diffraction confirmed matter waves. Heisenberg uncertainty: Δx·Δp ≥ h/4π.</p>
+<h4>Semiconductors</h4>
+<p>Conductors: ρ < 10⁻⁶ Ωm. Semiconductors: ρ = 10⁻⁶ to 10⁴ Ωm (Si, Ge). Insulators: ρ > 10⁴ Ωm. Energy gap: Conductor (0), Si (1.1 eV), Ge (0.67 eV), Insulator (>3 eV).</p>
+<p>Intrinsic semiconductor: Pure Si/Ge. Extrinsic: Doped. n-type: Group 15 dopant (P, As) → extra electron (majority carriers: electrons). p-type: Group 13 dopant (B, Al) → holes (majority: holes).</p>
+<h4>p-n Junction & Devices</h4>
+<p>Forward bias: Thin depletion layer, current flows. Reverse bias: Wide depletion layer, very small leakage current (reverse breakdown: Zener effect). Half-wave rectifier (one diode). Full-wave rectifier (4 diodes in bridge). Zener diode: voltage regulator (operates in reverse breakdown).</p>
+<h4>Transistor & Logic Gates</h4>
+<p>npn or pnp; regions: emitter (heavily doped), base (thin, lightly doped), collector. Common emitter: current gain β = IC/IB (50–500). Amplifier & switch. Logic gates: AND (·), OR (+), NOT (ā), NAND, NOR (universal gates), XOR.</p>
+<div class="formula">Boolean: NAND: Y = ā·b̄ | NOR: Y = ā+b̄ | De Morgan's: ā·b̄ = ā+b̄</div>`,
+            qa: [
+              { q: 'Light of frequency 6×10¹⁴ Hz falls on metal with work function 2 eV. Find max KE of photoelectrons (h=6.6×10⁻³⁴ J·s).', a: 'E = hf = 6.6×10⁻³⁴ × 6×10¹⁴ = 39.6×10⁻²⁰ J = 39.6×10⁻²⁰/1.6×10⁻¹⁹ eV = 2.475 eV. KE_max = E − φ = 2.475 − 2 = 0.475 eV ≈ 0.48 eV.' },
+              { q: 'What is the de Broglie wavelength of an electron accelerated through 100 V?', a: 'λ = h/√(2meV) = 6.6×10⁻³⁴/√(2×9.1×10⁻³¹×1.6×10⁻¹⁹×100) = 6.6×10⁻³⁴/√(2.912×10⁻²⁷) = 6.6×10⁻³⁴/1.706×10⁻¹³·⁵ ≈ 1.23×10⁻¹⁰ m = 1.23 Å. This is similar to X-ray wavelengths and atomic spacings — explains why electrons diffract from crystal lattices.' },
+              { q: 'What are the differences between n-type and p-type semiconductors?', a: 'n-type semiconductor: Doped with pentavalent (Group 15) atoms like P, As, Sb. Each dopant atom has 5 valence electrons — 4 form covalent bonds with Si, 1 is "free" (donor electron). Majority carriers: Electrons. Minority carriers: Holes. Fermi level closer to conduction band. p-type semiconductor: Doped with trivalent (Group 13) atoms like B, Al, In. Each dopant has 3 valence electrons — 3 bonds formed, 1 bond "incomplete" → hole created (acceptor). Majority carriers: Holes. Minority carriers: Electrons. Fermi level closer to valence band. Both types are electrically neutral (dopant atoms are neutral).' },
+              { q: 'What is the function of the base region in a transistor and why is it kept thin?', a: 'Base is the middle region of a transistor (between emitter and collector). Function: Controls the collector current — small base current (IB) controls large collector current (IC), giving current amplification β = IC/IB. Base is kept thin and lightly doped so that: (1) Most electrons (in npn) injected from emitter into base travel across quickly without recombining with holes. (2) Only a small fraction recombines in base → small IB. (3) The vast majority reach the collector → large IC. If base were thick, more electrons would recombine → less amplification.' },
+            ]
+          },
+        ]
+      },
+      chemistry: {
+        id: 'chemistry', topics: [
+          {
+            id: 'basic-concepts-atomic-structure',
+            title: 'Basic Concepts & Atomic Structure',
+            subtopics: 'Mole concept, Stoichiometry, Atomic models, Quantum numbers, Electronic configuration, Periodic table trends',
+            definition: 'Basic concepts of chemistry — the mole, stoichiometry, and atomic structure — form the foundation on which all other chemistry is built. Understanding how electrons are arranged in atoms explains chemical bonding and reactivity.',
+            content: `<p>Basic concepts and atomic structure form the backbone of NEET Chemistry (~8%). Master mole calculations and electronic configuration rules.</p>
+<h4>Mole Concept</h4>
+<div class="formula">1 mole = 6.022×10²³ particles (Avogadro's number, Nₐ)</div>
+<div class="formula">Moles = Mass/Molar mass = Volume/22.4 L (STP) = Particles/Nₐ</div>
+<p>Empirical formula = simplest whole number ratio of atoms. Molecular formula = actual number of atoms. Equivalent weight = Molar mass/n-factor. Normality = Equivalents/litre.</p>
+<h4>Atomic Models</h4>
+<p>Thomson (1904): "Plum pudding" — electrons embedded in positive sphere. Rutherford (1911): Nuclear model — tiny positive nucleus, electrons orbit. Bohr (1913): Quantised orbits — electrons in fixed energy levels, radiation emitted on transitions. Limitation: Only explains H-atom.</p>
+<h4>Quantum Numbers</h4>
+<ul>
+<li><strong>n</strong> (Principal): Shell (1,2,3...) — energy and size</li>
+<li><strong>l</strong> (Azimuthal): Subshell (0 to n−1) — shape (s,p,d,f)</li>
+<li><strong>m</strong> (Magnetic): Orientation (−l to +l) — number of orbitals = 2l+1</li>
+<li><strong>s</strong> (Spin): +½ or −½</li>
+</ul>
+<h4>Electronic Configuration Rules</h4>
+<p><strong>Aufbau:</strong> Fill lowest energy orbital first (1s→2s→2p→3s→3p→4s→3d→4p...). <strong>Pauli exclusion:</strong> No two electrons with same 4 quantum numbers — max 2 per orbital (opposite spins). <strong>Hund's rule:</strong> In degenerate orbitals, electrons fill singly before pairing (maximise unpaired electrons).</p>
+<p>Exceptions: Cr = [Ar]3d⁵4s¹ (half-filled d); Cu = [Ar]3d¹⁰4s¹ (fully-filled d) — extra stability.</p>
+<h4>Periodic Trends</h4>
+<p>Atomic radius: Decreases across period (↑ nuclear charge, same shell), increases down group (new shell added). Ionisation energy: Increases across period, decreases down group. Exceptions: N>O (N: half-filled 2p stable), Mg>Al (Mg: filled 3s stable), Be>B. Electronegativity: F highest (3.98 Pauling); increases across period, decreases down group.</p>`,
+            qa: [
+              { q: 'Calculate the number of molecules in 22 g of CO₂.', a: 'Molar mass of CO₂ = 12+32 = 44 g/mol. Moles = 22/44 = 0.5 mol. Number of molecules = 0.5 × 6.022×10²³ = 3.011×10²³ molecules. Also: number of O atoms = 2 × 3.011×10²³ = 6.022×10²³ (= Nₐ atoms of O).' },
+              { q: 'Write electronic configuration of Fe (Z=26) and Fe³⁺.', a: 'Fe (Z=26): [Ar]3d⁶4s² or 1s²2s²2p⁶3s²3p⁶3d⁶4s². Fe³⁺: Loses 3 electrons — first from 4s (2e), then 3d (1e): [Ar]3d⁵. Fe³⁺ has half-filled 3d subshell (3d⁵ — extra stability, paramagnetic with 5 unpaired electrons). Fe²⁺: [Ar]3d⁶ (loses 2e from 4s).' },
+              { q: 'Why is the ionisation energy of nitrogen higher than oxygen?', a: 'Nitrogen (N, Z=7): Electronic config: 1s²2s²2p³. The 2p subshell is exactly half-filled (one electron each in 2px, 2py, 2pz) — this is a stable configuration with maximum exchange energy. Oxygen (Z=8): 1s²2s²2p⁴ — one paired electron in 2p (electron-electron repulsion in paired orbital). The paired electron is easier to remove. Therefore, first IE of N (1402 kJ/mol) > O (1314 kJ/mol) despite O having higher nuclear charge.' },
+              { q: 'What are quantum numbers? Which quantum number determines the shape of an orbital?', a: 'Quantum numbers are four numbers that completely specify the state of an electron in an atom: (1) n (principal) — determines energy and size of orbital (n=1,2,3...). (2) l (azimuthal/angular momentum) — determines SHAPE of orbital (l=0→s, l=1→p, l=2→d, l=3→f). Range: 0 to n−1. (3) m (magnetic) — determines orientation of orbital in space (m = −l to +l). For p: 3 orientations (px, py, pz). (4) s (spin) — electron spin (+½ or −½). The AZIMUTHAL quantum number (l) determines the shape.' },
+            ]
+          },
+          {
+            id: 'chemical-bonding-states',
+            title: 'Chemical Bonding & States of Matter',
+            subtopics: 'Ionic, covalent, metallic bonding, VSEPR, Hybridisation (sp, sp², sp³, sp³d, sp³d²), Bond order, Hydrogen bonding, Intermolecular forces, Gas laws, Liquid state',
+            definition: 'Chemical bonds hold atoms together to form molecules and compounds. The nature of bonding determines a substance\'s physical and chemical properties. States of matter arise from intermolecular forces.',
+            content: `<p>Chemical bonding is fundamental to all of NEET Chemistry (~9%). VSEPR and hybridisation are most commonly tested.</p>
+<h4>Ionic and Covalent Bonding</h4>
+<p><strong>Ionic:</strong> Transfer of electrons (metal → non-metal), forms lattice. Fajan's rules: Small cation + large anion with high charge → more covalent character. Lattice energy: Energy released forming ionic crystal (high → stable compound — Born-Haber cycle).</p>
+<p><strong>Covalent:</strong> Sharing of electrons. Lewis structures. Bond order = (bonding e⁻ − antibonding e⁻)/2. Higher bond order → shorter, stronger bond.</p>
+<h4>VSEPR Theory</h4>
+<p>Electron pairs (bonding + lone) repel each other and adopt geometry that minimises repulsion. Lone pair–lone pair > lone pair–bonding pair > bonding pair–bonding pair repulsion. Examples: CH₄ (tetrahedral, 109.5°), NH₃ (pyramidal, 107°), H₂O (bent, 104.5°), PCl₅ (trigonal bipyramidal), SF₆ (octahedral).</p>
+<h4>Hybridisation</h4>
+<table style="width:100%;border-collapse:collapse;font-size:.85rem">
+<tr style="background:#f3f4f6"><th>Hybridisation</th><th>Shape</th><th>Bond angle</th><th>Example</th></tr>
+<tr><td style="padding:.3rem">sp</td><td>Linear</td><td>180°</td><td>BeCl₂, C₂H₂, CO₂</td></tr>
+<tr style="background:#f9fafb"><td style="padding:.3rem">sp²</td><td>Trigonal planar</td><td>120°</td><td>BF₃, C₂H₄, SO₃</td></tr>
+<tr><td style="padding:.3rem">sp³</td><td>Tetrahedral</td><td>109.5°</td><td>CH₄, NH₃, H₂O, CCl₄</td></tr>
+<tr style="background:#f9fafb"><td style="padding:.3rem">sp³d</td><td>Trigonal bipyramidal</td><td>90°/120°</td><td>PCl₅, SF₄</td></tr>
+<tr><td style="padding:.3rem">sp³d²</td><td>Octahedral</td><td>90°</td><td>SF₆, [Co(NH₃)₆]³⁺</td></tr>
+</table>
+<h4>Hydrogen Bond</h4>
+<p>Electrostatic attraction between H (bonded to F, O, N) and electronegative atom. Intermolecular H-bond (water, HF, alcohol): raises BP and MP. Intramolecular H-bond (salicylaldehyde, o-nitrophenol): lowers BP. Explains: water's high BP (100°C vs −60°C expected), ice is less dense than water, protein/DNA structure.</p>
+<h4>Gas Laws</h4>
+<div class="formula">Boyle's: PV = const (at constant T) | Charles's: V/T = const (at constant P) | Ideal gas: PV = nRT</div>
+<div class="formula">Van der Waals: (P + an²/V²)(V−nb) = nRT</div>`,
+            qa: [
+              { q: 'Predict the shape of (a) H₂O (b) BF₃ (c) PCl₅ using VSEPR theory.', a: '(a) H₂O: O has 6 valence e⁻, 2 used in bonds → 2 lone pairs. Total electron pairs = 4 (2 bonding, 2 lone). Electron geometry: tetrahedral. Molecular shape: BENT/V-shaped. Bond angle: 104.5° (lone pairs compress angle). (b) BF₃: B has 3 valence e⁻, 3 bonds, no lone pairs. 3 electron pairs. Shape: TRIGONAL PLANAR, 120°. (c) PCl₅: P uses 5 bonds (uses d-orbital, sp³d hybridisation). 5 electron pairs, no lone pairs. Shape: TRIGONAL BIPYRAMIDAL with 3 equatorial (120°) + 2 axial (90°) bonds.' },
+              { q: 'What is hydrogen bonding? Why does water have an unusually high boiling point?', a: 'Hydrogen bonding is a strong electrostatic dipole-dipole attraction between a hydrogen atom covalently bonded to a highly electronegative atom (F, O, N) and the lone pair of an electronegative atom on a neighbouring molecule. In water: each H₂O can form up to 4 H-bonds (2 as donor, 2 as acceptor). This creates an extensive network of H-bonds throughout liquid water. To boil water, all these H-bonds must be broken → requires much more energy → unusually high BP (100°C). Without H-bonding, water should boil at about −60°C (based on trend of H₂S, H₂Se). Also explains: water\'s high specific heat, surface tension, and why ice is less dense than liquid water.' },
+              { q: 'What is bond order? How does it relate to bond length and bond energy?', a: 'Bond order = (number of bonding electrons − number of antibonding electrons)/2. In simple terms: single bond = order 1, double bond = order 2, triple bond = order 3. Relationship: Higher bond order → SHORTER bond length → STRONGER bond (higher bond energy). Examples: C−C (order 1, 154 pm, 347 kJ/mol), C=C (order 2, 134 pm, 614 kJ/mol), C≡C (order 3, 120 pm, 839 kJ/mol). N₂ has bond order 3 (N≡N) → very stable (hard to break). CO also has bond order 3.' },
+              { q: 'Using van der Waals equation, explain how real gases deviate from ideal behaviour.', a: 'Ideal gas assumes: (1) Molecules have no volume, (2) No intermolecular forces. Real gases deviate because both assumptions are wrong. Van der Waals corrections: (a) Pressure correction: P_ideal = P_real + an²/V² — real molecules attract each other → molecules hitting wall have less momentum → actual pressure lower than ideal. "a" = measure of intermolecular attraction. (b) Volume correction: V_ideal = V_real − nb — real molecules occupy space → free volume less than container volume. "b" = excluded volume per mole. Real gases approach ideal behaviour at HIGH temperature (overcome attractions) and LOW pressure (large distances, small volume of molecules).' },
+            ]
+          },
+          {
+            id: 'thermodynamics-equilibrium-chem',
+            title: 'Chemical Thermodynamics & Equilibrium',
+            subtopics: 'Enthalpy, Hess\'s law, Entropy, Gibbs free energy, Equilibrium constant (Kc, Kp), Le Chatelier\'s principle, Acids & Bases, pH, Buffer solutions',
+            definition: 'Chemical thermodynamics determines whether a reaction is spontaneous and how much energy it involves. Chemical equilibrium describes the dynamic state where forward and reverse reactions occur at equal rates.',
+            content: `<p>Thermodynamics and Equilibrium together contribute ~12% to NEET Chemistry. Gibbs energy and equilibrium calculations are high-yield.</p>
+<h4>Thermodynamics</h4>
+<div class="formula">ΔH = H_products − H_reactants | ΔU = q + w | ΔH = ΔU + ΔngRT</div>
+<p>Hess's Law: ΔH of overall reaction = sum of ΔH of individual steps (state function). Standard enthalpy: ΔH°f (formation), ΔH°combustion, ΔH°neutralisation (strong acid + strong base = −57.1 kJ/mol).</p>
+<div class="formula">ΔG = ΔH − TΔS | ΔG° = −RT ln K = −2.303 RT log K</div>
+<p>Spontaneity: ΔG < 0 (spontaneous), ΔG = 0 (equilibrium), ΔG > 0 (non-spontaneous). Entropy (S): disorder. ΔS > 0 for: gas expansion, dissolution, solid → liquid → gas.</p>
+<h4>Chemical Equilibrium</h4>
+<div class="formula">aA + bB ⇌ cC + dD | Kc = [C]ᶜ[D]ᵈ/[A]ᵃ[B]ᵇ | Kp = Kc(RT)^Δng</div>
+<p>Large K: Products favoured. Small K: Reactants favoured. K independent of concentration, pressure, catalyst — depends ONLY on temperature. Reaction quotient Q: If Q<K, forward reaction; Q>K, reverse reaction; Q=K, equilibrium.</p>
+<h4>Le Chatelier's Principle</h4>
+<p>"If equilibrium is disturbed, system shifts to counteract the disturbance." Adding reactant → forward shift. Increasing pressure → shift toward fewer moles of gas. Increasing temperature → shift toward endothermic side (K changes). Catalyst → no shift in equilibrium, only reach equilibrium faster.</p>
+<h4>Acids & Bases</h4>
+<div class="formula">pH = −log[H⁺] | Kw = [H⁺][OH⁻] = 10⁻¹⁴ (at 25°C) | pH + pOH = 14</div>
+<p>Strong acids (HCl, H₂SO₄, HNO₃, HBr, HI, HClO₄) — fully dissociate. Weak acids: Ka = [H⁺][A⁻]/[HA]; pH = ½(pKa − log C). Buffer: Henderson-Hasselbalch: pH = pKa + log([A⁻]/[HA]).</p>`,
+            qa: [
+              { q: 'What is Hess\'s law? Apply it to find ΔHf of CO from given data.', a: 'Hess\'s Law: The total enthalpy change of a reaction is the same regardless of whether it occurs in one step or multiple steps. It follows because enthalpy is a state function. Application: C + O₂ → CO₂, ΔH₁ = −393.5 kJ; CO + ½O₂ → CO₂, ΔH₂ = −283 kJ. To get C + ½O₂ → CO: Subtract reaction 2 from reaction 1: ΔHf(CO) = ΔH₁ − ΔH₂ = −393.5 − (−283) = −393.5 + 283 = −110.5 kJ/mol.' },
+              { q: 'What conditions favour a spontaneous reaction according to ΔG?', a: 'ΔG = ΔH − TΔS < 0 for spontaneous reaction. Conditions: (1) ΔH < 0, ΔS > 0: Always spontaneous at all temperatures (exothermic, entropy increases — e.g., combustion). (2) ΔH > 0, ΔS > 0: Spontaneous at HIGH temperature (entropy term dominates — e.g., melting of ice above 0°C). (3) ΔH < 0, ΔS < 0: Spontaneous at LOW temperature (enthalpy term dominates — e.g., freezing of water below 0°C). (4) ΔH > 0, ΔS < 0: NEVER spontaneous (non-spontaneous at all temperatures).' },
+              { q: 'Calculate pH of 0.01 M HCl solution.', a: 'HCl is a strong acid → completely dissociated. [H⁺] = 0.01 M = 10⁻² M. pH = −log[H⁺] = −log(10⁻²) = 2. Now for 0.01 M NaOH (strong base): [OH⁻] = 0.01 M. pOH = 2. pH = 14 − pOH = 14 − 2 = 12.' },
+              { q: 'How does Le Chatelier\'s principle apply to the Haber process for ammonia synthesis?', a: 'Haber process: N₂(g) + 3H₂(g) ⇌ 2NH₃(g); ΔH = −92 kJ/mol (exothermic, Δng = 2−4 = −2 moles of gas decrease). Le Chatelier analysis: (1) High pressure: favours forward reaction (fewer gas moles on product side). Used: 150–300 atm. (2) Low temperature: favours forward reaction (exothermic, lower T shifts toward NH₃). BUT low T = slow rate. Compromise: 450–500°C (optimum between yield and rate). (3) Catalyst (Fe with promoters K₂O, Al₂O₃): Increases rate, reaches equilibrium faster without shifting equilibrium. (4) Remove NH₃ as it forms: forward reaction favoured (Q < K).' },
+            ]
+          },
+          {
+            id: 'electrochemistry-kinetics',
+            title: 'Electrochemistry & Chemical Kinetics',
+            subtopics: 'Electrolytic cells, Galvanic cells, EMF, Nernst equation, Faraday\'s laws, Corrosion, Rate law, Order of reaction, Arrhenius equation, Catalysis',
+            definition: 'Electrochemistry studies electricity-driven chemical reactions and vice versa. Chemical kinetics examines how fast reactions occur and what factors affect the rate.',
+            content: `<p>Electrochemistry and Kinetics together contribute ~10% to NEET Chemistry.</p>
+<h4>Galvanic (Voltaic) Cells</h4>
+<p>Convert chemical energy → electrical energy. Salt bridge maintains electrical neutrality. Cell notation: Anode (oxidation) || Cathode (reduction).</p>
+<div class="formula">E°cell = E°cathode − E°anode | ΔG° = −nFE° | E = E° − (RT/nF)ln Q (Nernst equation)</div>
+<p>Standard Hydrogen Electrode (SHE): E° = 0 V (reference). Standard reduction potentials: F₂/F⁻ (+2.87 V, strongest oxidiser), Li⁺/Li (−3.05 V, strongest reducer). Zn-Cu cell (Daniell cell): E° = +1.1 V.</p>
+<h4>Electrolytic Cells</h4>
+<p>Electrical energy → chemical energy. Faraday's Laws: (1) Mass deposited ∝ charge passed. (2) For same charge, masses deposited ∝ equivalent weights.</p>
+<div class="formula">m = ZIt = (M/nF) × It | Z = electrochemical equivalent = M/(nF)</div>
+<h4>Chemical Kinetics</h4>
+<div class="formula">Rate = k[A]^m[B]^n | Overall order = m + n</div>
+<p>Zero order: [A] = [A₀] − kt; t½ = [A₀]/2k. First order: [A] = [A₀]e⁻ᵏᵗ; t½ = 0.693/k (constant, independent of concentration). Pseudo first-order: Second-order reaction with one reactant in large excess.</p>
+<div class="formula">Arrhenius equation: k = Ae^(−Ea/RT) | ln(k₂/k₁) = Ea/R × (1/T₁ − 1/T₂)</div>
+<p>Activation energy Ea: Minimum energy needed for reaction. Catalyst lowers Ea (same energy profile, but lower activation energy path). Heterogeneous catalysis: adsorption of reactants on catalyst surface (Haber — Fe catalyst). Homogeneous: same phase as reactants.</p>`,
+            qa: [
+              { q: 'Write the Nernst equation and explain when cell EMF = standard EMF.', a: 'Nernst equation: E = E° − (RT/nF)ln Q = E° − (0.0592/n)log Q at 25°C. E = EMF of cell under given conditions; E° = standard EMF (all concentrations 1M, 25°C, 1 atm); n = moles of electrons; Q = reaction quotient. When E = E°: log Q = 0 → Q = 1 → all concentrations = 1M (standard conditions). At equilibrium: E = 0 (cell stops working) → E° = (0.0592/n)log K. So E° gives information about equilibrium constant K.' },
+              { q: 'Calculate mass of Cu deposited when 1.93 A flows for 1000 s. (Cu atomic mass = 63.5, n=2)', a: 'm = (M/nF) × It = (63.5/(2×96500)) × (1.93×1000) = (63.5/193000) × 1930 = 63.5 × 1930/193000 = 63.5 × 0.01 = 0.635 g. Alternatively: m = ZIt where Z = M/nF = 63.5/(2×96500) = 3.287×10⁻⁴ g/C. Charge = It = 1.93×1000 = 1930 C. m = 3.287×10⁻⁴ × 1930 = 0.634 g ≈ 0.635 g Cu deposited.' },
+              { q: 'The rate constant for a first order reaction is 2.303×10⁻³ s⁻¹. Find half-life.', a: 'For first order reaction: t½ = 0.693/k = 0.693/(2.303×10⁻³) = 693/2.303 = 300.9 ≈ 301 s ≈ 5 minutes. Note: t½ for first order is INDEPENDENT of initial concentration — always 301 s regardless of starting amount. After n half-lives: [A] = [A₀]/2ⁿ.' },
+              { q: 'How does a catalyst affect activation energy and rate of reaction?', a: 'A catalyst provides an alternative reaction pathway with LOWER activation energy (Ea). The catalyst is not consumed (regenerated at end). Effect on rate: From Arrhenius equation k = Ae^(−Ea/RT) — lower Ea → larger e^(−Ea/RT) → larger rate constant k → faster reaction at same temperature. Effect on equilibrium: Catalyst speeds up BOTH forward and reverse reactions equally → reaches equilibrium faster but does NOT shift the equilibrium position (ΔG° and K unchanged). A catalyst is "thermodynamically neutral" but "kinetically helpful."' },
+            ]
+          },
+          {
+            id: 'organic-chemistry-neet',
+            title: 'Organic Chemistry — Fundamentals & Hydrocarbons',
+            subtopics: 'IUPAC nomenclature, Reaction mechanisms (SN1, SN2, E1, E2), Alkanes, Alkenes (addition reactions), Alkynes, Aromatic compounds (benzene, EAS), Isomerism',
+            definition: 'Organic chemistry is the study of carbon compounds. Understanding reaction mechanisms, functional groups, and named reactions is essential for the ~30% of NEET Chemistry that is organic.',
+            content: `<p>Organic chemistry is the largest single section of NEET Chemistry (~30%). Master mechanisms and named reactions.</p>
+<h4>Isomerism</h4>
+<p>Structural: Chain (different carbon skeleton), Position (different position of functional group), Functional (different functional group, same molecular formula — C₂H₆O: ethanol vs dimethyl ether). Stereo: Geometrical (cis-trans — restricted rotation: C=C or ring), Optical (chiral carbon — 4 different groups, non-superimposable mirror images — enantiomers, rotate plane-polarised light).</p>
+<h4>Reaction Mechanisms</h4>
+<p><strong>SN1 (Substitution Nucleophilic Unimolecular):</strong> 2 steps. Rate = k[RX]. Carbocation intermediate. Favoured: 3° > 2° > 1° carbon; polar protic solvent; weak nucleophile. Racemisation at chiral centre.</p>
+<p><strong>SN2 (Bimolecular):</strong> 1 step (concerted). Rate = k[RX][Nu⁻]. Backside attack → inversion (Walden inversion). Favoured: 1° > 2° >> 3° (steric hindrance); polar aprotic solvent; strong nucleophile.</p>
+<p><strong>Electrophilic Addition (alkenes):</strong> Markovnikov's rule — H⁺ adds to carbon with more H (less substituted). Anti-Markovnikov (Peroxide effect/HBr only): Br adds to less substituted carbon (free radical mechanism). syn-addition: both groups on same side (catalytic hydrogenation). anti-addition: bromine test (trans addition).</p>
+<h4>Aromatic Compounds</h4>
+<p>Benzene: Planar, cyclic, 6π electrons (Hückel rule: 4n+2 for aromaticity, n=1). Resonance structure. Electrophilic Aromatic Substitution (EAS): Halogenation (Lewis acid catalyst), Nitration (HNO₃/H₂SO₄), Sulfonation, Friedel-Crafts alkylation/acylation. Ortho-Para directors (activate ring): −NH₂, −OH, −CH₃, halogens. Meta directors (deactivate): −NO₂, −COOH, −CHO, −SO₃H, −COR.</p>
+<h4>Important Tests</h4>
+<p>Baeyer's test (KMnO₄ decolourisation) — alkenes/alkynes. Tollens' test (silver mirror) — aldehydes. Fehling's test — aliphatic aldehydes. Lucas test (ZnCl₂/HCl) — 3°>2°>1° alcohols. Iodoform test — CH₃CO− or CH₃CHOH− group.</p>`,
+            qa: [
+              { q: 'Explain Markovnikov\'s rule with an example.', a: 'Markovnikov\'s rule: In addition of HX to an asymmetric alkene, H adds to the carbon bearing more hydrogen atoms (more substituted end), and X (halide) adds to the carbon with fewer hydrogens. Example: CH₃−CH=CH₂ + HBr → CH₃−CHBr−CH₃ (2-bromopropane, major product, NOT CH₃−CH₂−CH₂Br). Mechanism: H⁺ adds first → more stable (more substituted) carbocation forms → Br⁻ attacks carbocation. Stabilisation: 3° carbocation > 2° > 1° (hyperconjugation + inductive effect of alkyl groups).' },
+              { q: 'Compare SN1 and SN2 reactions. Under what conditions is each favoured?', a: 'SN1: (1) Rate depends only on substrate [RX] — unimolecular. (2) Two-step: slow ionisation → carbocation + leaving group, then fast nucleophilic attack. (3) Favoured by 3° substrate, polar protic solvent (H₂O, ROH — stabilises carbocation by solvation), weak/neutral nucleophile, stable leaving group. (4) Gives racemic mixture at chiral centre. SN2: (1) Rate depends on both substrate and nucleophile — bimolecular. (2) One concerted step: nucleophile attacks from back, leaving group departs simultaneously. (3) Favoured by 1° (or methyl) substrate, polar aprotic solvent (DMSO, acetone — dissolves salt but doesn\'t stabilise Nu⁻), strong nucleophile. (4) Gives inversion of configuration (Walden inversion).' },
+              { q: 'What is Hückel\'s rule of aromaticity? Is cyclopentadienyl anion aromatic?', a: 'Hückel\'s rule: A cyclic, planar, fully conjugated compound is aromatic if it has (4n+2) π electrons, where n = 0, 1, 2, 3... (n=0: 2e, n=1: 6e — benzene, n=2: 10e, etc.). All atoms in ring must be sp² hybridised. Cyclopentadienyl anion (C₅H₅⁻): 5-membered ring. 4 C=C contribute 4 π electrons + carbanion lone pair = 6 π electrons = 4(1)+2 with n=1. All 5 carbons sp², planar, fully conjugated → YES, aromatic (unusually stable, easy to form from cyclopentadiene by deprotonation).' },
+              { q: 'What is the iodoform test? Which compounds give a positive iodoform test?', a: 'Iodoform test: Add I₂ and NaOH to compound → yellow precipitate of iodoform (CHI₃). A positive test indicates the presence of a methyl ketone (CH₃CO− group) or ethanol/secondary alcohols that are oxidised to methyl ketones. Compounds giving positive test: (1) Ethanal (CH₃CHO). (2) Methyl ketones (CH₃COR). (3) Ethanol (CH₃CH₂OH) — oxidised to ethanal. (4) Secondary alcohols with CH₃ group (CH₃CHOH-R). Negative: Formaldehyde (HCHO), other aldehydes, primary alcohols (except ethanol), non-methyl ketones.' },
+            ]
+          },
+          {
+            id: 'functional-groups-chemistry',
+            title: 'Functional Group Chemistry',
+            subtopics: 'Alcohols, Phenols, Ethers, Aldehydes, Ketones, Carboxylic acids, Amines, Haloalkanes, Biomolecules (carbohydrates, amino acids, nucleic acids in chemistry context)',
+            definition: 'Functional groups determine the reactivity of organic molecules. Mastering the reactions of each functional group is essential for NEET organic chemistry questions.',
+            content: `<p>Functional group chemistry accounts for ~20% of NEET Chemistry. Focus on key reactions and mechanisms for each group.</p>
+<h4>Haloalkanes</h4>
+<p>R−X. Reactions: SN1/SN2 (nucleophilic substitution), E1/E2 (elimination — Zaitsev: more substituted alkene preferred), Grignard reagent formation (RMgX in dry ether — very reactive nucleophile/base). Elimination vs substitution: Strong bulky base, high T, 3° substrate → elimination; strong small nucleophile, low T, 1° substrate → substitution.</p>
+<h4>Alcohols & Phenols</h4>
+<p>Alcohol reactions: Oxidation (1° → aldehyde → carboxylic acid; 2° → ketone; 3° → no oxidation), Esterification (ROH + R'COOH ⇌ R'COOR + H₂O, acid catalyst), Dehydration (H₂SO₄, 170°C → alkene; 140°C → ether — intramolecular vs intermolecular). Lucas test: 3° (immediate turbidity), 2° (slow), 1° (no reaction at room temperature). Phenol: More acidic than alcohol (phenoxide ion stabilised by resonance). Reactions: Kolbe's (CO₂, NaOH, 400K → salicylate), Reimer-Tiemann (CHCl₃, NaOH → o-hydroxybenzaldehyde).</p>
+<h4>Aldehydes & Ketones</h4>
+<p>Both: Nucleophilic addition. Aldehyde more reactive (less steric, more electrophilic). Tollens' test: Aldehyde (not ketone) → silver mirror. Fehling's: Aliphatic aldehydes → red precipitate. Cannizzaro reaction: No α-H + NaOH → disproportionation (one oxidised, one reduced). Aldol reaction: α-H + dilute base → β-hydroxy aldehyde/ketone. Cross-aldol. Clemmensen reduction (Zn-Hg/HCl): C=O → CH₂. Wolff-Kishner (NH₂NH₂, KOH): C=O → CH₂.</p>
+<h4>Carboxylic Acids</h4>
+<p>Acidic (pKa ~4.7). Stronger than phenols and alcohols. Reactions: Esterification, Decarboxylation (heating — Kolbe electrolysis), Hell-Volhard-Zelinsky (HVZ: α-bromination with Br₂/PBr₃ or P/Br₂). Derivatives: Acid chloride (most reactive) > Acid anhydride > Ester > Amide (least reactive).</p>
+<h4>Amines</h4>
+<p>Basic (lone pair on N). Basicity: 3°>2°>1°>NH₃ (in gas phase); in water: 2°>1°>3°>NH₃ (solvation). Aromatic amines less basic (lone pair delocalised into ring). Reaction with HNO₂: 1° aliphatic → unstable diazonium; 1° aromatic → stable diazonium (used for dye synthesis). Carbylamine test: 1° amine + CHCl₃/NaOH → isocyanide (foul smell).</p>`,
+            qa: [
+              { q: 'What is Grignard reagent and what are its major reactions?', a: 'Grignard reagent (RMgX) is prepared by reacting haloalkane with magnesium in dry ether. It is a strong nucleophile and base. Major reactions: (1) Formaldehyde → 1° alcohol (after hydrolysis). (2) Other aldehydes → 2° alcohol. (3) Ketones → 3° alcohol. (4) CO₂ → carboxylic acid (RCOOH after hydrolysis). (5) Water/alcohol/NH₃ → alkane (acts as base, abstract proton). Precaution: All must be done in anhydrous conditions — water destroys Grignard reagent (RMgX + H₂O → RH + Mg(OH)X).' },
+              { q: 'What is the Aldol condensation? When does it occur and what is its significance?', a: 'Aldol condensation occurs with compounds having α-hydrogen (H on carbon adjacent to carbonyl group). Reaction: Dilute NaOH + aldehyde/ketone with α-H → β-hydroxy aldehyde (aldol) or β-hydroxy ketone (aldol). On heating, aldol undergoes dehydration → α,β-unsaturated carbonyl compound (aldol condensation product). Example: 2CH₃CHO → CH₃CH(OH)CH₂CHO (aldol) → CH₃CH=CHCHO + H₂O. Significance: Carbon-carbon bond formation — important in synthesis. Cross-aldol: Two different carbonyl compounds (more products — less useful synthetically).' },
+              { q: 'Arrange acid chloride, ester, amide, and carboxylic acid in order of reactivity toward nucleophilic acyl substitution.', a: 'Reactivity order: Acid chloride (RCOCl) > Acid anhydride (RCOOCOR) > Carboxylic acid (RCOOH) > Ester (RCOOR\') > Amide (RCONH₂). Reason: Nucleophilic acyl substitution — the leaving group\'s ability to depart determines reactivity. Cl⁻ (from acid chloride) is the best leaving group (weakest base, most stable). NH₂⁻ (from amide) is the worst leaving group (strongest base, least stable). Amide is the least reactive — amines are poor leaving groups. This order is important in synthesis: acid chloride is used to make esters and amides.' },
+              { q: 'What is the Carbylamine (isocyanide) test? Which class of amines gives this reaction?', a: 'Carbylamine test: Primary (1°) amine is warmed with chloroform (CHCl₃) and alcoholic KOH → isocyanide (carbylamine, R−NC) is formed, which has a very offensive smell. R−NH₂ + CHCl₃ + 3KOH → R−NC + 3KCl + 3H₂O. Positive: ONLY primary amines (1°, both aliphatic and aromatic). Secondary and tertiary amines do NOT give this test. So it is a distinguishing test for 1° amines from 2° and 3° amines. Example: Aniline (C₆H₅NH₂) + CHCl₃/KOH → phenyl isocyanide (C₆H₅NC) — terrible smell.' },
+            ]
+          },
+          {
+            id: 'inorganic-chemistry-neet',
+            title: 'Inorganic Chemistry — s, p, d Blocks & Coordination',
+            subtopics: 's-block elements (Group 1 & 2), p-block (Groups 13–18), d-block (transition metals), f-block, Coordination compounds (IUPAC, VBT, CFT)',
+            definition: 'Inorganic chemistry covers the chemistry of all elements and their compounds. Block-wise study of the periodic table reveals periodic trends in properties and reactions.',
+            content: `<p>Inorganic chemistry contributes ~12% to NEET. Focus on properties, reactions, and anomalous behaviour of specific elements.</p>
+<h4>s-Block Elements</h4>
+<p><strong>Group 1 (Alkali metals):</strong> Li, Na, K, Rb, Cs, Fr. Soft, reactive, +1 oxidation state. React with water: 2Na + 2H₂O → 2NaOH + H₂↑. Lithium anomaly: Li resembles Mg (diagonal relationship) — forms Li₃N (nitride), Li₂O₂ not formed, LiHCO₃ only in solution. Flame colours: Li (crimson), Na (yellow), K (violet), Cs (blue).</p>
+<p><strong>Group 2 (Alkaline earth metals):</strong> Be, Mg, Ca, Sr, Ba, Ra. +2 state. Be anomaly (resembles Al). Calcium compounds: CaO (quicklime) + H₂O → Ca(OH)₂ (slaked lime) → CaCO₃ (limestone/marble). Plaster of Paris: 2CaSO₄·½H₂O.</p>
+<h4>p-Block Key Points</h4>
+<p><strong>Group 15 (N, P, As, Sb, Bi):</strong> N₂ is inert (triple bond). HNO₃ (concentrated): passivates Fe, Al. PCl₃ vs PCl₅. Phosphorus allotropes: white (toxic, reactive), red (stable), black.</p>
+<p><strong>Group 16 (O, S, Se, Te, Po):</strong> O₃ (ozone): pale blue, pungent. H₂S: reducing agent. H₂SO₄ (concentrated): dehydrating, oxidising, sulphonating agent. SO₂ + Cl₂ → SO₂Cl₂ (sulphuryl chloride).</p>
+<p><strong>Group 17 (Halogens: F, Cl, Br, I):</strong> F₂: strongest oxidiser. Cl₂ + H₂O → HOCl (bleaching power). Bleaching powder: Ca(OCl)Cl. Interhalogen compounds (ClF₃, IF₇). F cannot show +ve oxidation state (no d-orbitals).</p>
+<p><strong>Group 18 (Noble gases):</strong> XeF₂ (linear), XeF₄ (square planar), XeF₆ (distorted octahedral), XeOF₄ (square pyramidal). Ar used in welding, He in balloons (lighter, non-flammable).</p>
+<h4>d-Block (Transition Metals)</h4>
+<p>Characteristics: Variable oxidation states (d electrons), coloured ions (d-d transition), paramagnetic (unpaired d-electrons), good catalysts, form complexes. Cu²⁺ (blue), Fe³⁺ (yellow), Cr³⁺ (green). Important compounds: K₂Cr₂O₇ (orange, oxidising agent), KMnO₄ (purple, strong oxidiser in acidic → Mn²⁺ colourless).</p>
+<h4>Coordination Compounds</h4>
+<p>Werner's theory. IUPAC: ligands alphabetically before metal, anion after, Roman numeral for oxidation state. Chelate (multidentate ligand — EN, EDTA). VBT: uses hybridisation to explain structure. CFT: Crystal Field Theory — d-orbital splitting in octahedral field (t₂g and eg sets); high spin (weak field ligand) vs low spin (strong field). Spectrochemical series: I⁻ < Br⁻ < Cl⁻ < F⁻ < OH⁻ < H₂O < NH₃ < en < CN⁻ < CO.</p>`,
+            qa: [
+              { q: 'Why does lithium show anomalous behaviour compared to other alkali metals?', a: 'Lithium (Li) shows anomalous behaviour due to its small atomic/ionic size (highest charge density among alkali metals) and high ionisation energy. Anomalies: (1) Hardest alkali metal (melting point highest). (2) Reacts slowly with water (other alkali metals react vigorously). (3) Forms Li₂O (not Li₂O₂ or LiO₂ like Na, K). (4) Forms nitride (Li₃N) — only alkali metal to react directly with N₂. (5) LiHCO₃ exists only in solution. (6) Lithium salts are more covalent (smaller ion, higher charge density). Diagonal relationship with Mg — Li and Mg have similar atomic/ionic size → similar properties.' },
+              { q: 'Why do transition metals form coloured compounds?', a: 'Transition metal compounds are coloured due to d-d electronic transitions. In a free transition metal ion, all five d-orbitals are degenerate (same energy). When a ligand approaches (forming a complex), crystal field splitting occurs — d-orbitals split into sets of different energy. An electron in the lower energy d-orbital absorbs visible light photon → jumps to higher energy d-orbital (d-d transition). The complementary colour (not absorbed) is observed as the colour of the compound. Example: Cu²⁺ has d⁹ configuration → absorbs orange-red light → appears blue. Zn²⁺ (d¹⁰) — no d-d transition → colourless. Sc³⁺ (d⁰) — no d electrons → colourless.' },
+              { q: 'Write the IUPAC name of [Co(NH₃)₅Cl]Cl₂.', a: 'Central metal: Co. Ligands: 5 NH₃ (ammine — neutral) + 1 Cl⁻ (chlorido — anionic). Outer sphere: 2 Cl⁻ ions. Oxidation state of Co: Let x + 0(5) + (−1) = +1 (charge of complex cation [Co(NH₃)₅Cl]²⁺) → x = +3. IUPAC name: Pentaamminecocobalt(III) chloride... wait: ligands alphabetically: ammine(5) and chlorido(1) → ammine before chlorido alphabetically. Name: Pentaamminechloridocobalt(III) chloride. (Ligands listed alphabetically before metal: a before c → ammine, chlorido).' },
+              { q: 'What is the spectrochemical series? What is its significance?', a: 'The spectrochemical series arranges ligands in order of their ability to cause crystal field splitting (Δ): I⁻ < Br⁻ < SCN⁻ < Cl⁻ < F⁻ < OH⁻ < oxalate < H₂O < NCS⁻ < NH₃ < en < CN⁻ < CO. Weak field ligands (left side — I⁻, Cl⁻): small Δ → electron pairing energy > Δ → electrons remain unpaired → HIGH SPIN complexes (more unpaired electrons, more paramagnetic). Strong field ligands (right side — CN⁻, CO): large Δ → electrons pair up despite repulsion → LOW SPIN complexes (fewer unpaired electrons). Example: [Fe(CN)₆]³⁻ (strong CN⁻ ligand) → low spin, 1 unpaired electron; [FeF₆]³⁻ (weak F⁻) → high spin, 5 unpaired electrons.' },
             ]
           },
         ]
