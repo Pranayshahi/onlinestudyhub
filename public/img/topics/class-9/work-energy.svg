@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="420" viewBox="0 0 800 420">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#fdf4ff"/>
+      <stop offset="100%" stop-color="#f3e8ff"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="420" fill="url(#bg)" rx="20"/>
+  <!-- Energy transformation diagram -->
+<rect x="80" y="90" width="180" height="90" rx="14" fill="#fce7f3" stroke="#ec4899" stroke-width="2.5"/>
+<text x="170" y="130" text-anchor="middle" font-size="14" font-weight="800" font-family="sans-serif" fill="#9d174d">Potential Energy</text>
+<text x="170" y="155" text-anchor="middle" font-size="14" font-family="monospace" fill="#be185d">PE = mgh</text>
+<line x1="260" y1="135" x2="360" y2="135" stroke="#a855f7" stroke-width="2.5"/>
+<polygon points="358,128 374,135 358,142" fill="#a855f7"/>
+<text x="310" y="125" text-anchor="middle" font-size="12" font-family="sans-serif" fill="#7e22ce">converts</text>
+<rect x="374" y="90" width="180" height="90" rx="14" fill="#e9d5ff" stroke="#a855f7" stroke-width="2.5"/>
+<text x="464" y="130" text-anchor="middle" font-size="14" font-weight="800" font-family="sans-serif" fill="#6b21a8">Kinetic Energy</text>
+<text x="464" y="155" text-anchor="middle" font-size="14" font-family="monospace" fill="#7e22ce">KE = ½mv²</text>
+<line x1="554" y1="135" x2="654" y2="135" stroke="#a855f7" stroke-width="2.5"/>
+<polygon points="652,128 668,135 652,142" fill="#a855f7"/>
+<rect x="568" y="90" width="180" height="90" rx="14" fill="#dcfce7" stroke="#16a34a" stroke-width="2.5"/>
+<text x="658" y="130" text-anchor="middle" font-size="14" font-weight="800" font-family="sans-serif" fill="#14532d">Mechanical E</text>
+<text x="658" y="155" text-anchor="middle" font-size="13" font-family="sans-serif" fill="#15803d">KE + PE = const.</text>
+<!-- Work formula -->
+<rect x="80" y="215" width="640" height="65" rx="14" fill="#f3e8ff" stroke="#a855f7" stroke-width="2"/>
+<text x="400" y="244" text-anchor="middle" font-size="17" font-family="monospace" font-weight="800" fill="#6b21a8">W = F · d · cosθ  (Joule = N·m)</text>
+<text x="400" y="268" text-anchor="middle" font-size="14" font-family="sans-serif" fill="#7e22ce">Power = W/t  (Watt)  ·  1 kWh = 3.6 × 10⁶ J</text>
+<rect x="150" y="305" width="500" height="60" rx="12" fill="#7c3aed"/>
+<text x="400" y="332" text-anchor="middle" font-size="15" font-family="sans-serif" font-weight="800" fill="#f3e8ff">Law of Conservation of Energy</text>
+<text x="400" y="354" text-anchor="middle" font-size="13" font-family="sans-serif" fill="#ddd6fe">Energy can neither be created nor destroyed</text>
+<text x="400" y="388" text-anchor="middle" font-size="24" font-family="sans-serif" font-weight="800" fill="#3b0764">Work, Energy and Power</text>
+</svg>

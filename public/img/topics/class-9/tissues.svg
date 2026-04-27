@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="420" viewBox="0 0 800 420">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#fdf2f8"/>
+      <stop offset="100%" stop-color="#fce7f3"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="420" fill="url(#bg)" rx="20"/>
+  <!-- Tissue types -->
+
+<rect x="80" y="90" width="300" height="130" rx="16" fill="#fce7f3" stroke="#ec4899" stroke-width="2.5"/>
+<text x="230" y="128" text-anchor="middle" font-size="15" font-weight="900" font-family="sans-serif" fill="#ec4899">Epithelial Tissue</text>
+<text x="230" y="162" text-anchor="middle" font-size="13" font-family="sans-serif" fill="#374151">Covers/lines organs</text>
+<rect x="420" y="90" width="300" height="130" rx="16" fill="#ffedd5" stroke="#f97316" stroke-width="2.5"/>
+<text x="570" y="128" text-anchor="middle" font-size="15" font-weight="900" font-family="sans-serif" fill="#f97316">Connective Tissue</text>
+<text x="570" y="162" text-anchor="middle" font-size="13" font-family="sans-serif" fill="#374151">Bone, Blood, Cartilage</text>
+<rect x="80" y="270" width="300" height="130" rx="16" fill="#dcfce7" stroke="#16a34a" stroke-width="2.5"/>
+<text x="230" y="308" text-anchor="middle" font-size="15" font-weight="900" font-family="sans-serif" fill="#16a34a">Muscle Tissue</text>
+<text x="230" y="342" text-anchor="middle" font-size="13" font-family="sans-serif" fill="#374151">Voluntary · Involuntary · Cardiac</text>
+<rect x="420" y="270" width="300" height="130" rx="16" fill="#ede9fe" stroke="#8b5cf6" stroke-width="2.5"/>
+<text x="570" y="308" text-anchor="middle" font-size="15" font-weight="900" font-family="sans-serif" fill="#8b5cf6">Nervous Tissue</text>
+<text x="570" y="342" text-anchor="middle" font-size="13" font-family="sans-serif" fill="#374151">Neuron · Impulse transmission</text>
+<rect x="200" y="415" width="400" height="0" rx="0"/>
+<text x="400" y="75" text-anchor="middle" font-size="26" font-family="sans-serif" font-weight="800" fill="#831843">Tissues</text>
+</svg>

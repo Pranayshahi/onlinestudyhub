@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="420" viewBox="0 0 800 420">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#fff7ed"/>
+      <stop offset="100%" stop-color="#ffedd5"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="420" fill="url(#bg)" rx="20"/>
+  <!-- Indian map outline simplified -->
+<path d="M 200,80 L 280,65 L 380,80 L 420,140 L 410,220 L 370,290 L 320,340 L 270,350 L 230,310 L 195,240 L 175,160 Z" fill="#fed7aa" stroke="#f97316" stroke-width="2.5"/>
+<!-- Key figures text -->
+<rect x="460" y="70" width="290" height="260" rx="16" fill="#ffedd5" stroke="#f97316" stroke-width="2"/>
+<text x="605" y="102" text-anchor="middle" font-size="15" font-weight="900" font-family="sans-serif" fill="#7c2d12">Freedom Movement</text>
+<text x="605" y="130" text-anchor="middle" font-size="13" font-family="sans-serif" fill="#9a3412">Gandhi — Non-cooperation</text>
+<text x="605" y="155" text-anchor="middle" font-size="13" font-family="sans-serif" fill="#9a3412">Khilafat Movement (1919)</text>
+<text x="605" y="180" text-anchor="middle" font-size="13" font-family="sans-serif" fill="#9a3412">Civil Disobedience (1930)</text>
+<text x="605" y="205" text-anchor="middle" font-size="13" font-family="sans-serif" fill="#9a3412">Salt March — Dandi</text>
+<text x="605" y="230" text-anchor="middle" font-size="13" font-family="sans-serif" fill="#9a3412">Quit India (1942)</text>
+<text x="605" y="258" text-anchor="middle" font-size="12" font-family="sans-serif" fill="#7c2d12">Subhas Chandra Bose · INA</text>
+<text x="400" y="380" text-anchor="middle" font-size="24" font-family="sans-serif" font-weight="800" fill="#7c2d12">Nationalism in India</text>
+</svg>

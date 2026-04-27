@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="420" viewBox="0 0 800 420">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0f172a"/>
+      <stop offset="100%" stop-color="#1e293b"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="420" fill="url(#bg)" rx="20"/>
+  <rect x="0" y="0" width="800" height="420" fill="#0f172a"/>
+<!-- Speaker -->
+<polygon points="80,165 80,255 130,255 200,310 200,110 130,165" fill="#475569" stroke="#64748b" stroke-width="2"/>
+<!-- Sound waves -->
+<path d="M 200,210 Q 236,162 260,210 Q 236,258 200,210" fill="none" stroke="#34d399" stroke-width="3" opacity="1"/><path d="M 200,210 Q 260,130 300,210 Q 260,290 200,210" fill="none" stroke="#34d399" stroke-width="2.6" opacity="0.85"/><path d="M 200,210 Q 284,98 340,210 Q 284,322 200,210" fill="none" stroke="#34d399" stroke-width="2.2" opacity="0.7"/><path d="M 200,210 Q 308,66 380,210 Q 308,354 200,210" fill="none" stroke="#34d399" stroke-width="1.7999999999999998" opacity="0.55"/><path d="M 200,210 Q 332,34 420,210 Q 332,386 200,210" fill="none" stroke="#34d399" stroke-width="1.4" opacity="0.4"/>
+<!-- Properties -->
+<rect x="430" y="80" width="320" height="230" rx="14" fill="rgba(52,211,153,0.1)" stroke="#34d399" stroke-width="1.5"/>
+<text x="590" y="112" text-anchor="middle" font-size="15" font-weight="800" font-family="sans-serif" fill="#34d399">Properties of Sound</text>
+<text x="590" y="140" text-anchor="middle" font-size="13" font-family="sans-serif" fill="#6ee7b7">Longitudinal wave</text>
+<text x="590" y="165" text-anchor="middle" font-size="13" font-family="sans-serif" fill="#6ee7b7">Speed: 343 m/s (air)</text>
+<text x="590" y="190" text-anchor="middle" font-size="13" font-family="sans-serif" fill="#6ee7b7">Needs medium to travel</text>
+<text x="590" y="215" text-anchor="middle" font-size="13" font-family="sans-serif" fill="#6ee7b7">Echo: reflection of sound</text>
+<text x="590" y="240" text-anchor="middle" font-size="13" font-family="sans-serif" fill="#6ee7b7">SONAR · Ultrasound</text>
+<text x="590" y="268" text-anchor="middle" font-size="12" font-family="monospace" fill="#34d399">v = fλ · Range: 20Hz–20kHz</text>
+<text x="400" y="388" text-anchor="middle" font-size="26" font-family="sans-serif" font-weight="800" fill="#34d399">Sound</text>
+</svg>

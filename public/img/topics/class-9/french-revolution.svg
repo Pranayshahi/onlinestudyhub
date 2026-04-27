@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="420" viewBox="0 0 800 420">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#1e3a8a"/>
+      <stop offset="100%" stop-color="#1d4ed8"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="420" fill="url(#bg)" rx="20"/>
+  <rect x="0" y="0" width="800" height="420" fill="#1e3a8a"/>
+<!-- French flag -->
+<rect x="100" y="100" width="90" height="200" rx="4" fill="#1d4ed8"/>
+<rect x="190" y="100" width="90" height="200" rx="0" fill="#fff"/>
+<rect x="280" y="100" width="90" height="200" rx="4" fill="#dc2626"/>
+<!-- Key events -->
+<rect x="420" y="80" width="340" height="240" rx="16" fill="rgba(251,191,36,0.12)" stroke="#fbbf24" stroke-width="1.5"/>
+<text x="590" y="112" text-anchor="middle" font-size="15" font-weight="900" font-family="sans-serif" fill="#fbbf24">1789 Revolution</text>
+<text x="590" y="140" text-anchor="middle" font-size="13" font-family="sans-serif" fill="#fde68a">Storming of Bastille</text>
+<text x="590" y="165" text-anchor="middle" font-size="13" font-family="sans-serif" fill="#fde68a">Liberty · Equality · Fraternity</text>
+<text x="590" y="190" text-anchor="middle" font-size="13" font-family="sans-serif" fill="#fde68a">Declaration of Rights of Man</text>
+<text x="590" y="215" text-anchor="middle" font-size="13" font-family="sans-serif" fill="#fde68a">Louis XVI → Guillotine</text>
+<text x="590" y="240" text-anchor="middle" font-size="13" font-family="sans-serif" fill="#fde68a">Rise of Napoleon</text>
+<text x="590" y="268" text-anchor="middle" font-size="12" font-family="sans-serif" fill="#fbbf24">Ancien Régime overthrown</text>
+<text x="400" y="368" text-anchor="middle" font-size="24" font-family="sans-serif" font-weight="800" fill="#fbbf24">The French Revolution</text>
+</svg>

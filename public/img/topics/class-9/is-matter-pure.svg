@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="420" viewBox="0 0 800 420">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#fdf4ff"/>
+      <stop offset="100%" stop-color="#f3e8ff"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="420" fill="url(#bg)" rx="20"/>
+  <!-- Classification tree -->
+<rect x="300" y="65" width="200" height="40" rx="10" fill="#9333ea"/>
+<text x="400" y="91" text-anchor="middle" font-size="14" font-weight="800" font-family="sans-serif" fill="#fff">Matter</text>
+<line x1="400" y1="105" x2="240" y2="145" stroke="#9333ea" stroke-width="2"/>
+<line x1="400" y1="105" x2="560" y2="145" stroke="#9333ea" stroke-width="2"/>
+<rect x="140" y="145" width="200" height="38" rx="10" fill="#c4b5fd" stroke="#7c3aed" stroke-width="2"/>
+<text x="240" y="170" text-anchor="middle" font-size="13" font-weight="700" font-family="sans-serif" fill="#3b0764">Pure Substance</text>
+<rect x="460" y="145" width="200" height="38" rx="10" fill="#e9d5ff" stroke="#9333ea" stroke-width="2"/>
+<text x="560" y="170" text-anchor="middle" font-size="13" font-weight="700" font-family="sans-serif" fill="#6b21a8">Mixture</text>
+<!-- Level 3 -->
+<line x1="240" y1="183" x2="150" y2="223" stroke="#7c3aed" stroke-width="1.5"/>
+<line x1="240" y1="183" x2="330" y2="223" stroke="#7c3aed" stroke-width="1.5"/>
+<rect x="75" y="223" width="150" height="36" rx="8" fill="#ddd6fe" stroke="#7c3aed" stroke-width="1.5"/>
+<text x="150" y="246" text-anchor="middle" font-size="12" font-family="sans-serif" fill="#5b21b6">Element (Fe, O₂)</text>
+<rect x="255" y="223" width="150" height="36" rx="8" fill="#ede9fe" stroke="#7c3aed" stroke-width="1.5"/>
+<text x="330" y="246" text-anchor="middle" font-size="12" font-family="sans-serif" fill="#5b21b6">Compound (H₂O)</text>
+<line x1="560" y1="183" x2="460" y2="223" stroke="#9333ea" stroke-width="1.5"/>
+<line x1="560" y1="183" x2="660" y2="223" stroke="#9333ea" stroke-width="1.5"/>
+<rect x="375" y="223" width="170" height="36" rx="8" fill="#f3e8ff" stroke="#a855f7" stroke-width="1.5"/>
+<text x="460" y="246" text-anchor="middle" font-size="12" font-family="sans-serif" fill="#6b21a8">Homogeneous</text>
+<rect x="575" y="223" width="170" height="36" rx="8" fill="#fae8ff" stroke="#c026d3" stroke-width="1.5"/>
+<text x="660" y="246" text-anchor="middle" font-size="12" font-family="sans-serif" fill="#86198f">Heterogeneous</text>
+<!-- Separation techniques -->
+<rect x="80" y="300" width="640" height="75" rx="14" fill="#f3e8ff" stroke="#9333ea" stroke-width="2"/>
+<text x="400" y="326" text-anchor="middle" font-size="14" font-weight="800" font-family="sans-serif" fill="#6b21a8">Separation Techniques</text>
+<text x="400" y="350" text-anchor="middle" font-size="13" font-family="sans-serif" fill="#7e22ce">Filtration · Distillation · Chromatography</text>
+<text x="400" y="368" text-anchor="middle" font-size="13" font-family="sans-serif" fill="#7e22ce">Evaporation · Centrifugation · Crystallisation</text>
+<text x="400" y="395" text-anchor="middle" font-size="24" font-family="sans-serif" font-weight="800" fill="#581c87">Is Matter Around Us Pure?</text>
+</svg>

@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="420" viewBox="0 0 800 420">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#f0f9ff"/>
+      <stop offset="100%" stop-color="#e0f2fe"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="420" fill="url(#bg)" rx="20"/>
+  <!-- India terrain map simplified -->
+<!-- Himalayas top -->
+<path d="M 100,120 Q 200,70 320,85 Q 440,65 560,90 Q 640,80 700,120 L 700,170 Q 580,130 440,150 Q 300,135 180,160 Z" fill="#94a3b8" stroke="#64748b" stroke-width="2"/>
+<text x="400" y="130" text-anchor="middle" font-size="14" font-weight="800" font-family="sans-serif" fill="#fff">The Himalayas</text>
+<!-- Northern plains -->
+<rect x="150" y="168" width="500" height="80" rx="4" fill="#fde68a" stroke="#ca8a04" stroke-width="1.5"/>
+<text x="400" y="215" text-anchor="middle" font-size="14" font-weight="700" font-family="sans-serif" fill="#78350f">Northern Plains (Fertile Alluvial)</text>
+<!-- Peninsula -->
+<path d="M 200,248 L 600,248 L 580,320 L 400,380 L 220,320 Z" fill="#bbf7d0" stroke="#16a34a" stroke-width="1.5"/>
+<text x="400" y="310" text-anchor="middle" font-size="13" font-weight="700" font-family="sans-serif" fill="#14532d">Peninsular Plateau (Deccan)</text>
+<!-- Western Ghats -->
+<text x="130" y="310" text-anchor="middle" font-size="11" font-family="sans-serif" fill="#0369a1">W.Ghats</text>
+<!-- Eastern Ghats -->
+<text x="660" y="310" text-anchor="middle" font-size="11" font-family="sans-serif" fill="#0369a1">E.Ghats</text>
+<rect x="80" y="58" width="640" height="42" rx="12" fill="#0369a1"/>
+<text x="400" y="85" text-anchor="middle" font-size="17" font-family="sans-serif" font-weight="900" fill="#fff">Physical Features of India — 6 Major Divisions</text>
+</svg>

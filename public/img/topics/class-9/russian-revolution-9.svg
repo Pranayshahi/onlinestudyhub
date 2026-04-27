@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="420" viewBox="0 0 800 420">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#7f1d1d"/>
+      <stop offset="100%" stop-color="#991b1b"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="420" fill="url(#bg)" rx="20"/>
+  <rect x="0" y="0" width="800" height="420" fill="#7f1d1d"/>
+<!-- Red star -->
+<polygon points="400,65 415,112 465,112 425,140 440,187 400,160 360,187 375,140 335,112 385,112" fill="#dc2626" stroke="#fca5a5" stroke-width="2"/>
+<!-- Timeline -->
+<line x1="80" y1="240" x2="720" y2="240" stroke="#fca5a5" stroke-width="2.5"/>
+
+<circle cx="120" cy="240" r="8" fill="#fca5a5"/>
+<text x="120" y="225" text-anchor="middle" font-size="12" font-weight="700" font-family="sans-serif" fill="#fca5a5">1905</text>
+<text x="120" y="265" text-anchor="middle" font-size="11" font-family="sans-serif" fill="#fecaca">Bloody Sunday</text>
+<circle cx="250" cy="240" r="8" fill="#fca5a5"/>
+<text x="250" y="225" text-anchor="middle" font-size="12" font-weight="700" font-family="sans-serif" fill="#fca5a5">1917 Feb</text>
+<text x="250" y="265" text-anchor="middle" font-size="11" font-family="sans-serif" fill="#fecaca">Tsar abdicates</text>
+<circle cx="390" cy="240" r="8" fill="#fca5a5"/>
+<text x="390" y="225" text-anchor="middle" font-size="12" font-weight="700" font-family="sans-serif" fill="#fca5a5">1917 Oct</text>
+<text x="390" y="265" text-anchor="middle" font-size="11" font-family="sans-serif" fill="#fecaca">Bolshevik Rev.</text>
+<circle cx="530" cy="240" r="8" fill="#fca5a5"/>
+<text x="530" y="225" text-anchor="middle" font-size="12" font-weight="700" font-family="sans-serif" fill="#fca5a5">1918</text>
+<text x="530" y="265" text-anchor="middle" font-size="11" font-family="sans-serif" fill="#fecaca">Civil War</text>
+<circle cx="660" cy="240" r="8" fill="#fca5a5"/>
+<text x="660" y="225" text-anchor="middle" font-size="12" font-weight="700" font-family="sans-serif" fill="#fca5a5">1922</text>
+<text x="660" y="265" text-anchor="middle" font-size="11" font-family="sans-serif" fill="#fecaca">USSR formed</text>
+<rect x="100" y="308" width="600" height="55" rx="12" fill="rgba(252,165,165,0.12)" stroke="#fca5a5" stroke-width="1.5"/>
+<text x="400" y="335" text-anchor="middle" font-size="14" font-family="sans-serif" fill="#fca5a5">Lenin · Bolsheviks · Soviets · Marxism · Collectivisation</text>
+<text x="400" y="355" text-anchor="middle" font-size="13" font-family="sans-serif" fill="#fecaca">Kulaks · Five Year Plans · Stalin's collectivisation</text>
+<text x="400" y="390" text-anchor="middle" font-size="22" font-family="sans-serif" font-weight="800" fill="#fca5a5">Socialism and the Russian Revolution</text>
+</svg>

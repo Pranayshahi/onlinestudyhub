@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="420" viewBox="0 0 800 420">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#fffbeb"/>
+      <stop offset="100%" stop-color="#fef3c7"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="420" fill="url(#bg)" rx="20"/>
+  <!-- Atom Bohr model -->
+<circle cx="280" cy="210" r="30" fill="#fbbf24" stroke="#d97706" stroke-width="3"/>
+<text x="280" y="215" text-anchor="middle" font-size="14" font-weight="800" font-family="sans-serif" fill="#78350f">N</text>
+<circle cx="280" cy="210" r="65" fill="none" stroke="#d97706" stroke-width="2" stroke-dasharray="5,3"/>
+<circle cx="345" cy="210" r="8" fill="#f97316"/><circle cx="280" cy="210" r="100" fill="none" stroke="#d97706" stroke-width="1.7" stroke-dasharray="5,3"/>
+<circle cx="380" cy="210" r="7" fill="#f97316"/><circle cx="280" cy="210" r="140" fill="none" stroke="#d97706" stroke-width="1.4" stroke-dasharray="5,3"/>
+<circle cx="420" cy="210" r="6" fill="#f97316"/>
+<!-- Molecule (H₂O) -->
+<circle cx="560" cy="200" r="45" fill="#bfdbfe" stroke="#3b82f6" stroke-width="2.5"/>
+<text x="560" y="207" text-anchor="middle" font-size="14" font-weight="800" font-family="sans-serif" fill="#1d4ed8">O</text>
+<circle cx="490" cy="255" r="28" fill="#fde68a" stroke="#d97706" stroke-width="2"/>
+<text x="490" y="261" text-anchor="middle" font-size="13" font-weight="700" font-family="sans-serif" fill="#78350f">H</text>
+<circle cx="630" cy="255" r="28" fill="#fde68a" stroke="#d97706" stroke-width="2"/>
+<text x="630" y="261" text-anchor="middle" font-size="13" font-weight="700" font-family="sans-serif" fill="#78350f">H</text>
+<line x1="516" y1="240" x2="530" y2="225" stroke="#374151" stroke-width="2.5"/>
+<line x1="604" y1="225" x2="618" y2="240" stroke="#374151" stroke-width="2.5"/>
+<!-- Formulae -->
+<rect x="80" y="330" width="640" height="55" rx="12" fill="#fef3c7" stroke="#d97706" stroke-width="2"/>
+<text x="400" y="357" text-anchor="middle" font-size="14" font-family="sans-serif" font-weight="700" fill="#92400e">Avogadro's No.: 6.022×10²³ · Mole concept</text>
+<text x="400" y="376" text-anchor="middle" font-size="13" font-family="sans-serif" fill="#78350f">Atomic mass unit (amu) · Molecular formula</text>
+<text x="400" y="65" text-anchor="middle" font-size="24" font-family="sans-serif" font-weight="800" fill="#78350f">Atoms and Molecules</text>
+</svg>

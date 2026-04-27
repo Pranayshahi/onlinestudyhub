@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="420" viewBox="0 0 800 420">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#f0fdf4"/>
+      <stop offset="100%" stop-color="#dcfce7"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="420" fill="url(#bg)" rx="20"/>
+  <!-- Village scene -->
+<!-- Sky -->
+<rect x="0" y="0" width="800" height="200" fill="#bae6fd" rx="0"/>
+<circle cx="680" cy="80" r="50" fill="#fbbf24" stroke="#f59e0b" stroke-width="2"/>
+<!-- Houses -->
+
+<rect x="100" y="145" width="100" height="70" rx="4" fill="#fde68a" stroke="#ca8a04" stroke-width="1.5"/>
+<polygon points="90,145 150,100 210,145" fill="#b45309" stroke="#92400e" stroke-width="1.5"/>
+<rect x="300" y="145" width="100" height="70" rx="4" fill="#fed7aa" stroke="#ca8a04" stroke-width="1.5"/>
+<polygon points="290,145 350,100 410,145" fill="#b45309" stroke="#92400e" stroke-width="1.5"/>
+<rect x="500" y="145" width="100" height="70" rx="4" fill="#fca5a5" stroke="#ca8a04" stroke-width="1.5"/>
+<polygon points="490,145 550,100 610,145" fill="#b45309" stroke="#92400e" stroke-width="1.5"/>
+<!-- Fields -->
+<rect x="0" y="215" width="800" height="80" fill="#ca8a04"/>
+<line x1="60" y1="215" x2="55" y2="175" stroke="#16a34a" stroke-width="2.5"/><line x1="120" y1="215" x2="115" y2="175" stroke="#16a34a" stroke-width="2.5"/><line x1="180" y1="215" x2="175" y2="175" stroke="#16a34a" stroke-width="2.5"/><line x1="240" y1="215" x2="235" y2="175" stroke="#16a34a" stroke-width="2.5"/><line x1="300" y1="215" x2="295" y2="175" stroke="#16a34a" stroke-width="2.5"/><line x1="360" y1="215" x2="355" y2="175" stroke="#16a34a" stroke-width="2.5"/><line x1="420" y1="215" x2="415" y2="175" stroke="#16a34a" stroke-width="2.5"/><line x1="480" y1="215" x2="475" y2="175" stroke="#16a34a" stroke-width="2.5"/><line x1="540" y1="215" x2="535" y2="175" stroke="#16a34a" stroke-width="2.5"/><line x1="600" y1="215" x2="595" y2="175" stroke="#16a34a" stroke-width="2.5"/><line x1="660" y1="215" x2="655" y2="175" stroke="#16a34a" stroke-width="2.5"/><line x1="720" y1="215" x2="715" y2="175" stroke="#16a34a" stroke-width="2.5"/>
+<!-- Info box -->
+<rect x="80" y="310" width="640" height="80" rx="12" fill="#dcfce7" stroke="#22c55e" stroke-width="2"/>
+<text x="400" y="338" text-anchor="middle" font-size="14" font-weight="800" font-family="sans-serif" fill="#14532d">Palampur: Land, Labour, Capital, Enterprise</text>
+<text x="400" y="362" text-anchor="middle" font-size="13" font-family="sans-serif" fill="#15803d">Farming (85% land) · Non-farm: dairy, small manufacturing</text>
+<text x="400" y="382" text-anchor="middle" font-size="12" font-family="sans-serif" fill="#15803d">Green Revolution → HYV seeds, irrigation, fertilisers</text>
+</svg>

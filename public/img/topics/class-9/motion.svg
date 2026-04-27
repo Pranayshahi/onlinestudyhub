@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="420" viewBox="0 0 800 420">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0f172a"/>
+      <stop offset="100%" stop-color="#1e293b"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="420" fill="url(#bg)" rx="20"/>
+  <rect x="0" y="0" width="800" height="420" fill="#0f172a"/>
+<!-- Distance-time graph -->
+<line x1="80" y1="350" x2="700" y2="350" stroke="#475569" stroke-width="2"/>
+<line x1="80" y1="80" x2="80" y2="350" stroke="#475569" stroke-width="2"/>
+<text x="720" y="355" font-size="13" fill="#94a3b8" font-family="sans-serif">t</text>
+<text x="80" y="68" text-anchor="middle" font-size="13" fill="#94a3b8" font-family="sans-serif">d</text>
+<!-- Uniform motion -->
+<line x1="80" y1="330" x2="450" y2="120" stroke="#38bdf8" stroke-width="3"/>
+<text x="465" y="115" font-size="13" font-weight="700" font-family="sans-serif" fill="#38bdf8">Uniform</text>
+<!-- Non-uniform -->
+<path d="M 80,330 Q 200,300 350,200 Q 480,120 620,100" fill="none" stroke="#f97316" stroke-width="3"/>
+<text x="630" y="97" font-size="13" font-weight="700" font-family="sans-serif" fill="#f97316">Non-uniform</text>
+<!-- Equations -->
+<rect x="80" y="80" width="400" height="90" rx="12" fill="rgba(56,189,248,0.12)" stroke="#38bdf8" stroke-width="1.5"/>
+<text x="280" y="108" text-anchor="middle" font-size="13" font-weight="800" font-family="sans-serif" fill="#7dd3fc">Equations of Motion</text>
+<text x="280" y="130" text-anchor="middle" font-size="13" font-family="monospace" fill="#38bdf8">v=u+at · s=ut+½at²</text>
+<text x="280" y="155" text-anchor="middle" font-size="13" font-family="monospace" fill="#38bdf8">v²=u²+2as</text>
+<text x="400" y="390" text-anchor="middle" font-size="26" font-family="sans-serif" font-weight="800" fill="#38bdf8">Motion</text>
+</svg>

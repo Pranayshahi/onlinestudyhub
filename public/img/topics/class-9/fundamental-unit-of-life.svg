@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="420" viewBox="0 0 800 420">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#f0fdf4"/>
+      <stop offset="100%" stop-color="#dcfce7"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="420" fill="url(#bg)" rx="20"/>
+  <!-- Plant cell -->
+<rect x="80" y="100" width="290" height="250" rx="20" fill="#dcfce7" stroke="#16a34a" stroke-width="3"/>
+<rect x="100" y="118" width="250" height="214" rx="12" fill="#bbf7d0" stroke="#15803d" stroke-width="1.5" stroke-dasharray="4,3"/>
+<rect x="155" y="165" width="90" height="75" rx="10" fill="#4ade80" stroke="#15803d" stroke-width="2"/>
+<text x="200" y="208" text-anchor="middle" font-size="12" font-weight="700" font-family="sans-serif" fill="#14532d">Nucleus</text>
+<!-- Animal cell -->
+<ellipse cx="570" cy="225" rx="165" ry="130" fill="#fce7f3" stroke="#ec4899" stroke-width="3"/>
+<ellipse cx="540" cy="215" rx="60" ry="50" fill="#fbcfe8" stroke="#ec4899" stroke-width="2"/>
+<text x="540" y="220" text-anchor="middle" font-size="12" font-weight="700" font-family="sans-serif" fill="#9d174d">Nucleus</text>
+<!-- Labels -->
+<text x="225" y="370" text-anchor="middle" font-size="14" font-weight="700" font-family="sans-serif" fill="#14532d">Plant Cell</text>
+<text x="570" y="370" text-anchor="middle" font-size="14" font-weight="700" font-family="sans-serif" fill="#9d174d">Animal Cell</text>
+<rect x="130" y="60" width="540" height="32" rx="10" fill="#16a34a"/>
+<text x="400" y="82" text-anchor="middle" font-size="15" font-family="sans-serif" font-weight="800" fill="#fff">Cell — The Fundamental Unit of Life</text>
+</svg>

@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="420" viewBox="0 0 800 420">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#f0f9ff"/>
+      <stop offset="100%" stop-color="#e0f2fe"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="420" fill="url(#bg)" rx="20"/>
+  <!-- Pillars of constitution -->
+
+<rect x="80" y="130" width="130" height="220" rx="8" fill="#0284c71a" stroke="#0284c7" stroke-width="2"/>
+<rect x="80" y="115" width="130" height="22" rx="4" fill="#0284c7"/>
+<text x="145" y="132" text-anchor="middle" font-size="11" font-weight="800" font-family="sans-serif" fill="#fff">Preamble</text>
+<text x="145" y="200" text-anchor="middle" font-size="11" font-family="sans-serif" fill="#0284c7">We
+the People...</text>
+<rect x="220" y="130" width="130" height="220" rx="8" fill="#7c3aed1a" stroke="#7c3aed" stroke-width="2"/>
+<rect x="220" y="115" width="130" height="22" rx="4" fill="#7c3aed"/>
+<text x="285" y="132" text-anchor="middle" font-size="11" font-weight="800" font-family="sans-serif" fill="#fff">Fundamental Rights</text>
+<text x="285" y="200" text-anchor="middle" font-size="11" font-family="sans-serif" fill="#7c3aed">Equality,
+Freedom</text>
+<rect x="360" y="130" width="130" height="220" rx="8" fill="#16a34a1a" stroke="#16a34a" stroke-width="2"/>
+<rect x="360" y="115" width="130" height="22" rx="4" fill="#16a34a"/>
+<text x="425" y="132" text-anchor="middle" font-size="11" font-weight="800" font-family="sans-serif" fill="#fff">Directive Principles</text>
+<text x="425" y="200" text-anchor="middle" font-size="11" font-family="sans-serif" fill="#16a34a">Social
+justice goal</text>
+<rect x="500" y="130" width="130" height="220" rx="8" fill="#d977061a" stroke="#d97706" stroke-width="2"/>
+<rect x="500" y="115" width="130" height="22" rx="4" fill="#d97706"/>
+<text x="565" y="132" text-anchor="middle" font-size="11" font-weight="800" font-family="sans-serif" fill="#fff">Fundamental Duties</text>
+<text x="565" y="200" text-anchor="middle" font-size="11" font-family="sans-serif" fill="#d97706">Citizen
+obligations</text>
+<rect x="640" y="130" width="130" height="220" rx="8" fill="#dc26261a" stroke="#dc2626" stroke-width="2"/>
+<rect x="640" y="115" width="130" height="22" rx="4" fill="#dc2626"/>
+<text x="705" y="132" text-anchor="middle" font-size="11" font-weight="800" font-family="sans-serif" fill="#fff">Amendments</text>
+<text x="705" y="200" text-anchor="middle" font-size="11" font-family="sans-serif" fill="#dc2626">Living
+document</text>
+<!-- Pediment -->
+<polygon points="60,115 740,115 700,70 100,70" fill="#0284c7" stroke="#075985" stroke-width="2"/>
+<text x="400" y="98" text-anchor="middle" font-size="16" font-family="sans-serif" font-weight="900" fill="#fff">Constitution of India — 26 Jan 1950</text>
+<text x="400" y="375" text-anchor="middle" font-size="24" font-family="sans-serif" font-weight="800" fill="#075985">Constitutional Design</text>
+</svg>

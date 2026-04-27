@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="420" viewBox="0 0 800 420">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#eff6ff"/>
+      <stop offset="100%" stop-color="#bfdbfe"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="420" fill="url(#bg)" rx="20"/>
+  <circle cx="400" cy="200" r="155" fill="#dbeafe" stroke="#2563eb" stroke-width="3"/>
+<circle cx="400" cy="200" r="115" fill="#bfdbfe" stroke="#3b82f6" stroke-width="2.5"/>
+<circle cx="400" cy="200" r="78" fill="#93c5fd" stroke="#2563eb" stroke-width="2"/>
+<circle cx="400" cy="200" r="44" fill="#60a5fa" stroke="#1d4ed8" stroke-width="2"/>
+<text x="400" y="205" text-anchor="middle" font-size="13" font-weight="800" font-family="sans-serif" fill="#1e3a8a">Natural ℕ</text>
+<text x="400" y="155" text-anchor="middle" font-size="13" font-weight="700" font-family="sans-serif" fill="#1e40af">Integers ℤ</text>
+<text x="400" y="110" text-anchor="middle" font-size="13" font-weight="700" font-family="sans-serif" fill="#1d4ed8">Rational ℚ</text>
+<text x="400" y="68" text-anchor="middle" font-size="13" font-weight="700" font-family="sans-serif" fill="#2563eb">Real ℝ</text>
+<text x="240" y="205" text-anchor="middle" font-size="16" fill="#1d4ed8">π √2 e</text>
+<text x="560" y="205" text-anchor="middle" font-size="14" fill="#1e40af">Irrational</text>
+<rect x="80" y="360" width="640" height="38" rx="10" fill="#1d4ed8"/>
+<text x="400" y="384" text-anchor="middle" font-size="15" font-family="monospace" font-weight="800" fill="#fff">p/q (q≠0) · Non-terminating non-repeating → Irrational</text>
+</svg>

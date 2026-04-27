@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="420" viewBox="0 0 800 420">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#14532d"/>
+      <stop offset="100%" stop-color="#166534"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="420" fill="url(#bg)" rx="20"/>
+  <rect x="0" y="0" width="800" height="420" fill="#14532d"/>
+<!-- Trees -->
+<polygon points="100,160 65,260 135,260" fill="#16a34a" opacity=".85"/>
+<rect x="92" y="260" width="16" height="40" rx="3" fill="#92400e"/><polygon points="200,143.1705803038421 165,260 235,260" fill="#16a34a" opacity=".85"/>
+<rect x="192" y="260" width="16" height="40" rx="3" fill="#92400e"/><polygon points="300,141.81405146348635 265,260 335,260" fill="#16a34a" opacity=".85"/>
+<rect x="292" y="260" width="16" height="40" rx="3" fill="#92400e"/><polygon points="400,157.17759983880265 365,260 435,260" fill="#16a34a" opacity=".85"/>
+<rect x="392" y="260" width="16" height="40" rx="3" fill="#92400e"/><polygon points="500,175.13604990615858 465,260 535,260" fill="#16a34a" opacity=".85"/>
+<rect x="492" y="260" width="16" height="40" rx="3" fill="#92400e"/><polygon points="600,179.17848549326277 565,260 635,260" fill="#16a34a" opacity=".85"/>
+<rect x="592" y="260" width="16" height="40" rx="3" fill="#92400e"/><polygon points="700,165.58830996397853 665,260 735,260" fill="#16a34a" opacity=".85"/>
+<rect x="692" y="260" width="16" height="40" rx="3" fill="#92400e"/>
+<!-- Content box -->
+<rect x="80" y="305" width="640" height="90" rx="14" fill="rgba(134,239,172,0.12)" stroke="#86efac" stroke-width="1.5"/>
+<text x="400" y="330" text-anchor="middle" font-size="15" font-weight="900" font-family="sans-serif" fill="#86efac">Forest Society and Colonialism</text>
+<text x="400" y="355" text-anchor="middle" font-size="13" font-family="sans-serif" fill="#4ade80">British forest laws → Zamindars · Tribal rights curtailed</text>
+<text x="400" y="378" text-anchor="middle" font-size="13" font-family="sans-serif" fill="#4ade80">Bastar rebellion · Java &amp; Vietnam deforestation</text>
+<rect x="80" y="60" width="640" height="45" rx="12" fill="rgba(134,239,172,0.15)" stroke="#86efac" stroke-width="1.5"/>
+<text x="400" y="88" text-anchor="middle" font-size="15" font-family="sans-serif" font-weight="700" fill="#86efac">Colonial exploitation of forest resources for railways &amp; industry</text>
+</svg>

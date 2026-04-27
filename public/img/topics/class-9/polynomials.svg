@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="420" viewBox="0 0 800 420">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#fdf4ff"/>
+      <stop offset="100%" stop-color="#f3e8ff"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="420" fill="url(#bg)" rx="20"/>
+  <!-- Curve -->
+<path d="M 60,300 Q 150,60 250,200 Q 350,340 450,120 Q 550,60 700,280" fill="none" stroke="#9333ea" stroke-width="4"/>
+<!-- Zeroes -->
+<circle cx="155" cy="200" r="8" fill="#dc2626"/>
+<circle cx="395" cy="200" r="8" fill="#dc2626"/>
+<text x="155" y="225" text-anchor="middle" font-size="13" font-weight="700" font-family="sans-serif" fill="#dc2626">zero</text>
+<text x="395" y="225" text-anchor="middle" font-size="13" font-weight="700" font-family="sans-serif" fill="#dc2626">zero</text>
+<line x1="60" y1="200" x2="740" y2="200" stroke="#374151" stroke-width="2" stroke-dasharray="6,4"/>
+<!-- Formula boxes -->
+<rect x="80" y="55" width="280" height="90" rx="12" fill="#f3e8ff" stroke="#9333ea" stroke-width="2"/>
+<text x="220" y="85" text-anchor="middle" font-size="14" font-weight="800" font-family="sans-serif" fill="#6b21a8">Degree → Name</text>
+<text x="220" y="110" text-anchor="middle" font-size="13" font-family="monospace" fill="#7e22ce">1→Linear · 2→Quadratic</text>
+<text x="220" y="132" text-anchor="middle" font-size="13" font-family="monospace" fill="#7e22ce">3→Cubic · 0→Constant</text>
+<rect x="430" y="55" width="290" height="90" rx="12" fill="#ede9fe" stroke="#8b5cf6" stroke-width="2"/>
+<text x="575" y="85" text-anchor="middle" font-size="14" font-weight="800" font-family="sans-serif" fill="#5b21b6">Remainder Theorem</text>
+<text x="575" y="110" text-anchor="middle" font-size="13" font-family="monospace" fill="#6d28d9">p(x) ÷ (x−a) → r = p(a)</text>
+<text x="575" y="132" text-anchor="middle" font-size="13" font-family="monospace" fill="#6d28d9">Factor: p(a)=0 → (x−a) factor</text>
+<text x="400" y="382" text-anchor="middle" font-size="26" font-family="sans-serif" font-weight="800" fill="#3b0764">Polynomials</text>
+</svg>

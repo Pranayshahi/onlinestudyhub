@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="420" viewBox="0 0 800 420">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#14532d"/>
+      <stop offset="100%" stop-color="#166534"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="420" fill="url(#bg)" rx="20"/>
+  <rect x="0" y="0" width="800" height="420" fill="#14532d"/>
+
+<rect x="80" y="70" width="320" height="110" rx="14" fill="rgba(255,255,255,0.08)" stroke="#15803d" stroke-width="2"/>
+<text x="240" y="103" text-anchor="middle" font-size="14" font-weight="800" font-family="sans-serif" fill="#15803d">Tropical Rainforest</text>
+<text x="240" y="130" text-anchor="middle" font-size="12" font-family="sans-serif" fill="#bbf7d0">Dense, evergreen, annual rainfall &gt;200cm</text>
+<rect x="80" y="195" width="320" height="110" rx="14" fill="rgba(255,255,255,0.08)" stroke="#16a34a" stroke-width="2"/>
+<text x="240" y="228" text-anchor="middle" font-size="14" font-weight="800" font-family="sans-serif" fill="#16a34a">Tropical Deciduous</text>
+<text x="240" y="255" text-anchor="middle" font-size="12" font-family="sans-serif" fill="#bbf7d0">Teak, Sal — shed leaves in dry season</text>
+<rect x="430" y="70" width="320" height="110" rx="14" fill="rgba(255,255,255,0.08)" stroke="#ca8a04" stroke-width="2"/>
+<text x="590" y="103" text-anchor="middle" font-size="14" font-weight="800" font-family="sans-serif" fill="#ca8a04">Thorny Scrub</text>
+<text x="590" y="130" text-anchor="middle" font-size="12" font-family="sans-serif" fill="#bbf7d0">Cacti, acacia — arid regions</text>
+<rect x="430" y="195" width="320" height="110" rx="14" fill="rgba(255,255,255,0.08)" stroke="#0369a1" stroke-width="2"/>
+<text x="590" y="228" text-anchor="middle" font-size="14" font-weight="800" font-family="sans-serif" fill="#0369a1">Montane</text>
+<text x="590" y="255" text-anchor="middle" font-size="12" font-family="sans-serif" fill="#bbf7d0">Coniferous — Deodar, Pine</text>
+<rect x="250" y="325" width="320" height="110" rx="14" fill="rgba(255,255,255,0.08)" stroke="#0891b2" stroke-width="2"/>
+<text x="410" y="358" text-anchor="middle" font-size="14" font-weight="800" font-family="sans-serif" fill="#0891b2">Mangroves</text>
+<text x="410" y="385" text-anchor="middle" font-size="12" font-family="sans-serif" fill="#bbf7d0">Salt-tolerant, coastal estuaries</text>
+<text x="400" y="390" text-anchor="middle" font-size="22" font-family="sans-serif" font-weight="800" fill="#4ade80">Natural Vegetation and Wildlife</text>
+</svg>

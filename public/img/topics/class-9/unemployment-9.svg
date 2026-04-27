@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="420" viewBox="0 0 800 420">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#fffbeb"/>
+      <stop offset="100%" stop-color="#fef3c7"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="420" fill="url(#bg)" rx="20"/>
+  <!-- Human capital concept -->
+<circle cx="400" cy="145" r="85" fill="#fde68a" stroke="#d97706" stroke-width="3"/>
+<text x="400" y="135" text-anchor="middle" font-size="38" font-family="sans-serif">👤</text>
+<text x="400" y="180" text-anchor="middle" font-size="14" font-weight="800" font-family="sans-serif" fill="#78350f">Human Resource</text>
+<!-- Spokes -->
+
+<line x1="400" y1="145" x2="90" y2="80" stroke="#d97706" stroke-width="2" stroke-dasharray="5,3"/>
+<text x="90" y="80" text-anchor="middle" font-size="20" font-family="sans-serif">📚</text>
+<text x="90" y="102" text-anchor="middle" font-size="12" font-weight="700" font-family="sans-serif" fill="#92400e">Education</text>
+<line x1="400" y1="145" x2="40" y2="200" stroke="#d97706" stroke-width="2" stroke-dasharray="5,3"/>
+<text x="40" y="200" text-anchor="middle" font-size="20" font-family="sans-serif">🏥</text>
+<text x="40" y="222" text-anchor="middle" font-size="12" font-weight="700" font-family="sans-serif" fill="#92400e">Health</text>
+<line x1="400" y1="145" x2="90" y2="320" stroke="#d97706" stroke-width="2" stroke-dasharray="5,3"/>
+<text x="90" y="320" text-anchor="middle" font-size="20" font-family="sans-serif">🔧</text>
+<text x="90" y="342" text-anchor="middle" font-size="12" font-weight="700" font-family="sans-serif" fill="#92400e">Skills</text>
+<line x1="400" y1="145" x2="700" y2="80" stroke="#d97706" stroke-width="2" stroke-dasharray="5,3"/>
+<text x="700" y="80" text-anchor="middle" font-size="20" font-family="sans-serif">💼</text>
+<text x="700" y="102" text-anchor="middle" font-size="12" font-weight="700" font-family="sans-serif" fill="#92400e">On-the-job</text>
+<line x1="400" y1="145" x2="740" y2="200" stroke="#d97706" stroke-width="2" stroke-dasharray="5,3"/>
+<text x="740" y="200" text-anchor="middle" font-size="20" font-family="sans-serif">✈️</text>
+<text x="740" y="222" text-anchor="middle" font-size="12" font-weight="700" font-family="sans-serif" fill="#92400e">Migration</text>
+<rect x="80" y="350" width="640" height="50" rx="12" fill="#fde68a" stroke="#d97706" stroke-width="2"/>
+<text x="400" y="374" text-anchor="middle" font-size="14" font-family="sans-serif" font-weight="700" fill="#78350f">People as Resource — quality of population = economic growth</text>
+<text x="400" y="68" text-anchor="middle" font-size="24" font-family="sans-serif" font-weight="800" fill="#78350f">People as Resource</text>
+</svg>

@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="420" viewBox="0 0 800 420">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#f0f9ff"/>
+      <stop offset="100%" stop-color="#e0f2fe"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="420" fill="url(#bg)" rx="20"/>
+  <!-- River systems -->
+<path d="M 300,65 Q 310,100 295,150 Q 280,200 260,250 Q 240,300 220,360" fill="none" stroke="#38bdf8" stroke-width="4"/>
+<text x="265" y="90" font-size="13" font-weight="700" font-family="sans-serif" fill="#0369a1">Indus</text>
+<path d="M 420,65 Q 430,120 410,180 Q 390,240 370,300 Q 350,340 360,390" fill="none" stroke="#0284c7" stroke-width="4"/>
+<text x="445" y="100" font-size="13" font-weight="700" font-family="sans-serif" fill="#0369a1">Ganga</text>
+<path d="M 560,65 Q 570,100 555,160 Q 540,220 530,280 Q 525,340 540,390" fill="none" stroke="#0369a1" stroke-width="4"/>
+<text x="585" y="90" font-size="13" font-weight="700" font-family="sans-serif" fill="#0369a1">Brahmaputra</text>
+<!-- Tributaries -->
+<path d="M 100,180 Q 180,185 260,220" fill="none" stroke="#7dd3fc" stroke-width="2.5" stroke-dasharray="5,3"/>
+<path d="M 600,200 Q 550,215 500,220" fill="none" stroke="#7dd3fc" stroke-width="2.5" stroke-dasharray="5,3"/>
+<!-- Peninsula rivers -->
+<path d="M 350,270 Q 280,305 210,360" fill="none" stroke="#0891b2" stroke-width="3"/>
+<text x="225" y="332" font-size="12" font-family="sans-serif" fill="#0369a1">Krishna/Cauvery</text>
+<!-- Box -->
+<rect x="80" y="355" width="640" height="45" rx="10" fill="#0284c7"/>
+<text x="400" y="383" text-anchor="middle" font-size="14" font-family="sans-serif" font-weight="800" fill="#fff">Himalayan (perennial) · Peninsular (seasonal) rivers</text>
+</svg>

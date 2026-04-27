@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="420" viewBox="0 0 800 420">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#eff6ff"/>
+      <stop offset="100%" stop-color="#dbeafe"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="420" fill="url(#bg)" rx="20"/>
+  <!-- Sun and rain clouds -->
+<circle cx="180" cy="130" r="60" fill="#fbbf24" stroke="#f59e0b" stroke-width="2.5"/>
+<line x1="242" y1="130" x2="250" y2="130" stroke="#fbbf24" stroke-width="2.5"/><line x1="224" y1="174" x2="229" y2="179" stroke="#fbbf24" stroke-width="2.5"/><line x1="180" y1="192" x2="180" y2="200" stroke="#fbbf24" stroke-width="2.5"/><line x1="136" y1="174" x2="131" y2="179" stroke="#fbbf24" stroke-width="2.5"/><line x1="118" y1="130" x2="110" y2="130" stroke="#fbbf24" stroke-width="2.5"/><line x1="136" y1="86" x2="131" y2="81" stroke="#fbbf24" stroke-width="2.5"/><line x1="180" y1="68" x2="180" y2="60" stroke="#fbbf24" stroke-width="2.5"/><line x1="224" y1="86" x2="229" y2="81" stroke="#fbbf24" stroke-width="2.5"/>
+<!-- Rain cloud -->
+<ellipse cx="560" cy="120" rx="90" ry="45" fill="#93c5fd" stroke="#3b82f6" stroke-width="2.5"/>
+<ellipse cx="500" cy="130" rx="60" ry="35" fill="#93c5fd" stroke="#3b82f6" stroke-width="1.5"/>
+<line x1="520" y1="165" x2="512" y2="215" stroke="#3b82f6" stroke-width="2.5"/><line x1="555" y1="165" x2="547" y2="215" stroke="#3b82f6" stroke-width="2.5"/><line x1="590" y1="165" x2="582" y2="215" stroke="#3b82f6" stroke-width="2.5"/><line x1="615" y1="165" x2="607" y2="215" stroke="#3b82f6" stroke-width="2.5"/>
+<!-- Seasons -->
+<rect x="80" y="250" width="640" height="120" rx="14" fill="#dbeafe" stroke="#3b82f6" stroke-width="2"/>
+<text x="400" y="278" text-anchor="middle" font-size="15" font-weight="800" font-family="sans-serif" fill="#1e3a8a">Seasons of India</text>
+<text x="200" y="306" text-anchor="middle" font-size="14" font-family="sans-serif" fill="#1e40af">☀️ Hot &amp; Dry</text>
+<text x="200" y="326" text-anchor="middle" font-size="12" font-family="sans-serif" fill="#374151">Mar – May</text>
+<text x="400" y="306" text-anchor="middle" font-size="14" font-family="sans-serif" fill="#1e40af">🌧️ Monsoon</text>
+<text x="400" y="326" text-anchor="middle" font-size="12" font-family="sans-serif" fill="#374151">Jun – Sep</text>
+<text x="600" y="306" text-anchor="middle" font-size="14" font-family="sans-serif" fill="#1e40af">❄️ Cool &amp; Dry</text>
+<text x="600" y="326" text-anchor="middle" font-size="12" font-family="sans-serif" fill="#374151">Oct – Feb</text>
+<text x="400" y="355" text-anchor="middle" font-size="13" font-family="sans-serif" fill="#1e40af">El Niño · Trade winds · Western disturbances</text>
+<text x="400" y="65" text-anchor="middle" font-size="26" font-family="sans-serif" font-weight="800" fill="#1e3a8a">Climate of India</text>
+</svg>

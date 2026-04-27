@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="420" viewBox="0 0 800 420">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#fdf4ff"/>
+      <stop offset="100%" stop-color="#ede9fe"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="420" fill="url(#bg)" rx="20"/>
+  <!-- Parallel lines + transversal -->
+<line x1="80" y1="150" x2="720" y2="150" stroke="#7c3aed" stroke-width="3"/>
+<line x1="80" y1="290" x2="720" y2="290" stroke="#7c3aed" stroke-width="3"/>
+<line x1="280" y1="60" x2="500" y2="380" stroke="#dc2626" stroke-width="3"/>
+<text x="90" y="140" font-size="13" font-weight="700" font-family="sans-serif" fill="#5b21b6">l</text>
+<text x="90" y="283" font-size="13" font-weight="700" font-family="sans-serif" fill="#5b21b6">m</text>
+<!-- Angle arcs -->
+<path d="M 345,150 A 30,30 0 0,1 355,120" fill="none" stroke="#059669" stroke-width="2"/>
+<path d="M 430,290 A 30,30 0 0,1 440,260" fill="none" stroke="#059669" stroke-width="2"/>
+<text x="360" y="140" font-size="13" font-family="sans-serif" fill="#059669">∠1</text>
+<text x="445" y="280" font-size="13" font-family="sans-serif" fill="#059669">∠5</text>
+<!-- Labels -->
+<rect x="80" y="320" width="640" height="60" rx="12" fill="#ede9fe" stroke="#7c3aed" stroke-width="2"/>
+<text x="400" y="347" text-anchor="middle" font-size="14" font-weight="800" font-family="sans-serif" fill="#5b21b6">Alternate interior ∠s equal · Co-interior ∠s = 180°</text>
+<text x="400" y="368" text-anchor="middle" font-size="14" font-family="sans-serif" fill="#6d28d9">Corresponding ∠s equal when l ∥ m</text>
+<text x="400" y="55" text-anchor="middle" font-size="26" font-family="sans-serif" font-weight="800" fill="#3b0764">Lines and Angles</text>
+</svg>

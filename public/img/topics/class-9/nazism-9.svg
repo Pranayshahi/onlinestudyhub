@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="420" viewBox="0 0 800 420">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#1c1917"/>
+      <stop offset="100%" stop-color="#292524"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="420" fill="url(#bg)" rx="20"/>
+  <rect x="0" y="0" width="800" height="420" fill="#1c1917"/>
+<rect x="80" y="70" width="640" height="70" rx="14" fill="rgba(148,163,184,0.12)" stroke="#94a3b8" stroke-width="1.5"/>
+<text x="400" y="100" text-anchor="middle" font-size="16" font-weight="900" font-family="sans-serif" fill="#94a3b8">Rise of Hitler &amp; Nazi Germany</text>
+<text x="400" y="125" text-anchor="middle" font-size="13" font-family="sans-serif" fill="#cbd5e1">1919 Treaty of Versailles → German humiliation → Economic crisis</text>
+<!-- Timeline -->
+<line x1="80" y1="210" x2="720" y2="210" stroke="#64748b" stroke-width="2"/>
+
+<circle cx="130" cy="210" r="7" fill="#94a3b8"/>
+<text x="130" y="198" text-anchor="middle" font-size="11" font-weight="700" font-family="sans-serif" fill="#94a3b8">1919</text>
+<text x="130" y="230" text-anchor="middle" font-size="10" font-family="sans-serif" fill="#cbd5e1">Nazi Party formed</text>
+<circle cx="265" cy="210" r="7" fill="#94a3b8"/>
+<text x="265" y="198" text-anchor="middle" font-size="11" font-weight="700" font-family="sans-serif" fill="#94a3b8">1929</text>
+<text x="265" y="230" text-anchor="middle" font-size="10" font-family="sans-serif" fill="#cbd5e1">Great Depression</text>
+<circle cx="400" cy="210" r="7" fill="#94a3b8"/>
+<text x="400" y="198" text-anchor="middle" font-size="11" font-weight="700" font-family="sans-serif" fill="#94a3b8">1933</text>
+<text x="400" y="230" text-anchor="middle" font-size="10" font-family="sans-serif" fill="#cbd5e1">Hitler chancellor</text>
+<circle cx="535" cy="210" r="7" fill="#94a3b8"/>
+<text x="535" y="198" text-anchor="middle" font-size="11" font-weight="700" font-family="sans-serif" fill="#94a3b8">1939</text>
+<text x="535" y="230" text-anchor="middle" font-size="10" font-family="sans-serif" fill="#cbd5e1">WW II begins</text>
+<circle cx="660" cy="210" r="7" fill="#94a3b8"/>
+<text x="660" y="198" text-anchor="middle" font-size="11" font-weight="700" font-family="sans-serif" fill="#94a3b8">1945</text>
+<text x="660" y="230" text-anchor="middle" font-size="10" font-family="sans-serif" fill="#cbd5e1">War ends</text>
+<rect x="80" y="278" width="640" height="80" rx="12" fill="rgba(148,163,184,0.08)" stroke="#64748b" stroke-width="1.5"/>
+<text x="400" y="305" text-anchor="middle" font-size="13" font-family="sans-serif" fill="#94a3b8">Propaganda · Youth indoctrination · Nuremberg Laws</text>
+<text x="400" y="328" text-anchor="middle" font-size="13" font-family="sans-serif" fill="#94a3b8">Holocaust — systematic genocide of Jewish people</text>
+<text x="400" y="348" text-anchor="middle" font-size="12" font-family="sans-serif" fill="#64748b">Lessons: Democracy must be protected; never again</text>
+<text x="400" y="390" text-anchor="middle" font-size="22" font-family="sans-serif" font-weight="800" fill="#94a3b8">Nazism and the Rise of Hitler</text>
+</svg>

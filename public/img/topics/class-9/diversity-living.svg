@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="420" viewBox="0 0 800 420">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#f0fdf4"/>
+      <stop offset="100%" stop-color="#dcfce7"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="420" fill="url(#bg)" rx="20"/>
+  <!-- Classification tree -->
+<line x1="400" y1="70" x2="400" y2="120" stroke="#16a34a" stroke-width="2.5"/>
+<rect x="310" y="70" width="180" height="40" rx="10" fill="#16a34a"/>
+<text x="400" y="95" text-anchor="middle" font-size="14" font-weight="800" font-family="sans-serif" fill="#fff">Living Organisms</text>
+<!-- Level 1 -->
+<line x1="400" y1="120" x2="200" y2="170" stroke="#16a34a" stroke-width="2"/>
+<line x1="400" y1="120" x2="600" y2="170" stroke="#16a34a" stroke-width="2"/>
+<rect x="100" y="170" width="200" height="36" rx="8" fill="#4ade80" stroke="#16a34a" stroke-width="1.5"/>
+<text x="200" y="193" text-anchor="middle" font-size="13" font-weight="700" font-family="sans-serif" fill="#14532d">Prokaryotes</text>
+<rect x="500" y="170" width="200" height="36" rx="8" fill="#4ade80" stroke="#16a34a" stroke-width="1.5"/>
+<text x="600" y="193" text-anchor="middle" font-size="13" font-weight="700" font-family="sans-serif" fill="#14532d">Eukaryotes</text>
+<!-- Level 2 -->
+<rect x="65" y="240" width="110" height="32" rx="8" fill="#bbf7d0" stroke="#22c55e" stroke-width="1.5"/>
+<text x="120" y="261" text-anchor="middle" font-size="12" font-weight="700" font-family="sans-serif" fill="#065f46">Monera</text><rect x="225" y="240" width="110" height="32" rx="8" fill="#bbf7d0" stroke="#22c55e" stroke-width="1.5"/>
+<text x="280" y="261" text-anchor="middle" font-size="12" font-weight="700" font-family="sans-serif" fill="#065f46">Protista</text><rect x="385" y="240" width="110" height="32" rx="8" fill="#bbf7d0" stroke="#22c55e" stroke-width="1.5"/>
+<text x="440" y="261" text-anchor="middle" font-size="12" font-weight="700" font-family="sans-serif" fill="#065f46">Fungi</text><rect x="525" y="240" width="110" height="32" rx="8" fill="#bbf7d0" stroke="#22c55e" stroke-width="1.5"/>
+<text x="580" y="261" text-anchor="middle" font-size="12" font-weight="700" font-family="sans-serif" fill="#065f46">Plantae</text><rect x="625" y="240" width="110" height="32" rx="8" fill="#bbf7d0" stroke="#22c55e" stroke-width="1.5"/>
+<text x="680" y="261" text-anchor="middle" font-size="12" font-weight="700" font-family="sans-serif" fill="#065f46">Animalia</text>
+<rect x="100" y="300" width="600" height="60" rx="12" fill="#dcfce7" stroke="#22c55e" stroke-width="2"/>
+<text x="400" y="326" text-anchor="middle" font-size="14" font-weight="800" font-family="sans-serif" fill="#14532d">Binomial Nomenclature: Genus + species</text>
+<text x="400" y="348" text-anchor="middle" font-size="13" font-family="sans-serif" fill="#15803d">e.g. Homo sapiens · Panthera leo</text>
+<text x="400" y="382" text-anchor="middle" font-size="24" font-family="sans-serif" font-weight="800" fill="#14532d">Diversity in Living Organisms</text>
+</svg>

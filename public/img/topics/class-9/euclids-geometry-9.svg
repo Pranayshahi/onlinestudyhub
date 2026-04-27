@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="420" viewBox="0 0 800 420">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#fdf4ff"/>
+      <stop offset="100%" stop-color="#f3e8ff"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="420" fill="url(#bg)" rx="20"/>
+  <!-- Geometric constructions -->
+<circle cx="400" cy="210" r="130" fill="none" stroke="#9333ea" stroke-width="2.5"/>
+<line x1="200" y1="210" x2="600" y2="210" stroke="#9333ea" stroke-width="2.5"/>
+<line x1="400" y1="80" x2="400" y2="340" stroke="#7c3aed" stroke-width="2" stroke-dasharray="6,4"/>
+<circle cx="400" cy="210" r="4" fill="#6b21a8"/>
+<text x="405" y="205" font-size="13" font-family="sans-serif" fill="#6b21a8">O</text>
+<!-- Postulates -->
+<rect x="65" y="60" width="670" height="100" rx="14" fill="#f3e8ff" stroke="#9333ea" stroke-width="2"/>
+<text x="400" y="90" text-anchor="middle" font-size="15" font-weight="900" font-family="sans-serif" fill="#6b21a8">Euclid's 5 Postulates</text>
+<text x="400" y="115" text-anchor="middle" font-size="13" font-family="sans-serif" fill="#7e22ce">1. Line between two points · 2. Extend line indefinitely</text>
+<text x="400" y="137" text-anchor="middle" font-size="13" font-family="sans-serif" fill="#7e22ce">3. Circle with any center/radius · 5. Parallel postulate</text>
+<rect x="130" y="355" width="540" height="38" rx="10" fill="#6b21a8"/>
+<text x="400" y="379" text-anchor="middle" font-size="14" font-family="sans-serif" font-weight="800" fill="#f3e8ff">"A point has no part" — Euclid's Definitions</text>
+</svg>

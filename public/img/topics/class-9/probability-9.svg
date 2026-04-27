@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="420" viewBox="0 0 800 420">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#f0fdf4"/>
+      <stop offset="100%" stop-color="#dcfce7"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="420" fill="url(#bg)" rx="20"/>
+  <!-- Die -->
+<rect x="80" y="120" width="160" height="160" rx="20" fill="#dcfce7" stroke="#16a34a" stroke-width="3"/>
+<circle cx="130" cy="165" r="12" fill="#15803d"/><circle cx="200" cy="165" r="12" fill="#15803d"/><circle cx="165" cy="200" r="12" fill="#15803d"/><circle cx="130" cy="235" r="12" fill="#15803d"/><circle cx="200" cy="235" r="12" fill="#15803d"/>
+<!-- Coin -->
+<circle cx="490" cy="200" r="85" fill="#fde68a" stroke="#ca8a04" stroke-width="3"/>
+<text x="490" y="185" text-anchor="middle" font-size="20" font-family="sans-serif">👑</text>
+<text x="490" y="220" text-anchor="middle" font-size="14" font-weight="700" font-family="sans-serif" fill="#78350f">Heads / Tails</text>
+<!-- Formula -->
+<rect x="60" y="315" width="680" height="75" rx="14" fill="#dcfce7" stroke="#22c55e" stroke-width="2"/>
+<text x="400" y="345" text-anchor="middle" font-size="17" font-family="monospace" font-weight="800" fill="#14532d">P(E) = Number of favourable outcomes</text>
+<text x="400" y="370" text-anchor="middle" font-size="17" font-family="monospace" font-weight="800" fill="#14532d">       Total number of outcomes</text>
+<text x="400" y="73" text-anchor="middle" font-size="26" font-family="sans-serif" font-weight="800" fill="#14532d">Probability</text>
+</svg>

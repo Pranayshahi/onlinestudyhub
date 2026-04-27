@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="420" viewBox="0 0 800 420">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#eff6ff"/>
+      <stop offset="100%" stop-color="#dbeafe"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="420" fill="url(#bg)" rx="20"/>
+  <!-- People silhouettes -->
+
+<circle cx="130" cy="175" r="28" fill="#60a5fa" stroke="#2563eb" stroke-width="2"/>
+<rect x="116" y="203" width="28" height="55" rx="10" fill="#3b82f6" stroke="#2563eb" stroke-width="2"/>
+<line x1="116" y1="220" x2="96" y2="250" stroke="#3b82f6" stroke-width="2"/>
+<line x1="144" y1="220" x2="164" y2="250" stroke="#3b82f6" stroke-width="2"/>
+<circle cx="210" cy="175" r="28" fill="#60a5fa" stroke="#2563eb" stroke-width="2"/>
+<rect x="196" y="203" width="28" height="55" rx="10" fill="#3b82f6" stroke="#2563eb" stroke-width="2"/>
+<line x1="196" y1="220" x2="176" y2="250" stroke="#3b82f6" stroke-width="2"/>
+<line x1="224" y1="220" x2="244" y2="250" stroke="#3b82f6" stroke-width="2"/>
+<circle cx="290" cy="175" r="28" fill="#60a5fa" stroke="#2563eb" stroke-width="2"/>
+<rect x="276" y="203" width="28" height="55" rx="10" fill="#3b82f6" stroke="#2563eb" stroke-width="2"/>
+<line x1="276" y1="220" x2="256" y2="250" stroke="#3b82f6" stroke-width="2"/>
+<line x1="304" y1="220" x2="324" y2="250" stroke="#3b82f6" stroke-width="2"/>
+<circle cx="370" cy="175" r="28" fill="#60a5fa" stroke="#2563eb" stroke-width="2"/>
+<rect x="356" y="203" width="28" height="55" rx="10" fill="#3b82f6" stroke="#2563eb" stroke-width="2"/>
+<line x1="356" y1="220" x2="336" y2="250" stroke="#3b82f6" stroke-width="2"/>
+<line x1="384" y1="220" x2="404" y2="250" stroke="#3b82f6" stroke-width="2"/>
+<circle cx="450" cy="175" r="28" fill="#60a5fa" stroke="#2563eb" stroke-width="2"/>
+<rect x="436" y="203" width="28" height="55" rx="10" fill="#3b82f6" stroke="#2563eb" stroke-width="2"/>
+<line x1="436" y1="220" x2="416" y2="250" stroke="#3b82f6" stroke-width="2"/>
+<line x1="464" y1="220" x2="484" y2="250" stroke="#3b82f6" stroke-width="2"/>
+<circle cx="530" cy="175" r="28" fill="#60a5fa" stroke="#2563eb" stroke-width="2"/>
+<rect x="516" y="203" width="28" height="55" rx="10" fill="#3b82f6" stroke="#2563eb" stroke-width="2"/>
+<line x1="516" y1="220" x2="496" y2="250" stroke="#3b82f6" stroke-width="2"/>
+<line x1="544" y1="220" x2="564" y2="250" stroke="#3b82f6" stroke-width="2"/>
+<circle cx="610" cy="175" r="28" fill="#60a5fa" stroke="#2563eb" stroke-width="2"/>
+<rect x="596" y="203" width="28" height="55" rx="10" fill="#3b82f6" stroke="#2563eb" stroke-width="2"/>
+<line x1="596" y1="220" x2="576" y2="250" stroke="#3b82f6" stroke-width="2"/>
+<line x1="624" y1="220" x2="644" y2="250" stroke="#3b82f6" stroke-width="2"/>
+<!-- Features box -->
+<rect x="80" y="290" width="640" height="95" rx="14" fill="#dbeafe" stroke="#2563eb" stroke-width="2"/>
+<text x="400" y="318" text-anchor="middle" font-size="15" font-weight="800" font-family="sans-serif" fill="#1e3a8a">Features of Democracy</text>
+<text x="400" y="342" text-anchor="middle" font-size="13" font-family="sans-serif" fill="#1e40af">Free &amp; fair elections · Rule of law · Protection of rights</text>
+<text x="400" y="364" text-anchor="middle" font-size="13" font-family="sans-serif" fill="#1e40af">Majority rule · Minority rights · Independent judiciary</text>
+<text x="400" y="68" text-anchor="middle" font-size="26" font-family="sans-serif" font-weight="800" fill="#1e3a8a">What is Democracy? Why Democracy?</text>
+</svg>

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="420" viewBox="0 0 800 420">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#f0fdf4"/>
+      <stop offset="100%" stop-color="#dcfce7"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="420" fill="url(#bg)" rx="20"/>
+  <!-- Food security pillars -->
+
+<rect x="80" y="130" width="200" height="175" rx="16" fill="#16a34a1a" stroke="#16a34a" stroke-width="2.5"/>
+<text x="180" y="175" text-anchor="middle" font-size="32" font-family="sans-serif">🌾</text>
+<text x="180" y="210" text-anchor="middle" font-size="14" font-weight="800" font-family="sans-serif" fill="#16a34a">Availability</text>
+<text x="180" y="242" text-anchor="middle" font-size="11" font-family="sans-serif" fill="#374151">Food production + imports enough supply</text>
+<rect x="310" y="130" width="200" height="175" rx="16" fill="#f973161a" stroke="#f97316" stroke-width="2.5"/>
+<text x="410" y="175" text-anchor="middle" font-size="32" font-family="sans-serif">🛒</text>
+<text x="410" y="210" text-anchor="middle" font-size="14" font-weight="800" font-family="sans-serif" fill="#f97316">Access</text>
+<text x="410" y="242" text-anchor="middle" font-size="11" font-family="sans-serif" fill="#374151">People can afford/reach food</text>
+<rect x="540" y="130" width="200" height="175" rx="16" fill="#9333ea1a" stroke="#9333ea" stroke-width="2.5"/>
+<text x="640" y="175" text-anchor="middle" font-size="32" font-family="sans-serif">💊</text>
+<text x="640" y="210" text-anchor="middle" font-size="14" font-weight="800" font-family="sans-serif" fill="#9333ea">Absorption</text>
+<text x="640" y="242" text-anchor="middle" font-size="11" font-family="sans-serif" fill="#374151">Body can use nutrients properly</text>
+<rect x="80" y="332" width="640" height="55" rx="12" fill="#dcfce7" stroke="#16a34a" stroke-width="2"/>
+<text x="400" y="358" text-anchor="middle" font-size="14" font-weight="800" font-family="sans-serif" fill="#14532d">PDS: Public Distribution System</text>
+<text x="400" y="378" text-anchor="middle" font-size="13" font-family="sans-serif" fill="#15803d">Buffer stock · Fair Price Shops · Antyodaya Anna Yojana</text>
+<text x="400" y="95" text-anchor="middle" font-size="26" font-family="sans-serif" font-weight="800" fill="#14532d">Food Security in India</text>
+</svg>
