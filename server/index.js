@@ -195,6 +195,31 @@ app.post('/api/auth/student/login', async (req, res) => {
   }
 });
 
+// ── Students: Get own profile ───────────────────────────────────
+app.get('/api/students/me', requireStudentAuth, async (req, res) => {
+  try {
+    const student = await Student.findById(req.student.id).select('-password_hash -__v').lean();
+    if (!student) return res.status(404).json({ error: 'Not found' });
+    res.json({ id: student._id, email: student.email, name: student.name, avatar: student.avatar || '🧑‍🎓', phone: student.phone || '', class_id: student.class_id || '', bio: student.bio || '', role: 'student' });
+  } catch (e) { res.status(500).json({ error: 'Server error' }); }
+});
+
+// ── Students: Update own profile ────────────────────────────────
+app.patch('/api/students/me', requireStudentAuth, async (req, res) => {
+  try {
+    const { name, avatar, phone, class_id, bio } = req.body || {};
+    if (!name?.trim()) return res.status(400).json({ error: 'Name is required' });
+    const student = await Student.findByIdAndUpdate(
+      req.student.id,
+      { $set: { name: name.trim(), avatar: avatar || '🧑‍🎓', phone: (phone || '').trim(), class_id: (class_id || '').trim(), bio: (bio || '').trim() } },
+      { new: true }
+    ).lean();
+    if (!student) return res.status(404).json({ error: 'Not found' });
+    const token = jwt.sign({ id: student._id.toString(), email: student.email, name: student.name, role: 'student' }, JWT_SECRET, { expiresIn: '30d' });
+    res.json({ token, id: student._id, email: student.email, name: student.name, avatar: student.avatar, phone: student.phone || '', class_id: student.class_id || '', bio: student.bio || '', role: 'student' });
+  } catch (e) { res.status(500).json({ error: 'Server error' }); }
+});
+
 // ── Teachers: Get all (public — used by user portal) ───────────
 app.get('/api/teachers', async (req, res) => {
   try {

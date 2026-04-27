@@ -92,7 +92,7 @@ export default function App() {
             <Route path="/class/:classId/subject/:subjectId/topic/:topicId/book" element={<BookSessionPage />} />
             <Route path="/search" element={<SearchPage />} />
             <Route path="/my-bookings" element={<MyBookingsPage user={user} onOpenLogin={() => setLoginOpen(true)} />} />
-            <Route path="/dashboard" element={<DashboardPage user={user} onOpenLogin={() => setLoginOpen(true)} />} />
+            <Route path="/dashboard" element={<DashboardPage user={user} onOpenLogin={() => setLoginOpen(true)} onUpdateUser={handleLogin} />} />
             <Route path="/teacher-portal" element={<AdminPage />} />
             <Route path="/exam/:examId" element={<ExamHubPage />} />
             <Route path="/exam/:examId/weightage" element={<WeightagePage />} />

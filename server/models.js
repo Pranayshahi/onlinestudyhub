@@ -4,6 +4,10 @@ const studentSchema = new mongoose.Schema({
   email: { type: String, required: true, unique: true },
   password_hash: { type: String, required: true },
   name: { type: String, required: true },
+  avatar: { type: String, default: '🧑‍🎓' },
+  phone: { type: String, default: '' },
+  class_id: { type: String, default: '' },
+  bio: { type: String, default: '' },
 }, { timestamps: true });
 
 const teacherSchema = new mongoose.Schema({

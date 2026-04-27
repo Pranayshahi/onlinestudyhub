@@ -4,6 +4,7 @@ import { api } from '../utils/api';
 import { getAllClasses, SUBJECT_META } from '../data/curriculum';
 
 const SUB_EMOJI = { mathematics:'📐', physics:'⚡', chemistry:'🧪', biology:'🧬', english:'📖', science:'🔬', social:'🌍', history:'🏛️', geography:'🗺️', civics:'⚖️', economics:'💹' };
+const AVATAR_OPTIONS = ['🧑‍🎓','👦','👧','🧑','👨','👩','🧒','🧑‍💻','👨‍🏫','👩‍🏫','🦸','🦸‍♀️','🧙','🤓','😎','🦊'];
 
 // ── localStorage helpers ─────────────────────────────────────────
 function loadProgress() {
@@ -146,11 +147,15 @@ function SectionCard({ icon, title, action, children }) {
 }
 
 // ── Main Dashboard ────────────────────────────────────────────────
-export default function DashboardPage({ user, onOpenLogin }) {
+export default function DashboardPage({ user, onOpenLogin, onUpdateUser }) {
   const [bookings, setBookings] = useState([]);
   const [loadingBookings, setLoadingBookings] = useState(true);
   const [planInput, setPlanInput] = useState('');
   const [studyPlan, setStudyPlan] = useState(loadStudyPlan);
+  const [profileEditOpen, setProfileEditOpen] = useState(false);
+  const [profileForm, setProfileForm] = useState({ name: '', avatar: '🧑‍🎓', phone: '', class_id: '', bio: '' });
+  const [profileSaving, setProfileSaving] = useState(false);
+  const [profileError, setProfileError] = useState('');
 
   const progress   = loadProgress();
   const lastTopic  = loadLastTopic();
@@ -218,6 +223,33 @@ export default function DashboardPage({ user, onOpenLogin }) {
   function removePlanItem(id) {
     const updated = studyPlan.filter(t => t.id !== id);
     setStudyPlan(updated); saveStudyPlan(updated);
+  }
+
+  function openProfileEdit() {
+    setProfileForm({
+      name: user.name || '',
+      avatar: user.avatar || '🧑‍🎓',
+      phone: user.phone || '',
+      class_id: user.class_id || '',
+      bio: user.bio || '',
+    });
+    setProfileError('');
+    setProfileEditOpen(true);
+  }
+
+  async function saveProfile() {
+    if (!profileForm.name.trim()) { setProfileError('Name is required'); return; }
+    setProfileSaving(true);
+    setProfileError('');
+    try {
+      const data = await api('/students/me', { method: 'PATCH', body: profileForm });
+      onUpdateUser?.({ ...user, ...data, token: data.token || user.token });
+      setProfileEditOpen(false);
+    } catch (err) {
+      setProfileError(err.message || 'Failed to save');
+    } finally {
+      setProfileSaving(false);
+    }
   }
 
   return (
@@ -396,6 +428,87 @@ export default function DashboardPage({ user, onOpenLogin }) {
 
           {/* RIGHT */}
           <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
+
+            {/* Profile Card */}
+            <SectionCard icon="👤" title="My Profile"
+              action={!profileEditOpen ? (
+                <button onClick={openProfileEdit} style={{ fontSize: '.78rem', color: '#4f46e5', fontWeight: 700, background: 'none', border: 'none', cursor: 'pointer', padding: 0 }}>
+                  Edit →
+                </button>
+              ) : null}>
+              {!profileEditOpen ? (
+                <div style={{ display: 'flex', alignItems: 'flex-start', gap: '1rem' }}>
+                  <div style={{ fontSize: '3rem', lineHeight: 1, flexShrink: 0 }}>{user.avatar || '🧑‍🎓'}</div>
+                  <div style={{ flex: 1, minWidth: 0 }}>
+                    <div style={{ fontWeight: 700, color: '#1e1b4b', fontSize: '1rem', marginBottom: '.2rem' }}>{user.name}</div>
+                    <div style={{ color: '#6b7280', fontSize: '.82rem', marginBottom: '.15rem' }}>✉️ {user.email}</div>
+                    {user.phone && <div style={{ color: '#6b7280', fontSize: '.82rem', marginBottom: '.15rem' }}>📞 {user.phone}</div>}
+                    {user.class_id && <div style={{ color: '#6b7280', fontSize: '.82rem', marginBottom: '.15rem' }}>🏫 Class {user.class_id.replace('class-', '')}</div>}
+                    {user.bio && <div style={{ color: '#374151', fontSize: '.82rem', marginTop: '.35rem', fontStyle: 'italic' }}>"{user.bio}"</div>}
+                    {!user.phone && !user.bio && <div style={{ color: '#9ca3af', fontSize: '.78rem', marginTop: '.35rem' }}>Tap Edit to complete your profile.</div>}
+                  </div>
+                </div>
+              ) : (
+                <form onSubmit={e => { e.preventDefault(); saveProfile(); }} style={{ display: 'flex', flexDirection: 'column', gap: '.75rem' }}>
+                  <div>
+                    <div style={{ fontSize: '.75rem', fontWeight: 600, color: '#374151', marginBottom: '.4rem' }}>Avatar</div>
+                    <div style={{ display: 'flex', flexWrap: 'wrap', gap: '.35rem' }}>
+                      {AVATAR_OPTIONS.map(em => (
+                        <button key={em} type="button"
+                          onClick={() => setProfileForm(f => ({ ...f, avatar: em }))}
+                          style={{ fontSize: '1.4rem', width: 38, height: 38, border: profileForm.avatar === em ? '2px solid #4f46e5' : '2px solid transparent', borderRadius: 8, background: profileForm.avatar === em ? '#eef2ff' : '#f3f4f6', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                          {em}
+                        </button>
+                      ))}
+                    </div>
+                  </div>
+                  <div>
+                    <label style={{ fontSize: '.75rem', fontWeight: 600, color: '#374151', display: 'block', marginBottom: '.3rem' }}>Full Name *</label>
+                    <input value={profileForm.name} onChange={e => setProfileForm(f => ({ ...f, name: e.target.value }))}
+                      style={{ width: '100%', padding: '.45rem .65rem', borderRadius: 8, border: '1.5px solid #d1d5db', fontSize: '.88rem', boxSizing: 'border-box' }}
+                      placeholder="Your name" maxLength={60} required />
+                  </div>
+                  <div>
+                    <label style={{ fontSize: '.75rem', fontWeight: 600, color: '#374151', display: 'block', marginBottom: '.3rem' }}>Email</label>
+                    <input value={user.email} disabled
+                      style={{ width: '100%', padding: '.45rem .65rem', borderRadius: 8, border: '1.5px solid #d1d5db', fontSize: '.88rem', boxSizing: 'border-box', background: '#f3f4f6', color: '#9ca3af' }} />
+                  </div>
+                  <div>
+                    <label style={{ fontSize: '.75rem', fontWeight: 600, color: '#374151', display: 'block', marginBottom: '.3rem' }}>Phone</label>
+                    <input value={profileForm.phone} onChange={e => setProfileForm(f => ({ ...f, phone: e.target.value }))}
+                      style={{ width: '100%', padding: '.45rem .65rem', borderRadius: 8, border: '1.5px solid #d1d5db', fontSize: '.88rem', boxSizing: 'border-box' }}
+                      placeholder="+91 98765 43210" maxLength={20} type="tel" />
+                  </div>
+                  <div>
+                    <label style={{ fontSize: '.75rem', fontWeight: 600, color: '#374151', display: 'block', marginBottom: '.3rem' }}>Class</label>
+                    <select value={profileForm.class_id} onChange={e => setProfileForm(f => ({ ...f, class_id: e.target.value }))}
+                      style={{ width: '100%', padding: '.45rem .65rem', borderRadius: 8, border: '1.5px solid #d1d5db', fontSize: '.88rem', boxSizing: 'border-box' }}>
+                      <option value="">— Select class —</option>
+                      {getAllClasses().map(cls => (
+                        <option key={cls.id} value={cls.id}>{cls.label || cls.id.replace('class-', 'Class ')}</option>
+                      ))}
+                    </select>
+                  </div>
+                  <div>
+                    <label style={{ fontSize: '.75rem', fontWeight: 600, color: '#374151', display: 'block', marginBottom: '.3rem' }}>Bio</label>
+                    <textarea value={profileForm.bio} onChange={e => setProfileForm(f => ({ ...f, bio: e.target.value }))}
+                      style={{ width: '100%', padding: '.45rem .65rem', borderRadius: 8, border: '1.5px solid #d1d5db', fontSize: '.88rem', boxSizing: 'border-box', resize: 'vertical', minHeight: 60 }}
+                      placeholder="Tell us a bit about yourself…" maxLength={200} rows={2} />
+                  </div>
+                  {profileError && <div style={{ color: '#dc2626', fontSize: '.8rem' }}>{profileError}</div>}
+                  <div style={{ display: 'flex', gap: '.65rem' }}>
+                    <button type="submit" disabled={profileSaving}
+                      style={{ flex: 1, padding: '.5rem', background: '#4f46e5', color: '#fff', border: 'none', borderRadius: 8, fontWeight: 700, fontSize: '.88rem', cursor: profileSaving ? 'not-allowed' : 'pointer', opacity: profileSaving ? .7 : 1 }}>
+                      {profileSaving ? 'Saving…' : 'Save Profile'}
+                    </button>
+                    <button type="button" onClick={() => setProfileEditOpen(false)}
+                      style={{ padding: '.5rem 1rem', background: '#f3f4f6', color: '#374151', border: 'none', borderRadius: 8, fontWeight: 600, fontSize: '.88rem', cursor: 'pointer' }}>
+                      Cancel
+                    </button>
+                  </div>
+                </form>
+              )}
+            </SectionCard>
 
             {/* Study Planner */}
             <SectionCard icon="📅" title="Today's Study Plan">
