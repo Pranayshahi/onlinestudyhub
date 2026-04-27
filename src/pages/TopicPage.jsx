@@ -11,6 +11,7 @@ import ForumSection from '../components/ForumSection';
 import TopicQuiz from '../components/TopicQuiz';
 import TopicPoll from '../components/TopicPoll';
 import { useNotifications } from '../context/NotificationsContext';
+import TopicIllustration from '../components/TopicIllustration';
 
 // ── Accordion item ──────────────────────────────────────────────
 function AccordionItem({ number, question, answer, subjectColor, isOpen, onToggle }) {
@@ -258,7 +259,13 @@ export default function TopicPage({ user, onOpenLogin }) {
           </div>
         </div>
 
-        {/* ── 2. Media Resources ── */}
+        {/* ── 1b. Topic Illustration ── */}
+        <TopicIllustration
+          subjectId={subjectId}
+          topicTitle={topic.title}
+          classLabel={classData.label}
+        />
+
         <TopicMediaSection classId={classId} subjectId={subjectId} topicId={topicId} user={user} onOpenLogin={onOpenLogin} />
 
         {/* ── 3. Learning Content ── */}
