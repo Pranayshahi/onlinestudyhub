@@ -8410,6 +8410,271 @@ export const CURRICULUM = {
               { q: 'What is the product of the light reactions that is used in the Calvin cycle?', a: 'The light reactions produce ATP and NADPH. These are the assimilatory powers used in the Calvin cycle to reduce CO₂ to glucose.' },
             ]
           },
+          {
+            id: 'genetics-inheritance',
+            title: 'Genetics & Molecular Basis of Inheritance',
+            subtopics: "Mendel's Laws, Chromosomal Theory, DNA Structure (Watson-Crick), DNA Replication, Transcription, Translation, Genetic Code, Gene Regulation (Lac Operon), Mutation, Evolution",
+            definition: "Genetics is the study of heredity and variation. The molecular basis of inheritance explains how genetic information stored in DNA is replicated, transcribed into RNA, and translated into proteins — the central dogma of molecular biology.",
+            content: `<p>Genetics and molecular biology together form the highest-weightage area of NEET Biology (~18%). Master Mendel, DNA, and molecular mechanisms thoroughly.</p>
+<h4>Mendel's Laws of Inheritance</h4>
+<ul>
+<li><strong>Law of Dominance:</strong> In a heterozygote, only the dominant allele is expressed.</li>
+<li><strong>Law of Segregation:</strong> Alleles separate during gamete formation — each gamete gets one allele.</li>
+<li><strong>Law of Independent Assortment:</strong> Genes on different chromosomes assort independently (dihybrid: 9:3:3:1).</li>
+</ul>
+<p>Deviations: Incomplete dominance (1:2:1), Codominance (ABO blood groups), Multiple alleles, Epistasis.</p>
+<h4>DNA Structure — Watson & Crick Model (1953)</h4>
+<ul>
+<li>Double helix, right-handed (B-DNA), antiparallel strands</li>
+<li>Chargaff's Rules: A=T (2 H-bonds), G≡C (3 H-bonds)</li>
+<li>Nucleotide = Phosphate + Deoxyribose + Nitrogenous base; 10 bp/turn, 3.4 Å pitch</li>
+<li>Packaging: DNA → Nucleosome (146 bp + histone octamer) → 30 nm fibre → Chromatin</li>
+</ul>
+<h4>DNA Replication (Semiconservative — Meselson & Stahl 1958)</h4>
+<div class="formula">Each new DNA = 1 old strand + 1 new strand</div>
+<p>Enzymes: Helicase (unwinds), Primase (RNA primer), DNA Pol III (5'→3' synthesis), DNA Pol I (removes primer), Ligase (joins Okazaki fragments). Leading strand: continuous. Lagging strand: discontinuous.</p>
+<h4>Transcription & Translation</h4>
+<p><strong>Transcription:</strong> Template strand → mRNA (by RNA Pol). mRNA processed: 5' capping, 3' poly-A tail, splicing (introns removed).</p>
+<p><strong>Translation:</strong> mRNA → Protein. Initiation (AUG), Elongation (peptidyl transferase), Termination (UAA/UAG/UGA). Genetic code: triplet, degenerate, universal, non-overlapping.</p>
+<h4>Gene Regulation — Lac Operon (Jacob & Monod)</h4>
+<p>Inducible operon. In absence of lactose: repressor binds operator → genes OFF. Lactose present: binds repressor → repressor released → genes ON (β-galactosidase, permease, transacetylase produced).</p>
+<h4>Mutation & Evolution</h4>
+<p>Mutations: Point (transition/transversion), Frameshift (insertion/deletion). Aneuploidy: Down Syndrome (Trisomy 21), Turner's (45,XO), Klinefelter's (47,XXY). Evolution: Natural selection (Darwin), Hardy-Weinberg equilibrium (p²+2pq+q²=1), Adaptive radiation, Human evolution (Homo habilis → Homo sapiens).</p>`,
+            qa: [
+              { q: "State Mendel's Law of Segregation.", a: "Alleles for a character occur in pairs and separate (segregate) during gamete formation. Each gamete carries only one allele for each character. The alleles reunite randomly at fertilisation." },
+              { q: 'What is the semiconservative model of DNA replication?', a: 'Each new DNA molecule consists of one original (parental) strand and one newly synthesised strand. Proved by Meselson & Stahl (1958) using ¹⁵N/¹⁴N labelling in E. coli.' },
+              { q: 'What is the genetic code? List its salient features.', a: 'The genetic code is the relationship between the sequence of bases in mRNA (codons) and amino acids. Features: (1) Triplet — 3 bases = 1 amino acid. (2) Degenerate — multiple codons for same amino acid. (3) Universal — same in all organisms (exceptions: mitochondria). (4) Non-overlapping — codons read sequentially. (5) Non-ambiguous — each codon codes for only one amino acid. 64 codons total: 61 sense + 3 stop (UAA, UAG, UGA).' },
+              { q: 'Explain how the Lac operon is regulated in E. coli.', a: 'Lac operon is an inducible system. In absence of lactose: lacI gene produces a repressor protein that binds the operator, blocking RNA polymerase → genes are OFF. When lactose is present: it acts as an inducer, binds the repressor → repressor changes shape, cannot bind operator → RNA Pol transcribes lacZ (β-galactosidase), lacY (permease), lacA (transacetylase) → lactose is metabolised.' },
+              { q: 'What is Hardy-Weinberg equilibrium?', a: 'Hardy-Weinberg equilibrium states that allele and genotype frequencies in a population remain constant from generation to generation in the absence of evolutionary forces. Conditions: large population, random mating, no mutation, no selection, no gene flow. Equation: p² + 2pq + q² = 1, where p and q are frequencies of two alleles. Deviations indicate evolution is occurring.' },
+            ]
+          },
+          {
+            id: 'cell-structure-division',
+            title: 'Cell: Structure, Function & Division',
+            subtopics: 'Prokaryotic vs Eukaryotic, Cell membrane (Fluid Mosaic Model), Nucleus, Organelles (ER, Golgi, Mitochondria, Chloroplast, Ribosomes), Cell cycle, Mitosis, Meiosis',
+            definition: 'The cell is the structural and functional unit of life. Eukaryotic cells contain membrane-bound organelles including a nucleus, while prokaryotic cells lack a true nucleus. Cell division (mitosis and meiosis) ensures growth, repair, and sexual reproduction.',
+            content: `<p>Cell biology is a core NEET topic (9% weightage). Every structure has a specific function — learn them together.</p>
+<h4>Prokaryotic vs Eukaryotic Cells</h4>
+<table style="width:100%; border-collapse:collapse; font-size:.9rem">
+<tr style="background:#f3f4f6"><th style="padding:.5rem; text-align:left">Feature</th><th>Prokaryote</th><th>Eukaryote</th></tr>
+<tr><td style="padding:.3rem">Nuclear membrane</td><td>Absent</td><td>Present</td></tr>
+<tr style="background:#f9fafb"><td style="padding:.3rem">Ribosomes</td><td>70S (50S+30S)</td><td>80S (60S+40S)</td></tr>
+<tr><td style="padding:.3rem">Membrane organelles</td><td>Absent</td><td>Present</td></tr>
+<tr style="background:#f9fafb"><td style="padding:.3rem">Examples</td><td>Bacteria, Archaea</td><td>Animals, Plants, Fungi</td></tr>
+</table>
+<h4>Cell Membrane — Fluid Mosaic Model (Singer & Nicolson 1972)</h4>
+<p>Phospholipid bilayer (hydrophilic heads outward, hydrophobic tails inward) with embedded integral proteins (transmembrane) and peripheral proteins (surface). Membrane is fluid — lipids move laterally. Glycoproteins and glycolipids on outer surface (cell recognition).</p>
+<h4>Key Organelles</h4>
+<ul>
+<li><strong>Mitochondria:</strong> Double membrane; inner membrane has cristae (ETC, ATP synthesis); matrix (Krebs cycle). 70S ribosomes → semi-autonomous. "Powerhouse of the cell."</li>
+<li><strong>Chloroplast:</strong> Double membrane; thylakoids (grana) for light reactions; stroma for Calvin cycle. 70S ribosomes → semi-autonomous.</li>
+<li><strong>Endoplasmic Reticulum:</strong> RER (ribosomes attached, protein synthesis) & SER (lipid synthesis, detox).</li>
+<li><strong>Golgi Apparatus:</strong> cis-face (receiving) & trans-face (secretory). Processing, packaging, secretion of proteins.</li>
+<li><strong>Lysosome:</strong> Digestive vacuoles with hydrolytic enzymes. "Suicide bags."</li>
+<li><strong>Ribosome:</strong> 70S (prokaryotes) & 80S (eukaryotes). Site of protein synthesis (translation).</li>
+</ul>
+<h4>Cell Cycle & Mitosis</h4>
+<p>Interphase: G₁ (growth), S (DNA synthesis), G₂ (preparation). M phase (Mitosis): Prophase → Metaphase → Anaphase → Telophase → Cytokinesis. Result: 2 diploid daughter cells, genetically identical. Significance: growth, repair, asexual reproduction.</p>
+<h4>Meiosis</h4>
+<p>Meiosis I (Reductional): Homologues separate. Prophase I (Leptotene → Zygotene → Pachytene [crossing over at chiasmata] → Diplotene → Diakinesis). Meiosis II (Equational): Similar to mitosis. Result: 4 haploid cells (gametes). Significance: halves chromosome number, creates genetic diversity through crossing over.</p>`,
+            qa: [
+              { q: 'Why are mitochondria and chloroplasts called semi-autonomous organelles?', a: 'They are called semi-autonomous because they possess their own circular DNA, 70S ribosomes, and can synthesise some of their own proteins. However, most of their proteins are encoded by nuclear DNA and imported from the cytoplasm — so they cannot function independently. They are believed to have originated from endosymbiotic prokaryotes (endosymbiont theory).' },
+              { q: 'Describe the fluid mosaic model of the cell membrane.', a: 'Proposed by Singer & Nicolson (1972). The cell membrane consists of a fluid phospholipid bilayer in which proteins are embedded like a mosaic. Integral (intrinsic) proteins span the entire bilayer; peripheral (extrinsic) proteins are on the surface. Lipids can move laterally (fluid). Glycoproteins and glycolipids on outer surface serve as identity markers (blood groups, receptors).' },
+              { q: 'What happens at the Pachytene stage of Prophase I of Meiosis?', a: 'During Pachytene (thick threads stage), homologous chromosomes remain closely synapsed as bivalents. Crossing over (exchange of segments between non-sister chromatids of homologous chromosomes) occurs at chiasmata. This is the basis of genetic recombination and increases variation.' },
+              { q: 'What is the significance of mitosis?', a: 'Mitosis maintains the chromosome number (produces 2 diploid daughter cells). It is essential for: (1) Growth of multicellular organisms, (2) Repair and regeneration of cells (skin, blood cells), (3) Asexual reproduction in organisms, (4) Maintaining genetic identity of daughter cells with the parent cell.' },
+            ]
+          },
+          {
+            id: 'human-physiology-digestion',
+            title: 'Human Physiology — Digestion & Breathing',
+            subtopics: 'Alimentary canal, Digestive enzymes, Absorption, Respiratory organs, Lung volumes, O₂ & CO₂ transport, Respiratory disorders',
+            definition: 'Digestion is the process of breaking down complex food molecules into simpler, absorbable forms. Breathing involves the exchange of O₂ and CO₂ between the body and the environment through the respiratory system.',
+            content: `<p>Human physiology carries the highest NEET weightage (~20%). Master the organs, processes, and regulatory mechanisms of each system.</p>
+<h4>Digestive System</h4>
+<p><strong>Alimentary Canal:</strong> Mouth → Pharynx → Oesophagus → Stomach → Small Intestine (Duodenum, Jejunum, Ileum) → Large Intestine → Rectum → Anus.</p>
+<p><strong>Key enzymes:</strong></p>
+<ul>
+<li>Mouth: Salivary amylase (ptyalin) — starch → maltose (pH 6.8)</li>
+<li>Stomach: Pepsin (from pepsinogen + HCl) — proteins → peptides; Rennin (caseinogen → casein in infants); HCl — kills bacteria, activates pepsin, provides acidic medium</li>
+<li>Pancreatic juice: Trypsin, Chymotrypsin (proteins), Pancreatic amylase (starch), Pancreatic lipase (fats), Nuclease (nucleic acids)</li>
+<li>Intestinal juice (Succus Entericus): Maltase, Lactase, Sucrase, Erepsin (peptidase), Nucleotidase</li>
+<li>Bile (liver): Bile salts emulsify fats; bile pigments (bilirubin, biliverdin) give colour to bile</li>
+</ul>
+<p><strong>Absorption:</strong> Occurs mainly in small intestine (villi + microvilli = brush border). Glucose and amino acids → portal vein. Fatty acids + glycerol → lacteals (lymph) → thoracic duct → blood.</p>
+<h4>Respiratory System</h4>
+<p>Pathway: Nasal cavity → Pharynx → Larynx → Trachea → Bronchi → Bronchioles → Alveoli (site of gas exchange).</p>
+<p><strong>Breathing Mechanism:</strong> Inspiration: diaphragm contracts & descends, ribs move up & out → volume increases → pressure decreases → air enters. Expiration: reverse process.</p>
+<p><strong>Lung Volumes:</strong></p>
+<ul>
+<li>Tidal Volume (TV): 500 mL (normal breath)</li>
+<li>IRV (Inspiratory Reserve Volume): 2500 mL</li>
+<li>ERV (Expiratory Reserve Volume): 1100 mL</li>
+<li>RV (Residual Volume): 1100 mL</li>
+<li>Vital Capacity (VC) = TV + IRV + ERV = 3700–4800 mL</li>
+</ul>
+<p><strong>Transport of Gases:</strong> O₂ as oxyhaemoglobin (97%) + dissolved (3%). CO₂ as bicarbonate ions (70%), carbamino-Hb (23%), dissolved (7%). Partial pressure drives diffusion (alveoli ↔ blood ↔ tissues).</p>`,
+            qa: [
+              { q: 'What is the role of HCl in gastric digestion?', a: 'Hydrochloric acid in gastric juice: (1) Creates acidic pH (~2) optimal for pepsin activity. (2) Converts inactive pepsinogen → active pepsin. (3) Kills harmful microorganisms in food. (4) Denatures proteins, making them easier to digest. (5) Stops salivary amylase action (which requires neutral pH).' },
+              { q: 'How is CO₂ transported in blood?', a: 'CO₂ is transported in three forms: (1) Bicarbonate ions — 70%: CO₂ + H₂O → H₂CO₃ → H⁺ + HCO₃⁻ (catalysed by carbonic anhydrase in RBCs). (2) Carbamino-Haemoglobin — 23%: CO₂ binds directly to amino groups of Hb. (3) Dissolved in plasma — 7%. The bicarbonate shifts out of RBCs via chloride shift (Hamburger phenomenon).' },
+              { q: 'What is Vital Capacity? What does it indicate?', a: 'Vital Capacity (VC) is the maximum volume of air that can be exhaled after a maximum inhalation. VC = IRV + TV + ERV ≈ 4100–4800 mL. It is an indicator of respiratory health — reduced in restrictive lung diseases (fibrosis), normal or increased in obstructive diseases (emphysema). Athletes have higher VC.' },
+              { q: 'Explain the role of villi and microvilli in absorption.', a: 'The inner lining of the small intestine has finger-like projections called villi, which increase surface area enormously. Each villus is covered with microvilli (brush border), further increasing area. Each villus has a capillary network (for glucose, amino acids → portal blood) and a lacteal (lymph capillary for fatty acid and glycerol absorption). This massive surface area (~200 m²) ensures efficient absorption.' },
+            ]
+          },
+          {
+            id: 'body-fluids-excretion',
+            title: 'Body Fluids, Circulation & Excretion',
+            subtopics: 'Blood composition, ABO blood groups, Cardiac cycle, ECG, Lymph, Nephron structure, Urine formation (Ultrafiltration, Reabsorption, Secretion), ADH regulation',
+            definition: 'The circulatory system distributes blood (oxygen, nutrients, hormones) throughout the body. The excretory system removes metabolic wastes (primarily urea) through kidneys, maintaining blood homeostasis.',
+            content: `<p>Circulation and excretion are heavily tested in NEET. Focus on mechanisms, regulation, and disorders.</p>
+<h4>Blood Composition & Blood Groups</h4>
+<p>Plasma (55%): water, proteins (albumin, globulin, fibrinogen), nutrients, waste. Formed elements (45%): RBC (~5 million/mm³, biconcave, no nucleus), WBC (6000–8000/mm³, immune defence), Platelets (1.5–3.5 lakh/mm³, clotting).</p>
+<p><strong>ABO Blood Groups:</strong> Determined by antigens on RBC and antibodies in plasma. O = no antigens (universal donor for packed RBCs); AB = both antigens, no antibodies (universal recipient). Rh factor: 80% humans Rh+. Erythroblastosis foetalis: Rh− mother carries Rh+ foetus.</p>
+<h4>Cardiac Cycle</h4>
+<p>Systole (0.3s) + Diastole (0.4s) = 0.8s (72 beats/min). Atrial systole → Ventricular systole → Diastole. Heart sounds: Lubb (AV valves close) + Dubb (Semilunar valves close). Stroke volume ~70 mL; Cardiac output = SV × HR = 70 × 72 ≈ 5 L/min.</p>
+<p><strong>ECG:</strong> P wave (atrial depolarisation), QRS complex (ventricular depolarisation), T wave (ventricular repolarisation).</p>
+<h4>Kidney & Nephron</h4>
+<p>Nephron = Bowman's capsule (enclosing glomerulus) + Renal tubule (PCT, Loop of Henle, DCT, Collecting Duct). ~1 million nephrons/kidney.</p>
+<p><strong>Urine Formation — 3 steps:</strong></p>
+<ol>
+<li><strong>Ultrafiltration:</strong> Blood filtered under pressure at glomerulus into Bowman's capsule. GFR = 125 mL/min = 180 L/day. Filtrate: water, glucose, urea, ions (NOT proteins, RBCs).</li>
+<li><strong>Selective Reabsorption:</strong> PCT reabsorbs 70% water, all glucose (active), amino acids, Na⁺. Loop of Henle creates concentration gradient. DCT reabsorbs Na⁺, water (regulated by ADH, aldosterone).</li>
+<li><strong>Tubular Secretion:</strong> H⁺, K⁺, NH₃, creatinine secreted into tubule → excreted in urine.</li>
+</ol>
+<p><strong>Regulation:</strong> ADH (antidiuretic hormone) → increases water reabsorption in DCT/CD → concentrated urine. Aldosterone → Na⁺ reabsorption in DCT. ANF → opposes aldosterone, promotes Na⁺ excretion.</p>`,
+            qa: [
+              { q: 'Why is blood group O called the universal donor?', a: 'Blood group O RBCs have NO A or B antigens on their surface. So when O blood is transfused, the recipient\'s immune system cannot detect foreign antigens and produce no reaction. Hence O is the universal donor for packed RBCs. However, O individuals have both anti-A and anti-B antibodies in plasma, so they can only receive O blood themselves.' },
+              { q: 'Explain the process of ultrafiltration in the kidney.', a: 'Blood enters the glomerulus under high pressure (due to the wider afferent arteriole vs narrower efferent arteriole). This hydrostatic pressure forces water, glucose, urea, ions, and small molecules out of blood capillaries into Bowman\'s capsule — forming the glomerular filtrate. Large molecules (proteins, RBCs) cannot pass through the filtration membrane. GFR = 125 mL/min (180 L/day).' },
+              { q: 'What is the role of ADH in urine concentration?', a: 'ADH (antidiuretic hormone/vasopressin) is secreted by the posterior pituitary when blood osmolarity increases or blood volume decreases. It acts on DCT and collecting duct cells, increasing their permeability to water → more water is reabsorbed → concentrated urine (small volume). Absence of ADH → large volumes of dilute urine (Diabetes insipidus).' },
+              { q: 'What is the significance of the ECG?', a: 'ECG (Electrocardiogram) records the electrical activity of the heart. P wave: atrial depolarisation (atrial contraction). QRS complex: ventricular depolarisation (ventricular contraction). T wave: ventricular repolarisation (relaxation). Clinical significance: diagnoses arrhythmias (irregular heartbeat), myocardial infarction (heart attack — ST elevation), heart block, and other cardiac disorders.' },
+            ]
+          },
+          {
+            id: 'neural-endocrine',
+            title: 'Neural & Chemical Coordination',
+            subtopics: 'Neuron structure, Resting & Action potential, Synapse, Brain regions, Reflex arc, Endocrine glands (Pituitary, Thyroid, Adrenal, Pancreas), Hormone mechanisms',
+            definition: 'Neural coordination involves rapid electrical signals (nerve impulses) transmitted by neurons through synapses. Chemical coordination uses hormones secreted by endocrine glands that travel through blood to target organs for slower, longer-lasting responses.',
+            content: `<p>Both neural and endocrine coordination are important NEET topics. Understand the mechanisms, not just the names of glands and hormones.</p>
+<h4>Neuron Structure & Nerve Impulse</h4>
+<p><strong>Parts:</strong> Cell body (soma), Dendrites (receive signals), Axon (transmit signal), Myelin sheath (Schwann cells, insulation), Nodes of Ranvier (gaps), Axon terminals (synaptic knobs).</p>
+<p><strong>Resting Potential (−70 mV):</strong> Inside negative due to high K⁺ inside, high Na⁺ outside. Na⁺-K⁺ pump maintains gradient.</p>
+<p><strong>Action Potential:</strong> Stimulus → Na⁺ channels open → depolarisation (+35 mV) → K⁺ channels open → repolarisation → hyperpolarisation → resting state restored. All-or-none principle.</p>
+<p><strong>Saltatory conduction:</strong> In myelinated fibres, impulse jumps node to node — faster (100 m/s).</p>
+<h4>Synapse</h4>
+<p>Gap between two neurons. Presynaptic neuron releases neurotransmitters (ACh, dopamine, GABA, serotonin) into synaptic cleft → bind post-synaptic receptors → EPSP (excitatory) or IPSP (inhibitory). Electrical synapses: ions pass directly through gap junctions (faster).</p>
+<h4>Brain Regions</h4>
+<ul>
+<li><strong>Cerebrum:</strong> Largest part; lobes (Frontal-motor, Parietal-sensory, Temporal-hearing/memory, Occipital-vision). Limbic system: emotions, memory.</li>
+<li><strong>Cerebellum:</strong> Coordinates voluntary movement, balance, posture.</li>
+<li><strong>Medulla oblongata:</strong> Controls breathing, heart rate, vomiting, swallowing.</li>
+<li><strong>Hypothalamus:</strong> Links nervous and endocrine systems; releasing/inhibiting hormones for pituitary.</li>
+</ul>
+<h4>Major Endocrine Glands</h4>
+<p><strong>Pituitary (master gland):</strong> Anterior — GH, TSH, ACTH, FSH, LH, Prolactin. Posterior — ADH (vasopressin), Oxytocin.</p>
+<p><strong>Thyroid:</strong> T₃, T₄ (increases BMR, growth, metabolism). Calcitonin (lowers blood Ca²⁺). Disorders: Hypothyroidism (myxoedema), Hyperthyroidism (Graves' disease), Goitre (iodine deficiency), Cretinism (childhood hypothyroidism).</p>
+<p><strong>Adrenal:</strong> Cortex — Mineralocorticoids (Aldosterone: Na⁺ reabsorption), Glucocorticoids (Cortisol: stress response, anti-inflammatory), Sex corticoids. Medulla — Adrenaline & Noradrenaline (fight or flight).</p>
+<p><strong>Pancreas:</strong> α-cells → Glucagon (raises blood glucose). β-cells → Insulin (lowers blood glucose, promotes glycogenesis). Diabetes Mellitus: Type I (no insulin), Type II (insulin resistance).</p>`,
+            qa: [
+              { q: 'Explain the generation of action potential.', a: 'At rest: −70 mV inside (resting potential). On stimulation: voltage-gated Na⁺ channels open → Na⁺ rushes in → membrane depolarises to +35 mV. At peak: Na⁺ channels inactivate, K⁺ channels open → K⁺ flows out → repolarisation. Hyperpolarisation (−80 mV) occurs as K⁺ channels close slowly. Na⁺-K⁺ pump restores resting potential. The impulse follows all-or-none law.' },
+              { q: 'What is the role of the hypothalamus in the endocrine system?', a: 'Hypothalamus acts as the link between the nervous and endocrine systems. It produces releasing hormones (GnRH, TRH, CRH, GHRH) and inhibiting hormones (somatostatin, PIH) that control the anterior pituitary. The anterior pituitary then regulates peripheral endocrine glands (thyroid, adrenal, gonads). This forms a hypothalamic-pituitary-target organ axis with negative feedback control.' },
+              { q: 'Distinguish between Type I and Type II Diabetes Mellitus.', a: 'Type I (Insulin-dependent/Juvenile): Autoimmune destruction of pancreatic β-cells → no insulin production → absolute insulin deficiency → high blood glucose → treated with exogenous insulin injections. Type II (Non-insulin-dependent/Adult onset): Target cells become resistant to insulin → pancreas produces more insulin initially but eventually fails → managed with diet, exercise, oral hypoglycaemics.' },
+              { q: 'What are the functions of the cerebellum?', a: 'Cerebellum functions: (1) Coordination of voluntary muscle movements, (2) Maintenance of body posture and equilibrium, (3) Fine motor control and precision of movements. Damage to cerebellum causes ataxia (loss of coordination), tremors during voluntary movement, and difficulty maintaining balance. It receives sensory information from muscles, joints, and inner ear.' },
+            ]
+          },
+          {
+            id: 'ecology-environment',
+            title: 'Ecology & Environment',
+            subtopics: 'Organisms & Environment, Population ecology (Growth models), Interspecific interactions, Ecosystem (Food chains, Energy flow, Biogeochemical cycles), Biodiversity, Conservation, Environmental issues',
+            definition: 'Ecology is the study of interactions between organisms and their environment. It operates at multiple levels: organism, population, community, ecosystem, and biosphere — each with distinct properties and patterns.',
+            content: `<p>Ecology carries ~9% NEET weightage. Focus on population models, interspecific interactions, energy flow, and biodiversity concepts.</p>
+<h4>Population Ecology</h4>
+<p><strong>Exponential Growth (J-curve):</strong> dN/dt = rN. Resources unlimited. Population grows without limit. r = intrinsic rate of natural increase.</p>
+<p><strong>Logistic Growth (S-curve):</strong> dN/dt = rN(K−N)/K. Resources limited. Population stabilises at K (Carrying Capacity). More realistic model for natural populations.</p>
+<h4>Interspecific Interactions</h4>
+<table style="width:100%; border-collapse:collapse; font-size:.88rem; margin:.75rem 0">
+<tr style="background:#f3f4f6"><th style="padding:.4rem">Interaction</th><th>Species A</th><th>Species B</th><th>Example</th></tr>
+<tr><td style="padding:.3rem">Mutualism</td><td>+</td><td>+</td><td>Bee-flower, Lichen, Mycorrhiza</td></tr>
+<tr style="background:#f9fafb"><td style="padding:.3rem">Commensalism</td><td>+</td><td>0</td><td>Barnacle on whale, Orchid on tree</td></tr>
+<tr><td style="padding:.3rem">Predation</td><td>+</td><td>−</td><td>Lion-deer, Pitcher plant-insect</td></tr>
+<tr style="background:#f9fafb"><td style="padding:.3rem">Parasitism</td><td>+</td><td>−</td><td>Plasmodium-human, Cuscuta-host</td></tr>
+<tr><td style="padding:.3rem">Competition</td><td>−</td><td>−</td><td>Lions vs hyenas</td></tr>
+<tr style="background:#f9fafb"><td style="padding:.3rem">Amensalism</td><td>0</td><td>−</td><td>Penicillium vs bacteria</td></tr>
+</table>
+<h4>Ecosystem & Energy Flow</h4>
+<p>Energy flows unidirectionally: Sun → Producers → Primary consumers → Secondary → Tertiary. Lindemann's 10% Law: only 10% of energy passes to the next trophic level (90% lost as heat). Energy pyramid is always upright. Biomass pyramid can be inverted (phytoplankton → zooplankton in aquatic). Numbers pyramid can be inverted (tree → insects).</p>
+<h4>Biogeochemical Cycles</h4>
+<p><strong>Carbon Cycle:</strong> Photosynthesis (CO₂ → organic C) ↔ Respiration/Combustion (organic C → CO₂).</p>
+<p><strong>Nitrogen Cycle:</strong> N₂ fixation (Rhizobium, Azotobacter) → Nitrification (NH₃ → NO₂⁻ → NO₃⁻) → Assimilation → Ammonification → Denitrification (NO₃⁻ → N₂).</p>
+<h4>Biodiversity & Conservation</h4>
+<p>Biodiversity hotspots (Myers, 1988): 34 globally; India has 4 (Western Ghats, Eastern Himalayas, Indo-Burma, Sundaland). Threats: HIPPO (Habitat loss, Invasive species, Pollution, Population, Overexploitation). In-situ: National Parks, Wildlife Sanctuaries, Biosphere Reserves. Ex-situ: Seed banks, Zoos, Botanical gardens.</p>
+<p><strong>Environmental Issues:</strong> Ozone depletion (CFCs → Cl·), Global warming (CO₂, CH₄, CFCs), Eutrophication (excess nutrients → algal bloom → O₂ depletion), Montreal Protocol (1987) banned CFCs, Kyoto Protocol (GHG reduction).</p>`,
+            qa: [
+              { q: 'Explain Lindemann\'s 10% law with an example.', a: 'Lindemann\'s 10% law (1942) states that only 10% of the energy at one trophic level is transferred to the next higher trophic level; 90% is lost as heat during metabolic processes. Example: Grass (10,000 J) → Grasshopper (1,000 J) → Frog (100 J) → Snake (10 J) → Hawk (1 J). This explains why food chains are short (3-4 levels) and why herbivores are more numerous than carnivores.' },
+              { q: 'Compare logistic and exponential population growth.', a: 'Exponential growth (J-curve): Occurs when resources are unlimited. Equation: dN/dt = rN. Population grows without limit — not found in nature long-term. Logistic growth (S-curve): Occurs when resources are limited. Equation: dN/dt = rN(K-N)/K. Population initially grows fast, then slows as it approaches K (carrying capacity), forming an S-curve. This is more realistic for natural populations.' },
+              { q: 'What is a biodiversity hotspot? Name the four in India.', a: 'A biodiversity hotspot is a region with exceptional concentrations of endemic species that are under significant threat of habitat destruction. Criteria: >1500 endemic plant species AND >70% of original habitat lost. India\'s four hotspots: (1) Western Ghats & Sri Lanka, (2) Eastern Himalayas (Indo-Burma region), (3) Indo-Burma (northeastern India), (4) Sundaland (Nicobar Islands portion). Globally, 34 hotspots cover <2.3% of Earth\'s surface but contain >50% of endemic plant species.' },
+              { q: 'Describe the role of Rhizobium in the nitrogen cycle.', a: 'Rhizobium is a nitrogen-fixing bacterium that lives in root nodules of leguminous plants (pea, bean, groundnut) in a mutualistic relationship. It fixes atmospheric N₂ into ammonia (NH₃) using the enzyme nitrogenase: N₂ + 8H → 2NH₃ + H₂. This combined nitrogen is then used by the plant for protein synthesis. In return, the plant provides carbohydrates (photosynthates) to Rhizobium. This is biological nitrogen fixation — one of the most important processes in the nitrogen cycle.' },
+            ]
+          },
+          {
+            id: 'biotechnology-applications',
+            title: 'Biotechnology: Principles & Applications',
+            subtopics: 'Recombinant DNA technology, Restriction enzymes, Cloning vectors (pBR322), PCR, Gel Electrophoresis, Bioreactors, Transgenic organisms (Bt cotton, Golden Rice), Gene therapy, ELISA, DNA Fingerprinting',
+            definition: 'Biotechnology involves using living organisms or their components to develop useful products. Recombinant DNA technology (genetic engineering) allows scientists to cut, join, and replicate specific DNA sequences across species.',
+            content: `<p>Biotechnology carries ~6% NEET weightage. Learn the tools and applications systematically.</p>
+<h4>Tools of Recombinant DNA Technology</h4>
+<p><strong>Restriction Endonucleases (RE):</strong> "Molecular scissors." Cut DNA at specific palindromic sequences. E.g., EcoRI recognises 5'-GAATTC-3' and cuts between G and A, producing sticky ends (short single-stranded overhangs). BamHI, HindIII, PstI are other common REs.</p>
+<p><strong>Cloning Vectors:</strong> Carry foreign DNA into host cells. pBR322 (plasmid): has ori (origin of replication), ampR (ampicillin resistance), tetR (tetracycline resistance), restriction sites (BamHI in tetR, SalI in tetR, EcoRI in tetR). Bacteriophage λ, Cosmids, BAC, YAC for larger inserts.</p>
+<p><strong>DNA Ligase:</strong> "Molecular glue." Joins sticky/blunt ends of DNA fragments. T4 DNA ligase from bacteriophage T4.</p>
+<p><strong>PCR (Kary Mullis 1983):</strong> Amplifies specific DNA sequences exponentially. 3 steps per cycle: (1) Denaturation (94–95°C) — DNA strands separate; (2) Annealing (50–65°C) — primers bind; (3) Extension (72°C) — Taq polymerase (from Thermus aquaticus) extends from primers. 30 cycles → 2³⁰ (>10⁹) copies.</p>
+<h4>Transgenic Organisms</h4>
+<p><strong>Bt Cotton:</strong> Contains cry genes (cry1Ac, cry2Ab) from Bacillus thuringiensis. Cry proteins form pores in midgut of insects (bollworm, boll weevil) → kills them. Protects crop without chemical pesticides.</p>
+<p><strong>Golden Rice:</strong> Contains genes for β-carotene (provitamin A) biosynthesis from daffodil (Narcissus pseudonarcissus) and bacterium Erwinia uredovora. Addresses vitamin A deficiency in developing countries.</p>
+<p><strong>Genetically Engineered Insulin (Humulin, 1982):</strong> A and B chains of human insulin produced separately in E. coli, extracted, and combined with disulphide bonds. First GE product for medical use.</p>
+<h4>Applications</h4>
+<p><strong>Gene Therapy:</strong> ADA deficiency (first successful case) — functional ADA gene introduced into lymphocytes via retroviral vector.</p>
+<p><strong>ELISA:</strong> Antigen-antibody reaction detected by enzyme-linked colour change. Used to diagnose AIDS (HIV antibodies), hepatitis, pregnancy (hCG).</p>
+<p><strong>DNA Fingerprinting:</strong> Uses VNTRs (Variable Number of Tandem Repeats) — hypervariable regions. Southern blotting → autoradiography. Used in forensics, paternity testing, wildlife conservation.</p>`,
+            qa: [
+              { q: 'What are restriction endonucleases? Give an example with its recognition sequence.', a: 'Restriction endonucleases (restriction enzymes) are enzymes that cut double-stranded DNA at specific palindromic recognition sequences. They are "molecular scissors" in genetic engineering. Example: EcoRI recognises 5\'...GAATTC...3\' (and complementary 3\'...CTTAAG...5\') and cuts between G and A, creating sticky ends (5\'-AATT-3\' overhangs). These sticky ends can be joined to compatible ends using DNA ligase.' },
+              { q: 'What are the steps in PCR? Why is Taq polymerase used?', a: 'PCR (Polymerase Chain Reaction) amplifies DNA in 3 steps per cycle: (1) Denaturation (94–95°C): DNA double helix separates into two strands. (2) Annealing (50–65°C): Specific primers (short oligonucleotides, ~20 bp) bind to complementary sequences on each template strand. (3) Extension (72°C): Taq polymerase extends the primers, synthesising new DNA strands. Taq polymerase (from Thermus aquaticus, a thermophile) is used because it remains stable at 94°C denaturation temperature — ordinary DNA polymerase would denature. 30 cycles produce ~10⁹ copies.' },
+              { q: 'What is Bt cotton? How does it resist pests?', a: 'Bt cotton is a transgenic crop containing genes (cry1Ac, cry2Ab) from the soil bacterium Bacillus thuringiensis (Bt). These genes produce Cry (crystal) proteins (insecticidal delta-endotoxins). In the alkaline midgut of lepidopteran insects (cotton bollworm) or coleopteran insects, the protoxin is activated by gut proteases into toxic form → binds to gut epithelial receptors → forms pores → causes cell lysis and osmotic imbalance → insect dies. Human intestine is acidic, so protein is not activated — safe for humans.' },
+              { q: 'Explain the principle of DNA fingerprinting.', a: 'DNA fingerprinting exploits Variable Number of Tandem Repeats (VNTRs) — short repetitive DNA sequences whose number varies between individuals (except identical twins). Steps: (1) DNA extracted and cut with restriction enzymes. (2) DNA fragments separated by gel electrophoresis. (3) Southern blotting: fragments transferred to nitrocellulose membrane. (4) Hybridisation with radiolabelled VNTR probes. (5) Autoradiography reveals a unique banding pattern. Each person (except identical twins) has a unique pattern used in forensics, paternity testing, and identifying criminals.' },
+            ]
+          },
+          {
+            id: 'diversity-living-world',
+            title: 'Diversity of Living World',
+            subtopics: 'Five Kingdom Classification, Monera (Bacteria, Cyanobacteria), Protista, Fungi, Plant Kingdom (Algae to Angiosperms), Animal Kingdom (Porifera to Mammalia), Viruses',
+            definition: 'Living organisms are classified into hierarchical groups (Kingdom, Phylum, Class, Order, Family, Genus, Species) based on shared characteristics. Whittaker\'s Five Kingdom system (1969) is widely used: Monera, Protista, Fungi, Plantae, Animalia.',
+            content: `<p>Diversity of living world (~7% NEET) tests classification, distinguishing features, and examples. Learn characteristics with representative organisms.</p>
+<h4>Five Kingdom Classification (Whittaker, 1969)</h4>
+<p>Criteria: cell type, body organisation, mode of nutrition, reproduction, phylogenetic relationships.</p>
+<h4>Kingdom Monera (Prokaryotes)</h4>
+<ul>
+<li><strong>Bacteria:</strong> Cell wall (peptidoglycan), 70S ribosomes. Shapes: Coccus (round), Bacillus (rod), Spirillum (spiral), Vibrio (comma). Gram +ve (thick peptidoglycan) vs Gram −ve (thin + outer lipid). Nutrition: autotrophic (photosynthetic/chemosynthetic) or heterotrophic. Reproduction: binary fission.</li>
+<li><strong>Cyanobacteria (Blue-green algae):</strong> Photosynthetic (have chlorophyll a, phycocyanin). Fix nitrogen (Anabaena, Nostoc). Found in Azolla (aquatic fern).</li>
+<li><strong>Archaebacteria:</strong> Ancient bacteria living in extreme environments (methanogens, halophiles, thermoacidophiles). Ether-linked lipids in membrane — not peptidoglycan.</li>
+</ul>
+<h4>Kingdom Protista</h4>
+<p>Unicellular eukaryotes. Chrysophytes (diatoms — diatomite/kieselguhr, cell wall of silica), Dinoflagellates (bioluminescence, red tides), Euglenoids (Euglena — both autotrophic and heterotrophic), Slime moulds, Protozoans (Amoeba, Paramecium, Plasmodium — malarial parasite).</p>
+<h4>Kingdom Fungi</h4>
+<p>Cell wall: chitin. Heterotrophic (saprophytic, parasitic, symbiotic). Body: mycelium (hyphae). Phycomycetes (Rhizopus, Mucor — coenocytic hyphae), Ascomycetes (Penicillium, Aspergillus, Neurospora — cup fungi), Basidiomycetes (mushrooms, puffballs — most familiar), Deuteromycetes (imperfect fungi — no sexual reproduction known, e.g. Alternaria, Colletotrichum). Lichens = fungi + algae (mutualism).</p>
+<h4>Plant Kingdom</h4>
+<ul>
+<li>Algae: Chlorophyta (Chlamydomonas, Spirogyra — green), Phaeophyta (Fucus, Laminaria — brown, algin), Rhodophyta (Porphyra, Gracilaria — red, agar)</li>
+<li>Bryophytes: "Amphibians of plant kingdom." No vascular tissue. Liverworts (Marchantia), Mosses (Funaria).</li>
+<li>Pteridophytes: First vascular plants. No seeds. Ferns (Dryopteris), Selaginella, Equisetum.</li>
+<li>Gymnosperms: "Naked seeds" (not enclosed in fruit). Pinus, Cycas, Gnetum. No flowers. Needle-like leaves.</li>
+<li>Angiosperms: Seeds enclosed in fruit. Flowers present. Double fertilisation. Monocots (1 cotyledon, parallel venation) vs Dicots (2 cotyledons, reticulate venation).</li>
+</ul>
+<h4>Animal Kingdom — Key Phyla</h4>
+<p>Porifera (sponges — pores, spicules, no true tissues) → Cnidaria (jellyfish — nematocysts, radial symmetry) → Platyhelminthes (tapeworm — acoelomate) → Nematoda (Ascaris — pseudocoelomate) → Annelida (earthworm — metameric segmentation, true coelom) → Arthropoda (insects — largest phylum, exoskeleton, jointed legs) → Mollusca (snail — mantle, shell) → Echinodermata (starfish — water vascular system, radial symmetry, deuterostome) → Chordata (notochord, dorsal hollow nerve cord, pharyngeal gill slits → Vertebrates).</p>`,
+            qa: [
+              { q: 'What are the salient features of Kingdom Fungi?', a: 'Fungi are: (1) Eukaryotic, (2) Heterotrophic (mainly saprophytic — decomposers; some parasitic), (3) Cell wall made of chitin, (4) Body organised as mycelium (network of thread-like hyphae), (5) Reproduce sexually and asexually (by spores), (6) Store glycogen as food reserve (like animals). Examples: Rhizopus (bread mould), Penicillium (antibiotic source), Agaricus (edible mushroom), Aspergillus.' },
+              { q: 'Distinguish between Gymnosperms and Angiosperms.', a: 'Gymnosperms: Seeds are naked (not enclosed in a fruit), no flowers, pollinated by wind, example: Pinus, Cycas, Gnetum. Angiosperms: Seeds enclosed in fruit (ovary matures into fruit), flowers present, double fertilisation (unique), widest group of plants, divided into monocots and dicots. Angiosperms are the most advanced and diverse group.' },
+              { q: 'What features distinguish Phylum Arthropoda?', a: 'Arthropoda (largest phylum): (1) Segmented body, (2) Jointed appendages (arthros = joint, poda = feet), (3) Chitinous exoskeleton (shed during moulting/ecdysis), (4) Open circulatory system with haemocoel, (5) Compound eyes and antennae in many, (6) Examples: Insects (Cockroach, Butterfly), Crustaceans (Prawn, Crab), Arachnids (Spider, Scorpion), Myriapods (Centipede). Contains >80% of all described animal species.' },
+              { q: 'What is the difference between Monera and Protista?', a: 'Monera: Prokaryotes (no membrane-bound nucleus), unicellular, 70S ribosomes, no membrane-bound organelles, cell wall present (peptidoglycan in bacteria), all are microscopic. Examples: Bacteria, Cyanobacteria, Mycoplasma. Protista: Eukaryotes (membrane-bound nucleus), mainly unicellular, 80S ribosomes, membrane-bound organelles present. Examples: Amoeba (pseudopods), Paramecium (cilia), Euglena (flagella), Plasmodium.' },
+            ]
+          },
         ]
       },
       physics: {
