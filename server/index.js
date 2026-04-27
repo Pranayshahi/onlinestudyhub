@@ -442,12 +442,17 @@ app.patch('/api/bookings/:id', requireAuth, async (req, res) => {
 });
 
 // ── Health check ────────────────────────────────────────────────
-app.get('/api/health', (req, res) => {
-  const mongoose = require('mongoose');
-  const state = mongoose.connection.readyState;
-  // 0=disconnected 1=connected 2=connecting 3=disconnecting
-  const connected = state === 1;
-  res.json({ status: 'ok', db: connected ? 'connected' : 'disconnected' });
+app.get('/api/health', async (req, res) => {
+  try {
+    await connectDB();
+    const mongoose = require('mongoose');
+    const connected = mongoose.connection.readyState === 1;
+    res.json({ status: 'ok', db: connected ? 'connected' : 'disconnected' });
+  } catch {
+    // DB failed to connect — still return 200 with disconnected status
+    // so the frontend health check doesn't crash
+    res.json({ status: 'ok', db: 'disconnected' });
+  }
 });
 
 // ── Helper ──────────────────────────────────────────────────────

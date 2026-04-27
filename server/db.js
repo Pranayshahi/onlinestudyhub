@@ -18,14 +18,18 @@ const connectDB = async () => {
     }
 
     cached.promise = mongoose.connect(uri, {
-      serverSelectionTimeoutMS: 5000,
-      socketTimeoutMS: 10000,
+      serverSelectionTimeoutMS: 10000,
+      socketTimeoutMS: 45000,
+      connectTimeoutMS: 10000,
+      maxPoolSize: 10,
+      retryWrites: true,
     }).then(m => {
       cached.error = null;
       console.log('MongoDB connected');
       return m;
     }).catch(err => {
-      cached.promise = null;
+      cached.promise = null; // allow retry next call
+      cached.conn = null;
       cached.error = err.message;
       console.error('MongoDB connection error:', err.message);
       throw err;

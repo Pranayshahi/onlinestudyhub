@@ -573,21 +573,6 @@ export default function AdminPage() {
   const [loginError, setLoginError] = useState('');
   const [registerError, setRegisterError] = useState('');
   const [registerSuccess, setRegisterSuccess] = useState('');
-  const [serverOnline, setServerOnline] = useState(null);
-  const [dbOnline, setDbOnline] = useState(null);
-
-  // Check if backend is reachable
-  useEffect(() => {
-    api('/health')
-      .then(d => {
-        setServerOnline(true);
-        setDbOnline(d.db === 'connected');
-      })
-      .catch(() => {
-        setServerOnline(false);
-        setDbOnline(false);
-      });
-  }, []);
 
   async function handleLogin(form) {
     setLoading(true); setLoginError('');
@@ -641,17 +626,7 @@ export default function AdminPage() {
 
       <div className="container" style={{ paddingBottom: '5rem' }}>
 
-        {/* Server status banner */}
-        {serverOnline === false && (
-          <div style={{ background: '#fff3cd', border: '1px solid #ffc107', borderRadius: 12, padding: '1rem 1.25rem', marginBottom: '1.5rem', fontSize: '.87rem', color: '#856404' }}>
-            ⚠️ <strong>Backend server is not running.</strong> Start it with <code style={{ background: '#f8f9fa', padding: '.1rem .4rem', borderRadius: 4 }}>npm run server</code>, then refresh.
-          </div>
-        )}
-        {serverOnline === true && dbOnline === false && (
-          <div style={{ background: '#fff3cd', border: '1px solid #ffc107', borderRadius: 12, padding: '1rem 1.25rem', marginBottom: '1.5rem', fontSize: '.87rem', color: '#856404' }}>
-            ⚠️ <strong>Database is not connected.</strong> Check your MongoDB URI and network access.
-          </div>
-        )}
+
 
         {token ? (
           <Dashboard token={token} onLogout={handleLogout} />
