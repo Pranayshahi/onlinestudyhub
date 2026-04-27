@@ -259,13 +259,6 @@ export default function TopicPage({ user, onOpenLogin }) {
           </div>
         </div>
 
-        {/* ── 1b. Topic Illustration ── */}
-        <TopicIllustration
-          subjectId={subjectId}
-          topicTitle={topic.title}
-          classLabel={classData.label}
-        />
-
         <TopicMediaSection classId={classId} subjectId={subjectId} topicId={topicId} user={user} onOpenLogin={onOpenLogin} />
 
         {/* ── 3. Learning Content ── */}
@@ -305,6 +298,13 @@ export default function TopicPage({ user, onOpenLogin }) {
             />
           </section>
         )}
+
+        {/* ── Topic Illustration ── */}
+        <TopicIllustration
+          subjectId={subjectId}
+          topicTitle={topic.title}
+          classLabel={classData.label}
+        />
 
         {/* ── 3. Q&A Accordion ── */}
         {topic.qa && topic.qa.length > 0 && (
