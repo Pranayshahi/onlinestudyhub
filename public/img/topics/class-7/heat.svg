@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="420" viewBox="0 0 800 420">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#fff7ed"/>
+      <stop offset="100%" style="stop-color:#fed7aa"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="420" fill="url(#bg)"/>
+  <circle cx="200" cy="200" r="80" fill="#fef08a" stroke="#f59e0b" stroke-width="3"/>
+<text x="200" y="195" text-anchor="middle" font-size="40">🌡️</text>
+<text x="200" y="235" text-anchor="middle" font-size="14" font-weight="700" fill="#92400e">Temperature</text>
+<rect x="420" y="120" width="280" height="62" rx="12" fill="white" stroke="#ea580c" stroke-width="2.5"/>
+<text x="550" y="146" text-anchor="middle" font-size="15" font-family="sans-serif" font-weight="700" fill="#ea580c">Conduction</text>
+<text x="550" y="170" text-anchor="middle" font-size="12" fill="#374151">Solids · particles vibrate</text><rect x="420" y="210" width="280" height="62" rx="12" fill="white" stroke="#f97316" stroke-width="2.5"/>
+<text x="550" y="236" text-anchor="middle" font-size="15" font-family="sans-serif" font-weight="700" fill="#f97316">Convection</text>
+<text x="550" y="260" text-anchor="middle" font-size="12" fill="#374151">Liquids/Gases · currents</text><rect x="420" y="300" width="280" height="62" rx="12" fill="white" stroke="#dc2626" stroke-width="2.5"/>
+<text x="550" y="326" text-anchor="middle" font-size="15" font-family="sans-serif" font-weight="700" fill="#dc2626">Radiation</text>
+<text x="550" y="350" text-anchor="middle" font-size="12" fill="#374151">No medium · EM waves</text>
+<line x1="280" y1="200" x2="420" y2="155" stroke="#ea580c" stroke-width="2" stroke-dasharray="5,4"/>
+<line x1="280" y1="205" x2="420" y2="243" stroke="#f97316" stroke-width="2" stroke-dasharray="5,4"/>
+<line x1="280" y1="210" x2="420" y2="333" stroke="#dc2626" stroke-width="2" stroke-dasharray="5,4"/>
+<text x="400" y="400" text-anchor="middle" font-size="26" font-family="sans-serif" font-weight="800" fill="#7c2d12">Heat</text>
+</svg>

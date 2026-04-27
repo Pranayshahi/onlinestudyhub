@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="420" viewBox="0 0 800 420">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#0f172a"/>
+      <stop offset="100%" style="stop-color:#1e1b4b"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="420" fill="url(#bg)"/>
+  <text x="400" y="115" text-anchor="middle" font-size="22" font-family="sans-serif" font-weight="700" fill="#818cf8">Laws of Exponents</text>
+<rect x="60" y="137" width="275" height="75" rx="14" fill="rgba(129,140,248,0.12)" stroke="#818cf8" stroke-width="2"/>
+<text x="200" y="183" text-anchor="middle" font-size="22" font-family="monospace" font-weight="800" fill="#818cf8">aᵐ × aⁿ = aᵐ⁺ⁿ</text><rect x="400" y="137" width="275" height="75" rx="14" fill="rgba(129,140,248,0.12)" stroke="#a5b4fc" stroke-width="2"/>
+<text x="540" y="183" text-anchor="middle" font-size="22" font-family="monospace" font-weight="800" fill="#a5b4fc">aᵐ ÷ aⁿ = aᵐ⁻ⁿ</text><rect x="60" y="237" width="275" height="75" rx="14" fill="rgba(129,140,248,0.12)" stroke="#6366f1" stroke-width="2"/>
+<text x="200" y="283" text-anchor="middle" font-size="22" font-family="monospace" font-weight="800" fill="#6366f1">(aᵐ)ⁿ = aᵐⁿ</text><rect x="230" y="237" width="275" height="75" rx="14" fill="rgba(129,140,248,0.12)" stroke="#c7d2fe" stroke-width="2"/>
+<text x="370" y="283" text-anchor="middle" font-size="22" font-family="monospace" font-weight="800" fill="#c7d2fe">a⁰ = 1</text><rect x="400" y="237" width="275" height="75" rx="14" fill="rgba(129,140,248,0.12)" stroke="#818cf8" stroke-width="2"/>
+<text x="540" y="283" text-anchor="middle" font-size="22" font-family="monospace" font-weight="800" fill="#818cf8">a⁻ⁿ = 1/aⁿ</text>
+<text x="400" y="340" text-anchor="middle" font-size="19" font-family="monospace" fill="#a5b4fc">2¹⁰ = 1024 · 10⁶ = 1,000,000</text>
+<text x="400" y="390" text-anchor="middle" font-size="26" font-family="sans-serif" font-weight="800" fill="#818cf8">Exponents and Powers</text>
+</svg>

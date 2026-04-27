@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="420" viewBox="0 0 800 420">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#fffbeb"/>
+      <stop offset="100%" style="stop-color:#fde68a"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="420" fill="url(#bg)"/>
+  <polygon points="400,80 480,160 480,310 320,310 320,160" fill="#fef3c7" stroke="#b45309" stroke-width="3"/>
+<rect x="345" y="225" width="55" height="85" rx="4" fill="#d97706" opacity=".8"/>
+<polygon points="340,160 400,100 460,160" fill="#92400e"/>
+<circle cx="400" cy="160" r="12" fill="#fbbf24"/>
+<rect x="65" y="190" width="130" height="80" rx="10" fill="#fef9c3" stroke="#b45309" stroke-width="2"/>
+<text x="130" y="212" text-anchor="middle" font-size="12" font-family="sans-serif" font-weight="700" fill="#78350f">Slave</text><text x="130" y="232" text-anchor="middle" font-size="12" font-family="sans-serif" font-weight="400" fill="#92400e">Dynasty</text><text x="130" y="252" text-anchor="middle" font-size="12" font-family="sans-serif" font-weight="400" fill="#92400e">1206</text><rect x="205" y="190" width="130" height="80" rx="10" fill="#fef9c3" stroke="#b45309" stroke-width="2"/>
+<text x="270" y="212" text-anchor="middle" font-size="12" font-family="sans-serif" font-weight="700" fill="#78350f">Khilji</text><text x="270" y="232" text-anchor="middle" font-size="12" font-family="sans-serif" font-weight="400" fill="#92400e">Dynasty</text><text x="270" y="252" text-anchor="middle" font-size="12" font-family="sans-serif" font-weight="400" fill="#92400e">1290</text><rect x="475" y="190" width="130" height="80" rx="10" fill="#fef9c3" stroke="#b45309" stroke-width="2"/>
+<text x="540" y="212" text-anchor="middle" font-size="12" font-family="sans-serif" font-weight="700" fill="#78350f">Tughlaq</text><text x="540" y="232" text-anchor="middle" font-size="12" font-family="sans-serif" font-weight="400" fill="#92400e">Dynasty</text><text x="540" y="252" text-anchor="middle" font-size="12" font-family="sans-serif" font-weight="400" fill="#92400e">1320</text><rect x="605" y="190" width="130" height="80" rx="10" fill="#fef9c3" stroke="#b45309" stroke-width="2"/>
+<text x="670" y="212" text-anchor="middle" font-size="12" font-family="sans-serif" font-weight="700" fill="#78350f">Lodi</text><text x="670" y="232" text-anchor="middle" font-size="12" font-family="sans-serif" font-weight="400" fill="#92400e">Dynasty</text><text x="670" y="252" text-anchor="middle" font-size="12" font-family="sans-serif" font-weight="400" fill="#92400e">1451</text>
+<text x="400" y="390" text-anchor="middle" font-size="26" font-family="sans-serif" font-weight="800" fill="#78350f">The Delhi Sultans</text>
+</svg>

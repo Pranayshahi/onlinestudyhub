@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="420" viewBox="0 0 800 420">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#eff6ff"/>
+      <stop offset="100%" style="stop-color:#bfdbfe"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="420" fill="url(#bg)"/>
+  <polygon points="400,80 680,320 120,320" fill="#dbeafe" stroke="#2563eb" stroke-width="3"/>
+<line x1="400" y1="80" x2="400" y2="320" stroke="#e11d48" stroke-width="2" stroke-dasharray="6,4"/>
+<text x="420" y="205" font-size="14" fill="#dc2626">h</text>
+<text x="240" y="310" font-size="14" fill="#374151">b</text>
+<text x="560" y="250" font-size="16" fill="#1d4ed8" font-weight="700">∠A</text>
+<text x="115" y="340" font-size="16" fill="#1d4ed8" font-weight="700">∠B</text>
+<text x="680" y="340" font-size="16" fill="#1d4ed8" font-weight="700">∠C</text>
+<rect x="80" y="355" width="640" height="45" rx="10" fill="#dbeafe" stroke="#2563eb" stroke-width="1.5"/>
+<text x="400" y="375" text-anchor="middle" font-size="14" font-family="sans-serif" fill="#1e3a8a">∠A+∠B+∠C = 180° · Exterior angle = sum of interior opposite angles</text>
+<text x="400" y="395" text-anchor="middle" font-size="13" font-family="sans-serif" fill="#1e3a8a">Pythagoras: a²+b²=c² (right △)</text>
+<text x="400" y="420" text-anchor="middle" font-size="24" font-family="sans-serif" font-weight="800" fill="#1e3a8a">Triangle and Its Properties</text>
+</svg>

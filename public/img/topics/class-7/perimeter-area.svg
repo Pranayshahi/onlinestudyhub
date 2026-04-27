@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="420" viewBox="0 0 800 420">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#f0fdf4"/>
+      <stop offset="100%" style="stop-color:#bbf7d0"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="420" fill="url(#bg)"/>
+  <rect x="100" y="120" width="240" height="150" rx="6" fill="#d1fae5" stroke="#16a34a" stroke-width="3"/>
+<text x="220" y="185" text-anchor="middle" font-size="15" font-family="sans-serif" font-weight="700" fill="#15803d">Rectangle</text>
+<text x="220" y="212" text-anchor="middle" font-size="14" font-family="sans-serif" fill="#166534">A = l × b</text>
+<text x="220" y="235" text-anchor="middle" font-size="13" font-family="sans-serif" fill="#166534">P = 2(l+b)</text>
+<polygon points="440,120 570,120 570,270 440,270" fill="#bbf7d0" stroke="#059669" stroke-width="3"/>
+<text x="505" y="195" text-anchor="middle" font-size="15" font-family="sans-serif" font-weight="700" fill="#065f46">Square</text>
+<text x="505" y="220" text-anchor="middle" font-size="14" font-family="sans-serif" fill="#065f46">A = a²</text>
+<polygon points="650,270 730,120 810,270" fill="#d1fae5" stroke="#16a34a" stroke-width="3" opacity=".8"/>
+<text x="730" y="230" text-anchor="middle" font-size="14" font-family="sans-serif" font-weight="700" fill="#14532d">Triangle</text>
+<text x="730" y="255" text-anchor="middle" font-size="13" font-family="sans-serif" fill="#14532d">½×b×h</text>
+<circle cx="80" cy="340" r="40" fill="none" stroke="#16a34a" stroke-width="3"/>
+<text x="80" y="337" text-anchor="middle" font-size="13" font-family="sans-serif" font-weight="700" fill="#15803d">Circle</text>
+<text x="80" y="357" text-anchor="middle" font-size="12" fill="#15803d">πr²</text>
+<text x="400" y="400" text-anchor="middle" font-size="24" font-family="sans-serif" font-weight="800" fill="#14532d">Perimeter and Area</text>
+</svg>

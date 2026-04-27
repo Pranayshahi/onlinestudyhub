@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="420" viewBox="0 0 800 420">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#fff7ed"/>
+      <stop offset="100%" style="stop-color:#fed7aa"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="420" fill="url(#bg)"/>
+  <rect x="80" y="120" width="270" height="210" rx="16" fill="#fef3c7" stroke="#f59e0b" stroke-width="3"/>
+<text x="215" y="160" text-anchor="middle" font-size="16" font-weight="700" fill="#92400e">Physical Change</text>
+<text x="215" y="195" text-anchor="middle" font-size="32">🧊→💧→💨</text>
+<text x="215" y="235" text-anchor="middle" font-size="13" fill="#78350f">No new substance</text>
+<text x="215" y="258" text-anchor="middle" font-size="13" fill="#78350f">Reversible usually</text>
+<text x="215" y="281" text-anchor="middle" font-size="13" fill="#78350f">Melting · Boiling</text>
+<text x="215" y="304" text-anchor="middle" font-size="13" fill="#78350f">Cutting · Dissolving</text>
+<rect x="450" y="120" width="270" height="210" rx="16" fill="#fce7f3" stroke="#e11d48" stroke-width="3"/>
+<text x="585" y="160" text-anchor="middle" font-size="16" font-weight="700" fill="#9f1239">Chemical Change</text>
+<text x="585" y="195" text-anchor="middle" font-size="32">🌿→🔥→💨</text>
+<text x="585" y="235" text-anchor="middle" font-size="13" fill="#7f1d1d">New substance formed</text>
+<text x="585" y="258" text-anchor="middle" font-size="13" fill="#7f1d1d">Irreversible usually</text>
+<text x="585" y="281" text-anchor="middle" font-size="13" fill="#7f1d1d">Burning · Rusting</text>
+<text x="585" y="304" text-anchor="middle" font-size="13" fill="#7f1d1d">Curdling · Digestion</text>
+<text x="400" y="400" text-anchor="middle" font-size="22" font-family="sans-serif" font-weight="800" fill="#7c2d12">Physical &amp; Chemical Changes</text>
+</svg>

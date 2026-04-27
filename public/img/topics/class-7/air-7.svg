@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="420" viewBox="0 0 800 420">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#eff6ff"/>
+      <stop offset="100%" style="stop-color:#bfdbfe"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="420" fill="url(#bg)"/>
+  <rect x="80" y="80" width="640" height="55" rx="14" fill="#f0f9ff" stroke="#0891b2" stroke-width="2.5"/>
+<text x="400" y="110" text-anchor="middle" font-size="15" font-weight="700" fill="#0369a1">Atmosphere — Layers</text>
+<text x="400" y="130" text-anchor="middle" font-size="13" fill="#0891b2">Troposphere · Stratosphere · Mesosphere · Thermosphere · Exosphere</text>
+<circle cx="155" cy="235" r="70" fill="#1d4ed8" opacity=".15" stroke="#1d4ed8" stroke-width="2.5"/>
+<text x="155" y="227" text-anchor="middle" font-size="22" font-family="monospace" font-weight="800" fill="#1d4ed8">N₂</text>
+<text x="155" y="253" text-anchor="middle" font-size="16" font-family="sans-serif" font-weight="700" fill="#1d4ed8">78%</text><circle cx="320" cy="235" r="70" fill="#16a34a" opacity=".15" stroke="#16a34a" stroke-width="2.5"/>
+<text x="320" y="227" text-anchor="middle" font-size="22" font-family="monospace" font-weight="800" fill="#16a34a">O₂</text>
+<text x="320" y="253" text-anchor="middle" font-size="16" font-family="sans-serif" font-weight="700" fill="#16a34a">21%</text><circle cx="480" cy="235" r="70" fill="#7c3aed" opacity=".15" stroke="#7c3aed" stroke-width="2.5"/>
+<text x="480" y="227" text-anchor="middle" font-size="22" font-family="monospace" font-weight="800" fill="#7c3aed">Ar</text>
+<text x="480" y="253" text-anchor="middle" font-size="16" font-family="sans-serif" font-weight="700" fill="#7c3aed">0.9%</text><circle cx="645" cy="235" r="70" fill="#dc2626" opacity=".15" stroke="#dc2626" stroke-width="2.5"/>
+<text x="645" y="227" text-anchor="middle" font-size="22" font-family="monospace" font-weight="800" fill="#dc2626">CO₂</text>
+<text x="645" y="253" text-anchor="middle" font-size="16" font-family="sans-serif" font-weight="700" fill="#dc2626">0.04%</text>
+<rect x="80" y="340" width="640" height="55" rx="12" fill="#e0f2fe" stroke="#0891b2" stroke-width="2"/>
+<text x="400" y="363" text-anchor="middle" font-size="14" fill="#0369a1">Wind: High pressure → Low pressure · Sea breeze · Land breeze</text>
+<text x="400" y="382" text-anchor="middle" font-size="13" fill="#0891b2">Humidity · Rain gauge · Barometer · Weather vane</text>
+<text x="400" y="415" text-anchor="middle" font-size="26" font-family="sans-serif" font-weight="800" fill="#0c4a6e">Air</text>
+</svg>

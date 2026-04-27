@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="420" viewBox="0 0 800 420">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#eff6ff"/>
+      <stop offset="100%" style="stop-color:#bfdbfe"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="420" fill="url(#bg)"/>
+  <circle cx="240" cy="200" r="120" fill="#dbeafe" stroke="#2563eb" stroke-width="3"/>
+<path d="M240,200 L240,80 A120,120 0 0,1 344,260 Z" fill="#2563eb" opacity=".8"/>
+<path d="M240,200 L344,260 A120,120 0 0,1 136,260 Z" fill="#7c3aed" opacity=".8"/>
+<path d="M240,200 L136,260 A120,120 0 0,1 240,80 Z" fill="#0891b2" opacity=".8"/>
+<text x="275" y="168" font-size="13" fill="#fff" font-weight="700">35%</text>
+<text x="248" y="265" font-size="13" fill="#fff" font-weight="700">40%</text>
+<text x="152" y="200" font-size="13" fill="#fff" font-weight="700">25%</text>
+<text x="240" y="350" text-anchor="middle" font-size="14" font-family="sans-serif" font-weight="700" fill="#1d4ed8">Pie Chart</text>
+<rect x="420" y="100" width="320" height="230" rx="12" fill="#f8fafc" stroke="#2563eb" stroke-width="2"/>
+<text x="580" y="130" text-anchor="middle" font-size="14" font-weight="700" fill="#1d4ed8">Mean · Median · Mode</text>
+<rect x="435" y="265" width="38" height="35" rx="5" fill="#3b82f6" opacity=".8"/><rect x="490" y="230" width="38" height="70" rx="5" fill="#3b82f6" opacity=".8"/><rect x="545" y="245" width="38" height="55" rx="5" fill="#3b82f6" opacity=".8"/><rect x="600" y="210" width="38" height="90" rx="5" fill="#3b82f6" opacity=".8"/><rect x="655" y="255" width="38" height="45" rx="5" fill="#3b82f6" opacity=".8"/>
+<text x="580" y="350" text-anchor="middle" font-size="13" font-family="sans-serif" fill="#1d4ed8">Bar Graph</text>
+<text x="400" y="410" text-anchor="middle" font-size="24" font-family="sans-serif" font-weight="800" fill="#1e3a8a">Data Handling</text>
+</svg>

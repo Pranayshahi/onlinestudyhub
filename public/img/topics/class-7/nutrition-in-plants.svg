@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="420" viewBox="0 0 800 420">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#f0fdf4"/>
+      <stop offset="100%" style="stop-color:#bbf7d0"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="420" fill="url(#bg)"/>
+  <circle cx="400" cy="190" r="110" fill="#bbf7d0" stroke="#16a34a" stroke-width="3"/>
+<text x="400" y="150" text-anchor="middle" font-size="15" font-family="sans-serif" font-weight="700" fill="#15803d">PHOTOSYNTHESIS</text>
+<text x="400" y="178" text-anchor="middle" font-size="13" fill="#166534">CO₂ + H₂O + Light</text>
+<text x="400" y="200" text-anchor="middle" font-size="20" fill="#15803d">↓</text>
+<text x="400" y="222" text-anchor="middle" font-size="13" fill="#166534">Glucose + O₂</text>
+<text x="200" y="250" font-size="24">☀️</text>
+<text x="560" y="250" font-size="24">💧</text>
+<text x="400" y="265" text-anchor="middle" font-size="24">🍃</text>
+<rect x="80" y="320" width="640" height="55" rx="12" fill="#d1fae5" stroke="#16a34a" stroke-width="2"/>
+<text x="400" y="345" text-anchor="middle" font-size="14" font-family="sans-serif" font-weight="700" fill="#14532d">Other modes: Parasitic (Cuscuta) · Insectivorous (Pitcher plant)</text>
+<text x="400" y="363" text-anchor="middle" font-size="13" fill="#15803d">Symbiotic (Lichens) · Saprotrophic (Fungi)</text>
+<text x="400" y="400" text-anchor="middle" font-size="24" font-family="sans-serif" font-weight="800" fill="#14532d">Nutrition in Plants</text>
+</svg>

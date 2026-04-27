@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="420" viewBox="0 0 800 420">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#ecfdf5"/>
+      <stop offset="100%" style="stop-color:#a7f3d0"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="420" fill="url(#bg)"/>
+  <rect x="80" y="120" width="180" height="220" rx="16" fill="#fee2e2" stroke="#dc2626" stroke-width="3"/>
+<text x="170" y="160" text-anchor="middle" font-size="16" font-weight="700" fill="#dc2626">ACIDS</text>
+<text x="170" y="190" text-anchor="middle" font-size="24">🍋</text>
+<text x="170" y="225" text-anchor="middle" font-size="13" fill="#991b1b">pH &lt; 7</text>
+<text x="170" y="248" text-anchor="middle" font-size="12" fill="#991b1b">HCl · H₂SO₄</text>
+<text x="170" y="268" text-anchor="middle" font-size="12" fill="#991b1b">Vinegar · Lemon</text>
+<text x="170" y="295" text-anchor="middle" font-size="12" fill="#991b1b">Turns litmus Red</text>
+<rect x="540" y="120" width="180" height="220" rx="16" fill="#dbeafe" stroke="#2563eb" stroke-width="3"/>
+<text x="630" y="160" text-anchor="middle" font-size="16" font-weight="700" fill="#1d4ed8">BASES</text>
+<text x="630" y="190" text-anchor="middle" font-size="24">🧼</text>
+<text x="630" y="225" text-anchor="middle" font-size="13" fill="#1e3a8a">pH &gt; 7</text>
+<text x="630" y="248" text-anchor="middle" font-size="12" fill="#1e3a8a">NaOH · Ca(OH)₂</text>
+<text x="630" y="268" text-anchor="middle" font-size="12" fill="#1e3a8a">Soap · Baking soda</text>
+<text x="630" y="295" text-anchor="middle" font-size="12" fill="#1e3a8a">Turns litmus Blue</text>
+<circle cx="400" cy="230" r="80" fill="#d1fae5" stroke="#059669" stroke-width="3"/>
+<text x="400" y="215" text-anchor="middle" font-size="14" font-weight="700" fill="#065f46">NEUTRAL</text>
+<text x="400" y="238" text-anchor="middle" font-size="14" fill="#065f46">pH = 7</text>
+<text x="400" y="260" text-anchor="middle" font-size="12" fill="#065f46">💧 Pure water</text>
+<text x="400" y="395" text-anchor="middle" font-size="24" font-family="sans-serif" font-weight="800" fill="#064e3b">Acids, Bases and Salts</text>
+</svg>

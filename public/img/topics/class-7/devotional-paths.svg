@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="420" viewBox="0 0 800 420">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#fdf4ff"/>
+      <stop offset="100%" style="stop-color:#e9d5ff"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="420" fill="url(#bg)"/>
+  <circle cx="400" cy="185" r="120" fill="#f3e8ff" stroke="#7c3aed" stroke-width="3"/>
+<text x="400" y="155" text-anchor="middle" font-size="28">🙏</text>
+<text x="400" y="195" text-anchor="middle" font-size="16" font-family="sans-serif" font-weight="700" fill="#5b21b6">Bhakti &amp; Sufi</text>
+<text x="400" y="218" text-anchor="middle" font-size="14" font-family="sans-serif" fill="#6d28d9">Love &amp; devotion to God</text>
+<rect x="65" y="325" width="110" height="55" rx="10" fill="white" stroke="#ca8a04" stroke-width="2"/>
+<text x="120" y="360" text-anchor="middle" font-size="13" font-family="sans-serif" font-weight="700" fill="#ca8a04">Kabir</text><rect x="185" y="325" width="110" height="55" rx="10" fill="white" stroke="#ec4899" stroke-width="2"/>
+<text x="240" y="360" text-anchor="middle" font-size="13" font-family="sans-serif" font-weight="700" fill="#ec4899">Mirabai</text><rect x="305" y="325" width="110" height="55" rx="10" fill="white" stroke="#7c3aed" stroke-width="2"/>
+<text x="360" y="360" text-anchor="middle" font-size="13" font-family="sans-serif" font-weight="700" fill="#7c3aed">Tukaram</text><rect x="425" y="325" width="110" height="55" rx="10" fill="white" stroke="#2563eb" stroke-width="2"/>
+<text x="480" y="360" text-anchor="middle" font-size="13" font-family="sans-serif" font-weight="700" fill="#2563eb">Ramanuja</text><rect x="565" y="325" width="110" height="55" rx="10" fill="white" stroke="#059669" stroke-width="2"/>
+<text x="620" y="360" text-anchor="middle" font-size="13" font-family="sans-serif" font-weight="700" fill="#059669">Rumi</text>
+<text x="400" y="100" text-anchor="middle" font-size="14" fill="#6d28d9">Nirgun (formless) · Sagun (with form)</text>
+<text x="400" y="415" text-anchor="middle" font-size="22" font-family="sans-serif" font-weight="800" fill="#3b0764">Devotional Paths to the Divine</text>
+</svg>

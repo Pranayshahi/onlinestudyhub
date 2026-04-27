@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="420" viewBox="0 0 800 420">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#ecfdf5"/>
+      <stop offset="100%" style="stop-color:#a7f3d0"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="420" fill="url(#bg)"/>
+  <polygon points="160,300 300,100 440,300" fill="#d1fae5" stroke="#059669" stroke-width="3"/>
+<polygon points="480,300 620,100 760,300" fill="#a7f3d0" stroke="#047857" stroke-width="3"/>
+<text x="300" y="220" text-anchor="middle" font-size="50" fill="#059669" opacity=".3">△</text>
+<text x="620" y="220" text-anchor="middle" font-size="50" fill="#047857" opacity=".3">△</text>
+<text x="400" y="220" text-anchor="middle" font-size="28" fill="#065f46" font-weight="900">≅</text>
+<rect x="70" y="332" width="118" height="55" rx="10" fill="#d1fae5" stroke="#059669" stroke-width="2"/>
+<text x="130" y="356" text-anchor="middle" font-size="15" font-family="monospace" font-weight="800" fill="#065f46">SSS</text>
+<text x="130" y="376" text-anchor="middle" font-size="10" font-family="sans-serif" fill="#047857">Side-Side-Side</text><rect x="210" y="332" width="118" height="55" rx="10" fill="#d1fae5" stroke="#059669" stroke-width="2"/>
+<text x="270" y="356" text-anchor="middle" font-size="15" font-family="monospace" font-weight="800" fill="#065f46">SAS</text>
+<text x="270" y="376" text-anchor="middle" font-size="10" font-family="sans-serif" fill="#047857">Side-Angle-Side</text><rect x="350" y="332" width="118" height="55" rx="10" fill="#d1fae5" stroke="#059669" stroke-width="2"/>
+<text x="410" y="356" text-anchor="middle" font-size="15" font-family="monospace" font-weight="800" fill="#065f46">ASA</text>
+<text x="410" y="376" text-anchor="middle" font-size="10" font-family="sans-serif" fill="#047857">Angle-Side-Angle</text><rect x="500" y="332" width="118" height="55" rx="10" fill="#d1fae5" stroke="#059669" stroke-width="2"/>
+<text x="560" y="356" text-anchor="middle" font-size="15" font-family="monospace" font-weight="800" fill="#065f46">RHS</text>
+<text x="560" y="376" text-anchor="middle" font-size="10" font-family="sans-serif" fill="#047857">Right-Hyp-Side</text><rect x="640" y="332" width="118" height="55" rx="10" fill="#d1fae5" stroke="#059669" stroke-width="2"/>
+<text x="700" y="356" text-anchor="middle" font-size="15" font-family="monospace" font-weight="800" fill="#065f46">AAS</text>
+<text x="700" y="376" text-anchor="middle" font-size="10" font-family="sans-serif" fill="#047857">Angle-Angle-Side</text>
+<text x="400" y="415" text-anchor="middle" font-size="24" font-family="sans-serif" font-weight="800" fill="#064e3b">Congruence of Triangles</text>
+</svg>

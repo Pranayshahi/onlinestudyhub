@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="420" viewBox="0 0 800 420">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#f0fdf4"/>
+      <stop offset="100%" style="stop-color:#bbf7d0"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="420" fill="url(#bg)"/>
+  <circle cx="400" cy="200" r="135" fill="#d1fae5" stroke="#16a34a" stroke-width="3"/>
+<circle cx="400" cy="200" r="80" fill="#86efac" stroke="#15803d" stroke-width="2"/>
+<text x="400" y="155" text-anchor="middle" font-size="38">🌍</text>
+<text x="400" y="200" text-anchor="middle" font-size="15" font-family="sans-serif" font-weight="700" fill="#14532d">BIOSPHERE</text>
+<text x="400" y="220" text-anchor="middle" font-size="13" fill="#15803d">All living things</text>
+<text x="225" y="200" text-anchor="middle" font-size="13" fill="#0369a1">💧
+Hydro-
+sphere"/>
+<text x="575" y="200" text-anchor="middle" font-size="13" fill="#6b7280">🌬️
+Atmo-
+sphere"/>
+<text x="400" y="310" text-anchor="middle" font-size="13" fill="#92400e">🪨 Lithosphere</text>
+<text x="400" y="358" text-anchor="middle" font-size="15" fill="#374151">Natural + Human environments interact</text>
+<text x="400" y="395" text-anchor="middle" font-size="26" font-family="sans-serif" font-weight="800" fill="#14532d">Our Environment</text>
+</svg>

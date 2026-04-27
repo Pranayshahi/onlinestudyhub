@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="420" viewBox="0 0 800 420">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#fff1f2"/>
+      <stop offset="100%" style="stop-color:#fecdd3"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="420" fill="url(#bg)"/>
+  <rect x="80" y="100" width="640" height="70" rx="14" fill="#ffe4e6" stroke="#e11d48" stroke-width="2.5"/>
+<text x="400" y="145" text-anchor="middle" font-size="32" font-family="monospace" font-weight="900" fill="#be123c">3x² + 2xy − 5y + 7</text>
+<rect x="60" y="205" width="140" height="90" rx="12" fill="white" stroke="#e11d48" stroke-width="2.5"/>
+<text x="130" y="240" text-anchor="middle" font-size="22" font-family="monospace" font-weight="800" fill="#e11d48">3x²</text>
+<text x="130" y="268" text-anchor="middle" font-size="12" font-family="sans-serif" fill="#374151">monomial</text><rect x="210" y="205" width="140" height="90" rx="12" fill="white" stroke="#f97316" stroke-width="2.5"/>
+<text x="280" y="240" text-anchor="middle" font-size="22" font-family="monospace" font-weight="800" fill="#f97316">2xy</text>
+<text x="280" y="268" text-anchor="middle" font-size="12" font-family="sans-serif" fill="#374151">binomial
+term</text><rect x="360" y="205" width="140" height="90" rx="12" fill="white" stroke="#7c3aed" stroke-width="2.5"/>
+<text x="430" y="240" text-anchor="middle" font-size="22" font-family="monospace" font-weight="800" fill="#7c3aed">−5y</text>
+<text x="430" y="268" text-anchor="middle" font-size="12" font-family="sans-serif" fill="#374151">term</text><rect x="510" y="205" width="140" height="90" rx="12" fill="white" stroke="#059669" stroke-width="2.5"/>
+<text x="580" y="240" text-anchor="middle" font-size="22" font-family="monospace" font-weight="800" fill="#059669">7</text>
+<text x="580" y="268" text-anchor="middle" font-size="12" font-family="sans-serif" fill="#374151">constant</text>
+<text x="400" y="360" text-anchor="middle" font-size="15" font-family="sans-serif" fill="#374151">(a+b)² = a²+2ab+b² · (a−b)² = a²−2ab+b² · (a+b)(a−b) = a²−b²</text>
+<text x="400" y="400" text-anchor="middle" font-size="22" font-family="sans-serif" font-weight="800" fill="#881337">Algebraic Expressions &amp; Identities</text>
+</svg>

@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="420" viewBox="0 0 800 420">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#ecfdf5"/>
+      <stop offset="100%" style="stop-color:#a7f3d0"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="420" fill="url(#bg)"/>
+  <rect x="30" y="100" width="175" height="145" rx="14" fill="white" stroke="#16a34a" stroke-width="2.5"/>
+<text x="120" y="140" text-anchor="middle" font-size="40" font-family="sans-serif" font-weight="400" fill="#16a34a">🏪</text><text x="120" y="175" text-anchor="middle" font-size="14" font-family="sans-serif" font-weight="700" fill="#16a34a">Local Shop</text><rect x="210" y="100" width="175" height="145" rx="14" fill="white" stroke="#059669" stroke-width="2.5"/>
+<text x="300" y="140" text-anchor="middle" font-size="40" font-family="sans-serif" font-weight="400" fill="#059669">🏬</text><text x="300" y="175" text-anchor="middle" font-size="14" font-family="sans-serif" font-weight="700" fill="#059669">Mall</text><rect x="390" y="100" width="175" height="145" rx="14" fill="white" stroke="#0891b2" stroke-width="2.5"/>
+<text x="480" y="140" text-anchor="middle" font-size="40" font-family="sans-serif" font-weight="400" fill="#0891b2">🌐</text><text x="480" y="175" text-anchor="middle" font-size="14" font-family="sans-serif" font-weight="700" fill="#0891b2">Online</text><rect x="570" y="100" width="175" height="145" rx="14" fill="white" stroke="#ca8a04" stroke-width="2.5"/>
+<text x="660" y="140" text-anchor="middle" font-size="40" font-family="sans-serif" font-weight="400" fill="#ca8a04">🛒</text><text x="660" y="175" text-anchor="middle" font-size="14" font-family="sans-serif" font-weight="700" fill="#ca8a04">Wholesale</text>
+<rect x="80" y="295" width="640" height="80" rx="14" fill="#d1fae5" stroke="#059669" stroke-width="2"/>
+<text x="400" y="325" text-anchor="middle" font-size="14" font-weight="700" fill="#065f46">Chain: Producer → Wholesaler → Retailer → Consumer</text>
+<text x="400" y="348" text-anchor="middle" font-size="13" fill="#047857">Weekly market · Shopping complex · Chain of markets</text>
+<text x="400" y="368" text-anchor="middle" font-size="13" fill="#059669">Equality in the market? Fair trade · Consumer rights</text>
+<text x="400" y="415" text-anchor="middle" font-size="24" font-family="sans-serif" font-weight="800" fill="#064e3b">Markets Around Us</text>
+</svg>

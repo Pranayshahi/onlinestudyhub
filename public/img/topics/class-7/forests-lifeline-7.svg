@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="420" viewBox="0 0 800 420">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#f0fdf4"/>
+      <stop offset="100%" style="stop-color:#bbf7d0"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="420" fill="url(#bg)"/>
+  <rect x="80" y="300" width="640" height="40" rx="8" fill="#86efac"/>
+<polygon points="130,280 95,300 165,300" fill="#22c55e" opacity="0.9202422215594678"/><polygon points="190,240 145,300 235,300" fill="#22c55e" opacity="0.8766247677393563"/><polygon points="260,260 222.5,300 297.5,300" fill="#22c55e" opacity="0.9958762580345941"/><polygon points="330,230 282.5,300 377.5,300" fill="#22c55e" opacity="0.8543947426154952"/><polygon points="400,250 360,300 440,300" fill="#22c55e" opacity="0.8487387897458224"/><polygon points="470,220 420,300 520,300" fill="#22c55e" opacity="0.8745127229639837"/><polygon points="540,255 499,300 581,300" fill="#22c55e" opacity="0.9479582509355058"/><polygon points="610,270 574,300 646,300" fill="#22c55e" opacity="0.8171514919757158"/><polygon points="670,285 637.5,300 702.5,300" fill="#22c55e" opacity="0.7799792869456026"/>
+<text x="400" y="360" text-anchor="middle" font-size="15" font-family="sans-serif" fill="#14532d">🦁 Wildlife · 🌿 Biodiversity · 💧 Water cycle</text>
+<rect x="80" y="380" width="640" height="45" rx="10" fill="#d1fae5" stroke="#15803d" stroke-width="2"/>
+<text x="400" y="402" text-anchor="middle" font-size="14" font-family="sans-serif" fill="#065f46">O₂ producer · Soil conservation · Carbon sink · Habitat</text>
+<text x="400" y="418" text-anchor="middle" font-size="13" fill="#15803d">Deforestation → Climate change · Flood · Drought</text>
+<text x="400" y="100" text-anchor="middle" font-size="22" font-family="sans-serif" font-weight="700" fill="#15803d">🌳 Forests: Our Lifeline 🌳</text>
+<text x="400" y="435" text-anchor="middle" font-size="22" font-family="sans-serif" font-weight="800" fill="#14532d">Forests: Our Lifeline</text>
+</svg>

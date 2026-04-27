@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="420" viewBox="0 0 800 420">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#eff6ff"/>
+      <stop offset="100%" style="stop-color:#bfdbfe"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="420" fill="url(#bg)"/>
+  <ellipse cx="400" cy="270" rx="280" ry="70" fill="#bae6fd" opacity=".6"/>
+<path d="M180,270 Q280,160 400,150 Q520,160 620,270" fill="#7dd3fc" opacity=".5"/>
+<path d="M200,270 Q300,200 400,190 Q500,200 600,270 Z" fill="#38bdf8" opacity=".4"/>
+<text x="250" y="150" font-size="18">☁️</text>
+<text x="450" y="130" font-size="18">☁️</text>
+<path d="M280,155 L280,210 M310,148 L310,205 M340,142 L340,200" stroke="#0369a1" stroke-width="2.5"/>
+<text x="308" y="115" font-size="14" fill="#0369a1" font-weight="700">Precipitation</text>
+<text x="600" y="220" font-size="13" fill="#0369a1" font-weight="700">Evaporation ↑</text>
+<rect x="80" y="340" width="640" height="55" rx="12" fill="#e0f2fe" stroke="#0891b2" stroke-width="2"/>
+<text x="400" y="363" text-anchor="middle" font-size="14" fill="#0369a1">Freshwater: Rivers · Lakes · Groundwater · Ice caps</text>
+<text x="400" y="382" text-anchor="middle" font-size="13" fill="#0891b2">Ocean currents · Tides · Conservation of water</text>
+<text x="400" y="415" text-anchor="middle" font-size="26" font-family="sans-serif" font-weight="800" fill="#0c4a6e">Water</text>
+</svg>
