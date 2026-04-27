@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="420" viewBox="0 0 800 420">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#f0fdf4"/>
+      <stop offset="100%" stop-color="#dcfce7"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="420" fill="url(#bg)" rx="20"/>
+  <!-- Food chain / web -->
+<text x="400" y="78" text-anchor="middle" font-size="14" font-weight="700" font-family="sans-serif" fill="#14532d">Food Chain: Producer → Primary → Secondary → Tertiary → Decomposers</text>
+
+<circle cx="100" cy="155" r="45" fill="#dcfce7" stroke="#22c55e" stroke-width="2.5"/>
+<text x="100" y="160" text-anchor="middle" font-size="28" font-family="sans-serif">🌿</text>
+<circle cx="270" cy="155" r="45" fill="#dcfce7" stroke="#22c55e" stroke-width="2.5"/>
+<text x="270" y="160" text-anchor="middle" font-size="28" font-family="sans-serif">🐛</text>
+<circle cx="440" cy="155" r="45" fill="#dcfce7" stroke="#22c55e" stroke-width="2.5"/>
+<text x="440" y="160" text-anchor="middle" font-size="28" font-family="sans-serif">🐸</text>
+<circle cx="610" cy="155" r="45" fill="#dcfce7" stroke="#22c55e" stroke-width="2.5"/>
+<text x="610" y="160" text-anchor="middle" font-size="28" font-family="sans-serif">🦅</text>
+<line x1="145" y1="155" x2="225" y2="155" stroke="#22c55e" stroke-width="2.5"/><polygon points="223,149 238,155 223,161" fill="#22c55e"/><line x1="315" y1="155" x2="395" y2="155" stroke="#22c55e" stroke-width="2.5"/><polygon points="393,149 408,155 393,161" fill="#22c55e"/><line x1="485" y1="155" x2="565" y2="155" stroke="#22c55e" stroke-width="2.5"/><polygon points="563,149 578,155 563,161" fill="#22c55e"/>
+<!-- Energy pyramid -->
+<polygon points="400,230 250,380 550,380" fill="#bbf7d0" stroke="#16a34a" stroke-width="2"/>
+<line x1="290" y1="315" x2="510" y2="315" stroke="#15803d" stroke-width="1.5"/>
+<line x1="320" y1="270" x2="480" y2="270" stroke="#15803d" stroke-width="1.5"/>
+<text x="400" y="350" text-anchor="middle" font-size="12" font-family="sans-serif" fill="#14532d">10% energy transfer rule</text>
+<text x="400" y="390" text-anchor="middle" font-size="24" font-family="sans-serif" font-weight="800" fill="#14532d">Our Environment</text>
+</svg>

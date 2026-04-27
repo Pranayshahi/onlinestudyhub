@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="420" viewBox="0 0 800 420">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0f172a"/>
+      <stop offset="100%" stop-color="#1e293b"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="420" fill="url(#bg)" rx="20"/>
+  <rect x="0" y="0" width="800" height="420" fill="#0f172a"/>
+<!-- Neuron -->
+<path d="M 60,200 L 200,200" stroke="#f472b6" stroke-width="3"/>
+<line x1="150" y1="200" x2="70" y2="170" stroke="#f472b6" stroke-width="2" opacity=".7"/><line x1="120" y1="200" x2="70" y2="185" stroke="#f472b6" stroke-width="2" opacity=".7"/><line x1="90" y1="200" x2="70" y2="200" stroke="#f472b6" stroke-width="2" opacity=".7"/><line x1="120" y1="200" x2="70" y2="215" stroke="#f472b6" stroke-width="2" opacity=".7"/><line x1="150" y1="200" x2="70" y2="230" stroke="#f472b6" stroke-width="2" opacity=".7"/>
+<!-- Cell body -->
+<circle cx="230" cy="200" r="40" fill="#1e293b" stroke="#f472b6" stroke-width="3"/>
+<text x="230" y="195" text-anchor="middle" font-size="13" font-weight="700" font-family="sans-serif" fill="#f472b6">Cell</text>
+<text x="230" y="213" text-anchor="middle" font-size="12" font-family="sans-serif" fill="#fce7f3">body</text>
+<!-- Axon -->
+<line x1="270" y1="200" x2="600" y2="200" stroke="#f472b6" stroke-width="3"/>
+<!-- Myelin sheath bumps -->
+<ellipse cx="300" cy="200" rx="25" ry="12" fill="#334155" stroke="#f472b6" stroke-width="1.5"/><ellipse cx="360" cy="200" rx="25" ry="12" fill="#334155" stroke="#f472b6" stroke-width="1.5"/><ellipse cx="420" cy="200" rx="25" ry="12" fill="#334155" stroke="#f472b6" stroke-width="1.5"/><ellipse cx="480" cy="200" rx="25" ry="12" fill="#334155" stroke="#f472b6" stroke-width="1.5"/><ellipse cx="540" cy="200" rx="25" ry="12" fill="#334155" stroke="#f472b6" stroke-width="1.5"/>
+<!-- Terminal -->
+<circle cx="620" cy="200" r="20" fill="#f472b6" stroke="#db2777" stroke-width="2"/>
+<text x="620" y="205" text-anchor="middle" font-size="11" font-family="sans-serif" fill="#fff">synapse</text>
+<!-- Endocrine box -->
+<rect x="60" y="280" width="680" height="100" rx="14" fill="rgba(244,114,182,0.1)" stroke="#f472b6" stroke-width="1.5"/>
+<text x="400" y="308" text-anchor="middle" font-size="14" font-weight="800" font-family="sans-serif" fill="#f472b6">Endocrine System</text>
+<text x="400" y="332" text-anchor="middle" font-size="13" font-family="sans-serif" fill="#fce7f3">Hormones: Insulin · Adrenalin · Thyroxine · Growth hormone</text>
+<text x="400" y="356" text-anchor="middle" font-size="13" font-family="sans-serif" fill="#fce7f3">Pituitary · Thyroid · Adrenal · Pancreas · Gonads</text>
+<text x="400" y="63" text-anchor="middle" font-size="24" font-family="sans-serif" font-weight="800" fill="#f472b6">Control and Coordination</text>
+</svg>

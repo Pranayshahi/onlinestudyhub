@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="420" viewBox="0 0 800 420">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#fef9c3"/>
+      <stop offset="100%" stop-color="#fde68a"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="420" fill="url(#bg)" rx="20"/>
+  
+<rect x="20" y="80" width="155" height="130" rx="14" fill="#f59e0b18" stroke="#f59e0b" stroke-width="2"/>
+<text x="98" y="118" text-anchor="middle" font-size="26" font-family="sans-serif">☀️</text>
+<text x="98" y="152" text-anchor="middle" font-size="13" font-weight="800" font-family="sans-serif" fill="#f59e0b">Solar</text>
+<text x="98" y="178" text-anchor="middle" font-size="11" font-family="sans-serif" fill="#374151">Photovoltaic cells</text>
+<rect x="220" y="80" width="155" height="130" rx="14" fill="#0284c718" stroke="#0284c7" stroke-width="2"/>
+<text x="298" y="118" text-anchor="middle" font-size="26" font-family="sans-serif">💨</text>
+<text x="298" y="152" text-anchor="middle" font-size="13" font-weight="800" font-family="sans-serif" fill="#0284c7">Wind</text>
+<text x="298" y="178" text-anchor="middle" font-size="11" font-family="sans-serif" fill="#374151">Turbines</text>
+<rect x="420" y="80" width="155" height="130" rx="14" fill="#16a34a18" stroke="#16a34a" stroke-width="2"/>
+<text x="498" y="118" text-anchor="middle" font-size="26" font-family="sans-serif">💧</text>
+<text x="498" y="152" text-anchor="middle" font-size="13" font-weight="800" font-family="sans-serif" fill="#16a34a">Hydro</text>
+<text x="498" y="178" text-anchor="middle" font-size="11" font-family="sans-serif" fill="#374151">Dams</text>
+<rect x="620" y="80" width="155" height="130" rx="14" fill="#dc262618" stroke="#dc2626" stroke-width="2"/>
+<text x="698" y="118" text-anchor="middle" font-size="26" font-family="sans-serif">🔥</text>
+<text x="698" y="152" text-anchor="middle" font-size="13" font-weight="800" font-family="sans-serif" fill="#dc2626">Fossil Fuels</text>
+<text x="698" y="178" text-anchor="middle" font-size="11" font-family="sans-serif" fill="#374151">Coal/Oil/Gas (non-renew)</text>
+<rect x="20" y="255" width="155" height="130" rx="14" fill="#7c3aed18" stroke="#7c3aed" stroke-width="2"/>
+<text x="98" y="293" text-anchor="middle" font-size="26" font-family="sans-serif">⚛️</text>
+<text x="98" y="327" text-anchor="middle" font-size="13" font-weight="800" font-family="sans-serif" fill="#7c3aed">Nuclear</text>
+<text x="98" y="353" text-anchor="middle" font-size="11" font-family="sans-serif" fill="#374151">Fission reaction</text>
+<rect x="220" y="255" width="155" height="130" rx="14" fill="#ea580c18" stroke="#ea580c" stroke-width="2"/>
+<text x="298" y="293" text-anchor="middle" font-size="26" font-family="sans-serif">🌋</text>
+<text x="298" y="327" text-anchor="middle" font-size="13" font-weight="800" font-family="sans-serif" fill="#ea580c">Geothermal</text>
+<text x="298" y="353" text-anchor="middle" font-size="11" font-family="sans-serif" fill="#374151">Earth's heat</text>
+<rect x="420" y="255" width="155" height="130" rx="14" fill="#0891b218" stroke="#0891b2" stroke-width="2"/>
+<text x="498" y="293" text-anchor="middle" font-size="26" font-family="sans-serif">🌊</text>
+<text x="498" y="327" text-anchor="middle" font-size="13" font-weight="800" font-family="sans-serif" fill="#0891b2">Tidal</text>
+<text x="498" y="353" text-anchor="middle" font-size="11" font-family="sans-serif" fill="#374151">Ocean waves</text>
+<rect x="620" y="255" width="155" height="130" rx="14" fill="#15803d18" stroke="#15803d" stroke-width="2"/>
+<text x="698" y="293" text-anchor="middle" font-size="26" font-family="sans-serif">🌿</text>
+<text x="698" y="327" text-anchor="middle" font-size="13" font-weight="800" font-family="sans-serif" fill="#15803d">Biomass</text>
+<text x="698" y="353" text-anchor="middle" font-size="11" font-family="sans-serif" fill="#374151">Biogas · Wood</text>
+<text x="400" y="410" text-anchor="middle" font-size="22" font-family="sans-serif" font-weight="800" fill="#78350f">Sources of Energy</text>
+</svg>

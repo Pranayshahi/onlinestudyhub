@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="420" viewBox="0 0 800 420">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0f172a"/>
+      <stop offset="100%" stop-color="#1e293b"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="420" fill="url(#bg)" rx="20"/>
+  <rect x="0" y="0" width="800" height="420" fill="#0f172a"/>
+<!-- India simplified map -->
+<path d="M 200,70 L 270,55 L 370,70 L 410,130 L 400,210 L 360,280 L 300,330 L 250,340 L 210,300 L 185,220 Z" fill="#1d4ed8" stroke="#38bdf8" stroke-width="2" opacity=".7"/>
+<!-- Transport network dots -->
+<text x="230" y="120" text-anchor="middle" font-size="20" font-family="sans-serif">🚂</text><text x="310" y="180" text-anchor="middle" font-size="20" font-family="sans-serif">🛣️</text><text x="260" y="240" text-anchor="middle" font-size="20" font-family="sans-serif">✈️</text><text x="340" y="130" text-anchor="middle" font-size="20" font-family="sans-serif">🚢</text>
+<!-- Legend -->
+<rect x="450" y="70" width="300" height="270" rx="14" fill="rgba(56,189,248,0.1)" stroke="#38bdf8" stroke-width="1.5"/>
+<text x="600" y="102" text-anchor="middle" font-size="15" font-weight="900" font-family="sans-serif" fill="#38bdf8">Lifelines of Economy</text>
+<text x="600" y="132" text-anchor="middle" font-size="13" font-weight="700" font-family="sans-serif" fill="#7dd3fc">🚂 Railways</text>
+<text x="600" y="152" text-anchor="middle" font-size="12" font-family="sans-serif" fill="#94a3b8">Longest network in Asia</text>
+<text x="600" y="180" text-anchor="middle" font-size="13" font-weight="700" font-family="sans-serif" fill="#7dd3fc">🛣️ Roadways</text>
+<text x="600" y="200" text-anchor="middle" font-size="12" font-family="sans-serif" fill="#94a3b8">NH · SH · District roads</text>
+<text x="600" y="228" text-anchor="middle" font-size="13" font-weight="700" font-family="sans-serif" fill="#7dd3fc">✈️ Airways</text>
+<text x="600" y="248" text-anchor="middle" font-size="12" font-family="sans-serif" fill="#94a3b8">International · Domestic</text>
+<text x="600" y="276" text-anchor="middle" font-size="13" font-weight="700" font-family="sans-serif" fill="#7dd3fc">🚢 Waterways + Pipelines</text>
+<text x="600" y="296" text-anchor="middle" font-size="12" font-family="sans-serif" fill="#94a3b8">Ports: Mumbai · Kolkata · Chennai</text>
+<text x="600" y="322" text-anchor="middle" font-size="12" font-family="sans-serif" fill="#94a3b8">Communication · Internet · Media</text>
+<text x="400" y="390" text-anchor="middle" font-size="22" font-family="sans-serif" font-weight="800" fill="#38bdf8">Lifelines of National Economy</text>
+</svg>

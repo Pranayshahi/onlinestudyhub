@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="420" viewBox="0 0 800 420">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#1e3a8a"/>
+      <stop offset="100%" stop-color="#1d4ed8"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="420" fill="url(#bg)" rx="20"/>
+  <rect x="0" y="0" width="800" height="420" fill="#1e3a8a"/>
+<!-- Map outline of Europe simplified -->
+<path d="M 100,200 Q 160,120 280,130 Q 380,115 450,145 Q 520,135 580,160 Q 640,155 700,180 Q 700,250 650,300 Q 580,320 500,310 Q 400,330 300,310 Q 200,320 130,280 Z" fill="#1d4ed8" stroke="#fbbf24" stroke-width="2"/>
+<!-- Country divisions -->
+<line x1="300" y1="130" x2="280" y2="310" stroke="#fbbf24" stroke-width="1.5" stroke-dasharray="5,4" opacity=".5"/>
+<line x1="450" y1="145" x2="440" y2="310" stroke="#fbbf24" stroke-width="1.5" stroke-dasharray="5,4" opacity=".5"/>
+<!-- Key points -->
+<rect x="60" y="320" width="680" height="80" rx="14" fill="rgba(251,191,36,0.12)" stroke="#fbbf24" stroke-width="1.5"/>
+<text x="400" y="350" text-anchor="middle" font-size="14" font-weight="800" font-family="sans-serif" fill="#fbbf24">Rise of Nationalism in Europe</text>
+<text x="400" y="374" text-anchor="middle" font-size="13" font-family="sans-serif" fill="#fde68a">French Revolution · Napoleon · 1848 Revolutions · Bismarck (Germany) · Mazzini (Italy)</text>
+<text x="400" y="65" text-anchor="middle" font-size="24" font-family="sans-serif" font-weight="800" fill="#fbbf24">The Rise of Nationalism in Europe</text>
+</svg>

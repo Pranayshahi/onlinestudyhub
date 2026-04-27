@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="420" viewBox="0 0 800 420">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#f0f9ff"/>
+      <stop offset="100%" stop-color="#e0f2fe"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="420" fill="url(#bg)" rx="20"/>
+  <!-- Eye diagram -->
+<ellipse cx="320" cy="210" rx="190" ry="150" fill="#e0f2fe" stroke="#0284c7" stroke-width="3"/>
+<circle cx="440" cy="210" r="55" fill="#bae6fd" stroke="#0369a1" stroke-width="2"/>
+<circle cx="450" cy="210" r="32" fill="#0f172a"/>
+<circle cx="460" cy="200" r="8" fill="#fff" opacity=".8"/>
+<!-- Lens label -->
+<ellipse cx="390" cy="210" rx="12" ry="45" fill="#fbbf24" stroke="#d97706" stroke-width="1.5"/>
+<text x="370" y="275" font-size="12" font-family="sans-serif" fill="#78350f">Lens</text>
+<!-- Cornea -->
+<path d="M 480,170 Q 510,210 480,250" fill="none" stroke="#0284c7" stroke-width="2.5"/>
+<text x="520" y="215" font-size="12" font-family="sans-serif" fill="#0369a1">Cornea</text>
+<!-- Retina -->
+<text x="180" y="215" font-size="12" font-family="sans-serif" fill="#0369a1">Retina</text>
+<!-- Defects boxes -->
+<rect x="530" y="80" width="230" height="230" rx="14" fill="#e0f2fe" stroke="#0284c7" stroke-width="1.5"/>
+<text x="645" y="108" text-anchor="middle" font-size="14" font-weight="800" font-family="sans-serif" fill="#075985">Eye Defects</text>
+<text x="645" y="135" text-anchor="middle" font-size="13" font-family="sans-serif" fill="#0369a1">Myopia (near-sighted)</text>
+<text x="645" y="155" text-anchor="middle" font-size="12" font-family="sans-serif" fill="#374151">Concave lens corrects</text>
+<text x="645" y="180" text-anchor="middle" font-size="13" font-family="sans-serif" fill="#0369a1">Hypermetropia (far)</text>
+<text x="645" y="200" text-anchor="middle" font-size="12" font-family="sans-serif" fill="#374151">Convex lens corrects</text>
+<text x="645" y="225" text-anchor="middle" font-size="13" font-family="sans-serif" fill="#0369a1">Presbyopia</text>
+<text x="645" y="245" text-anchor="middle" font-size="13" font-family="sans-serif" fill="#0369a1">Scattering: blue sky</text>
+<text x="645" y="270" text-anchor="middle" font-size="12" font-family="sans-serif" fill="#374151">Rainbow · Dispersion</text>
+<text x="320" y="390" text-anchor="middle" font-size="22" font-family="sans-serif" font-weight="800" fill="#075985">The Human Eye and the Colourful World</text>
+</svg>

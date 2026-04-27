@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="420" viewBox="0 0 800 420">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#fffbeb"/>
+      <stop offset="100%" stop-color="#fef3c7"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="420" fill="url(#bg)" rx="20"/>
+  <!-- HDI components -->
+<circle cx="400" cy="195" r="130" fill="#fef3c7" stroke="#d97706" stroke-width="3"/>
+<text x="400" y="190" text-anchor="middle" font-size="16" font-weight="900" font-family="sans-serif" fill="#78350f">HDI</text>
+<text x="400" y="215" text-anchor="middle" font-size="13" font-family="sans-serif" fill="#92400e">Human Dev. Index</text>
+<!-- Three pillars -->
+
+<line x1="400" y1="195" x2="130" y2="195" stroke="#2563eb" stroke-width="2.5" stroke-dasharray="5,3"/>
+<circle cx="130" cy="195" r="45" fill="#2563eb11" stroke="#2563eb" stroke-width="2"/>
+<text x="130" y="195" text-anchor="middle" font-size="22" font-family="sans-serif">📚</text>
+<text x="130" y="227" text-anchor="middle" font-size="12" font-weight="700" font-family="sans-serif" fill="#2563eb">Education</text>
+<line x1="400" y1="195" x2="555" y2="195" stroke="#16a34a" stroke-width="2.5" stroke-dasharray="5,3"/>
+<circle cx="555" cy="195" r="45" fill="#16a34a11" stroke="#16a34a" stroke-width="2"/>
+<text x="555" y="195" text-anchor="middle" font-size="22" font-family="sans-serif">💰</text>
+<text x="555" y="227" text-anchor="middle" font-size="12" font-weight="700" font-family="sans-serif" fill="#16a34a">Income</text>
+<line x1="400" y1="195" x2="400" y2="70" stroke="#dc2626" stroke-width="2.5" stroke-dasharray="5,3"/>
+<circle cx="400" cy="70" r="45" fill="#dc262611" stroke="#dc2626" stroke-width="2"/>
+<text x="400" y="70" text-anchor="middle" font-size="22" font-family="sans-serif">🏥</text>
+<text x="400" y="102" text-anchor="middle" font-size="12" font-weight="700" font-family="sans-serif" fill="#dc2626">Health</text>
+<rect x="80" y="350" width="640" height="42" rx="10" fill="#d97706"/>
+<text x="400" y="377" text-anchor="middle" font-size="14" font-family="sans-serif" font-weight="800" fill="#fff">National income · Per capita income · Sustainable development</text>
+</svg>

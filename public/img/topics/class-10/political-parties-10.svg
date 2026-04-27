@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="420" viewBox="0 0 800 420">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#fff7ed"/>
+      <stop offset="100%" stop-color="#ffedd5"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="420" fill="url(#bg)" rx="20"/>
+  <!-- Party symbols and functions -->
+
+<rect x="80" y="100" width="300" height="148" rx="16" fill="#2563eb11" stroke="#2563eb" stroke-width="2.5"/>
+<text x="230" y="146" text-anchor="middle" font-size="30" font-family="sans-serif">🐟</text>
+<text x="230" y="182" text-anchor="middle" font-size="14" font-weight="800" font-family="sans-serif" fill="#2563eb">National Party</text>
+<text x="230" y="212" text-anchor="middle" font-size="12" font-family="sans-serif" fill="#374151">Recognised in 4+ states</text>
+<rect x="430" y="100" width="300" height="148" rx="16" fill="#16a34a11" stroke="#16a34a" stroke-width="2.5"/>
+<text x="580" y="146" text-anchor="middle" font-size="30" font-family="sans-serif">🌾</text>
+<text x="580" y="182" text-anchor="middle" font-size="14" font-weight="800" font-family="sans-serif" fill="#16a34a">State Party</text>
+<text x="580" y="212" text-anchor="middle" font-size="12" font-family="sans-serif" fill="#374151">Recognised in 1–3 states</text>
+<rect x="80" y="270" width="300" height="148" rx="16" fill="#f9731611" stroke="#f97316" stroke-width="2.5"/>
+<text x="230" y="316" text-anchor="middle" font-size="30" font-family="sans-serif">⚖️</text>
+<text x="230" y="352" text-anchor="middle" font-size="14" font-weight="800" font-family="sans-serif" fill="#f97316">Recognised Party</text>
+<text x="230" y="382" text-anchor="middle" font-size="12" font-family="sans-serif" fill="#374151">ECI recognition criteria</text>
+<rect x="430" y="270" width="300" height="148" rx="16" fill="#9333ea11" stroke="#9333ea" stroke-width="2.5"/>
+<text x="580" y="316" text-anchor="middle" font-size="30" font-family="sans-serif">🗳️</text>
+<text x="580" y="352" text-anchor="middle" font-size="14" font-weight="800" font-family="sans-serif" fill="#9333ea">Coalition</text>
+<text x="580" y="382" text-anchor="middle" font-size="12" font-family="sans-serif" fill="#374151">Alliance of parties</text>
+<text x="400" y="68" text-anchor="middle" font-size="26" font-family="sans-serif" font-weight="800" fill="#7c2d12">Political Parties</text>
+</svg>

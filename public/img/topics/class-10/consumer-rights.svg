@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="420" viewBox="0 0 800 420">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#fef2f2"/>
+      <stop offset="100%" stop-color="#fee2e2"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="420" fill="url(#bg)" rx="20"/>
+  
+<rect x="80" y="95" width="310" height="148" rx="16" fill="#dc262611" stroke="#dc2626" stroke-width="2.5"/>
+<text x="235" y="141" text-anchor="middle" font-size="30" font-family="sans-serif">⚖️</text>
+<text x="235" y="177" text-anchor="middle" font-size="14" font-weight="800" font-family="sans-serif" fill="#dc2626">Right to Safety</text>
+<text x="235" y="207" text-anchor="middle" font-size="12" font-family="sans-serif" fill="#374151">Protection from hazardous goods</text>
+<rect x="430" y="95" width="310" height="148" rx="16" fill="#f9731611" stroke="#f97316" stroke-width="2.5"/>
+<text x="585" y="141" text-anchor="middle" font-size="30" font-family="sans-serif">📢</text>
+<text x="585" y="177" text-anchor="middle" font-size="14" font-weight="800" font-family="sans-serif" fill="#f97316">Right to be Informed</text>
+<text x="585" y="207" text-anchor="middle" font-size="12" font-family="sans-serif" fill="#374151">Quality, price, ingredients</text>
+<rect x="80" y="265" width="310" height="148" rx="16" fill="#16a34a11" stroke="#16a34a" stroke-width="2.5"/>
+<text x="235" y="311" text-anchor="middle" font-size="30" font-family="sans-serif">🛒</text>
+<text x="235" y="347" text-anchor="middle" font-size="14" font-weight="800" font-family="sans-serif" fill="#16a34a">Right to Choose</text>
+<text x="235" y="377" text-anchor="middle" font-size="12" font-family="sans-serif" fill="#374151">Access to variety at competitive prices</text>
+<rect x="430" y="265" width="310" height="148" rx="16" fill="#9333ea11" stroke="#9333ea" stroke-width="2.5"/>
+<text x="585" y="311" text-anchor="middle" font-size="30" font-family="sans-serif">📝</text>
+<text x="585" y="347" text-anchor="middle" font-size="14" font-weight="800" font-family="sans-serif" fill="#9333ea">Right to Redressal</text>
+<text x="585" y="377" text-anchor="middle" font-size="12" font-family="sans-serif" fill="#374151">Complaint & compensation</text>
+<rect x="150" y="430" width="0" height="0"/>
+<text x="400" y="68" text-anchor="middle" font-size="26" font-family="sans-serif" font-weight="800" fill="#7f1d1d">Consumer Rights</text>
+<rect x="150" y="428" width="500" height="0" rx="0"/>
+<text x="400" y="413" text-anchor="middle" font-size="13" font-family="sans-serif" fill="#dc2626">COPRA 1986 · District · State · National Consumer Forum · ISI · Agmark</text>
+</svg>

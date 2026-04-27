@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="420" viewBox="0 0 800 420">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#fff7ed"/>
+      <stop offset="100%" stop-color="#ffedd5"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="420" fill="url(#bg)" rx="20"/>
+  <!-- Gandhi with salt -->
+<circle cx="200" cy="175" r="65" fill="#fde68a" stroke="#f97316" stroke-width="2.5"/>
+<text x="200" y="175" text-anchor="middle" font-size="40" font-family="sans-serif">🧔</text>
+<text x="200" y="255" text-anchor="middle" font-size="13" font-weight="700" font-family="sans-serif" fill="#7c2d12">Mahatma Gandhi</text>
+<!-- Movement timeline -->
+<rect x="300" y="80" width="440" height="260" rx="16" fill="#ffedd5" stroke="#f97316" stroke-width="2"/>
+<text x="520" y="112" text-anchor="middle" font-size="15" font-weight="900" font-family="sans-serif" fill="#7c2d12">Nationalist Movements</text>
+<text x="520" y="140" text-anchor="middle" font-size="13" font-family="sans-serif" fill="#9a3412">1919 — Non-cooperation Movement</text>
+<text x="520" y="163" text-anchor="middle" font-size="13" font-family="sans-serif" fill="#9a3412">1930 — Civil Disobedience / Salt March</text>
+<text x="520" y="186" text-anchor="middle" font-size="13" font-family="sans-serif" fill="#9a3412">1942 — Quit India Movement</text>
+<text x="520" y="215" text-anchor="middle" font-size="13" font-family="sans-serif" fill="#9a3412">Satyagraha · Ahimsa · Swaraj</text>
+<text x="520" y="245" text-anchor="middle" font-size="13" font-family="sans-serif" fill="#9a3412">Khilafat · Jallianwala Bagh</text>
+<text x="520" y="270" text-anchor="middle" font-size="13" font-family="sans-serif" fill="#9a3412">Subhas Chandra Bose · INA</text>
+<text x="400" y="373" text-anchor="middle" font-size="24" font-family="sans-serif" font-weight="800" fill="#7c2d12">Nationalism in India</text>
+</svg>

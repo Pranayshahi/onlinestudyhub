@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="420" viewBox="0 0 800 420">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0f172a"/>
+      <stop offset="100%" stop-color="#1e293b"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="420" fill="url(#bg)" rx="20"/>
+  <rect x="0" y="0" width="800" height="420" fill="#0f172a"/>
+<!-- Solenoid coil -->
+<ellipse cx="180" cy="210" rx="18" ry="40" fill="none" stroke="#64748b" stroke-width="2.5" opacity="1"/><ellipse cx="224" cy="210" rx="18" ry="40" fill="none" stroke="#64748b" stroke-width="2.5" opacity="0.5"/><ellipse cx="268" cy="210" rx="18" ry="40" fill="none" stroke="#64748b" stroke-width="2.5" opacity="1"/><ellipse cx="312" cy="210" rx="18" ry="40" fill="none" stroke="#64748b" stroke-width="2.5" opacity="0.5"/><ellipse cx="356" cy="210" rx="18" ry="40" fill="none" stroke="#64748b" stroke-width="2.5" opacity="1"/><ellipse cx="400" cy="210" rx="18" ry="40" fill="none" stroke="#64748b" stroke-width="2.5" opacity="0.5"/><ellipse cx="444" cy="210" rx="18" ry="40" fill="none" stroke="#64748b" stroke-width="2.5" opacity="1"/><ellipse cx="488" cy="210" rx="18" ry="40" fill="none" stroke="#64748b" stroke-width="2.5" opacity="0.5"/><ellipse cx="532" cy="210" rx="18" ry="40" fill="none" stroke="#64748b" stroke-width="2.5" opacity="1"/><ellipse cx="576" cy="210" rx="18" ry="40" fill="none" stroke="#64748b" stroke-width="2.5" opacity="0.5"/>
+<line x1="90" y1="210" x2="180" y2="210" stroke="#f472b6" stroke-width="3"/>
+<line x1="576" y1="210" x2="700" y2="210" stroke="#f472b6" stroke-width="3"/>
+<!-- Magnetic field lines -->
+<path d="M 700,150 Q 750,150 760,210 Q 750,270 700,270" fill="none" stroke="#f472b6" stroke-width="1.5" opacity=".6"/><path d="M 700,180 Q 750,180 760,210 Q 750,240 700,240" fill="none" stroke="#f472b6" stroke-width="1.5" opacity=".6"/><path d="M 700,210 Q 750,210 760,210 Q 750,210 700,210" fill="none" stroke="#f472b6" stroke-width="1.5" opacity=".6"/><path d="M 700,240 Q 750,240 760,210 Q 750,180 700,180" fill="none" stroke="#f472b6" stroke-width="1.5" opacity=".6"/><path d="M 700,270 Q 750,270 760,210 Q 750,150 700,150" fill="none" stroke="#f472b6" stroke-width="1.5" opacity=".6"/>
+<!-- N S poles -->
+<text x="80" y="215" text-anchor="middle" font-size="22" font-weight="900" font-family="sans-serif" fill="#60a5fa">S</text>
+<text x="720" y="215" text-anchor="middle" font-size="22" font-weight="900" font-family="sans-serif" fill="#f87171">N</text>
+<!-- Fleming's rule -->
+<rect x="60" y="295" width="680" height="80" rx="12" fill="rgba(244,114,182,0.1)" stroke="#f472b6" stroke-width="1.5"/>
+<text x="400" y="325" text-anchor="middle" font-size="14" font-weight="800" font-family="sans-serif" fill="#f472b6">Fleming's Rules</text>
+<text x="400" y="350" text-anchor="middle" font-size="13" font-family="sans-serif" fill="#fce7f3">Left-hand (motor: F=BIl) · Right-hand (generator: induced EMF)</text>
+<text x="400" y="372" text-anchor="middle" font-size="13" font-family="sans-serif" fill="#fce7f3">AC generator · DC motor · Electromagnetic induction (Faraday)</text>
+<text x="400" y="63" text-anchor="middle" font-size="24" font-family="sans-serif" font-weight="800" fill="#f472b6">Magnetic Effects of Electric Current</text>
+</svg>

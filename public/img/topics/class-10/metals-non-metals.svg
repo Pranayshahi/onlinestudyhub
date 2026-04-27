@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="420" viewBox="0 0 800 420">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#1e1b4b"/>
+      <stop offset="100%" stop-color="#312e81"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="420" fill="url(#bg)" rx="20"/>
+  <rect x="0" y="0" width="800" height="420" fill="#1e1b4b"/>
+<!-- Metal properties -->
+<rect x="60" y="70" width="310" height="270" rx="16" fill="rgba(129,140,248,0.12)" stroke="#818cf8" stroke-width="2"/>
+<text x="215" y="105" text-anchor="middle" font-size="16" font-weight="900" font-family="sans-serif" fill="#818cf8">Metals</text>
+<text x="215" y="135" text-anchor="middle" font-size="13" font-family="sans-serif" fill="#a5b4fc">Lustrous · Hard · Ductile</text>
+<text x="215" y="158" text-anchor="middle" font-size="13" font-family="sans-serif" fill="#a5b4fc">Malleable · Good conductor</text>
+<text x="215" y="181" text-anchor="middle" font-size="13" font-family="sans-serif" fill="#a5b4fc">High melting/boiling point</text>
+<text x="215" y="210" text-anchor="middle" font-size="14" font-weight="700" font-family="monospace" fill="#c7d2fe">Fe Cu Al Zn Na K</text>
+<text x="215" y="245" text-anchor="middle" font-size="13" font-family="sans-serif" fill="#818cf8">Reactivity series:</text>
+<text x="215" y="268" text-anchor="middle" font-size="12" font-family="monospace" fill="#a5b4fc">K Na Ca Mg Al Zn Fe Cu Ag Au</text>
+<!-- Non-metal properties -->
+<rect x="430" y="70" width="310" height="270" rx="16" fill="rgba(251,191,36,0.1)" stroke="#fbbf24" stroke-width="2"/>
+<text x="585" y="105" text-anchor="middle" font-size="16" font-weight="900" font-family="sans-serif" fill="#fbbf24">Non-metals</text>
+<text x="585" y="135" text-anchor="middle" font-size="13" font-family="sans-serif" fill="#fde68a">Brittle · Non-lustrous</text>
+<text x="585" y="158" text-anchor="middle" font-size="13" font-family="sans-serif" fill="#fde68a">Poor conductor (except graphite)</text>
+<text x="585" y="181" text-anchor="middle" font-size="13" font-family="sans-serif" fill="#fde68a">Low melting point</text>
+<text x="585" y="210" text-anchor="middle" font-size="14" font-weight="700" font-family="monospace" fill="#fef9c3">C S O N P Cl</text>
+<text x="585" y="245" text-anchor="middle" font-size="13" font-family="sans-serif" fill="#fbbf24">Ionic bond: metal + non-metal</text>
+<text x="585" y="270" text-anchor="middle" font-size="13" font-family="sans-serif" fill="#fde68a">Covalent: non-metal + non-metal</text>
+<text x="400" y="385" text-anchor="middle" font-size="24" font-family="sans-serif" font-weight="800" fill="#818cf8">Metals and Non-metals</text>
+</svg>

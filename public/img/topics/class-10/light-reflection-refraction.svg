@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="420" viewBox="0 0 800 420">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0f172a"/>
+      <stop offset="100%" stop-color="#1e293b"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="420" fill="url(#bg)" rx="20"/>
+  <rect x="0" y="0" width="800" height="420" fill="#0f172a"/>
+<!-- Mirror/lens line -->
+<line x1="400" y1="60" x2="400" y2="370" stroke="#64748b" stroke-width="3"/>
+<!-- Incident ray -->
+<line x1="100" y1="100" x2="400" y2="220" stroke="#fbbf24" stroke-width="3"/>
+<polygon points="386,214 400,220 390,230" fill="#fbbf24"/>
+<!-- Reflected ray -->
+<line x1="400" y1="220" x2="100" y2="340" stroke="#38bdf8" stroke-width="3"/>
+<polygon points="112,338 100,340 108,330" fill="#38bdf8"/>
+<!-- Refracted ray -->
+<line x1="400" y1="220" x2="680" y2="370" stroke="#34d399" stroke-width="3"/>
+<polygon points="669,365 680,370 672,358" fill="#34d399"/>
+<!-- Normal -->
+<line x1="200" y1="220" x2="600" y2="220" stroke="#475569" stroke-width="1.5" stroke-dasharray="7,4"/>
+<!-- Angle labels -->
+<text x="320" y="195" font-size="14" font-weight="700" font-family="sans-serif" fill="#fbbf24">∠i</text>
+<text x="320" y="248" font-size="14" font-weight="700" font-family="sans-serif" fill="#38bdf8">∠r</text>
+<text x="440" y="248" font-size="14" font-weight="700" font-family="sans-serif" fill="#34d399">∠R</text>
+<!-- Snell's law -->
+<rect x="440" y="75" width="320" height="75" rx="12" fill="rgba(56,189,248,0.1)" stroke="#38bdf8" stroke-width="1.5"/>
+<text x="600" y="104" text-anchor="middle" font-size="15" font-weight="800" font-family="sans-serif" fill="#38bdf8">Snell's Law</text>
+<text x="600" y="132" text-anchor="middle" font-size="15" font-family="monospace" font-weight="700" fill="#7dd3fc">n₁sin i = n₂sin R</text>
+<!-- Mirror formula -->
+<rect x="440" y="168" width="320" height="75" rx="12" fill="rgba(56,189,248,0.1)" stroke="#38bdf8" stroke-width="1.5"/>
+<text x="600" y="197" text-anchor="middle" font-size="15" font-weight="800" font-family="sans-serif" fill="#38bdf8">Mirror/Lens Formula</text>
+<text x="600" y="226" text-anchor="middle" font-size="15" font-family="monospace" font-weight="700" fill="#7dd3fc">1/f = 1/v + 1/u</text>
+<text x="400" y="390" text-anchor="middle" font-size="22" font-family="sans-serif" font-weight="800" fill="#38bdf8">Light — Reflection and Refraction</text>
+</svg>

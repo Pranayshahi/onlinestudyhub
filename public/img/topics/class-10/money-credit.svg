@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="420" viewBox="0 0 800 420">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#fdf4ff"/>
+      <stop offset="100%" stop-color="#f3e8ff"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="420" fill="url(#bg)" rx="20"/>
+  <!-- Money flow diagram -->
+<circle cx="200" cy="210" r="80" fill="#f3e8ff" stroke="#9333ea" stroke-width="2.5"/>
+<text x="200" y="205" text-anchor="middle" font-size="32" font-family="sans-serif">🏦</text>
+<text x="200" y="235" text-anchor="middle" font-size="13" font-weight="700" font-family="sans-serif" fill="#6b21a8">Banks</text>
+<!-- Arrows -->
+<line x1="280" y1="185" x2="400" y2="150" stroke="#9333ea" stroke-width="2.5"/>
+<polygon points="396,140 408,150 396,160" fill="#9333ea"/>
+<text x="340" y="148" text-anchor="middle" font-size="12" font-family="sans-serif" fill="#6b21a8">Deposits</text>
+<line x1="400" y1="250" x2="280" y2="235" stroke="#dc2626" stroke-width="2.5"/>
+<polygon points="283,226 278,238 291,236" fill="#dc2626"/>
+<text x="340" y="265" text-anchor="middle" font-size="12" font-family="sans-serif" fill="#dc2626">Loans</text>
+<!-- Borrower -->
+<circle cx="520" cy="195" r="75" fill="#dcfce7" stroke="#16a34a" stroke-width="2.5"/>
+<text x="520" y="190" text-anchor="middle" font-size="28" font-family="sans-serif">👨‍👩‍👧</text>
+<text x="520" y="220" text-anchor="middle" font-size="13" font-weight="700" font-family="sans-serif" fill="#14532d">Borrowers</text>
+<!-- Credit terms -->
+<rect x="80" y="315" width="640" height="65" rx="12" fill="#f3e8ff" stroke="#9333ea" stroke-width="2"/>
+<text x="400" y="343" text-anchor="middle" font-size="14" font-weight="800" font-family="sans-serif" fill="#6b21a8">Credit: Collateral · Interest · Repayment · Documentation</text>
+<text x="400" y="368" text-anchor="middle" font-size="13" font-family="sans-serif" fill="#7e22ce">Formal (banks, SHGs) vs Informal (moneylenders) credit</text>
+<text x="400" y="385" text-anchor="middle" font-size="0" fill="none"/>
+<text x="400" y="60" text-anchor="middle" font-size="26" font-family="sans-serif" font-weight="800" fill="#581c87">Money and Credit</text>
+</svg>

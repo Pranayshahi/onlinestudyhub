@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="420" viewBox="0 0 800 420">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#fdf4ff"/>
+      <stop offset="100%" stop-color="#f3e8ff"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="420" fill="url(#bg)" rx="20"/>
+  <!-- Federal structure tree -->
+<rect x="300" y="65" width="200" height="48" rx="12" fill="#9333ea"/>
+<text x="400" y="95" text-anchor="middle" font-size="15" font-weight="900" font-family="sans-serif" fill="#fff">Central Government</text>
+<line x1="400" y1="113" x2="200" y2="165" stroke="#7c3aed" stroke-width="2.5"/>
+<line x1="400" y1="113" x2="400" y2="165" stroke="#7c3aed" stroke-width="2.5"/>
+<line x1="400" y1="113" x2="600" y2="165" stroke="#7c3aed" stroke-width="2.5"/>
+
+<rect x="60" y="165" width="120" height="42" rx="10" fill="#c4b5fd" stroke="#7c3aed" stroke-width="2"/>
+<text x="120" y="191" text-anchor="middle" font-size="13" font-weight="700" font-family="sans-serif" fill="#3b0764">State A</text>
+<line x1="120" y1="207" x2="90" y2="247" stroke="#7c3aed" stroke-width="1.5"/>
+<line x1="120" y1="207" x2="150" y2="247" stroke="#7c3aed" stroke-width="1.5"/>
+<rect x="65" y="247" width="50" height="36" rx="8" fill="#ede9fe" stroke="#8b5cf6" stroke-width="1.5"/>
+<text x="90" y="270" text-anchor="middle" font-size="11" font-family="sans-serif" fill="#5b21b6">Panchayat</text>
+<rect x="125" y="247" width="50" height="36" rx="8" fill="#ede9fe" stroke="#8b5cf6" stroke-width="1.5"/>
+<text x="150" y="270" text-anchor="middle" font-size="11" font-family="sans-serif" fill="#5b21b6">Municipal</text>
+<rect x="280" y="165" width="120" height="42" rx="10" fill="#c4b5fd" stroke="#7c3aed" stroke-width="2"/>
+<text x="340" y="191" text-anchor="middle" font-size="13" font-weight="700" font-family="sans-serif" fill="#3b0764">State B</text>
+<line x1="340" y1="207" x2="310" y2="247" stroke="#7c3aed" stroke-width="1.5"/>
+<line x1="340" y1="207" x2="370" y2="247" stroke="#7c3aed" stroke-width="1.5"/>
+<rect x="285" y="247" width="50" height="36" rx="8" fill="#ede9fe" stroke="#8b5cf6" stroke-width="1.5"/>
+<text x="310" y="270" text-anchor="middle" font-size="11" font-family="sans-serif" fill="#5b21b6">Panchayat</text>
+<rect x="345" y="247" width="50" height="36" rx="8" fill="#ede9fe" stroke="#8b5cf6" stroke-width="1.5"/>
+<text x="370" y="270" text-anchor="middle" font-size="11" font-family="sans-serif" fill="#5b21b6">Municipal</text>
+<rect x="500" y="165" width="120" height="42" rx="10" fill="#c4b5fd" stroke="#7c3aed" stroke-width="2"/>
+<text x="560" y="191" text-anchor="middle" font-size="13" font-weight="700" font-family="sans-serif" fill="#3b0764">State C</text>
+<line x1="560" y1="207" x2="530" y2="247" stroke="#7c3aed" stroke-width="1.5"/>
+<line x1="560" y1="207" x2="590" y2="247" stroke="#7c3aed" stroke-width="1.5"/>
+<rect x="505" y="247" width="50" height="36" rx="8" fill="#ede9fe" stroke="#8b5cf6" stroke-width="1.5"/>
+<text x="530" y="270" text-anchor="middle" font-size="11" font-family="sans-serif" fill="#5b21b6">Panchayat</text>
+<rect x="565" y="247" width="50" height="36" rx="8" fill="#ede9fe" stroke="#8b5cf6" stroke-width="1.5"/>
+<text x="590" y="270" text-anchor="middle" font-size="11" font-family="sans-serif" fill="#5b21b6">Municipal</text>
+<rect x="80" y="310" width="640" height="68" rx="12" fill="#f3e8ff" stroke="#9333ea" stroke-width="2"/>
+<text x="400" y="337" text-anchor="middle" font-size="14" font-weight="800" font-family="sans-serif" fill="#6b21a8">Union List · State List · Concurrent List</text>
+<text x="400" y="360" text-anchor="middle" font-size="13" font-family="sans-serif" fill="#7e22ce">Decentralisation: Panchayati Raj (73rd &amp; 74th Amendments)</text>
+<text x="400" y="385" text-anchor="middle" font-size="24" font-family="sans-serif" font-weight="800" fill="#581c87">Federalism</text>
+</svg>

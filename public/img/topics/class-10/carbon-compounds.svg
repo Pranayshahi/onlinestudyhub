@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="420" viewBox="0 0 800 420">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0f172a"/>
+      <stop offset="100%" stop-color="#1e293b"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="420" fill="url(#bg)" rx="20"/>
+  <rect x="0" y="0" width="800" height="420" fill="#0f172a"/>
+<!-- Carbon atom centre -->
+<circle cx="400" cy="210" r="35" fill="#34d399" stroke="#059669" stroke-width="3"/>
+<text x="400" y="215" text-anchor="middle" font-size="16" font-weight="900" font-family="sans-serif" fill="#064e3b">C</text>
+<!-- 4 bonds -->
+
+<line x1="400" y1="210" x2="400" y2="120" stroke="#34d399" stroke-width="3"/>
+<circle cx="400" cy="120" r="22" fill="#fbbf24" stroke="#d97706" stroke-width="2"/>
+<text x="400" y="125" text-anchor="middle" font-size="14" font-weight="800" font-family="sans-serif" fill="#78350f">H</text>
+<line x1="400" y1="210" x2="490" y2="260" stroke="#34d399" stroke-width="3"/>
+<circle cx="490" cy="260" r="22" fill="#fbbf24" stroke="#d97706" stroke-width="2"/>
+<text x="490" y="265" text-anchor="middle" font-size="14" font-weight="800" font-family="sans-serif" fill="#78350f">H</text>
+<line x1="400" y1="210" x2="310" y2="260" stroke="#34d399" stroke-width="3"/>
+<circle cx="310" cy="260" r="22" fill="#fbbf24" stroke="#d97706" stroke-width="2"/>
+<text x="310" y="265" text-anchor="middle" font-size="14" font-weight="800" font-family="sans-serif" fill="#78350f">H</text>
+<line x1="400" y1="210" x2="400" y2="295" stroke="#34d399" stroke-width="3"/>
+<circle cx="400" cy="295" r="22" fill="#fbbf24" stroke="#d97706" stroke-width="2"/>
+<text x="400" y="300" text-anchor="middle" font-size="14" font-weight="800" font-family="sans-serif" fill="#78350f">H</text>
+<text x="460" y="135" font-size="13" font-weight="700" font-family="sans-serif" fill="#34d399">CH₄ = Methane</text>
+<!-- Homologous series -->
+<rect x="520" y="80" width="240" height="185" rx="14" fill="rgba(52,211,153,0.1)" stroke="#34d399" stroke-width="1.5"/>
+<text x="640" y="112" text-anchor="middle" font-size="14" font-weight="800" font-family="sans-serif" fill="#34d399">Homologous Series</text>
+<text x="640" y="138" text-anchor="middle" font-size="13" font-family="monospace" fill="#6ee7b7">CH₄ Methane</text>
+<text x="640" y="160" text-anchor="middle" font-size="13" font-family="monospace" fill="#6ee7b7">C₂H₆ Ethane</text>
+<text x="640" y="182" text-anchor="middle" font-size="13" font-family="monospace" fill="#6ee7b7">C₃H₈ Propane</text>
+<text x="640" y="204" text-anchor="middle" font-size="13" font-family="monospace" fill="#6ee7b7">C₄H₁₀ Butane</text>
+<text x="640" y="230" text-anchor="middle" font-size="12" font-family="sans-serif" fill="#34d399">Differ by −CH₂− (14u)</text>
+<rect x="40" y="300" width="440" height="45" rx="10" fill="rgba(52,211,153,0.1)" stroke="#34d399" stroke-width="1.5"/>
+<text x="260" y="328" text-anchor="middle" font-size="13" font-family="sans-serif" fill="#6ee7b7">Functional groups: −OH · −COOH · −CHO · −CO− · Halogens</text>
+<text x="400" y="390" text-anchor="middle" font-size="24" font-family="sans-serif" font-weight="800" fill="#34d399">Carbon and Its Compounds</text>
+</svg>

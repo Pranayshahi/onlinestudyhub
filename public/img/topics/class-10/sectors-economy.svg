@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="420" viewBox="0 0 800 420">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#f0f9ff"/>
+      <stop offset="100%" stop-color="#e0f2fe"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="420" fill="url(#bg)" rx="20"/>
+  
+<rect x="80" y="100" width="300" height="148" rx="16" fill="#16a34a12" stroke="#16a34a" stroke-width="2.5"/>
+<text x="230" y="146" text-anchor="middle" font-size="30" font-family="sans-serif">🌾</text>
+<text x="230" y="180" text-anchor="middle" font-size="14" font-weight="800" font-family="sans-serif" fill="#16a34a">Primary Sector</text>
+<text x="230" y="210" text-anchor="middle" font-size="12" font-family="sans-serif" fill="#374151">Agriculture · Mining · Fishing</text>
+<rect x="420" y="100" width="300" height="148" rx="16" fill="#f9731612" stroke="#f97316" stroke-width="2.5"/>
+<text x="570" y="146" text-anchor="middle" font-size="30" font-family="sans-serif">🏭</text>
+<text x="570" y="180" text-anchor="middle" font-size="14" font-weight="800" font-family="sans-serif" fill="#f97316">Secondary Sector</text>
+<text x="570" y="210" text-anchor="middle" font-size="12" font-family="sans-serif" fill="#374151">Manufacturing · Construction</text>
+<rect x="80" y="280" width="300" height="148" rx="16" fill="#2563eb12" stroke="#2563eb" stroke-width="2.5"/>
+<text x="230" y="326" text-anchor="middle" font-size="30" font-family="sans-serif">💼</text>
+<text x="230" y="360" text-anchor="middle" font-size="14" font-weight="800" font-family="sans-serif" fill="#2563eb">Tertiary Sector</text>
+<text x="230" y="390" text-anchor="middle" font-size="12" font-family="sans-serif" fill="#374151">Services · Trade · Transport</text>
+<rect x="420" y="280" width="300" height="148" rx="16" fill="#9333ea12" stroke="#9333ea" stroke-width="2.5"/>
+<text x="570" y="326" text-anchor="middle" font-size="30" font-family="sans-serif">🏢</text>
+<text x="570" y="360" text-anchor="middle" font-size="14" font-weight="800" font-family="sans-serif" fill="#9333ea">Organised Sector</text>
+<text x="570" y="390" text-anchor="middle" font-size="12" font-family="sans-serif" fill="#374151">Formal sector · Regulated</text>
+<text x="400" y="68" text-anchor="middle" font-size="26" font-family="sans-serif" font-weight="800" fill="#0369a1">Sectors of the Indian Economy</text>
+</svg>

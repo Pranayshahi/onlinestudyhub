@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="420" viewBox="0 0 800 420">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#fdf4ff"/>
+      <stop offset="100%" stop-color="#ede9fe"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="420" fill="url(#bg)" rx="20"/>
+  <polygon points="200,340 580,340 580,120" fill="#ede9fe" stroke="#7c3aed" stroke-width="3"/>
+<line x1="580" y1="120" x2="580" y2="340" stroke="#dc2626" stroke-width="3"/>
+<text x="595" y="240" font-size="16" font-weight="800" font-family="sans-serif" fill="#dc2626">P (opp)</text>
+<line x1="200" y1="340" x2="580" y2="340" stroke="#16a34a" stroke-width="3"/>
+<text x="390" y="370" text-anchor="middle" font-size="16" font-weight="800" font-family="sans-serif" fill="#16a34a">B (adj)</text>
+<line x1="200" y1="340" x2="580" y2="120" stroke="#7c3aed" stroke-width="3"/>
+<text x="370" y="220" text-anchor="middle" font-size="16" font-weight="800" font-family="sans-serif" fill="#5b21b6">H (hyp)</text>
+<path d="M 260,340 A 60,60 0 0,0 250,310" fill="none" stroke="#f97316" stroke-width="2.5"/>
+<text x="290" y="330" font-size="15" font-weight="800" font-family="sans-serif" fill="#f97316">θ</text>
+<rect x="60" y="60" width="680" height="55" rx="12" fill="#7c3aed"/>
+<text x="400" y="93" text-anchor="middle" font-size="17" font-family="monospace" font-weight="900" fill="#fff">sin=P/H · cos=B/H · tan=P/B · sin²θ+cos²θ=1</text>
+</svg>

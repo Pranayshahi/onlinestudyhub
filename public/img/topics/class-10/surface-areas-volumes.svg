@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="420" viewBox="0 0 800 420">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#f0f9ff"/>
+      <stop offset="100%" stop-color="#e0f2fe"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="420" fill="url(#bg)" rx="20"/>
+  <!-- Sphere -->
+<circle cx="140" cy="210" r="85" fill="#e0f2fe" stroke="#0284c7" stroke-width="2.5"/>
+<ellipse cx="140" cy="210" rx="85" ry="26" fill="none" stroke="#0284c7" stroke-width="1.5" stroke-dasharray="5,3"/>
+<text x="140" y="238" text-anchor="middle" font-size="11" font-family="monospace" font-weight="700" fill="#075985">SA=4πr²  V=4πr³/3</text>
+<!-- Cone -->
+<polygon points="340,115 250,330 430,330" fill="#fce7f3" stroke="#ec4899" stroke-width="2.5"/>
+<ellipse cx="340" cy="330" rx="90" ry="24" fill="#fbcfe8" stroke="#ec4899" stroke-width="2"/>
+<text x="340" y="358" text-anchor="middle" font-size="11" font-family="monospace" font-weight="700" fill="#9d174d">CSA=πrl  V=⅓πr²h</text>
+<!-- Cylinder -->
+<ellipse cx="560" cy="148" rx="80" ry="22" fill="#bbf7d0" stroke="#16a34a" stroke-width="2.5"/>
+<rect x="480" y="148" width="160" height="150" fill="#dcfce7" stroke="#16a34a" stroke-width="2.5"/>
+<ellipse cx="560" cy="298" rx="80" ry="22" fill="#86efac" stroke="#16a34a" stroke-width="2.5"/>
+<text x="560" y="335" text-anchor="middle" font-size="11" font-family="monospace" font-weight="700" fill="#14532d">TSA=2πr(r+h)  V=πr²h</text>
+<!-- Frustum -->
+<polygon points="650,200 720,200 700,320 670,320" fill="#fde68a" stroke="#ca8a04" stroke-width="2"/>
+<text x="685" y="348" text-anchor="middle" font-size="11" font-family="monospace" font-weight="700" fill="#78350f">Frustum</text>
+<text x="400" y="385" text-anchor="middle" font-size="24" font-family="sans-serif" font-weight="800" fill="#075985">Surface Areas and Volumes</text>
+</svg>

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="420" viewBox="0 0 800 420">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#fffbeb"/>
+      <stop offset="100%" stop-color="#fef3c7"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="420" fill="url(#bg)" rx="20"/>
+  <!-- Two similar triangles -->
+<polygon points="120,330 320,330 220,130" fill="#fef3c7" stroke="#d97706" stroke-width="2.5"/>
+<polygon points="440,330 700,330 570,90" fill="#fed7aa" stroke="#ea580c" stroke-width="2.5"/>
+<!-- Equal angle marks -->
+<text x="135" y="325" font-size="16" fill="#7c3aed">∠A</text>
+<text x="455" y="325" font-size="16" fill="#7c3aed">∠A′</text>
+<text x="310" y="325" font-size="16" fill="#059669">∠B</text>
+<text x="690" y="325" font-size="16" fill="#059669">∠B′</text>
+<text x="400" y="67" text-anchor="middle" font-size="16" font-weight="800" font-family="sans-serif" fill="#ea580c">△ABC ~ △A′B′C′</text>
+<rect x="60" y="355" width="680" height="44" rx="12" fill="#d97706"/>
+<text x="400" y="382" text-anchor="middle" font-size="15" font-family="sans-serif" font-weight="800" fill="#fff">BPT · AA · SSS · SAS similarity · ratio of areas = ratio of squares of sides</text>
+</svg>
