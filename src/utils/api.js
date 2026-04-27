@@ -25,6 +25,10 @@ export async function api(path, { method = 'GET', body = null, token = null, hea
 
   const contentType = res.headers.get('content-type') || '';
   
+  if (res.status === 503) {
+    throw new Error('Something went wrong. Please try again in a moment.');
+  }
+
   if (contentType.includes('application/json')) {
     const data = await res.json();
     if (!res.ok) {
@@ -32,7 +36,6 @@ export async function api(path, { method = 'GET', body = null, token = null, hea
     }
     return data;
   } else {
-    // Handle non-JSON responses (possibly errors)
     const text = await res.text();
     if (!res.ok) {
       throw new Error(`Server error (${res.status}): ${text.substring(0, 100)}`);

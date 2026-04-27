@@ -64,7 +64,7 @@ app.use(async (req, res, next) => {
     await connectDB();
     next();
   } catch {
-    res.status(503).json({ error: 'Database unavailable. Check MONGODB_URI and Atlas network access.' });
+    res.status(503).json({ error: 'Service temporarily unavailable. Please try again in a moment.' });
   }
 });
 

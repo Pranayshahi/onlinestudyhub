@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="420" viewBox="0 0 800 420">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#f0fdf4"/>
+      <stop offset="100%" stop-color="#bbf7d0"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="420" fill="url(#bg)" rx="20"/>
+  <!-- Animal cell diagram -->
+<ellipse cx="400" cy="210" rx="280" ry="180" fill="#dcfce7" stroke="#16a34a" stroke-width="3"/>
+<!-- Nucleus -->
+<ellipse cx="360" cy="195" rx="80" ry="65" fill="#86efac" stroke="#15803d" stroke-width="2.5"/>
+<text x="360" y="200" text-anchor="middle" font-size="13" font-weight="700" font-family="sans-serif" fill="#14532d">Nucleus</text>
+<!-- Organelles -->
+<ellipse cx="520" cy="160" rx="40" ry="20" fill="#4ade80" stroke="#16a34a" stroke-width="1.5"/>
+<text x="520" y="165" text-anchor="middle" font-size="11" font-family="sans-serif" fill="#14532d">Mito.</text>
+<ellipse cx="500" cy="255" rx="35" ry="16" fill="#86efac" stroke="#15803d" stroke-width="1.5"/>
+<text x="500" y="260" text-anchor="middle" font-size="10" font-family="sans-serif" fill="#14532d">Vacuole</text>
+<ellipse cx="240" cy="240" rx="30" ry="18" fill="#4ade80" stroke="#16a34a" stroke-width="1.5"/>
+<text x="240" y="245" text-anchor="middle" font-size="10" font-family="sans-serif" fill="#14532d">ER</text>
+<rect x="80" y="68" width="640" height="46" rx="12" fill="#15803d"/>
+<text x="400" y="98" text-anchor="middle" font-size="18" font-family="sans-serif" font-weight="900" fill="#fff">Cell — Structure and Functions</text>
+</svg>

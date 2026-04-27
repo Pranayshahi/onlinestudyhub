@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="420" viewBox="0 0 800 420">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#fffbeb"/>
+      <stop offset="100%" stop-color="#fef3c7"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="420" fill="url(#bg)" rx="20"/>
+  <!-- Loom symbol -->
+<rect x="80" y="110" width="280" height="200" rx="10" fill="#fde68a" stroke="#ca8a04" stroke-width="2.5"/>
+<line x1="100" y1="135" x2="340" y2="135" stroke="#92400e" stroke-width="2" opacity=".7"/><line x1="100" y1="157" x2="340" y2="157" stroke="#92400e" stroke-width="2" opacity=".7"/><line x1="100" y1="179" x2="340" y2="179" stroke="#92400e" stroke-width="2" opacity=".7"/><line x1="100" y1="201" x2="340" y2="201" stroke="#92400e" stroke-width="2" opacity=".7"/><line x1="100" y1="223" x2="340" y2="223" stroke="#92400e" stroke-width="2" opacity=".7"/><line x1="100" y1="245" x2="340" y2="245" stroke="#92400e" stroke-width="2" opacity=".7"/><line x1="100" y1="267" x2="340" y2="267" stroke="#92400e" stroke-width="2" opacity=".7"/><line x1="100" y1="289" x2="340" y2="289" stroke="#92400e" stroke-width="2" opacity=".7"/>
+<line x1="130" y1="110" x2="130" y2="310" stroke="#ca8a04" stroke-width="1.5" opacity=".6"/><line x1="165" y1="110" x2="165" y2="310" stroke="#ca8a04" stroke-width="1.5" opacity=".6"/><line x1="200" y1="110" x2="200" y2="310" stroke="#ca8a04" stroke-width="1.5" opacity=".6"/><line x1="235" y1="110" x2="235" y2="310" stroke="#ca8a04" stroke-width="1.5" opacity=".6"/><line x1="270" y1="110" x2="270" y2="310" stroke="#ca8a04" stroke-width="1.5" opacity=".6"/><line x1="305" y1="110" x2="305" y2="310" stroke="#ca8a04" stroke-width="1.5" opacity=".6"/>
+<text x="210" y="335" text-anchor="middle" font-size="14" font-weight="700" font-family="sans-serif" fill="#78350f">Traditional Loom</text>
+<!-- Furnace symbol -->
+<rect x="450" y="150" width="180" height="150" rx="12" fill="#fca5a5" stroke="#dc2626" stroke-width="2.5"/>
+<path d="M 490,230 Q 500,190 540,175 Q 580,190 590,230" fill="#f97316" opacity=".7"/>
+<path d="M 500,230 Q 510,200 540,188 Q 570,200 580,230" fill="#fbbf24" opacity=".8"/>
+<text x="540" y="320" text-anchor="middle" font-size="14" font-weight="700" font-family="sans-serif" fill="#7f1d1d">Iron Smelting</text>
+<rect x="80" y="63" width="640" height="34" rx="10" fill="#ca8a04"/>
+<text x="400" y="86" text-anchor="middle" font-size="15" font-family="sans-serif" font-weight="900" fill="#fff">British Policy → Destroyed Indian industries</text>
+<text x="400" y="382" text-anchor="middle" font-size="22" font-family="sans-serif" font-weight="800" fill="#78350f">Weavers, Iron Smelters and Factory Owners</text>
+</svg>

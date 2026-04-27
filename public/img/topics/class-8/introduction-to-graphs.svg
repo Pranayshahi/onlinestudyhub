@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="420" viewBox="0 0 800 420">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#fdf4ff"/>
+      <stop offset="100%" stop-color="#f3e8ff"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="420" fill="url(#bg)" rx="20"/>
+  <!-- Grid -->
+<line x1="120" y1="80" x2="120" y2="340" stroke="#e9d5ff" stroke-width="1"/><line x1="200" y1="80" x2="200" y2="340" stroke="#e9d5ff" stroke-width="1"/><line x1="280" y1="80" x2="280" y2="340" stroke="#e9d5ff" stroke-width="1"/><line x1="360" y1="80" x2="360" y2="340" stroke="#e9d5ff" stroke-width="1"/><line x1="440" y1="80" x2="440" y2="340" stroke="#e9d5ff" stroke-width="1"/><line x1="520" y1="80" x2="520" y2="340" stroke="#e9d5ff" stroke-width="1"/><line x1="600" y1="80" x2="600" y2="340" stroke="#e9d5ff" stroke-width="1"/>
+<line x1="120" y1="80" x2="680" y2="80" stroke="#e9d5ff" stroke-width="1"/><line x1="120" y1="123" x2="680" y2="123" stroke="#e9d5ff" stroke-width="1"/><line x1="120" y1="166" x2="680" y2="166" stroke="#e9d5ff" stroke-width="1"/><line x1="120" y1="209" x2="680" y2="209" stroke="#e9d5ff" stroke-width="1"/><line x1="120" y1="252" x2="680" y2="252" stroke="#e9d5ff" stroke-width="1"/><line x1="120" y1="295" x2="680" y2="295" stroke="#e9d5ff" stroke-width="1"/><line x1="120" y1="338" x2="680" y2="338" stroke="#e9d5ff" stroke-width="1"/>
+<line x1="120" y1="340" x2="680" y2="340" stroke="#374151" stroke-width="2.5"/>
+<line x1="120" y1="80" x2="120" y2="340" stroke="#374151" stroke-width="2.5"/>
+<!-- Bar chart bars -->
+<rect x="145" y="200" width="60" height="140" rx="6" fill="#a855f7" opacity=".8"/>
+<rect x="225" y="160" width="60" height="180" rx="6" fill="#8b5cf6" opacity=".8"/>
+<rect x="305" y="120" width="60" height="220" rx="6" fill="#7c3aed" opacity=".8"/>
+<rect x="385" y="180" width="60" height="160" rx="6" fill="#6d28d9" opacity=".8"/>
+<!-- Line graph overlay -->
+<polyline points="175,200 255,160 335,120 415,180 495,150 575,100" fill="none" stroke="#ec4899" stroke-width="3" stroke-dasharray="none"/>
+<circle cx="175" cy="200" r="6" fill="#ec4899"/><circle cx="255" cy="160" r="6" fill="#ec4899"/><circle cx="335" cy="120" r="6" fill="#ec4899"/><circle cx="415" cy="180" r="6" fill="#ec4899"/><circle cx="495" cy="150" r="6" fill="#ec4899"/><circle cx="575" cy="100" r="6" fill="#ec4899"/>
+<!-- Labels -->
+<text x="400" y="385" text-anchor="middle" font-size="26" font-family="sans-serif" font-weight="800" fill="#4c1d95">Introduction to Graphs</text>
+</svg>

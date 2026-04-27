@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="420" viewBox="0 0 800 420">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#eff6ff"/>
+      <stop offset="100%" stop-color="#bfdbfe"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="420" fill="url(#bg)" rx="20"/>
+  <rect x="80" y="80" width="640" height="75" rx="16" fill="#dbeafe" stroke="#2563eb" stroke-width="2.5"/>
+<text x="400" y="130" text-anchor="middle" font-size="34" font-family="monospace" font-weight="900" fill="#1d4ed8">3(x + 4) = 2(x + 7)</text>
+<text x="400" y="195" text-anchor="middle" font-size="20" font-family="sans-serif" fill="#374151">↓  expand and simplify</text>
+<rect x="130" y="210" width="540" height="55" rx="12" fill="#bfdbfe" stroke="#3b82f6" stroke-width="2"/>
+<text x="400" y="246" text-anchor="middle" font-size="26" font-family="monospace" font-weight="800" fill="#1e40af">3x + 12 = 2x + 14  →  x = 2</text>
+<rect x="280" y="285" width="240" height="50" rx="12" fill="#1d4ed8"/>
+<text x="400" y="318" text-anchor="middle" font-size="28" font-family="monospace" font-weight="900" fill="#fff">x = 2 ✓</text>
+<text x="400" y="382" text-anchor="middle" font-size="26" font-family="sans-serif" font-weight="800" fill="#1e3a8a">Linear Equations</text>
+</svg>

@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="420" viewBox="0 0 800 420">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#f0fdf4"/>
+      <stop offset="100%" stop-color="#bbf7d0"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="420" fill="url(#bg)" rx="20"/>
+  <!-- Farmland with crops -->
+<rect x="0" y="0" width="800" height="420" fill="#f0fdf4"/>
+<!-- Sky -->
+<rect x="0" y="0" width="800" height="180" fill="#bae6fd" rx="0"/>
+<!-- Sun -->
+<circle cx="680" cy="75" r="48" fill="#fbbf24" stroke="#f59e0b" stroke-width="2.5"/>
+<!-- Soil -->
+<rect x="0" y="260" width="800" height="160" fill="#a16207"/>
+<rect x="0" y="230" width="800" height="35" fill="#ca8a04"/>
+<!-- Crops -->
+<line x1="50" y1="230" x2="50" y2="145" stroke="#16a34a" stroke-width="3"/>
+<path d="M50,150 Q32,128 18,118" fill="none" stroke="#22c55e" stroke-width="2.5"/>
+<path d="M50,150 Q68,128 82,118" fill="none" stroke="#22c55e" stroke-width="2.5"/><line x1="107" y1="230" x2="107" y2="145" stroke="#16a34a" stroke-width="3"/>
+<path d="M107,150 Q89,128 75,118" fill="none" stroke="#22c55e" stroke-width="2.5"/>
+<path d="M107,150 Q125,128 139,118" fill="none" stroke="#22c55e" stroke-width="2.5"/><line x1="164" y1="230" x2="164" y2="145" stroke="#16a34a" stroke-width="3"/>
+<path d="M164,150 Q146,128 132,118" fill="none" stroke="#22c55e" stroke-width="2.5"/>
+<path d="M164,150 Q182,128 196,118" fill="none" stroke="#22c55e" stroke-width="2.5"/><line x1="221" y1="230" x2="221" y2="145" stroke="#16a34a" stroke-width="3"/>
+<path d="M221,150 Q203,128 189,118" fill="none" stroke="#22c55e" stroke-width="2.5"/>
+<path d="M221,150 Q239,128 253,118" fill="none" stroke="#22c55e" stroke-width="2.5"/><line x1="278" y1="230" x2="278" y2="145" stroke="#16a34a" stroke-width="3"/>
+<path d="M278,150 Q260,128 246,118" fill="none" stroke="#22c55e" stroke-width="2.5"/>
+<path d="M278,150 Q296,128 310,118" fill="none" stroke="#22c55e" stroke-width="2.5"/><line x1="335" y1="230" x2="335" y2="145" stroke="#16a34a" stroke-width="3"/>
+<path d="M335,150 Q317,128 303,118" fill="none" stroke="#22c55e" stroke-width="2.5"/>
+<path d="M335,150 Q353,128 367,118" fill="none" stroke="#22c55e" stroke-width="2.5"/><line x1="392" y1="230" x2="392" y2="145" stroke="#16a34a" stroke-width="3"/>
+<path d="M392,150 Q374,128 360,118" fill="none" stroke="#22c55e" stroke-width="2.5"/>
+<path d="M392,150 Q410,128 424,118" fill="none" stroke="#22c55e" stroke-width="2.5"/><line x1="449" y1="230" x2="449" y2="145" stroke="#16a34a" stroke-width="3"/>
+<path d="M449,150 Q431,128 417,118" fill="none" stroke="#22c55e" stroke-width="2.5"/>
+<path d="M449,150 Q467,128 481,118" fill="none" stroke="#22c55e" stroke-width="2.5"/><line x1="506" y1="230" x2="506" y2="145" stroke="#16a34a" stroke-width="3"/>
+<path d="M506,150 Q488,128 474,118" fill="none" stroke="#22c55e" stroke-width="2.5"/>
+<path d="M506,150 Q524,128 538,118" fill="none" stroke="#22c55e" stroke-width="2.5"/><line x1="563" y1="230" x2="563" y2="145" stroke="#16a34a" stroke-width="3"/>
+<path d="M563,150 Q545,128 531,118" fill="none" stroke="#22c55e" stroke-width="2.5"/>
+<path d="M563,150 Q581,128 595,118" fill="none" stroke="#22c55e" stroke-width="2.5"/><line x1="620" y1="230" x2="620" y2="145" stroke="#16a34a" stroke-width="3"/>
+<path d="M620,150 Q602,128 588,118" fill="none" stroke="#22c55e" stroke-width="2.5"/>
+<path d="M620,150 Q638,128 652,118" fill="none" stroke="#22c55e" stroke-width="2.5"/><line x1="677" y1="230" x2="677" y2="145" stroke="#16a34a" stroke-width="3"/>
+<path d="M677,150 Q659,128 645,118" fill="none" stroke="#22c55e" stroke-width="2.5"/>
+<path d="M677,150 Q695,128 709,118" fill="none" stroke="#22c55e" stroke-width="2.5"/><line x1="734" y1="230" x2="734" y2="145" stroke="#16a34a" stroke-width="3"/>
+<path d="M734,150 Q716,128 702,118" fill="none" stroke="#22c55e" stroke-width="2.5"/>
+<path d="M734,150 Q752,128 766,118" fill="none" stroke="#22c55e" stroke-width="2.5"/>
+<!-- Labels -->
+<rect x="80" y="290" width="280" height="80" rx="12" fill="rgba(255,255,255,0.85)" stroke="#16a34a" stroke-width="1.5"/>
+<text x="220" y="322" text-anchor="middle" font-size="14" font-weight="800" font-family="sans-serif" fill="#14532d">Types of Farming</text>
+<text x="220" y="344" text-anchor="middle" font-size="12" font-family="sans-serif" fill="#15803d">Subsistence · Commercial</text>
+<text x="220" y="362" text-anchor="middle" font-size="12" font-family="sans-serif" fill="#15803d">Plantation · Mixed</text>
+<rect x="440" y="290" width="280" height="80" rx="12" fill="rgba(255,255,255,0.85)" stroke="#16a34a" stroke-width="1.5"/>
+<text x="580" y="322" text-anchor="middle" font-size="14" font-weight="800" font-family="sans-serif" fill="#14532d">Major Crops</text>
+<text x="580" y="344" text-anchor="middle" font-size="12" font-family="sans-serif" fill="#15803d">Wheat · Rice · Cotton</text>
+<text x="580" y="362" text-anchor="middle" font-size="12" font-family="sans-serif" fill="#15803d">Sugarcane · Jute · Tea</text>
+<text x="400" y="397" text-anchor="middle" font-size="24" font-family="sans-serif" font-weight="800" fill="#14532d">Agriculture</text>
+</svg>

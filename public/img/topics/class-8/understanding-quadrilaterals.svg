@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="420" viewBox="0 0 800 420">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#fff7ed"/>
+      <stop offset="100%" stop-color="#fed7aa"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="420" fill="url(#bg)" rx="20"/>
+  <!-- Parallelogram -->
+<polygon points="100,280 270,140 460,140 290,280" fill="#fed7aa" stroke="#ea580c" stroke-width="2.5"/>
+<text x="280" y="230" text-anchor="middle" font-size="14" font-family="sans-serif" font-weight="700" fill="#7c2d12">Parallelogram</text>
+<!-- Trapezium -->
+<polygon points="490,280 520,155 680,155 720,280" fill="#fde68a" stroke="#d97706" stroke-width="2.5"/>
+<text x="610" y="250" text-anchor="middle" font-size="14" font-family="sans-serif" font-weight="700" fill="#78350f">Trapezium</text>
+<!-- Rhombus -->
+<polygon points="180,310 270,370 360,310 270,250" fill="#fbbf24" stroke="#b45309" stroke-width="2.5"/>
+<text x="270" y="400" text-anchor="middle" font-size="13" font-family="sans-serif" font-weight="700" fill="#78350f">Rhombus</text>
+<!-- Square -->
+<rect x="480" y="305" width="80" height="80" rx="4" fill="#fef3c7" stroke="#ca8a04" stroke-width="2.5"/>
+<text x="520" y="405" text-anchor="middle" font-size="13" font-family="sans-serif" font-weight="700" fill="#78350f">Square</text>
+<!-- Angle sum label -->
+<rect x="220" y="75" width="360" height="48" rx="12" fill="#ea580c"/>
+<text x="400" y="106" text-anchor="middle" font-size="20" font-family="sans-serif" font-weight="900" fill="#fff">Sum of angles = 360°</text>
+</svg>

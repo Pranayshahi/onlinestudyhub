@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="420" viewBox="0 0 800 420">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#f0f9ff"/>
+      <stop offset="100%" stop-color="#e0f2fe"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="420" fill="url(#bg)" rx="20"/>
+  <!-- Parliament building -->
+<rect x="130" y="175" width="540" height="190" rx="4" fill="#bae6fd" stroke="#0284c7" stroke-width="2.5"/>
+<!-- Dome -->
+<ellipse cx="400" cy="175" rx="130" ry="65" fill="#7dd3fc" stroke="#0284c7" stroke-width="2.5"/>
+<rect x="370" y="110" width="60" height="70" rx="4" fill="#38bdf8"/>
+<!-- Pillars -->
+<rect x="170" y="175" width="25" height="190" rx="4" fill="#93c5fd" stroke="#0284c7" stroke-width="1"/><rect x="230" y="175" width="25" height="190" rx="4" fill="#93c5fd" stroke="#0284c7" stroke-width="1"/><rect x="290" y="175" width="25" height="190" rx="4" fill="#93c5fd" stroke="#0284c7" stroke-width="1"/><rect x="350" y="175" width="25" height="190" rx="4" fill="#93c5fd" stroke="#0284c7" stroke-width="1"/><rect x="420" y="175" width="25" height="190" rx="4" fill="#93c5fd" stroke="#0284c7" stroke-width="1"/><rect x="480" y="175" width="25" height="190" rx="4" fill="#93c5fd" stroke="#0284c7" stroke-width="1"/><rect x="540" y="175" width="25" height="190" rx="4" fill="#93c5fd" stroke="#0284c7" stroke-width="1"/><rect x="600" y="175" width="25" height="190" rx="4" fill="#93c5fd" stroke="#0284c7" stroke-width="1"/>
+<!-- Steps -->
+<rect x="100" y="360" width="600" height="18" rx="4" fill="#7dd3fc" stroke="#0284c7" stroke-width="1.5"/>
+<!-- Label box -->
+<rect x="130" y="63" width="540" height="50" rx="12" fill="#0284c7"/>
+<text x="400" y="94" text-anchor="middle" font-size="18" font-family="sans-serif" font-weight="900" fill="#fff">Why Do We Need a Parliament?</text>
+<text x="400" y="395" text-anchor="middle" font-size="18" font-family="sans-serif" font-weight="700" fill="#075985">Lok Sabha · Rajya Sabha · Law Making · Oversight</text>
+</svg>

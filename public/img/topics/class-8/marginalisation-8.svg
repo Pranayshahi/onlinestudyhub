@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="420" viewBox="0 0 800 420">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#fff1f2"/>
+      <stop offset="100%" stop-color="#ffe4e6"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="420" fill="url(#bg)" rx="20"/>
+  <!-- Two circles — majority vs minority -->
+<circle cx="310" cy="210" r="140" fill="#fecdd3" stroke="#e11d48" stroke-width="3" opacity=".7"/>
+<circle cx="490" cy="210" r="90" fill="#fee2e2" stroke="#f43f5e" stroke-width="3" opacity=".7"/>
+<text x="270" y="205" text-anchor="middle" font-size="14" font-weight="700" font-family="sans-serif" fill="#9f1239">Majority</text>
+<text x="270" y="225" text-anchor="middle" font-size="13" font-family="sans-serif" fill="#be123c">(Access to</text>
+<text x="270" y="245" text-anchor="middle" font-size="13" font-family="sans-serif" fill="#be123c">resources)</text>
+<text x="490" y="200" text-anchor="middle" font-size="14" font-weight="700" font-family="sans-serif" fill="#9f1239">Marginalised</text>
+<text x="490" y="220" text-anchor="middle" font-size="12" font-family="sans-serif" fill="#be123c">Adivasis</text>
+<text x="490" y="240" text-anchor="middle" font-size="12" font-family="sans-serif" fill="#be123c">Dalits</text>
+<text x="490" y="260" text-anchor="middle" font-size="12" font-family="sans-serif" fill="#be123c">Minorities</text>
+<rect x="80" y="325" width="640" height="60" rx="12" fill="#ffe4e6" stroke="#e11d48" stroke-width="2"/>
+<text x="400" y="354" text-anchor="middle" font-size="14" font-weight="800" font-family="sans-serif" fill="#9f1239">Understanding Marginalisation</text>
+<text x="400" y="374" text-anchor="middle" font-size="13" font-family="sans-serif" fill="#be123c">Social exclusion · Stereotyping · Discrimination</text>
+<text x="400" y="75" text-anchor="middle" font-size="26" font-family="sans-serif" font-weight="800" fill="#9f1239">Understanding Marginalisation</text>
+</svg>

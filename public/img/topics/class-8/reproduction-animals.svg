@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="420" viewBox="0 0 800 420">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#fdf2f8"/>
+      <stop offset="100%" stop-color="#fce7f3"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="420" fill="url(#bg)" rx="20"/>
+  <!-- Two main modes -->
+<rect x="60" y="80" width="300" height="220" rx="16" fill="#fce7f3" stroke="#ec4899" stroke-width="2.5"/>
+<text x="210" y="115" text-anchor="middle" font-size="16" font-weight="800" font-family="sans-serif" fill="#9d174d">Sexual Reproduction</text>
+<text x="210" y="145" text-anchor="middle" font-size="14" font-family="sans-serif" fill="#be185d">♂ sperm + ♀ egg</text>
+<text x="210" y="175" text-anchor="middle" font-size="14" font-family="sans-serif" fill="#be185d">→ Fertilisation</text>
+<text x="210" y="205" text-anchor="middle" font-size="13" font-family="sans-serif" fill="#9d174d">Internal: mammals</text>
+<text x="210" y="230" text-anchor="middle" font-size="13" font-family="sans-serif" fill="#9d174d">External: fish, frogs</text>
+<text x="210" y="265" text-anchor="middle" font-size="13" font-family="sans-serif" fill="#be185d">Oviparous · Viviparous</text>
+<rect x="440" y="80" width="300" height="220" rx="16" fill="#f0fdf4" stroke="#16a34a" stroke-width="2.5"/>
+<text x="590" y="115" text-anchor="middle" font-size="16" font-weight="800" font-family="sans-serif" fill="#14532d">Asexual Reproduction</text>
+<text x="590" y="148" text-anchor="middle" font-size="14" font-family="sans-serif" fill="#15803d">Binary Fission (Amoeba)</text>
+<text x="590" y="178" text-anchor="middle" font-size="14" font-family="sans-serif" fill="#16a34a">Budding (Hydra)</text>
+<text x="590" y="208" text-anchor="middle" font-size="14" font-family="sans-serif" fill="#15803d">Spore formation</text>
+<text x="590" y="260" text-anchor="middle" font-size="13" font-family="sans-serif" fill="#14532d">Single parent, identical offspring</text>
+<rect x="150" y="320" width="500" height="52" rx="12" fill="#fce7f3" stroke="#ec4899" stroke-width="2"/>
+<text x="400" y="352" text-anchor="middle" font-size="15" font-family="sans-serif" font-weight="700" fill="#9d174d">Cloning — identical DNA copy of organism</text>
+<text x="400" y="383" text-anchor="middle" font-size="24" font-family="sans-serif" font-weight="800" fill="#831843">Reproduction in Animals</text>
+</svg>

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="420" viewBox="0 0 800 420">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#1e1b4b"/>
+      <stop offset="100%" stop-color="#312e81"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="420" fill="url(#bg)" rx="20"/>
+  <rect x="0" y="0" width="800" height="420" fill="#1e1b4b"/>
+<!-- Crystal/gem shapes -->
+
+<polygon points="130,100 172,178 130,220 88,178" fill="#f59e0b" opacity=".85" stroke="#f59e0b" stroke-width="1.5"/>
+<polygon points="130,100 172,178 130,160" fill="#f59e0b" opacity=".6"/>
+<text x="130" y="242" text-anchor="middle" font-size="14" font-weight="700" font-family="sans-serif" fill="#f59e0b">Gold</text>
+<polygon points="280,85 318.5,156.5 280,195 241.5,156.5" fill="#60a5fa" opacity=".85" stroke="#60a5fa" stroke-width="1.5"/>
+<polygon points="280,85 318.5,156.5 280,140" fill="#60a5fa" opacity=".6"/>
+<text x="280" y="217" text-anchor="middle" font-size="14" font-weight="700" font-family="sans-serif" fill="#60a5fa">Iron</text>
+<polygon points="430,120 465,185 430,220 395,185" fill="#818cf8" opacity=".85" stroke="#818cf8" stroke-width="1.5"/>
+<polygon points="430,120 465,185 430,170" fill="#818cf8" opacity=".6"/>
+<text x="430" y="242" text-anchor="middle" font-size="14" font-weight="700" font-family="sans-serif" fill="#818cf8">Coal</text>
+<polygon points="580,92 620.6,167.4 580,208 539.4,167.4" fill="#34d399" opacity=".85" stroke="#34d399" stroke-width="1.5"/>
+<polygon points="580,92 620.6,167.4 580,150" fill="#34d399" opacity=".6"/>
+<text x="580" y="230" text-anchor="middle" font-size="14" font-weight="700" font-family="sans-serif" fill="#34d399">Copper</text>
+<polygon points="700,107 733.6,169.4 700,203 666.4,169.4" fill="#f472b6" opacity=".85" stroke="#f472b6" stroke-width="1.5"/>
+<polygon points="700,107 733.6,169.4 700,155" fill="#f472b6" opacity=".6"/>
+<text x="700" y="225" text-anchor="middle" font-size="14" font-weight="700" font-family="sans-serif" fill="#f472b6">Diamond</text>
+<rect x="80" y="270" width="640" height="90" rx="14" fill="rgba(129,140,248,0.15)" stroke="#818cf8" stroke-width="1.5"/>
+<text x="400" y="302" text-anchor="middle" font-size="15" font-weight="800" font-family="sans-serif" fill="#a5b4fc">Types of Minerals</text>
+<text x="400" y="326" text-anchor="middle" font-size="13" font-family="sans-serif" fill="#818cf8">Metallic: Iron, Copper, Gold · Non-metallic: Coal, Salt, Diamond</text>
+<text x="400" y="348" text-anchor="middle" font-size="13" font-family="sans-serif" fill="#818cf8">Extraction: Mining · Quarrying · Drilling</text>
+<text x="400" y="390" text-anchor="middle" font-size="24" font-family="sans-serif" font-weight="800" fill="#818cf8">Mineral and Power Resources</text>
+</svg>

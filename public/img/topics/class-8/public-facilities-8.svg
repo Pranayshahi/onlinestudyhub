@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="420" viewBox="0 0 800 420">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#f0fdf4"/>
+      <stop offset="100%" stop-color="#dcfce7"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="420" fill="url(#bg)" rx="20"/>
+  <!-- Public facility icons -->
+
+<rect x="110" y="110" width="130" height="120" rx="14" fill="#dc26261a" stroke="#dc2626" stroke-width="2"/>
+<text x="175" y="162" text-anchor="middle" font-size="28" font-family="sans-serif">🏥</text>
+<text x="175" y="192" text-anchor="middle" font-size="13" font-weight="700" font-family="sans-serif" fill="#dc2626">Healthcare</text>
+<rect x="280" y="110" width="130" height="120" rx="14" fill="#2563eb1a" stroke="#2563eb" stroke-width="2"/>
+<text x="345" y="162" text-anchor="middle" font-size="28" font-family="sans-serif">🏫</text>
+<text x="345" y="192" text-anchor="middle" font-size="13" font-weight="700" font-family="sans-serif" fill="#2563eb">Education</text>
+<rect x="450" y="110" width="130" height="120" rx="14" fill="#0891b21a" stroke="#0891b2" stroke-width="2"/>
+<text x="515" y="162" text-anchor="middle" font-size="28" font-family="sans-serif">💧</text>
+<text x="515" y="192" text-anchor="middle" font-size="13" font-weight="700" font-family="sans-serif" fill="#0891b2">Water</text>
+<rect x="620" y="110" width="130" height="120" rx="14" fill="#f59e0b1a" stroke="#f59e0b" stroke-width="2"/>
+<text x="685" y="162" text-anchor="middle" font-size="28" font-family="sans-serif">⚡</text>
+<text x="685" y="192" text-anchor="middle" font-size="13" font-weight="700" font-family="sans-serif" fill="#f59e0b">Electricity</text>
+<rect x="110" y="280" width="130" height="120" rx="14" fill="#7c3aed1a" stroke="#7c3aed" stroke-width="2"/>
+<text x="175" y="332" text-anchor="middle" font-size="28" font-family="sans-serif">🚌</text>
+<text x="175" y="362" text-anchor="middle" font-size="13" font-weight="700" font-family="sans-serif" fill="#7c3aed">Transport</text>
+<rect x="280" y="280" width="130" height="120" rx="14" fill="#16a34a1a" stroke="#16a34a" stroke-width="2"/>
+<text x="345" y="332" text-anchor="middle" font-size="28" font-family="sans-serif">🏛️</text>
+<text x="345" y="362" text-anchor="middle" font-size="13" font-weight="700" font-family="sans-serif" fill="#16a34a">Sanitation</text>
+<rect x="450" y="280" width="130" height="120" rx="14" fill="#0369a11a" stroke="#0369a1" stroke-width="2"/>
+<text x="515" y="332" text-anchor="middle" font-size="28" font-family="sans-serif">📡</text>
+<text x="515" y="362" text-anchor="middle" font-size="13" font-weight="700" font-family="sans-serif" fill="#0369a1">Internet</text>
+<rect x="620" y="280" width="130" height="120" rx="14" fill="#ca8a041a" stroke="#ca8a04" stroke-width="2"/>
+<text x="685" y="332" text-anchor="middle" font-size="28" font-family="sans-serif">🏗️</text>
+<text x="685" y="362" text-anchor="middle" font-size="13" font-weight="700" font-family="sans-serif" fill="#ca8a04">Housing</text>
+<rect x="150" y="385" width="500" height="28" rx="8" fill="#16a34a"/>
+<text x="400" y="404" text-anchor="middle" font-size="14" font-family="sans-serif" font-weight="800" fill="#fff">Public Facilities — State's responsibility to provide equitably</text>
+<text x="400" y="68" text-anchor="middle" font-size="24" font-family="sans-serif" font-weight="800" fill="#14532d">Public Facilities</text>
+</svg>

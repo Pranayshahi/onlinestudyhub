@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="420" viewBox="0 0 800 420">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#f5f3ff"/>
+      <stop offset="100%" stop-color="#ddd6fe"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="420" fill="url(#bg)" rx="20"/>
+  <rect x="80" y="70" width="640" height="90" rx="18" fill="#ede9fe" stroke="#7c3aed" stroke-width="2.5"/>
+<text x="400" y="128" text-anchor="middle" font-size="38" font-family="monospace" font-weight="900" fill="#5b21b6">(a + b)² = a² + 2ab + b²</text>
+<rect x="100" y="185" width="280" height="65" rx="14" fill="#c4b5fd" stroke="#6d28d9" stroke-width="2"/>
+<text x="240" y="225" text-anchor="middle" font-size="22" font-family="monospace" font-weight="800" fill="#3b0764">a² − b² = (a+b)(a−b)</text>
+<rect x="420" y="185" width="280" height="65" rx="14" fill="#8b5cf6" stroke="#5b21b6" stroke-width="2"/>
+<text x="560" y="225" text-anchor="middle" font-size="22" font-family="monospace" font-weight="800" fill="#fff">Factorise: x²+5x+6</text>
+<rect x="420" y="268" width="280" height="50" rx="10" fill="#6d28d9"/>
+<text x="560" y="300" text-anchor="middle" font-size="20" font-family="monospace" font-weight="900" fill="#ede9fe">= (x+2)(x+3)</text>
+<text x="400" y="380" text-anchor="middle" font-size="28" font-family="sans-serif" font-weight="800" fill="#3b0764">Algebra — Expressions &amp; Identities</text>
+</svg>

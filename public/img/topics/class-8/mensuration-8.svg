@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="420" viewBox="0 0 800 420">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#eff6ff"/>
+      <stop offset="100%" stop-color="#dbeafe"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="420" fill="url(#bg)" rx="20"/>
+  <!-- Cuboid -->
+<rect x="80" y="120" width="180" height="120" rx="4" fill="#bfdbfe" stroke="#3b82f6" stroke-width="2.5"/>
+<polygon points="80,120 140,80 320,80 260,120" fill="#93c5fd" stroke="#3b82f6" stroke-width="2.5"/>
+<polygon points="260,120 320,80 320,200 260,240" fill="#60a5fa" stroke="#3b82f6" stroke-width="2.5"/>
+<text x="170" y="300" text-anchor="middle" font-size="13" font-family="monospace" font-weight="700" fill="#1e3a8a">V=lbh  SA=2(lb+bh+lh)</text>
+<!-- Cylinder -->
+<ellipse cx="530" cy="160" rx="100" ry="30" fill="#bfdbfe" stroke="#3b82f6" stroke-width="2.5"/>
+<rect x="430" y="160" width="200" height="120" fill="#93c5fd" stroke="#3b82f6" stroke-width="2.5"/>
+<ellipse cx="530" cy="280" rx="100" ry="30" fill="#60a5fa" stroke="#3b82f6" stroke-width="2.5"/>
+<text x="530" y="335" text-anchor="middle" font-size="13" font-family="monospace" font-weight="700" fill="#1e3a8a">V=πr²h  CSA=2πrh</text>
+<rect x="150" y="60" width="500" height="46" rx="12" fill="#2563eb"/>
+<text x="400" y="90" text-anchor="middle" font-size="18" font-family="sans-serif" font-weight="900" fill="#fff">Mensuration — 3D Shapes</text>
+</svg>

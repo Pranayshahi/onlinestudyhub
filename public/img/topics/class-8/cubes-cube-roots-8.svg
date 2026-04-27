@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="420" viewBox="0 0 800 420">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#f0f9ff"/>
+      <stop offset="100%" stop-color="#bae6fd"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="420" fill="url(#bg)" rx="20"/>
+  <!-- 3D cube visual -->
+<rect x="120" y="130" width="160" height="160" rx="4" fill="#bae6fd" stroke="#0284c7" stroke-width="2.5"/>
+<polygon points="120,130 180,80 340,80 280,130" fill="#7dd3fc" stroke="#0284c7" stroke-width="2.5"/>
+<polygon points="280,130 340,80 340,240 280,290" fill="#38bdf8" stroke="#0284c7" stroke-width="2.5"/>
+<text x="200" y="220" text-anchor="middle" font-size="20" font-weight="800" font-family="monospace" fill="#075985">n³</text>
+<!-- Number cubes -->
+<rect x="410" y="110" width="56" height="56" rx="10" fill="#0284c7" stroke="#075985" stroke-width="2"/>
+<text x="438" y="132" text-anchor="middle" font-size="14" font-weight="700" font-family="sans-serif" fill="#bae6fd">2³</text>
+<text x="438" y="154" text-anchor="middle" font-size="16" font-weight="900" font-family="monospace" fill="#fff">8</text><rect x="474" y="110" width="56" height="56" rx="10" fill="#0284c7" stroke="#075985" stroke-width="2"/>
+<text x="502" y="132" text-anchor="middle" font-size="14" font-weight="700" font-family="sans-serif" fill="#bae6fd">3³</text>
+<text x="502" y="154" text-anchor="middle" font-size="16" font-weight="900" font-family="monospace" fill="#fff">27</text><rect x="538" y="110" width="56" height="56" rx="10" fill="#0284c7" stroke="#075985" stroke-width="2"/>
+<text x="566" y="132" text-anchor="middle" font-size="14" font-weight="700" font-family="sans-serif" fill="#bae6fd">4³</text>
+<text x="566" y="154" text-anchor="middle" font-size="16" font-weight="900" font-family="monospace" fill="#fff">64</text><rect x="602" y="110" width="56" height="56" rx="10" fill="#0284c7" stroke="#075985" stroke-width="2"/>
+<text x="630" y="132" text-anchor="middle" font-size="14" font-weight="700" font-family="sans-serif" fill="#bae6fd">5³</text>
+<text x="630" y="154" text-anchor="middle" font-size="16" font-weight="900" font-family="monospace" fill="#fff">125</text><rect x="666" y="110" width="56" height="56" rx="10" fill="#0284c7" stroke="#075985" stroke-width="2"/>
+<text x="694" y="132" text-anchor="middle" font-size="14" font-weight="700" font-family="sans-serif" fill="#bae6fd">6³</text>
+<text x="694" y="154" text-anchor="middle" font-size="16" font-weight="900" font-family="monospace" fill="#fff">216</text>
+<rect x="380" y="200" width="340" height="100" rx="14" fill="#e0f2fe" stroke="#0284c7" stroke-width="2"/>
+<text x="550" y="238" text-anchor="middle" font-size="16" font-family="monospace" font-weight="700" fill="#075985">∛512 = ∛(2⁹) = 2³ = 8</text>
+<text x="550" y="270" text-anchor="middle" font-size="14" font-family="sans-serif" font-weight="700" fill="#0369a1">Group prime factors in triples</text>
+<text x="400" y="382" text-anchor="middle" font-size="26" font-family="sans-serif" font-weight="800" fill="#075985">Cubes and Cube Roots</text>
+</svg>

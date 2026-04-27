@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="420" viewBox="0 0 800 420">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#fff7ed"/>
+      <stop offset="100%" stop-color="#fed7aa"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="420" fill="url(#bg)" rx="20"/>
+  <rect x="60" y="65" width="680" height="75" rx="16" fill="#ffedd5" stroke="#f97316" stroke-width="2.5"/>
+<text x="400" y="115" text-anchor="middle" font-size="20" font-family="monospace" font-weight="900" fill="#c2410c">aᵐ×aⁿ=aᵐ⁺ⁿ · aᵐ÷aⁿ=aᵐ⁻ⁿ · (aᵐ)ⁿ=aᵐⁿ · a⁰=1</text>
+<rect x="80" y="163" width="305" height="140" rx="14" fill="#fed7aa" stroke="#f97316" stroke-width="2"/>
+<text x="233" y="193" text-anchor="middle" font-size="14" font-weight="800" font-family="sans-serif" fill="#7c2d12">Scientific Notation</text>
+<text x="233" y="223" text-anchor="middle" font-size="15" font-family="monospace" font-weight="700" fill="#c2410c">3×10⁸ m/s = c</text>
+<text x="233" y="253" text-anchor="middle" font-size="14" font-family="monospace" fill="#9a3412">1×10⁻⁹ m = 1 nm</text>
+<text x="233" y="283" text-anchor="middle" font-size="13" font-family="sans-serif" fill="#7c2d12">a × 10ⁿ,  1≤a&lt;10</text>
+<rect x="415" y="163" width="305" height="140" rx="14" fill="#fde68a" stroke="#ca8a04" stroke-width="2"/>
+<text x="567" y="193" text-anchor="middle" font-size="14" font-weight="800" font-family="sans-serif" fill="#78350f">Negative Exponents</text>
+<text x="567" y="228" text-anchor="middle" font-size="20" font-family="monospace" font-weight="800" fill="#ca8a04">a⁻ⁿ = 1/aⁿ</text>
+<text x="567" y="264" text-anchor="middle" font-size="16" font-family="monospace" fill="#92400e">2⁻³ = 1/8 = 0.125</text>
+<text x="400" y="382" text-anchor="middle" font-size="26" font-family="sans-serif" font-weight="800" fill="#7c2d12">Exponents and Powers</text>
+</svg>

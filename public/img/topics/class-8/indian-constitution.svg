@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="420" viewBox="0 0 800 420">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#eff6ff"/>
+      <stop offset="100%" stop-color="#dbeafe"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="420" fill="url(#bg)" rx="20"/>
+  <!-- Constitution pillars -->
+
+<rect x="100" y="145" width="110" height="195" rx="6" fill="#dbeafe" stroke="#1d4ed8" stroke-width="2.5"/>
+<rect x="100" y="130" width="110" height="20" rx="4" fill="#1d4ed8"/>
+<text x="155" y="245" text-anchor="middle" font-size="13" font-weight="700" font-family="sans-serif" fill="#1d4ed8" transform="rotate(-90,155,245)">Sovereignty</text>
+<rect x="240" y="145" width="110" height="195" rx="6" fill="#dbeafe" stroke="#2563eb" stroke-width="2.5"/>
+<rect x="240" y="130" width="110" height="20" rx="4" fill="#2563eb"/>
+<text x="295" y="245" text-anchor="middle" font-size="13" font-weight="700" font-family="sans-serif" fill="#2563eb" transform="rotate(-90,295,245)">Democracy</text>
+<rect x="380" y="145" width="110" height="195" rx="6" fill="#dbeafe" stroke="#3b82f6" stroke-width="2.5"/>
+<rect x="380" y="130" width="110" height="20" rx="4" fill="#3b82f6"/>
+<text x="435" y="245" text-anchor="middle" font-size="13" font-weight="700" font-family="sans-serif" fill="#3b82f6" transform="rotate(-90,435,245)">Secularism</text>
+<rect x="520" y="145" width="110" height="195" rx="6" fill="#dbeafe" stroke="#1e40af" stroke-width="2.5"/>
+<rect x="520" y="130" width="110" height="20" rx="4" fill="#1e40af"/>
+<text x="575" y="245" text-anchor="middle" font-size="13" font-weight="700" font-family="sans-serif" fill="#1e40af" transform="rotate(-90,575,245)">Equality</text>
+<rect x="660" y="145" width="110" height="195" rx="6" fill="#dbeafe" stroke="#1d4ed8" stroke-width="2.5"/>
+<rect x="660" y="130" width="110" height="20" rx="4" fill="#1d4ed8"/>
+<text x="715" y="245" text-anchor="middle" font-size="13" font-weight="700" font-family="sans-serif" fill="#1d4ed8" transform="rotate(-90,715,245)">Justice</text>
+<!-- Pediment -->
+<polygon points="65,145 735,145 695,100 105,100" fill="#1d4ed8" stroke="#1e3a8a" stroke-width="2"/>
+<text x="400" y="130" text-anchor="middle" font-size="16" font-family="sans-serif" font-weight="900" fill="#fff">The Indian Constitution 1950</text>
+<rect x="100" y="355" width="600" height="40" rx="10" fill="#1d4ed8"/>
+<text x="400" y="381" text-anchor="middle" font-size="15" font-family="sans-serif" font-weight="800" fill="#fff">Fundamental Rights · Directive Principles · Duties</text>
+</svg>

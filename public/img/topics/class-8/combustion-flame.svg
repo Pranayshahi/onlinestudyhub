@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="420" viewBox="0 0 800 420">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#fff7ed"/>
+      <stop offset="100%" stop-color="#fed7aa"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="420" fill="url(#bg)" rx="20"/>
+  <!-- Flame -->
+<path d="M380,320 Q300,240 340,160 Q360,100 400,80 Q440,100 460,160 Q500,240 420,320 Z" fill="#fbbf24" opacity=".9"/>
+<path d="M380,320 Q320,260 355,185 Q375,130 400,110 Q425,130 445,185 Q480,260 420,320 Z" fill="#f97316" opacity=".9"/>
+<path d="M380,320 Q350,280 368,225 Q384,180 400,165 Q416,180 432,225 Q450,280 420,320 Z" fill="#ef4444" opacity=".85"/>
+<text x="400" y="310" text-anchor="middle" font-size="13" font-weight="700" font-family="sans-serif" fill="#7c2d12">Outer · Middle · Inner</text>
+<!-- Zones label -->
+<rect x="60" y="65" width="280" height="72" rx="12" fill="#ffedd5" stroke="#f97316" stroke-width="2"/>
+<text x="200" y="95" text-anchor="middle" font-size="14" font-weight="800" font-family="sans-serif" fill="#9a3412">Combustion needs:</text>
+<text x="200" y="120" text-anchor="middle" font-size="13" font-family="sans-serif" fill="#7c2d12">Fuel · Heat · Oxygen (Fire triangle)</text>
+<rect x="450" y="65" width="290" height="72" rx="12" fill="#fee2e2" stroke="#dc2626" stroke-width="2"/>
+<text x="595" y="95" text-anchor="middle" font-size="14" font-weight="800" font-family="sans-serif" fill="#991b1b">Ignition Temperature</text>
+<text x="595" y="120" text-anchor="middle" font-size="13" font-family="sans-serif" fill="#7f1d1d">Minimum temp to catch fire</text>
+<text x="400" y="390" text-anchor="middle" font-size="24" font-family="sans-serif" font-weight="800" fill="#7c2d12">Combustion and Flame</text>
+</svg>

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="420" viewBox="0 0 800 420">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#fdf4ff"/>
+      <stop offset="100%" stop-color="#f3e8ff"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="420" fill="url(#bg)" rx="20"/>
+  <!-- Reformers -->
+
+<circle cx="120" cy="165" r="55" fill="none" stroke="#7c3aed" stroke-width="3"/>
+<text x="120" y="155" text-anchor="middle" font-size="20" font-family="sans-serif">👤</text>
+<text x="120" y="200" text-anchor="middle" font-size="13" font-weight="800" font-family="sans-serif" fill="#7c3aed">Ram Mohan Roy</text>
+<text x="120" y="220" text-anchor="middle" font-size="11" font-family="sans-serif" fill="#6b21a8">Widow remarriage</text>
+<circle cx="340" cy="165" r="55" fill="none" stroke="#a855f7" stroke-width="3"/>
+<text x="340" y="155" text-anchor="middle" font-size="20" font-family="sans-serif">👤</text>
+<text x="340" y="200" text-anchor="middle" font-size="13" font-weight="800" font-family="sans-serif" fill="#a855f7">Jyotirao Phule</text>
+<text x="340" y="220" text-anchor="middle" font-size="11" font-family="sans-serif" fill="#6b21a8">Caste equality</text>
+<circle cx="560" cy="165" r="55" fill="none" stroke="#c026d3" stroke-width="3"/>
+<text x="560" y="155" text-anchor="middle" font-size="20" font-family="sans-serif">👤</text>
+<text x="560" y="200" text-anchor="middle" font-size="13" font-weight="800" font-family="sans-serif" fill="#c026d3">Pandita Ramabai</text>
+<text x="560" y="220" text-anchor="middle" font-size="11" font-family="sans-serif" fill="#6b21a8">Women's rights</text>
+<rect x="80" y="258" width="640" height="90" rx="14" fill="#f3e8ff" stroke="#9333ea" stroke-width="2"/>
+<text x="400" y="288" text-anchor="middle" font-size="15" font-weight="800" font-family="sans-serif" fill="#6b21a8">Key Reforms</text>
+<text x="400" y="312" text-anchor="middle" font-size="13" font-family="sans-serif" fill="#7e22ce">Sati abolition (1829) · Widow Remarriage Act (1856)</text>
+<text x="400" y="334" text-anchor="middle" font-size="13" font-family="sans-serif" fill="#7e22ce">Girls' education · Abolition of untouchability movement</text>
+<text x="400" y="383" text-anchor="middle" font-size="24" font-family="sans-serif" font-weight="800" fill="#581c87">Women, Caste and Reform</text>
+</svg>

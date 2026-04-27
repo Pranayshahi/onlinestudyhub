@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="420" viewBox="0 0 800 420">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#f1f5f9"/>
+      <stop offset="100%" stop-color="#e2e8f0"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="420" fill="url(#bg)" rx="20"/>
+  <!-- Factory silhouette -->
+<rect x="100" y="180" width="600" height="200" rx="8" fill="#cbd5e1" stroke="#475569" stroke-width="2.5"/>
+<!-- Chimneys -->
+<rect x="140" y="110" width="40" height="72" rx="4" fill="#94a3b8" stroke="#475569" stroke-width="2"/>
+<path d="M135,115 Q160,95 185,115" fill="#e2e8f0" stroke="#475569" stroke-width="1.5"/>
+<ellipse cx="160" cy="112" rx="25" ry="10" fill="#e2e8f0" stroke="#475569" stroke-width="1.5"/><rect x="260" y="110" width="40" height="72" rx="4" fill="#94a3b8" stroke="#475569" stroke-width="2"/>
+<path d="M255,115 Q280,95 305,115" fill="#e2e8f0" stroke="#475569" stroke-width="1.5"/>
+<ellipse cx="280" cy="112" rx="25" ry="10" fill="#e2e8f0" stroke="#475569" stroke-width="1.5"/><rect x="380" y="90" width="40" height="92" rx="4" fill="#94a3b8" stroke="#475569" stroke-width="2"/>
+<path d="M375,95 Q400,75 425,95" fill="#e2e8f0" stroke="#475569" stroke-width="1.5"/>
+<ellipse cx="400" cy="92" rx="25" ry="10" fill="#e2e8f0" stroke="#475569" stroke-width="1.5"/><rect x="500" y="110" width="40" height="72" rx="4" fill="#94a3b8" stroke="#475569" stroke-width="2"/>
+<path d="M495,115 Q520,95 545,115" fill="#e2e8f0" stroke="#475569" stroke-width="1.5"/>
+<ellipse cx="520" cy="112" rx="25" ry="10" fill="#e2e8f0" stroke="#475569" stroke-width="1.5"/><rect x="620" y="110" width="40" height="72" rx="4" fill="#94a3b8" stroke="#475569" stroke-width="2"/>
+<path d="M615,115 Q640,95 665,115" fill="#e2e8f0" stroke="#475569" stroke-width="1.5"/>
+<ellipse cx="640" cy="112" rx="25" ry="10" fill="#e2e8f0" stroke="#475569" stroke-width="1.5"/>
+<!-- Windows -->
+<rect x="130" y="215" width="45" height="40" rx="4" fill="#93c5fd" stroke="#475569" stroke-width="1.5"/><rect x="200" y="215" width="45" height="40" rx="4" fill="#93c5fd" stroke="#475569" stroke-width="1.5"/><rect x="270" y="215" width="45" height="40" rx="4" fill="#93c5fd" stroke="#475569" stroke-width="1.5"/><rect x="340" y="215" width="45" height="40" rx="4" fill="#93c5fd" stroke="#475569" stroke-width="1.5"/><rect x="430" y="215" width="45" height="40" rx="4" fill="#93c5fd" stroke="#475569" stroke-width="1.5"/><rect x="500" y="215" width="45" height="40" rx="4" fill="#93c5fd" stroke="#475569" stroke-width="1.5"/><rect x="570" y="215" width="45" height="40" rx="4" fill="#93c5fd" stroke="#475569" stroke-width="1.5"/><rect x="640" y="215" width="45" height="40" rx="4" fill="#93c5fd" stroke="#475569" stroke-width="1.5"/>
+<!-- Smoke -->
+<ellipse cx="160" cy="60" rx="22" ry="14" fill="#e2e8f0" opacity=".7"/>
+<ellipse cx="172" cy="38" rx="18" ry="11" fill="#f8fafc" opacity=".6"/><ellipse cx="280" cy="52" rx="22" ry="14" fill="#e2e8f0" opacity=".7"/>
+<ellipse cx="292" cy="32" rx="18" ry="11" fill="#f8fafc" opacity=".6"/><ellipse cx="400" cy="44" rx="22" ry="14" fill="#e2e8f0" opacity=".7"/>
+<ellipse cx="412" cy="26" rx="18" ry="11" fill="#f8fafc" opacity=".6"/><ellipse cx="520" cy="60" rx="22" ry="14" fill="#e2e8f0" opacity=".7"/>
+<ellipse cx="532" cy="38" rx="18" ry="11" fill="#f8fafc" opacity=".6"/><ellipse cx="640" cy="52" rx="22" ry="14" fill="#e2e8f0" opacity=".7"/>
+<ellipse cx="652" cy="32" rx="18" ry="11" fill="#f8fafc" opacity=".6"/>
+<rect x="120" y="352" width="560" height="42" rx="10" fill="#475569"/>
+<text x="400" y="379" text-anchor="middle" font-size="16" font-family="sans-serif" font-weight="800" fill="#fff">Industries — Agro · Textile · Iron &amp; Steel · IT</text>
+</svg>

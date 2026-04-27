@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="420" viewBox="0 0 800 420">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#1c1917"/>
+      <stop offset="100%" stop-color="#292524"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="420" fill="url(#bg)" rx="20"/>
+  <!-- Dark underground scene -->
+<rect x="0" y="0" width="800" height="420" fill="#1c1917" rx="0"/>
+<rect x="0" y="260" width="800" height="160" fill="#292524" rx="0"/>
+<!-- Coal seam -->
+<rect x="80" y="275" width="280" height="60" rx="8" fill="#0f172a" stroke="#475569" stroke-width="2"/>
+<text x="220" y="312" text-anchor="middle" font-size="15" font-weight="700" font-family="sans-serif" fill="#94a3b8">Coal Seam</text>
+<!-- Oil derrick -->
+<polygon points="560,100 600,100 580,260" fill="none" stroke="#f59e0b" stroke-width="3"/>
+<line x1="575" y1="170" x2="620" y2="180" stroke="#f59e0b" stroke-width="2"/>
+<line x1="575" y1="200" x2="540" y2="210" stroke="#f59e0b" stroke-width="2"/>
+<rect x="555" y="260" width="50" height="60" fill="#b45309" stroke="#f59e0b" stroke-width="2"/>
+<!-- Labels -->
+<rect x="80" y="65" width="280" height="80" rx="12" fill="rgba(245,158,11,0.15)" stroke="#f59e0b" stroke-width="1.5"/>
+<text x="220" y="98" text-anchor="middle" font-size="14" font-weight="800" font-family="sans-serif" fill="#fbbf24">COAL</text>
+<text x="220" y="120" text-anchor="middle" font-size="12" font-family="sans-serif" fill="#d97706">Carbonisation of plants</text>
+<text x="220" y="138" text-anchor="middle" font-size="12" font-family="sans-serif" fill="#d97706">Coke · Coal tar · Coal gas</text>
+<rect x="440" y="65" width="280" height="80" rx="12" fill="rgba(245,158,11,0.15)" stroke="#f59e0b" stroke-width="1.5"/>
+<text x="580" y="98" text-anchor="middle" font-size="14" font-weight="800" font-family="sans-serif" fill="#fbbf24">PETROLEUM</text>
+<text x="580" y="120" text-anchor="middle" font-size="12" font-family="sans-serif" fill="#d97706">Fractional distillation</text>
+<text x="580" y="138" text-anchor="middle" font-size="12" font-family="sans-serif" fill="#d97706">Petrol · Diesel · Kerosene · LPG</text>
+<text x="400" y="390" text-anchor="middle" font-size="22" font-family="sans-serif" font-weight="800" fill="#fbbf24">Coal and Petroleum</text>
+</svg>

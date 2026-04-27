@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="420" viewBox="0 0 800 420">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#fff7ed"/>
+      <stop offset="100%" stop-color="#ffedd5"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="420" fill="url(#bg)" rx="20"/>
+  <!-- Indian flag colours -->
+<rect x="80" y="80" width="640" height="50" rx="8" fill="#f97316"/>
+<rect x="80" y="130" width="640" height="50" rx="0" fill="#fff" stroke="#e5e7eb" stroke-width="0.5"/>
+<rect x="80" y="180" width="640" height="50" rx="8" fill="#16a34a"/>
+<!-- Chakra -->
+<circle cx="400" cy="155" r="22" fill="none" stroke="#1d4ed8" stroke-width="2.5"/>
+<line x1="422" y1="155" x2="414" y2="155" stroke="#1d4ed8" stroke-width="1.5"/><line x1="419" y1="166" x2="412" y2="162" stroke="#1d4ed8" stroke-width="1.5"/><line x1="411" y1="174" x2="407" y2="167" stroke="#1d4ed8" stroke-width="1.5"/><line x1="400" y1="177" x2="400" y2="169" stroke="#1d4ed8" stroke-width="1.5"/><line x1="389" y1="174" x2="393" y2="167" stroke="#1d4ed8" stroke-width="1.5"/><line x1="381" y1="166" x2="388" y2="162" stroke="#1d4ed8" stroke-width="1.5"/><line x1="378" y1="155" x2="386" y2="155" stroke="#1d4ed8" stroke-width="1.5"/><line x1="381" y1="144" x2="388" y2="148" stroke="#1d4ed8" stroke-width="1.5"/><line x1="389" y1="136" x2="393" y2="143" stroke="#1d4ed8" stroke-width="1.5"/><line x1="400" y1="133" x2="400" y2="141" stroke="#1d4ed8" stroke-width="1.5"/><line x1="411" y1="136" x2="407" y2="143" stroke="#1d4ed8" stroke-width="1.5"/><line x1="419" y1="144" x2="412" y2="148" stroke="#1d4ed8" stroke-width="1.5"/>
+<!-- Key events -->
+<rect x="80" y="258" width="640" height="100" rx="12" fill="#ffedd5" stroke="#f97316" stroke-width="2"/>
+<text x="400" y="287" text-anchor="middle" font-size="15" font-weight="800" font-family="sans-serif" fill="#7c2d12">Freedom Struggle Milestones</text>
+<text x="400" y="312" text-anchor="middle" font-size="13" font-family="sans-serif" fill="#9a3412">1905 Partition of Bengal · 1906 Muslim League · 1916 Lucknow Pact</text>
+<text x="400" y="334" text-anchor="middle" font-size="13" font-family="sans-serif" fill="#9a3412">Non-Cooperation (1920) · Civil Disobedience (1930) · Quit India (1942)</text>
+<text x="400" y="383" text-anchor="middle" font-size="24" font-family="sans-serif" font-weight="800" fill="#7c2d12">The Making of the National Movement</text>
+</svg>
