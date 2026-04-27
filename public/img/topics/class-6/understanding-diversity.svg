@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="420" viewBox="0 0 800 420">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#f0fdf4"/>
+      <stop offset="100%" style="stop-color:#bbf7d0"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="420" fill="url(#bg)"/>
+  <circle cx="180" cy="180" r="55" fill="#fde68a" opacity=".8"/>
+<text x="180" y="195" text-anchor="middle" font-size="44">🧕</text><circle cx="280" cy="180" r="55" fill="#bfdbfe" opacity=".8"/>
+<text x="280" y="195" text-anchor="middle" font-size="44">👨‍💼</text><circle cx="380" cy="180" r="55" fill="#d1fae5" opacity=".8"/>
+<text x="380" y="195" text-anchor="middle" font-size="44">👩‍🌾</text><circle cx="480" cy="180" r="55" fill="#fce7f3" opacity=".8"/>
+<text x="480" y="195" text-anchor="middle" font-size="44">👳</text><circle cx="580" cy="180" r="55" fill="#ede9fe" opacity=".8"/>
+<text x="580" y="195" text-anchor="middle" font-size="44">👩‍🔬</text>
+<text x="400" y="100" text-anchor="middle" font-size="22" font-family="sans-serif" font-weight="700" fill="#15803d">Unity in Diversity</text>
+<rect x="100" y="270" width="600" height="50" rx="12" fill="#d1fae5" stroke="#059669" stroke-width="2"/>
+<text x="400" y="300" text-anchor="middle" font-size="16" font-family="sans-serif" fill="#065f46">Different cultures, languages, religions — ONE INDIA 🇮🇳</text>
+<text x="400" y="380" text-anchor="middle" font-size="24" font-family="sans-serif" font-weight="800" fill="#064e3b">Understanding Diversity</text>
+</svg>

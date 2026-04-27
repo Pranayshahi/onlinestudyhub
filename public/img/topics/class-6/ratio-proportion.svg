@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="420" viewBox="0 0 800 420">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#f0fdf4"/>
+      <stop offset="100%" style="stop-color:#bbf7d0"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="420" fill="url(#bg)"/>
+  <rect x="80" y="290" width="220" height="20" rx="6" fill="#374151"/>
+<circle cx="190" cy="285" r="12" fill="#374151"/>
+<rect x="80" y="160" width="100" height="120" rx="10" fill="#16a34a" opacity=".8"/>
+<rect x="200" y="130" width="100" height="150" rx="10" fill="#4ade80" opacity=".8"/>
+<text x="130" y="150" text-anchor="middle" font-size="24" font-family="sans-serif" font-weight="700" fill="#fff">2</text>
+<text x="250" y="120" text-anchor="middle" font-size="24" font-family="sans-serif" font-weight="700" fill="#065f46">3</text>
+<text x="190" y="340" text-anchor="middle" font-size="18" font-family="sans-serif" font-weight="700" fill="#14532d">Ratio  2 : 3</text>
+<rect x="420" y="140" width="120" height="140" rx="10" fill="#2563eb" opacity=".8"/>
+<rect x="560" y="140" width="180" height="140" rx="10" fill="#60a5fa" opacity=".8"/>
+<text x="480" y="220" text-anchor="middle" font-size="24" font-family="sans-serif" font-weight="700" fill="#fff">4</text>
+<text x="650" y="220" text-anchor="middle" font-size="24" font-family="sans-serif" font-weight="700" fill="#1e3a8a">6</text>
+<text x="555" y="320" text-anchor="middle" font-size="16" font-family="sans-serif" font-weight="700" fill="#1e3a8a">4:6 = 2:3 Proportion ✓</text>
+<text x="400" y="390" text-anchor="middle" font-size="26" font-family="sans-serif" font-weight="800" fill="#14532d">Ratio and Proportion</text>
+</svg>

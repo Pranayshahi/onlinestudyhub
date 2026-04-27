@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="420" viewBox="0 0 800 420">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#fffbeb"/>
+      <stop offset="100%" style="stop-color:#fde68a"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="420" fill="url(#bg)"/>
+  <rect x="100" y="130" width="200" height="180" rx="8" fill="#fef3c7" stroke="#92400e" stroke-width="3"/>
+<text x="200" y="185" text-anchor="middle" font-size="42">📜</text>
+<text x="200" y="230" text-anchor="middle" font-size="15" font-family="sans-serif" font-weight="700" fill="#78350f">Vedas &amp; Texts</text>
+<text x="200" y="255" text-anchor="middle" font-size="13" font-family="sans-serif" fill="#92400e">Written sources</text>
+<rect x="500" y="130" width="200" height="180" rx="8" fill="#fef3c7" stroke="#92400e" stroke-width="3"/>
+<text x="600" y="185" text-anchor="middle" font-size="42">⚱️</text>
+<text x="600" y="230" text-anchor="middle" font-size="15" font-family="sans-serif" font-weight="700" fill="#78350f">Burial Mounds</text>
+<text x="600" y="255" text-anchor="middle" font-size="13" font-family="sans-serif" fill="#92400e">Archaeological</text>
+<text x="380" y="220" text-anchor="middle" font-size="32">+</text>
+<text x="400" y="380" text-anchor="middle" font-size="22" font-family="sans-serif" font-weight="800" fill="#78350f">What Books and Burials Tell Us</text>
+</svg>

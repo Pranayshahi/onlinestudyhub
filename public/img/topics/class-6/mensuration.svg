@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="420" viewBox="0 0 800 420">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#fdf4ff"/>
+      <stop offset="100%" style="stop-color:#e9d5ff"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="420" fill="url(#bg)"/>
+  <rect x="150" y="130" width="260" height="160" rx="6" fill="#ede9fe" stroke="#7c3aed" stroke-width="3"/>
+<line x1="150" y1="115" x2="410" y2="115" stroke="#7c3aed" stroke-width="2"/>
+<text x="280" y="108" text-anchor="middle" font-size="16" font-family="sans-serif" font-weight="700" fill="#5b21b6">length = 13 cm</text>
+<line x1="425" y1="130" x2="425" y2="290" stroke="#7c3aed" stroke-width="2"/>
+<text x="460" y="215" text-anchor="middle" font-size="16" font-family="sans-serif" font-weight="700" fill="#5b21b6" transform="rotate(90,460,215)">width = 8 cm</text>
+<text x="280" y="215" text-anchor="middle" font-size="22" font-family="sans-serif" font-weight="700" fill="#4c1d95">Area = l × b</text>
+<text x="280" y="248" text-anchor="middle" font-size="20" font-family="sans-serif" fill="#5b21b6">= 13 × 8 = 104 cm²</text>
+<text x="560" y="170" text-anchor="middle" font-size="18" font-family="sans-serif" font-weight="700" fill="#7c3aed">Perimeter</text>
+<text x="560" y="198" text-anchor="middle" font-size="16" font-family="sans-serif" fill="#7c3aed">= 2(l+b)</text>
+<text x="560" y="222" text-anchor="middle" font-size="16" font-family="sans-serif" fill="#7c3aed">= 42 cm</text>
+<text x="380" y="370" text-anchor="middle" font-size="26" font-family="sans-serif" font-weight="800" fill="#3b0764">Mensuration</text>
+</svg>

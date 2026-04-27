@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="420" viewBox="0 0 800 420">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#eff6ff"/>
+      <stop offset="100%" style="stop-color:#bfdbfe"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="420" fill="url(#bg)"/>
+  <rect x="10" y="110" width="215" height="110" rx="14" fill="white" stroke="#16a34a" stroke-width="2.5"/>
+<text x="120" y="142" text-anchor="middle" font-size="14" font-family="sans-serif" font-weight="700" fill="#16a34a">Declarative</text>
+<text x="120" y="172" text-anchor="middle" font-size="13" font-family="sans-serif" fill="#374151">She reads books.</text><rect x="260" y="110" width="215" height="110" rx="14" fill="white" stroke="#2563eb" stroke-width="2.5"/>
+<text x="370" y="142" text-anchor="middle" font-size="14" font-family="sans-serif" font-weight="700" fill="#2563eb">Interrogative</text>
+<text x="370" y="172" text-anchor="middle" font-size="13" font-family="sans-serif" fill="#374151">Does she read?</text><rect x="510" y="110" width="215" height="110" rx="14" fill="white" stroke="#ea580c" stroke-width="2.5"/>
+<text x="620" y="142" text-anchor="middle" font-size="14" font-family="sans-serif" font-weight="700" fill="#ea580c">Imperative</text>
+<text x="620" y="172" text-anchor="middle" font-size="13" font-family="sans-serif" fill="#374151">Read this!</text><rect x="135" y="260" width="215" height="110" rx="14" fill="white" stroke="#7c3aed" stroke-width="2.5"/>
+<text x="245" y="292" text-anchor="middle" font-size="14" font-family="sans-serif" font-weight="700" fill="#7c3aed">Exclamatory</text>
+<text x="245" y="322" text-anchor="middle" font-size="13" font-family="sans-serif" fill="#374151">How great!</text><rect x="385" y="260" width="215" height="110" rx="14" fill="white" stroke="#ca8a04" stroke-width="2.5"/>
+<text x="495" y="292" text-anchor="middle" font-size="14" font-family="sans-serif" font-weight="700" fill="#ca8a04">Punctuation</text>
+<text x="495" y="322" text-anchor="middle" font-size="13" font-family="sans-serif" fill="#374151">. , ? ! ; :</text>
+<text x="400" y="410" text-anchor="middle" font-size="22" font-family="sans-serif" font-weight="800" fill="#1e3a8a">Sentences, Types and Punctuation</text>
+</svg>

@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="420" viewBox="0 0 800 420">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#fff1f2"/>
+      <stop offset="100%" style="stop-color:#fecdd3"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="420" fill="url(#bg)"/>
+  <rect x="10" y="125" width="170" height="85" rx="12" fill="#fff1f2" stroke="#e11d48" stroke-width="2"/>
+<text x="100" y="160" text-anchor="middle" font-size="14" font-family="sans-serif" font-weight="700" fill="#be123c">Noun</text>
+<text x="100" y="185" text-anchor="middle" font-size="13" font-family="sans-serif" fill="#374151">🏠 dog city</text><rect x="210" y="125" width="170" height="85" rx="12" fill="#fff1f2" stroke="#e11d48" stroke-width="2"/>
+<text x="300" y="160" text-anchor="middle" font-size="14" font-family="sans-serif" font-weight="700" fill="#be123c">Verb</text>
+<text x="300" y="185" text-anchor="middle" font-size="13" font-family="sans-serif" fill="#374151">🏃 run jump</text><rect x="410" y="125" width="170" height="85" rx="12" fill="#fff1f2" stroke="#e11d48" stroke-width="2"/>
+<text x="500" y="160" text-anchor="middle" font-size="14" font-family="sans-serif" font-weight="700" fill="#be123c">Adjective</text>
+<text x="500" y="185" text-anchor="middle" font-size="13" font-family="sans-serif" fill="#374151">✨ big happy</text><rect x="610" y="125" width="170" height="85" rx="12" fill="#fff1f2" stroke="#e11d48" stroke-width="2"/>
+<text x="700" y="160" text-anchor="middle" font-size="14" font-family="sans-serif" font-weight="700" fill="#be123c">Adverb</text>
+<text x="700" y="185" text-anchor="middle" font-size="13" font-family="sans-serif" fill="#374151">💨 quickly</text><rect x="10" y="275" width="170" height="85" rx="12" fill="#fff1f2" stroke="#e11d48" stroke-width="2"/>
+<text x="100" y="310" text-anchor="middle" font-size="14" font-family="sans-serif" font-weight="700" fill="#be123c">Pronoun</text>
+<text x="100" y="335" text-anchor="middle" font-size="13" font-family="sans-serif" fill="#374151">👤 he she</text><rect x="210" y="275" width="170" height="85" rx="12" fill="#fff1f2" stroke="#e11d48" stroke-width="2"/>
+<text x="300" y="310" text-anchor="middle" font-size="14" font-family="sans-serif" font-weight="700" fill="#be123c">Preposition</text>
+<text x="300" y="335" text-anchor="middle" font-size="13" font-family="sans-serif" fill="#374151">📍 on under</text><rect x="410" y="275" width="170" height="85" rx="12" fill="#fff1f2" stroke="#e11d48" stroke-width="2"/>
+<text x="500" y="310" text-anchor="middle" font-size="14" font-family="sans-serif" font-weight="700" fill="#be123c">Conjunction</text>
+<text x="500" y="335" text-anchor="middle" font-size="13" font-family="sans-serif" fill="#374151">🔗 and but</text><rect x="610" y="275" width="170" height="85" rx="12" fill="#fff1f2" stroke="#e11d48" stroke-width="2"/>
+<text x="700" y="310" text-anchor="middle" font-size="14" font-family="sans-serif" font-weight="700" fill="#be123c">Article</text>
+<text x="700" y="335" text-anchor="middle" font-size="13" font-family="sans-serif" fill="#374151">📝 a an the</text>
+<text x="400" y="410" text-anchor="middle" font-size="24" font-family="sans-serif" font-weight="800" fill="#881337">Parts of Speech</text>
+</svg>

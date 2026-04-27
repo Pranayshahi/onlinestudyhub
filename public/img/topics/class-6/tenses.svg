@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="420" viewBox="0 0 800 420">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#eff6ff"/>
+      <stop offset="100%" style="stop-color:#bfdbfe"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="420" fill="url(#bg)"/>
+  <line x1="80" y1="210" x2="720" y2="210" stroke="#374151" stroke-width="3"/>
+<polygon points="720,202 740,210 720,218" fill="#374151"/>
+<circle cx="180" cy="210" r="12" fill="#dc2626"/>
+<circle cx="400" cy="210" r="12" fill="#16a34a"/>
+<circle cx="620" cy="210" r="12" fill="#2563eb"/>
+<rect x="100" y="120" width="160" height="70" rx="12" fill="#fecaca" stroke="#dc2626" stroke-width="2"/>
+<text x="180" y="152" text-anchor="middle" font-size="16" font-family="sans-serif" font-weight="700" fill="#7f1d1d">Past</text>
+<text x="180" y="178" text-anchor="middle" font-size="14" font-family="sans-serif" fill="#991b1b">She played</text>
+<rect x="320" y="120" width="160" height="70" rx="12" fill="#d1fae5" stroke="#16a34a" stroke-width="2"/>
+<text x="400" y="152" text-anchor="middle" font-size="16" font-family="sans-serif" font-weight="700" fill="#14532d">Present</text>
+<text x="400" y="178" text-anchor="middle" font-size="14" font-family="sans-serif" fill="#166534">She plays</text>
+<rect x="540" y="120" width="160" height="70" rx="12" fill="#bfdbfe" stroke="#2563eb" stroke-width="2"/>
+<text x="620" y="152" text-anchor="middle" font-size="16" font-family="sans-serif" font-weight="700" fill="#1e3a8a">Future</text>
+<text x="620" y="178" text-anchor="middle" font-size="14" font-family="sans-serif" fill="#1d4ed8">She will play</text>
+<text x="400" y="380" text-anchor="middle" font-size="28" font-family="sans-serif" font-weight="800" fill="#1e3a8a">Tenses</text>
+</svg>

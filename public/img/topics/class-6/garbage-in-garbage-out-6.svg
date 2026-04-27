@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="420" viewBox="0 0 800 420">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#f0fdf4"/>
+      <stop offset="100%" style="stop-color:#bbf7d0"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="420" fill="url(#bg)"/>
+  <circle cx="400" cy="200" r="130" fill="#d1fae5" stroke="#16a34a" stroke-width="3"/>
+<path d="M400,200 L400,70 A130,130 0 0,1 513,265 Z" fill="#4ade80" opacity=".8"/>
+<path d="M400,200 L513,265 A130,130 0 0,1 287,265 Z" fill="#f87171" opacity=".8"/>
+<path d="M400,200 L287,265 A130,130 0 0,1 400,70 Z" fill="#60a5fa" opacity=".8"/>
+<text x="460" y="165" font-size="13" font-family="sans-serif" font-weight="700" fill="#fff">♻️ Reduce</text>
+<text x="460" y="268" font-size="13" font-family="sans-serif" font-weight="700" fill="#fff">🗑️ Landfill</text>
+<text x="300" y="218" font-size="13" font-family="sans-serif" font-weight="700" fill="#fff">🌱 Compost</text>
+<text x="400" y="375" text-anchor="middle" font-size="24" font-family="sans-serif" font-weight="800" fill="#14532d">Garbage In, Garbage Out</text>
+</svg>

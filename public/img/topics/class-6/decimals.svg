@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="420" viewBox="0 0 800 420">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#ecfdf5"/>
+      <stop offset="100%" style="stop-color:#a7f3d0"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="420" fill="url(#bg)"/>
+  <text x="400" y="130" text-anchor="middle" font-size="90" font-family="monospace" font-weight="900" fill="#059669" opacity=".15">3.14</text>
+<rect x="100" y="155" width="600" height="100" rx="16" fill="#d1fae5" stroke="#059669" stroke-width="2"/>
+<text x="190" y="215" text-anchor="middle" font-size="48" font-family="monospace" font-weight="900" fill="#065f46">3</text>
+<text x="310" y="215" text-anchor="middle" font-size="48" font-family="monospace" font-weight="900" fill="#374151">.</text>
+<text x="430" y="215" text-anchor="middle" font-size="48" font-family="monospace" font-weight="900" fill="#059669">7</text>
+<text x="550" y="215" text-anchor="middle" font-size="48" font-family="monospace" font-weight="900" fill="#34d399">5</text>
+<text x="190" y="275" text-anchor="middle" font-size="14" font-family="sans-serif" fill="#065f46">ones</text>
+<text x="430" y="275" text-anchor="middle" font-size="14" font-family="sans-serif" fill="#059669">tenths</text>
+<text x="550" y="275" text-anchor="middle" font-size="14" font-family="sans-serif" fill="#34d399">hundredths</text>
+<text x="400" y="370" text-anchor="middle" font-size="28" font-family="sans-serif" font-weight="800" fill="#064e3b">Decimals</text>
+</svg>

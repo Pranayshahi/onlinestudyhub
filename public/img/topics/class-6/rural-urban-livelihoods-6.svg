@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="420" viewBox="0 0 800 420">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#ecfdf5"/>
+      <stop offset="100%" style="stop-color:#a7f3d0"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="420" fill="url(#bg)"/>
+  <rect x="80" y="280" width="280" height="50" rx="8" fill="#86efac"/>
+<polygon points="130,280 170,180 210,280" fill="#4b5563"/>
+<polygon points="200,280 240,200 280,280" fill="#6b7280"/>
+<rect x="155" y="240" width="30" height="40" rx="4" fill="#92400e"/>
+<text x="220" y="360" text-anchor="middle" font-size="14" font-family="sans-serif" font-weight="700" fill="#14532d">🌾 Rural</text>
+<text x="220" y="380" text-anchor="middle" font-size="12" fill="#15803d">Farming • Fishing</text>
+<rect x="440" y="280" width="280" height="50" rx="8" fill="#93c5fd"/>
+<rect x="460" y="200" width="50" height="80" rx="4" fill="#1d4ed8" opacity=".8"/>
+<rect x="530" y="160" width="50" height="120" rx="4" fill="#2563eb" opacity=".8"/>
+<rect x="600" y="180" width="50" height="100" rx="4" fill="#1d4ed8" opacity=".8"/>
+<rect x="670" y="220" width="35" height="60" rx="4" fill="#60a5fa" opacity=".8"/>
+<text x="580" y="360" text-anchor="middle" font-size="14" font-family="sans-serif" font-weight="700" fill="#1e3a8a">🏙️ Urban</text>
+<text x="580" y="380" text-anchor="middle" font-size="12" fill="#1d4ed8">Trade • Industry • Services</text>
+<text x="400" y="410" text-anchor="middle" font-size="20" font-family="sans-serif" font-weight="800" fill="#064e3b">Rural and Urban Livelihoods</text>
+</svg>

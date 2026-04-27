@@ -304,6 +304,8 @@ export default function TopicPage({ user, onOpenLogin }) {
           subjectId={subjectId}
           topicTitle={topic.title}
           classLabel={classData.label}
+          classId={classId}
+          topicId={topicId}
         />
 
         {/* ── 3. Q&A Accordion ── */}

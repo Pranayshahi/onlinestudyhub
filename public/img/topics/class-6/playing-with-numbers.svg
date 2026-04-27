@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="420" viewBox="0 0 800 420">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#fff7ed"/>
+      <stop offset="100%" style="stop-color:#fed7aa"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="420" fill="url(#bg)"/>
+  <circle cx="200" cy="195" r="90" fill="#ea580c" opacity=".12" stroke="#ea580c" stroke-width="3"/>
+<circle cx="400" cy="195" r="90" fill="#f97316" opacity=".12" stroke="#f97316" stroke-width="3"/>
+<circle cx="600" cy="195" r="90" fill="#fb923c" opacity=".12" stroke="#fb923c" stroke-width="3"/>
+<text x="200" y="185" text-anchor="middle" font-size="22" font-family="sans-serif" font-weight="700" fill="#c2410c">Factors</text>
+<text x="200" y="215" text-anchor="middle" font-size="18" font-family="sans-serif" fill="#c2410c">2×3=6</text>
+<text x="400" y="185" text-anchor="middle" font-size="22" font-family="sans-serif" font-weight="700" fill="#9a3412">Multiples</text>
+<text x="400" y="215" text-anchor="middle" font-size="18" font-family="sans-serif" fill="#9a3412">3,6,9,12…</text>
+<text x="600" y="185" text-anchor="middle" font-size="22" font-family="sans-serif" font-weight="700" fill="#c2410c">Primes</text>
+<text x="600" y="215" text-anchor="middle" font-size="18" font-family="sans-serif" fill="#c2410c">2,3,5,7,11</text>
+<text x="400" y="360" text-anchor="middle" font-size="28" font-family="sans-serif" font-weight="800" fill="#7c2d12">Playing with Numbers</text>
+</svg>

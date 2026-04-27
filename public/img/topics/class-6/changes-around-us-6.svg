@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="420" viewBox="0 0 800 420">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#fff7ed"/>
+      <stop offset="100%" style="stop-color:#fed7aa"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="420" fill="url(#bg)"/>
+  <rect x="80" y="140" width="240" height="180" rx="16" fill="#fde68a" stroke="#ea580c" stroke-width="3"/>
+<text x="200" y="185" text-anchor="middle" font-size="16" font-family="sans-serif" font-weight="700" fill="#c2410c">Reversible</text>
+<text x="200" y="220" text-anchor="middle" font-size="32">🧊→💧→🧊</text>
+<text x="200" y="270" text-anchor="middle" font-size="14" font-family="sans-serif" fill="#7c2d12">Ice ⇌ Water</text>
+<rect x="480" y="140" width="240" height="180" rx="16" fill="#fecdd3" stroke="#e11d48" stroke-width="3"/>
+<text x="600" y="185" text-anchor="middle" font-size="16" font-family="sans-serif" font-weight="700" fill="#9f1239">Irreversible</text>
+<text x="600" y="220" text-anchor="middle" font-size="32">🌿→🔥→💨</text>
+<text x="600" y="270" text-anchor="middle" font-size="14" font-family="sans-serif" fill="#7f1d1d">Burning wood</text>
+<text x="400" y="375" text-anchor="middle" font-size="24" font-family="sans-serif" font-weight="800" fill="#7c2d12">Changes Around Us</text>
+</svg>

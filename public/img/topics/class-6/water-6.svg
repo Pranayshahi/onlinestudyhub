@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="420" viewBox="0 0 800 420">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#eff6ff"/>
+      <stop offset="100%" style="stop-color:#bfdbfe"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="420" fill="url(#bg)"/>
+  <ellipse cx="400" cy="310" rx="280" ry="50" fill="#bae6fd" opacity=".6"/>
+<path d="M200,310 Q280,200 400,180 Q520,200 600,310" fill="#7dd3fc" opacity=".5"/>
+<path d="M200,310 Q250,250 400,230 Q550,250 600,310 Z" fill="#38bdf8" opacity=".4"/>
+<path d="M260,180 Q270,130 280,180" fill="none" stroke="#7dd3fc" stroke-width="2.5"/>
+<path d="M330,160 Q340,100 350,160" fill="none" stroke="#7dd3fc" stroke-width="2.5"/>
+<path d="M400,150 Q420,80 440,150" fill="none" stroke="#bae6fd" stroke-width="2.5"/>
+<text x="300" y="120" font-size="14" font-family="sans-serif" fill="#0369a1">☁️ Clouds</text>
+<text x="500" y="105" font-size="14" font-family="sans-serif" fill="#0369a1">🌧️ Rain</text>
+<path d="M520,110 L520,160 M540,110 L540,165 M560,110 L560,155" stroke="#0369a1" stroke-width="2"/>
+<text x="180" y="280" font-size="14" font-family="sans-serif" font-weight="700" fill="#0c4a6e">Water Cycle</text>
+<text x="400" y="390" text-anchor="middle" font-size="26" font-family="sans-serif" font-weight="800" fill="#0c4a6e">Water</text>
+</svg>

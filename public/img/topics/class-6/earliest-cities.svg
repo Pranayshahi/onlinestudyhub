@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="420" viewBox="0 0 800 420">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#fffbeb"/>
+      <stop offset="100%" style="stop-color:#fde68a"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="420" fill="url(#bg)"/>
+  <rect x="200" y="150" width="80" height="140" rx="4" fill="#d97706" opacity=".8"/>
+<rect x="300" y="110" width="90" height="180" rx="4" fill="#b45309" opacity=".8"/>
+<rect x="410" y="130" width="80" height="160" rx="4" fill="#d97706" opacity=".8"/>
+<rect x="510" y="90" width="70" height="200" rx="4" fill="#92400e" opacity=".8"/>
+<polygon points="200,150 240,100 280,150" fill="#78350f"/>
+<polygon points="300,110 345,60 390,110" fill="#78350f"/>
+<polygon points="410,130 450,80 490,130" fill="#78350f"/>
+<polygon points="510,90 545,50 580,90" fill="#78350f"/>
+<rect x="80" y="290" width="640" height="20" rx="4" fill="#92400e" opacity=".5"/>
+<text x="400" y="80" text-anchor="middle" font-size="18" font-family="sans-serif" font-weight="700" fill="#78350f">Harappa • Mohenjo-daro</text>
+<text x="400" y="360" text-anchor="middle" font-size="16" font-family="sans-serif" fill="#92400e">Planned streets • Drainage • Granaries</text>
+<text x="400" y="390" text-anchor="middle" font-size="22" font-family="sans-serif" font-weight="800" fill="#78350f">In the Earliest Cities</text>
+</svg>

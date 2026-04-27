@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="420" viewBox="0 0 800 420">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#fdf4ff"/>
+      <stop offset="100%" style="stop-color:#e9d5ff"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="420" fill="url(#bg)"/>
+  <line x1="400" y1="70" x2="400" y2="330" stroke="#9333ea" stroke-width="3" stroke-dasharray="10,6"/>
+<text x="400" y="60" text-anchor="middle" font-size="14" font-family="sans-serif" fill="#7e22ce">Line of Symmetry</text>
+<ellipse cx="280" cy="180" rx="55" ry="90" fill="#f3e8ff" stroke="#9333ea" stroke-width="3"/>
+<ellipse cx="520" cy="180" rx="55" ry="90" fill="#f3e8ff" stroke="#9333ea" stroke-width="3"/>
+<circle cx="280" cy="140" r="18" fill="#c084fc"/>
+<circle cx="520" cy="140" r="18" fill="#c084fc"/>
+<path d="M230,210 Q280,230 330,210" stroke="#9333ea" stroke-width="3" fill="none"/>
+<path d="M470,210 Q520,230 570,210" stroke="#9333ea" stroke-width="3" fill="none"/>
+<path d="M240,160 L260,175 L240,190" fill="none" stroke="#7c3aed" stroke-width="2.5"/>
+<path d="M560,160 L540,175 L560,190" fill="none" stroke="#7c3aed" stroke-width="2.5"/>
+<text x="400" y="370" text-anchor="middle" font-size="28" font-family="sans-serif" font-weight="800" fill="#581c87">Symmetry</text>
+</svg>

@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="420" viewBox="0 0 800 420">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#eff6ff"/>
+      <stop offset="100%" style="stop-color:#bfdbfe"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="420" fill="url(#bg)"/>
+  
+<rect x="90" y="220" width="70" height="60" rx="8" fill="#2563eb" opacity=".85"/>
+<text x="125" y="310" text-anchor="middle" font-size="14" font-family="sans-serif" font-weight="600" fill="#374151">Mon</text>
+<rect x="195" y="195" width="70" height="85" rx="8" fill="#7c3aed" opacity=".85"/>
+<text x="230" y="310" text-anchor="middle" font-size="14" font-family="sans-serif" font-weight="600" fill="#374151">Tue</text>
+<rect x="300" y="235" width="70" height="45" rx="8" fill="#0891b2" opacity=".85"/>
+<text x="335" y="310" text-anchor="middle" font-size="14" font-family="sans-serif" font-weight="600" fill="#374151">Wed</text>
+<rect x="405" y="180" width="70" height="100" rx="8" fill="#2563eb" opacity=".85"/>
+<text x="440" y="310" text-anchor="middle" font-size="14" font-family="sans-serif" font-weight="600" fill="#374151">Thu</text>
+<rect x="510" y="210" width="70" height="70" rx="8" fill="#7c3aed" opacity=".85"/>
+<text x="545" y="310" text-anchor="middle" font-size="14" font-family="sans-serif" font-weight="600" fill="#374151">Fri</text>
+<rect x="615" y="225" width="70" height="55" rx="8" fill="#0891b2" opacity=".85"/>
+<text x="650" y="310" text-anchor="middle" font-size="14" font-family="sans-serif" font-weight="600" fill="#374151">Sat</text>
+<line x1="70" y1="100" x2="70" y2="290" stroke="#374151" stroke-width="2"/>
+<line x1="70" y1="290" x2="720" y2="290" stroke="#374151" stroke-width="2"/>
+<text x="400" y="80" text-anchor="middle" font-size="22" font-family="sans-serif" font-weight="700" fill="#1d4ed8">Students Present This Week</text>
+<text x="400" y="380" text-anchor="middle" font-size="26" font-family="sans-serif" font-weight="800" fill="#1e3a8a">Data Handling</text>
+</svg>

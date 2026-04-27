@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="420" viewBox="0 0 800 420">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#fff7ed"/>
+      <stop offset="100%" style="stop-color:#fed7aa"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="420" fill="url(#bg)"/>
+  <circle cx="180" cy="190" r="100" fill="#fde68a" stroke="#ea580c" stroke-width="3"/>
+<path d="M180,190 L180,90 A100,100 0 0,1 268,240 Z" fill="#ea580c" opacity=".7"/>
+<text x="180" y="325" text-anchor="middle" font-size="20" font-family="sans-serif" font-weight="700" fill="#c2410c">1/4</text>
+<circle cx="400" cy="190" r="100" fill="#fde68a" stroke="#ea580c" stroke-width="3"/>
+<path d="M400,190 L400,90 A100,100 0 0,1 487,240 Z" fill="#ea580c" opacity=".7"/>
+<path d="M400,190 L487,240 A100,100 0 0,1 313,240 Z" fill="#ea580c" opacity=".7"/>
+<text x="400" y="325" text-anchor="middle" font-size="20" font-family="sans-serif" font-weight="700" fill="#c2410c">3/4? No — 2/4 = 1/2</text>
+<circle cx="620" cy="190" r="100" fill="#fde68a" stroke="#ea580c" stroke-width="3"/>
+<line x1="620" y1="90" x2="620" y2="290" stroke="#ea580c" stroke-width="3"/>
+<path d="M620,190 L620,90 A100,100 0 0,1 720,190 Z" fill="#ea580c" opacity=".7"/>
+<text x="620" y="325" text-anchor="middle" font-size="20" font-family="sans-serif" font-weight="700" fill="#c2410c">1/2</text>
+<text x="400" y="380" text-anchor="middle" font-size="26" font-family="sans-serif" font-weight="800" fill="#7c2d12">Fractions</text>
+</svg>

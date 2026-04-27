@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="420" viewBox="0 0 800 420">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#fffbeb"/>
+      <stop offset="100%" style="stop-color:#fde68a"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="420" fill="url(#bg)"/>
+  <line x1="80" y1="230" x2="720" y2="230" stroke="#92400e" stroke-width="3"/>
+<polygon points="720,222 740,230 720,238" fill="#92400e"/>
+<circle cx="100" cy="230" r="10" fill="#b45309"/>
+<line x1="100" y1="200" x2="100" y2="175" stroke="#b45309" stroke-width="2"/>
+<text x="100" y="168" text-anchor="middle" font-size="13" font-family="sans-serif" font-weight="700" fill="#b45309">Ancient</text>
+<text x="100" y="155" text-anchor="middle" font-size="11" font-family="sans-serif" fill="#92400e">80</text><circle cx="300" cy="230" r="10" fill="#d97706"/>
+<line x1="300" y1="200" x2="300" y2="175" stroke="#d97706" stroke-width="2"/>
+<text x="300" y="168" text-anchor="middle" font-size="13" font-family="sans-serif" font-weight="700" fill="#d97706">Medieval</text>
+<text x="300" y="155" text-anchor="middle" font-size="11" font-family="sans-serif" fill="#92400e">800</text><circle cx="500" cy="230" r="10" fill="#f59e0b"/>
+<line x1="500" y1="200" x2="500" y2="175" stroke="#f59e0b" stroke-width="2"/>
+<text x="500" y="168" text-anchor="middle" font-size="13" font-family="sans-serif" font-weight="700" fill="#f59e0b">Modern</text>
+<text x="500" y="155" text-anchor="middle" font-size="11" font-family="sans-serif" fill="#92400e">1700</text><circle cx="700" cy="230" r="10" fill="#fbbf24"/>
+<line x1="700" y1="200" x2="700" y2="175" stroke="#fbbf24" stroke-width="2"/>
+<text x="700" y="168" text-anchor="middle" font-size="13" font-family="sans-serif" font-weight="700" fill="#fbbf24">Present</text>
+<text x="700" y="155" text-anchor="middle" font-size="11" font-family="sans-serif" fill="#92400e">2024</text>
+<text x="400" y="100" text-anchor="middle" font-size="28" font-family="sans-serif" font-weight="700" fill="#92400e" opacity=".3">📜 📖 🏺</text>
+<rect x="140" y="270" width="520" height="60" rx="12" fill="#fef3c7" stroke="#92400e" stroke-width="2"/>
+<text x="400" y="308" text-anchor="middle" font-size="16" font-family="sans-serif" fill="#78350f">Study of the human past through sources &amp; evidence</text>
+<text x="400" y="380" text-anchor="middle" font-size="26" font-family="sans-serif" font-weight="800" fill="#78350f">What is History?</text>
+</svg>

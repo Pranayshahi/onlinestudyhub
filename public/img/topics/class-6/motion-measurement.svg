@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="420" viewBox="0 0 800 420">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#eff6ff"/>
+      <stop offset="100%" style="stop-color:#bfdbfe"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="420" fill="url(#bg)"/>
+  <rect x="70" y="250" width="660" height="24" rx="8" fill="#93c5fd"/>
+<rect x="70" y="240" width="3" height="16" fill="#1d4ed8"/><text x="71" y="235" font-size="13" font-family="sans-serif" fill="#1d4ed8">0</text><rect x="136" y="240" width="3" height="16" fill="#1d4ed8"/><text x="137" y="235" font-size="13" font-family="sans-serif" fill="#1d4ed8">1</text><rect x="202" y="240" width="3" height="16" fill="#1d4ed8"/><text x="203" y="235" font-size="13" font-family="sans-serif" fill="#1d4ed8">2</text><rect x="268" y="240" width="3" height="16" fill="#1d4ed8"/><text x="269" y="235" font-size="13" font-family="sans-serif" fill="#1d4ed8">3</text><rect x="334" y="240" width="3" height="16" fill="#1d4ed8"/><text x="335" y="235" font-size="13" font-family="sans-serif" fill="#1d4ed8">4</text><rect x="400" y="240" width="3" height="16" fill="#1d4ed8"/><text x="401" y="235" font-size="13" font-family="sans-serif" fill="#1d4ed8">5</text><rect x="466" y="240" width="3" height="16" fill="#1d4ed8"/><text x="467" y="235" font-size="13" font-family="sans-serif" fill="#1d4ed8">6</text><rect x="532" y="240" width="3" height="16" fill="#1d4ed8"/><text x="533" y="235" font-size="13" font-family="sans-serif" fill="#1d4ed8">7</text><rect x="598" y="240" width="3" height="16" fill="#1d4ed8"/><text x="599" y="235" font-size="13" font-family="sans-serif" fill="#1d4ed8">8</text><rect x="664" y="240" width="3" height="16" fill="#1d4ed8"/><text x="665" y="235" font-size="13" font-family="sans-serif" fill="#1d4ed8">9</text><rect x="730" y="240" width="3" height="16" fill="#1d4ed8"/><text x="731" y="235" font-size="13" font-family="sans-serif" fill="#1d4ed8">10</text>
+<text x="400" y="222" text-anchor="middle" font-size="14" fill="#374151">centimetres →</text>
+<circle cx="220" cy="190" r="40" fill="#fde68a" stroke="#f59e0b" stroke-width="3"/>
+<rect x="200" y="150" width="8" height="40" rx="4" fill="#f59e0b" transform="rotate(-30,204,190)"/>
+<rect x="200" y="150" width="5" height="35" rx="3" fill="#374151" transform="rotate(60,202.5,190)"/>
+<text x="220" y="145" text-anchor="middle" font-size="14" font-family="sans-serif" font-weight="700" fill="#92400e">Time</text>
+<path d="M380,200 Q440,160 500,200 Q560,240 620,200" stroke="#2563eb" stroke-width="3" fill="none" stroke-dasharray="8,4"/>
+<polygon points="618,193 635,200 618,207" fill="#2563eb"/>
+<text x="510" y="165" text-anchor="middle" font-size="16" font-family="sans-serif" font-weight="700" fill="#1d4ed8">Motion</text>
+<text x="400" y="380" text-anchor="middle" font-size="24" font-family="sans-serif" font-weight="800" fill="#1e3a8a">Motion and Measurement</text>
+</svg>

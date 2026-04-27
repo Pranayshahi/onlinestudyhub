@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="420" viewBox="0 0 800 420">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#fff1f2"/>
+      <stop offset="100%" style="stop-color:#fecdd3"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="420" fill="url(#bg)"/>
+  <rect x="290" y="120" width="220" height="100" rx="12" fill="#fda4af"/>
+<rect x="290" y="120" width="110" height="100" rx="12 0 0 12" fill="#e11d48"/>
+<text x="345" y="180" text-anchor="middle" font-size="24" font-family="sans-serif" font-weight="900" fill="#fff">N</text>
+<text x="455" y="180" text-anchor="middle" font-size="24" font-family="sans-serif" font-weight="900" fill="#be123c">S</text>
+<line x1="100" y1="338" x2="100" y2="358" stroke="#e11d48" stroke-width="1.5" opacity="0.25"/><line x1="150" y1="330" x2="150" y2="350" stroke="#e11d48" stroke-width="1.5" opacity="0.375"/><line x1="200" y1="322" x2="200" y2="342" stroke="#e11d48" stroke-width="1.5" opacity="0.5"/><line x1="250" y1="314" x2="250" y2="334" stroke="#e11d48" stroke-width="1.5" opacity="0.625"/><line x1="300" y1="306" x2="300" y2="326" stroke="#e11d48" stroke-width="1.5" opacity="0.75"/><line x1="350" y1="298" x2="350" y2="318" stroke="#e11d48" stroke-width="1.5" opacity="0.875"/><line x1="400" y1="290" x2="400" y2="310" stroke="#e11d48" stroke-width="1.5" opacity="1"/><line x1="450" y1="298" x2="450" y2="318" stroke="#e11d48" stroke-width="1.5" opacity="0.875"/><line x1="500" y1="306" x2="500" y2="326" stroke="#e11d48" stroke-width="1.5" opacity="0.75"/><line x1="550" y1="314" x2="550" y2="334" stroke="#e11d48" stroke-width="1.5" opacity="0.625"/><line x1="600" y1="322" x2="600" y2="342" stroke="#e11d48" stroke-width="1.5" opacity="0.5"/><line x1="650" y1="330" x2="650" y2="350" stroke="#e11d48" stroke-width="1.5" opacity="0.375"/><line x1="700" y1="338" x2="700" y2="358" stroke="#e11d48" stroke-width="1.5" opacity="0.25"/>
+<text x="200" y="280" font-size="18" font-family="sans-serif" fill="#9f1239">🔩</text>
+<text x="560" y="280" font-size="18" font-family="sans-serif" fill="#9f1239">📌</text>
+<text x="130" y="280" font-size="18" font-family="sans-serif" fill="#9f1239">🪙</text>
+<text x="620" y="280" font-size="18" font-family="sans-serif" fill="#9f1239">⚙️</text>
+<text x="400" y="370" text-anchor="middle" font-size="26" font-family="sans-serif" font-weight="800" fill="#881337">Fun with Magnets</text>
+</svg>

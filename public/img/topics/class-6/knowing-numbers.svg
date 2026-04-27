@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="420" viewBox="0 0 800 420">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#eef2ff"/>
+      <stop offset="100%" style="stop-color:#c7d2fe"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="420" fill="url(#bg)"/>
+  <text x="400" y="160" text-anchor="middle" font-size="110" font-family="serif" fill="#4338ca" opacity=".15">123</text>
+<rect x="80" y="220" width="70" height="90" rx="12" fill="#4338ca" opacity=".85"/>
+<rect x="175" y="190" width="70" height="120" rx="12" fill="#6366f1" opacity=".85"/>
+<rect x="270" y="160" width="70" height="150" rx="12" fill="#818cf8" opacity=".85"/>
+<rect x="365" y="130" width="70" height="180" rx="12" fill="#4338ca" opacity=".85"/>
+<rect x="460" y="100" width="70" height="210" rx="12" fill="#6366f1" opacity=".85"/>
+<rect x="555" y="70" width="70" height="240" rx="12" fill="#818cf8" opacity=".85"/>
+<rect x="650" y="50" width="70" height="260" rx="12" fill="#4338ca" opacity=".85"/>
+<text x="400" y="360" text-anchor="middle" font-size="28" font-family="sans-serif" font-weight="800" fill="#1e1b4b">Knowing Our Numbers</text>
+</svg>

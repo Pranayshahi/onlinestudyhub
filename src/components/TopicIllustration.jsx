@@ -83,9 +83,13 @@ const SUBJECT_META = {
   political_science:{ label: 'Political Science',  icon: '⚖️', bg: '#f5f3ff', text: '#5b21b6' },
 };
 
-export default function TopicIllustration({ subjectId, topicTitle, classLabel }) {
-  const [imgError, setImgError] = useState(false);
+export default function TopicIllustration({ subjectId, topicTitle, classLabel, classId, topicId }) {
+  const [topicImgError, setTopicImgError] = useState(false);
+  const [subjectImgError, setSubjectImgError] = useState(false);
+
+  const topicImgSrc = classId && topicId ? `/img/topics/${classId}/${topicId}.svg` : null;
   const imgSrc = SUBJECT_IMAGES[subjectId] || SUBJECT_IMAGES['science'];
+  const useTopicImg = topicImgSrc && !topicImgError;
   const accentColor = getAccentColor(topicTitle);
   const meta = SUBJECT_META[subjectId] || { label: subjectId, icon: '📖', bg: '#f3f4f6', text: '#374151' };
 
@@ -102,19 +106,20 @@ export default function TopicIllustration({ subjectId, topicTitle, classLabel })
         ? `linear-gradient(135deg, ${accentColor}11 0%, ${accentColor}22 100%)`
         : '#f8fafc',
     }}>
-      {/* Image */}
-      {!imgError ? (
+      {/* Image — topic-specific first, subject fallback, then gradient */}
+      {useTopicImg ? (
+        <img
+          src={topicImgSrc}
+          alt={`${topicTitle} illustration`}
+          onError={() => setTopicImgError(true)}
+          style={{ width: '100%', height: 260, objectFit: 'cover', objectPosition: 'center', display: 'block' }}
+        />
+      ) : !subjectImgError ? (
         <img
           src={imgSrc}
           alt={`${meta.label} illustration`}
-          onError={() => setImgError(true)}
-          style={{
-            width: '100%',
-            height: 260,
-            objectFit: 'cover',
-            objectPosition: 'center top',
-            display: 'block',
-          }}
+          onError={() => setSubjectImgError(true)}
+          style={{ width: '100%', height: 260, objectFit: 'cover', objectPosition: 'center top', display: 'block' }}
         />
       ) : (
         // Fallback gradient banner when image fails

@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="420" viewBox="0 0 800 420">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#fdf4ff"/>
+      <stop offset="100%" style="stop-color:#e9d5ff"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="420" fill="url(#bg)"/>
+  <circle cx="400" cy="85" r="38" fill="#e9d5ff" stroke="#7c3aed" stroke-width="3"/>
+<rect x="372" y="123" width="56" height="110" rx="14" fill="#c4b5fd" stroke="#7c3aed" stroke-width="2"/>
+<line x1="372" y1="133" x2="290" y2="220" stroke="#7c3aed" stroke-width="5" stroke-linecap="round"/>
+<line x1="428" y1="133" x2="510" y2="220" stroke="#7c3aed" stroke-width="5" stroke-linecap="round"/>
+<line x1="372" y1="233" x2="340" y2="340" stroke="#7c3aed" stroke-width="5" stroke-linecap="round"/>
+<line x1="428" y1="233" x2="460" y2="340" stroke="#7c3aed" stroke-width="5" stroke-linecap="round"/>
+<circle cx="290" cy="226" r="10" fill="#a78bfa"/>
+<circle cx="510" cy="226" r="10" fill="#a78bfa"/>
+<circle cx="340" cy="290" r="10" fill="#a78bfa"/>
+<circle cx="460" cy="290" r="10" fill="#a78bfa"/>
+<text x="230" y="210" font-size="13" font-family="sans-serif" font-weight="700" fill="#5b21b6">shoulder</text>
+<text x="520" y="210" font-size="13" font-family="sans-serif" font-weight="700" fill="#5b21b6">joint</text>
+<text x="290" y="310" font-size="13" font-family="sans-serif" font-weight="700" fill="#5b21b6">knee</text>
+<text x="400" y="390" text-anchor="middle" font-size="26" font-family="sans-serif" font-weight="800" fill="#3b0764">Body Movements</text>
+</svg>
