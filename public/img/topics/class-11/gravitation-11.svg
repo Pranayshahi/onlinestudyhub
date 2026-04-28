@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="420" viewBox="0 0 800 420">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#1e1b4b"/>
+      <stop offset="100%" stop-color="#312e81"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="420" fill="url(#bg)" rx="20"/>
+  <circle cx="400" cy="200" r="60" fill="#fbbf24" opacity="0.95"/>
+<text x="400" y="207" text-anchor="middle" font-size="13" font-weight="800" font-family="sans-serif" fill="#1e1b4b">Earth</text>
+<circle cx="400" cy="200" r="130" fill="none" stroke="#818cf8" stroke-width="1.5" stroke-dasharray="8,4" opacity="0.6"/>
+<circle cx="530" cy="200" r="18" fill="#60a5fa"/>
+<text x="530" y="205" text-anchor="middle" font-size="10" font-weight="700" font-family="sans-serif" fill="#fff">Moon</text>
+<circle cx="400" cy="200" r="175" fill="none" stroke="#a5b4fc" stroke-width="1" stroke-dasharray="4,6" opacity="0.4"/>
+<circle cx="225" cy="200" r="12" fill="#34d399"/>
+<line x1="400" y1="200" x2="530" y2="200" stroke="#f59e0b" stroke-width="1.5" stroke-dasharray="4,3"/>
+<text x="465" y="193" text-anchor="middle" font-size="11" font-weight="700" font-family="sans-serif" fill="#fbbf24">r</text>
+<rect x="80" y="55" width="640" height="50" rx="12" fill="#4338ca"/>
+<text x="400" y="83" text-anchor="middle" font-size="16" font-weight="800" font-family="monospace" fill="#e0e7ff">F = GMm/r²  ·  G = 6.67×10⁻¹¹ Nm²kg⁻²</text>
+<rect x="80" y="350" width="640" height="52" rx="12" fill="#312e81" stroke="#818cf8" stroke-width="2"/>
+<text x="400" y="375" text-anchor="middle" font-size="13" font-weight="800" font-family="monospace" fill="#c7d2fe">g = GM/R² · Escape velocity: v = √(2gR)</text>
+<text x="400" y="395" text-anchor="middle" font-size="12" font-family="sans-serif" fill="#a5b4fc">Kepler's Laws · Orbital Velocity · Geostationary Satellite</text>
+</svg>

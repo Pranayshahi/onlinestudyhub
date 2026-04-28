@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="420" viewBox="0 0 800 420">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#1e1b4b"/>
+      <stop offset="100%" stop-color="#312e81"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="420" fill="url(#bg)" rx="20"/>
+  <circle cx="400" cy="210" r="28" fill="#fbbf24"/>
+<text x="400" y="216" text-anchor="middle" font-size="13" font-weight="800" font-family="sans-serif" fill="#1e1b4b">Nucleus</text>
+<circle cx="400" cy="210" r="80" fill="none" stroke="#818cf8" stroke-width="2" stroke-dasharray="5,3"/>
+<circle cx="480" cy="210" r="10" fill="#60a5fa"/>
+<text x="496" y="207" font-size="10" font-weight="700" font-family="sans-serif" fill="#bfdbfe">e⁻</text>
+<circle cx="400" cy="210" r="130" fill="none" stroke="#a5b4fc" stroke-width="2" stroke-dasharray="5,3"/>
+<circle cx="400" cy="80" r="10" fill="#34d399"/>
+<text x="416" y="77" font-size="10" font-weight="700" font-family="sans-serif" fill="#a7f3d0">e⁻</text>
+<circle cx="270" cy="210" r="10" fill="#34d399"/>
+<text x="282" y="207" font-size="10" font-weight="700" font-family="sans-serif" fill="#a7f3d0">e⁻</text>
+<circle cx="400" cy="210" r="175" fill="none" stroke="#c7d2fe" stroke-width="1.5" stroke-dasharray="4,6"/>
+<circle cx="575" cy="210" r="10" fill="#f472b6"/>
+<text x="590" y="207" font-size="10" font-weight="700" font-family="sans-serif" fill="#fbcfe8">e⁻</text>
+<rect x="80" y="55" width="640" height="48" rx="12" fill="#4338ca"/>
+<text x="400" y="84" text-anchor="middle" font-size="13" font-weight="800" font-family="monospace" fill="#e0e7ff">Bohr Model · Quantum Numbers: n, l, mₗ, ms · Aufbau · Pauli · Hund</text>
+<rect x="80" y="352" width="640" height="42" rx="10" fill="#312e81" stroke="#818cf8" stroke-width="2"/>
+<text x="400" y="377" text-anchor="middle" font-size="13" font-weight="700" font-family="sans-serif" fill="#c7d2fe">Heisenberg Uncertainty · Orbitals: s, p, d, f · Electronic Configuration</text>
+</svg>

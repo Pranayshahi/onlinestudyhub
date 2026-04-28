@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="420" viewBox="0 0 800 420">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#fdf4ff"/>
+      <stop offset="100%" stop-color="#ede9fe"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="420" fill="url(#bg)" rx="20"/>
+  <line x1="100" y1="240" x2="700" y2="240" stroke="#d1d5db" stroke-width="1.5"/>
+<line x1="400" y1="60" x2="400" y2="400" stroke="#d1d5db" stroke-width="1.5"/>
+<line x1="80" y1="340" x2="700" y2="120" stroke="#7c3aed" stroke-width="3.5"/>
+<line x1="80" y1="180" x2="650" y2="310" stroke="#dc2626" stroke-width="2.5" stroke-dasharray="7,4"/>
+<circle cx="290" cy="240" r="7" fill="#7c3aed"/>
+<text x="290" y="260" text-anchor="middle" font-size="12" font-weight="700" font-family="sans-serif" fill="#5b21b6">(x₁,y₁)</text>
+<circle cx="570" cy="160" r="7" fill="#7c3aed"/>
+<text x="570" y="152" text-anchor="middle" font-size="12" font-weight="700" font-family="sans-serif" fill="#5b21b6">(x₂,y₂)</text>
+<rect x="60" y="55" width="680" height="50" rx="12" fill="#7c3aed"/>
+<text x="400" y="85" text-anchor="middle" font-size="15" font-weight="800" font-family="monospace" fill="#fff">y−y₁ = m(x−x₁) · m = (y₂−y₁)/(x₂−x₁)</text>
+<rect x="80" y="355" width="640" height="42" rx="10" fill="#ede9fe" stroke="#7c3aed" stroke-width="2"/>
+<text x="400" y="381" text-anchor="middle" font-size="13" font-weight="700" font-family="monospace" fill="#5b21b6">ax+by+c=0 · Distance from point to line · Angle between lines</text>
+</svg>

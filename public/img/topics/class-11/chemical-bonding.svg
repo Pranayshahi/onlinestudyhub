@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="420" viewBox="0 0 800 420">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#f0fdf4"/>
+      <stop offset="100%" stop-color="#dcfce7"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="420" fill="url(#bg)" rx="20"/>
+  <circle cx="280" cy="210" r="70" fill="#d1fae5" stroke="#059669" stroke-width="2.5"/>
+<circle cx="520" cy="210" r="70" fill="#d1fae5" stroke="#059669" stroke-width="2.5"/>
+<text x="280" y="206" text-anchor="middle" font-size="20" font-weight="900" font-family="sans-serif" fill="#065f46">H</text>
+<text x="520" y="206" text-anchor="middle" font-size="20" font-weight="900" font-family="sans-serif" fill="#065f46">H</text>
+<circle cx="355" cy="210" r="9" fill="#dc2626"/>
+<circle cx="445" cy="210" r="9" fill="#dc2626"/>
+<text x="400" y="250" text-anchor="middle" font-size="12" font-weight="700" font-family="sans-serif" fill="#7c3aed">Shared electrons</text>
+<rect x="60" y="55" width="680" height="48" rx="12" fill="#059669"/>
+<text x="400" y="84" text-anchor="middle" font-size="13" font-weight="800" font-family="monospace" fill="#fff">Ionic · Covalent · Coordinate · Metallic Bonds · VSEPR Theory</text>
+<rect x="80" y="310" width="290" height="80" rx="12" fill="#dcfce7" stroke="#059669" stroke-width="2"/>
+<text x="225" y="338" text-anchor="middle" font-size="13" font-weight="700" font-family="sans-serif" fill="#065f46">Bond Parameters</text>
+<text x="225" y="360" text-anchor="middle" font-size="12" font-family="sans-serif" fill="#047857">Length · Energy · Angle</text>
+<text x="225" y="378" text-anchor="middle" font-size="12" font-family="sans-serif" fill="#047857">Order · Polarity</text>
+<rect x="430" y="310" width="290" height="80" rx="12" fill="#dcfce7" stroke="#059669" stroke-width="2"/>
+<text x="575" y="338" text-anchor="middle" font-size="13" font-weight="700" font-family="sans-serif" fill="#065f46">Hybridisation</text>
+<text x="575" y="360" text-anchor="middle" font-size="12" font-family="sans-serif" fill="#047857">sp, sp², sp³, sp³d</text>
+<text x="575" y="378" text-anchor="middle" font-size="12" font-family="sans-serif" fill="#047857">σ bonds · π bonds</text>
+</svg>

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="420" viewBox="0 0 800 420">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#fff7ed"/>
+      <stop offset="100%" stop-color="#ffedd5"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="420" fill="url(#bg)" rx="20"/>
+  <rect x="80" y="90" width="260" height="240" rx="14" fill="#ffedd5" stroke="#ea580c" stroke-width="2.5"/>
+<rect x="460" y="90" width="260" height="240" rx="14" fill="#fed7aa" stroke="#f97316" stroke-width="2.5"/>
+<text x="210" y="80" text-anchor="middle" font-size="18" font-weight="800" font-family="sans-serif" fill="#c2410c">Permutations</text>
+<text x="590" y="80" text-anchor="middle" font-size="18" font-weight="800" font-family="sans-serif" fill="#c2410c">Combinations</text>
+<text x="210" y="175" text-anchor="middle" font-size="28" font-family="monospace" font-weight="900" fill="#9a3412">ⁿPᵣ</text>
+<text x="210" y="215" text-anchor="middle" font-size="16" font-family="monospace" font-weight="800" fill="#7c2d12">= n! / (n−r)!</text>
+<text x="210" y="260" text-anchor="middle" font-size="13" font-family="sans-serif" fill="#9a3412">Order matters</text>
+<text x="590" y="175" text-anchor="middle" font-size="28" font-family="monospace" font-weight="900" fill="#9a3412">ⁿCᵣ</text>
+<text x="590" y="215" text-anchor="middle" font-size="16" font-family="monospace" font-weight="800" fill="#7c2d12">= n! / r!(n−r)!</text>
+<text x="590" y="260" text-anchor="middle" font-size="13" font-family="sans-serif" fill="#9a3412">Order doesn't matter</text>
+<rect x="280" y="155" width="100" height="80" rx="12" fill="#ea580c"/>
+<text x="330" y="200" text-anchor="middle" font-size="13" font-weight="800" font-family="monospace" fill="#fff">ⁿPᵣ=r!ⁿCᵣ</text>
+<rect x="80" y="355" width="640" height="40" rx="10" fill="#ea580c"/>
+<text x="400" y="380" text-anchor="middle" font-size="13" font-weight="800" font-family="monospace" fill="#fff">n! = n×(n−1)×…×1 · 0! = 1 · Fundamental Counting Principle</text>
+</svg>

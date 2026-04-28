@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="420" viewBox="0 0 800 420">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#eff6ff"/>
+      <stop offset="100%" stop-color="#dbeafe"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="420" fill="url(#bg)" rx="20"/>
+  <ellipse cx="400" cy="210" rx="280" ry="170" fill="#dbeafe" stroke="#2563eb" stroke-width="3"/>
+<ellipse cx="400" cy="210" rx="70" ry="55" fill="#bfdbfe" stroke="#1d4ed8" stroke-width="2.5"/>
+<text x="400" y="214" text-anchor="middle" font-size="13" font-weight="800" font-family="sans-serif" fill="#1e3a8a">Nucleus</text>
+<circle cx="270" cy="175" r="22" fill="#fde68a" stroke="#d97706" stroke-width="2"/>
+<text x="270" y="180" text-anchor="middle" font-size="9" font-weight="700" font-family="sans-serif" fill="#78350f">Mito.</text>
+<circle cx="530" cy="175" r="18" fill="#fed7aa" stroke="#ea580c" stroke-width="2"/>
+<text x="530" y="180" text-anchor="middle" font-size="9" font-weight="700" font-family="sans-serif" fill="#7c2d12">ER</text>
+<circle cx="290" cy="265" r="16" fill="#d1fae5" stroke="#059669" stroke-width="1.5"/>
+<text x="290" y="270" text-anchor="middle" font-size="8" font-weight="700" font-family="sans-serif" fill="#065f46">Chloro.</text>
+<circle cx="510" cy="265" r="15" fill="#f3e8ff" stroke="#9333ea" stroke-width="1.5"/>
+<text x="510" y="270" text-anchor="middle" font-size="8" font-weight="700" font-family="sans-serif" fill="#5b21b6">Golgi</text>
+<rect x="60" y="55" width="680" height="48" rx="12" fill="#1d4ed8"/>
+<text x="400" y="84" text-anchor="middle" font-size="14" font-weight="800" font-family="monospace" fill="#fff">Prokaryotic vs Eukaryotic · Plant vs Animal Cell</text>
+<rect x="80" y="360" width="640" height="40" rx="10" fill="#dbeafe" stroke="#2563eb" stroke-width="2"/>
+<text x="400" y="385" text-anchor="middle" font-size="12" font-weight="700" font-family="sans-serif" fill="#1e40af">Cell membrane · Cell wall · Ribosomes · Vacuoles · Cytoskeleton · Plastids</text>
+</svg>

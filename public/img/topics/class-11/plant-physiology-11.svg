@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="420" viewBox="0 0 800 420">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#f0fdf4"/>
+      <stop offset="100%" stop-color="#dcfce7"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="420" fill="url(#bg)" rx="20"/>
+  <line x1="400" y1="380" x2="400" y2="100" stroke="#15803d" stroke-width="5"/>
+<path d="M 400,200 Q 340,150 300,160 Q 340,165 400,200" fill="#22c55e" stroke="#15803d" stroke-width="2"/>
+<path d="M 400,250 Q 460,200 500,210 Q 460,215 400,250" fill="#22c55e" stroke="#15803d" stroke-width="2"/>
+<path d="M 400,170 Q 350,120 320,125 Q 355,135 400,170" fill="#4ade80" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="400" cy="105" r="18" fill="#fde68a" opacity="0.9"/>
+<text x="400" y="111" text-anchor="middle" font-size="10" font-weight="800" font-family="sans-serif" fill="#92400e">☀</text>
+<line x1="400" y1="380" x2="340" y2="400" stroke="#92400e" stroke-width="3"/>
+<line x1="400" y1="380" x2="460" y2="400" stroke="#92400e" stroke-width="3"/>
+<line x1="400" y1="380" x2="400" y2="410" stroke="#92400e" stroke-width="3"/>
+<rect x="60" y="55" width="230" height="55" rx="12" fill="#15803d"/>
+<text x="175" y="80" text-anchor="middle" font-size="13" font-weight="800" font-family="sans-serif" fill="#fff">Photosynthesis</text>
+<text x="175" y="102" text-anchor="middle" font-size="11" font-family="monospace" fill="#dcfce7">6CO₂+6H₂O→C₆H₁₂O₆</text>
+<rect x="510" y="55" width="230" height="55" rx="12" fill="#059669"/>
+<text x="625" y="80" text-anchor="middle" font-size="13" font-weight="800" font-family="sans-serif" fill="#fff">Respiration</text>
+<text x="625" y="102" text-anchor="middle" font-size="11" font-family="monospace" fill="#d1fae5">C₆H₁₂O₆+O₂→CO₂+H₂O</text>
+<rect x="80" y="310" width="640" height="75" rx="12" fill="#dcfce7" stroke="#16a34a" stroke-width="2"/>
+<text x="400" y="336" text-anchor="middle" font-size="14" font-weight="800" font-family="sans-serif" fill="#14532d">Plant Growth &amp; Development</text>
+<text x="400" y="358" text-anchor="middle" font-size="12" font-family="sans-serif" fill="#15803d">Auxins · Gibberellins · Cytokinins · ABA · Ethylene</text>
+<text x="400" y="378" text-anchor="middle" font-size="12" font-family="sans-serif" fill="#14532d">Photoperiodism · Vernalisation · Seed Germination · Transpiration</text>
+</svg>

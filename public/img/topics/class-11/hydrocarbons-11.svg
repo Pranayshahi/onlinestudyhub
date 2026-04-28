@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="420" viewBox="0 0 800 420">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#f0fdf4"/>
+      <stop offset="100%" stop-color="#dcfce7"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="420" fill="url(#bg)" rx="20"/>
+  <rect x="80" y="80" width="640" height="50" rx="12" fill="#15803d"/>
+<text x="400" y="110" text-anchor="middle" font-size="15" font-weight="800" font-family="sans-serif" fill="#fff">Hydrocarbons — Organic Chemistry Fundamentals</text>
+<rect x="80" y="150" width="180" height="140" rx="12" fill="#dcfce7" stroke="#16a34a" stroke-width="2.5"/>
+<text x="170" y="178" text-anchor="middle" font-size="14" font-weight="800" font-family="sans-serif" fill="#14532d">Alkanes</text>
+<text x="170" y="205" text-anchor="middle" font-size="16" font-family="monospace" font-weight="900" fill="#16a34a">CₙH₂ₙ₊₂</text>
+<text x="170" y="232" text-anchor="middle" font-size="12" font-family="sans-serif" fill="#14532d">Single bonds</text>
+<text x="170" y="252" text-anchor="middle" font-size="12" font-family="sans-serif" fill="#14532d">Methane, Ethane</text>
+<text x="170" y="272" text-anchor="middle" font-size="12" font-family="sans-serif" fill="#14532d">Free radical</text>
+<text x="170" y="285" text-anchor="middle" font-size="12" font-family="sans-serif" fill="#14532d">substitution</text>
+<rect x="310" y="150" width="180" height="140" rx="12" fill="#dcfce7" stroke="#16a34a" stroke-width="2.5"/>
+<text x="400" y="178" text-anchor="middle" font-size="14" font-weight="800" font-family="sans-serif" fill="#14532d">Alkenes</text>
+<text x="400" y="205" text-anchor="middle" font-size="16" font-family="monospace" font-weight="900" fill="#16a34a">CₙH₂ₙ</text>
+<text x="400" y="232" text-anchor="middle" font-size="12" font-family="sans-serif" fill="#14532d">C=C double bond</text>
+<text x="400" y="252" text-anchor="middle" font-size="12" font-family="sans-serif" fill="#14532d">Ethylene, Propene</text>
+<text x="400" y="272" text-anchor="middle" font-size="12" font-family="sans-serif" fill="#14532d">Electrophilic</text>
+<text x="400" y="285" text-anchor="middle" font-size="12" font-family="sans-serif" fill="#14532d">addition</text>
+<rect x="540" y="150" width="180" height="140" rx="12" fill="#dcfce7" stroke="#16a34a" stroke-width="2.5"/>
+<text x="630" y="178" text-anchor="middle" font-size="14" font-weight="800" font-family="sans-serif" fill="#14532d">Alkynes</text>
+<text x="630" y="205" text-anchor="middle" font-size="16" font-family="monospace" font-weight="900" fill="#16a34a">CₙH₂ₙ₋₂</text>
+<text x="630" y="232" text-anchor="middle" font-size="12" font-family="sans-serif" fill="#14532d">C≡C triple bond</text>
+<text x="630" y="252" text-anchor="middle" font-size="12" font-family="sans-serif" fill="#14532d">Acetylene</text>
+<text x="630" y="272" text-anchor="middle" font-size="12" font-family="sans-serif" fill="#14532d">Acidic character</text>
+<text x="630" y="285" text-anchor="middle" font-size="12" font-family="sans-serif" fill="#14532d">of alkynes</text>
+<rect x="80" y="310" width="640" height="78" rx="12" fill="#bbf7d0" stroke="#16a34a" stroke-width="2"/>
+<text x="400" y="338" text-anchor="middle" font-size="14" font-weight="800" font-family="sans-serif" fill="#14532d">Aromatic Hydrocarbons (Arenes)</text>
+<text x="400" y="362" text-anchor="middle" font-size="13" font-family="monospace" fill="#15803d">Benzene C₆H₆ · Hückel rule: (4n+2)π electrons</text>
+<text x="400" y="382" text-anchor="middle" font-size="12" font-family="sans-serif" fill="#14532d">Electrophilic Aromatic Substitution · Resonance · Delocalization</text>
+</svg>

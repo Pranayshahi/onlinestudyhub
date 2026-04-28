@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="420" viewBox="0 0 800 420">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#fff7ed"/>
+      <stop offset="100%" stop-color="#ffedd5"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="420" fill="url(#bg)" rx="20"/>
+  <rect x="80" y="80" width="640" height="60" rx="14" fill="#d97706"/>
+<text x="400" y="108" text-anchor="middle" font-size="15" font-weight="800" font-family="sans-serif" fill="#fff">Chemical Thermodynamics</text>
+<text x="400" y="130" text-anchor="middle" font-size="12" font-weight="700" font-family="sans-serif" fill="#fef3c7">System · Surroundings · Universe</text>
+<rect x="80" y="160" width="180" height="120" rx="12" fill="#fef3c7" stroke="#d97706" stroke-width="2"/>
+<text x="170" y="188" text-anchor="middle" font-size="13" font-weight="800" font-family="sans-serif" fill="#92400e">Enthalpy ΔH</text>
+<text x="170" y="215" text-anchor="middle" font-size="11" font-family="monospace" fill="#78350f">ΔH = ΔU + ΔngRT</text>
+<text x="170" y="238" text-anchor="middle" font-size="11" font-family="sans-serif" fill="#92400e">Exo: ΔH &lt; 0</text>
+<text x="170" y="258" text-anchor="middle" font-size="11" font-family="sans-serif" fill="#92400e">Endo: ΔH &gt; 0</text>
+<rect x="310" y="160" width="180" height="120" rx="12" fill="#fef3c7" stroke="#d97706" stroke-width="2"/>
+<text x="400" y="188" text-anchor="middle" font-size="13" font-weight="800" font-family="sans-serif" fill="#92400e">Entropy ΔS</text>
+<text x="400" y="215" text-anchor="middle" font-size="11" font-family="sans-serif" fill="#78350f">Randomness/Disorder</text>
+<text x="400" y="238" text-anchor="middle" font-size="11" font-family="sans-serif" fill="#92400e">Spontaneous:</text>
+<text x="400" y="258" text-anchor="middle" font-size="11" font-family="sans-serif" fill="#92400e">ΔS_universe &gt; 0</text>
+<rect x="540" y="160" width="180" height="120" rx="12" fill="#fef3c7" stroke="#d97706" stroke-width="2"/>
+<text x="630" y="188" text-anchor="middle" font-size="13" font-weight="800" font-family="sans-serif" fill="#92400e">Gibbs Energy</text>
+<text x="630" y="215" text-anchor="middle" font-size="20" font-family="monospace" font-weight="900" fill="#d97706">ΔG</text>
+<text x="630" y="245" text-anchor="middle" font-size="11" font-family="monospace" fill="#78350f">ΔH − TΔS</text>
+<text x="630" y="265" text-anchor="middle" font-size="11" font-family="sans-serif" fill="#92400e">ΔG &lt; 0 → Spontaneous</text>
+<rect x="80" y="300" width="640" height="80" rx="12" fill="#fed7aa" stroke="#f59e0b" stroke-width="2"/>
+<text x="400" y="325" text-anchor="middle" font-size="14" font-weight="800" font-family="monospace" fill="#7c2d12">Hess's Law · Bond Enthalpy · Lattice Energy</text>
+<text x="400" y="352" text-anchor="middle" font-size="13" font-family="sans-serif" fill="#9a3412">Combustion · Formation · Atomisation · Ionisation · Hydration</text>
+</svg>

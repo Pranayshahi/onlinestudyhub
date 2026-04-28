@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="420" viewBox="0 0 800 420">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#fdf4ff"/>
+      <stop offset="100%" stop-color="#f3e8ff"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="420" fill="url(#bg)" rx="20"/>
+  <rect x="80" y="80" width="640" height="50" rx="12" fill="#9333ea"/>
+<text x="400" y="110" text-anchor="middle" font-size="15" font-weight="800" font-family="monospace" fill="#fff">aA + bB ⇌ cC + dD</text>
+<rect x="80" y="150" width="295" height="120" rx="12" fill="#f3e8ff" stroke="#9333ea" stroke-width="2"/>
+<text x="228" y="178" text-anchor="middle" font-size="14" font-weight="800" font-family="sans-serif" fill="#6b21a8">Equilibrium Constant</text>
+<text x="228" y="210" text-anchor="middle" font-size="20" font-family="monospace" font-weight="900" fill="#7c3aed">Kc = [C]ᶜ[D]ᵈ</text>
+<text x="228" y="240" text-anchor="middle" font-size="16" font-family="monospace" font-weight="700" fill="#7c3aed">   / [A]ᵃ[B]ᵇ</text>
+<text x="228" y="262" text-anchor="middle" font-size="12" font-family="sans-serif" fill="#6b21a8">Kp = Kc(RT)^Δn</text>
+<rect x="425" y="150" width="295" height="120" rx="12" fill="#f3e8ff" stroke="#9333ea" stroke-width="2"/>
+<text x="572" y="178" text-anchor="middle" font-size="14" font-weight="800" font-family="sans-serif" fill="#6b21a8">Le Chatelier's Principle</text>
+<text x="572" y="210" text-anchor="middle" font-size="12" font-family="sans-serif" fill="#5b21b6">↑ concentration → shifts</text>
+<text x="572" y="232" text-anchor="middle" font-size="12" font-family="sans-serif" fill="#5b21b6">↑ pressure → fewer moles</text>
+<text x="572" y="254" text-anchor="middle" font-size="12" font-family="sans-serif" fill="#5b21b6">↑ temp → endothermic side</text>
+<rect x="80" y="290" width="640" height="90" rx="12" fill="#ede9fe" stroke="#9333ea" stroke-width="2"/>
+<text x="400" y="316" text-anchor="middle" font-size="14" font-weight="800" font-family="sans-serif" fill="#6b21a8">Ionic Equilibrium</text>
+<text x="400" y="342" text-anchor="middle" font-size="13" font-family="monospace" fill="#5b21b6">pH = −log[H⁺] · Ka · Kb · Kw = 10⁻¹⁴</text>
+<text x="400" y="368" text-anchor="middle" font-size="12" font-family="sans-serif" fill="#6b21a8">Buffer Solution · Solubility Product Ksp · Common Ion Effect</text>
+</svg>

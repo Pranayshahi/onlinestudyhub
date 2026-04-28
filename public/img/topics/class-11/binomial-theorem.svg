@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="420" viewBox="0 0 800 420">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#f0fdf4"/>
+      <stop offset="100%" stop-color="#dcfce7"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="420" fill="url(#bg)" rx="20"/>
+  <rect x="368" y="80" width="64" height="40" rx="10" fill="#059669" opacity="0.6"/>
+<text x="400" y="106" text-anchor="middle" font-size="17" font-weight="900" font-family="monospace" fill="#fff">1</text><rect x="323" y="132" width="64" height="40" rx="10" fill="#10b981" opacity="0.6799999999999999"/>
+<text x="355" y="158" text-anchor="middle" font-size="17" font-weight="900" font-family="monospace" fill="#fff">1</text><rect x="413" y="132" width="64" height="40" rx="10" fill="#10b981" opacity="0.6799999999999999"/>
+<text x="445" y="158" text-anchor="middle" font-size="17" font-weight="900" font-family="monospace" fill="#fff">1</text><rect x="278" y="184" width="64" height="40" rx="10" fill="#059669" opacity="0.76"/>
+<text x="310" y="210" text-anchor="middle" font-size="17" font-weight="900" font-family="monospace" fill="#fff">1</text><rect x="368" y="184" width="64" height="40" rx="10" fill="#059669" opacity="0.76"/>
+<text x="400" y="210" text-anchor="middle" font-size="17" font-weight="900" font-family="monospace" fill="#fff">2</text><rect x="458" y="184" width="64" height="40" rx="10" fill="#059669" opacity="0.76"/>
+<text x="490" y="210" text-anchor="middle" font-size="17" font-weight="900" font-family="monospace" fill="#fff">1</text><rect x="233" y="236" width="64" height="40" rx="10" fill="#10b981" opacity="0.84"/>
+<text x="265" y="262" text-anchor="middle" font-size="17" font-weight="900" font-family="monospace" fill="#fff">1</text><rect x="323" y="236" width="64" height="40" rx="10" fill="#10b981" opacity="0.84"/>
+<text x="355" y="262" text-anchor="middle" font-size="17" font-weight="900" font-family="monospace" fill="#fff">3</text><rect x="413" y="236" width="64" height="40" rx="10" fill="#10b981" opacity="0.84"/>
+<text x="445" y="262" text-anchor="middle" font-size="17" font-weight="900" font-family="monospace" fill="#fff">3</text><rect x="503" y="236" width="64" height="40" rx="10" fill="#10b981" opacity="0.84"/>
+<text x="535" y="262" text-anchor="middle" font-size="17" font-weight="900" font-family="monospace" fill="#fff">1</text><rect x="188" y="288" width="64" height="40" rx="10" fill="#059669" opacity="0.9199999999999999"/>
+<text x="220" y="314" text-anchor="middle" font-size="17" font-weight="900" font-family="monospace" fill="#fff">1</text><rect x="278" y="288" width="64" height="40" rx="10" fill="#059669" opacity="0.9199999999999999"/>
+<text x="310" y="314" text-anchor="middle" font-size="17" font-weight="900" font-family="monospace" fill="#fff">4</text><rect x="368" y="288" width="64" height="40" rx="10" fill="#059669" opacity="0.9199999999999999"/>
+<text x="400" y="314" text-anchor="middle" font-size="17" font-weight="900" font-family="monospace" fill="#fff">6</text><rect x="458" y="288" width="64" height="40" rx="10" fill="#059669" opacity="0.9199999999999999"/>
+<text x="490" y="314" text-anchor="middle" font-size="17" font-weight="900" font-family="monospace" fill="#fff">4</text><rect x="548" y="288" width="64" height="40" rx="10" fill="#059669" opacity="0.9199999999999999"/>
+<text x="580" y="314" text-anchor="middle" font-size="17" font-weight="900" font-family="monospace" fill="#fff">1</text>
+<rect x="60" y="348" width="680" height="50" rx="12" fill="#059669"/>
+<text x="400" y="370" text-anchor="middle" font-size="14" font-weight="800" font-family="monospace" fill="#fff">(a+b)ⁿ = Σ ⁿCᵣ · aⁿ⁻ʳ · bʳ</text>
+<text x="400" y="392" text-anchor="middle" font-size="12" font-weight="700" font-family="sans-serif" fill="#dcfce7">General Term Tᵣ₊₁ = ⁿCᵣ · aⁿ⁻ʳ · bʳ · Pascal's Triangle</text>
+</svg>
