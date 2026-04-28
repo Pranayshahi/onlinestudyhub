@@ -599,6 +599,13 @@ html[data-theme="dark"] .teacher-profile-card:hover {
   border-color: #6366f1;
   box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
 }
+html[data-theme="dark"] .teacher-profile-card h3        { color: #e2e0f0 !important; }
+html[data-theme="dark"] .teacher-profile-card .tc-bio   { color: #c4c2db !important; }
+html[data-theme="dark"] .teacher-profile-card .tc-badge { background: #2d2c42 !important; color: #c4c2db !important; }
+html[data-theme="dark"] .teacher-profile-card .tc-label { color: #8b89a8 !important; }
+html[data-theme="dark"] .teacher-profile-card .tc-topic { background: #2d2c42 !important; color: #a5b4fc !important; }
+html[data-theme="dark"] .teacher-profile-card .tc-more  { color: #8b89a8 !important; }
+html[data-theme="dark"] .teacher-profile-card .tc-rating-count { color: #8b89a8 !important; }
 
 /* ─── Responsive fixes ─── */
 @media (max-width: 640px) {

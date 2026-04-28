@@ -10,7 +10,7 @@ function StarRating({ rating }) {
           <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
         </svg>
       ))}
-      <span style={{ fontSize: '.75rem', fontWeight: 700, color: '#6b7280', marginLeft: '.2rem' }}>{rating}</span>
+      <span className="tc-rating-count" style={{ fontSize: '.75rem', fontWeight: 700, color: '#6b7280', marginLeft: '.2rem' }}>{rating}</span>
     </div>
   );
 }
@@ -44,25 +44,25 @@ export default function TeacherProfileCard({ teacher, onBook }) {
       </div>
 
       <div style={{ flex: 1 }}>
-        <p style={{ fontSize: '.88rem', color: '#4b5563', lineHeight: 1.6, margin: '0 0 1rem', display: '-webkit-box', WebkitLineClamp: 3, WebkitBoxOrient: 'vertical', overflow: 'hidden' }}>
+        <p className="tc-bio" style={{ fontSize: '.88rem', color: '#4b5563', lineHeight: 1.6, margin: '0 0 1rem', display: '-webkit-box', WebkitLineClamp: 3, WebkitBoxOrient: 'vertical', overflow: 'hidden' }}>
           {teacher.bio}
         </p>
 
         <div style={{ display: 'flex', gap: '.5rem', flexWrap: 'wrap', marginBottom: '1rem' }}>
-          <div style={{ background: '#f9fafb', borderRadius: 8, padding: '.3rem .6rem', fontSize: '.75rem', color: '#6b7280', fontWeight: 600 }}>
+          <div className="tc-badge" style={{ background: '#f9fafb', borderRadius: 8, padding: '.3rem .6rem', fontSize: '.75rem', color: '#6b7280', fontWeight: 600 }}>
             💼 {teacher.experience} Exp.
           </div>
-          <div style={{ background: '#f9fafb', borderRadius: 8, padding: '.3rem .6rem', fontSize: '.75rem', color: '#6b7280', fontWeight: 600 }}>
+          <div className="tc-badge" style={{ background: '#f9fafb', borderRadius: 8, padding: '.3rem .6rem', fontSize: '.75rem', color: '#6b7280', fontWeight: 600 }}>
             💰 {teacher.fee}
           </div>
         </div>
 
-        <div style={{ fontSize: '.75rem', fontWeight: 700, color: '#9ca3af', textTransform: 'uppercase', letterSpacing: '.05em', marginBottom: '.4rem' }}>
+        <div className="tc-label" style={{ fontSize: '.75rem', fontWeight: 700, color: '#9ca3af', textTransform: 'uppercase', letterSpacing: '.05em', marginBottom: '.4rem' }}>
           Key Topics
         </div>
         <div style={{ display: 'flex', flexWrap: 'wrap', gap: '.3rem' }}>
           {(teacher.topics || []).slice(0, 3).map(t => (
-            <span key={t} style={{
+            <span key={t} className="tc-topic" style={{
               background: '#eef2ff', color: '#4338ca',
               padding: '.2rem .6rem', borderRadius: 6,
               fontSize: '.72rem', fontWeight: 600,
@@ -71,7 +71,7 @@ export default function TeacherProfileCard({ teacher, onBook }) {
             </span>
           ))}
           {(teacher.topics || []).length > 3 && (
-            <span style={{ fontSize: '.72rem', color: '#9ca3af', fontWeight: 600, padding: '.2rem .3rem' }}>
+            <span className="tc-more" style={{ fontSize: '.72rem', color: '#9ca3af', fontWeight: 600, padding: '.2rem .3rem' }}>
               +{teacher.topics.length - 3} more
             </span>
           )}
