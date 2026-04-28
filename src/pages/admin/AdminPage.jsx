@@ -405,6 +405,11 @@ function Dashboard({ token, onLogout }) {
   const [fetchError, setFetchError] = useState('');
   const [saveError, setSaveError] = useState('');
   const [saveSuccess, setSaveSuccess] = useState('');
+  const [pwOpen, setPwOpen] = useState(false);
+  const [pwForm, setPwForm] = useState({ currentPassword: '', newPassword: '', confirmPassword: '' });
+  const [pwSaving, setPwSaving] = useState(false);
+  const [pwError, setPwError] = useState('');
+  const [pwSuccess, setPwSuccess] = useState('');
 
   useEffect(() => {
     api('/teachers/me', { method: 'GET', token })
@@ -433,6 +438,24 @@ function Dashboard({ token, onLogout }) {
       onLogout();
     } catch (e) {
       alert(e.message);
+    }
+  }
+
+  async function handleChangePassword(e) {
+    e.preventDefault();
+    setPwError(''); setPwSuccess('');
+    if (pwForm.newPassword !== pwForm.confirmPassword) { setPwError('New passwords do not match'); return; }
+    if (pwForm.newPassword.length < 6) { setPwError('New password must be at least 6 characters'); return; }
+    setPwSaving(true);
+    try {
+      await api('/teachers/me/password', { method: 'PATCH', token, body: { currentPassword: pwForm.currentPassword, newPassword: pwForm.newPassword } });
+      setPwSuccess('Password updated successfully!');
+      setPwForm({ currentPassword: '', newPassword: '', confirmPassword: '' });
+      setTimeout(() => { setPwSuccess(''); setPwOpen(false); }, 2000);
+    } catch (err) {
+      setPwError(err.message || 'Failed to update password');
+    } finally {
+      setPwSaving(false);
     }
   }
 
@@ -550,6 +573,41 @@ function Dashboard({ token, onLogout }) {
                 <div><strong>Classes:</strong> {(profile.class_ids || []).map(c => CLASS_OPTIONS.find(o => o.id === c)?.label || c).join(', ')}</div>
                 <div style={{ marginTop: '.35rem' }}><strong>Topics:</strong> {Array.isArray(profile.topics) ? profile.topics.join(', ') : profile.topics}</div>
               </div>
+            </div>
+
+            {/* Change Password */}
+            <div style={{ background: '#f8fafc', border: '1px solid #e5e7eb', borderRadius: 14, padding: '1.25rem' }}>
+              <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: pwOpen ? '1rem' : 0 }}>
+                <div style={{ fontFamily: 'Nunito', fontWeight: 800, fontSize: '.9rem', color: '#1e1b4b' }}>🔒 Change Password</div>
+                <button onClick={() => { setPwOpen(o => !o); setPwError(''); setPwSuccess(''); setPwForm({ currentPassword: '', newPassword: '', confirmPassword: '' }); }}
+                  style={{ fontSize: '.78rem', color: '#4f46e5', fontWeight: 700, background: 'none', border: 'none', cursor: 'pointer', padding: 0 }}>
+                  {pwOpen ? 'Cancel' : 'Change →'}
+                </button>
+              </div>
+              {!pwOpen && <div style={{ fontSize: '.78rem', color: '#9ca3af' }}>Keep your account secure.</div>}
+              {pwOpen && (
+                <form onSubmit={handleChangePassword} style={{ display: 'flex', flexDirection: 'column', gap: '.65rem' }}>
+                  {[
+                    ['currentPassword', 'Current Password'],
+                    ['newPassword',     'New Password'],
+                    ['confirmPassword', 'Confirm New Password'],
+                  ].map(([field, label]) => (
+                    <div key={field}>
+                      <label style={{ fontSize: '.73rem', fontWeight: 600, color: '#374151', display: 'block', marginBottom: '.25rem' }}>{label}</label>
+                      <input type="password" value={pwForm[field]}
+                        onChange={e => setPwForm(f => ({ ...f, [field]: e.target.value }))}
+                        style={{ width: '100%', padding: '.4rem .6rem', borderRadius: 8, border: '1.5px solid #d1d5db', fontSize: '.85rem', boxSizing: 'border-box' }}
+                        placeholder="••••••••" required minLength={field === 'currentPassword' ? 1 : 6} />
+                    </div>
+                  ))}
+                  {pwError   && <div style={{ color: '#dc2626', fontSize: '.78rem' }}>{pwError}</div>}
+                  {pwSuccess && <div style={{ color: '#059669', fontSize: '.78rem', fontWeight: 700 }}>{pwSuccess}</div>}
+                  <button type="submit" disabled={pwSaving}
+                    style={{ padding: '.45rem', background: '#4f46e5', color: '#fff', border: 'none', borderRadius: 8, fontWeight: 700, fontSize: '.85rem', cursor: pwSaving ? 'not-allowed' : 'pointer', opacity: pwSaving ? .7 : 1 }}>
+                    {pwSaving ? 'Updating…' : 'Update Password'}
+                  </button>
+                </form>
+              )}
             </div>
 
             <button

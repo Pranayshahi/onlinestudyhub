@@ -156,6 +156,11 @@ export default function DashboardPage({ user, onOpenLogin, onUpdateUser }) {
   const [profileForm, setProfileForm] = useState({ name: '', avatar: '🧑‍🎓', phone: '', class_id: '', bio: '' });
   const [profileSaving, setProfileSaving] = useState(false);
   const [profileError, setProfileError] = useState('');
+  const [pwOpen, setPwOpen] = useState(false);
+  const [pwForm, setPwForm] = useState({ currentPassword: '', newPassword: '', confirmPassword: '' });
+  const [pwSaving, setPwSaving] = useState(false);
+  const [pwError, setPwError] = useState('');
+  const [pwSuccess, setPwSuccess] = useState('');
 
   const progress   = loadProgress();
   const lastTopic  = loadLastTopic();
@@ -249,6 +254,24 @@ export default function DashboardPage({ user, onOpenLogin, onUpdateUser }) {
       setProfileError(err.message || 'Failed to save');
     } finally {
       setProfileSaving(false);
+    }
+  }
+
+  async function changePassword(e) {
+    e.preventDefault();
+    setPwError(''); setPwSuccess('');
+    if (pwForm.newPassword !== pwForm.confirmPassword) { setPwError('New passwords do not match'); return; }
+    if (pwForm.newPassword.length < 6) { setPwError('New password must be at least 6 characters'); return; }
+    setPwSaving(true);
+    try {
+      await api('/students/me/password', { method: 'PATCH', body: { currentPassword: pwForm.currentPassword, newPassword: pwForm.newPassword } });
+      setPwSuccess('Password updated successfully!');
+      setPwForm({ currentPassword: '', newPassword: '', confirmPassword: '' });
+      setTimeout(() => { setPwSuccess(''); setPwOpen(false); }, 2000);
+    } catch (err) {
+      setPwError(err.message || 'Failed to update password');
+    } finally {
+      setPwSaving(false);
     }
   }
 
@@ -506,6 +529,41 @@ export default function DashboardPage({ user, onOpenLogin, onUpdateUser }) {
                       Cancel
                     </button>
                   </div>
+                </form>
+              )}
+            </SectionCard>
+
+            {/* Change Password */}
+            <SectionCard icon="🔒" title="Change Password"
+              action={
+                <button onClick={() => { setPwOpen(o => !o); setPwError(''); setPwSuccess(''); setPwForm({ currentPassword: '', newPassword: '', confirmPassword: '' }); }}
+                  style={{ fontSize: '.78rem', color: '#4f46e5', fontWeight: 700, background: 'none', border: 'none', cursor: 'pointer', padding: 0 }}>
+                  {pwOpen ? 'Cancel' : 'Change →'}
+                </button>
+              }>
+              {!pwOpen ? (
+                <div style={{ color: '#9ca3af', fontSize: '.82rem' }}>Keep your account secure with a strong password.</div>
+              ) : (
+                <form onSubmit={changePassword} style={{ display: 'flex', flexDirection: 'column', gap: '.7rem' }}>
+                  {[
+                    ['currentPassword', 'Current Password'],
+                    ['newPassword',     'New Password'],
+                    ['confirmPassword', 'Confirm New Password'],
+                  ].map(([field, label]) => (
+                    <div key={field}>
+                      <label style={{ fontSize: '.75rem', fontWeight: 600, color: '#374151', display: 'block', marginBottom: '.3rem' }}>{label}</label>
+                      <input type="password" value={pwForm[field]}
+                        onChange={e => setPwForm(f => ({ ...f, [field]: e.target.value }))}
+                        style={{ width: '100%', padding: '.45rem .65rem', borderRadius: 8, border: '1.5px solid #d1d5db', fontSize: '.88rem', boxSizing: 'border-box' }}
+                        placeholder="••••••••" required minLength={field === 'currentPassword' ? 1 : 6} />
+                    </div>
+                  ))}
+                  {pwError   && <div style={{ color: '#dc2626', fontSize: '.8rem' }}>{pwError}</div>}
+                  {pwSuccess && <div style={{ color: '#059669', fontSize: '.8rem', fontWeight: 700 }}>{pwSuccess}</div>}
+                  <button type="submit" disabled={pwSaving}
+                    style={{ padding: '.5rem', background: '#4f46e5', color: '#fff', border: 'none', borderRadius: 8, fontWeight: 700, fontSize: '.88rem', cursor: pwSaving ? 'not-allowed' : 'pointer', opacity: pwSaving ? .7 : 1 }}>
+                    {pwSaving ? 'Updating…' : 'Update Password'}
+                  </button>
                 </form>
               )}
             </SectionCard>

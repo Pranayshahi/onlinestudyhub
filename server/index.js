@@ -220,6 +220,22 @@ app.patch('/api/students/me', requireStudentAuth, async (req, res) => {
   } catch (e) { res.status(500).json({ error: 'Server error' }); }
 });
 
+// ── Students: Change password ───────────────────────────────────
+app.patch('/api/students/me/password', requireStudentAuth, async (req, res) => {
+  try {
+    const { currentPassword, newPassword } = req.body || {};
+    if (!currentPassword || !newPassword) return res.status(400).json({ error: 'All fields are required' });
+    if (newPassword.length < 6) return res.status(400).json({ error: 'New password must be at least 6 characters' });
+    const student = await Student.findById(req.student.id);
+    if (!student) return res.status(404).json({ error: 'Not found' });
+    const valid = await bcrypt.compare(currentPassword, student.password_hash);
+    if (!valid) return res.status(400).json({ error: 'Current password is incorrect' });
+    student.password_hash = await bcrypt.hash(newPassword, 10);
+    await student.save();
+    res.json({ message: 'Password updated successfully' });
+  } catch (e) { res.status(500).json({ error: 'Server error' }); }
+});
+
 // ── Teachers: Get all (public — used by user portal) ───────────
 app.get('/api/teachers', async (req, res) => {
   try {
@@ -313,6 +329,22 @@ app.delete('/api/teachers/me', requireAuth, async (req, res) => {
   } catch (err) {
     res.status(500).json({ error: 'Server error' });
   }
+});
+
+// ── Teachers: Change password ───────────────────────────────────
+app.patch('/api/teachers/me/password', requireAuth, async (req, res) => {
+  try {
+    const { currentPassword, newPassword } = req.body || {};
+    if (!currentPassword || !newPassword) return res.status(400).json({ error: 'All fields are required' });
+    if (newPassword.length < 6) return res.status(400).json({ error: 'New password must be at least 6 characters' });
+    const teacher = await Teacher.findById(req.teacher.id);
+    if (!teacher) return res.status(404).json({ error: 'Not found' });
+    const valid = await bcrypt.compare(currentPassword, teacher.password_hash);
+    if (!valid) return res.status(400).json({ error: 'Current password is incorrect' });
+    teacher.password_hash = await bcrypt.hash(newPassword, 10);
+    await teacher.save();
+    res.json({ message: 'Password updated successfully' });
+  } catch (e) { res.status(500).json({ error: 'Server error' }); }
 });
 
 // ── Teachers: Toggle online status (protected) ─────────────────
