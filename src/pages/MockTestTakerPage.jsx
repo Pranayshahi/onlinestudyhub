@@ -249,7 +249,7 @@ export default function MockTestTakerPage() {
   const q = questions[current];
   const answered = Object.keys(answers).length;
   const marked = Object.values(statuses).filter(s => s === STATUS.marked).length;
-  const timeWarn = timeLeft < 300;
+  const timeWarn = timeLeft < 120;
 
   return (
     <div style={{ display: 'flex', flexDirection: 'column', height: '100vh', background: '#f9fafb', overflow: 'hidden' }}>
