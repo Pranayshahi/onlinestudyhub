@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="420" viewBox="0 0 800 420">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#f0f9ff"/>
+      <stop offset="100%" stop-color="#e0f2fe"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="420" fill="url(#bg)" rx="20"/>
+  <rect x="80" y="58" width="640" height="48" rx="12" fill="#0369a1"/>
+<text x="400" y="87" text-anchor="middle" font-size="15" font-weight="800" font-family="sans-serif" fill="#fff">The Solid State — Crystal Lattice Structures</text>
+<rect x="132" y="102" width="56" height="56" rx="8" fill="#bae6fd" stroke="#0369a1" stroke-width="2"/>
+<circle cx="160" cy="130" r="14" fill="#0369a1"/><rect x="272" y="102" width="56" height="56" rx="8" fill="#bae6fd" stroke="#0369a1" stroke-width="2"/>
+<circle cx="300" cy="130" r="14" fill="#0369a1"/><rect x="412" y="102" width="56" height="56" rx="8" fill="#bae6fd" stroke="#0369a1" stroke-width="2"/>
+<circle cx="440" cy="130" r="14" fill="#0369a1"/><rect x="132" y="182" width="56" height="56" rx="8" fill="#bae6fd" stroke="#0369a1" stroke-width="2"/>
+<circle cx="160" cy="210" r="14" fill="#0369a1"/><rect x="272" y="182" width="56" height="56" rx="8" fill="#bae6fd" stroke="#0369a1" stroke-width="2"/>
+<circle cx="300" cy="210" r="14" fill="#0369a1"/><rect x="412" y="182" width="56" height="56" rx="8" fill="#bae6fd" stroke="#0369a1" stroke-width="2"/>
+<circle cx="440" cy="210" r="14" fill="#0369a1"/><rect x="132" y="262" width="56" height="56" rx="8" fill="#bae6fd" stroke="#0369a1" stroke-width="2"/>
+<circle cx="160" cy="290" r="14" fill="#0369a1"/><rect x="272" y="262" width="56" height="56" rx="8" fill="#bae6fd" stroke="#0369a1" stroke-width="2"/>
+<circle cx="300" cy="290" r="14" fill="#0369a1"/><rect x="412" y="262" width="56" height="56" rx="8" fill="#bae6fd" stroke="#0369a1" stroke-width="2"/>
+<circle cx="440" cy="290" r="14" fill="#0369a1"/>
+<rect x="490" y="110" width="240" height="210" rx="14" fill="#e0f2fe" stroke="#0369a1" stroke-width="2.5"/>
+<text x="610" y="138" text-anchor="middle" font-size="13" font-weight="800" font-family="sans-serif" fill="#075985">Unit Cell Types</text>
+<text x="610" y="163" text-anchor="middle" font-size="12" font-family="sans-serif" fill="#0369a1">Simple Cubic (SC): 1</text>
+<text x="610" y="185" text-anchor="middle" font-size="12" font-family="sans-serif" fill="#0369a1">BCC: 2 atoms · 68%</text>
+<text x="610" y="207" text-anchor="middle" font-size="12" font-family="sans-serif" fill="#0369a1">FCC/CCP: 4 atoms · 74%</text>
+<text x="610" y="229" text-anchor="middle" font-size="12" font-family="sans-serif" fill="#0369a1">HCP: 74% packing</text>
+<text x="610" y="255" text-anchor="middle" font-size="12" font-family="sans-serif" fill="#0369a1">Voids: Tetrahedral &amp; Octahedral</text>
+<text x="610" y="279" text-anchor="middle" font-size="12" font-family="sans-serif" fill="#0369a1">Ionic · Covalent · Metallic</text>
+<text x="610" y="302" text-anchor="middle" font-size="12" font-family="sans-serif" fill="#0369a1">Molecular · Amorphous</text>
+<rect x="80" y="348" width="370" height="50" rx="10" fill="#e0f2fe" stroke="#0369a1" stroke-width="2"/>
+<text x="265" y="370" text-anchor="middle" font-size="12" font-weight="700" font-family="monospace" fill="#075985">Density: ρ = Z·M / Nₐ·a³</text>
+<text x="265" y="390" text-anchor="middle" font-size="11" font-family="sans-serif" fill="#0369a1">Z=atoms/cell, a=edge length</text>
+</svg>

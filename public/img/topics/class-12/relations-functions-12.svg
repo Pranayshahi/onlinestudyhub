@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="420" viewBox="0 0 800 420">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#eff6ff"/>
+      <stop offset="100%" stop-color="#dbeafe"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="420" fill="url(#bg)" rx="20"/>
+  <rect x="60" y="60" width="680" height="50" rx="12" fill="#1d4ed8"/>
+<text x="400" y="90" text-anchor="middle" font-size="15" font-weight="800" font-family="sans-serif" fill="#fff">Types of Functions — Relations and Functions (Class 12)</text>
+<rect x="60" y="128" width="190" height="220" rx="12" fill="#dbeafe" stroke="#2563eb" stroke-width="2"/>
+<text x="155" y="155" text-anchor="middle" font-size="13" font-weight="800" font-family="sans-serif" fill="#1e40af">Injective (One-One)</text>
+<circle cx="100" cy="175" r="8" fill="#2563eb"/><circle cx="210" cy="175" r="8" fill="#3b82f6"/><line x1="108" y1="175" x2="202" y2="175" stroke="#60a5fa" stroke-width="2"/><circle cx="100" cy="215" r="8" fill="#2563eb"/><circle cx="210" cy="215" r="8" fill="#3b82f6"/><line x1="108" y1="215" x2="202" y2="215" stroke="#60a5fa" stroke-width="2"/><circle cx="100" cy="255" r="8" fill="#2563eb"/><circle cx="210" cy="255" r="8" fill="#3b82f6"/><line x1="108" y1="255" x2="202" y2="255" stroke="#60a5fa" stroke-width="2"/><circle cx="100" cy="295" r="8" fill="#2563eb"/><circle cx="210" cy="295" r="8" fill="#3b82f6"/><line x1="108" y1="295" x2="202" y2="295" stroke="#60a5fa" stroke-width="2"/>
+<rect x="305" y="128" width="190" height="220" rx="12" fill="#dcfce7" stroke="#16a34a" stroke-width="2"/>
+<text x="400" y="155" text-anchor="middle" font-size="13" font-weight="800" font-family="sans-serif" fill="#14532d">Surjective (Onto)</text>
+<circle cx="350" cy="185" r="8" fill="#16a34a"/>
+<circle cx="350" cy="230" r="8" fill="#16a34a"/>
+<circle cx="350" cy="275" r="8" fill="#16a34a"/>
+<circle cx="350" cy="320" r="8" fill="#16a34a"/>
+<circle cx="455" cy="205" r="8" fill="#22c55e"/>
+<circle cx="455" cy="260" r="8" fill="#22c55e"/>
+<circle cx="455" cy="315" r="8" fill="#22c55e"/>
+<line x1="358" y1="185" x2="447" y2="205" stroke="#4ade80" stroke-width="1.8"/>
+<line x1="358" y1="230" x2="447" y2="205" stroke="#4ade80" stroke-width="1.8"/>
+<line x1="358" y1="275" x2="447" y2="260" stroke="#4ade80" stroke-width="1.8"/>
+<line x1="358" y1="320" x2="447" y2="315" stroke="#4ade80" stroke-width="1.8"/>
+<rect x="550" y="128" width="190" height="220" rx="12" fill="#f3e8ff" stroke="#9333ea" stroke-width="2"/>
+<text x="645" y="155" text-anchor="middle" font-size="13" font-weight="800" font-family="sans-serif" fill="#6b21a8">Bijective (Both)</text>
+<circle cx="590" cy="185" r="8" fill="#9333ea"/><circle cx="700" cy="185" r="8" fill="#a855f7"/><line x1="598" y1="185" x2="692" y2="185" stroke="#c4b5fd" stroke-width="2"/><circle cx="590" cy="230" r="8" fill="#9333ea"/><circle cx="700" cy="230" r="8" fill="#a855f7"/><line x1="598" y1="230" x2="692" y2="230" stroke="#c4b5fd" stroke-width="2"/><circle cx="590" cy="275" r="8" fill="#9333ea"/><circle cx="700" cy="275" r="8" fill="#a855f7"/><line x1="598" y1="275" x2="692" y2="275" stroke="#c4b5fd" stroke-width="2"/><circle cx="590" cy="320" r="8" fill="#9333ea"/><circle cx="700" cy="320" r="8" fill="#a855f7"/><line x1="598" y1="320" x2="692" y2="320" stroke="#c4b5fd" stroke-width="2"/>
+<rect x="60" y="365" width="680" height="38" rx="10" fill="#1d4ed8"/>
+<text x="400" y="389" text-anchor="middle" font-size="13" font-weight="800" font-family="monospace" fill="#fff">Composition: (fog)(x)=f(g(x)) · Inverse f⁻¹ exists iff f is bijective</text>
+</svg>

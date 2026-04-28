@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="420" viewBox="0 0 800 420">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#fff7ed"/>
+      <stop offset="100%" stop-color="#ffedd5"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="420" fill="url(#bg)" rx="20"/>
+  <rect x="60" y="58" width="680" height="48" rx="12" fill="#b45309"/>
+<text x="400" y="87" text-anchor="middle" font-size="15" font-weight="800" font-family="sans-serif" fill="#fff">Probability — Bayes' Theorem &amp; Distributions</text>
+<circle cx="260" cy="200" r="9" fill="#d97706"/>
+<text x="260" y="185" text-anchor="middle" font-size="13" font-weight="700" font-family="sans-serif" fill="#92400e">Start</text>
+<line x1="260" y1="209" x2="160" y2="280" stroke="#d97706" stroke-width="2.5"/>
+<line x1="260" y1="209" x2="360" y2="280" stroke="#d97706" stroke-width="2.5"/>
+<circle cx="160" cy="288" r="8" fill="#059669"/>
+<circle cx="360" cy="288" r="8" fill="#dc2626"/>
+<text x="120" y="284" text-anchor="end" font-size="12" font-weight="700" font-family="sans-serif" fill="#059669">P(A)=0.6</text>
+<text x="400" y="284" font-size="12" font-weight="700" font-family="sans-serif" fill="#dc2626">P(A')=0.4</text>
+<line x1="160" y1="296" x2="105" y2="355" stroke="#059669" stroke-width="2"/>
+<line x1="160" y1="296" x2="215" y2="355" stroke="#059669" stroke-width="2"/>
+<line x1="360" y1="296" x2="305" y2="355" stroke="#dc2626" stroke-width="2"/>
+<line x1="360" y1="296" x2="415" y2="355" stroke="#dc2626" stroke-width="2"/>
+<circle cx="105" cy="360" r="7" fill="#3b82f6"/><text x="105" y="385" text-anchor="middle" font-size="10" font-family="sans-serif" fill="#1e40af">P(B|A)</text>
+<circle cx="215" cy="360" r="7" fill="#f97316"/><text x="215" y="385" text-anchor="middle" font-size="10" font-family="sans-serif" fill="#c2410c">P(B'|A)</text>
+<circle cx="305" cy="360" r="7" fill="#3b82f6"/><text x="305" y="385" text-anchor="middle" font-size="10" font-family="sans-serif" fill="#1e40af">P(B|A')</text>
+<circle cx="415" cy="360" r="7" fill="#f97316"/><text x="415" y="385" text-anchor="middle" font-size="10" font-family="sans-serif" fill="#c2410c">P(B'|A')</text>
+<rect x="490" y="120" width="260" height="230" rx="14" fill="#fef3c7" stroke="#d97706" stroke-width="2.5"/>
+<text x="620" y="148" text-anchor="middle" font-size="14" font-weight="800" font-family="sans-serif" fill="#92400e">Bayes' Theorem</text>
+<text x="620" y="185" text-anchor="middle" font-size="16" font-family="monospace" font-weight="900" fill="#b45309">P(A|B) =</text>
+<text x="620" y="215" text-anchor="middle" font-size="14" font-family="monospace" font-weight="800" fill="#92400e">P(B|A)·P(A)</text>
+<line x1="510" y1="225" x2="730" y2="225" stroke="#d97706" stroke-width="2"/>
+<text x="620" y="248" text-anchor="middle" font-size="14" font-family="monospace" font-weight="800" fill="#92400e">P(B)</text>
+<text x="620" y="280" text-anchor="middle" font-size="12" font-weight="700" font-family="sans-serif" fill="#78350f">Binomial Distribution</text>
+<text x="620" y="302" text-anchor="middle" font-size="12" font-family="monospace" fill="#92400e">P(X=r) = ⁿCᵣ pʳqⁿ⁻ʳ</text>
+<text x="620" y="325" text-anchor="middle" font-size="12" font-weight="700" font-family="sans-serif" fill="#78350f">Mean = np · Var = npq</text>
+</svg>

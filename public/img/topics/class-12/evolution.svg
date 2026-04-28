@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="420" viewBox="0 0 800 420">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#f0fdf4"/>
+      <stop offset="100%" stop-color="#dcfce7"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="420" fill="url(#bg)" rx="20"/>
+  <rect x="80" y="58" width="640" height="48" rx="12" fill="#15803d"/>
+<text x="400" y="87" text-anchor="middle" font-size="15" font-weight="800" font-family="sans-serif" fill="#fff">Evolution — Darwin's Theory &amp; Evidence</text>
+<circle cx="400" cy="380" r="20" fill="#15803d"/>
+<text x="400" y="386" text-anchor="middle" font-size="10" font-weight="800" font-family="sans-serif" fill="#fff">Ancestor</text>
+<line x1="400" y1="360" x2="250" y2="290" stroke="#16a34a" stroke-width="2.5"/>
+<line x1="400" y1="360" x2="400" y2="275" stroke="#16a34a" stroke-width="2.5"/>
+<line x1="400" y1="360" x2="550" y2="290" stroke="#16a34a" stroke-width="2.5"/>
+<circle cx="250" cy="275" r="18" fill="#4ade80"/>
+<circle cx="400" cy="260" r="18" fill="#22c55e"/>
+<circle cx="550" cy="275" r="18" fill="#86efac"/>
+<line x1="250" y1="257" x2="175" y2="200" stroke="#16a34a" stroke-width="2"/>
+<line x1="250" y1="257" x2="300" y2="195" stroke="#16a34a" stroke-width="2"/>
+<circle cx="175" cy="185" r="15" fill="#bbf7d0"/>
+<circle cx="300" cy="180" r="15" fill="#bbf7d0"/>
+<line x1="550" y1="257" x2="500" y2="195" stroke="#16a34a" stroke-width="2"/>
+<line x1="550" y1="257" x2="620" y2="200" stroke="#16a34a" stroke-width="2"/>
+<circle cx="500" cy="180" r="15" fill="#d1fae5"/>
+<circle cx="620" cy="185" r="15" fill="#a7f3d0"/>
+<text x="175" y="165" text-anchor="middle" font-size="9" font-weight="700" font-family="sans-serif" fill="#14532d">Species A</text>
+<text x="300" y="162" text-anchor="middle" font-size="9" font-weight="700" font-family="sans-serif" fill="#14532d">Species B</text>
+<text x="500" y="162" text-anchor="middle" font-size="9" font-weight="700" font-family="sans-serif" fill="#14532d">Species C</text>
+<text x="620" y="168" text-anchor="middle" font-size="9" font-weight="700" font-family="sans-serif" fill="#14532d">Species D</text>
+<rect x="80" y="100" width="250" height="130" rx="12" fill="#dcfce7" stroke="#16a34a" stroke-width="2"/>
+<text x="205" y="125" text-anchor="middle" font-size="13" font-weight="800" font-family="sans-serif" fill="#14532d">Darwin's Theory</text>
+<text x="205" y="148" text-anchor="middle" font-size="12" font-family="sans-serif" fill="#15803d">Natural Selection</text>
+<text x="205" y="168" text-anchor="middle" font-size="12" font-family="sans-serif" fill="#15803d">Survival of the Fittest</text>
+<text x="205" y="188" text-anchor="middle" font-size="12" font-family="sans-serif" fill="#15803d">Variation &amp; Heredity</text>
+<text x="205" y="208" text-anchor="middle" font-size="12" font-family="sans-serif" fill="#15803d">Reproductive isolation</text>
+<rect x="470" y="100" width="250" height="130" rx="12" fill="#bbf7d0" stroke="#059669" stroke-width="2"/>
+<text x="595" y="125" text-anchor="middle" font-size="13" font-weight="800" font-family="sans-serif" fill="#065f46">Evidence</text>
+<text x="595" y="148" text-anchor="middle" font-size="12" font-family="sans-serif" fill="#047857">Fossil record</text>
+<text x="595" y="168" text-anchor="middle" font-size="12" font-family="sans-serif" fill="#047857">Homologous organs</text>
+<text x="595" y="188" text-anchor="middle" font-size="12" font-family="sans-serif" fill="#047857">Embryological evidence</text>
+<text x="595" y="208" text-anchor="middle" font-size="12" font-family="sans-serif" fill="#047857">Hardy-Weinberg principle</text>
+</svg>

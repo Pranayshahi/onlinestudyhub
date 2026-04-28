@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="420" viewBox="0 0 800 420">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#fff7ed"/>
+      <stop offset="100%" stop-color="#ffedd5"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="420" fill="url(#bg)" rx="20"/>
+  <line x1="80" y1="320" x2="720" y2="320" stroke="#d1d5db" stroke-width="1.5"/>
+<line x1="120" y1="60" x2="120" y2="380" stroke="#d1d5db" stroke-width="1.5"/>
+<path d="M 130,300 Q 250,180 370,200 Q 490,220 560,140 Q 620,90 680,110" fill="none" stroke="#ea580c" stroke-width="3.5"/>
+<circle cx="370" cy="200" r="7" fill="#ea580c"/>
+<line x1="280" y1="230" x2="460" y2="170" stroke="#dc2626" stroke-width="2" stroke-dasharray="6,3"/>
+<text x="480" y="162" font-size="12" font-weight="700" font-family="sans-serif" fill="#dc2626">tangent</text>
+<circle cx="560" cy="140" r="7" fill="#7c3aed"/>
+<line x1="480" y1="185" x2="640" y2="95" stroke="#7c3aed" stroke-width="2" stroke-dasharray="6,3"/>
+<text x="645" y="88" font-size="11" font-weight="700" font-family="sans-serif" fill="#7c3aed">dy/dx</text>
+<rect x="80" y="55" width="680" height="48" rx="12" fill="#c2410c"/>
+<text x="400" y="84" text-anchor="middle" font-size="14" font-weight="800" font-family="monospace" fill="#fff">Continuous at x=a: lim f(x) = f(a) · Differentiable ⇒ Continuous</text>
+<rect x="80" y="335" width="310" height="60" rx="10" fill="#ffedd5" stroke="#ea580c" stroke-width="2"/>
+<text x="235" y="357" text-anchor="middle" font-size="13" font-weight="700" font-family="monospace" fill="#7c2d12">Chain Rule: dy/dx = dy/du · du/dx</text>
+<text x="235" y="380" text-anchor="middle" font-size="12" font-family="sans-serif" fill="#9a3412">Implicit · Parametric · Logarithmic</text>
+<rect x="410" y="335" width="310" height="60" rx="10" fill="#ffedd5" stroke="#ea580c" stroke-width="2"/>
+<text x="565" y="357" text-anchor="middle" font-size="13" font-weight="700" font-family="monospace" fill="#7c2d12">Rolle's · Mean Value Theorem</text>
+<text x="565" y="380" text-anchor="middle" font-size="12" font-family="sans-serif" fill="#9a3412">∃c∈(a,b): f'(c)=(f(b)−f(a))/(b−a)</text>
+</svg>

@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="420" viewBox="0 0 800 420">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#1e1b4b"/>
+      <stop offset="100%" stop-color="#312e81"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="420" fill="url(#bg)" rx="20"/>
+  <rect x="80" y="58" width="640" height="48" rx="12" fill="#4338ca"/>
+<text x="400" y="87" text-anchor="middle" font-size="15" font-weight="800" font-family="sans-serif" fill="#fff">Molecular Basis of Inheritance — DNA &amp; Central Dogma</text>
+<line x1="385" y1="90" x2="315" y2="90" stroke="#4ade80" stroke-width="1.5" opacity="0.7"/>
+<circle cx="385" cy="90" r="5" fill="#f472b6"/>
+<circle cx="315" cy="90" r="5" fill="#34d399"/><line x1="370.64549044713624" y1="107" x2="329.35450955286376" y2="107" stroke="#4ade80" stroke-width="1.5" opacity="0.7"/>
+<circle cx="370.64549044713624" cy="107" r="5" fill="#60a5fa"/>
+<circle cx="329.35450955286376" cy="107" r="5" fill="#f87171"/><line x1="335.0747597704816" y1="124" x2="364.9252402295184" y2="124" stroke="#4ade80" stroke-width="1.5" opacity="0.7"/>
+<circle cx="335.0747597704816" cy="124" r="5" fill="#fbbf24"/>
+<circle cx="364.9252402295184" cy="124" r="5" fill="#a78bfa"/><line x1="296.8550949991409" y1="141" x2="403.14490500085907" y2="141" stroke="#4ade80" stroke-width="1.5" opacity="0.7"/>
+<circle cx="296.8550949991409" cy="141" r="5" fill="#f472b6"/>
+<circle cx="403.14490500085907" cy="141" r="5" fill="#34d399"/><line x1="275.9364795173854" y1="158" x2="424.0635204826146" y2="158" stroke="#4ade80" stroke-width="1.5" opacity="0.7"/>
+<circle cx="275.9364795173854" cy="158" r="5" fill="#60a5fa"/>
+<circle cx="424.0635204826146" cy="158" r="5" fill="#f87171"/><line x1="283.23805753487125" y1="175" x2="416.76194246512875" y2="175" stroke="#4ade80" stroke-width="1.5" opacity="0.7"/>
+<circle cx="283.23805753487125" cy="175" r="5" fill="#fbbf24"/>
+<circle cx="416.76194246512875" cy="175" r="5" fill="#a78bfa"/><line x1="314.94853554603543" y1="192" x2="385.05146445396457" y2="192" stroke="#4ade80" stroke-width="1.5" opacity="0.7"/>
+<circle cx="314.94853554603543" cy="192" r="5" fill="#f472b6"/>
+<circle cx="385.05146445396457" cy="192" r="5" fill="#34d399"/><line x1="354.5156095677096" y1="209" x2="345.4843904322904" y2="209" stroke="#4ade80" stroke-width="1.5" opacity="0.7"/>
+<circle cx="354.5156095677096" cy="209" r="5" fill="#60a5fa"/>
+<circle cx="345.4843904322904" cy="209" r="5" fill="#f87171"/><line x1="381.28597261723957" y1="226" x2="318.71402738276043" y2="226" stroke="#4ade80" stroke-width="1.5" opacity="0.7"/>
+<circle cx="381.28597261723957" cy="226" r="5" fill="#fbbf24"/>
+<circle cx="318.71402738276043" cy="226" r="5" fill="#a78bfa"/><line x1="381.28597261723957" y1="243" x2="318.7140273827604" y2="243" stroke="#4ade80" stroke-width="1.5" opacity="0.7"/>
+<circle cx="381.28597261723957" cy="243" r="5" fill="#f472b6"/>
+<circle cx="318.7140273827604" cy="243" r="5" fill="#34d399"/><line x1="354.5156095677096" y1="260" x2="345.4843904322904" y2="260" stroke="#4ade80" stroke-width="1.5" opacity="0.7"/>
+<circle cx="354.5156095677096" cy="260" r="5" fill="#60a5fa"/>
+<circle cx="345.4843904322904" cy="260" r="5" fill="#f87171"/><line x1="314.94853554603543" y1="277" x2="385.0514644539645" y2="277" stroke="#4ade80" stroke-width="1.5" opacity="0.7"/>
+<circle cx="314.94853554603543" cy="277" r="5" fill="#fbbf24"/>
+<circle cx="385.0514644539645" cy="277" r="5" fill="#a78bfa"/><line x1="283.23805753487125" y1="294" x2="416.76194246512875" y2="294" stroke="#4ade80" stroke-width="1.5" opacity="0.7"/>
+<circle cx="283.23805753487125" cy="294" r="5" fill="#f472b6"/>
+<circle cx="416.76194246512875" cy="294" r="5" fill="#34d399"/><line x1="275.9364795173854" y1="311" x2="424.0635204826146" y2="311" stroke="#4ade80" stroke-width="1.5" opacity="0.7"/>
+<circle cx="275.9364795173854" cy="311" r="5" fill="#60a5fa"/>
+<circle cx="424.0635204826146" cy="311" r="5" fill="#f87171"/><line x1="296.8550949991409" y1="328" x2="403.1449050008592" y2="328" stroke="#4ade80" stroke-width="1.5" opacity="0.7"/>
+<circle cx="296.8550949991409" cy="328" r="5" fill="#fbbf24"/>
+<circle cx="403.1449050008592" cy="328" r="5" fill="#a78bfa"/><line x1="335.07475977048153" y1="345" x2="364.92524022951847" y2="345" stroke="#4ade80" stroke-width="1.5" opacity="0.7"/>
+<circle cx="335.07475977048153" cy="345" r="5" fill="#f472b6"/>
+<circle cx="364.92524022951847" cy="345" r="5" fill="#34d399"/><line x1="370.64549044713624" y1="362" x2="329.35450955286376" y2="362" stroke="#4ade80" stroke-width="1.5" opacity="0.7"/>
+<circle cx="370.64549044713624" cy="362" r="5" fill="#60a5fa"/>
+<circle cx="329.35450955286376" cy="362" r="5" fill="#f87171"/><line x1="385" y1="379" x2="315" y2="379" stroke="#4ade80" stroke-width="1.5" opacity="0.7"/>
+<circle cx="385" cy="379" r="5" fill="#fbbf24"/>
+<circle cx="315" cy="379" r="5" fill="#a78bfa"/>
+<path d="M 330,90 Q 275,200 330,395" fill="none" stroke="#c7d2fe" stroke-width="2.5" opacity="0.5"/>
+<path d="M 470,90 Q 525,200 470,395" fill="none" stroke="#c7d2fe" stroke-width="2.5" opacity="0.5"/>
+<rect x="530" y="100" width="230" height="90" rx="12" fill="#312e81" stroke="#818cf8" stroke-width="2"/>
+<text x="645" y="127" text-anchor="middle" font-size="12" font-weight="800" font-family="sans-serif" fill="#c7d2fe">Base Pairing</text>
+<text x="645" y="150" text-anchor="middle" font-size="13" font-family="monospace" fill="#a5b4fc">A = T (2 H-bonds)</text>
+<text x="645" y="173" text-anchor="middle" font-size="13" font-family="monospace" fill="#a5b4fc">G ≡ C (3 H-bonds)</text>
+<rect x="530" y="210" width="230" height="130" rx="12" fill="#1e3a8a" stroke="#60a5fa" stroke-width="2"/>
+<text x="645" y="235" text-anchor="middle" font-size="12" font-weight="800" font-family="sans-serif" fill="#bfdbfe">Central Dogma</text>
+<text x="645" y="262" text-anchor="middle" font-size="13" font-weight="800" font-family="monospace" fill="#93c5fd">DNA → RNA → Protein</text>
+<text x="645" y="286" text-anchor="middle" font-size="11" font-family="sans-serif" fill="#60a5fa">Replication · Transcription</text>
+<text x="645" y="306" text-anchor="middle" font-size="11" font-family="sans-serif" fill="#60a5fa">Translation · Reverse tran.</text>
+<text x="645" y="326" text-anchor="middle" font-size="11" font-family="sans-serif" fill="#818cf8">Genetic code: 64 codons</text>
+<rect x="80" y="368" width="420" height="40" rx="10" fill="#312e81" stroke="#818cf8" stroke-width="2"/>
+<text x="290" y="393" text-anchor="middle" font-size="12" font-weight="700" font-family="sans-serif" fill="#c7d2fe">Watson-Crick model · Chargaff's Rules · Human Genome Project</text>
+</svg>

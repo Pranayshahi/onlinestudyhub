@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="420" viewBox="0 0 800 420">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#f0fdf4"/>
+      <stop offset="100%" stop-color="#dcfce7"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="420" fill="url(#bg)" rx="20"/>
+  <rect x="80" y="58" width="640" height="48" rx="12" fill="#15803d"/>
+<text x="400" y="87" text-anchor="middle" font-size="15" font-weight="800" font-family="sans-serif" fill="#fff">Amines and Polymers</text>
+<rect x="80" y="120" width="310" height="210" rx="12" fill="#dcfce7" stroke="#16a34a" stroke-width="2.5"/>
+<text x="235" y="148" text-anchor="middle" font-size="14" font-weight="800" font-family="sans-serif" fill="#14532d">Amines (N-containing)</text>
+<text x="235" y="175" text-anchor="middle" font-size="13" font-family="monospace" fill="#15803d">Primary: R−NH₂</text>
+<text x="235" y="200" text-anchor="middle" font-size="13" font-family="monospace" fill="#15803d">Secondary: R₂NH</text>
+<text x="235" y="225" text-anchor="middle" font-size="13" font-family="monospace" fill="#15803d">Tertiary: R₃N</text>
+<text x="235" y="250" text-anchor="middle" font-size="12" font-family="sans-serif" fill="#14532d">Basic due to lone pair on N</text>
+<text x="235" y="272" text-anchor="middle" font-size="12" font-family="sans-serif" fill="#14532d">Basicity: 3° &lt; 2° &lt; 1° (gas phase)</text>
+<text x="235" y="294" text-anchor="middle" font-size="12" font-family="sans-serif" fill="#14532d">Diazonium salts: ArN₂⁺Cl⁻</text>
+<text x="235" y="313" text-anchor="middle" font-size="12" font-family="sans-serif" fill="#14532d">Coupling reaction → azo dyes</text>
+<rect x="420" y="120" width="300" height="210" rx="12" fill="#bbf7d0" stroke="#059669" stroke-width="2.5"/>
+<text x="570" y="148" text-anchor="middle" font-size="14" font-weight="800" font-family="sans-serif" fill="#065f46">Polymers</text>
+<text x="570" y="175" text-anchor="middle" font-size="12" font-family="sans-serif" fill="#047857">Addition (chain growth):</text>
+<text x="570" y="196" text-anchor="middle" font-size="12" font-family="monospace" fill="#047857">Polyethylene, PVC, PTFE</text>
+<text x="570" y="220" text-anchor="middle" font-size="12" font-family="sans-serif" fill="#047857">Condensation (step growth):</text>
+<text x="570" y="241" text-anchor="middle" font-size="12" font-family="monospace" fill="#047857">Nylon-6,6 · Dacron · Bakelite</text>
+<text x="570" y="265" text-anchor="middle" font-size="12" font-family="sans-serif" fill="#065f46">Natural: Starch · Cellulose · Rubber</text>
+<text x="570" y="287" text-anchor="middle" font-size="12" font-family="sans-serif" fill="#065f46">Biodegradable: PHBV</text>
+<text x="570" y="310" text-anchor="middle" font-size="12" font-family="sans-serif" fill="#065f46">Copolymer · Elastomers</text>
+<rect x="80" y="350" width="640" height="42" rx="10" fill="#15803d"/>
+<text x="400" y="376" text-anchor="middle" font-size="12" font-weight="800" font-family="sans-serif" fill="#fff">Biomolecules: Vitamins · Hormones · Nucleic Acids · Drugs &amp; their targets</text>
+</svg>
