@@ -526,7 +526,7 @@ app.patch('/api/bookings/:id', requireAuth, async (req, res) => {
 });
 
 // ── WhatsApp test (remove after confirming it works) ────────────
-app.get('/api/whatsapp-test', requireAuth, async (req, res) => {
+app.get('/api/whatsapp-test', async (req, res) => {
   const SID   = process.env.TWILIO_ACCOUNT_SID;
   const TOKEN = process.env.TWILIO_AUTH_TOKEN;
   const FROM  = process.env.TWILIO_WHATSAPP_FROM;
