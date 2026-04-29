@@ -144,8 +144,8 @@ function TeacherDetail({ teacher, classId, subjectId, onBack, onBooked, user, on
           </div>
           <div style={{ fontSize: '.85rem', color: '#374151', lineHeight: 1.8 }}>
             <div>1. Teacher reviews your request</div>
-            <div>2. You'll get a WhatsApp confirmation</div>
-            <div>3. Google Meet link shared on confirmation</div>
+            <div>2. You'll get an SMS confirmation</div>
+            <div>3. Google Meet link shared via SMS on confirmation</div>
           </div>
         </div>
 
