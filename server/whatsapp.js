@@ -231,6 +231,37 @@ _– Team OnlineStudyHub_`;
   notify(teacherPhone, body);
 }
 
+/**
+ * Sent to both parties when student cancels a booking.
+ */
+function notifyStudentCancelledSelf({ studentPhone, studentName, topicTitle, date, time }) {
+  const body =
+`❌ *OnlineStudyHub — Booking Cancelled*
+
+Hi ${studentName},
+
+Your booking for *${topicTitle || 'Personalised Session'}* on ${fmtDate(date)} at ${time} has been cancelled as requested.
+
+You can book a new session anytime on OnlineStudyHub.
+
+_– Team OnlineStudyHub_`;
+  notify(studentPhone, body);
+}
+
+function notifyTeacherStudentCancelled({ teacherPhone, teacherName, studentName, topicTitle, date, time }) {
+  const body =
+`❌ *OnlineStudyHub — Session Cancelled by Student*
+
+Hi ${teacherName},
+
+*${studentName}* has cancelled their session for *${topicTitle || 'Personalised Session'}* on ${fmtDate(date)} at ${time}.
+
+The slot is now free.
+
+_– Team OnlineStudyHub_`;
+  notify(teacherPhone, body);
+}
+
 module.exports = {
   notifyStudentBookingReceived,
   notifyTeacherNewBooking,
@@ -238,4 +269,6 @@ module.exports = {
   notifyStudentSessionCancelled,
   notifyTeacherBookingConfirmed,
   notifyTeacherBookingDeclined,
+  notifyStudentCancelledSelf,
+  notifyTeacherStudentCancelled,
 };

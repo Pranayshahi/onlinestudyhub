@@ -16,6 +16,8 @@ const {
   notifyStudentSessionCancelled,
   notifyTeacherBookingConfirmed,
   notifyTeacherBookingDeclined,
+  notifyStudentCancelledSelf,
+  notifyTeacherStudentCancelled,
 } = require('./whatsapp');
 
 // In-memory document store: uploadId → { fileName, chunks: string[], expiresAt }
@@ -452,6 +454,47 @@ app.get('/api/bookings/mine', requireAuth, async (req, res) => {
     const bookings = await Booking.find({ teacher_id: req.teacher.id })
       .sort({ createdAt: -1 }).lean();
     res.json(bookings);
+  } catch (err) {
+    res.status(500).json({ error: 'Server error' });
+  }
+});
+
+// ── Bookings: Student cancel own booking (protected) ──────────
+app.patch('/api/bookings/:id/cancel', requireStudentAuth, async (req, res) => {
+  try {
+    const booking = await Booking.findOne({ _id: req.params.id, student_email: req.student.email });
+    if (!booking) return res.status(404).json({ error: 'Booking not found' });
+    if (!['pending', 'confirmed'].includes(booking.status)) {
+      return res.status(400).json({ error: 'Only pending or confirmed bookings can be cancelled' });
+    }
+
+    booking.status = 'cancelled';
+    await booking.save();
+
+    const teacher = await Teacher.findById(booking.teacher_id).select('name contact').lean();
+    const topicLabel = booking.topic_id
+      ? booking.topic_id.replace(/-/g, ' ').replace(/\b\w/g, c => c.toUpperCase())
+      : 'Personalised Session';
+
+    notifyStudentCancelledSelf({
+      studentPhone: booking.student_phone,
+      studentName:  booking.student_name,
+      topicTitle:   topicLabel,
+      date:         booking.scheduled_date,
+      time:         booking.time_slot,
+    });
+    if (teacher?.contact) {
+      notifyTeacherStudentCancelled({
+        teacherPhone: teacher.contact,
+        teacherName:  teacher.name,
+        studentName:  booking.student_name,
+        topicTitle:   topicLabel,
+        date:         booking.scheduled_date,
+        time:         booking.time_slot,
+      });
+    }
+
+    res.json(booking);
   } catch (err) {
     res.status(500).json({ error: 'Server error' });
   }

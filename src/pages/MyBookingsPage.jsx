@@ -83,11 +83,25 @@ function RatingModal({ booking, onClose, onSubmitted }) {
   );
 }
 
-function BookingCard({ booking, onRate, reviewed }) {
+function BookingCard({ booking, onRate, reviewed, onCancel }) {
   const status = STATUS_STYLE[booking.status] || STATUS_STYLE.pending;
+  const [cancelling, setCancelling] = useState(false);
   const date = booking.scheduled_date
     ? new Date(booking.scheduled_date).toLocaleDateString('en-IN', { day: 'numeric', month: 'short', year: 'numeric' })
     : '—';
+
+  async function handleCancel() {
+    if (!window.confirm('Cancel this booking? Both you and the teacher will be notified.')) return;
+    setCancelling(true);
+    try {
+      await api(`/bookings/${booking._id}/cancel`, { method: 'PATCH' });
+      onCancel(booking._id);
+    } catch (e) {
+      alert(e.message || 'Failed to cancel booking');
+    } finally {
+      setCancelling(false);
+    }
+  }
 
   return (
     <div style={{ background: '#fff', border: '1px solid #e5e7eb', borderRadius: 16, padding: '1.25rem 1.5rem', display: 'flex', flexDirection: 'column', gap: '.75rem', boxShadow: '0 1px 6px rgba(0,0,0,.06)', transition: 'box-shadow .2s' }}
@@ -121,6 +135,16 @@ function BookingCard({ booking, onRate, reviewed }) {
           style={{ display: 'inline-flex', alignItems: 'center', gap: '.4rem', background: '#1e1b4b', color: '#fff', fontSize: '.82rem', fontWeight: 700, padding: '.45rem 1rem', borderRadius: 8, textDecoration: 'none', width: 'fit-content' }}>
           📹 Join Meet
         </a>
+      )}
+
+      {(booking.status === 'pending' || booking.status === 'confirmed') && (
+        <button
+          onClick={handleCancel}
+          disabled={cancelling}
+          style={{ display: 'inline-flex', alignItems: 'center', gap: '.4rem', background: '#fff', color: '#dc2626', border: '1.5px solid #fecaca', fontSize: '.82rem', fontWeight: 700, padding: '.45rem 1rem', borderRadius: 8, cursor: cancelling ? 'not-allowed' : 'pointer', width: 'fit-content', opacity: cancelling ? .6 : 1 }}
+        >
+          {cancelling ? '⏳ Cancelling…' : '✕ Cancel Booking'}
+        </button>
       )}
 
       {booking.status === 'completed' && (
@@ -229,7 +253,7 @@ export default function MyBookingsPage({ user, onBadgeUpdate }) {
           <div style={{ marginBottom: '2rem' }}>
             <h2 style={{ fontFamily: 'Nunito', fontWeight: 800, fontSize: '1.1rem', color: '#1f2937', marginBottom: '1rem' }}>Upcoming ({upcoming.length})</h2>
             <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
-              {upcoming.map(b => <BookingCard key={b._id} booking={b} onRate={setRatingBooking} reviewed={reviewed.has(b._id)} />)}
+              {upcoming.map(b => <BookingCard key={b._id} booking={b} onRate={setRatingBooking} reviewed={reviewed.has(b._id)} onCancel={id => setBookings(bs => bs.map(x => x._id === id ? { ...x, status: 'cancelled' } : x))} />)}
             </div>
           </div>
         )}
