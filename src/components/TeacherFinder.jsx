@@ -114,7 +114,7 @@ function TeacherDetail({ teacher, classId, subjectId, onBack, onBooked, user, on
           studentEmail: user?.email || '',
           teacherId: teacher.id || teacher._id,
           classId,
-          subjectId,
+          subjectId: subjectId || teacher.subject || 'general',
           timeSlot: selectedSlot,
           scheduledDate: scheduledDateISO,
         },
