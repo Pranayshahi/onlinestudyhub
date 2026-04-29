@@ -525,45 +525,6 @@ app.patch('/api/bookings/:id', requireAuth, async (req, res) => {
   }
 });
 
-// ── WhatsApp test (remove after confirming it works) ────────────
-app.get('/api/whatsapp-test', async (req, res) => {
-  const SID   = process.env.TWILIO_ACCOUNT_SID;
-  const TOKEN = process.env.TWILIO_AUTH_TOKEN;
-  const FROM  = process.env.TWILIO_WHATSAPP_FROM;
-  const to    = req.query.phone;
-
-  if (!SID || !TOKEN || !FROM) {
-    return res.json({ configured: false, missing: { SID: !SID, TOKEN: !TOKEN, FROM: !FROM } });
-  }
-  if (!to) return res.json({ configured: true, error: 'Pass ?phone=10digitnumber to send a test message' });
-
-  const digits = to.replace(/\D/g, '');
-  const toWA   = `whatsapp:+91${digits}`;
-  const params = new URLSearchParams({ From: FROM, To: toWA, Body: '✅ OnlineStudyHub WhatsApp test message. If you see this, notifications are working!' });
-  const payload = params.toString();
-  const auth    = Buffer.from(`${SID}:${TOKEN}`).toString('base64');
-  const https   = require('https');
-
-  const result = await new Promise((resolve) => {
-    const options = {
-      hostname: 'api.twilio.com',
-      path: `/2010-04-01/Accounts/${SID}/Messages.json`,
-      method: 'POST',
-      headers: { 'Authorization': `Basic ${auth}`, 'Content-Type': 'application/x-www-form-urlencoded', 'Content-Length': Buffer.byteLength(payload) },
-    };
-    const req2 = https.request(options, r => {
-      let data = '';
-      r.on('data', c => data += c);
-      r.on('end', () => resolve({ status: r.statusCode, body: JSON.parse(data) }));
-    });
-    req2.on('error', e => resolve({ status: 0, error: e.message }));
-    req2.write(payload);
-    req2.end();
-  });
-
-  res.json({ configured: true, from: FROM, to: toWA, twilio: result });
-});
-
 // ── Health check ────────────────────────────────────────────────
 app.get('/api/health', async (req, res) => {
   try {
