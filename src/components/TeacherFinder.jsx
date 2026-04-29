@@ -97,7 +97,8 @@ function TeacherDetail({ teacher, classId, subjectId, onBack, onBooked, user, on
 
   const today = new Date();
   const tomorrow = new Date(today); tomorrow.setDate(today.getDate() + 1);
-  const scheduledDate = tomorrow.toLocaleDateString('en-IN', { weekday: 'long', day: 'numeric', month: 'long' });
+  const scheduledDateISO = tomorrow.toISOString().split('T')[0];
+  const scheduledDateDisplay = tomorrow.toLocaleDateString('en-IN', { weekday: 'long', day: 'numeric', month: 'long' });
 
   async function handleBook() {
     if (!form.name.trim()) { setError('Please enter your name'); return; }
@@ -110,11 +111,12 @@ function TeacherDetail({ teacher, classId, subjectId, onBack, onBooked, user, on
         body: {
           studentName: form.name,
           studentPhone: form.phone,
+          studentEmail: user?.email || '',
           teacherId: teacher.id || teacher._id,
           classId,
           subjectId,
           timeSlot: selectedSlot,
-          scheduledDate,
+          scheduledDate: scheduledDateISO,
         },
       });
       setBooking(data);
@@ -131,23 +133,20 @@ function TeacherDetail({ teacher, classId, subjectId, onBack, onBooked, user, on
     return (
       <div style={{ textAlign: 'center', padding: '2rem 1rem' }}>
         <div style={{ fontSize: '3.5rem', marginBottom: '1rem' }}>🎉</div>
-        <h3 style={{ fontFamily: 'Nunito', fontWeight: 900, color: '#1e1b4b', marginBottom: '.5rem' }}>Booking Confirmed!</h3>
+        <h3 style={{ fontFamily: 'Nunito', fontWeight: 900, color: '#1e1b4b', marginBottom: '.5rem' }}>Booking Request Sent!</h3>
         <p style={{ color: '#6b7280', fontSize: '.9rem', marginBottom: '1.5rem' }}>
-          Your session with <strong>{teacher.name}</strong> is booked for <strong>{selectedSlot}</strong> on <strong>{scheduledDate}</strong>
+          Your request for <strong>{selectedSlot}</strong> on <strong>{scheduledDateDisplay}</strong> has been sent to <strong>{teacher.name}</strong>.
         </p>
 
-        {/* Meet Link */}
-        <div style={{ background: '#f0fdf4', border: '1.5px solid #86efac', borderRadius: 14, padding: '1.25rem', marginBottom: '1.5rem' }}>
+        <div style={{ background: '#f0fdf4', border: '1.5px solid #86efac', borderRadius: 14, padding: '1.25rem', marginBottom: '1.5rem', textAlign: 'left' }}>
           <div style={{ fontSize: '.75rem', fontWeight: 700, color: '#16a34a', marginBottom: '.5rem', textTransform: 'uppercase', letterSpacing: '.05em' }}>
-            🎥 Google Meet Link
+            ✅ What happens next
           </div>
-          <a href={booking.meetLink} target="_blank" rel="noopener noreferrer"
-            style={{ color: '#4f46e5', fontWeight: 700, fontSize: '.9rem', wordBreak: 'break-all' }}>
-            {booking.meetLink}
-          </a>
-          <p style={{ fontSize: '.78rem', color: '#6b7280', marginTop: '.5rem', marginBottom: 0 }}>
-            This link has been sent to the teacher. Join at your scheduled time.
-          </p>
+          <div style={{ fontSize: '.85rem', color: '#374151', lineHeight: 1.8 }}>
+            <div>1. Teacher reviews your request</div>
+            <div>2. You'll get a WhatsApp confirmation</div>
+            <div>3. Google Meet link shared on confirmation</div>
+          </div>
         </div>
 
         <button
@@ -168,7 +167,7 @@ function TeacherDetail({ teacher, classId, subjectId, onBack, onBooked, user, on
         </button>
         <h3 style={{ fontFamily: 'Nunito', fontWeight: 900, color: '#1e1b4b', marginBottom: '.25rem' }}>Your Details</h3>
         <p style={{ color: '#6b7280', fontSize: '.85rem', marginBottom: '1.5rem' }}>
-          Session with <strong>{teacher.name}</strong> at <strong>{selectedSlot}</strong> on {scheduledDate}
+          Session with <strong>{teacher.name}</strong> at <strong>{selectedSlot}</strong> on {scheduledDateDisplay}
         </p>
 
         {user && (
@@ -222,7 +221,7 @@ function TeacherDetail({ teacher, classId, subjectId, onBack, onBooked, user, on
           ← Back
         </button>
         <h3 style={{ fontFamily: 'Nunito', fontWeight: 900, color: '#1e1b4b', marginBottom: '.25rem' }}>Pick a Time Slot</h3>
-        <p style={{ color: '#6b7280', fontSize: '.85rem', marginBottom: '1.5rem' }}>Available slots for tomorrow, {scheduledDate}</p>
+        <p style={{ color: '#6b7280', fontSize: '.85rem', marginBottom: '1.5rem' }}>Available slots for tomorrow, {scheduledDateDisplay}</p>
 
         {TIME_SLOTS.map(({ period, icon, slots }) => (
           <div key={period} style={{ marginBottom: '1.25rem' }}>

@@ -396,6 +396,154 @@ function TeacherForm({ initial = EMPTY_FORM, showEmail = true, showPassword = fa
   );
 }
 
+// ─── Appointments Tab ─────────────────────────────────────────────
+const APPT_STATUS = {
+  pending:   { bg: '#fff7ed', color: '#ea580c', label: '⏳ Pending' },
+  confirmed: { bg: '#f0fdf4', color: '#16a34a', label: '✅ Confirmed' },
+  cancelled: { bg: '#fef2f2', color: '#dc2626', label: '❌ Cancelled' },
+  completed: { bg: '#eff6ff', color: '#2563eb', label: '🎓 Completed' },
+};
+
+function AppointmentsTab({ token }) {
+  const [bookings, setBookings] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState('');
+  const [updating, setUpdating] = useState(null);
+
+  useEffect(() => {
+    api('/bookings/mine', { method: 'GET', token })
+      .then(data => { setBookings(Array.isArray(data) ? data : []); setLoading(false); })
+      .catch(e => { setError(e.message); setLoading(false); });
+  }, [token]);
+
+  async function updateStatus(bookingId, status) {
+    setUpdating(bookingId);
+    try {
+      const updated = await api(`/bookings/${bookingId}`, { method: 'PATCH', token, body: { status } });
+      setBookings(bs => bs.map(b => b._id === bookingId ? { ...b, status: updated.status } : b));
+    } catch (e) {
+      alert(e.message || 'Failed to update booking');
+    } finally {
+      setUpdating(null);
+    }
+  }
+
+  if (loading) return <div style={{ textAlign: 'center', padding: '3rem', color: '#9ca3af' }}>Loading appointments…</div>;
+  if (error) return <div style={{ background: '#fef2f2', border: '1px solid #fecaca', borderRadius: 12, padding: '1rem', color: '#dc2626', fontSize: '.9rem' }}>⚠️ {error}</div>;
+
+  if (bookings.length === 0) {
+    return (
+      <div style={{ textAlign: 'center', padding: '4rem 1rem', color: '#9ca3af' }}>
+        <div style={{ fontSize: '3rem', marginBottom: '1rem' }}>📭</div>
+        <div style={{ fontFamily: 'Nunito', fontWeight: 800, color: '#374151', marginBottom: '.5rem' }}>No appointments yet</div>
+        <div style={{ fontSize: '.85rem' }}>Booking requests from students will appear here</div>
+      </div>
+    );
+  }
+
+  const pending   = bookings.filter(b => b.status === 'pending');
+  const confirmed = bookings.filter(b => b.status === 'confirmed');
+  const past      = bookings.filter(b => b.status === 'completed' || b.status === 'cancelled');
+
+  function BookingItem({ b }) {
+    const s = APPT_STATUS[b.status] || APPT_STATUS.pending;
+    const isISO = /^\d{4}-\d{2}-\d{2}/.test(b.scheduled_date);
+    const dateLabel = isISO
+      ? new Date(b.scheduled_date).toLocaleDateString('en-IN', { day: 'numeric', month: 'short', year: 'numeric' })
+      : b.scheduled_date || '—';
+    const busy = updating === b._id;
+
+    return (
+      <div style={{ background: '#fff', border: '1px solid #e5e7eb', borderRadius: 14, padding: '1.25rem', boxShadow: '0 1px 4px rgba(0,0,0,.05)' }}>
+        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', flexWrap: 'wrap', gap: '.5rem', marginBottom: '.75rem' }}>
+          <div>
+            <div style={{ fontFamily: 'Nunito', fontWeight: 800, fontSize: '.95rem', color: '#1e1b4b', marginBottom: '.15rem' }}>
+              {b.topic_id ? b.topic_id.replace(/-/g, ' ').replace(/\b\w/g, c => c.toUpperCase()) : 'Personalised Session'}
+            </div>
+            <div style={{ fontSize: '.78rem', color: '#6b7280', textTransform: 'capitalize' }}>
+              {b.subject_id}{b.class_id ? ` · Class ${b.class_id.replace('class-', '').replace('class', '')}` : ''}
+            </div>
+          </div>
+          <span style={{ background: s.bg, color: s.color, fontSize: '.72rem', fontWeight: 700, padding: '.2rem .65rem', borderRadius: 99 }}>
+            {s.label}
+          </span>
+        </div>
+
+        <div style={{ display: 'flex', gap: '1.5rem', flexWrap: 'wrap', fontSize: '.83rem', color: '#374151', marginBottom: '.75rem' }}>
+          <div><span style={{ color: '#9ca3af' }}>Student</span><br /><strong>{b.student_name}</strong></div>
+          <div><span style={{ color: '#9ca3af' }}>Phone</span><br /><strong>{b.student_phone}</strong></div>
+          <div><span style={{ color: '#9ca3af' }}>Date</span><br /><strong>{dateLabel}</strong></div>
+          <div><span style={{ color: '#9ca3af' }}>Time</span><br /><strong>{b.time_slot || '—'}</strong></div>
+        </div>
+
+        {b.status === 'confirmed' && b.meet_link && (
+          <div style={{ background: '#f0fdf4', border: '1px solid #bbf7d0', borderRadius: 10, padding: '.5rem .85rem', marginBottom: '.75rem', fontSize: '.8rem' }}>
+            🎥 <a href={b.meet_link} target="_blank" rel="noopener noreferrer" style={{ color: '#4f46e5', fontWeight: 700, wordBreak: 'break-all' }}>{b.meet_link}</a>
+          </div>
+        )}
+
+        {b.status === 'pending' && (
+          <div style={{ display: 'flex', gap: '.5rem' }}>
+            <button onClick={() => updateStatus(b._id, 'confirmed')} disabled={busy}
+              style={{ flex: 1, padding: '.5rem', background: '#16a34a', color: '#fff', border: 'none', borderRadius: 8, fontWeight: 700, fontSize: '.82rem', cursor: busy ? 'not-allowed' : 'pointer', opacity: busy ? .6 : 1 }}>
+              {busy ? '…' : '✅ Confirm'}
+            </button>
+            <button onClick={() => updateStatus(b._id, 'cancelled')} disabled={busy}
+              style={{ flex: 1, padding: '.5rem', background: '#fff', color: '#dc2626', border: '1.5px solid #fecaca', borderRadius: 8, fontWeight: 700, fontSize: '.82rem', cursor: busy ? 'not-allowed' : 'pointer', opacity: busy ? .6 : 1 }}>
+              {busy ? '…' : '✕ Decline'}
+            </button>
+          </div>
+        )}
+
+        {b.status === 'confirmed' && (
+          <button onClick={() => updateStatus(b._id, 'completed')} disabled={busy}
+            style={{ width: '100%', padding: '.5rem', background: '#1e1b4b', color: '#fff', border: 'none', borderRadius: 8, fontWeight: 700, fontSize: '.82rem', cursor: busy ? 'not-allowed' : 'pointer', opacity: busy ? .6 : 1 }}>
+            {busy ? '…' : '🎓 Mark as Completed'}
+          </button>
+        )}
+      </div>
+    );
+  }
+
+  return (
+    <div>
+      <div style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap', marginBottom: '1.5rem' }}>
+        {[
+          { label: 'Pending',   count: pending.length,   color: '#ea580c', bg: '#fff7ed' },
+          { label: 'Confirmed', count: confirmed.length, color: '#16a34a', bg: '#f0fdf4' },
+          { label: 'Past',      count: past.length,      color: '#6b7280', bg: '#f8fafc' },
+        ].map(({ label, count, color, bg }) => (
+          <div key={label} style={{ flex: 1, minWidth: 80, background: bg, border: `1px solid ${color}33`, borderRadius: 12, padding: '.75rem 1rem', textAlign: 'center' }}>
+            <div style={{ fontFamily: 'Nunito', fontWeight: 900, fontSize: '1.4rem', color }}>{count}</div>
+            <div style={{ fontSize: '.75rem', color: '#9ca3af', fontWeight: 600 }}>{label}</div>
+          </div>
+        ))}
+      </div>
+
+      {pending.length > 0 && (
+        <div style={{ marginBottom: '1.5rem' }}>
+          <div style={{ fontFamily: 'Nunito', fontWeight: 800, fontSize: '.82rem', color: '#ea580c', marginBottom: '.75rem', textTransform: 'uppercase', letterSpacing: '.04em' }}>⏳ Pending Requests ({pending.length})</div>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '.75rem' }}>{pending.map(b => <BookingItem key={b._id} b={b} />)}</div>
+        </div>
+      )}
+
+      {confirmed.length > 0 && (
+        <div style={{ marginBottom: '1.5rem' }}>
+          <div style={{ fontFamily: 'Nunito', fontWeight: 800, fontSize: '.82rem', color: '#16a34a', marginBottom: '.75rem', textTransform: 'uppercase', letterSpacing: '.04em' }}>✅ Confirmed Sessions ({confirmed.length})</div>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '.75rem' }}>{confirmed.map(b => <BookingItem key={b._id} b={b} />)}</div>
+        </div>
+      )}
+
+      {past.length > 0 && (
+        <div>
+          <div style={{ fontFamily: 'Nunito', fontWeight: 800, fontSize: '.82rem', color: '#6b7280', marginBottom: '.75rem', textTransform: 'uppercase', letterSpacing: '.04em' }}>Past Sessions ({past.length})</div>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '.75rem' }}>{past.map(b => <BookingItem key={b._id} b={b} />)}</div>
+        </div>
+      )}
+    </div>
+  );
+}
+
 // ─── Dashboard (after login) ──────────────────────────────────────
 function Dashboard({ token, onLogout }) {
   const [dashTab, setDashTab] = useState('profile');
@@ -516,7 +664,7 @@ function Dashboard({ token, onLogout }) {
 
       {/* Dashboard tab bar */}
       <div style={{ display: 'flex', background: '#f8fafc', border: '1px solid #e5e7eb', borderRadius: 14, padding: '.3rem', marginBottom: '1.75rem', gap: '.25rem' }}>
-        {[['profile', '👤 My Profile'], ['content', '📚 Content Manager']].map(([key, label]) => (
+        {[['profile', '👤 My Profile'], ['appointments', '📅 Appointments'], ['content', '📚 Content Manager']].map(([key, label]) => (
           <button key={key} onClick={() => setDashTab(key)} style={{
             flex: 1, padding: '.6rem 1rem', borderRadius: 10, border: 'none',
             background: dashTab === key ? '#4f46e5' : 'transparent',
@@ -529,7 +677,9 @@ function Dashboard({ token, onLogout }) {
 
       {saveSuccess && <Alert type="success" message={saveSuccess} />}
 
-      {dashTab === 'content' ? (
+      {dashTab === 'appointments' ? (
+        <AppointmentsTab token={token} />
+      ) : dashTab === 'content' ? (
         <ContentManager token={token} />
       ) : editing ? (
         <TeacherForm

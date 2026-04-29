@@ -459,6 +459,10 @@ app.get('/api/bookings/mine', requireAuth, async (req, res) => {
 app.patch('/api/bookings/:id', requireAuth, async (req, res) => {
   try {
     const newStatus = req.body.status;
+    const VALID_STATUSES = ['pending', 'confirmed', 'completed', 'cancelled'];
+    if (!VALID_STATUSES.includes(newStatus)) {
+      return res.status(400).json({ error: 'Invalid status value' });
+    }
     const booking = await Booking.findOneAndUpdate(
       { _id: req.params.id, teacher_id: req.teacher.id },
       { status: newStatus },
