@@ -797,6 +797,7 @@ function Dashboard({ token, onLogout }) {
 export default function AdminPage() {
   const [tab, setTab] = useState('login');
   const [token, setToken] = useState(() => localStorage.getItem('admin_token'));
+  const studentUser = (() => { try { return JSON.parse(localStorage.getItem('osh_user') || 'null'); } catch { return null; } })();
   const [loading, setLoading] = useState(false);
   const [loginError, setLoginError] = useState('');
   const [registerError, setRegisterError] = useState('');
@@ -831,6 +832,27 @@ export default function AdminPage() {
   function handleLogout() {
     localStorage.removeItem('admin_token');
     setToken(null);
+  }
+
+  // Student is logged in — block access to teacher portal
+  if (studentUser && !token) {
+    return (
+      <div style={{ minHeight: '100vh', background: '#f8fafc', display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '2rem' }}>
+        <div style={{ background: '#fff', borderRadius: 24, border: '1px solid #e5e7eb', padding: '3rem 2.5rem', maxWidth: 440, width: '100%', textAlign: 'center', boxShadow: '0 8px 32px rgba(0,0,0,.08)' }}>
+          <div style={{ fontSize: '3.5rem', marginBottom: '1rem' }}>🎓</div>
+          <h2 style={{ fontFamily: 'Nunito', fontWeight: 900, color: '#1e1b4b', fontSize: '1.4rem', marginBottom: '.5rem' }}>
+            You're logged in as a Student
+          </h2>
+          <p style={{ color: '#6b7280', fontSize: '.9rem', lineHeight: 1.6, marginBottom: '1.75rem' }}>
+            Logged in as <strong>{studentUser.name}</strong> ({studentUser.email}).<br />
+            Please log out of your student account first to access the Teacher Portal.
+          </p>
+          <a href="/" style={{ display: 'inline-block', padding: '.75rem 2rem', background: 'linear-gradient(135deg, #4f46e5, #7c3aed)', color: '#fff', borderRadius: 12, fontFamily: 'Nunito', fontWeight: 800, fontSize: '.95rem', textDecoration: 'none', marginBottom: '.75rem', width: '100%', boxSizing: 'border-box' }}>
+            ← Back to Site
+          </a>
+        </div>
+      </div>
+    );
   }
 
   return (

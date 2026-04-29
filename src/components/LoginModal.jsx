@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { api } from '../utils/api';
 
 export default function LoginModal({ open, onClose, onLogin }) {
+  const teacherToken = localStorage.getItem('admin_token');
   const [isSignup, setIsSignup] = useState(false);
   const [email, setEmail]       = useState('');
   const [name, setName]         = useState('');
@@ -26,6 +27,40 @@ export default function LoginModal({ open, onClose, onLogin }) {
   }
 
   if (!open) return null;
+
+  // Teacher is already logged in — block student login
+  if (teacherToken) {
+    return (
+      <div className="lm-backdrop" onClick={e => e.target === e.currentTarget && onClose()}>
+        <div className="lm-card">
+          <button className="lm-close" onClick={onClose} aria-label="Close">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+              <line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>
+            </svg>
+          </button>
+          <div style={{ textAlign: 'center', padding: '2rem 1rem' }}>
+            <div style={{ fontSize: '3.5rem', marginBottom: '1rem' }}>👨‍🏫</div>
+            <h2 style={{ fontFamily: 'Nunito', fontWeight: 900, color: '#1e1b4b', fontSize: '1.3rem', marginBottom: '.5rem' }}>
+              You're logged in as a Teacher
+            </h2>
+            <p style={{ color: '#6b7280', fontSize: '.88rem', lineHeight: 1.6, marginBottom: '1.5rem' }}>
+              Please log out of your teacher account first to sign in as a student.
+            </p>
+            <a
+              href="/teacher-portal"
+              onClick={onClose}
+              style={{ display: 'block', padding: '.8rem', background: 'linear-gradient(135deg, #4f46e5, #7c3aed)', color: '#fff', borderRadius: 12, fontFamily: 'Nunito', fontWeight: 800, fontSize: '.95rem', textDecoration: 'none', marginBottom: '.75rem' }}
+            >
+              Go to Teacher Portal →
+            </a>
+            <button onClick={onClose} style={{ background: 'none', border: 'none', color: '#9ca3af', fontSize: '.85rem', cursor: 'pointer' }}>
+              Cancel
+            </button>
+          </div>
+        </div>
+      </div>
+    );
+  }
 
   const handleSubmit = async (e) => {
     e.preventDefault();
