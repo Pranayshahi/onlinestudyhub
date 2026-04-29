@@ -15,12 +15,12 @@
 
 const https = require('https');
 
-const SID   = process.env.TWILIO_ACCOUNT_SID;
-const TOKEN = process.env.TWILIO_AUTH_TOKEN;
-const FROM  = process.env.TWILIO_WHATSAPP_FROM;
-
 function isConfigured() {
-  return Boolean(SID && TOKEN && FROM);
+  return Boolean(
+    process.env.TWILIO_ACCOUNT_SID &&
+    process.env.TWILIO_AUTH_TOKEN &&
+    process.env.TWILIO_WHATSAPP_FROM
+  );
 }
 
 function toWhatsApp(phone) {
@@ -40,6 +40,10 @@ function sendMessage(to, body) {
       console.log('[WhatsApp] Not configured — skipping. Message would be:', body);
       return resolve(null);
     }
+
+    const SID   = process.env.TWILIO_ACCOUNT_SID;
+    const TOKEN = process.env.TWILIO_AUTH_TOKEN;
+    const FROM  = process.env.TWILIO_WHATSAPP_FROM;
 
     const params = new URLSearchParams({ From: FROM, To: toWhatsApp(to), Body: body });
     const payload = params.toString();
