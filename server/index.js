@@ -937,6 +937,46 @@ app.use((err, req, res, next) => {
   });
 });
 
+// ── SMS test endpoint (remove after testing) ──────────────────
+app.get('/api/sms-test', async (req, res) => {
+  const phone = req.query.phone;
+  if (!phone) return res.json({ error: 'Pass ?phone=9876543210' });
+
+  const key = process.env.FAST2SMS_API_KEY;
+  if (!key) return res.json({ configured: false, error: 'FAST2SMS_API_KEY not set' });
+
+  const https = require('https');
+  const digits = String(phone).replace(/\D/g, '');
+  const number = digits.startsWith('91') && digits.length === 12 ? digits.slice(2) : digits.slice(-10);
+
+  const payload = JSON.stringify({
+    sender_id: 'FSTSMS',
+    message: 'OnlineStudyHub SMS test — if you received this, SMS is working!',
+    numbers: number,
+    route: 'q',
+  });
+
+  const options = {
+    hostname: 'www.fast2sms.com',
+    path: '/dev/bulkV2',
+    method: 'POST',
+    headers: { authorization: key, 'Content-Type': 'application/json', 'Content-Length': Buffer.byteLength(payload) },
+  };
+
+  const result = await new Promise((resolve) => {
+    const req2 = https.request(options, (r) => {
+      let data = '';
+      r.on('data', c => data += c);
+      r.on('end', () => resolve({ status: r.statusCode, body: JSON.parse(data) }));
+    });
+    req2.on('error', e => resolve({ error: e.message }));
+    req2.write(payload);
+    req2.end();
+  });
+
+  res.json({ configured: true, phone: number, ...result });
+});
+
 if (require.main === module) {
   app.listen(PORT, () => console.log(`Server running on http://localhost:${PORT}`));
 }
