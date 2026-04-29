@@ -4,6 +4,9 @@ import { HelmetProvider } from 'react-helmet-async';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import { NotificationsProvider } from './context/NotificationsContext';
+import { api } from './utils/api';
+
+const BOOKING_CACHE_KEY = 'osh_booking_status_cache';
 
 // Lazy-load every page — each becomes its own JS chunk, loaded only when visited
 const HomePage        = lazy(() => import('./pages/HomePage'));
@@ -51,11 +54,25 @@ export default function App() {
     }
   });
   const [darkMode, setDarkMode] = useState(() => localStorage.getItem('osh_dark') === 'true');
+  const [bookingsBadge, setBookingsBadge] = useState(0);
 
   useEffect(() => {
     document.documentElement.setAttribute('data-theme', darkMode ? 'dark' : 'light');
     localStorage.setItem('osh_dark', darkMode);
   }, [darkMode]);
+
+  // Count unseen booking status changes for the Navbar badge
+  useEffect(() => {
+    if (!user) { setBookingsBadge(0); return; }
+    api('/bookings/student')
+      .then(data => {
+        const list = Array.isArray(data) ? data : [];
+        const cached = (() => { try { return JSON.parse(localStorage.getItem(BOOKING_CACHE_KEY) || '{}'); } catch { return {}; } })();
+        const unseen = list.filter(b => cached[b._id] && cached[b._id] !== b.status && (b.status === 'confirmed' || b.status === 'cancelled')).length;
+        setBookingsBadge(unseen);
+      })
+      .catch(() => {});
+  }, [user]);
 
   const handleLogin = (userData) => {
     setUser(userData);
@@ -65,6 +82,7 @@ export default function App() {
   const handleLogout = () => {
     setUser(null);
     localStorage.removeItem('osh_user');
+    setBookingsBadge(0);
   };
 
   return (
@@ -78,6 +96,7 @@ export default function App() {
         onLogout={handleLogout}
         darkMode={darkMode}
         onToggleDark={() => setDarkMode(d => !d)}
+        bookingsBadge={bookingsBadge}
       />
       <main style={{ minHeight: '80vh' }}>
         <Suspense fallback={<PageLoader />}>
@@ -91,7 +110,7 @@ export default function App() {
             <Route path="/class/:classId/subject/:subjectId/topic/:topicId" element={<TopicPage user={user} onOpenLogin={() => setLoginOpen(true)} />} />
             <Route path="/class/:classId/subject/:subjectId/topic/:topicId/book" element={<BookSessionPage />} />
             <Route path="/search" element={<SearchPage />} />
-            <Route path="/my-bookings" element={<MyBookingsPage user={user} onOpenLogin={() => setLoginOpen(true)} />} />
+            <Route path="/my-bookings" element={<MyBookingsPage user={user} onOpenLogin={() => setLoginOpen(true)} onBadgeUpdate={setBookingsBadge} />} />
             <Route path="/dashboard" element={<DashboardPage user={user} onOpenLogin={() => setLoginOpen(true)} onUpdateUser={handleLogin} />} />
             <Route path="/teacher-portal" element={<AdminPage />} />
             <Route path="/exam/:examId" element={<ExamHubPage />} />

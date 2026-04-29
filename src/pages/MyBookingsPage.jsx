@@ -1,6 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { api } from '../utils/api';
+import { useNotifications } from '../context/NotificationsContext';
+
+const BOOKING_CACHE_KEY = 'osh_booking_status_cache';
 
 const STATUS_STYLE = {
   pending:   { bg: '#fff7ed', color: '#ea580c', label: '⏳ Pending' },
@@ -136,20 +139,46 @@ function BookingCard({ booking, onRate, reviewed }) {
   );
 }
 
-export default function MyBookingsPage({ user }) {
+export default function MyBookingsPage({ user, onBadgeUpdate }) {
   const [bookings, setBookings] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
   const [ratingBooking, setRatingBooking] = useState(null);
   const [reviewed, setReviewed] = useState(new Set());
+  const { addNotification } = useNotifications();
 
   useEffect(() => {
     if (!user) { setLoading(false); return; }
     api('/bookings/student')
-      .then(data => setBookings(Array.isArray(data) ? data : []))
+      .then(data => {
+        const list = Array.isArray(data) ? data : [];
+        setBookings(list);
+
+        // Detect status changes vs cached, push bell notifications
+        const cached = (() => { try { return JSON.parse(localStorage.getItem(BOOKING_CACHE_KEY) || '{}'); } catch { return {}; } })();
+        list.forEach(b => {
+          const prev = cached[b._id];
+          const topic = b.topic_id ? b.topic_id.replace(/-/g, ' ').replace(/\b\w/g, c => c.toUpperCase()) : 'Your session';
+          if (prev && prev !== b.status) {
+            if (b.status === 'confirmed') {
+              addNotification({ type: 'achievement', title: '✅ Session Confirmed!', body: `${topic} is confirmed. Check My Bookings for the Meet link.`, link: '/my-bookings' });
+            } else if (b.status === 'cancelled') {
+              addNotification({ type: 'reminder', title: '❌ Session Cancelled', body: `${topic} session was cancelled. Book a new slot anytime.`, link: '/my-bookings' });
+            }
+          }
+        });
+
+        // Update cache with current statuses
+        const newCache = {};
+        list.forEach(b => { newCache[b._id] = b.status; });
+        localStorage.setItem(BOOKING_CACHE_KEY, JSON.stringify(newCache));
+
+        // Clear navbar badge — user is now viewing their bookings
+        if (onBadgeUpdate) onBadgeUpdate(0);
+      })
       .catch(err => setError(err.message || 'Failed to load bookings'))
       .finally(() => setLoading(false));
-  }, [user]);
+  }, [user]); // eslint-disable-line
 
   if (!user) {
     return (

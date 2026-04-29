@@ -190,9 +190,52 @@ _– Team OnlineStudyHub_`;
   notify(studentPhone, body);
 }
 
+/**
+ * Sent to teacher when they confirm a booking — receipt + meet link.
+ */
+function notifyTeacherBookingConfirmed({ teacherPhone, teacherName, studentName, topicTitle, date, time, meetLink }) {
+  const body =
+`✅ *OnlineStudyHub — Session Confirmed*
+
+Hi ${teacherName},
+
+You confirmed a session with *${studentName}*.
+
+🎓 *Topic:* ${topicTitle || 'Personalised Session'}
+📅 *Date:* ${fmtDate(date)}
+⏰ *Time:* ${time}
+🔗 *Meet:* ${meetLink}
+
+The student has been notified with the Meet link.
+
+_– Team OnlineStudyHub_`;
+
+  notify(teacherPhone, body);
+}
+
+/**
+ * Sent to teacher when they decline a booking.
+ */
+function notifyTeacherBookingDeclined({ teacherPhone, teacherName, studentName, topicTitle, date, time }) {
+  const body =
+`❌ *OnlineStudyHub — Session Declined*
+
+Hi ${teacherName},
+
+You declined the request from *${studentName}* for *${topicTitle || 'Personalised Session'}* on ${fmtDate(date)} at ${time}.
+
+The student has been notified.
+
+_– Team OnlineStudyHub_`;
+
+  notify(teacherPhone, body);
+}
+
 module.exports = {
   notifyStudentBookingReceived,
   notifyTeacherNewBooking,
   notifyStudentSessionConfirmed,
   notifyStudentSessionCancelled,
+  notifyTeacherBookingConfirmed,
+  notifyTeacherBookingDeclined,
 };

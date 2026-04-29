@@ -404,7 +404,7 @@ const APPT_STATUS = {
   completed: { bg: '#eff6ff', color: '#2563eb', label: '🎓 Completed' },
 };
 
-function AppointmentsTab({ token }) {
+function AppointmentsTab({ token, onPendingCount }) {
   const [bookings, setBookings] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
@@ -412,15 +412,24 @@ function AppointmentsTab({ token }) {
 
   useEffect(() => {
     api('/bookings/mine', { method: 'GET', token })
-      .then(data => { setBookings(Array.isArray(data) ? data : []); setLoading(false); })
+      .then(data => {
+        const list = Array.isArray(data) ? data : [];
+        setBookings(list);
+        setLoading(false);
+        if (onPendingCount) onPendingCount(list.filter(b => b.status === 'pending').length);
+      })
       .catch(e => { setError(e.message); setLoading(false); });
-  }, [token]);
+  }, [token]); // eslint-disable-line
 
   async function updateStatus(bookingId, status) {
     setUpdating(bookingId);
     try {
       const updated = await api(`/bookings/${bookingId}`, { method: 'PATCH', token, body: { status } });
-      setBookings(bs => bs.map(b => b._id === bookingId ? { ...b, status: updated.status } : b));
+      setBookings(prev => {
+        const next = prev.map(b => b._id === bookingId ? { ...b, status: updated.status } : b);
+        if (onPendingCount) onPendingCount(next.filter(b => b.status === 'pending').length);
+        return next;
+      });
     } catch (e) {
       alert(e.message || 'Failed to update booking');
     } finally {
@@ -547,6 +556,7 @@ function AppointmentsTab({ token }) {
 // ─── Dashboard (after login) ──────────────────────────────────────
 function Dashboard({ token, onLogout }) {
   const [dashTab, setDashTab] = useState('profile');
+  const [pendingCount, setPendingCount] = useState(0);
   const [profile, setProfile] = useState(null);
   const [editing, setEditing] = useState(false);
   const [loading, setLoading] = useState(false);
@@ -670,15 +680,25 @@ function Dashboard({ token, onLogout }) {
             background: dashTab === key ? '#4f46e5' : 'transparent',
             color: dashTab === key ? '#fff' : '#6b7280',
             fontFamily: 'Nunito', fontWeight: 800, fontSize: '.9rem',
-            cursor: 'pointer', transition: 'all .2s',
-          }}>{label}</button>
+            cursor: 'pointer', transition: 'all .2s', position: 'relative',
+          }}>
+            {label}
+            {key === 'appointments' && pendingCount > 0 && (
+              <span style={{
+                position: 'absolute', top: 4, right: 6,
+                background: '#ef4444', color: '#fff',
+                fontSize: '.62rem', fontWeight: 900, lineHeight: 1,
+                padding: '2px 5px', borderRadius: 99, minWidth: 16, textAlign: 'center',
+              }}>{pendingCount}</span>
+            )}
+          </button>
         ))}
       </div>
 
       {saveSuccess && <Alert type="success" message={saveSuccess} />}
 
       {dashTab === 'appointments' ? (
-        <AppointmentsTab token={token} />
+        <AppointmentsTab token={token} onPendingCount={setPendingCount} />
       ) : dashTab === 'content' ? (
         <ContentManager token={token} />
       ) : editing ? (

@@ -16,7 +16,7 @@ const ChevronDown = () => (
 );
 
 
-export default function Navbar({ onOpenAI, onOpenLogin, user, onLogout, darkMode, onToggleDark }) {
+export default function Navbar({ onOpenAI, onOpenLogin, user, onLogout, darkMode, onToggleDark, bookingsBadge = 0 }) {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [mobileExpanded, setMobileExpanded] = useState(null);
   const [userMenuOpen, setUserMenuOpen] = useState(false);
@@ -167,8 +167,13 @@ export default function Navbar({ onOpenAI, onOpenLogin, user, onLogout, darkMode
                   <Link to="/dashboard" className="nav-mobile-action-link" onClick={close}>
                     <span>🏠</span> My Dashboard
                   </Link>
-                  <Link to="/my-bookings" className="nav-mobile-action-link" onClick={close}>
-                    <span>📅</span> My Bookings
+                  <Link to="/my-bookings" className="nav-mobile-action-link" onClick={close} style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+                    <span><span>📅</span> My Bookings</span>
+                    {bookingsBadge > 0 && (
+                      <span style={{ background: '#ef4444', color: '#fff', fontSize: '.65rem', fontWeight: 900, padding: '2px 6px', borderRadius: 99, lineHeight: 1 }}>
+                        {bookingsBadge}
+                      </span>
+                    )}
                   </Link>
                 </>
               )}
@@ -294,7 +299,13 @@ export default function Navbar({ onOpenAI, onOpenLogin, user, onLogout, darkMode
                           onMouseEnter={e => e.currentTarget.style.background = '#f3f4f6'}
                           onMouseLeave={e => e.currentTarget.style.background = 'transparent'}
                         >
-                          <span style={{ fontSize: '1rem' }}>📅</span> My Bookings
+                          <span style={{ fontSize: '1rem' }}>📅</span>
+                          My Bookings
+                          {bookingsBadge > 0 && (
+                            <span style={{ marginLeft: 'auto', background: '#ef4444', color: '#fff', fontSize: '.65rem', fontWeight: 900, padding: '2px 6px', borderRadius: 99, lineHeight: 1 }}>
+                              {bookingsBadge}
+                            </span>
+                          )}
                         </Link>
                         <div style={{ height: 1, background: '#f3f4f6', margin: '.2rem 0' }} />
                         <button

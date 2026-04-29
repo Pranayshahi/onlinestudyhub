@@ -14,6 +14,8 @@ const {
   notifyTeacherNewBooking,
   notifyStudentSessionConfirmed,
   notifyStudentSessionCancelled,
+  notifyTeacherBookingConfirmed,
+  notifyTeacherBookingDeclined,
 } = require('./whatsapp');
 
 // In-memory document store: uploadId → { fileName, chunks: string[], expiresAt }
@@ -471,7 +473,7 @@ app.patch('/api/bookings/:id', requireAuth, async (req, res) => {
     if (!booking) return res.status(404).json({ error: 'Booking not found' });
 
     // WhatsApp notifications on status change (fire-and-forget)
-    const teacher = await Teacher.findById(req.teacher.id).select('name').lean();
+    const teacher = await Teacher.findById(req.teacher.id).select('name contact').lean();
     const topicLabel = booking.topic_id
       ? booking.topic_id.replace(/-/g, ' ').replace(/\b\w/g, c => c.toUpperCase())
       : 'Personalised Session';
@@ -486,6 +488,17 @@ app.patch('/api/bookings/:id', requireAuth, async (req, res) => {
         time:         booking.time_slot,
         meetLink:     booking.meet_link,
       });
+      if (teacher?.contact) {
+        notifyTeacherBookingConfirmed({
+          teacherPhone: teacher.contact,
+          teacherName:  teacher.name,
+          studentName:  booking.student_name,
+          topicTitle:   topicLabel,
+          date:         booking.scheduled_date,
+          time:         booking.time_slot,
+          meetLink:     booking.meet_link,
+        });
+      }
     } else if (newStatus === 'cancelled') {
       notifyStudentSessionCancelled({
         studentPhone: booking.student_phone,
@@ -494,6 +507,16 @@ app.patch('/api/bookings/:id', requireAuth, async (req, res) => {
         date:         booking.scheduled_date,
         time:         booking.time_slot,
       });
+      if (teacher?.contact) {
+        notifyTeacherBookingDeclined({
+          teacherPhone: teacher.contact,
+          teacherName:  teacher.name,
+          studentName:  booking.student_name,
+          topicTitle:   topicLabel,
+          date:         booking.scheduled_date,
+          time:         booking.time_slot,
+        });
+      }
     }
 
     res.json(booking);
