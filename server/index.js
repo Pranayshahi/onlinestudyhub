@@ -898,35 +898,53 @@ app.patch('/api/forum/:postId/answers/:answerId/upvote', requireStudentAuth, asy
 });
 
 // ── Razorpay Payments ───────────────────────────────────────────
-const razorpay = process.env.RAZORPAY_KEY_ID ? new Razorpay({
-  key_id: process.env.RAZORPAY_KEY_ID,
-  key_secret: process.env.RAZORPAY_KEY_SECRET,
-}) : null;
+function getRazorpay() {
+  if (!process.env.RAZORPAY_KEY_ID || !process.env.RAZORPAY_KEY_SECRET) return null;
+  return new Razorpay({ key_id: process.env.RAZORPAY_KEY_ID, key_secret: process.env.RAZORPAY_KEY_SECRET });
+}
 
 app.post('/api/payments/create-order', requireStudentAuth, async (req, res) => {
   try {
-    if (!razorpay) return res.status(503).json({ error: 'Payment gateway not configured' });
+    const rzp = getRazorpay();
+    if (!rzp) return res.status(503).json({ error: 'Payment gateway not configured' });
     const { amount, teacherId, currency = 'INR' } = req.body;
     if (!amount || amount < 1) return res.status(400).json({ error: 'Invalid amount' });
-    const order = await razorpay.orders.create({
-      amount: Math.round(amount * 100), // paise
+    const order = await rzp.orders.create({
+      amount: Math.round(amount * 100),
       currency,
       receipt: `osh_${Date.now()}`,
       notes: { teacherId, studentEmail: req.student.email },
     });
     res.json({ orderId: order.id, amount: order.amount, currency: order.currency, keyId: process.env.RAZORPAY_KEY_ID });
-  } catch (e) { res.status(500).json({ error: e.message }); }
+  } catch (e) {
+    console.error('Razorpay create-order error:', e.message);
+    res.status(500).json({ error: e.message });
+  }
 });
 
 app.post('/api/payments/verify', requireStudentAuth, async (req, res) => {
   try {
-    if (!razorpay) return res.status(503).json({ error: 'Payment gateway not configured' });
+    if (!process.env.RAZORPAY_KEY_SECRET) return res.status(503).json({ error: 'Payment gateway not configured' });
     const { razorpay_order_id, razorpay_payment_id, razorpay_signature } = req.body;
     const body = razorpay_order_id + '|' + razorpay_payment_id;
     const expected = crypto.createHmac('sha256', process.env.RAZORPAY_KEY_SECRET).update(body).digest('hex');
     if (expected !== razorpay_signature) return res.status(400).json({ error: 'Payment verification failed' });
     res.json({ ok: true, paymentId: razorpay_payment_id });
-  } catch (e) { res.status(500).json({ error: e.message }); }
+  } catch (e) {
+    console.error('Razorpay verify error:', e.message);
+    res.status(500).json({ error: e.message });
+  }
+});
+
+app.get('/api/payments/test', async (req, res) => {
+  const rzp = getRazorpay();
+  if (!rzp) return res.json({ configured: false, error: 'RAZORPAY_KEY_ID or KEY_SECRET not set' });
+  try {
+    const order = await rzp.orders.create({ amount: 100, currency: 'INR', receipt: 'test_' + Date.now() });
+    res.json({ configured: true, keyId: process.env.RAZORPAY_KEY_ID, orderId: order.id, status: 'OK' });
+  } catch (e) {
+    res.json({ configured: true, keyId: process.env.RAZORPAY_KEY_ID, error: e.message });
+  }
 });
 
 // ── Error Handler ──────────────────────────────────────────────
