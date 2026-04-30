@@ -236,10 +236,28 @@ export default function AIDoubtPanel({ open, onClose }) {
     removeImage();
   }
 
+  const cancelTypewriter = useRef(false);
+
+  // Typewriter animation — shows text char-by-char exactly like ChatGPT
+  async function typewrite(fullText) {
+    cancelTypewriter.current = false;
+    // Speed adapts to length so long answers don't take forever
+    const charsPerTick = fullText.length > 1200 ? 18 : fullText.length > 600 ? 10 : 5;
+    const delay = 16; // ~60fps
+    let i = 0;
+    while (i < fullText.length) {
+      if (cancelTypewriter.current) break;
+      await new Promise(r => setTimeout(r, delay));
+      i = Math.min(i + charsPerTick, fullText.length);
+      setStreamingContent(fullText.slice(0, i));
+    }
+  }
+
   const sendMessage = useCallback(async (text, opts = {}) => {
     const { imageId: imgId } = opts;
     if (!text && !imgId) return;
 
+    cancelTypewriter.current = true; // cancel any in-progress animation
     const userMsg = { role: 'user', content: text || 'Solve this question step by step.' };
     setMessages(prev => [...prev, userMsg]);
     setInput('');
@@ -261,7 +279,6 @@ export default function AIDoubtPanel({ open, onClose }) {
           system: buildSystemPrompt(location),
           uploadId: uploadIdRef.current || undefined,
           imageId: imgId || imageIdRef.current || undefined,
-          stream: true,
         }),
       });
 
@@ -274,29 +291,14 @@ export default function AIDoubtPanel({ open, onClose }) {
         throw new Error(err.error || 'Request failed');
       }
 
-      const source = res.headers.get('X-AI-Source') || 'general';
-      const reader = res.body.getReader();
-      const decoder = new TextDecoder();
-      let fullText = '';
+      const data = await res.json();
+      const fullText = data.reply || 'No response.';
+      const source = data.source || 'general';
 
-      while (true) {
-        const { done, value } = await reader.read();
-        if (done) break;
-        const chunk = decoder.decode(value, { stream: true });
-        const lines = chunk.split('\n').filter(l => l.startsWith('data: '));
-        for (const line of lines) {
-          const json = line.replace('data: ', '').trim();
-          if (json === '[DONE]') continue;
-          try {
-            const parsed = JSON.parse(json);
-            const delta = parsed.choices?.[0]?.delta?.content || '';
-            fullText += delta;
-            setStreamingContent(fullText);
-          } catch {}
-        }
-      }
+      // Typewriter animation before committing to messages
+      await typewrite(fullText);
 
-      setMessages(prev => [...prev, { role: 'assistant', content: fullText || 'No response.', source }]);
+      setMessages(prev => [...prev, { role: 'assistant', content: fullText, source }]);
       setStreamingContent('');
       if (imageIdRef.current) { imageIdRef.current = null; setUploadedImage(null); }
     } catch (err) {

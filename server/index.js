@@ -739,7 +739,7 @@ app.post('/api/ai-doubt/upload-image', upload.single('image'), async (req, res) 
 // ── AI Doubt: RAG query with firewall + streaming + vision ─────
 app.post('/api/ai-doubt', async (req, res) => {
   try {
-    const { messages, system, uploadId, imageId, stream = false } = req.body || {};
+    const { messages, system, uploadId, imageId } = req.body || {};
     const groqKey = (process.env.GROQ_API_KEY || '').trim();
     if (!groqKey) return res.status(503).json({ error: 'AI service not configured.' });
 
@@ -791,11 +791,11 @@ app.post('/api/ai-doubt', async (req, res) => {
       groqMessages = [{ role: 'system', content: fullSystem }, ...(messages || [])];
     }
 
-    // 4. Call Groq — streaming or non-streaming
+    // 4. Call Groq
     const groqRes = await fetch('https://api.groq.com/openai/v1/chat/completions', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${groqKey}` },
-      body: JSON.stringify({ model, max_tokens: 1024, messages: groqMessages, stream }),
+      body: JSON.stringify({ model, max_tokens: 1024, messages: groqMessages }),
     });
 
     if (!groqRes.ok) {
@@ -803,25 +803,8 @@ app.post('/api/ai-doubt', async (req, res) => {
       return res.status(groqRes.status).json({ error: err.error?.message || 'Groq error' });
     }
 
-    if (stream) {
-      res.setHeader('Content-Type', 'text/event-stream');
-      res.setHeader('Cache-Control', 'no-cache');
-      res.setHeader('X-AI-Source', source);
-      const reader = groqRes.body.getReader();
-      const decoder = new TextDecoder();
-      try {
-        while (true) {
-          const { done, value } = await reader.read();
-          if (done) break;
-          res.write(decoder.decode(value, { stream: true }));
-        }
-      } finally {
-        res.end();
-      }
-    } else {
-      const data = await groqRes.json();
-      res.json({ reply: data.choices?.[0]?.message?.content || 'No response.', source });
-    }
+    const data = await groqRes.json();
+    res.json({ reply: data.choices?.[0]?.message?.content || 'No response.', source });
   } catch (err) {
     console.error('AI doubt error:', err);
     res.status(500).json({ error: 'AI service error.' });
