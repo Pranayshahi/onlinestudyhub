@@ -807,10 +807,17 @@ app.post('/api/ai-doubt', async (req, res) => {
       res.setHeader('Content-Type', 'text/event-stream');
       res.setHeader('Cache-Control', 'no-cache');
       res.setHeader('X-AI-Source', source);
-      const reader = groqRes.body;
-      reader.on('data', chunk => res.write(chunk));
-      reader.on('end', () => res.end());
-      reader.on('error', () => res.end());
+      const reader = groqRes.body.getReader();
+      const decoder = new TextDecoder();
+      try {
+        while (true) {
+          const { done, value } = await reader.read();
+          if (done) break;
+          res.write(decoder.decode(value, { stream: true }));
+        }
+      } finally {
+        res.end();
+      }
     } else {
       const data = await groqRes.json();
       res.json({ reply: data.choices?.[0]?.message?.content || 'No response.', source });
