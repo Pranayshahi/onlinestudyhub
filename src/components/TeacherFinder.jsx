@@ -78,13 +78,14 @@ function TeacherCard({ teacher, onSelect }) {
 }
 
 function TeacherDetail({ teacher, classId, subjectId, onBack, onBooked, user, onOpenLogin }) {
-  const [step, setStep] = useState('detail'); // detail → slots → form → success
+  const [step, setStep] = useState('detail'); // detail → slots → form → payment → success
   const [selectedSlot, setSelectedSlot] = useState('');
   const [form, setForm] = useState({ name: user?.name || '', phone: '' });
   const [loading, setLoading] = useState(false);
   const [booking, setBooking] = useState(null);
   const [error, setError] = useState('');
   const [wantsToBook, setWantsToBook] = useState(false);
+  const [paymentDone, setPaymentDone] = useState(null); // { paymentId, amountPaid }
 
   // Auto-advance to slots once user logs in
   useEffect(() => {
@@ -94,6 +95,16 @@ function TeacherDetail({ teacher, classId, subjectId, onBack, onBooked, user, on
       setWantsToBook(false);
     }
   }, [user, wantsToBook]);
+
+  // Load Razorpay script once
+  useEffect(() => {
+    if (document.getElementById('razorpay-script')) return;
+    const s = document.createElement('script');
+    s.id = 'razorpay-script';
+    s.src = 'https://checkout.razorpay.com/v1/checkout.js';
+    s.async = true;
+    document.body.appendChild(s);
+  }, []);
 
   const now = new Date();
   const [selectedDate, setSelectedDate] = useState(() => {
@@ -125,11 +136,18 @@ function TeacherDetail({ teacher, classId, subjectId, onBack, onBooked, user, on
     return slotToMinutes(slot) >= nowMinutes + 60;
   }
 
-  async function handleBook() {
+  // Called from form step — validate then go to payment
+  function handleProceedToPayment() {
     if (!form.name.trim()) { setError('Please enter your name'); return; }
     if (!/^[6-9]\d{9}$/.test(form.phone)) { setError('Enter a valid 10-digit Indian mobile number'); return; }
     setError('');
+    setStep('payment');
+  }
+
+  // Called after Razorpay payment success — create the booking
+  async function handleBook(payment) {
     setLoading(true);
+    setError('');
     try {
       const data = await api('/bookings', {
         method: 'POST',
@@ -142,6 +160,8 @@ function TeacherDetail({ teacher, classId, subjectId, onBack, onBooked, user, on
           subjectId: subjectId || teacher.subject || 'general',
           timeSlot: selectedSlot,
           scheduledDate: scheduledDateISO,
+          paymentId: payment?.paymentId || null,
+          amountPaid: teacher.fee || 500,
         },
       });
       setBooking(data);
@@ -149,7 +169,58 @@ function TeacherDetail({ teacher, classId, subjectId, onBack, onBooked, user, on
       if (onBooked) onBooked();
     } catch (e) {
       setError(e.message);
+      setStep('payment');
     } finally {
+      setLoading(false);
+    }
+  }
+
+  // Open Razorpay checkout
+  async function handlePayment() {
+    setLoading(true);
+    setError('');
+    try {
+      const order = await api('/payments/create-order', {
+        method: 'POST',
+        body: { amount: teacher.fee || 500, teacherId: teacher.id || teacher._id },
+      });
+
+      const options = {
+        key: order.keyId,
+        amount: order.amount,
+        currency: order.currency,
+        name: 'OnlineStudyHub',
+        description: `Session with ${teacher.name}`,
+        order_id: order.orderId,
+        handler: async (response) => {
+          try {
+            const verified = await api('/payments/verify', {
+              method: 'POST',
+              body: {
+                razorpay_order_id: response.razorpay_order_id,
+                razorpay_payment_id: response.razorpay_payment_id,
+                razorpay_signature: response.razorpay_signature,
+              },
+            });
+            await handleBook(verified);
+          } catch (e) {
+            setError('Payment verification failed. Please contact support.');
+            setLoading(false);
+          }
+        },
+        prefill: { name: form.name, contact: form.phone, email: user?.email || '' },
+        theme: { color: '#4f46e5' },
+        modal: { ondismiss: () => setLoading(false) },
+      };
+
+      const rzp = new window.Razorpay(options);
+      rzp.on('payment.failed', () => {
+        setError('Payment failed. Please try again.');
+        setLoading(false);
+      });
+      rzp.open();
+    } catch (e) {
+      setError(e.message || 'Failed to initiate payment');
       setLoading(false);
     }
   }
@@ -224,17 +295,62 @@ function TeacherDetail({ teacher, classId, subjectId, onBack, onBooked, user, on
         {error && <div style={{ color: '#ef4444', fontSize: '.85rem', marginBottom: '1rem' }}>{error}</div>}
 
         <button
-          onClick={handleBook}
-          disabled={loading}
+          onClick={handleProceedToPayment}
           style={{
             width: '100%', padding: '.9rem', background: 'linear-gradient(135deg, #1e1b4b, #4f46e5)',
             color: '#fff', border: 'none', borderRadius: 12, fontWeight: 800,
-            fontSize: '1rem', cursor: loading ? 'not-allowed' : 'pointer', fontFamily: 'Nunito',
-            opacity: loading ? .7 : 1,
+            fontSize: '1rem', cursor: 'pointer', fontFamily: 'Nunito',
           }}
         >
-          {loading ? 'Booking...' : '📅 Confirm & Get Meet Link'}
+          Proceed to Payment →
         </button>
+      </div>
+    );
+  }
+
+  if (step === 'payment') {
+    const fee = teacher.fee || 500;
+    return (
+      <div>
+        <button onClick={() => setStep('form')} style={{ background: 'none', border: 'none', color: '#4f46e5', fontWeight: 700, cursor: 'pointer', marginBottom: '1rem', padding: 0 }}>
+          ← Back
+        </button>
+        <h3 style={{ fontFamily: 'Nunito', fontWeight: 900, color: '#1e1b4b', marginBottom: '.25rem' }}>Payment Summary</h3>
+        <p style={{ color: '#6b7280', fontSize: '.85rem', marginBottom: '1.5rem' }}>Complete payment to confirm your booking</p>
+
+        {/* Summary card */}
+        <div style={{ background: '#f8fafc', border: '1.5px solid #e0e7ff', borderRadius: 14, padding: '1.2rem', marginBottom: '1.5rem' }}>
+          <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '.9rem', color: '#374151', marginBottom: '.6rem' }}>
+            <span>Teacher</span><strong>{teacher.name}</strong>
+          </div>
+          <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '.9rem', color: '#374151', marginBottom: '.6rem' }}>
+            <span>Date</span><strong>{scheduledDateDisplay}</strong>
+          </div>
+          <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '.9rem', color: '#374151', marginBottom: '.6rem' }}>
+            <span>Time</span><strong>{selectedSlot}</strong>
+          </div>
+          <div style={{ borderTop: '1px solid #e5e7eb', marginTop: '.75rem', paddingTop: '.75rem', display: 'flex', justifyContent: 'space-between', fontWeight: 800, fontSize: '1.05rem', color: '#1e1b4b' }}>
+            <span>Total</span><span>₹{fee}</span>
+          </div>
+        </div>
+
+        {error && <div style={{ color: '#ef4444', fontSize: '.85rem', marginBottom: '1rem' }}>{error}</div>}
+
+        <button
+          onClick={handlePayment}
+          disabled={loading}
+          style={{
+            width: '100%', padding: '.9rem', background: loading ? '#e5e7eb' : 'linear-gradient(135deg, #059669, #10b981)',
+            color: loading ? '#9ca3af' : '#fff', border: 'none', borderRadius: 12, fontWeight: 800,
+            fontSize: '1rem', cursor: loading ? 'not-allowed' : 'pointer', fontFamily: 'Nunito',
+          }}
+        >
+          {loading ? '⏳ Processing…' : `💳 Pay ₹${fee} & Confirm Booking`}
+        </button>
+
+        <p style={{ textAlign: 'center', fontSize: '.78rem', color: '#9ca3af', marginTop: '.75rem' }}>
+          🔒 Secured by Razorpay · UPI, Cards, Net Banking accepted
+        </p>
       </div>
     );
   }

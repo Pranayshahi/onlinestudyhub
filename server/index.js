@@ -381,7 +381,7 @@ app.get('/api/teachers/:id', async (req, res) => {
 // ── Bookings: Create (public) ──────────────────────────────────
 app.post('/api/bookings', async (req, res) => {
   try {
-    const { studentName, studentPhone, studentEmail, teacherId, classId, subjectId, topicId, timeSlot, scheduledDate } = req.body || {};
+    const { studentName, studentPhone, studentEmail, teacherId, classId, subjectId, topicId, timeSlot, scheduledDate, paymentId, amountPaid } = req.body || {};
 
     if (!studentName || !studentPhone || !teacherId || !classId || !subjectId || !timeSlot || !scheduledDate) {
       return res.status(400).json({ error: 'Missing required booking information' });
@@ -405,6 +405,8 @@ app.post('/api/bookings', async (req, res) => {
       scheduled_date: scheduledDate,
       meet_link: meetLink,
       status: 'pending',
+      payment_id: paymentId || null,
+      amount_paid: amountPaid || null,
     });
 
     // WhatsApp notifications (fire-and-forget — don't block response)

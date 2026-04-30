@@ -43,6 +43,8 @@ const bookingSchema = new mongoose.Schema({
   scheduled_date: { type: String, required: true },
   meet_link: { type: String, required: true },
   status: { type: String, enum: ['pending', 'confirmed', 'completed', 'cancelled'], default: 'pending' },
+  payment_id:   { type: String, default: null },
+  amount_paid:  { type: Number, default: null },
 }, { timestamps: true });
 
 const topicMediaSchema = new mongoose.Schema({
