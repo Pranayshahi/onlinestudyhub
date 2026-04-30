@@ -417,7 +417,7 @@ export default function AIDoubtPanel({ open, onClose }) {
 
                 {/* AI message action row */}
                 {msg.role === 'assistant' && !msg.blocked && !msg.error && i > 0 && (
-                  <div style={{ display: 'flex', alignItems: 'center', gap: '.4rem', marginTop: '.35rem', flexWrap: 'wrap' }}>
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '.35rem', rowGap: '.3rem', flexWrap: 'wrap' }}>
                     <SourceBadge source={msg.source} />
                     <button onClick={() => copyToClipboard(msg.content)}
                       style={{ background: 'none', border: 'none', cursor: 'pointer', color: '#9ca3af', fontSize: '.72rem', padding: '.1rem .3rem', borderRadius: 4, display: 'flex', alignItems: 'center', gap: '.2rem' }}>
