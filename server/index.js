@@ -137,8 +137,8 @@ app.post('/api/auth/register', async (req, res) => {
       available: available !== false,
     });
 
-    const token = jwt.sign({ id: teacher._id.toString(), email }, JWT_SECRET, { expiresIn: '30d' });
-    res.status(201).json({ token, id: teacher._id });
+    const token = jwt.sign({ id: teacher._id.toString(), email, role: 'teacher' }, JWT_SECRET, { expiresIn: '30d' });
+    res.status(201).json({ token, id: teacher._id, email, name, role: 'teacher' });
   } catch (err) {
     console.error('Register error:', err);
     res.status(500).json({ error: 'Server error' });
@@ -251,7 +251,7 @@ app.get('/api/teachers', async (req, res) => {
     const { classId } = req.query;
     let query = { available: true };
     if (classId) {
-      query.class_ids = new RegExp(classId);
+      query.class_ids = { $regex: classId.replace(/[.*+?^${}()|[\]\\]/g, '\\$&') };
     }
 
     const teachers = await Teacher.find(query)
@@ -266,7 +266,7 @@ app.get('/api/teachers', async (req, res) => {
     })).map(formatTeacher));
   } catch (err) {
     console.error('Get teachers error:', err);
-    res.status(500).json({ error: 'Server error: ' + err.message });
+    res.status(500).json({ error: 'Failed to load teachers' });
   }
 });
 
@@ -820,10 +820,12 @@ app.post('/api/reviews', requireStudentAuth, async (req, res) => {
     if (!booking) return res.status(404).json({ error: 'Booking not found' });
     if (booking.student_email !== req.student.email) return res.status(403).json({ error: 'Forbidden' });
     if (booking.status !== 'completed') return res.status(400).json({ error: 'Session not completed yet' });
+    const existing = await Review.findOne({ bookingId });
+    if (existing) return res.status(409).json({ error: 'You already reviewed this session' });
     const r = await Review.create({ teacherId, bookingId, studentEmail: req.student.email, studentName: req.student.name, rating, review: review || '' });
     // Recompute teacher average rating
     const all = await Review.find({ teacherId });
-    const avg = all.reduce((s, x) => s + x.rating, 0) / all.length;
+    const avg = all.length > 0 ? all.reduce((s, x) => s + x.rating, 0) / all.length : rating;
     await Teacher.findByIdAndUpdate(teacherId, { rating: Math.round(avg * 10) / 10 });
     res.json(r);
   } catch (e) {
@@ -967,22 +969,6 @@ app.post('/api/payments/verify', requireStudentAuth, async (req, res) => {
   }
 });
 
-app.get('/api/payments/test', async (req, res) => {
-  const keyId = process.env.RAZORPAY_KEY_ID;
-  const keySecret = process.env.RAZORPAY_KEY_SECRET;
-  // Show first/last 4 chars only for debugging
-  const debugKey = keyId ? `${keyId.slice(0, 8)}...${keyId.slice(-4)}` : 'NOT SET';
-  const debugSecret = keySecret ? `${keySecret.slice(0, 4)}...${keySecret.slice(-4)}` : 'NOT SET';
-
-  const rzp = getRazorpay();
-  if (!rzp) return res.json({ configured: false, debugKey, debugSecret });
-  try {
-    const order = await rzp.orders.create({ amount: 100, currency: 'INR', receipt: 'test_' + Date.now() });
-    res.json({ configured: true, debugKey, orderId: order.id, status: 'OK' });
-  } catch (e) {
-    res.json({ configured: true, debugKey, error: e.message });
-  }
-});
 
 // ── Error Handler ──────────────────────────────────────────────
 app.use((err, req, res, next) => {
@@ -994,45 +980,6 @@ app.use((err, req, res, next) => {
   });
 });
 
-// ── SMS test endpoint (remove after testing) ──────────────────
-app.get('/api/sms-test', async (req, res) => {
-  const phone = req.query.phone;
-  if (!phone) return res.json({ error: 'Pass ?phone=9876543210' });
-
-  const key = process.env.FAST2SMS_API_KEY;
-  if (!key) return res.json({ configured: false, error: 'FAST2SMS_API_KEY not set' });
-
-  const https = require('https');
-  const digits = String(phone).replace(/\D/g, '');
-  const number = digits.startsWith('91') && digits.length === 12 ? digits.slice(2) : digits.slice(-10);
-
-  const payload = JSON.stringify({
-    sender_id: 'FSTSMS',
-    message: 'OnlineStudyHub SMS test — if you received this, SMS is working!',
-    numbers: number,
-    route: 'q',
-  });
-
-  const options = {
-    hostname: 'www.fast2sms.com',
-    path: '/dev/bulkV2',
-    method: 'POST',
-    headers: { authorization: key, 'Content-Type': 'application/json', 'Content-Length': Buffer.byteLength(payload) },
-  };
-
-  const result = await new Promise((resolve) => {
-    const req2 = https.request(options, (r) => {
-      let data = '';
-      r.on('data', c => data += c);
-      r.on('end', () => resolve({ status: r.statusCode, body: JSON.parse(data) }));
-    });
-    req2.on('error', e => resolve({ error: e.message }));
-    req2.write(payload);
-    req2.end();
-  });
-
-  res.json({ configured: true, phone: number, ...result });
-});
 
 if (require.main === module) {
   app.listen(PORT, () => console.log(`Server running on http://localhost:${PORT}`));

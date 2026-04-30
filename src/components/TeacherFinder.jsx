@@ -419,7 +419,7 @@ function TeacherDetail({ teacher, classId, subjectId, onBack, onBooked, user, on
           <div style={{ marginTop: '1rem' }}>
             {selectedSlot.includes('AM') && (
               <div style={{ background: '#fffbeb', border: '1px solid #fcd34d', borderRadius: 10, padding: '.6rem 1rem', fontSize: '.82rem', color: '#92400e', marginBottom: '.75rem' }}>
-                🌅 Morning slot selected — teacher will be notified immediately
+                🌅 Morning slot — teacher will review and confirm your request
               </div>
             )}
             <button

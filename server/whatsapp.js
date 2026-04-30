@@ -17,10 +17,10 @@ function isConfigured() {
 }
 
 function cleanPhone(phone) {
+  if (!phone) return null;
   const digits = String(phone).replace(/\D/g, '');
-  if (digits.startsWith('91') && digits.length === 12) return digits.slice(2);
-  if (digits.length === 10) return digits;
-  return digits.slice(-10);
+  const num = digits.startsWith('91') && digits.length === 12 ? digits.slice(2) : digits;
+  return /^[6-9]\d{9}$/.test(num) ? num : null;
 }
 
 function sendSMS(to, message) {
