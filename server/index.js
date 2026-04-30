@@ -37,7 +37,12 @@ const upload = multer({
   storage: multer.memoryStorage(),
   limits: { fileSize: 10 * 1024 * 1024 },
   fileFilter: (req, file, cb) => {
-    const allowed = ['application/pdf', 'application/vnd.openxmlformats-officedocument.wordprocessingml.document', 'text/plain'];
+    const allowed = [
+      'application/pdf',
+      'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
+      'text/plain',
+      'image/jpeg', 'image/png', 'image/webp', 'image/gif',
+    ];
     cb(null, allowed.includes(file.mimetype));
   },
 });
@@ -714,66 +719,102 @@ app.post('/api/ai-doubt/upload', upload.single('file'), async (req, res) => {
   }
 });
 
-// ── AI Doubt: RAG query with firewall ─────────────────────────
+// ── AI Doubt: Image upload endpoint ───────────────────────────
+app.post('/api/ai-doubt/upload-image', upload.single('image'), async (req, res) => {
+  try {
+    if (!req.file) return res.status(400).json({ error: 'No image uploaded.' });
+    const imageTypes = ['image/jpeg', 'image/png', 'image/webp', 'image/gif'];
+    if (!imageTypes.includes(req.file.mimetype)) return res.status(400).json({ error: 'Only JPG, PNG, WEBP, GIF allowed.' });
+    const b64 = req.file.buffer.toString('base64');
+    const dataUrl = `data:${req.file.mimetype};base64,${b64}`;
+    const imageId = crypto.randomUUID();
+    docStore.set(imageId, { type: 'image', dataUrl, mimeType: req.file.mimetype, fileName: req.file.originalname, expiresAt: Date.now() + DOC_TTL_MS });
+    res.json({ imageId, fileName: req.file.originalname });
+  } catch (err) {
+    console.error('Image upload error:', err);
+    res.status(500).json({ error: 'Failed to process image.' });
+  }
+});
+
+// ── AI Doubt: RAG query with firewall + streaming + vision ─────
 app.post('/api/ai-doubt', async (req, res) => {
   try {
-    const { messages, system, uploadId } = req.body || {};
+    const { messages, system, uploadId, imageId, stream = false } = req.body || {};
     const groqKey = (process.env.GROQ_API_KEY || '').trim();
     if (!groqKey) return res.status(503).json({ error: 'AI service not configured.' });
 
-    // 1. Firewall — check last user message
+    // 1. Firewall
     const lastUserMsg = [...(messages || [])].reverse().find(m => m.role === 'user');
     if (lastUserMsg) {
       const modResult = moderateInput(lastUserMsg.content);
-      if (modResult.blocked) {
-        return res.status(400).json({ blocked: true, reason: modResult.reason });
-      }
+      if (modResult.blocked) return res.status(400).json({ blocked: true, reason: modResult.reason });
     }
 
-    // 2. RAG retrieval — if a document is attached
+    // 2. RAG retrieval for documents
     let contextBlock = '';
     let source = 'general';
-
     if (uploadId && lastUserMsg) {
       const doc = docStore.get(uploadId);
-      if (doc && doc.chunks.length) {
-        const query = lastUserMsg.content;
-        const META_RE = /\b(summary|summarize|summarise|overview|what is this|define this|about this|what('s| is) (this|the) (file|document|doc)|describe (this|the) (file|document)|explain (this|the) (file|document))\b/i;
-        const isMeta = META_RE.test(query);
-
-        let relevant = isMeta ? [] : retrieveChunks(query, doc.chunks);
-
-        // Fallback: if BM25 found nothing (or meta query), use first 3 chunks as document overview
-        if (!relevant.length) {
-          relevant = doc.chunks.slice(0, 3).map(chunk => ({ chunk, score: 0 }));
-        }
-
+      if (doc && doc.chunks?.length) {
+        const META_RE = /\b(summary|summarize|summarise|overview|what is this|define this|about this|what('s| is) (this|the) (file|document|doc)|describe|explain (this|the) (file|document))\b/i;
+        const isMeta = META_RE.test(lastUserMsg.content);
+        let relevant = isMeta ? [] : retrieveChunks(lastUserMsg.content, doc.chunks);
+        if (!relevant.length) relevant = doc.chunks.slice(0, 3).map(chunk => ({ chunk, score: 0 }));
         contextBlock = `\n\nDOCUMENT: "${doc.fileName}"\n${relevant.map((r, i) => `[${i + 1}] ${r.chunk}`).join('\n\n')}`;
         source = 'document';
       }
     }
 
-    // 3. Build system prompt with safety rules + optional doc context
-    const fullSystem = system + SAFETY_SYSTEM_ADDENDUM + contextBlock
-      + (source === 'document'
-        ? '\n\nThe student has uploaded a document. Answer using the document excerpts above. For meta questions (summary, overview, what is this file), give a helpful summary based on the content shown.'
-        : '');
+    // 3. Vision — if image attached, build vision message
+    let groqMessages;
+    let model = 'llama-3.3-70b-versatile';
+    if (imageId) {
+      const img = docStore.get(imageId);
+      if (img?.type === 'image') {
+        model = 'meta-llama/llama-4-scout-17b-16e-instruct';
+        source = 'image';
+        const visionContent = [
+          { type: 'image_url', image_url: { url: img.dataUrl } },
+          { type: 'text', text: lastUserMsg?.content || 'What is in this image? Explain it for a student.' },
+        ];
+        groqMessages = [
+          { role: 'system', content: system + SAFETY_SYSTEM_ADDENDUM + '\nThe student has uploaded an image of a question or diagram. Solve or explain it clearly with steps.' },
+          ...(messages || []).slice(0, -1),
+          { role: 'user', content: visionContent },
+        ];
+      }
+    }
 
-    // 4. Call Groq
+    if (!groqMessages) {
+      const fullSystem = system + SAFETY_SYSTEM_ADDENDUM + contextBlock
+        + (source === 'document' ? '\n\nAnswer using the document excerpts above.' : '');
+      groqMessages = [{ role: 'system', content: fullSystem }, ...(messages || [])];
+    }
+
+    // 4. Call Groq — streaming or non-streaming
     const groqRes = await fetch('https://api.groq.com/openai/v1/chat/completions', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${groqKey}` },
-      body: JSON.stringify({
-        model: 'llama-3.3-70b-versatile',
-        max_tokens: 1024,
-        messages: [{ role: 'system', content: fullSystem }, ...(messages || [])],
-      }),
+      body: JSON.stringify({ model, max_tokens: 1024, messages: groqMessages, stream }),
     });
 
-    const data = await groqRes.json();
-    if (!groqRes.ok) return res.status(groqRes.status).json({ error: data.error?.message || 'Groq error' });
+    if (!groqRes.ok) {
+      const err = await groqRes.json();
+      return res.status(groqRes.status).json({ error: err.error?.message || 'Groq error' });
+    }
 
-    res.json({ reply: data.choices?.[0]?.message?.content || 'No response.', source });
+    if (stream) {
+      res.setHeader('Content-Type', 'text/event-stream');
+      res.setHeader('Cache-Control', 'no-cache');
+      res.setHeader('X-AI-Source', source);
+      const reader = groqRes.body;
+      reader.on('data', chunk => res.write(chunk));
+      reader.on('end', () => res.end());
+      reader.on('error', () => res.end());
+    } else {
+      const data = await groqRes.json();
+      res.json({ reply: data.choices?.[0]?.message?.content || 'No response.', source });
+    }
   } catch (err) {
     console.error('AI doubt error:', err);
     res.status(500).json({ error: 'AI service error.' });
