@@ -95,10 +95,35 @@ function TeacherDetail({ teacher, classId, subjectId, onBack, onBooked, user, on
     }
   }, [user, wantsToBook]);
 
-  const today = new Date();
-  const tomorrow = new Date(today); tomorrow.setDate(today.getDate() + 1);
-  const scheduledDateISO = tomorrow.toISOString().split('T')[0];
-  const scheduledDateDisplay = tomorrow.toLocaleDateString('en-IN', { weekday: 'long', day: 'numeric', month: 'long' });
+  const now = new Date();
+  const [selectedDate, setSelectedDate] = useState(() => {
+    const d = new Date(); d.setHours(0, 0, 0, 0); return d;
+  });
+
+  // Build 7-day date options from today
+  const dateOptions = Array.from({ length: 7 }, (_, i) => {
+    const d = new Date(); d.setHours(0, 0, 0, 0); d.setDate(d.getDate() + i); return d;
+  });
+
+  const scheduledDateISO = selectedDate.toISOString().split('T')[0];
+  const scheduledDateDisplay = selectedDate.toLocaleDateString('en-IN', { weekday: 'long', day: 'numeric', month: 'long' });
+
+  const isToday = selectedDate.toDateString() === now.toDateString();
+
+  function slotToMinutes(slot) {
+    const [time, period] = slot.split(' ');
+    let [h, m] = time.split(':').map(Number);
+    if (period === 'PM' && h !== 12) h += 12;
+    if (period === 'AM' && h === 12) h = 0;
+    return h * 60 + m;
+  }
+
+  const nowMinutes = now.getHours() * 60 + now.getMinutes();
+
+  function isSlotAvailable(slot) {
+    if (!isToday) return true;
+    return slotToMinutes(slot) >= nowMinutes + 60;
+  }
 
   async function handleBook() {
     if (!form.name.trim()) { setError('Please enter your name'); return; }
@@ -220,16 +245,39 @@ function TeacherDetail({ teacher, classId, subjectId, onBack, onBooked, user, on
         <button onClick={() => setStep('detail')} style={{ background: 'none', border: 'none', color: '#4f46e5', fontWeight: 700, cursor: 'pointer', marginBottom: '1rem', padding: 0 }}>
           ← Back
         </button>
-        <h3 style={{ fontFamily: 'Nunito', fontWeight: 900, color: '#1e1b4b', marginBottom: '.25rem' }}>Pick a Time Slot</h3>
-        <p style={{ color: '#6b7280', fontSize: '.85rem', marginBottom: '1.5rem' }}>Available slots for tomorrow, {scheduledDateDisplay}</p>
+        <h3 style={{ fontFamily: 'Nunito', fontWeight: 900, color: '#1e1b4b', marginBottom: '.25rem' }}>Pick a Date & Time</h3>
+        <p style={{ color: '#6b7280', fontSize: '.85rem', marginBottom: '1rem' }}>Choose from today up to 7 days ahead</p>
 
-        {TIME_SLOTS.map(({ period, icon, slots }) => (
+        {/* Date strip */}
+        <div style={{ display: 'flex', gap: '.5rem', overflowX: 'auto', paddingBottom: '.5rem', marginBottom: '1.5rem' }}>
+          {dateOptions.map(d => {
+            const isSelected = d.toDateString() === selectedDate.toDateString();
+            const label = d.toDateString() === now.toDateString() ? 'Today' : d.toLocaleDateString('en-IN', { weekday: 'short' });
+            const day   = d.getDate();
+            return (
+              <button key={d.toISOString()} onClick={() => { setSelectedDate(d); setSelectedSlot(''); }}
+                style={{ minWidth: 52, padding: '.5rem .3rem', border: '1.5px solid', borderRadius: 10, cursor: 'pointer', textAlign: 'center', flexShrink: 0, transition: 'all .15s',
+                  borderColor: isSelected ? '#4f46e5' : '#e5e7eb',
+                  background: isSelected ? '#4f46e5' : '#fff',
+                  color: isSelected ? '#fff' : '#374151',
+                }}>
+                <div style={{ fontSize: '.68rem', fontWeight: 700 }}>{label}</div>
+                <div style={{ fontSize: '1rem', fontWeight: 800 }}>{day}</div>
+              </button>
+            );
+          })}
+        </div>
+
+        {TIME_SLOTS.map(({ period, icon, slots }) => {
+          const available = slots.filter(isSlotAvailable);
+          if (available.length === 0) return null;
+          return (
           <div key={period} style={{ marginBottom: '1.25rem' }}>
             <div style={{ fontSize: '.78rem', fontWeight: 700, color: '#9ca3af', textTransform: 'uppercase', letterSpacing: '.05em', marginBottom: '.6rem' }}>
               {icon} {period}
             </div>
             <div style={{ display: 'flex', flexWrap: 'wrap', gap: '.5rem' }}>
-              {slots.map(slot => (
+              {available.map(slot => (
                 <button
                   key={slot}
                   onClick={() => setSelectedSlot(slot)}
@@ -247,7 +295,8 @@ function TeacherDetail({ teacher, classId, subjectId, onBack, onBooked, user, on
               ))}
             </div>
           </div>
-        ))}
+          );
+        })}
 
         {/* Connect Teacher button appears when morning slot selected */}
         {selectedSlot && (
