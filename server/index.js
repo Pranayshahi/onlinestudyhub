@@ -937,13 +937,19 @@ app.post('/api/payments/verify', requireStudentAuth, async (req, res) => {
 });
 
 app.get('/api/payments/test', async (req, res) => {
+  const keyId = process.env.RAZORPAY_KEY_ID;
+  const keySecret = process.env.RAZORPAY_KEY_SECRET;
+  // Show first/last 4 chars only for debugging
+  const debugKey = keyId ? `${keyId.slice(0, 8)}...${keyId.slice(-4)}` : 'NOT SET';
+  const debugSecret = keySecret ? `${keySecret.slice(0, 4)}...${keySecret.slice(-4)}` : 'NOT SET';
+
   const rzp = getRazorpay();
-  if (!rzp) return res.json({ configured: false, error: 'RAZORPAY_KEY_ID or KEY_SECRET not set' });
+  if (!rzp) return res.json({ configured: false, debugKey, debugSecret });
   try {
     const order = await rzp.orders.create({ amount: 100, currency: 'INR', receipt: 'test_' + Date.now() });
-    res.json({ configured: true, keyId: process.env.RAZORPAY_KEY_ID, orderId: order.id, status: 'OK' });
+    res.json({ configured: true, debugKey, orderId: order.id, status: 'OK' });
   } catch (e) {
-    res.json({ configured: true, keyId: process.env.RAZORPAY_KEY_ID, error: e.message });
+    res.json({ configured: true, debugKey, error: e.message });
   }
 });
 
