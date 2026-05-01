@@ -15,6 +15,32 @@ const ChevronDown = () => (
   </svg>
 );
 
+const CLASS_BADGE_COLORS = {
+  '6':  { bg: '#dcfce7', color: '#16a34a' },
+  '7':  { bg: '#dbeafe', color: '#1d4ed8' },
+  '8':  { bg: '#fef9c3', color: '#a16207' },
+  '9':  { bg: '#ffedd5', color: '#c2410c' },
+  '10': { bg: '#fce7f3', color: '#be185d' },
+  '11': { bg: '#ede9fe', color: '#7c3aed' },
+  '12': { bg: '#e0e7ff', color: '#4338ca' },
+};
+
+function ClassBadge({ classId }) {
+  const num = classId.replace('class-', '');
+  const c = CLASS_BADGE_COLORS[num] || { bg: '#f3f4f6', color: '#6b7280' };
+  return (
+    <span style={{
+      display: 'inline-flex', alignItems: 'center', justifyContent: 'center',
+      width: 26, height: 26, borderRadius: 7,
+      background: c.bg, color: c.color,
+      fontWeight: 900, fontSize: '.78rem', flexShrink: 0,
+      fontFamily: 'Nunito', letterSpacing: '-.01em',
+    }}>
+      {num}
+    </span>
+  );
+}
+
 
 export default function Navbar({ onOpenAI, onOpenLogin, user, onLogout, darkMode, onToggleDark, bookingsBadge = 0 }) {
   const [mobileOpen, setMobileOpen] = useState(false);
@@ -74,7 +100,7 @@ export default function Navbar({ onOpenAI, onOpenLogin, user, onLogout, darkMode
                   <div className="dropdown-label">Middle School</div>
                   {NAV_CLASSES.slice(0, 3).map(cls => (
                     <Link key={cls.id} to={`/class/${cls.id}`} className="dropdown-item" onClick={close}>
-                      {CURRICULUM[cls.id]?.emoji} {cls.label}
+                      <ClassBadge classId={cls.id} /> {cls.label}
                     </Link>
                   ))}
                 </div>
@@ -83,7 +109,7 @@ export default function Navbar({ onOpenAI, onOpenLogin, user, onLogout, darkMode
                   <div className="dropdown-label">High School</div>
                   {NAV_CLASSES.slice(3).map(cls => (
                     <Link key={cls.id} to={`/class/${cls.id}`} className="dropdown-item" onClick={close}>
-                      {CURRICULUM[cls.id]?.emoji} {cls.label}
+                      <ClassBadge classId={cls.id} /> {cls.label}
                     </Link>
                   ))}
                 </div>
@@ -137,7 +163,7 @@ export default function Navbar({ onOpenAI, onOpenLogin, user, onLogout, darkMode
                           close();
                         }}
                       >
-                        <span style={{ minWidth: 20 }}>{CURRICULUM[cls.id]?.emoji}</span>
+                        <ClassBadge classId={cls.id} />
                         <span style={{ flex: 1 }}>{cls.label}</span>
                         {t && <span style={{ fontSize: '.75rem', color: '#9ca3af' }}>{t.avatar}</span>}
                       </Link>
