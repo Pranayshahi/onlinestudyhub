@@ -506,7 +506,12 @@ export default function HomePage() {
                 '11': { bg: '#ede9fe', color: '#7c3aed' },
                 '12': { bg: '#e0e7ff', color: '#4338ca' },
               };
-              const bc = badgeColors[num];
+              const examColors = {
+                'jee':  { bg: '#fef9c3', color: '#a16207' },
+                'neet': { bg: '#ccfbf1', color: '#0f766e' },
+              };
+              const bc = badgeColors[num] || examColors[cls.id];
+              const badgeContent = badgeColors[num] ? num : cls.emoji;
               return (
                 <Link to={`/class/${cls.id}`} key={cls.id} style={{ textDecoration: 'none' }}>
                   <div className="class-card">
@@ -516,8 +521,9 @@ export default function HomePage() {
                           display: 'inline-flex', alignItems: 'center', justifyContent: 'center',
                           width: 48, height: 48, borderRadius: 14,
                           background: bc.bg, color: bc.color,
-                          fontFamily: 'Nunito', fontWeight: 900, fontSize: '1.35rem',
-                        }}>{num}</span>
+                          fontFamily: 'Nunito', fontWeight: 900,
+                          fontSize: badgeColors[num] ? '1.35rem' : '1.6rem',
+                        }}>{badgeContent}</span>
                       ) : cls.emoji}
                     </div>
                     <div className="class-card-title">{cls.label}</div>
