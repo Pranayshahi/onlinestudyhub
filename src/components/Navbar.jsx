@@ -63,12 +63,13 @@ export default function Navbar({ onOpenAI, onOpenLogin, user, onLogout, darkMode
           {/* Desktop + Mobile nav */}
           <div className={`nav-links ${mobileOpen ? 'mobile-open' : ''}`}>
 
-            {/* ── Classes dropdown ── */}
+            {/* ── Classes dropdown (3-column) ── */}
             <div className={`nav-item ${mobileOpen && mobileExpanded === 'classes' ? 'mobile-expanded' : ''}`}>
               <Link to="/classes" className="nav-link" onClick={() => mobileOpen ? toggleMobile('classes') : close()}>
                 Classes <ChevronDown />
               </Link>
-              <div className="dropdown">
+              <div className="dropdown dropdown-3col">
+                {/* Col 1 — Middle School */}
                 <div className="dropdown-section">
                   <div className="dropdown-label">Middle School</div>
                   {NAV_CLASSES.slice(0, 3).map(cls => (
@@ -77,7 +78,7 @@ export default function Navbar({ onOpenAI, onOpenLogin, user, onLogout, darkMode
                     </Link>
                   ))}
                 </div>
-                <div className="dropdown-divider" />
+                {/* Col 2 — High School */}
                 <div className="dropdown-section">
                   <div className="dropdown-label">High School</div>
                   {NAV_CLASSES.slice(3).map(cls => (
@@ -86,39 +87,21 @@ export default function Navbar({ onOpenAI, onOpenLogin, user, onLogout, darkMode
                     </Link>
                   ))}
                 </div>
-              </div>
-            </div>
-
-            {/* ── IIT/JEE dropdown ── */}
-            <div className={`nav-item ${mobileOpen && mobileExpanded === 'jee' ? 'mobile-expanded' : ''}`}>
-              <Link to="/exam/jee" className="nav-link" onClick={() => mobileOpen ? toggleMobile('jee') : close()}>
-                🏆 IIT/JEE <ChevronDown />
-              </Link>
-              <div className="dropdown">
-                <div className="dropdown-section">
-                  <div className="dropdown-label">JEE Main + Advanced</div>
-                  <Link to="/exam/jee" className="dropdown-item" onClick={close}>🏆 JEE Overview</Link>
-                  <Link to="/exam/jee/weightage" className="dropdown-item" onClick={close}>📊 Chapter Weightage</Link>
-                  <Link to="/exam/jee/pyq" className="dropdown-item" onClick={close}>📝 PYQ Bank</Link>
-                  <Link to="/exam/jee/mock-test" className="dropdown-item" onClick={close}>⏱️ Mock Tests</Link>
-                  <Link to="/class/jee" className="dropdown-item" onClick={close}>📚 Study Topics</Link>
-                </div>
-              </div>
-            </div>
-
-            {/* ── NEET dropdown ── */}
-            <div className={`nav-item ${mobileOpen && mobileExpanded === 'neet' ? 'mobile-expanded' : ''}`}>
-              <Link to="/exam/neet" className="nav-link" onClick={() => mobileOpen ? toggleMobile('neet') : close()}>
-                🩺 NEET <ChevronDown />
-              </Link>
-              <div className="dropdown">
-                <div className="dropdown-section">
-                  <div className="dropdown-label">NEET-UG</div>
-                  <Link to="/exam/neet" className="dropdown-item" onClick={close}>🩺 NEET Overview</Link>
-                  <Link to="/exam/neet/weightage" className="dropdown-item" onClick={close}>📊 Chapter Weightage</Link>
-                  <Link to="/exam/neet/pyq" className="dropdown-item" onClick={close}>📝 PYQ Bank</Link>
-                  <Link to="/exam/neet/mock-test" className="dropdown-item" onClick={close}>⏱️ Mock Tests</Link>
-                  <Link to="/class/neet" className="dropdown-item" onClick={close}>📚 Study Topics</Link>
+                {/* Col 3 — Competitive Exams */}
+                <div className="dropdown-section dropdown-section-exams">
+                  <div className="dropdown-label">Competitive Exams</div>
+                  <div className="dropdown-exam-block">
+                    <Link to="/exam/jee" className="dropdown-exam-title" onClick={close}>🏆 IIT / JEE</Link>
+                    <Link to="/exam/jee/weightage" className="dropdown-exam-sub" onClick={close}>📊 Weightage</Link>
+                    <Link to="/exam/jee/pyq" className="dropdown-exam-sub" onClick={close}>📝 PYQ Bank</Link>
+                    <Link to="/exam/jee/mock-test" className="dropdown-exam-sub" onClick={close}>⏱️ Mock Tests</Link>
+                  </div>
+                  <div className="dropdown-exam-block">
+                    <Link to="/exam/neet" className="dropdown-exam-title" onClick={close}>🩺 NEET-UG</Link>
+                    <Link to="/exam/neet/weightage" className="dropdown-exam-sub" onClick={close}>📊 Weightage</Link>
+                    <Link to="/exam/neet/pyq" className="dropdown-exam-sub" onClick={close}>📝 PYQ Bank</Link>
+                    <Link to="/exam/neet/mock-test" className="dropdown-exam-sub" onClick={close}>⏱️ Mock Tests</Link>
+                  </div>
                 </div>
               </div>
             </div>
