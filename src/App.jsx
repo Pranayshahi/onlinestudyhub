@@ -29,6 +29,7 @@ const MockTestListPage   = lazy(() => import('./pages/MockTestListPage'));
 const MockTestTakerPage  = lazy(() => import('./pages/MockTestTakerPage'));
 const StudyPlanPage      = lazy(() => import('./pages/StudyPlanPage'));
 const ParentPortal       = lazy(() => import('./pages/ParentPortal'));
+const GroupClassesPage   = lazy(() => import('./pages/GroupClassesPage'));
 
 // Heavy panel components — load only when opened
 const AIDoubtPanel = lazy(() => import('./components/AIDoubtPanel'));
@@ -122,6 +123,7 @@ export default function App() {
             <Route path="/exam/:examId/mock-test/:testId" element={<MockTestTakerPage />} />
             <Route path="/study-plan" element={<StudyPlanPage user={user} onOpenLogin={() => setLoginOpen(true)} />} />
             <Route path="/parent-portal" element={<ParentPortal />} />
+            <Route path="/group-classes" element={<GroupClassesPage user={user} onOpenLogin={() => setLoginOpen(true)} />} />
             <Route path="*" element={<NotFoundPage />} />
           </Routes>
         </Suspense>

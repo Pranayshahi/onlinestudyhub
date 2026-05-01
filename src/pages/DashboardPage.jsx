@@ -164,6 +164,8 @@ export default function DashboardPage({ user, onOpenLogin, onUpdateUser }) {
   const [pwSuccess, setPwSuccess] = useState('');
   const [referral, setReferral] = useState(null);
   const [refCopied, setRefCopied] = useState(false);
+  const [groupClasses, setGroupClasses] = useState([]);
+  const [jitsiOpen, setJitsiOpen] = useState(null);
   const { permission, subscribed, subscribe, loading: pushLoading, supported: pushSupported } = usePushNotifications(user);
 
   const progress   = loadProgress();
@@ -200,6 +202,11 @@ export default function DashboardPage({ user, onOpenLogin, onUpdateUser }) {
   useEffect(() => {
     if (!user) return;
     api('/students/me/referral').then(setReferral).catch(() => {});
+  }, [user]);
+
+  useEffect(() => {
+    if (!user) return;
+    api('/group-classes/joined').then(d => setGroupClasses(Array.isArray(d) ? d : [])).catch(() => {});
   }, [user]);
 
   if (!user) {
@@ -466,7 +473,8 @@ export default function DashboardPage({ user, onOpenLogin, onUpdateUser }) {
                   { to: '/study-plan',  icon: '✨', label: 'AI Study Plan',  color: '#7c3aed', bg: '#f5f3ff' },
                   { to: '/exam/jee',    icon: '🏆', label: 'JEE Prep',      color: '#d97706', bg: '#fffbeb' },
                   { to: '/exam/neet',   icon: '🩺', label: 'NEET Prep',     color: '#dc2626', bg: '#fef2f2' },
-                  { to: '/my-bookings', icon: '📅', label: 'My Bookings',   color: '#7c3aed', bg: '#f5f3ff' },
+                  { to: '/my-bookings',    icon: '📅', label: 'My Bookings',    color: '#7c3aed', bg: '#f5f3ff' },
+                  { to: '/group-classes', icon: '🎥', label: 'Group Classes',  color: '#dc2626', bg: '#fef2f2' },
                 ].map(l => (
                   <Link key={l.to} to={l.to} style={{ textDecoration: 'none' }}>
                     <div className="db-quick-item" style={{ background: l.bg, color: l.color }}>
@@ -753,6 +761,69 @@ export default function DashboardPage({ user, onOpenLogin, onUpdateUser }) {
                 );
               })}
             </SectionCard>
+
+            {/* Group Classes */}
+            <SectionCard icon="🎥" title="My Group Classes"
+              action={<Link to="/group-classes" style={{ fontSize: '.78rem', color: '#4f46e5', fontWeight: 700, textDecoration: 'none' }}>Browse All →</Link>}>
+              {groupClasses.length === 0 ? (
+                <div className="db-empty">
+                  <div style={{ fontSize: '2rem', marginBottom: '.5rem' }}>🎥</div>
+                  <div style={{ marginBottom: '.75rem' }}>No group classes registered</div>
+                  <Link to="/group-classes" className="db-empty-link">Find Live Classes →</Link>
+                </div>
+              ) : (
+                <div style={{ display: 'flex', flexDirection: 'column', gap: '.65rem' }}>
+                  {groupClasses.map(gc => {
+                    const isLive = gc.status === 'live';
+                    const dt = new Date(gc.scheduledAt);
+                    const dateStr = dt.toLocaleDateString('en-IN', { day: 'numeric', month: 'short' });
+                    const timeStr = dt.toLocaleTimeString('en-IN', { hour: '2-digit', minute: '2-digit', hour12: true });
+                    return (
+                      <div key={gc._id} className={`db-session-card ${isLive ? 'confirmed' : 'pending'}`}>
+                        <div className="db-session-topic" style={{ display: 'flex', alignItems: 'center', gap: '.5rem' }}>
+                          {isLive && <span style={{ width: 8, height: 8, borderRadius: '50%', background: '#dc2626', flexShrink: 0, animation: 'liveDot 1.5s ease-in-out infinite' }} />}
+                          {gc.title}
+                        </div>
+                        <div className="db-session-meta">{dateStr} · {timeStr} · {gc.durationMin}m</div>
+                        <div className="db-session-footer">
+                          <span className="db-session-badge">{isLive ? '🔴 Live Now' : '🗓 Upcoming'}</span>
+                          {isLive && (
+                            <button
+                              onClick={() => setJitsiOpen(gc)}
+                              style={{ fontSize: '.75rem', color: '#fff', background: '#dc2626', border: 'none', borderRadius: 6, padding: '.25rem .65rem', fontWeight: 700, cursor: 'pointer' }}
+                            >
+                              🎥 Join
+                            </button>
+                          )}
+                        </div>
+                      </div>
+                    );
+                  })}
+                </div>
+              )}
+            </SectionCard>
+
+            {/* Jitsi inline join */}
+            {jitsiOpen && (
+              <div style={{ position: 'fixed', inset: 0, zIndex: 2000, background: 'rgba(0,0,0,.85)', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', padding: '1rem' }}
+                onClick={e => e.target === e.currentTarget && setJitsiOpen(null)}>
+                <div style={{ width: '100%', maxWidth: 960, background: '#000', borderRadius: 16, overflow: 'hidden', boxShadow: '0 25px 60px rgba(0,0,0,.6)', display: 'flex', flexDirection: 'column' }}>
+                  <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '.75rem 1.25rem', background: '#1e1b4b' }}>
+                    <div style={{ color: '#fff', fontFamily: 'Nunito', fontWeight: 800, fontSize: '.95rem' }}>🎥 {jitsiOpen.title}</div>
+                    <button onClick={() => setJitsiOpen(null)} style={{ background: 'rgba(255,255,255,.15)', border: 'none', color: '#fff', borderRadius: 8, padding: '.35rem .75rem', cursor: 'pointer', fontWeight: 700 }}>✕ Leave</button>
+                  </div>
+                  <div style={{ position: 'relative', paddingBottom: '56.25%', height: 0 }}>
+                    <iframe
+                      src={`https://meet.jit.si/${jitsiOpen.jitsiRoomId}#config.prejoinPageEnabled=false`}
+                      allow="camera; microphone; fullscreen; display-capture"
+                      style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', border: 'none' }}
+                      title="Live Class"
+                    />
+                  </div>
+                </div>
+              </div>
+            )}
+            <style>{`@keyframes liveDot { 0%,100% { opacity:1; } 50% { opacity:.3; } }`}</style>
 
             {/* Study tip */}
             <div className="db-tip-card">

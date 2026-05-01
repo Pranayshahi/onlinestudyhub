@@ -7,7 +7,7 @@ const crypto = require('crypto');
 require('dotenv').config({ path: require('path').join(__dirname, '.env') });
 
 const connectDB = require('./db');
-const { Student, Teacher, Booking, TopicMedia, Review, ForumPost, Parent, PushSub } = require('./models');
+const { Student, Teacher, Booking, TopicMedia, Review, ForumPost, Parent, PushSub, GroupClass } = require('./models');
 const Razorpay = require('razorpay');
 const {
   notifyStudentBookingReceived,
@@ -1350,6 +1350,160 @@ app.get('/api/parent/child/:email/data', requireParentAuth, async (req, res) => 
       stats: { totalSessions: sessions.length, completedCount, upcomingCount, totalSpent },
     });
   } catch (e) { console.error('Parent child data:', e); res.status(500).json({ error: 'Server error' }); }
+});
+
+// ── Group Classes ───────────────────────────────────────────────
+
+// List upcoming/live group classes (public)
+app.get('/api/group-classes', async (req, res) => {
+  try {
+    const { classId, subjectId, status } = req.query;
+    const filter = {};
+    if (classId)   filter.classId   = classId;
+    if (subjectId) filter.subjectId = subjectId;
+    if (status)    filter.status    = status;
+    else           filter.status    = { $in: ['scheduled', 'live'] };
+
+    const classes = await GroupClass.find(filter)
+      .populate('teacherId', 'name avatar rating subject')
+      .sort({ scheduledAt: 1 })
+      .lean();
+
+    res.json(classes.map(gc => ({
+      ...gc,
+      spotsLeft: gc.maxStudents - gc.joinedStudents.length,
+      joinedCount: gc.joinedStudents.length,
+      joinedStudents: undefined,
+    })));
+  } catch (e) { console.error('GET group-classes:', e); res.status(500).json({ error: 'Server error' }); }
+});
+
+// Teacher's own group classes
+app.get('/api/group-classes/mine', requireAuth, async (req, res) => {
+  try {
+    const classes = await GroupClass.find({ teacherId: req.teacher.id })
+      .sort({ scheduledAt: -1 })
+      .lean();
+    res.json(classes.map(gc => ({
+      ...gc,
+      joinedCount: gc.joinedStudents.length,
+    })));
+  } catch (e) { res.status(500).json({ error: 'Server error' }); }
+});
+
+// Student's joined group classes
+app.get('/api/group-classes/joined', requireStudentAuth, async (req, res) => {
+  try {
+    const email = req.student.email;
+    const classes = await GroupClass.find({
+      'joinedStudents.email': email,
+      status: { $in: ['scheduled', 'live'] },
+    })
+      .populate('teacherId', 'name avatar rating')
+      .sort({ scheduledAt: 1 })
+      .lean();
+    res.json(classes.map(gc => ({
+      ...gc,
+      joinedCount: gc.joinedStudents.length,
+      joinedStudents: undefined,
+    })));
+  } catch (e) { res.status(500).json({ error: 'Server error' }); }
+});
+
+// Get single group class
+app.get('/api/group-classes/:id', async (req, res) => {
+  try {
+    const gc = await GroupClass.findById(req.params.id)
+      .populate('teacherId', 'name avatar rating subject experience qualification bio')
+      .lean();
+    if (!gc) return res.status(404).json({ error: 'Not found' });
+    res.json({ ...gc, joinedCount: gc.joinedStudents.length, joinedStudents: undefined });
+  } catch (e) { res.status(500).json({ error: 'Server error' }); }
+});
+
+// Teacher creates a group class
+app.post('/api/group-classes', requireAuth, async (req, res) => {
+  try {
+    const { title, description, classId, subjectId, topicId, scheduledAt, durationMin, maxStudents, price, language } = req.body || {};
+    if (!title || !classId || !subjectId || !scheduledAt) {
+      return res.status(400).json({ error: 'title, classId, subjectId, scheduledAt required' });
+    }
+    const teacher = await Teacher.findById(req.teacher.id).lean();
+    if (!teacher) return res.status(404).json({ error: 'Teacher not found' });
+
+    const jitsiRoomId = 'osh-' + crypto.randomBytes(8).toString('hex');
+    const gc = await GroupClass.create({
+      teacherId:   req.teacher.id,
+      title:       title.trim(),
+      description: (description || '').trim(),
+      classId, subjectId,
+      topicId:     topicId || '',
+      scheduledAt: new Date(scheduledAt),
+      durationMin: parseInt(durationMin) || 60,
+      maxStudents: Math.min(parseInt(maxStudents) || 20, 100),
+      price:       parseFloat(price) || 0,
+      language:    language || 'Hindi/English',
+      jitsiRoomId,
+    });
+    res.status(201).json(gc);
+  } catch (e) { console.error('POST group-classes:', e); res.status(500).json({ error: 'Server error' }); }
+});
+
+// Student joins a group class (free only for now; Razorpay can be wired for paid)
+app.post('/api/group-classes/:id/join', requireStudentAuth, async (req, res) => {
+  try {
+    const gc = await GroupClass.findById(req.params.id);
+    if (!gc) return res.status(404).json({ error: 'Class not found' });
+    if (gc.status === 'ended' || gc.status === 'cancelled') {
+      return res.status(400).json({ error: 'This class is no longer available' });
+    }
+    if (gc.joinedStudents.length >= gc.maxStudents) {
+      return res.status(400).json({ error: 'Class is full' });
+    }
+    const alreadyJoined = gc.joinedStudents.some(s => s.email === req.student.email);
+    if (alreadyJoined) return res.status(400).json({ error: 'Already registered' });
+
+    gc.joinedStudents.push({ email: req.student.email, name: req.student.name || '' });
+    await gc.save();
+    res.json({ success: true, jitsiRoomId: gc.jitsiRoomId, status: gc.status });
+  } catch (e) { res.status(500).json({ error: 'Server error' }); }
+});
+
+// Student leaves a group class
+app.delete('/api/group-classes/:id/leave', requireStudentAuth, async (req, res) => {
+  try {
+    const gc = await GroupClass.findById(req.params.id);
+    if (!gc) return res.status(404).json({ error: 'Not found' });
+    gc.joinedStudents = gc.joinedStudents.filter(s => s.email !== req.student.email);
+    await gc.save();
+    res.json({ success: true });
+  } catch (e) { res.status(500).json({ error: 'Server error' }); }
+});
+
+// Teacher updates status (live / ended / cancelled)
+app.patch('/api/group-classes/:id/status', requireAuth, async (req, res) => {
+  try {
+    const { status } = req.body || {};
+    if (!['scheduled', 'live', 'ended', 'cancelled'].includes(status)) {
+      return res.status(400).json({ error: 'Invalid status' });
+    }
+    const gc = await GroupClass.findOneAndUpdate(
+      { _id: req.params.id, teacherId: req.teacher.id },
+      { status },
+      { new: true }
+    );
+    if (!gc) return res.status(404).json({ error: 'Not found or not your class' });
+    res.json(gc);
+  } catch (e) { res.status(500).json({ error: 'Server error' }); }
+});
+
+// Teacher deletes a group class
+app.delete('/api/group-classes/:id', requireAuth, async (req, res) => {
+  try {
+    const gc = await GroupClass.findOneAndDelete({ _id: req.params.id, teacherId: req.teacher.id });
+    if (!gc) return res.status(404).json({ error: 'Not found or not your class' });
+    res.json({ success: true });
+  } catch (e) { res.status(500).json({ error: 'Server error' }); }
 });
 
 // ── Error Handler ──────────────────────────────────────────────

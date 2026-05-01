@@ -132,6 +132,30 @@ const pushSubSchema = new mongoose.Schema({
   subscription: { type: Object, required: true },
 }, { timestamps: true });
 
+const groupClassSchema = new mongoose.Schema({
+  teacherId:   { type: mongoose.Schema.Types.ObjectId, ref: 'Teacher', required: true },
+  title:       { type: String, required: true },
+  description: { type: String, default: '' },
+  classId:     { type: String, required: true },
+  subjectId:   { type: String, required: true },
+  topicId:     { type: String, default: '' },
+  scheduledAt: { type: Date, required: true },
+  durationMin: { type: Number, default: 60 },
+  maxStudents: { type: Number, default: 20 },
+  price:       { type: Number, default: 0 },
+  language:    { type: String, default: 'Hindi/English' },
+  jitsiRoomId: { type: String, required: true, unique: true },
+  status:      { type: String, enum: ['scheduled', 'live', 'ended', 'cancelled'], default: 'scheduled' },
+  joinedStudents: [{
+    email:    { type: String, required: true },
+    name:     { type: String, default: '' },
+    joinedAt: { type: Date, default: Date.now },
+  }],
+}, { timestamps: true });
+
+groupClassSchema.index({ scheduledAt: 1, status: 1 });
+groupClassSchema.index({ teacherId: 1 });
+
 const Student    = mongoose.model('Student',    studentSchema);
 const Teacher    = mongoose.model('Teacher',    teacherSchema);
 const Booking    = mongoose.model('Booking',    bookingSchema);
@@ -140,5 +164,6 @@ const Review     = mongoose.model('Review',     reviewSchema);
 const ForumPost  = mongoose.model('ForumPost',  forumPostSchema);
 const Parent     = mongoose.model('Parent',     parentSchema);
 const PushSub    = mongoose.model('PushSub',    pushSubSchema);
+const GroupClass = mongoose.model('GroupClass', groupClassSchema);
 
-module.exports = { Student, Teacher, Booking, TopicMedia, Review, ForumPost, Parent, PushSub };
+module.exports = { Student, Teacher, Booking, TopicMedia, Review, ForumPost, Parent, PushSub, GroupClass };

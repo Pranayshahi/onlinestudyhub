@@ -414,6 +414,232 @@ function TeacherForm({ initial = EMPTY_FORM, showEmail = true, showPassword = fa
   );
 }
 
+// ─── Group Classes Tab ────────────────────────────────────────────
+const GC_SUBJECTS = [
+  'physics','chemistry','maths','biology','english','history',
+  'geography','civics','economics','accountancy','business-studies','computer-science',
+];
+const GC_SUBJECT_LABELS = {
+  physics:'Physics',chemistry:'Chemistry',maths:'Mathematics',biology:'Biology',
+  english:'English',history:'History',geography:'Geography',civics:'Civics',
+  economics:'Economics',accountancy:'Accountancy','business-studies':'Business Studies',
+  'computer-science':'Computer Science',
+};
+
+function GroupClassesTab({ token }) {
+  const [classes, setClasses]   = useState([]);
+  const [loading, setLoading]   = useState(true);
+  const [showForm, setShowForm] = useState(false);
+  const [submitting, setSubmitting] = useState(false);
+  const [formErr, setFormErr]   = useState('');
+  const [form, setForm] = useState({
+    title: '', description: '',
+    classId: 'class-11', subjectId: 'physics', topicId: '',
+    scheduledAt: '', durationMin: 60, maxStudents: 20, price: 0, language: 'Hindi/English',
+  });
+
+  async function load() {
+    setLoading(true);
+    try {
+      const data = await api('/group-classes/mine', { token });
+      setClasses(Array.isArray(data) ? data : []);
+    } catch { setClasses([]); }
+    setLoading(false);
+  }
+
+  useEffect(() => { load(); }, []);
+
+  function setField(k, v) { setForm(f => ({ ...f, [k]: v })); }
+
+  async function handleCreate(e) {
+    e.preventDefault();
+    if (!form.title.trim() || !form.scheduledAt) { setFormErr('Title and date/time are required.'); return; }
+    setSubmitting(true); setFormErr('');
+    try {
+      await api('/group-classes', { method: 'POST', body: form, token });
+      setShowForm(false);
+      setForm({ title:'',description:'',classId:'class-11',subjectId:'physics',topicId:'',scheduledAt:'',durationMin:60,maxStudents:20,price:0,language:'Hindi/English' });
+      await load();
+    } catch (e) {
+      setFormErr(e.message || 'Failed to create class');
+    } finally {
+      setSubmitting(false);
+    }
+  }
+
+  async function updateStatus(id, status) {
+    try {
+      await api(`/group-classes/${id}/status`, { method: 'PATCH', body: { status }, token });
+      await load();
+    } catch (e) { alert(e.message); }
+  }
+
+  async function deleteClass(id) {
+    if (!window.confirm('Delete this group class? Students who registered will not be notified.')) return;
+    try {
+      await api(`/group-classes/${id}`, { method: 'DELETE', token });
+      await load();
+    } catch (e) { alert(e.message); }
+  }
+
+  const STATUS_ACTIONS = {
+    scheduled: [{ label: '🔴 Go Live', next: 'live' }, { label: '❌ Cancel', next: 'cancelled' }],
+    live:      [{ label: '✅ End Class', next: 'ended' }],
+    ended:     [],
+    cancelled: [],
+  };
+
+  const fmtDt = (d) => new Date(d).toLocaleString('en-IN', { day:'numeric',month:'short',hour:'2-digit',minute:'2-digit',hour12:true });
+
+  return (
+    <div>
+      <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '1.25rem', flexWrap: 'wrap', gap: '.75rem' }}>
+        <div>
+          <h2 style={{ fontFamily: 'Nunito', fontWeight: 900, color: '#1e1b4b', margin: 0, fontSize: '1.15rem' }}>🎥 My Group Classes</h2>
+          <p style={{ color: '#9ca3af', fontSize: '.8rem', margin: '.2rem 0 0' }}>Schedule and manage live group sessions for your students</p>
+        </div>
+        <button
+          onClick={() => setShowForm(f => !f)}
+          style={{ padding: '.55rem 1.2rem', borderRadius: 10, border: 'none', background: '#4f46e5', color: '#fff', fontWeight: 800, fontSize: '.88rem', cursor: 'pointer' }}
+        >
+          {showForm ? '✕ Cancel' : '+ New Group Class'}
+        </button>
+      </div>
+
+      {/* Create form */}
+      {showForm && (
+        <form onSubmit={handleCreate} style={{ background: '#f8fafc', border: '1.5px solid #e5e7eb', borderRadius: 16, padding: '1.5rem', marginBottom: '1.5rem' }}>
+          <h3 style={{ fontFamily: 'Nunito', fontWeight: 800, color: '#1e1b4b', marginTop: 0, marginBottom: '1.25rem' }}>Schedule a New Group Class</h3>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill,minmax(220px,1fr))', gap: '1rem' }}>
+            <div style={{ gridColumn: '1/-1' }}>
+              <label style={{ fontSize: '.8rem', fontWeight: 700, color: '#374151', display: 'block', marginBottom: '.3rem' }}>Title *</label>
+              <input value={form.title} onChange={e => setField('title', e.target.value)} placeholder="e.g. Laws of Motion — Exam Prep" required
+                style={{ width: '100%', padding: '.6rem .9rem', borderRadius: 9, border: '1.5px solid #e5e7eb', fontSize: '.9rem', boxSizing: 'border-box' }} />
+            </div>
+            <div style={{ gridColumn: '1/-1' }}>
+              <label style={{ fontSize: '.8rem', fontWeight: 700, color: '#374151', display: 'block', marginBottom: '.3rem' }}>Description</label>
+              <textarea value={form.description} onChange={e => setField('description', e.target.value)} placeholder="What will you cover? Any preparation needed?"
+                rows={2} style={{ width: '100%', padding: '.6rem .9rem', borderRadius: 9, border: '1.5px solid #e5e7eb', fontSize: '.88rem', resize: 'vertical', boxSizing: 'border-box' }} />
+            </div>
+            <div>
+              <label style={{ fontSize: '.8rem', fontWeight: 700, color: '#374151', display: 'block', marginBottom: '.3rem' }}>Class</label>
+              <select value={form.classId} onChange={e => setField('classId', e.target.value)}
+                style={{ width: '100%', padding: '.6rem .9rem', borderRadius: 9, border: '1.5px solid #e5e7eb', fontSize: '.88rem' }}>
+                {CLASS_OPTIONS.map(c => <option key={c.id} value={c.id}>{c.label}</option>)}
+              </select>
+            </div>
+            <div>
+              <label style={{ fontSize: '.8rem', fontWeight: 700, color: '#374151', display: 'block', marginBottom: '.3rem' }}>Subject</label>
+              <select value={form.subjectId} onChange={e => setField('subjectId', e.target.value)}
+                style={{ width: '100%', padding: '.6rem .9rem', borderRadius: 9, border: '1.5px solid #e5e7eb', fontSize: '.88rem' }}>
+                {GC_SUBJECTS.map(s => <option key={s} value={s}>{GC_SUBJECT_LABELS[s] || s}</option>)}
+              </select>
+            </div>
+            <div>
+              <label style={{ fontSize: '.8rem', fontWeight: 700, color: '#374151', display: 'block', marginBottom: '.3rem' }}>Date & Time *</label>
+              <input type="datetime-local" value={form.scheduledAt} onChange={e => setField('scheduledAt', e.target.value)} required
+                min={new Date().toISOString().slice(0,16)}
+                style={{ width: '100%', padding: '.6rem .9rem', borderRadius: 9, border: '1.5px solid #e5e7eb', fontSize: '.88rem', boxSizing: 'border-box' }} />
+            </div>
+            <div>
+              <label style={{ fontSize: '.8rem', fontWeight: 700, color: '#374151', display: 'block', marginBottom: '.3rem' }}>Duration (minutes)</label>
+              <input type="number" value={form.durationMin} onChange={e => setField('durationMin', e.target.value)} min={15} max={180}
+                style={{ width: '100%', padding: '.6rem .9rem', borderRadius: 9, border: '1.5px solid #e5e7eb', fontSize: '.88rem', boxSizing: 'border-box' }} />
+            </div>
+            <div>
+              <label style={{ fontSize: '.8rem', fontWeight: 700, color: '#374151', display: 'block', marginBottom: '.3rem' }}>Max Students</label>
+              <input type="number" value={form.maxStudents} onChange={e => setField('maxStudents', e.target.value)} min={2} max={100}
+                style={{ width: '100%', padding: '.6rem .9rem', borderRadius: 9, border: '1.5px solid #e5e7eb', fontSize: '.88rem', boxSizing: 'border-box' }} />
+            </div>
+            <div>
+              <label style={{ fontSize: '.8rem', fontWeight: 700, color: '#374151', display: 'block', marginBottom: '.3rem' }}>Price (₹, 0 = free)</label>
+              <input type="number" value={form.price} onChange={e => setField('price', e.target.value)} min={0}
+                style={{ width: '100%', padding: '.6rem .9rem', borderRadius: 9, border: '1.5px solid #e5e7eb', fontSize: '.88rem', boxSizing: 'border-box' }} />
+            </div>
+            <div>
+              <label style={{ fontSize: '.8rem', fontWeight: 700, color: '#374151', display: 'block', marginBottom: '.3rem' }}>Language</label>
+              <input value={form.language} onChange={e => setField('language', e.target.value)} placeholder="Hindi/English"
+                style={{ width: '100%', padding: '.6rem .9rem', borderRadius: 9, border: '1.5px solid #e5e7eb', fontSize: '.88rem', boxSizing: 'border-box' }} />
+            </div>
+          </div>
+          {formErr && <div style={{ color: '#dc2626', fontSize: '.85rem', marginTop: '.75rem', background: '#fef2f2', padding: '.5rem .75rem', borderRadius: 8 }}>{formErr}</div>}
+          <div style={{ display: 'flex', gap: '.75rem', marginTop: '1.25rem' }}>
+            <button type="submit" disabled={submitting}
+              style={{ padding: '.65rem 1.5rem', borderRadius: 10, border: 'none', background: submitting ? '#9ca3af' : '#4f46e5', color: '#fff', fontWeight: 800, cursor: submitting ? 'not-allowed' : 'pointer' }}>
+              {submitting ? '⏳ Creating…' : '🎥 Schedule Group Class'}
+            </button>
+            <button type="button" onClick={() => setShowForm(false)}
+              style={{ padding: '.65rem 1.25rem', borderRadius: 10, border: '1px solid #e5e7eb', background: '#fff', color: '#6b7280', fontWeight: 700, cursor: 'pointer' }}>
+              Cancel
+            </button>
+          </div>
+        </form>
+      )}
+
+      {/* List */}
+      {loading ? (
+        <div style={{ textAlign: 'center', padding: '2rem', color: '#9ca3af' }}>Loading…</div>
+      ) : classes.length === 0 ? (
+        <div style={{ textAlign: 'center', padding: '3rem', background: '#f9fafb', borderRadius: 16, border: '2px dashed #e5e7eb', color: '#9ca3af' }}>
+          <div style={{ fontSize: '2.5rem', marginBottom: '.75rem' }}>🗓</div>
+          <div style={{ fontWeight: 600, marginBottom: '.25rem' }}>No group classes yet</div>
+          <div style={{ fontSize: '.82rem' }}>Click "New Group Class" to schedule your first live session.</div>
+        </div>
+      ) : (
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
+          {classes.map(gc => {
+            const actions = STATUS_ACTIONS[gc.status] || [];
+            const statusColors = { scheduled:'#7c3aed', live:'#dc2626', ended:'#059669', cancelled:'#9ca3af' };
+            return (
+              <div key={gc._id} style={{ background: '#fff', border: '1.5px solid #e5e7eb', borderRadius: 14, padding: '1.25rem', display: 'flex', gap: '1rem', alignItems: 'flex-start', flexWrap: 'wrap' }}>
+                <div style={{ flex: 1, minWidth: 200 }}>
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '.6rem', marginBottom: '.3rem', flexWrap: 'wrap' }}>
+                    <span style={{ fontFamily: 'Nunito', fontWeight: 800, fontSize: '.95rem', color: '#1e1b4b' }}>{gc.title}</span>
+                    <span style={{ background: statusColors[gc.status] + '20', color: statusColors[gc.status], padding: '.15rem .55rem', borderRadius: 6, fontSize: '.72rem', fontWeight: 700 }}>
+                      {gc.status.toUpperCase()}
+                    </span>
+                  </div>
+                  <div style={{ fontSize: '.8rem', color: '#6b7280', display: 'flex', gap: '1rem', flexWrap: 'wrap' }}>
+                    <span>📅 {fmtDt(gc.scheduledAt)}</span>
+                    <span>⏱ {gc.durationMin}m</span>
+                    <span>👥 {gc.joinedCount || 0}/{gc.maxStudents}</span>
+                    <span>💰 {gc.price === 0 ? 'Free' : `₹${gc.price}`}</span>
+                  </div>
+                  {gc.status === 'live' && (
+                    <div style={{ marginTop: '.5rem' }}>
+                      <a
+                        href={`https://meet.jit.si/${gc.jitsiRoomId}`}
+                        target="_blank" rel="noopener noreferrer"
+                        style={{ fontSize: '.8rem', color: '#4f46e5', fontWeight: 700, textDecoration: 'underline' }}
+                      >
+                        🔗 Open Jitsi Room
+                      </a>
+                    </div>
+                  )}
+                </div>
+                <div style={{ display: 'flex', gap: '.5rem', flexWrap: 'wrap', flexShrink: 0 }}>
+                  {actions.map(({ label, next }) => (
+                    <button key={next} onClick={() => updateStatus(gc._id, next)}
+                      style={{ padding: '.4rem .9rem', borderRadius: 8, border: '1.5px solid #e5e7eb', background: '#f9fafb', color: '#374151', fontWeight: 700, fontSize: '.8rem', cursor: 'pointer' }}>
+                      {label}
+                    </button>
+                  ))}
+                  {(gc.status === 'ended' || gc.status === 'cancelled') && (
+                    <button onClick={() => deleteClass(gc._id)}
+                      style={{ padding: '.4rem .9rem', borderRadius: 8, border: '1.5px solid #fecaca', background: '#fef2f2', color: '#dc2626', fontWeight: 700, fontSize: '.8rem', cursor: 'pointer' }}>
+                      🗑 Delete
+                    </button>
+                  )}
+                </div>
+              </div>
+            );
+          })}
+        </div>
+      )}
+    </div>
+  );
+}
+
 // ─── Appointments Tab ─────────────────────────────────────────────
 const APPT_STATUS = {
   pending:   { bg: '#fff7ed', color: '#ea580c', label: '⏳ Pending' },
@@ -709,7 +935,7 @@ function Dashboard({ token, onLogout }) {
 
       {/* Dashboard tab bar */}
       <div style={{ display: 'flex', background: '#f8fafc', border: '1px solid #e5e7eb', borderRadius: 14, padding: '.3rem', marginBottom: '1.75rem', gap: '.25rem' }}>
-        {[['profile', '👤 My Profile'], ['appointments', '📅 Appointments'], ['content', '📚 Content Manager']].map(([key, label]) => (
+        {[['profile', '👤 My Profile'], ['appointments', '📅 Appointments'], ['content', '📚 Content'], ['group-classes', '🎥 Group Classes']].map(([key, label]) => (
           <button key={key} onClick={() => setDashTab(key)} style={{
             flex: 1, padding: '.6rem 1rem', borderRadius: 10, border: 'none',
             background: dashTab === key ? '#4f46e5' : 'transparent',
@@ -736,6 +962,8 @@ function Dashboard({ token, onLogout }) {
         <AppointmentsTab token={token} onPendingCount={setPendingCount} />
       ) : dashTab === 'content' ? (
         <ContentManager token={token} />
+      ) : dashTab === 'group-classes' ? (
+        <GroupClassesTab token={token} />
       ) : editing ? (
         <TeacherForm
           initial={editInitial}
