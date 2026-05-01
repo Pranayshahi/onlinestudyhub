@@ -7,7 +7,7 @@ const crypto = require('crypto');
 require('dotenv').config({ path: require('path').join(__dirname, '.env') });
 
 const connectDB = require('./db');
-const { Student, Teacher, Booking, TopicMedia, Review, ForumPost } = require('./models');
+const { Student, Teacher, Booking, TopicMedia, Review, ForumPost, Parent, PushSub } = require('./models');
 const Razorpay = require('razorpay');
 const {
   notifyStudentBookingReceived,
@@ -673,6 +673,14 @@ app.patch('/api/bookings/:id', requireAuth, async (req, res) => {
           meetLink:     booking.meet_link,
         });
       }
+      if (booking.student_email) {
+        sendPush(booking.student_email, {
+          title: '✅ Session Confirmed!',
+          body: `Your session with ${teacher?.name || 'your teacher'} on ${booking.scheduled_date} at ${booking.time_slot} is confirmed.`,
+          url: '/my-bookings',
+          tag: 'booking-confirmed',
+        });
+      }
       if (teacher?.contact) {
         notifyTeacherBookingConfirmed({
           teacherPhone: teacher.contact,
@@ -1104,6 +1112,245 @@ app.post('/api/payments/verify', requireStudentAuth, async (req, res) => {
   }
 });
 
+
+// ── Web Push setup ─────────────────────────────────────────────
+let webPush = null;
+let vapidPublicKey = null;
+try {
+  webPush = require('web-push');
+  const pub = process.env.VAPID_PUBLIC_KEY;
+  const priv = process.env.VAPID_PRIVATE_KEY;
+  if (pub && priv) {
+    vapidPublicKey = pub;
+    webPush.setVapidDetails('mailto:admin@onlinestudyhub.com', pub, priv);
+  } else {
+    const keys = webPush.generateVAPIDKeys();
+    vapidPublicKey = keys.publicKey;
+    webPush.setVapidDetails('mailto:admin@onlinestudyhub.com', keys.publicKey, keys.privateKey);
+    console.log('[PUSH] Save these VAPID keys to .env for persistence:');
+    console.log(`  VAPID_PUBLIC_KEY=${keys.publicKey}`);
+    console.log(`  VAPID_PRIVATE_KEY=${keys.privateKey}`);
+  }
+} catch (e) {
+  console.log('[PUSH] web-push not available:', e.message);
+}
+
+async function sendPush(email, { title, body, url, tag }) {
+  if (!webPush || !vapidPublicKey) return;
+  try {
+    const sub = await PushSub.findOne({ userEmail: email });
+    if (!sub) return;
+    await webPush.sendNotification(sub.subscription, JSON.stringify({ title, body, url: url || '/', tag }));
+  } catch (e) {
+    if (e.statusCode === 410 || e.statusCode === 404) await PushSub.deleteOne({ userEmail: email });
+  }
+}
+
+// GET VAPID public key
+app.get('/api/push/vapid-public-key', (req, res) => {
+  if (!vapidPublicKey) return res.status(503).json({ error: 'Push not configured' });
+  res.json({ publicKey: vapidPublicKey });
+});
+
+// Subscribe / update subscription
+app.post('/api/push/subscribe', requireStudentAuth, async (req, res) => {
+  try {
+    const { subscription } = req.body || {};
+    if (!subscription) return res.status(400).json({ error: 'Missing subscription' });
+    await PushSub.findOneAndUpdate(
+      { userEmail: req.student.email },
+      { $set: { subscription } },
+      { upsert: true, new: true }
+    );
+    res.json({ ok: true });
+  } catch (e) { res.status(500).json({ error: 'Server error' }); }
+});
+
+// ── AI: Personalized Study Plan ────────────────────────────────
+app.post('/api/ai/study-plan', async (req, res) => {
+  try {
+    const { target, examDate, hoursPerDay, weakTopics } = req.body || {};
+    const groqKey = (process.env.GROQ_API_KEY || '').trim();
+    if (!groqKey) return res.status(503).json({ error: 'AI not configured' });
+    if (!examDate) return res.status(400).json({ error: 'Exam date required' });
+
+    const today = new Date().toISOString().slice(0, 10);
+    const daysLeft = Math.max(1, Math.round((new Date(examDate) - new Date(today)) / 86400000));
+    const planDays = Math.min(daysLeft, 60);
+    const hours = Math.max(1, Math.min(12, parseInt(hoursPerDay) || 2));
+    const weakList = (weakTopics || []).filter(Boolean);
+
+    const prompt = `You are an expert Indian academic study planner. Create a personalized day-by-day study plan.
+
+Target exam/goal: ${target || 'Board Exam'}
+Exam date: ${examDate}
+Today: ${today}
+Days available: ${planDays}
+Study hours per day: ${hours}
+Weak topics to prioritize: ${weakList.length ? weakList.join(', ') : 'not specified'}
+
+Rules:
+- Start with weakest topics (first 40% of days)
+- Mix in practice problems and revision
+- Last 20% = full mock tests + revision
+- Each day must have 2-4 tasks
+- Be specific (e.g. "Solve 20 Integration problems" not just "Study Math")
+- Include rest/light revision every 7th day
+
+Respond ONLY with a raw JSON array, no markdown, no explanation:
+[{"day":1,"date":"YYYY-MM-DD","subject":"Mathematics","focus":"Quadratic Equations","tasks":["task1","task2","task3"],"hours":${hours},"type":"study"},...]
+
+Generate exactly ${planDays} days starting from ${today}.`;
+
+    const groqRes = await fetch('https://api.groq.com/openai/v1/chat/completions', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${groqKey}` },
+      body: JSON.stringify({
+        model: 'llama-3.3-70b-versatile',
+        max_tokens: 4000,
+        temperature: 0.4,
+        messages: [{ role: 'user', content: prompt }],
+      }),
+    });
+
+    if (!groqRes.ok) {
+      const err = await groqRes.json().catch(() => ({}));
+      return res.status(groqRes.status).json({ error: err.error?.message || 'AI error' });
+    }
+
+    const data = await groqRes.json();
+    const text = data.choices?.[0]?.message?.content || '[]';
+
+    let plan = [];
+    try {
+      // Try direct parse first
+      plan = JSON.parse(text);
+    } catch {
+      // Extract JSON array from text
+      const match = text.match(/\[[\s\S]*\]/);
+      if (match) {
+        try { plan = JSON.parse(match[0]); } catch { plan = []; }
+      }
+    }
+
+    if (!Array.isArray(plan)) plan = [];
+    res.json({ plan, daysLeft, planDays });
+  } catch (err) {
+    console.error('Study plan error:', err);
+    res.status(500).json({ error: 'Failed to generate study plan' });
+  }
+});
+
+// ── Parent Portal: Auth ────────────────────────────────────────
+function requireParentAuth(req, res, next) {
+  const auth = req.headers.authorization;
+  if (!auth?.startsWith('Bearer ')) return res.status(401).json({ error: 'Unauthorized' });
+  try {
+    req.parent = jwt.verify(auth.slice(7), JWT_SECRET);
+    if (req.parent.role !== 'parent') return res.status(403).json({ error: 'Not a parent account' });
+    next();
+  } catch {
+    res.status(401).json({ error: 'Invalid or expired token' });
+  }
+}
+
+app.post('/api/parent/register', async (req, res) => {
+  try {
+    const { email, password, name, phone } = req.body || {};
+    if (!email || !password || !name) return res.status(400).json({ error: 'All fields required' });
+    if (password.length < 6) return res.status(400).json({ error: 'Password must be at least 6 characters' });
+    const existing = await Parent.findOne({ email });
+    if (existing) return res.status(409).json({ error: 'Email already registered' });
+    const hash = await bcrypt.hash(password, 10);
+    const parent = await Parent.create({ email, password_hash: hash, name, phone: phone || '' });
+    const token = jwt.sign({ id: parent._id.toString(), email, name, role: 'parent' }, JWT_SECRET, { expiresIn: '30d' });
+    res.status(201).json({ token, id: parent._id, email, name, role: 'parent' });
+  } catch (e) { console.error('Parent register:', e); res.status(500).json({ error: 'Server error' }); }
+});
+
+app.post('/api/parent/login', async (req, res) => {
+  try {
+    const { email, password } = req.body || {};
+    if (!email || !password) return res.status(400).json({ error: 'Email and password required' });
+    const parent = await Parent.findOne({ email });
+    if (!parent) return res.status(401).json({ error: 'Invalid credentials' });
+    const valid = await bcrypt.compare(password, parent.password_hash);
+    if (!valid) return res.status(401).json({ error: 'Invalid credentials' });
+    const token = jwt.sign({ id: parent._id.toString(), email: parent.email, name: parent.name, role: 'parent' }, JWT_SECRET, { expiresIn: '30d' });
+    res.json({ token, id: parent._id, email: parent.email, name: parent.name, role: 'parent', linked_students: parent.linked_students });
+  } catch (e) { res.status(500).json({ error: 'Server error' }); }
+});
+
+app.get('/api/parent/me', requireParentAuth, async (req, res) => {
+  try {
+    const parent = await Parent.findById(req.parent.id).select('-password_hash').lean();
+    if (!parent) return res.status(404).json({ error: 'Not found' });
+    res.json({ ...parent, id: parent._id, role: 'parent' });
+  } catch (e) { res.status(500).json({ error: 'Server error' }); }
+});
+
+app.post('/api/parent/link', requireParentAuth, async (req, res) => {
+  try {
+    const { studentEmail, nickname } = req.body || {};
+    if (!studentEmail) return res.status(400).json({ error: 'Student email required' });
+    const student = await Student.findOne({ email: studentEmail.toLowerCase().trim() }).lean();
+    if (!student) return res.status(404).json({ error: 'No student found with that email' });
+    const parent = await Parent.findById(req.parent.id);
+    const already = parent.linked_students.some(s => s.email === studentEmail.toLowerCase().trim());
+    if (already) return res.status(409).json({ error: 'Already linked to this student' });
+    parent.linked_students.push({ email: studentEmail.toLowerCase().trim(), nickname: nickname || student.name });
+    await parent.save();
+    res.json({ ok: true, student: { email: student.email, name: student.name } });
+  } catch (e) { res.status(500).json({ error: 'Server error' }); }
+});
+
+app.delete('/api/parent/unlink/:email', requireParentAuth, async (req, res) => {
+  try {
+    const parent = await Parent.findById(req.parent.id);
+    parent.linked_students = parent.linked_students.filter(s => s.email !== req.params.email);
+    await parent.save();
+    res.json({ ok: true });
+  } catch (e) { res.status(500).json({ error: 'Server error' }); }
+});
+
+app.get('/api/parent/child/:email/data', requireParentAuth, async (req, res) => {
+  try {
+    const parent = await Parent.findById(req.parent.id).lean();
+    const linked = parent.linked_students.some(s => s.email === req.params.email);
+    if (!linked) return res.status(403).json({ error: 'Not authorized for this student' });
+
+    const student = await Student.findOne({ email: req.params.email }).select('name avatar class_id createdAt').lean();
+    if (!student) return res.status(404).json({ error: 'Student not found' });
+
+    const bookings = await Booking.find({ student_email: req.params.email })
+      .populate('teacher_id', 'name subject')
+      .sort({ scheduled_date: -1 })
+      .lean();
+
+    const sessions = bookings.map(b => ({
+      id: b._id,
+      date: b.scheduled_date,
+      time: b.time_slot,
+      subject: b.subject_id,
+      topic: b.topic_id,
+      teacherName: b.teacher_id?.name || '—',
+      status: b.status,
+      amount: b.amount_paid,
+      is_demo: b.is_demo,
+      meet_link: b.status === 'confirmed' ? b.meet_link : null,
+    }));
+
+    const totalSpent = sessions.filter(s => s.amount).reduce((acc, s) => acc + (s.amount || 0), 0);
+    const completedCount = sessions.filter(s => s.status === 'completed').length;
+    const upcomingCount = sessions.filter(s => s.status === 'confirmed').length;
+
+    res.json({
+      student: { name: student.name, avatar: student.avatar, class_id: student.class_id, joinedAt: student.createdAt },
+      sessions,
+      stats: { totalSessions: sessions.length, completedCount, upcomingCount, totalSpent },
+    });
+  } catch (e) { console.error('Parent child data:', e); res.status(500).json({ error: 'Server error' }); }
+});
 
 // ── Error Handler ──────────────────────────────────────────────
 app.use((err, req, res, next) => {

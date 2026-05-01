@@ -4,6 +4,153 @@ import { getClass, getSubject, getSubjectColor, SUBJECT_META } from '../data/cur
 import Breadcrumb from '../components/Breadcrumb';
 import { useProgress } from '../hooks/useProgress';
 
+function downloadCertificate({ name, subjectLabel, classLabel, classId, topicCount }) {
+  const W = 1200, H = 840;
+  const canvas = document.createElement('canvas');
+  canvas.width = W; canvas.height = H;
+  const ctx = canvas.getContext('2d');
+
+  // White background
+  ctx.fillStyle = '#fff';
+  ctx.fillRect(0, 0, W, H);
+
+  // Navy outer border
+  ctx.strokeStyle = '#1e1b4b';
+  ctx.lineWidth = 6;
+  ctx.strokeRect(18, 18, W - 36, H - 36);
+
+  // Gold inner border
+  ctx.strokeStyle = '#f59e0b';
+  ctx.lineWidth = 2;
+  ctx.strokeRect(28, 28, W - 56, H - 56);
+
+  // Gold corner L-brackets
+  const cs = 42;
+  [[35,35],[W-35,35],[35,H-35],[W-35,H-35]].forEach(([x, y]) => {
+    const dx = x < W / 2 ? 1 : -1;
+    const dy = y < H / 2 ? 1 : -1;
+    ctx.strokeStyle = '#f59e0b';
+    ctx.lineWidth = 3;
+    ctx.beginPath();
+    ctx.moveTo(x + dx * cs, y);
+    ctx.lineTo(x, y);
+    ctx.lineTo(x, y + dy * cs);
+    ctx.stroke();
+  });
+
+  // Header gradient band
+  const hg = ctx.createLinearGradient(0, 0, W, 0);
+  hg.addColorStop(0, '#1e1b4b');
+  hg.addColorStop(1, '#312e81');
+  ctx.fillStyle = hg;
+  ctx.fillRect(40, 40, W - 80, 116);
+
+  // Gold bottom edge of header
+  ctx.fillStyle = '#f59e0b';
+  ctx.fillRect(40, 152, W - 80, 5);
+
+  // Header text
+  ctx.textAlign = 'center';
+  ctx.fillStyle = '#fff';
+  ctx.font = 'bold 20px Arial';
+  ctx.fillText('🎓  ONLINESTUDYHUB', W / 2, 82);
+  ctx.fillStyle = 'rgba(255,255,255,0.6)';
+  ctx.font = '13px Arial';
+  ctx.fillText("India's Free Online Study Platform for Class 6–12", W / 2, 108);
+
+  // Certificate title
+  ctx.fillStyle = '#1e1b4b';
+  ctx.font = 'bold 46px Georgia, serif';
+  ctx.fillText('Certificate of Completion', W / 2, 228);
+
+  // Divider line
+  const dg = ctx.createLinearGradient(W/2-260, 0, W/2+260, 0);
+  dg.addColorStop(0, 'transparent'); dg.addColorStop(0.2, '#f59e0b');
+  dg.addColorStop(0.8, '#f59e0b'); dg.addColorStop(1, 'transparent');
+  ctx.strokeStyle = dg;
+  ctx.lineWidth = 1.5;
+  ctx.beginPath(); ctx.moveTo(W/2-260, 246); ctx.lineTo(W/2+260, 246); ctx.stroke();
+
+  // "This is to certify that"
+  ctx.fillStyle = '#9ca3af';
+  ctx.font = 'italic 20px Georgia, serif';
+  ctx.fillText('This is to certify that', W / 2, 295);
+
+  // Student name
+  const displayName = name || 'Student';
+  ctx.fillStyle = '#b45309';
+  ctx.font = `bold ${displayName.length > 20 ? '44' : '54'}px Georgia, serif`;
+  ctx.fillText(displayName, W / 2, 368);
+
+  // Underline name
+  const nw = ctx.measureText(displayName).width;
+  ctx.strokeStyle = '#f59e0b';
+  ctx.lineWidth = 2;
+  ctx.beginPath(); ctx.moveTo(W/2-nw/2, 378); ctx.lineTo(W/2+nw/2, 378); ctx.stroke();
+
+  // "has successfully completed"
+  ctx.fillStyle = '#6b7280';
+  ctx.font = '20px Georgia, serif';
+  ctx.fillText('has successfully completed all topics in', W / 2, 424);
+
+  // Subject — Class
+  ctx.fillStyle = '#1e1b4b';
+  ctx.font = 'bold 34px Georgia, serif';
+  ctx.fillText(`${subjectLabel}  —  ${classLabel}`, W / 2, 476);
+
+  // Topics count badge
+  ctx.fillStyle = '#f0fdf4';
+  const pillText = `✓  All ${topicCount} Topics Completed  ·  CBSE Curriculum`;
+  const pw = ctx.measureText(pillText).width + 52;
+  const px = W / 2 - pw / 2, py = 492;
+  ctx.beginPath();
+  const r = 17;
+  ctx.moveTo(px + r, py); ctx.lineTo(px + pw - r, py);
+  ctx.arcTo(px + pw, py, px + pw, py + r, r);
+  ctx.lineTo(px + pw, py + 34 - r);
+  ctx.arcTo(px + pw, py + 34, px + pw - r, py + 34, r);
+  ctx.lineTo(px + r, py + 34);
+  ctx.arcTo(px, py + 34, px, py + 34 - r, r);
+  ctx.lineTo(px, py + r);
+  ctx.arcTo(px, py, px + r, py, r);
+  ctx.closePath();
+  ctx.fill();
+  ctx.strokeStyle = '#86efac'; ctx.lineWidth = 1.5; ctx.stroke();
+  ctx.fillStyle = '#166534';
+  ctx.font = 'bold 15px Arial';
+  ctx.fillText(pillText, W / 2, 514);
+
+  // Divider
+  ctx.strokeStyle = '#f3f4f6'; ctx.lineWidth = 1;
+  ctx.beginPath(); ctx.moveTo(100, 548); ctx.lineTo(W-100, 548); ctx.stroke();
+
+  // Date + Cert ID
+  const dateStr = new Date().toLocaleDateString('en-IN', { day: 'numeric', month: 'long', year: 'numeric' });
+  const certId = `OSH-${(classId||'').replace('class-','')}${(subjectLabel||'').replace(/\s/g,'').slice(0,4).toUpperCase()}-${Date.now().toString(36).toUpperCase().slice(-5)}`;
+  ctx.fillStyle = '#9ca3af'; ctx.font = '14px Arial'; ctx.textAlign = 'center';
+  ctx.fillText(`Date: ${dateStr}   ·   Certificate ID: ${certId}`, W / 2, 580);
+
+  // Website
+  ctx.fillStyle = '#d1d5db'; ctx.font = '13px Arial';
+  ctx.fillText('www.onlinestudyhub.com', W / 2, 610);
+
+  // Watermark
+  ctx.save();
+  ctx.globalAlpha = 0.03;
+  ctx.fillStyle = '#1e1b4b';
+  ctx.font = 'bold 110px Arial';
+  ctx.translate(W / 2, H / 2 + 55);
+  ctx.rotate(-0.28);
+  ctx.fillText('CERTIFIED', 0, 0);
+  ctx.restore();
+
+  // Download
+  const a = document.createElement('a');
+  a.download = `OSH-${subjectLabel.replace(/\s+/g,'-')}-${classLabel.replace(/\s+/g,'-')}-Certificate.png`;
+  a.href = canvas.toDataURL('image/png');
+  a.click();
+}
+
 export default function SubjectPage() {
   const { classId, subjectId } = useParams();
   const [search, setSearch] = useState('');
@@ -191,6 +338,71 @@ export default function SubjectPage() {
             >
               Clear search
             </button>
+          </div>
+        )}
+
+        {/* ── Completion Certificate Banner ── */}
+        {countDone(classId, subjectId) === subject.topics.length && subject.topics.length > 0 && (
+          <div style={{
+            marginTop: '3rem', marginBottom: '1rem',
+            background: 'linear-gradient(135deg, #1e1b4b 0%, #312e81 100%)',
+            borderRadius: 20, padding: '2.5rem 2rem',
+            textAlign: 'center', color: '#fff',
+            boxShadow: '0 12px 40px rgba(30,27,75,0.25)',
+            position: 'relative', overflow: 'hidden',
+          }}>
+            <div style={{ position: 'absolute', right: '-3rem', top: '-3rem', width: '12rem', height: '12rem', borderRadius: '50%', background: 'rgba(255,255,255,.04)' }} />
+            <div style={{ fontSize: '3.5rem', marginBottom: '.75rem' }}>🏆</div>
+            <h2 style={{ fontFamily: 'Nunito', fontWeight: 900, fontSize: '1.5rem', marginBottom: '.5rem' }}>
+              You've mastered all {subject.topics.length} topics!
+            </h2>
+            <p style={{ opacity: .75, fontSize: '.95rem', marginBottom: '1.75rem', maxWidth: 420, margin: '0 auto 1.75rem' }}>
+              Congratulations on completing {meta.label || subjectId} — {classData.label}. Download your certificate and share your achievement!
+            </p>
+            <div style={{ display: 'flex', gap: '1rem', justifyContent: 'center', flexWrap: 'wrap' }}>
+              <button
+                onClick={() => {
+                  const userData = (() => { try { return JSON.parse(localStorage.getItem('osh_user') || 'null'); } catch { return null; } })();
+                  downloadCertificate({
+                    name: userData?.name || 'Student',
+                    subjectLabel: meta.label || subjectId,
+                    classLabel: classData.label,
+                    classId,
+                    topicCount: subject.topics.length,
+                  });
+                }}
+                style={{
+                  padding: '.9rem 2rem',
+                  background: '#f59e0b', color: '#1e1b4b',
+                  border: 'none', borderRadius: 12,
+                  fontFamily: 'Nunito', fontWeight: 900, fontSize: '1rem',
+                  cursor: 'pointer', display: 'flex', alignItems: 'center', gap: '.5rem',
+                  boxShadow: '0 4px 14px rgba(245,158,11,0.4)',
+                  transition: 'transform .15s',
+                }}
+                onMouseEnter={e => e.currentTarget.style.transform = 'translateY(-2px)'}
+                onMouseLeave={e => e.currentTarget.style.transform = 'translateY(0)'}
+              >
+                🎓 Download Certificate
+              </button>
+              <button
+                onClick={() => {
+                  const url = window.location.href;
+                  const text = `I just completed all ${subject.topics.length} topics in ${meta.label || subjectId} (${classData.label}) on OnlineStudyHub! 🏆 ${url}`;
+                  if (navigator.share) navigator.share({ title: 'I completed a course!', text, url }).catch(() => {});
+                  else window.open(`https://wa.me/?text=${encodeURIComponent(text)}`, '_blank');
+                }}
+                style={{
+                  padding: '.9rem 2rem',
+                  background: 'rgba(255,255,255,.12)', color: '#fff',
+                  border: '1.5px solid rgba(255,255,255,.3)', borderRadius: 12,
+                  fontFamily: 'Nunito', fontWeight: 700, fontSize: '1rem',
+                  cursor: 'pointer',
+                }}
+              >
+                📱 Share on WhatsApp
+              </button>
+            </div>
           </div>
         )}
 

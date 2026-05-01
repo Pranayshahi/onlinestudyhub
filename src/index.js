@@ -13,6 +13,12 @@ import '@fontsource/nunito/700.css';
 import '@fontsource/nunito/800.css';
 import '@fontsource/nunito/900.css';
 
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', () => {
+    navigator.serviceWorker.register('/sw.js').catch(() => {});
+  });
+}
+
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>

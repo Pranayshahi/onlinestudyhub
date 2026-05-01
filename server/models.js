@@ -116,11 +116,29 @@ const forumPostSchema = new mongoose.Schema({
 }, { timestamps: true });
 forumPostSchema.index({ classId: 1, subjectId: 1, topicId: 1 });
 
-const Student   = mongoose.model('Student',   studentSchema);
-const Teacher   = mongoose.model('Teacher',   teacherSchema);
-const Booking   = mongoose.model('Booking',   bookingSchema);
-const TopicMedia= mongoose.model('TopicMedia',topicMediaSchema);
-const Review    = mongoose.model('Review',    reviewSchema);
-const ForumPost = mongoose.model('ForumPost', forumPostSchema);
+const parentSchema = new mongoose.Schema({
+  email:         { type: String, required: true, unique: true },
+  password_hash: { type: String, required: true },
+  name:          { type: String, required: true },
+  phone:         { type: String, default: '' },
+  linked_students: [{
+    email:    { type: String, required: true },
+    nickname: { type: String, default: '' },
+  }],
+}, { timestamps: true });
 
-module.exports = { Student, Teacher, Booking, TopicMedia, Review, ForumPost };
+const pushSubSchema = new mongoose.Schema({
+  userEmail:    { type: String, required: true, unique: true },
+  subscription: { type: Object, required: true },
+}, { timestamps: true });
+
+const Student    = mongoose.model('Student',    studentSchema);
+const Teacher    = mongoose.model('Teacher',    teacherSchema);
+const Booking    = mongoose.model('Booking',    bookingSchema);
+const TopicMedia = mongoose.model('TopicMedia', topicMediaSchema);
+const Review     = mongoose.model('Review',     reviewSchema);
+const ForumPost  = mongoose.model('ForumPost',  forumPostSchema);
+const Parent     = mongoose.model('Parent',     parentSchema);
+const PushSub    = mongoose.model('PushSub',    pushSubSchema);
+
+module.exports = { Student, Teacher, Booking, TopicMedia, Review, ForumPost, Parent, PushSub };

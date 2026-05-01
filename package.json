@@ -27,7 +27,8 @@
     "react-scripts": "5.0.1",
     "rehype-highlight": "^7.0.2",
     "rehype-katex": "^7.0.1",
-    "remark-math": "^6.0.0"
+    "remark-math": "^6.0.0",
+    "web-push": "^3.6.7"
   },
   "scripts": {
     "start": "concurrently \"PORT=3001 react-scripts start\" \"node server/index.js\"",

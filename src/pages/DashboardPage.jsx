@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { api } from '../utils/api';
 import { getAllClasses, SUBJECT_META } from '../data/curriculum';
+import { usePushNotifications } from '../hooks/usePushNotifications';
 
 const SUB_EMOJI = { mathematics:'📐', physics:'⚡', chemistry:'🧪', biology:'🧬', english:'📖', science:'🔬', social:'🌍', history:'🏛️', geography:'🗺️', civics:'⚖️', economics:'💹' };
 const AVATAR_OPTIONS = ['🧑‍🎓','👦','👧','🧑','👨','👩','🧒','🧑‍💻','👨‍🏫','👩‍🏫','🦸','🦸‍♀️','🧙','🤓','😎','🦊'];
@@ -163,6 +164,7 @@ export default function DashboardPage({ user, onOpenLogin, onUpdateUser }) {
   const [pwSuccess, setPwSuccess] = useState('');
   const [referral, setReferral] = useState(null);
   const [refCopied, setRefCopied] = useState(false);
+  const { permission, subscribed, subscribe, loading: pushLoading, supported: pushSupported } = usePushNotifications(user);
 
   const progress   = loadProgress();
   const lastTopic  = loadLastTopic();
@@ -461,10 +463,10 @@ export default function DashboardPage({ user, onOpenLogin, onUpdateUser }) {
                 {[
                   { to: '/classes',     icon: '📚', label: 'Browse Classes', color: '#4f46e5', bg: '#eef2ff' },
                   { to: '/teachers',    icon: '👨‍🏫', label: 'Find Teacher',  color: '#059669', bg: '#ecfdf5' },
+                  { to: '/study-plan',  icon: '✨', label: 'AI Study Plan',  color: '#7c3aed', bg: '#f5f3ff' },
                   { to: '/exam/jee',    icon: '🏆', label: 'JEE Prep',      color: '#d97706', bg: '#fffbeb' },
                   { to: '/exam/neet',   icon: '🩺', label: 'NEET Prep',     color: '#dc2626', bg: '#fef2f2' },
                   { to: '/my-bookings', icon: '📅', label: 'My Bookings',   color: '#7c3aed', bg: '#f5f3ff' },
-                  { to: '/search',      icon: '🔍', label: 'Search Topics', color: '#0369a1', bg: '#f0f9ff' },
                 ].map(l => (
                   <Link key={l.to} to={l.to} style={{ textDecoration: 'none' }}>
                     <div className="db-quick-item" style={{ background: l.bg, color: l.color }}>
@@ -648,6 +650,38 @@ export default function DashboardPage({ user, onOpenLogin, onUpdateUser }) {
                   </div>
                 </div>
               </SectionCard>
+            )}
+
+            {/* Push Notifications */}
+            {pushSupported && permission !== 'granted' && !subscribed && (
+              <SectionCard icon="🔔" title="Session Reminders">
+                <p style={{ fontSize: '.82rem', color: '#6b7280', marginBottom: '1rem', lineHeight: 1.5 }}>
+                  Get push notifications when your sessions are confirmed or upcoming.
+                </p>
+                <button
+                  onClick={() => subscribe()}
+                  disabled={pushLoading || permission === 'denied'}
+                  style={{
+                    width: '100%', padding: '.65rem',
+                    background: permission === 'denied' ? '#f3f4f6' : '#4f46e5',
+                    color: permission === 'denied' ? '#9ca3af' : '#fff',
+                    border: 'none', borderRadius: 10, fontWeight: 700, fontSize: '.88rem',
+                    cursor: permission === 'denied' ? 'not-allowed' : 'pointer',
+                  }}
+                >
+                  {pushLoading ? '…' : permission === 'denied' ? '🚫 Notifications blocked' : '🔔 Enable Notifications'}
+                </button>
+                {permission === 'denied' && (
+                  <p style={{ fontSize: '.72rem', color: '#9ca3af', marginTop: '.5rem', textAlign: 'center' }}>
+                    Allow in browser settings to enable.
+                  </p>
+                )}
+              </SectionCard>
+            )}
+            {(subscribed || permission === 'granted') && (
+              <div style={{ background: '#f0fdf4', border: '1px solid #bbf7d0', borderRadius: 12, padding: '.75rem 1rem', fontSize: '.82rem', color: '#166534', fontWeight: 600, display: 'flex', alignItems: 'center', gap: '.5rem' }}>
+                ✅ Push notifications are enabled
+              </div>
             )}
 
             {/* Study Planner */}
