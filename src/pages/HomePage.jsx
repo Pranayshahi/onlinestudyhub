@@ -267,56 +267,60 @@ export default function HomePage() {
 
           {/* Left */}
           <div className="hero-text">
+            {/* Eyebrow — signals who this is for immediately */}
             <div className="hero-eyebrow">
               <span className="hero-eyebrow-dot" />
-              #1 Free Learning Platform for Indian Students
+              100% Free &nbsp;·&nbsp; Class 6-12 &nbsp;·&nbsp; JEE &nbsp;·&nbsp; NEET
             </div>
 
-            <h1 style={{ fontSize: 'clamp(2rem,5vw,3.4rem)', fontWeight: 900, lineHeight: 1.13, marginBottom: '1.1rem' }}>
-              Your Shortcut to<br />
-              <span className="accent">Top Marks &amp;</span><br />
-              Dream Colleges 🚀
+            {/* H1 — clear outcome in 2 seconds */}
+            <h1 style={{ fontSize: 'clamp(2rem,5vw,3.4rem)', fontWeight: 900, lineHeight: 1.13, marginBottom: '1rem' }}>
+              Crack JEE/NEET Faster<br />
+              with <span className="accent">AI-Powered</span><br />
+              Study Assistant 🚀
             </h1>
 
-            <p style={{ fontSize: '1.1rem', color: 'rgba(255,255,255,.78)', lineHeight: 1.75, marginBottom: '1.75rem', maxWidth: 520 }}>
-              Expert notes, live doubt solving, AI tutor &amp; 1-on-1 teacher sessions — everything a Class 6–12, JEE or NEET student needs. <strong style={{ color: '#4ade80' }}>100% Free.</strong>
+            {/* One-liner benefit — scannable */}
+            <p style={{ fontSize: '1.05rem', color: 'rgba(255,255,255,.82)', lineHeight: 1.6, marginBottom: '1.5rem', maxWidth: 480 }}>
+              Instant doubt solving · Smart notes · 1-on-1 teachers<br />
+              <strong style={{ color: '#4ade80' }}>Everything free for every Indian student.</strong>
             </p>
 
-            {/* Search bar — Coursera style */}
-            <form onSubmit={handleSearch} className="hero-search-form">
-              <span className="hero-search-icon">🔍</span>
-              <input
-                className="hero-search-input"
-                placeholder="Search topics, subjects — e.g. Quadratic Equations"
-                value={searchQ}
-                onChange={e => setSearchQ(e.target.value)}
-              />
-              <button type="submit" className="hero-search-btn">Search</button>
-            </form>
-
-            <div style={{ display: 'flex', gap: '.6rem', flexWrap: 'wrap', marginTop: '.85rem', marginBottom: '1.75rem' }}>
-              {['Class 10 Maths', 'JEE Physics', 'NEET Biology', 'Class 12 Chemistry'].map(tag => (
-                <button key={tag} onClick={() => navigate(`/search?q=${encodeURIComponent(tag)}`)}
-                  style={{ background: 'rgba(255,255,255,.12)', border: '1px solid rgba(255,255,255,.2)', color: 'rgba(255,255,255,.85)', borderRadius: 99, padding: '.28rem .75rem', fontSize: '.78rem', fontWeight: 600, cursor: 'pointer', transition: 'background .15s' }}
-                  onMouseEnter={e => e.currentTarget.style.background = 'rgba(255,255,255,.22)'}
-                  onMouseLeave={e => e.currentTarget.style.background = 'rgba(255,255,255,.12)'}
-                >
-                  {tag}
-                </button>
+            {/* Feature proof points — 4 quick wins */}
+            <div style={{ display: 'flex', flexWrap: 'wrap', gap: '.55rem', marginBottom: '1.75rem' }}>
+              {[
+                { icon: '🤖', text: 'AI Doubt Solver' },
+                { icon: '📚', text: '2,000+ Topics' },
+                { icon: '👩‍🏫', text: 'Expert Teachers' },
+                { icon: '🎓', text: 'Free Certificate' },
+              ].map(f => (
+                <span key={f.text} style={{
+                  display: 'inline-flex', alignItems: 'center', gap: '.35rem',
+                  background: 'rgba(255,255,255,.1)', border: '1px solid rgba(255,255,255,.18)',
+                  borderRadius: 999, padding: '.3rem .85rem',
+                  fontSize: '.8rem', fontWeight: 600, color: 'rgba(255,255,255,.9)',
+                }}>
+                  {f.icon} {f.text}
+                </span>
               ))}
             </div>
 
-            <div className="hero-actions">
-              <Link to="/classes" className="btn btn-primary" style={{ padding: '0.88rem 2rem', fontSize: '1rem', fontWeight: 800 }}>
-                Start Learning Free →
+            {/* Primary CTA — single dominant action */}
+            <div className="hero-actions" style={{ marginBottom: '1.5rem' }}>
+              <Link
+                to="/classes"
+                className="btn btn-primary"
+                style={{ padding: '1rem 2.5rem', fontSize: '1.07rem', fontWeight: 900, borderRadius: 12, boxShadow: '0 6px 24px rgba(249,115,22,0.45)', letterSpacing: '.01em' }}
+              >
+                🚀 Start Free Now
               </Link>
-              <Link to="/teachers" className="btn" style={{ background: 'rgba(255,255,255,.12)', color: '#fff', border: '1px solid rgba(255,255,255,.25)', padding: '0.88rem 1.75rem', fontSize: '.95rem', borderRadius: 10, fontWeight: 700 }}>
-                👨‍🏫 Find a Teacher
+              <Link to="/teachers" className="btn" style={{ background: 'rgba(255,255,255,.1)', color: '#fff', border: '1.5px solid rgba(255,255,255,.25)', padding: '1rem 1.75rem', fontSize: '.95rem', borderRadius: 12, fontWeight: 700 }}>
+                👨‍🏫 Book a Free Trial
               </Link>
             </div>
 
-            {/* Social proof strip */}
-            <div style={{ display: 'flex', alignItems: 'center', gap: '.75rem', marginTop: '1.5rem', flexWrap: 'wrap' }}>
+            {/* Social proof */}
+            <div style={{ display: 'flex', alignItems: 'center', gap: '.75rem', marginBottom: '1.5rem', flexWrap: 'wrap' }}>
               <div style={{ display: 'flex' }}>
                 {['👩‍🎓','👨‍🎓','👩‍🔬','👨‍💻','👩‍🏫'].map((a,i) => (
                   <div key={i} style={{ width: 32, height: 32, borderRadius: '50%', background: `hsl(${i*50+200},70%,55%)`, display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '1rem', marginLeft: i ? -8 : 0, border: '2px solid #312e81' }}>{a}</div>
@@ -326,6 +330,27 @@ export default function HomePage() {
                 <div style={{ display: 'flex', gap: 2 }}>{Array.from({length:5}).map((_,i)=><span key={i} style={{color:'#fbbf24',fontSize:'.85rem'}}>★</span>)}</div>
                 <div style={{ fontSize: '.75rem', color: 'rgba(255,255,255,.65)' }}>Trusted by <strong style={{color:'#fff'}}>50,000+</strong> students across India</div>
               </div>
+            </div>
+
+            {/* Search — secondary action, below the fold intent */}
+            <form onSubmit={handleSearch} className="hero-search-form">
+              <span className="hero-search-icon">🔍</span>
+              <input
+                className="hero-search-input"
+                placeholder="Search a topic — e.g. Quadratic Equations, Photosynthesis…"
+                value={searchQ}
+                onChange={e => setSearchQ(e.target.value)}
+              />
+              <button type="submit" className="hero-search-btn">Search</button>
+            </form>
+            <div style={{ display: 'flex', gap: '.5rem', flexWrap: 'wrap', marginTop: '.6rem' }}>
+              {['Class 10 Maths', 'JEE Physics', 'NEET Biology', 'Class 12 Chemistry'].map(tag => (
+                <button key={tag} onClick={() => navigate(`/search?q=${encodeURIComponent(tag)}`)}
+                  style={{ background: 'rgba(255,255,255,.08)', border: '1px solid rgba(255,255,255,.15)', color: 'rgba(255,255,255,.7)', borderRadius: 99, padding: '.22rem .65rem', fontSize: '.73rem', fontWeight: 600, cursor: 'pointer' }}
+                >
+                  {tag}
+                </button>
+              ))}
             </div>
           </div>
 
