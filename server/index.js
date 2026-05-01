@@ -1241,6 +1241,78 @@ Generate exactly ${planDays} days starting from ${today}.`;
   }
 });
 
+// ── AI Flashcard Generator ─────────────────────────────────────
+app.post('/api/ai/flashcards', async (req, res) => {
+  try {
+    const { topicTitle, definition, content, subjectId, classId } = req.body || {};
+    const groqKey = (process.env.GROQ_API_KEY || '').trim();
+    if (!groqKey) return res.status(503).json({ error: 'AI not configured' });
+    if (!topicTitle) return res.status(400).json({ error: 'topicTitle required' });
+
+    const contextText = [
+      definition && `Definition: ${definition}`,
+      content && `Content: ${content?.replace(/<[^>]+>/g, ' ').slice(0, 1500)}`,
+    ].filter(Boolean).join('\n\n');
+
+    const prompt = `You are an expert Indian CBSE teacher for ${subjectId || 'the subject'} (${classId?.replace('class-', 'Class ') || ''}).
+
+Generate exactly 10 high-quality flashcard pairs for the topic: "${topicTitle}"
+
+Use this source material:
+${contextText || `Topic: ${topicTitle}`}
+
+Rules:
+- Each question must test a specific, important concept
+- Answers must be concise (1-3 sentences max)
+- Mix question types: definitions, formulas, examples, applications, comparisons
+- Focus on what appears in CBSE board exams
+- Use simple, clear language
+
+Respond with ONLY valid JSON, no markdown, no explanation:
+{"cards":[{"q":"question text","a":"answer text"},...]}}`;
+
+    const resp = await fetch('https://api.groq.com/openai/v1/chat/completions', {
+      method: 'POST',
+      headers: { 'Authorization': `Bearer ${groqKey}`, 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        model: 'llama-3.3-70b-versatile',
+        messages: [{ role: 'user', content: prompt }],
+        temperature: 0.5,
+        max_tokens: 1500,
+      }),
+    });
+
+    if (!resp.ok) {
+      const err = await resp.text();
+      console.error('Groq flashcard error:', err);
+      return res.status(502).json({ error: 'AI service error' });
+    }
+
+    const data = await resp.json();
+    const raw = data.choices?.[0]?.message?.content || '';
+
+    // Extract JSON — strip any markdown fences if present
+    const jsonStr = raw.replace(/^```json?\s*/i, '').replace(/```\s*$/, '').trim();
+    let parsed;
+    try {
+      parsed = JSON.parse(jsonStr);
+    } catch {
+      // Try to find JSON object in the response
+      const match = jsonStr.match(/\{[\s\S]*\}/);
+      if (match) parsed = JSON.parse(match[0]);
+      else return res.status(502).json({ error: 'AI returned invalid format' });
+    }
+
+    const cards = Array.isArray(parsed?.cards) ? parsed.cards.filter(c => c.q && c.a) : [];
+    if (!cards.length) return res.status(502).json({ error: 'No cards generated' });
+
+    res.json({ cards });
+  } catch (err) {
+    console.error('Flashcard gen error:', err);
+    res.status(500).json({ error: 'Failed to generate flashcards' });
+  }
+});
+
 // ── Parent Portal: Auth ────────────────────────────────────────
 function requireParentAuth(req, res, next) {
   const auth = req.headers.authorization;

@@ -1,4 +1,5 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef, useCallback } from 'react';
+import { api } from '../utils/api';
 import { useParams, Link, useNavigate } from 'react-router-dom';
 import { getClass, getSubject, getTopic, getSubjectColor, SUBJECT_META } from '../data/curriculum';
 import { TEACHERS } from '../data/teachers';
@@ -158,6 +159,9 @@ export default function TopicPage({ user, onOpenLogin }) {
   const [showAllQA, setShowAllQA] = useState(false);
   const [copied, setCopied] = useState(false);
   const [showFlashcards, setShowFlashcards] = useState(false);
+  const [aiCards, setAiCards] = useState(null);
+  const [aiLoading, setAiLoading] = useState(false);
+  const [aiError, setAiError] = useState('');
   const [fontSize, setFontSize] = useState(16);
   const { isDone, toggle } = useProgress();
   const { addNotification, settings } = useNotifications();
@@ -419,9 +423,9 @@ export default function TopicPage({ user, onOpenLogin }) {
                 </p>
               </div>
               <div style={{ display: 'flex', gap: '.5rem', flexWrap: 'wrap' }}>
-                {/* Flashcard mode button */}
+                {/* Q&A Flashcard mode */}
                 <button
-                  onClick={() => setShowFlashcards(true)}
+                  onClick={() => { setAiCards(null); setShowFlashcards(true); }}
                   className={`btn ${subjectColor}`}
                   style={{
                     padding: '.4rem 1rem', borderRadius: 10,
@@ -430,8 +434,46 @@ export default function TopicPage({ user, onOpenLogin }) {
                     cursor: 'pointer', display: 'flex', alignItems: 'center', gap: '.4rem',
                   }}
                 >
-                  🃏 Flashcard Mode
+                  🃏 Flashcards
                 </button>
+                {/* AI-generated flashcards */}
+                <button
+                  onClick={async () => {
+                    if (aiCards) { setShowFlashcards(true); return; }
+                    setAiLoading(true); setAiError('');
+                    try {
+                      const data = await api('/ai/flashcards', {
+                        method: 'POST',
+                        body: {
+                          topicTitle: topic.title,
+                          definition: topic.definition,
+                          content: topic.content,
+                          subjectId, classId,
+                        },
+                      });
+                      setAiCards(data.cards);
+                      setShowFlashcards(true);
+                    } catch (e) {
+                      setAiError('AI unavailable — using Q&A cards instead');
+                      setShowFlashcards(true);
+                    } finally {
+                      setAiLoading(false);
+                    }
+                  }}
+                  disabled={aiLoading}
+                  style={{
+                    padding: '.4rem 1rem', borderRadius: 10,
+                    background: aiLoading ? '#ede9fe' : 'linear-gradient(135deg,#7c3aed,#4f46e5)',
+                    color: aiLoading ? '#7c3aed' : '#fff',
+                    fontSize: '.82rem', fontWeight: 700, border: 'none',
+                    cursor: aiLoading ? 'not-allowed' : 'pointer',
+                    display: 'flex', alignItems: 'center', gap: '.4rem',
+                    transition: 'all .2s',
+                  }}
+                >
+                  {aiLoading ? '⏳ Generating…' : aiCards ? '✨ AI Flashcards ✓' : '✨ AI Flashcards'}
+                </button>
+                {aiError && <span style={{ fontSize: '.75rem', color: '#dc2626', alignSelf: 'center' }}>{aiError}</span>}
                 {topic.qa.length > 4 && (
                   <>
                     <button onClick={() => setOpenQA(null)} style={{ padding: '.35rem .9rem', borderRadius: 8, border: '1px solid #e5e7eb', background: '#f9fafb', fontSize: '.8rem', color: '#6b7280', cursor: 'pointer' }}>
@@ -616,6 +658,7 @@ export default function TopicPage({ user, onOpenLogin }) {
       {showFlashcards && (
         <FlashcardModal
           qa={topic.qa}
+          aiCards={aiCards}
           topicTitle={topic.title}
           onClose={() => setShowFlashcards(false)}
         />
