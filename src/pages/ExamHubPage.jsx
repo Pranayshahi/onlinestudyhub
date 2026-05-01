@@ -1,6 +1,7 @@
 import React from 'react';
 import { useParams, Link, useNavigate } from 'react-router-dom';
 import { EXAMS, WEIGHTAGE, PYQS, MOCK_TESTS } from '../data/jeeNeetData';
+import SEO from '../components/SEO';
 
 export default function ExamHubPage() {
   const { examId } = useParams();
@@ -52,8 +53,31 @@ export default function ExamHubPage() {
     },
   ];
 
+  const isJEE = examId === 'jee';
+  const examTitle = isJEE
+    ? 'JEE Main & Advanced Preparation — Chapter Weightage, PYQs & Mock Tests'
+    : 'NEET-UG Preparation — Chapter Weightage, PYQs & Mock Tests';
+  const examDesc = isJEE
+    ? `Crack IIT JEE with OnlineStudyHub. Study ${totalChapters} chapters with weightage analysis, ${pyqs.length}+ previous year questions, and free mock tests for JEE Main & Advanced.`
+    : `Crack NEET-UG with OnlineStudyHub. Study ${totalChapters} chapters with weightage analysis, ${pyqs.length}+ previous year questions, and free mock tests for Biology, Physics & Chemistry.`;
+
   return (
     <div style={{ background: '#f9fafb', minHeight: '100vh' }}>
+      <SEO
+        title={examTitle}
+        description={examDesc}
+        path={`/exam/${examId}`}
+        breadcrumbs={[{ name: exam.label, url: `/exam/${examId}` }]}
+        schema={{
+          '@context': 'https://schema.org',
+          '@type': 'Course',
+          name: exam.label,
+          description: examDesc,
+          provider: { '@type': 'Organization', name: 'OnlineStudyHub', url: 'https://www.onlinestudyhub.com' },
+          educationalLevel: 'Undergraduate Entrance',
+          about: { '@type': 'Thing', name: isJEE ? 'IIT JEE Entrance Examination' : 'NEET Medical Entrance Examination' },
+        }}
+      />
       {/* Hero */}
       <div style={{ background: `linear-gradient(135deg, #1e1b4b 0%, ${exam.color} 100%)`, color: '#fff', padding: '3.5rem 0 2.5rem' }}>
         <div className="container">

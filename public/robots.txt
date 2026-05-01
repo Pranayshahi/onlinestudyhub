@@ -1,4 +1,9 @@
 User-agent: *
 Allow: /
 
+# Disallow private/account pages — no SEO value
+Disallow: /dashboard
+Disallow: /my-bookings
+Disallow: /search
+
 Sitemap: https://www.onlinestudyhub.com/sitemap.xml

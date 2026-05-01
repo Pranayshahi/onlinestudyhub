@@ -1,6 +1,7 @@
 import React from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { EXAMS, MOCK_TESTS } from '../data/jeeNeetData';
+import SEO from '../components/SEO';
 
 export default function MockTestListPage() {
   const { examId } = useParams();
@@ -15,9 +16,19 @@ export default function MockTestListPage() {
 
   const DIFF_COLOR = { easy: '#16a34a', medium: '#d97706', hard: '#dc2626' };
   const DIFF_BG = { easy: '#f0fdf4', medium: '#fffbeb', hard: '#fef2f2' };
+  const examLabel = exam.shortLabel || exam.label;
 
   return (
     <div style={{ background: '#f9fafb', minHeight: '100vh' }}>
+      <SEO
+        title={`${examLabel} Free Mock Tests 2025 — Timed Full Practice Tests`}
+        description={`Attempt ${tests.length} free ${examLabel} mock tests with real exam timer. Check your score, review answers, and track your preparation progress for ${examLabel} 2025.`}
+        path={`/exam/${examId}/mock-test`}
+        breadcrumbs={[
+          { name: examLabel, url: `/exam/${examId}` },
+          { name: 'Mock Tests', url: `/exam/${examId}/mock-test` },
+        ]}
+      />
       {/* Header */}
       <div style={{ background: `linear-gradient(135deg, #1e1b4b 0%, ${exam.color} 100%)`, color: '#fff', padding: '2.5rem 0 2rem' }}>
         <div className="container">

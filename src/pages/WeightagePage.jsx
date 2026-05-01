@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { EXAMS, WEIGHTAGE } from '../data/jeeNeetData';
+import SEO from '../components/SEO';
 
 const PRIORITY_META = {
   must:   { label: 'Must Do', color: '#dc2626', bg: '#fef2f2' },
@@ -31,8 +32,20 @@ export default function WeightagePage() {
   const maxWeightage = Math.max(...chapters.map(c => c.weightage), 1);
   const totalWeightage = chapters.reduce((s, c) => s + c.weightage, 0);
 
+  const totalChapters = Object.values(WEIGHTAGE[examId] || {}).reduce((s, ch) => s + ch.length, 0);
+  const examLabel = exam.shortLabel || exam.label;
+
   return (
     <div style={{ background: '#f9fafb', minHeight: '100vh' }}>
+      <SEO
+        title={`${examLabel} Chapter Weightage 2025 — Most Important Topics`}
+        description={`${examLabel} chapter weightage analysis: ${totalChapters} chapters ranked by marks distribution and importance. Know which topics to study first for ${examLabel} 2025.`}
+        path={`/exam/${examId}/weightage`}
+        breadcrumbs={[
+          { name: examLabel, url: `/exam/${examId}` },
+          { name: 'Chapter Weightage', url: `/exam/${examId}/weightage` },
+        ]}
+      />
       {/* Header */}
       <div style={{ background: `linear-gradient(135deg, #1e1b4b 0%, ${exam.color} 100%)`, color: '#fff', padding: '2.5rem 0 2rem' }}>
         <div className="container">

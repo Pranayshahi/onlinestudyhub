@@ -212,9 +212,53 @@ export default function HomePage() {
   return (
     <div style={{ overflowX: 'hidden' }}>
       <SEO
-        title="Best Online Tuition for Class 6-12, JEE & NEET in India"
-        description="OnlineStudyHub offers expert online tuition for Class 6 to 12, JEE and NEET. Find verified teachers, study topic-wise notes, and book 1-on-1 sessions. CBSE curriculum."
+        title="Free Online Study for Class 6-12, JEE & NEET — India's #1 Study Hub"
+        description="OnlineStudyHub — India's free online study platform for Class 6 to 12, JEE and NEET. Study CBSE topics, find verified teachers, and book 1-on-1 sessions. 100% Free."
         path="/"
+        schemas={[
+          {
+            '@context': 'https://schema.org',
+            '@type': 'FAQPage',
+            mainEntity: [
+              {
+                '@type': 'Question',
+                name: 'Is OnlineStudyHub free for students?',
+                acceptedAnswer: { '@type': 'Answer', text: 'Yes! All study materials, topic notes, and AI doubt solving on OnlineStudyHub are 100% free for students. 1-on-1 teacher sessions are available at affordable fees.' },
+              },
+              {
+                '@type': 'Question',
+                name: 'Which classes does OnlineStudyHub cover?',
+                acceptedAnswer: { '@type': 'Answer', text: 'OnlineStudyHub covers Class 6, 7, 8, 9, 10, 11, and 12 following the CBSE curriculum, plus dedicated JEE (IIT) and NEET preparation content.' },
+              },
+              {
+                '@type': 'Question',
+                name: 'Can I find a teacher for 1-on-1 online tuition?',
+                acceptedAnswer: { '@type': 'Answer', text: 'Yes. OnlineStudyHub has verified subject teachers for all classes from 6 to 12. You can book a private online session directly through the platform via Google Meet.' },
+              },
+              {
+                '@type': 'Question',
+                name: 'Does OnlineStudyHub have JEE and NEET preparation?',
+                acceptedAnswer: { '@type': 'Answer', text: 'Yes! We have dedicated JEE and NEET sections with chapter weightage analysis, previous year question banks, mock tests, and topic-wise study material.' },
+              },
+              {
+                '@type': 'Question',
+                name: 'How can I solve doubts instantly on OnlineStudyHub?',
+                acceptedAnswer: { '@type': 'Answer', text: 'Use the free AI Doubt Solver available on every topic page. Ask any question in text or upload an image of your problem — get instant, detailed answers with step-by-step explanations.' },
+              },
+            ],
+          },
+          {
+            '@context': 'https://schema.org',
+            '@type': 'EducationalOrganization',
+            name: 'OnlineStudyHub',
+            url: 'https://www.onlinestudyhub.com',
+            logo: 'https://www.onlinestudyhub.com/favicon-192.png',
+            description: 'India\'s free online study platform for Class 6-12, JEE and NEET students',
+            address: { '@type': 'PostalAddress', addressCountry: 'IN' },
+            audience: { '@type': 'EducationalAudience', educationalRole: 'student' },
+            teaches: ['Class 6', 'Class 7', 'Class 8', 'Class 9', 'Class 10', 'Class 11', 'Class 12', 'JEE', 'NEET'],
+          },
+        ]}
       />
 
       {/* ── HERO ─────────────────────────────────────────────────── */}
