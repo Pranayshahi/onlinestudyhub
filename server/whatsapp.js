@@ -131,6 +131,24 @@ function notifyTeacherBookingDeclined({ teacherPhone, teacherName, studentName, 
   );
 }
 
+function notifyStudentDemoReceived({ studentPhone, studentName, teacherName, date, time }) {
+  notify(studentPhone,
+    `OnlineStudyHub: Hi ${studentName}, your FREE 15-min demo with ${teacherName} on ${fmtDate(date)} at ${time} is requested! Teacher will confirm shortly. Get ready to learn!`
+  );
+}
+
+function notifyTeacherDemoRequest({ teacherPhone, teacherName, studentName, goal, level, date, time }) {
+  notify(teacherPhone,
+    `OnlineStudyHub: Hi ${teacherName}, demo request from ${studentName} on ${fmtDate(date)} at ${time}. Goal: ${goal || 'Not specified'}. Level: ${level || 'Not specified'}. Login to confirm.`
+  );
+}
+
+function notifyStudentDemoConfirmed({ studentPhone, studentName, teacherName, date, time, meetLink }) {
+  notify(studentPhone,
+    `OnlineStudyHub: Hi ${studentName}, your FREE demo with ${teacherName} on ${fmtDate(date)} at ${time} is CONFIRMED! Join: ${meetLink} — Feel free to ask anything during the session!`
+  );
+}
+
 function notifyStudentCancelledSelf({ studentPhone, studentName, topicTitle, date, time }) {
   notify(studentPhone,
     `OnlineStudyHub: Hi ${studentName}, your booking for "${topicTitle || 'Personalised Session'}" on ${fmtDate(date)} at ${time} has been cancelled. Book a new session anytime.`
@@ -152,4 +170,7 @@ module.exports = {
   notifyTeacherBookingDeclined,
   notifyStudentCancelledSelf,
   notifyTeacherStudentCancelled,
+  notifyStudentDemoReceived,
+  notifyTeacherDemoRequest,
+  notifyStudentDemoConfirmed,
 };

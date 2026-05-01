@@ -18,6 +18,9 @@ const {
   notifyTeacherBookingDeclined,
   notifyStudentCancelledSelf,
   notifyTeacherStudentCancelled,
+  notifyStudentDemoReceived,
+  notifyTeacherDemoRequest,
+  notifyStudentDemoConfirmed,
 } = require('./whatsapp');
 
 // In-memory document store: uploadId → { fileName, chunks: string[], expiresAt }
@@ -444,6 +447,94 @@ app.post('/api/bookings', async (req, res) => {
   }
 });
 
+// ── Demo: Check eligibility (student can only have 1 demo per teacher) ──
+app.get('/api/bookings/demo-eligible/:teacherId', requireStudentAuth, async (req, res) => {
+  try {
+    const existing = await Booking.findOne({
+      teacher_id: req.params.teacherId,
+      student_email: req.student.email,
+      is_demo: true,
+    }).lean();
+    res.json({ eligible: !existing });
+  } catch (err) {
+    res.status(500).json({ error: 'Failed to check demo eligibility' });
+  }
+});
+
+// ── Demo Booking: Create (free, no payment) ────────────────────
+app.post('/api/bookings/demo', requireStudentAuth, async (req, res) => {
+  try {
+    const { teacherId, classId, subjectId, timeSlot, scheduledDate, demoPrep } = req.body || {};
+
+    if (!teacherId || !classId || !subjectId || !timeSlot || !scheduledDate) {
+      return res.status(400).json({ error: 'Missing required demo booking information' });
+    }
+
+    // Enforce 1 demo per student-teacher pair
+    const existing = await Booking.findOne({
+      teacher_id: teacherId,
+      student_email: req.student.email,
+      is_demo: true,
+    });
+    if (existing) {
+      return res.status(409).json({ error: 'You have already booked a demo with this teacher' });
+    }
+
+    const teacher = await Teacher.findById(teacherId).select('name contact demo_available').lean();
+    if (!teacher) return res.status(404).json({ error: 'Teacher not found' });
+    if (teacher.demo_available === false) {
+      return res.status(400).json({ error: 'This teacher is not accepting demo requests at the moment' });
+    }
+
+    const meetCode = Array.from({ length: 3 }, () => Math.random().toString(36).substring(2, 5)).join('-');
+    const meetLink = `https://meet.google.com/${meetCode}`;
+
+    const booking = await Booking.create({
+      student_name:  req.student.name,
+      student_phone: req.student.phone || '',
+      student_email: req.student.email,
+      teacher_id:    teacherId,
+      class_id:      classId,
+      subject_id:    subjectId,
+      time_slot:     timeSlot,
+      scheduled_date: scheduledDate,
+      meet_link:     meetLink,
+      status:        'pending',
+      is_demo:       true,
+      amount_paid:   0,
+      demo_prep: {
+        goal:  demoPrep?.goal  || '',
+        level: demoPrep?.level || '',
+        note:  demoPrep?.note  || '',
+      },
+    });
+
+    notifyStudentDemoReceived({
+      studentPhone: req.student.phone || '',
+      studentName:  req.student.name,
+      teacherName:  teacher.name,
+      date: scheduledDate,
+      time: timeSlot,
+    });
+    if (teacher.contact) {
+      notifyTeacherDemoRequest({
+        teacherPhone: teacher.contact,
+        teacherName:  teacher.name,
+        studentName:  req.student.name,
+        goal:  demoPrep?.goal  || '',
+        level: demoPrep?.level || '',
+        date:  scheduledDate,
+        time:  timeSlot,
+      });
+    }
+
+    res.status(201).json({ bookingId: booking._id, meetLink, message: 'Demo booked!' });
+  } catch (err) {
+    console.error('Demo booking error:', err);
+    res.status(500).json({ error: 'Failed to create demo booking' });
+  }
+});
+
 // ── Bookings: Get student's own bookings (protected) ──────────
 app.get('/api/bookings/student', requireStudentAuth, async (req, res) => {
   try {
@@ -529,15 +620,26 @@ app.patch('/api/bookings/:id', requireAuth, async (req, res) => {
       : 'Personalised Session';
 
     if (newStatus === 'confirmed') {
-      notifyStudentSessionConfirmed({
-        studentPhone: booking.student_phone,
-        studentName:  booking.student_name,
-        teacherName:  teacher?.name || 'your teacher',
-        topicTitle:   topicLabel,
-        date:         booking.scheduled_date,
-        time:         booking.time_slot,
-        meetLink:     booking.meet_link,
-      });
+      if (booking.is_demo) {
+        notifyStudentDemoConfirmed({
+          studentPhone: booking.student_phone,
+          studentName:  booking.student_name,
+          teacherName:  teacher?.name || 'your teacher',
+          date:         booking.scheduled_date,
+          time:         booking.time_slot,
+          meetLink:     booking.meet_link,
+        });
+      } else {
+        notifyStudentSessionConfirmed({
+          studentPhone: booking.student_phone,
+          studentName:  booking.student_name,
+          teacherName:  teacher?.name || 'your teacher',
+          topicTitle:   topicLabel,
+          date:         booking.scheduled_date,
+          time:         booking.time_slot,
+          meetLink:     booking.meet_link,
+        });
+      }
       if (teacher?.contact) {
         notifyTeacherBookingConfirmed({
           teacherPhone: teacher.contact,

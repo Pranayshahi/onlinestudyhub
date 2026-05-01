@@ -27,6 +27,7 @@ const teacherSchema = new mongoose.Schema({
   topics: { type: String },
   contact: { type: String },
   available: { type: Boolean, default: true },
+  demo_available: { type: Boolean, default: true },
   is_online: { type: Boolean, default: false },
   last_seen: { type: Date, default: Date.now },
 }, { timestamps: true });
@@ -45,6 +46,12 @@ const bookingSchema = new mongoose.Schema({
   status: { type: String, enum: ['pending', 'confirmed', 'completed', 'cancelled'], default: 'pending' },
   payment_id:   { type: String, default: null },
   amount_paid:  { type: Number, default: null },
+  is_demo:      { type: Boolean, default: false },
+  demo_prep:    {
+    goal:  { type: String, default: '' },
+    level: { type: String, default: '' },
+    note:  { type: String, default: '' },
+  },
 }, { timestamps: true });
 
 const topicMediaSchema = new mongoose.Schema({

@@ -25,9 +25,9 @@ const AVATARS = ['👨‍🏫', '👩‍🏫', '🧑‍🏫', '👨‍💼', '�
 
 const EMPTY_FORM = {
   name: '', email: '', password: '', avatar: '👨‍🏫',
-  profile_pic: '',          // base64 data URL of uploaded photo
+  profile_pic: '',
   subject: '', class_ids: [], experience: '', qualification: '',
-  fee: '', bio: '', topics: '', contact: '', available: true,
+  fee: '', bio: '', topics: '', contact: '', available: true, demo_available: true,
 };
 
 const MAX_IMAGE_SIZE = 2 * 1024 * 1024; // 2 MB
@@ -378,6 +378,24 @@ function TeacherForm({ initial = EMPTY_FORM, showEmail = true, showPassword = fa
         </div>
       </FieldGroup>
 
+      <FieldGroup label="Free Demo Sessions" hint="When ON, students can book a free 15-min demo before committing to a paid session.">
+        <div style={{ display: 'flex', gap: '.75rem' }}>
+          {[true, false].map(val => (
+            <button
+              key={String(val)} type="button"
+              onClick={() => set('demo_available', val)}
+              style={{
+                padding: '.4rem 1.25rem', borderRadius: 10, fontSize: '.85rem', fontWeight: 700,
+                cursor: 'pointer', transition: 'all .15s', border: '1.5px solid',
+                background: (form.demo_available !== false) === val ? (val ? '#059669' : '#6b7280') : '#fff',
+                color: (form.demo_available !== false) === val ? '#fff' : '#6b7280',
+                borderColor: (form.demo_available !== false) === val ? (val ? '#059669' : '#6b7280') : '#e5e7eb',
+              }}
+            >{val ? '✨ Demo ON' : '🚫 Demo OFF'}</button>
+          ))}
+        </div>
+      </FieldGroup>
+
       <button
         type="submit"
         disabled={loading}
@@ -466,8 +484,13 @@ function AppointmentsTab({ token, onPendingCount }) {
       <div style={{ background: '#fff', border: '1px solid #e5e7eb', borderRadius: 14, padding: '1.25rem', boxShadow: '0 1px 4px rgba(0,0,0,.05)' }}>
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', flexWrap: 'wrap', gap: '.5rem', marginBottom: '.75rem' }}>
           <div>
-            <div style={{ fontFamily: 'Nunito', fontWeight: 800, fontSize: '.95rem', color: '#1e1b4b', marginBottom: '.15rem' }}>
-              {b.topic_id ? b.topic_id.replace(/-/g, ' ').replace(/\b\w/g, c => c.toUpperCase()) : 'Personalised Session'}
+            <div style={{ display: 'flex', alignItems: 'center', gap: '.5rem', marginBottom: '.15rem' }}>
+              <div style={{ fontFamily: 'Nunito', fontWeight: 800, fontSize: '.95rem', color: '#1e1b4b' }}>
+                {b.is_demo ? '✨ Free Demo (15 min)' : (b.topic_id ? b.topic_id.replace(/-/g, ' ').replace(/\b\w/g, c => c.toUpperCase()) : 'Personalised Session')}
+              </div>
+              {b.is_demo && (
+                <span style={{ background: '#d1fae5', color: '#065f46', fontSize: '.65rem', fontWeight: 800, padding: '1px 7px', borderRadius: 99, border: '1px solid #6ee7b7' }}>DEMO</span>
+              )}
             </div>
             <div style={{ fontSize: '.78rem', color: '#6b7280', textTransform: 'capitalize' }}>
               {b.subject_id}{b.class_id ? ` · Class ${b.class_id.replace('class-', '').replace('class', '')}` : ''}
@@ -477,6 +500,18 @@ function AppointmentsTab({ token, onPendingCount }) {
             {s.label}
           </span>
         </div>
+
+        {/* Demo prep note — visible to teacher */}
+        {b.is_demo && b.demo_prep && (b.demo_prep.goal || b.demo_prep.level || b.demo_prep.note) && (
+          <div style={{ background: '#f0fdf4', border: '1px solid #86efac', borderRadius: 10, padding: '.65rem .85rem', marginBottom: '.75rem', fontSize: '.8rem' }}>
+            <div style={{ fontWeight: 700, color: '#065f46', marginBottom: '.3rem' }}>📋 Student Prep Note</div>
+            <div style={{ color: '#374151', lineHeight: 1.7 }}>
+              {b.demo_prep.goal && <div>🎯 Goal: <strong style={{ textTransform: 'capitalize' }}>{b.demo_prep.goal.replace(/-/g,' ')}</strong></div>}
+              {b.demo_prep.level && <div>📊 Level: <strong style={{ textTransform: 'capitalize' }}>{b.demo_prep.level}</strong></div>}
+              {b.demo_prep.note && <div>📝 Note: <strong>{b.demo_prep.note}</strong></div>}
+            </div>
+          </div>
+        )}
 
         <div style={{ display: 'flex', gap: '1.5rem', flexWrap: 'wrap', fontSize: '.83rem', color: '#374151', marginBottom: '.75rem' }}>
           <div><span style={{ color: '#9ca3af' }}>Student</span><br /><strong>{b.student_name}</strong></div>
