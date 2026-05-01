@@ -281,6 +281,8 @@
   .hero-illustration { max-width: 360px; margin: 0 auto; }
 }
 @media (max-width: 768px) {
+  .hero { padding: 4rem 0 3rem; }
+  .hero-text { min-width: 0; }
   .hero-illustration { display: none; }
 }
 
@@ -386,8 +388,8 @@
 .section-header { margin-bottom: 2.5rem; }
 
 /* ─── Class cards on homepage ─── */
-.classes-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); gap: .75rem; }
-.class-card { background: #fff; border: 1px solid #e5e7eb; border-radius: 14px; padding: 1.25rem 1rem; text-align: center; cursor: pointer; transition: all .2s; }
+.classes-grid { display: grid; grid-template-columns: repeat(9, 1fr); gap: .75rem; }
+.class-card { background: #fff; border: 1px solid #e5e7eb; border-radius: 14px; padding: 1rem .75rem; text-align: center; cursor: pointer; transition: all .2s; }
 .class-card:hover { box-shadow: 0 6px 24px rgba(0,0,0,.1); transform: translateY(-3px); border-color: #6366f1; }
 .class-card-icon { font-size: 1.75rem; margin-bottom: .5rem; }
 .class-card-title { font-family: 'Nunito', sans-serif; font-weight: 800; font-size: .95rem; color: #1e1b4b; }
@@ -529,6 +531,9 @@
   .weightage-chapter-right { display: none !important; }
 }
 
+@media (max-width: 900px) {
+  .classes-grid { grid-template-columns: repeat(5, 1fr); }
+}
 @media (max-width: 480px) {
   .footer-grid { grid-template-columns: 1fr; }
   .classes-grid { grid-template-columns: repeat(3, 1fr); }
