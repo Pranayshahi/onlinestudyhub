@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { useParams, Link, useNavigate } from 'react-router-dom';
 import { getClass, getSubject, getTopic, getSubjectColor, SUBJECT_META } from '../data/curriculum';
 import { TEACHERS } from '../data/teachers';
@@ -58,6 +58,99 @@ function AccordionItem({ number, question, answer, subjectColor, isOpen, onToggl
   );
 }
 
+// ── Personal Notes Panel ────────────────────────────────────────
+function NotesPanel({ classId, subjectId, topicId, subjectColor }) {
+  const storageKey = `osh_notes_${classId}_${subjectId}_${topicId}`;
+  const [isOpen, setIsOpen] = useState(false);
+  const [note, setNote] = useState(() => {
+    try { return localStorage.getItem(storageKey) || ''; } catch { return ''; }
+  });
+  const [saved, setSaved] = useState(true);
+  const timerRef = useRef(null);
+
+  useEffect(() => {
+    try { setNote(localStorage.getItem(storageKey) || ''); } catch {}
+    setSaved(true);
+  }, [storageKey]);
+
+  function handleChange(e) {
+    const val = e.target.value.slice(0, 2000);
+    setNote(val);
+    setSaved(false);
+    clearTimeout(timerRef.current);
+    timerRef.current = setTimeout(() => {
+      try { localStorage.setItem(storageKey, val); } catch {}
+      setSaved(true);
+    }, 700);
+  }
+
+  return (
+    <div style={{ marginBottom: '2rem' }}>
+      <button
+        onClick={() => setIsOpen(o => !o)}
+        className={subjectColor}
+        style={{
+          width: '100%', display: 'flex', alignItems: 'center', justifyContent: 'space-between',
+          padding: '.85rem 1.25rem',
+          background: 'var(--sl)', border: '1.5px solid var(--sm)',
+          borderRadius: isOpen ? '14px 14px 0 0' : 14,
+          cursor: 'pointer',
+          fontFamily: 'Nunito', fontWeight: 700, fontSize: '.95rem',
+          color: 'var(--sc)', transition: 'border-radius .15s',
+        }}
+      >
+        <div style={{ display: 'flex', alignItems: 'center', gap: '.6rem' }}>
+          <span>📝</span>
+          <span>My Notes</span>
+          {note.length > 0 && (
+            <span style={{
+              background: 'var(--sc)', color: '#fff',
+              fontSize: '.65rem', padding: '.15rem .5rem',
+              borderRadius: 999, fontWeight: 800, lineHeight: 1.4,
+            }}>
+              {note.length}
+            </span>
+          )}
+        </div>
+        <span style={{ fontSize: '.78rem', opacity: .65 }}>{isOpen ? '▲ Close' : '▼ Open'}</span>
+      </button>
+
+      {isOpen && (
+        <div className={subjectColor} style={{
+          border: '1.5px solid var(--sm)', borderTop: 'none',
+          borderRadius: '0 0 14px 14px', padding: '1rem 1.25rem',
+          background: '#fff',
+        }}>
+          <textarea
+            value={note}
+            onChange={handleChange}
+            placeholder={`Your personal notes for this topic...\n• Key points\n• Formulas to remember\n• Questions to revisit`}
+            style={{
+              width: '100%', minHeight: 130,
+              border: '1.5px solid #e5e7eb', borderRadius: 10,
+              padding: '.75rem 1rem', fontSize: '.9rem',
+              lineHeight: 1.7, resize: 'vertical',
+              fontFamily: 'inherit', color: '#374151',
+              background: '#fafafa', outline: 'none',
+              boxSizing: 'border-box', transition: 'border-color .2s',
+            }}
+            onFocus={e => { e.target.style.borderColor = 'var(--sc)'; }}
+            onBlur={e => { e.target.style.borderColor = '#e5e7eb'; }}
+          />
+          <div style={{ display: 'flex', justifyContent: 'space-between', marginTop: '.45rem' }}>
+            <span style={{ fontSize: '.75rem', color: saved ? (note.length > 0 ? '#059669' : 'transparent') : '#9ca3af', fontWeight: 600, transition: 'color .3s' }}>
+              {saved ? (note.length > 0 ? '✓ Saved' : '') : '…saving'}
+            </span>
+            <span style={{ fontSize: '.75rem', color: note.length > 1800 ? '#dc2626' : '#9ca3af' }}>
+              {note.length}/2000
+            </span>
+          </div>
+        </div>
+      )}
+    </div>
+  );
+}
+
 // ── Main TopicPage ──────────────────────────────────────────────
 export default function TopicPage({ user, onOpenLogin }) {
   const { classId, subjectId, topicId } = useParams();
@@ -76,11 +169,9 @@ export default function TopicPage({ user, onOpenLogin }) {
     setCopied(false);
   }, [topicId]);
 
-  // Track last visited topic for dashboard "resume" card
+  // Track last visited topic + record study day for streak
   useEffect(() => {
     if (!classId || !subjectId || !topicId) return;
-    const classData = getClass(classId);
-    const subject = getSubject(classId, subjectId);
     const topic = getTopic(classId, subjectId, topicId);
     if (!topic) return;
     try {
@@ -89,6 +180,11 @@ export default function TopicPage({ user, onOpenLogin }) {
         topicTitle: topic.title,
         path: `/class/${classId}/subject/${subjectId}/topic/${topicId}`,
       }));
+      const today = new Date().toISOString().slice(0, 10);
+      const dates = JSON.parse(localStorage.getItem('osh_study_dates') || '[]');
+      if (!dates.includes(today)) {
+        localStorage.setItem('osh_study_dates', JSON.stringify([...dates, today]));
+      }
     } catch {}
   }, [classId, subjectId, topicId]);
 
@@ -258,6 +354,8 @@ export default function TopicPage({ user, onOpenLogin }) {
             {topic.definition}
           </div>
         </div>
+
+        <NotesPanel classId={classId} subjectId={subjectId} topicId={topicId} subjectColor={subjectColor} />
 
         <TopicMediaSection classId={classId} subjectId={subjectId} topicId={topicId} user={user} onOpenLogin={onOpenLogin} />
 

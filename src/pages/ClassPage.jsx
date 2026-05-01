@@ -4,6 +4,7 @@ import { getClass, getSubjectColor, SUBJECT_META } from '../data/curriculum';
 import Breadcrumb from '../components/Breadcrumb';
 import SEO from '../components/SEO';
 import TeacherFinder from '../components/TeacherFinder';
+import { useProgress } from '../hooks/useProgress';
 
 
 export default function ClassPage({ user, onOpenLogin }) {
@@ -11,6 +12,7 @@ export default function ClassPage({ user, onOpenLogin }) {
   const classData = getClass(classId);
   const [activeSubject, setActiveSubject] = useState(null);
   const [showFinder, setShowFinder] = useState(false);
+  const { isDone, countDone } = useProgress();
 
   if (!classData) {
     return (
@@ -148,7 +150,12 @@ export default function ClassPage({ user, onOpenLogin }) {
                       {meta.label}
                     </h2>
                     <p style={{ fontSize: '.875rem', color: '#6b7280', marginTop: '.2rem' }}>
-                      {currentSubject.topics.length} topics available
+                      {currentSubject.topics.length} topics
+                      {countDone(classId, currentSubjectId) > 0 && (
+                        <span style={{ color: '#059669', fontWeight: 700 }}>
+                          {' '}· {countDone(classId, currentSubjectId)} done ✅
+                        </span>
+                      )}
                     </p>
                   </div>
                 </div>
@@ -173,7 +180,10 @@ export default function ClassPage({ user, onOpenLogin }) {
                   to={`/class/${classId}/subject/${currentSubjectId}/topic/${topic.id}`}
                   style={{ textDecoration: 'none' }}
                 >
-                  <div className={`topic-card ${subjectColor}`}>
+                  <div className={`topic-card ${subjectColor}`} style={{ position: 'relative' }}>
+                    {isDone(classId, currentSubjectId, topic.id) && (
+                      <span style={{ position: 'absolute', top: '.55rem', right: '.55rem', fontSize: '.9rem', lineHeight: 1 }}>✅</span>
+                    )}
                     <div className="topic-card-num">T{String(i + 1).padStart(2, '0')}</div>
                     <div className="topic-card-title">{topic.title}</div>
                     <div className="topic-card-meta">

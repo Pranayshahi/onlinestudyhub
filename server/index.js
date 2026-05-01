@@ -169,15 +169,34 @@ app.post('/api/auth/login', async (req, res) => {
 });
 
 // ── Auth: Student Registration ──────────────────────────────────
+async function generateUniqueReferralCode(name) {
+  const prefix = (name || '').replace(/[^a-zA-Z]/g, '').toUpperCase().slice(0, 3) || 'OSH';
+  for (let i = 0; i < 10; i++) {
+    const code = prefix + Math.random().toString(36).toUpperCase().slice(2, 6);
+    const exists = await Student.findOne({ referral_code: code });
+    if (!exists) return code;
+  }
+  return 'OSH' + Date.now().toString(36).toUpperCase().slice(-5);
+}
+
 app.post('/api/auth/student/register', async (req, res) => {
   try {
-    const { email, password, name } = req.body || {};
+    const { email, password, name, refCode } = req.body || {};
     if (!email || !password || !name) return res.status(400).json({ error: 'All fields required' });
     const existing = await Student.findOne({ email });
     if (existing) return res.status(409).json({ error: 'Email already registered' });
 
     const hash = await bcrypt.hash(password, 10);
-    const student = await Student.create({ email, password_hash: hash, name });
+    const referral_code = await generateUniqueReferralCode(name);
+    const student = await Student.create({
+      email, password_hash: hash, name,
+      referral_code,
+      referred_by: refCode || null,
+    });
+
+    if (refCode) {
+      await Student.findOneAndUpdate({ referral_code: refCode }, { $inc: { referral_count: 1 } });
+    }
 
     const token = jwt.sign({ id: student._id.toString(), email, name, role: 'student' }, JWT_SECRET, { expiresIn: '30d' });
     res.status(201).json({ token, id: student._id, email, name, role: 'student' });
@@ -245,6 +264,20 @@ app.patch('/api/students/me/password', requireStudentAuth, async (req, res) => {
     student.password_hash = await bcrypt.hash(newPassword, 10);
     await student.save();
     res.json({ message: 'Password updated successfully' });
+  } catch (e) { res.status(500).json({ error: 'Server error' }); }
+});
+
+// ── Students: Get referral info (backfills code if missing) ────
+app.get('/api/students/me/referral', requireStudentAuth, async (req, res) => {
+  try {
+    let student = await Student.findById(req.student.id).select('referral_code referral_count name').lean();
+    if (!student) return res.status(404).json({ error: 'Not found' });
+    if (!student.referral_code) {
+      const code = await generateUniqueReferralCode(student.name);
+      await Student.findByIdAndUpdate(req.student.id, { $set: { referral_code: code } });
+      student.referral_code = code;
+    }
+    res.json({ referral_code: student.referral_code, referral_count: student.referral_count || 0 });
   } catch (e) { res.status(500).json({ error: 'Server error' }); }
 });
 

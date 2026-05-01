@@ -161,6 +161,8 @@ export default function DashboardPage({ user, onOpenLogin, onUpdateUser }) {
   const [pwSaving, setPwSaving] = useState(false);
   const [pwError, setPwError] = useState('');
   const [pwSuccess, setPwSuccess] = useState('');
+  const [referral, setReferral] = useState(null);
+  const [refCopied, setRefCopied] = useState(false);
 
   const progress   = loadProgress();
   const lastTopic  = loadLastTopic();
@@ -191,6 +193,11 @@ export default function DashboardPage({ user, onOpenLogin, onUpdateUser }) {
       .then(data => setBookings(Array.isArray(data) ? data : []))
       .catch(() => {})
       .finally(() => setLoadingBookings(false));
+  }, [user]);
+
+  useEffect(() => {
+    if (!user) return;
+    api('/students/me/referral').then(setReferral).catch(() => {});
   }, [user]);
 
   if (!user) {
@@ -228,6 +235,26 @@ export default function DashboardPage({ user, onOpenLogin, onUpdateUser }) {
   function removePlanItem(id) {
     const updated = studyPlan.filter(t => t.id !== id);
     setStudyPlan(updated); saveStudyPlan(updated);
+  }
+
+  function shareReferral() {
+    if (!referral) return;
+    const link = `https://www.onlinestudyhub.com/?ref=${referral.referral_code}`;
+    const text = `Study smarter on OnlineStudyHub — India's best FREE study platform for Class 6-12! Use my code ${referral.referral_code} to join: ${link}`;
+    if (navigator.share) {
+      navigator.share({ title: 'Join me on OnlineStudyHub!', text, url: link }).catch(() => {});
+    } else {
+      window.open(`https://wa.me/?text=${encodeURIComponent(text)}`, '_blank');
+    }
+  }
+
+  function copyReferralLink() {
+    if (!referral) return;
+    const link = `https://www.onlinestudyhub.com/?ref=${referral.referral_code}`;
+    navigator.clipboard.writeText(link).then(() => {
+      setRefCopied(true);
+      setTimeout(() => setRefCopied(false), 2500);
+    }).catch(() => {});
   }
 
   function openProfileEdit() {
@@ -567,6 +594,61 @@ export default function DashboardPage({ user, onOpenLogin, onUpdateUser }) {
                 </form>
               )}
             </SectionCard>
+
+            {/* Referral Card */}
+            {referral && (
+              <SectionCard icon="🎁" title="Refer Friends">
+                <div style={{ textAlign: 'center' }}>
+                  <p style={{ fontSize: '.82rem', color: '#6b7280', marginBottom: '1rem', lineHeight: 1.5 }}>
+                    Invite friends to OnlineStudyHub. Every friend who joins adds to your count!
+                  </p>
+
+                  {/* Code badge */}
+                  <div style={{
+                    background: 'linear-gradient(135deg, #eef2ff, #f5f3ff)',
+                    border: '2px dashed #818cf8',
+                    borderRadius: 14, padding: '1rem 1.25rem',
+                    marginBottom: '1rem',
+                  }}>
+                    <div style={{ fontSize: '.7rem', fontWeight: 700, color: '#6b7280', marginBottom: '.3rem', textTransform: 'uppercase', letterSpacing: '.06em' }}>
+                      Your Referral Code
+                    </div>
+                    <div style={{ fontFamily: 'Nunito', fontWeight: 900, fontSize: '1.9rem', color: '#4f46e5', letterSpacing: '.14em' }}>
+                      {referral.referral_code}
+                    </div>
+                    <div style={{ fontSize: '.75rem', color: '#059669', fontWeight: 700, marginTop: '.3rem' }}>
+                      {referral.referral_count} {referral.referral_count === 1 ? 'friend' : 'friends'} joined
+                    </div>
+                  </div>
+
+                  <div style={{ display: 'flex', flexDirection: 'column', gap: '.55rem' }}>
+                    <button
+                      onClick={shareReferral}
+                      style={{
+                        padding: '.6rem 1rem', background: '#25D366', color: '#fff',
+                        border: 'none', borderRadius: 10, fontWeight: 700, fontSize: '.88rem',
+                        cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '.5rem',
+                      }}
+                    >
+                      <span>📱</span> Share via WhatsApp
+                    </button>
+                    <button
+                      onClick={copyReferralLink}
+                      style={{
+                        padding: '.6rem 1rem',
+                        background: refCopied ? '#059669' : '#f3f4f6',
+                        color: refCopied ? '#fff' : '#374151',
+                        border: '1.5px solid #e5e7eb', borderRadius: 10,
+                        fontWeight: 600, fontSize: '.88rem',
+                        cursor: 'pointer', transition: 'all .2s',
+                      }}
+                    >
+                      {refCopied ? '✓ Link Copied!' : '🔗 Copy Referral Link'}
+                    </button>
+                  </div>
+                </div>
+              </SectionCard>
+            )}
 
             {/* Study Planner */}
             <SectionCard icon="📅" title="Today's Study Plan">

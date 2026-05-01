@@ -67,7 +67,8 @@ export default function LoginModal({ open, onClose, onLogin }) {
     setError('');
     setLoading(true);
     const endpoint = isSignup ? '/auth/student/register' : '/auth/student/login';
-    const body = isSignup ? { email, password, name } : { email, password };
+    const refCode = new URLSearchParams(window.location.search).get('ref') || undefined;
+    const body = isSignup ? { email, password, name, ...(refCode && { refCode }) } : { email, password };
     try {
       const data = await api(endpoint, {
         method: 'POST',

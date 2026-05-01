@@ -8,6 +8,9 @@ const studentSchema = new mongoose.Schema({
   phone: { type: String, default: '' },
   class_id: { type: String, default: '' },
   bio: { type: String, default: '' },
+  referral_code:  { type: String, default: null, sparse: true },
+  referred_by:    { type: String, default: null },
+  referral_count: { type: Number, default: 0 },
 }, { timestamps: true });
 
 const teacherSchema = new mongoose.Schema({
