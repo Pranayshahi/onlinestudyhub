@@ -248,7 +248,7 @@ export default function DashboardPage({ user, onOpenLogin, onUpdateUser }) {
 
   function shareReferral() {
     if (!referral) return;
-    const link = `https://www.onlinestudyhub.com/?ref=${referral.referral_code}`;
+    const link = `${window.location.origin}/?ref=${referral.referral_code}`;
     const text = `Study smarter on OnlineStudyHub — India's best FREE study platform for Class 6-12! Use my code ${referral.referral_code} to join: ${link}`;
     if (navigator.share) {
       navigator.share({ title: 'Join me on OnlineStudyHub!', text, url: link }).catch(() => {});
@@ -259,7 +259,7 @@ export default function DashboardPage({ user, onOpenLogin, onUpdateUser }) {
 
   function copyReferralLink() {
     if (!referral) return;
-    const link = `https://www.onlinestudyhub.com/?ref=${referral.referral_code}`;
+    const link = `${window.location.origin}/?ref=${referral.referral_code}`;
     navigator.clipboard.writeText(link).then(() => {
       setRefCopied(true);
       setTimeout(() => setRefCopied(false), 2500);

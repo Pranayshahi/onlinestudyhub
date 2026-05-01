@@ -136,7 +136,12 @@ function NotesPanel({ classId, subjectId, topicId, subjectColor }) {
               boxSizing: 'border-box', transition: 'border-color .2s',
             }}
             onFocus={e => { e.target.style.borderColor = 'var(--sc)'; }}
-            onBlur={e => { e.target.style.borderColor = '#e5e7eb'; }}
+            onBlur={e => {
+              e.target.style.borderColor = '#e5e7eb';
+              clearTimeout(timerRef.current);
+              try { localStorage.setItem(storageKey, note); } catch {}
+              setSaved(true);
+            }}
           />
           <div style={{ display: 'flex', justifyContent: 'space-between', marginTop: '.45rem' }}>
             <span style={{ fontSize: '.75rem', color: saved ? (note.length > 0 ? '#059669' : 'transparent') : '#9ca3af', fontWeight: 600, transition: 'color .3s' }}>
@@ -455,7 +460,7 @@ export default function TopicPage({ user, onOpenLogin }) {
                       setShowFlashcards(true);
                     } catch (e) {
                       setAiError('AI unavailable — using Q&A cards instead');
-                      setShowFlashcards(true);
+                      if (topic.qa?.length) setShowFlashcards(true);
                     } finally {
                       setAiLoading(false);
                     }

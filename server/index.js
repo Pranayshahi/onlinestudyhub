@@ -195,7 +195,14 @@ app.post('/api/auth/student/register', async (req, res) => {
     });
 
     if (refCode) {
-      await Student.findOneAndUpdate({ referral_code: refCode }, { $inc: { referral_count: 1 } });
+      const referrer = await Student.findOneAndUpdate(
+        { referral_code: refCode },
+        { $inc: { referral_count: 1 } },
+        { new: false }
+      );
+      if (!referrer) {
+        await Student.findByIdAndUpdate(student._id, { referred_by: null });
+      }
     }
 
     const token = jwt.sign({ id: student._id.toString(), email, name, role: 'student' }, JWT_SECRET, { expiresIn: '30d' });
@@ -1187,7 +1194,7 @@ Exam date: ${examDate}
 Today: ${today}
 Days available: ${planDays}
 Study hours per day: ${hours}
-Weak topics to prioritize: ${weakList.length ? weakList.join(', ') : 'not specified'}
+Weak topics to prioritize: ${weakList.length ? weakList.map(t => String(t).replace(/[`"\\]/g, '').slice(0, 80)).join(', ') : 'not specified'}
 
 Rules:
 - Start with weakest topics (first 40% of days)
@@ -1303,7 +1310,7 @@ Respond with ONLY valid JSON, no markdown, no explanation:
       else return res.status(502).json({ error: 'AI returned invalid format' });
     }
 
-    const cards = Array.isArray(parsed?.cards) ? parsed.cards.filter(c => c.q && c.a) : [];
+    const cards = Array.isArray(parsed?.cards) ? parsed.cards.filter(c => c.q?.trim() && c.a?.trim()) : [];
     if (!cards.length) return res.status(502).json({ error: 'No cards generated' });
 
     res.json({ cards });

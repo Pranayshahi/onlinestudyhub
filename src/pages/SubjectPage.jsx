@@ -126,7 +126,7 @@ function downloadCertificate({ name, subjectLabel, classLabel, classId, topicCou
 
   // Date + Cert ID
   const dateStr = new Date().toLocaleDateString('en-IN', { day: 'numeric', month: 'long', year: 'numeric' });
-  const certId = `OSH-${(classId||'').replace('class-','')}${(subjectLabel||'').replace(/\s/g,'').slice(0,4).toUpperCase()}-${Date.now().toString(36).toUpperCase().slice(-5)}`;
+  const certId = `OSH-${(classId||'').replace('class-','')}${(subjectLabel||'').replace(/\s/g,'').slice(0,4).toUpperCase()}-${crypto.randomUUID().replace(/-/g,'').slice(0,7).toUpperCase()}`;
   ctx.fillStyle = '#9ca3af'; ctx.font = '14px Arial'; ctx.textAlign = 'center';
   ctx.fillText(`Date: ${dateStr}   ·   Certificate ID: ${certId}`, W / 2, 580);
 
@@ -151,7 +151,7 @@ function downloadCertificate({ name, subjectLabel, classLabel, classId, topicCou
   a.click();
 }
 
-export default function SubjectPage() {
+export default function SubjectPage({ user }) {
   const { classId, subjectId } = useParams();
   const [search, setSearch] = useState('');
   const { isDone, countDone } = useProgress();
@@ -362,9 +362,8 @@ export default function SubjectPage() {
             <div style={{ display: 'flex', gap: '1rem', justifyContent: 'center', flexWrap: 'wrap' }}>
               <button
                 onClick={() => {
-                  const userData = (() => { try { return JSON.parse(localStorage.getItem('osh_user') || 'null'); } catch { return null; } })();
                   downloadCertificate({
-                    name: userData?.name || 'Student',
+                    name: user?.name || 'Student',
                     subjectLabel: meta.label || subjectId,
                     classLabel: classData.label,
                     classId,
