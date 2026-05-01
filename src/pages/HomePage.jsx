@@ -268,13 +268,13 @@ export default function HomePage() {
           {/* Left */}
           <div className="hero-text">
             {/* Eyebrow — signals who this is for immediately */}
-            <div className="hero-eyebrow">
+            <div className="hero-eyebrow" style={{ flexWrap: 'wrap', lineHeight: 1.4, borderRadius: 16 }}>
               <span className="hero-eyebrow-dot" />
-              100% Free &nbsp;·&nbsp; Class 6-12 &nbsp;·&nbsp; JEE &nbsp;·&nbsp; NEET
+              100% Free <span style={{opacity:0.5}}>·</span> Class 6-12 <span style={{opacity:0.5}}>·</span> JEE <span style={{opacity:0.5}}>·</span> NEET
             </div>
 
             {/* H1 — clear outcome in 2 seconds */}
-            <h1 style={{ fontSize: 'clamp(2rem,5vw,3.4rem)', fontWeight: 900, lineHeight: 1.13, marginBottom: '1rem' }}>
+            <h1 style={{ fontSize: 'clamp(1.75rem, 8vw, 3.4rem)', fontWeight: 900, lineHeight: 1.13, marginBottom: '1rem', wordBreak: 'break-word' }}>
               Crack JEE/NEET Faster<br />
               with <span className="accent">AI-Powered</span><br />
               Study Assistant 🚀
@@ -495,15 +495,37 @@ export default function HomePage() {
             <p className="section-sub">Full CBSE curriculum — Class 6 to 12 plus JEE &amp; NEET</p>
           </div>
           <div className="classes-grid">
-            {classes.map(cls => (
-              <Link to={`/class/${cls.id}`} key={cls.id} style={{ textDecoration: 'none' }}>
-                <div className="class-card">
-                  <div className="class-card-icon">{cls.emoji}</div>
-                  <div className="class-card-title">{cls.label}</div>
-                  <div className="class-card-sub">{cls.board}</div>
-                </div>
-              </Link>
-            ))}
+            {classes.map(cls => {
+              const num = cls.id.replace('class-', '');
+              const badgeColors = {
+                '6':  { bg: '#dcfce7', color: '#16a34a' },
+                '7':  { bg: '#dbeafe', color: '#1d4ed8' },
+                '8':  { bg: '#fef9c3', color: '#a16207' },
+                '9':  { bg: '#ffedd5', color: '#c2410c' },
+                '10': { bg: '#fce7f3', color: '#be185d' },
+                '11': { bg: '#ede9fe', color: '#7c3aed' },
+                '12': { bg: '#e0e7ff', color: '#4338ca' },
+              };
+              const bc = badgeColors[num];
+              return (
+                <Link to={`/class/${cls.id}`} key={cls.id} style={{ textDecoration: 'none' }}>
+                  <div className="class-card">
+                    <div className="class-card-icon">
+                      {bc ? (
+                        <span style={{
+                          display: 'inline-flex', alignItems: 'center', justifyContent: 'center',
+                          width: 48, height: 48, borderRadius: 14,
+                          background: bc.bg, color: bc.color,
+                          fontFamily: 'Nunito', fontWeight: 900, fontSize: '1.35rem',
+                        }}>{num}</span>
+                      ) : cls.emoji}
+                    </div>
+                    <div className="class-card-title">{cls.label}</div>
+                    <div className="class-card-sub">{cls.board}</div>
+                  </div>
+                </Link>
+              );
+            })}
           </div>
         </div>
       </section>
