@@ -3470,7 +3470,64 @@ html[data-theme="dark"] .search-summary {
   margin: 2.5rem 0;
 }
 .topic-media-header {
-  margin-bottom: 1.25rem;
+  margin-bottom: 1rem;
+}
+
+/* ── Learning Resources Tabs ── */
+.media-tabs {
+  display: flex;
+  gap: .5rem;
+  margin-bottom: 1.5rem;
+  border-bottom: 2px solid #e5e7eb;
+  padding-bottom: 0;
+}
+.media-tab {
+  display: inline-flex;
+  align-items: center;
+  gap: .4rem;
+  padding: .6rem 1.25rem;
+  font-size: .9rem;
+  font-weight: 700;
+  font-family: 'Nunito', sans-serif;
+  color: #6b7280;
+  background: transparent;
+  border: none;
+  border-bottom: 3px solid transparent;
+  margin-bottom: -2px;
+  cursor: pointer;
+  border-radius: 8px 8px 0 0;
+  transition: color .2s, border-color .2s, background .2s;
+}
+.media-tab:hover {
+  color: #4f46e5;
+  background: #f5f3ff;
+}
+.media-tab.active {
+  color: #4f46e5;
+  border-bottom-color: #4f46e5;
+  background: #eef2ff;
+}
+.media-tab-tooltip-anchor {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: #e5e7eb;
+  color: #6b7280;
+  font-size: .65rem;
+  font-weight: 800;
+  cursor: help;
+  transition: background .15s, color .15s;
+  position: relative;
+}
+.media-tab-tooltip-anchor:hover {
+  background: #4f46e5;
+  color: #fff;
+}
+.media-tab-content {
+  padding-top: .25rem;
 }
 .topic-media-sub {
   font-size: 0.85rem;

@@ -35,10 +35,10 @@ setInterval(() => {
 const { chunkText, retrieveChunks } = require('./rag');
 const { moderateInput, SAFETY_SYSTEM_ADDENDUM } = require('./moderation');
 
-// Multer — store upload in memory (max 10 MB)
+// Multer — store upload in memory (max 30 MB)
 const upload = multer({
   storage: multer.memoryStorage(),
-  limits: { fileSize: 10 * 1024 * 1024 },
+  limits: { fileSize: 30 * 1024 * 1024 },
   fileFilter: (req, file, cb) => {
     const allowed = [
       'application/pdf',
@@ -68,7 +68,7 @@ app.use(cors({
   },
   credentials: true,
 }));
-app.use(express.json({ limit: '20mb' }));
+app.use(express.json({ limit: '50mb' }));
 
 // Ensure DB is connected before every request (safe for serverless)
 app.use(async (req, res, next) => {

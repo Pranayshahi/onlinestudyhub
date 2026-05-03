@@ -302,35 +302,71 @@ function TeacherResourceCard({ item, res, isBestRated, onOpen, fetching }) {
   );
 }
 
-// ── Login Gate Banner ─────────────────────────────────────────────
-function LoginGateBanner({ onOpenLogin }) {
+// ── Self Learning Tab Content ─────────────────────────────────────
+function SelfLearningContent() {
   return (
-    <section className="topic-media-section">
-      <div className="topic-media-header">
-        <h2 className="topic-section-title" style={{ marginBottom: 0 }}>📚 Learning Resources</h2>
-        <p className="topic-media-sub">Videos, audio, notes, quizzes and more — uploaded by our teachers</p>
+    <div>
+      <p style={{ color: '#6b7280', fontSize: '.9rem', marginBottom: '1.5rem', lineHeight: 1.6 }}>
+        Explore these resource types at your own pace — no login needed.
+      </p>
+      <div className="teacher-resource-cards" style={{ flexWrap: 'wrap' }}>
+        {RESOURCES.map(res => (
+          <div
+            key={res.type}
+            className="teacher-resource-card"
+            style={{ '--trc': res.color, '--trb': res.bg, '--trbo': res.border, opacity: 0.85 }}
+          >
+            <div className="teacher-resource-top">
+              <span className="teacher-resource-icon">{res.icon}</span>
+              <div className="teacher-resource-info">
+                <div className="teacher-resource-title">{res.label}</div>
+                <div className="teacher-resource-type">Self-study resource</div>
+              </div>
+            </div>
+            <div style={{
+              marginTop: '1rem',
+              background: res.bg,
+              border: `1px dashed ${res.border}`,
+              borderRadius: 10,
+              padding: '.75rem 1rem',
+              fontSize: '.82rem',
+              color: res.color,
+              textAlign: 'center',
+              fontWeight: 600,
+            }}>
+              Coming soon — study independently
+            </div>
+          </div>
+        ))}
       </div>
-      <div className="media-login-gate">
-        <div className="media-login-gate-icons">
-          {RESOURCES.map(r => (
-            <span key={r.type} className="media-login-gate-icon" style={{ background: r.bg, color: r.color }}>{r.icon}</span>
-          ))}
-        </div>
-        <h3 className="media-login-gate-title">Login to access learning resources</h3>
-        <p className="media-login-gate-desc">
-          Sign in to unlock video lessons, audio overviews, study notes, practice quizzes, and infographics uploaded by our expert teachers.
-        </p>
-        <button className="media-login-gate-btn" onClick={onOpenLogin}>
-          🔐 Login / Sign Up — It's Free
-        </button>
-        <p className="media-login-gate-note">Already have an account? Click above to sign in instantly.</p>
+    </div>
+  );
+}
+
+// ── By Mentor Login Gate ──────────────────────────────────────────
+function MentorLoginGate({ onOpenLogin }) {
+  return (
+    <div className="media-login-gate">
+      <div className="media-login-gate-icons">
+        {RESOURCES.map(r => (
+          <span key={r.type} className="media-login-gate-icon" style={{ background: r.bg, color: r.color }}>{r.icon}</span>
+        ))}
       </div>
-    </section>
+      <h3 className="media-login-gate-title">Login to access mentor resources</h3>
+      <p className="media-login-gate-desc">
+        Sign in to unlock video lessons, audio overviews, study notes, practice quizzes, and infographics uploaded by our expert teachers.
+      </p>
+      <button className="media-login-gate-btn" onClick={onOpenLogin}>
+        🔐 Login / Sign Up — It's Free
+      </button>
+      <p className="media-login-gate-note">Already have an account? Click above to sign in instantly.</p>
+    </div>
   );
 }
 
 // ── Main TopicMediaSection ────────────────────────────────────────
 export default function TopicMediaSection({ classId, subjectId, topicId, user, onOpenLogin }) {
+  const [activeTab, setActiveTab] = useState('self');
   const [items, setItems] = useState([]);
   const [loading, setLoading] = useState(true);
   const [activeModal, setActiveModal] = useState(null);
@@ -339,62 +375,13 @@ export default function TopicMediaSection({ classId, subjectId, topicId, user, o
   const [filterTeacher, setFilterTeacher] = useState('all');
 
   useEffect(() => {
-    if (!user) { setLoading(false); return; }
+    if (activeTab !== 'mentor' || !user) { setLoading(false); return; }
     setLoading(true);
     api(`/media/${classId}/${subjectId}/${topicId}`)
       .then(data => setItems(Array.isArray(data) ? data : []))
       .catch(() => setItems([]))
       .finally(() => setLoading(false));
-  }, [classId, subjectId, topicId, user]);
-
-  // Not logged in → show gate
-  if (!user) return <LoginGateBanner onOpenLogin={onOpenLogin} />;
-
-  if (loading) return null;
-
-  // No content yet
-  if (!items.length) {
-    return (
-      <section className="topic-media-section">
-        <div className="topic-media-header">
-          <h2 className="topic-section-title" style={{ marginBottom: 0 }}>📚 Learning Resources</h2>
-          <p className="topic-media-sub">No content uploaded for this topic yet — check back soon!</p>
-        </div>
-        <div style={{ background: '#f9fafb', border: '2px dashed #e5e7eb', borderRadius: 16, padding: '2.5rem', textAlign: 'center', color: '#9ca3af' }}>
-          <div style={{ fontSize: '2.5rem', marginBottom: '.75rem' }}>📭</div>
-          <div style={{ fontWeight: 600, marginBottom: '.25rem' }}>No resources yet</div>
-          <div style={{ fontSize: '.85rem' }}>Teachers will upload videos, notes, and quizzes soon.</div>
-        </div>
-      </section>
-    );
-  }
-
-  // Gather unique teachers across all items
-  const teacherMap = {};
-  items.forEach(item => {
-    const t = item.uploadedBy;
-    if (t?._id && !teacherMap[t._id]) teacherMap[t._id] = t;
-  });
-  const teachers = Object.values(teacherMap);
-
-  // Filter items by selected teacher
-  const visibleItems = filterTeacher === 'all'
-    ? items
-    : items.filter(item => String(item.uploadedBy?._id) === filterTeacher);
-
-  // Group visible items by type
-  const byType = {};
-  visibleItems.forEach(item => {
-    if (!byType[item.type]) byType[item.type] = [];
-    byType[item.type].push(item);
-  });
-
-  // Best-rated item per type (highest teacher rating)
-  const bestRatedId = {};
-  Object.entries(byType).forEach(([type, typeItems]) => {
-    const best = typeItems.reduce((a, b) => (b.uploadedBy?.rating ?? 0) > (a.uploadedBy?.rating ?? 0) ? b : a, typeItems[0]);
-    bestRatedId[type] = best._id;
-  });
+  }, [classId, subjectId, topicId, user, activeTab]);
 
   async function openModal(item, type) {
     if (type === 'quiz' || type === 'video') {
@@ -417,75 +404,146 @@ export default function TopicMediaSection({ classId, subjectId, topicId, user, o
 
   const closeModal = () => { setActiveModal(null); setActiveItem(null); };
 
-  // Ordered resource types that have content
-  const activeTypes = RESOURCES.filter(r => byType[r.type]?.length > 0);
-  const emptyTypes = RESOURCES.filter(r => !byType[r.type]?.length);
+  // Mentor tab content when logged in
+  function renderMentorContent() {
+    if (loading) return null;
+
+    if (!items.length) {
+      return (
+        <div style={{ background: '#f9fafb', border: '2px dashed #e5e7eb', borderRadius: 16, padding: '2.5rem', textAlign: 'center', color: '#9ca3af' }}>
+          <div style={{ fontSize: '2.5rem', marginBottom: '.75rem' }}>📭</div>
+          <div style={{ fontWeight: 600, marginBottom: '.25rem' }}>No resources yet</div>
+          <div style={{ fontSize: '.85rem' }}>Teachers will upload videos, notes, and quizzes soon.</div>
+        </div>
+      );
+    }
+
+    const teacherMap = {};
+    items.forEach(item => {
+      const t = item.uploadedBy;
+      if (t?._id && !teacherMap[t._id]) teacherMap[t._id] = t;
+    });
+    const teachers = Object.values(teacherMap);
+
+    const visibleItems = filterTeacher === 'all'
+      ? items
+      : items.filter(item => String(item.uploadedBy?._id) === filterTeacher);
+
+    const byType = {};
+    visibleItems.forEach(item => {
+      if (!byType[item.type]) byType[item.type] = [];
+      byType[item.type].push(item);
+    });
+
+    const bestRatedId = {};
+    Object.entries(byType).forEach(([type, typeItems]) => {
+      const best = typeItems.reduce((a, b) => (b.uploadedBy?.rating ?? 0) > (a.uploadedBy?.rating ?? 0) ? b : a, typeItems[0]);
+      bestRatedId[type] = best._id;
+    });
+
+    const activeTypes = RESOURCES.filter(r => byType[r.type]?.length > 0);
+    const emptyTypes = RESOURCES.filter(r => !byType[r.type]?.length);
+
+    return (
+      <>
+        <p style={{ color: '#6b7280', fontSize: '.9rem', marginBottom: '1.25rem', lineHeight: 1.6 }}>
+          {items.length} resource{items.length !== 1 ? 's' : ''} from {teachers.length} teacher{teachers.length !== 1 ? 's' : ''}
+        </p>
+
+        {teachers.length > 1 && (
+          <div className="teacher-filter-bar">
+            <span className="teacher-filter-label">Filter by teacher:</span>
+            <div className="teacher-filter-pills">
+              <button
+                className={`teacher-filter-pill ${filterTeacher === 'all' ? 'active' : ''}`}
+                onClick={() => setFilterTeacher('all')}
+              >
+                All Teachers
+              </button>
+              {teachers.map(t => (
+                <button
+                  key={t._id}
+                  className={`teacher-filter-pill ${filterTeacher === String(t._id) ? 'active' : ''}`}
+                  onClick={() => setFilterTeacher(String(t._id))}
+                >
+                  {t.avatar} {t.name}
+                </button>
+              ))}
+            </div>
+          </div>
+        )}
+
+        {activeTypes.map(res => (
+          <div key={res.type} className="teacher-resource-type-section">
+            <div className="teacher-resource-type-header" style={{ color: res.color }}>
+              {res.icon} {res.label}
+              <span className="teacher-resource-type-count">{byType[res.type].length} version{byType[res.type].length > 1 ? 's' : ''}</span>
+            </div>
+            <div className="teacher-resource-cards">
+              {byType[res.type].map(item => (
+                <TeacherResourceCard
+                  key={item._id}
+                  item={item}
+                  res={res}
+                  isBestRated={byType[res.type].length > 1 && item._id === bestRatedId[res.type]}
+                  onOpen={openModal}
+                  fetching={fetchingId === item._id}
+                />
+              ))}
+            </div>
+          </div>
+        ))}
+
+        {emptyTypes.length > 0 && (
+          <div className="teacher-resource-coming-soon">
+            {emptyTypes.map(res => (
+              <div key={res.type} className="teacher-resource-soon-pill" style={{ background: res.bg, color: res.color, border: `1px solid ${res.border}` }}>
+                {res.icon} {res.label} — Coming Soon
+              </div>
+            ))}
+          </div>
+        )}
+      </>
+    );
+  }
 
   return (
     <section className="topic-media-section">
+      {/* Header */}
       <div className="topic-media-header">
         <h2 className="topic-section-title" style={{ marginBottom: 0 }}>📚 Learning Resources</h2>
-        <p className="topic-media-sub">
-          {items.length} resource{items.length !== 1 ? 's' : ''} from {teachers.length} teacher{teachers.length !== 1 ? 's' : ''}
-        </p>
       </div>
 
-      {/* Teacher filter */}
-      {teachers.length > 1 && (
-        <div className="teacher-filter-bar">
-          <span className="teacher-filter-label">Filter by teacher:</span>
-          <div className="teacher-filter-pills">
-            <button
-              className={`teacher-filter-pill ${filterTeacher === 'all' ? 'active' : ''}`}
-              onClick={() => setFilterTeacher('all')}
-            >
-              All Teachers
-            </button>
-            {teachers.map(t => (
-              <button
-                key={t._id}
-                className={`teacher-filter-pill ${filterTeacher === String(t._id) ? 'active' : ''}`}
-                onClick={() => setFilterTeacher(String(t._id))}
-              >
-                {t.avatar} {t.name}
-              </button>
-            ))}
-          </div>
-        </div>
-      )}
+      {/* Tabs */}
+      <div className="media-tabs">
+        <button
+          className={`media-tab ${activeTab === 'self' ? 'active' : ''}`}
+          onClick={() => setActiveTab('self')}
+        >
+          📖 Self Learning
+        </button>
+        <button
+          className={`media-tab ${activeTab === 'mentor' ? 'active' : ''}`}
+          onClick={() => setActiveTab('mentor')}
+        >
+          👨‍🏫 By Mentor
+          <span
+            className="media-tab-tooltip-anchor"
+            title="Leave it on us, don't worry."
+            aria-label="Leave it on us, don't worry."
+          >
+            ℹ
+          </span>
+        </button>
+      </div>
 
-      {/* Resources by type */}
-      {activeTypes.map(res => (
-        <div key={res.type} className="teacher-resource-type-section">
-          <div className="teacher-resource-type-header" style={{ color: res.color }}>
-            {res.icon} {res.label}
-            <span className="teacher-resource-type-count">{byType[res.type].length} version{byType[res.type].length > 1 ? 's' : ''}</span>
-          </div>
-          <div className="teacher-resource-cards">
-            {byType[res.type].map(item => (
-              <TeacherResourceCard
-                key={item._id}
-                item={item}
-                res={res}
-                isBestRated={byType[res.type].length > 1 && item._id === bestRatedId[res.type]}
-                onOpen={openModal}
-                fetching={fetchingId === item._id}
-              />
-            ))}
-          </div>
-        </div>
-      ))}
-
-      {/* Coming soon types */}
-      {emptyTypes.length > 0 && (
-        <div className="teacher-resource-coming-soon">
-          {emptyTypes.map(res => (
-            <div key={res.type} className="teacher-resource-soon-pill" style={{ background: res.bg, color: res.color, border: `1px solid ${res.border}` }}>
-              {res.icon} {res.label} — Coming Soon
-            </div>
-          ))}
-        </div>
-      )}
+      {/* Tab content */}
+      <div className="media-tab-content">
+        {activeTab === 'self' && <SelfLearningContent />}
+        {activeTab === 'mentor' && (
+          user ? renderMentorContent() : <MentorLoginGate onOpenLogin={onOpenLogin} />
+        )}
+      </div>
 
       {activeModal === 'audio'       && activeItem && <AudioModal       item={activeItem} onClose={closeModal} />}
       {activeModal === 'video'       && activeItem && <VideoModal       item={activeItem} onClose={closeModal} />}

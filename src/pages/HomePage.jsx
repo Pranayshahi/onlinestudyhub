@@ -10,15 +10,15 @@ const SUBJECTS = [
     desc: "Algebra · Calculus · Geometry",
     color: "#4f46e5",
     bg: "#eef2ff",
-    link: "/class/class-10",
+    link: "/class/class-10/subject/mathematics",
   },
   {
-    icon: "⚛️",
+    icon: "⚡",
     name: "Physics",
     desc: "Mechanics · Electricity · Optics",
     color: "#7c3aed",
     bg: "#f5f3ff",
-    link: "/class/class-11",
+    link: "/class/class-11/subject/physics",
   },
   {
     icon: "🧪",
@@ -26,23 +26,23 @@ const SUBJECTS = [
     desc: "Organic · Inorganic · Physical",
     color: "#059669",
     bg: "#ecfdf5",
-    link: "/class/class-11",
+    link: "/class/class-11/subject/chemistry",
   },
   {
-    icon: "🧬",
+    icon: "🌿",
     name: "Biology",
     desc: "Genetics · Ecology · Physiology",
     color: "#0891b2",
     bg: "#ecfeff",
-    link: "/class/class-11",
+    link: "/class/class-11/subject/biology",
   },
   {
-    icon: "📖",
-    name: "English",
-    desc: "Grammar · Literature · Writing",
+    icon: "🔬",
+    name: "Science",
+    desc: "Physics · Chemistry · Biology Basics",
     color: "#d97706",
     bg: "#fffbeb",
-    link: "/class/class-9",
+    link: "/class/class-8/subject/science",
   },
   {
     icon: "🌍",
@@ -50,7 +50,7 @@ const SUBJECTS = [
     desc: "History · Geography · Civics",
     color: "#dc2626",
     bg: "#fef2f2",
-    link: "/class/class-8",
+    link: "/class/class-9/subject/history",
   },
 ];
 
@@ -1707,134 +1707,10 @@ export default function HomePage({ onOpenAI }) {
         </div>
       </section>
 
-      {/* ── LIVE GROUP CLASSES ──────────────────────────────────── */}
-      <section
-        className="section"
-        style={{
-          background: "linear-gradient(135deg, #1e1b4b 0%, #4f46e5 100%)",
-        }}
-      >
-        <div className="container">
-          <div
-            style={{
-              display: "flex",
-              gap: "3rem",
-              alignItems: "center",
-              flexWrap: "wrap",
-            }}
-          >
-            <div style={{ flex: 1, minWidth: 280 }}>
-              <div
-                style={{
-                  display: "inline-flex",
-                  background: "rgba(255,255,255,.15)",
-                  border: "1px solid rgba(255,255,255,.25)",
-                  padding: ".3rem .9rem",
-                  borderRadius: 999,
-                  fontSize: ".75rem",
-                  fontWeight: 700,
-                  color: "#fff",
-                  marginBottom: "1rem",
-                  textTransform: "uppercase",
-                  letterSpacing: ".05em",
-                }}
-              >
-                🎥 New Feature
-              </div>
-              <h2
-                style={{
-                  fontFamily: "Nunito",
-                  fontWeight: 900,
-                  fontSize: "clamp(1.6rem,3.5vw,2.4rem)",
-                  color: "#fff",
-                  lineHeight: 1.2,
-                  marginBottom: ".75rem",
-                }}
-              >
-                Live Group Classes.
-                <br />
-                Expert teachers. Lower cost.
-              </h2>
-              <p
-                style={{
-                  color: "rgba(255,255,255,.75)",
-                  fontSize: "1rem",
-                  lineHeight: 1.65,
-                  marginBottom: "1.5rem",
-                  maxWidth: 480,
-                }}
-              >
-                Join live sessions with 10–20 students. Real-time Q&A,
-                interactive teaching, and a fraction of the cost of 1-on-1
-                tutoring.
-              </p>
-              <div style={{ display: "flex", gap: "1rem", flexWrap: "wrap" }}>
-                <Link
-                  to="/group-classes"
-                  className="btn btn-primary"
-                  style={{
-                    padding: ".85rem 2rem",
-                    fontSize: "1rem",
-                    background: "#fff",
-                    color: "#4f46e5",
-                    fontWeight: 800,
-                    border: "none",
-                  }}
-                >
-                  🔴 See Live Classes →
-                </Link>
-              </div>
-            </div>
-            <div
-              style={{
-                flex: "0 0 auto",
-                display: "flex",
-                gap: "1rem",
-                flexWrap: "wrap",
-              }}
-            >
-              {[
-                ["10–20 Students", "per live session"],
-                ["₹0", "many free sessions"],
-                ["Live Q&A", "ask in real-time"],
-                ["Any Device", "no app needed"],
-              ].map(([big, small]) => (
-                <div
-                  key={big}
-                  style={{
-                    background: "rgba(255,255,255,.1)",
-                    border: "1px solid rgba(255,255,255,.2)",
-                    borderRadius: 14,
-                    padding: "1rem 1.25rem",
-                    textAlign: "center",
-                    minWidth: 110,
-                  }}
-                >
-                  <div
-                    style={{
-                      fontFamily: "Nunito",
-                      fontWeight: 900,
-                      fontSize: "1.15rem",
-                      color: "#fff",
-                      marginBottom: ".2rem",
-                    }}
-                  >
-                    {big}
-                  </div>
-                  <div
-                    style={{
-                      fontSize: ".72rem",
-                      color: "rgba(255,255,255,.65)",
-                    }}
-                  >
-                    {small}
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
-      </section>
+      {/* ── LIVE GROUP CLASSES — hidden until feature is ready ──── */}
+      {/* TODO: uncomment when live classes are launched
+      <section ...> ... </section>
+      */}
 
       {/* ── TEACHER CTA ──────────────────────────────────────────── */}
       <section className="teacher-cta-section">

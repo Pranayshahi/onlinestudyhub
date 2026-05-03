@@ -6,7 +6,7 @@ import { api } from '../../utils/api';
 const RESOURCE_TYPES = [
   { type: 'audio',       label: 'Audio Overview',  icon: '🎧', accept: 'audio/*',       maxMB: 15, color: '#7c3aed', bg: '#f5f3ff' },
   { type: 'video',       label: 'Video Lesson',    icon: '🎬', accept: null,             maxMB: null, color: '#dc2626', bg: '#fef2f2' },
-  { type: 'report',      label: 'Study Notes',     icon: '📄', accept: '.pdf,application/pdf', maxMB: 15, color: '#0369a1', bg: '#f0f9ff' },
+  { type: 'report',      label: 'Study Notes',     icon: '📄', accept: '.pdf,application/pdf', maxMB: 30, color: '#0369a1', bg: '#f0f9ff' },
   { type: 'quiz',        label: 'Quiz',            icon: '🧠', accept: null,             maxMB: null, color: '#059669', bg: '#ecfdf5' },
   { type: 'infographic', label: 'Infographic',     icon: '🖼️', accept: 'image/*',        maxMB: 8,  color: '#d97706', bg: '#fffbeb' },
 ];

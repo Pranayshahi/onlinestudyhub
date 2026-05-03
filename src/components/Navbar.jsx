@@ -236,18 +236,6 @@ export default function Navbar({
               </div>
             </div>
 
-            {/* ── Live Classes ── */}
-            <div className="nav-item">
-              <Link
-                to="/group-classes"
-                className="nav-link"
-                onClick={close}
-                style={{ textDecoration: "none" }}
-              >
-                🎥 Live Classes
-              </Link>
-            </div>
-
             {/* ── Teachers dropdown ── */}
             <div
               className={`nav-item ${mobileOpen && mobileExpanded === "teachers" ? "mobile-expanded" : ""}`}
@@ -297,13 +285,6 @@ export default function Navbar({
 
             {/* ── Mobile-only bottom links ── */}
             <div className="nav-mobile-bottom">
-              <Link
-                to="/group-classes"
-                className="nav-mobile-action-link"
-                onClick={close}
-              >
-                <span>🎥</span> Live Group Classes
-              </Link>
               <Link
                 to="/teacher-portal"
                 className="nav-mobile-action-link"
