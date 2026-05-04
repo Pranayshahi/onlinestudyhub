@@ -3,6 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { NAV_CLASSES, CURRICULUM } from "../data/curriculum";
 import { TEACHERS } from "../data/teachers";
 import NotificationBell from "./NotificationBell";
+import { useLang } from "../context/LanguageContext";
 
 function getInitials(name) {
   if (!name) return "?";
@@ -72,6 +73,7 @@ export default function Navbar({
   const [searchQuery, setSearchQuery] = useState("");
   const searchInputRef = useRef(null);
   const navigate = useNavigate();
+  const { lang, setLang, t } = useLang();
 
   const close = () => {
     setMobileOpen(false);
@@ -124,7 +126,7 @@ export default function Navbar({
                 className="nav-link"
                 onClick={() => (mobileOpen ? toggleMobile("classes") : close())}
               >
-                Classes <ChevronDown />
+                {t('nav_classes')} <ChevronDown />
               </Link>
               <div className="dropdown dropdown-3col">
                 {/* Col 1 — Middle School */}
@@ -246,7 +248,7 @@ export default function Navbar({
                 onClick={() => mobileOpen && toggleMobile("teachers")}
                 style={{ textDecoration: "none" }}
               >
-                Teachers <ChevronDown />
+                {t('nav_teachers')} <ChevronDown />
               </Link>
               <div className="dropdown">
                 <div className="dropdown-section">
@@ -707,6 +709,18 @@ export default function Navbar({
               </button>
             )}
           </div>
+
+          {/* Language toggle */}
+          <button
+            className="nav-lang-toggle"
+            onClick={() => setLang(lang === 'en' ? 'hi' : 'en')}
+            aria-label="Toggle language"
+            title={lang === 'en' ? 'हिंदी में बदलें' : 'Switch to English'}
+          >
+            <span className={lang === 'en' ? 'nav-lang-active' : 'nav-lang-inactive'}>EN</span>
+            <span className="nav-lang-sep">|</span>
+            <span className={lang === 'hi' ? 'nav-lang-active' : 'nav-lang-inactive'}>हिं</span>
+          </button>
 
           {/* Dark mode toggle */}
           <button

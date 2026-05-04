@@ -4,6 +4,7 @@ import { HelmetProvider } from "react-helmet-async";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import { NotificationsProvider } from "./context/NotificationsContext";
+import { LanguageProvider } from "./context/LanguageContext";
 import { api } from "./utils/api";
 
 const BOOKING_CACHE_KEY = "osh_booking_status_cache";
@@ -125,6 +126,7 @@ export default function App() {
 
   return (
     <HelmetProvider>
+      <LanguageProvider>
       <NotificationsProvider>
         <div className="app">
           <Navbar
@@ -254,6 +256,7 @@ export default function App() {
           </Suspense>
         </div>
       </NotificationsProvider>
+      </LanguageProvider>
     </HelmetProvider>
   );
 }

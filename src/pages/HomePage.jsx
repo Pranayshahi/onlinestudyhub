@@ -2,56 +2,15 @@ import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { getAllClasses } from "../data/curriculum";
 import SEO from "../components/SEO";
+import { useLang } from "../context/LanguageContext";
 
 const SUBJECTS = [
-  {
-    icon: "📐",
-    name: "Mathematics",
-    desc: "Algebra · Calculus · Geometry",
-    color: "#4f46e5",
-    bg: "#eef2ff",
-    link: "/class/class-10/subject/mathematics",
-  },
-  {
-    icon: "⚡",
-    name: "Physics",
-    desc: "Mechanics · Electricity · Optics",
-    color: "#7c3aed",
-    bg: "#f5f3ff",
-    link: "/class/class-11/subject/physics",
-  },
-  {
-    icon: "🧪",
-    name: "Chemistry",
-    desc: "Organic · Inorganic · Physical",
-    color: "#059669",
-    bg: "#ecfdf5",
-    link: "/class/class-11/subject/chemistry",
-  },
-  {
-    icon: "🌿",
-    name: "Biology",
-    desc: "Genetics · Ecology · Physiology",
-    color: "#0891b2",
-    bg: "#ecfeff",
-    link: "/class/class-11/subject/biology",
-  },
-  {
-    icon: "🔬",
-    name: "Science",
-    desc: "Physics · Chemistry · Biology Basics",
-    color: "#d97706",
-    bg: "#fffbeb",
-    link: "/class/class-8/subject/science",
-  },
-  {
-    icon: "🌍",
-    name: "Social Sci.",
-    desc: "History · Geography · Civics",
-    color: "#dc2626",
-    bg: "#fef2f2",
-    link: "/class/class-9/subject/history",
-  },
+  { icon: "📐", name: "Mathematics", nameKey: "Mathematics", descKey: "subj_maths_desc",   color: "#4f46e5", bg: "#eef2ff", link: "/class/class-10/subject/mathematics" },
+  { icon: "⚡", name: "Physics",     nameKey: "Physics",     descKey: "subj_physics_desc",  color: "#7c3aed", bg: "#f5f3ff", link: "/class/class-11/subject/physics" },
+  { icon: "🧪", name: "Chemistry",   nameKey: "Chemistry",   descKey: "subj_chemistry_desc",color: "#059669", bg: "#ecfdf5", link: "/class/class-11/subject/chemistry" },
+  { icon: "🌿", name: "Biology",     nameKey: "Biology",     descKey: "subj_biology_desc",  color: "#0891b2", bg: "#ecfeff", link: "/class/class-11/subject/biology" },
+  { icon: "🔬", name: "Science",     nameKey: "Science",     descKey: "subj_science_desc",  color: "#d97706", bg: "#fffbeb", link: "/class/class-8/subject/science" },
+  { icon: "🌍", name: "Social Sci.", nameKey: "Social Sci.", descKey: "subj_social_desc",   color: "#dc2626", bg: "#fef2f2", link: "/class/class-9/subject/history" },
 ];
 
 // ── Step illustrations (inline SVG) ────────────────────────────
@@ -414,24 +373,9 @@ function IllustrationBook() {
 }
 
 const HOW_IT_WORKS = [
-  {
-    step: "01",
-    Illustration: IllustrationChoose,
-    title: "Pick your class & subject",
-    desc: "Choose from Class 6–12, JEE or NEET. All CBSE curriculum covered with topic-wise notes.",
-  },
-  {
-    step: "02",
-    Illustration: IllustrationStudy,
-    title: "Study topic-by-topic",
-    desc: "Clear explanations, formulas, diagrams and exam-important Q&A for every topic.",
-  },
-  {
-    step: "03",
-    Illustration: IllustrationBook,
-    title: "Book a 1-on-1 session",
-    desc: "Still confused? Book a live video session with an expert teacher. Doubts cleared instantly.",
-  },
+  { step: "01", Illustration: IllustrationChoose, titleKey: "how_step1_title", descKey: "how_step1_desc" },
+  { step: "02", Illustration: IllustrationStudy,  titleKey: "how_step2_title", descKey: "how_step2_desc" },
+  { step: "03", Illustration: IllustrationBook,   titleKey: "how_step3_title", descKey: "how_step3_desc" },
 ];
 
 const TESTIMONIALS = [
@@ -507,10 +451,10 @@ const TRENDING = [
 ];
 
 const STATS = [
-  { num: "50,000+", label: "Students Learning", icon: "🎓" },
-  { num: "200+", label: "Expert Teachers", icon: "👨‍🏫" },
-  { num: "2,000+", label: "Topics Covered", icon: "📚" },
-  { num: "4.9★", label: "Average Rating", icon: "⭐" },
+  { num: "50,000+", labelKey: "stat_students", icon: "🎓" },
+  { num: "200+",    labelKey: "stat_teachers", icon: "👨‍🏫" },
+  { num: "2,000+",  labelKey: "stat_topics",   icon: "📚" },
+  { num: "4.9★",    labelKey: "stat_rating",   icon: "⭐" },
 ];
 
 function StarRating({ count = 5 }) {
@@ -1030,6 +974,7 @@ export default function HomePage({ onOpenAI }) {
   const navigate = useNavigate();
   const classes = getAllClasses();
   const [searchQ, setSearchQ] = useState("");
+  const { t } = useLang();
 
   function handleSearch(e) {
     e.preventDefault();
@@ -1150,7 +1095,7 @@ export default function HomePage({ onOpenAI }) {
                 style={{ borderRadius: 20, marginBottom: "1.25rem" }}
               >
                 <span className="hero-eyebrow-dot" />
-                100% Free · Class 6-12 · JEE · NEET
+                {t('hero_eyebrow')}
               </div>
 
               {/* H1 */}
@@ -1164,9 +1109,9 @@ export default function HomePage({ onOpenAI }) {
                   letterSpacing: "-1px",
                 }}
               >
-                Unlock Your Academic Destiny
+                {t('hero_h1_line1')}
                 <br />
-                <span className="accent">With AI</span>
+                <span className="accent">{t('hero_h1_accent')}</span>
               </h1>
 
               {/* Subtext */}
@@ -1179,8 +1124,7 @@ export default function HomePage({ onOpenAI }) {
                   maxWidth: 500,
                 }}
               >
-                Instant clarity on every subject. Master JEE, NEET, and more
-                with unparalleled AI guidance.
+                {t('hero_sub')}
               </p>
 
               {/* Feature cards — Gemini glassmorphism style */}
@@ -1200,28 +1144,19 @@ export default function HomePage({ onOpenAI }) {
                     className="fas fa-microscope feature-icon"
                     aria-hidden="true"
                   ></i>
-                  <span>AI Doubt</span>
+                  <span>{t('hero_feature_ai')}</span>
                 </a>
                 <Link to="/classes" className="feature-box topics">
-                  <i
-                    className="fas fa-book-open feature-icon"
-                    aria-hidden="true"
-                  ></i>
-                  <span>Topics</span>
+                  <i className="fas fa-book-open feature-icon" aria-hidden="true"></i>
+                  <span>{t('hero_feature_topics')}</span>
                 </Link>
                 <Link to="/teachers" className="feature-box teachers">
-                  <i
-                    className="fas fa-chalkboard-teacher feature-icon"
-                    aria-hidden="true"
-                  ></i>
-                  <span>Teachers</span>
+                  <i className="fas fa-chalkboard-teacher feature-icon" aria-hidden="true"></i>
+                  <span>{t('hero_feature_teachers')}</span>
                 </Link>
                 <Link to="/classes" className="feature-box certificate">
-                  <i
-                    className="fas fa-shield-alt feature-icon"
-                    aria-hidden="true"
-                  ></i>
-                  <span>Certificate</span>
+                  <i className="fas fa-shield-alt feature-icon" aria-hidden="true"></i>
+                  <span>{t('hero_feature_certificate')}</span>
                 </Link>
               </div>
 
@@ -1238,7 +1173,7 @@ export default function HomePage({ onOpenAI }) {
                     boxShadow: "0 0 20px rgba(249,115,22,0.35)",
                   }}
                 >
-                  Start Learning For Free
+                  {t('hero_cta_primary')}
                 </Link>
                 <Link
                   to="/teachers"
@@ -1253,7 +1188,7 @@ export default function HomePage({ onOpenAI }) {
                     fontWeight: 600,
                   }}
                 >
-                  Book a Free Trial
+                  {t('hero_cta_secondary')}
                 </Link>
               </div>
             </div>
@@ -1324,7 +1259,7 @@ export default function HomePage({ onOpenAI }) {
                   margin: "0 0 .6rem",
                 }}
               >
-                Start Your Journey
+                {t('journey_title')}
               </h2>
               <div
                 style={{
@@ -1372,11 +1307,11 @@ export default function HomePage({ onOpenAI }) {
                       color: "rgba(255,255,255,.5)",
                     }}
                   >
-                    Trusted by{" "}
+                    {t('journey_trust')}{" "}
                     <strong style={{ color: "rgba(255,255,255,.85)" }}>
                       50,000+
                     </strong>{" "}
-                    students across India
+                    {t('journey_trust_suffix')}
                   </div>
                 </div>
               </div>
@@ -1418,7 +1353,7 @@ export default function HomePage({ onOpenAI }) {
                   fontFamily: "Nunito, sans-serif",
                   minWidth: 0,
                 }}
-                placeholder="Search a topic — e.g. Quadratic Equations, Photosynthesis…"
+                placeholder={t('search_placeholder')}
                 value={searchQ}
                 onChange={(e) => setSearchQ(e.target.value)}
               />
@@ -1437,23 +1372,17 @@ export default function HomePage({ onOpenAI }) {
                   flexShrink: 0,
                 }}
               >
-                Search
+                {t('search_btn')}
               </button>
             </form>
 
             {/* Quick-search tags */}
             <div style={{ display: "flex", gap: ".5rem", flexWrap: "wrap" }}>
               {[
-                {
-                  label: "Class 10 Maths",
-                  path: "/class/class-10/subject/mathematics",
-                },
-                { label: "JEE Physics", path: "/class/jee/subject/physics" },
-                { label: "NEET Biology", path: "/class/neet/subject/biology" },
-                {
-                  label: "Class 12 Chemistry",
-                  path: "/class/class-12/subject/chemistry",
-                },
+                { labelKey: "quicktag_maths",   path: "/class/class-10/subject/mathematics" },
+                { labelKey: "quicktag_physics",  path: "/class/class-11/subject/physics" },
+                { labelKey: "quicktag_neet",     path: "/class/neet/subject/biology" },
+                { labelKey: "quicktag_jee",      path: "/class/jee/subject/chemistry" },
               ].map((tag) => (
                 <Link
                   key={tag.label}
@@ -1473,7 +1402,7 @@ export default function HomePage({ onOpenAI }) {
                     alignItems: "center",
                   }}
                 >
-                  {tag.label}
+                  {t(tag.labelKey)}
                 </Link>
               ))}
             </div>
@@ -1486,11 +1415,11 @@ export default function HomePage({ onOpenAI }) {
         <div className="container">
           <div className="stats-trust-grid">
             {STATS.map((s) => (
-              <div key={s.label} className="stats-trust-item">
+              <div key={s.labelKey} className="stats-trust-item">
                 <span className="stats-trust-icon">{s.icon}</span>
                 <div>
                   <div className="stats-trust-num">{s.num}</div>
-                  <div className="stats-trust-label">{s.label}</div>
+                  <div className="stats-trust-label">{t(s.labelKey)}</div>
                 </div>
               </div>
             ))}
@@ -1519,7 +1448,7 @@ export default function HomePage({ onOpenAI }) {
               whiteSpace: "nowrap",
             }}
           >
-            🔥 Trending
+            🔥 {t('trending_title')}
           </div>
           {/* overflow:hidden must wrap ONLY the scrolling track, not the label */}
           <div style={{ flex: 1, overflow: "hidden" }}>
@@ -1543,7 +1472,7 @@ export default function HomePage({ onOpenAI }) {
         <div className="container">
           <div className="section-header">
             <div className="section-eyebrow">Simple Process</div>
-            <h2 className="section-title">Study smarter in 3 steps</h2>
+            <h2 className="section-title">{t('how_title')}</h2>
             <p className="section-sub">
               From confusion to confidence — here's how OnlineStudyHub works
             </p>
@@ -1555,8 +1484,8 @@ export default function HomePage({ onOpenAI }) {
                 <div className="how-step-illustration">
                   <step.Illustration />
                 </div>
-                <h3 className="how-step-title">{step.title}</h3>
-                <p className="how-step-desc">{step.desc}</p>
+                <h3 className="how-step-title">{t(step.titleKey)}</h3>
+                <p className="how-step-desc">{t(step.descKey)}</p>
                 {i < HOW_IT_WORKS.length - 1 && (
                   <div className="how-step-arrow">→</div>
                 )}
@@ -1642,11 +1571,8 @@ export default function HomePage({ onOpenAI }) {
         <div className="container">
           <div className="section-header">
             <div className="section-eyebrow">Subjects</div>
-            <h2 className="section-title">Every subject. Every topic.</h2>
-            <p className="section-sub">
-              From foundational Class 6 topics to advanced JEE &amp; NEET
-              concepts
-            </p>
+            <h2 className="section-title">{t('subjects_title')}</h2>
+            <p className="section-sub">{t('subjects_sub')}</p>
           </div>
           <div className="subjects-new-grid">
             {SUBJECTS.map((s) => (
@@ -1657,7 +1583,7 @@ export default function HomePage({ onOpenAI }) {
                 >
                   <div className="subject-new-icon">{s.icon}</div>
                   <div className="subject-new-name">{s.name}</div>
-                  <div className="subject-new-desc">{s.desc}</div>
+                  <div className="subject-new-desc">{t(s.descKey)}</div>
                   <div className="subject-new-cta">Explore →</div>
                 </div>
               </Link>
@@ -1677,7 +1603,7 @@ export default function HomePage({ onOpenAI }) {
               Student Stories
             </div>
             <h2 className="section-title" style={{ color: "#fff" }}>
-              Real results. Real students.
+              {t('testimonials_title')}
             </h2>
             <p
               className="section-sub"
@@ -1808,7 +1734,7 @@ export default function HomePage({ onOpenAI }) {
                 fontWeight: 800,
               }}
             >
-              Start Learning Free →
+              {t('final_cta_btn')}
             </Link>
             <Link
               to="/exam/jee"

@@ -2813,6 +2813,29 @@ html[data-theme="dark"] .teacher-profile-card .tc-rating-count {
   background: rgba(255, 255, 255, 0.22);
 }
 
+.nav-lang-toggle {
+  background: rgba(255,255,255,.1);
+  border: 1px solid rgba(255,255,255,.2);
+  border-radius: 10px;
+  color: #fff;
+  height: 36px;
+  padding: 0 .65rem;
+  display: flex;
+  align-items: center;
+  gap: .25rem;
+  cursor: pointer;
+  font-family: 'Nunito', sans-serif;
+  font-size: .75rem;
+  font-weight: 800;
+  transition: background .2s;
+  flex-shrink: 0;
+  letter-spacing: .01em;
+}
+.nav-lang-toggle:hover { background: rgba(255,255,255,.2); }
+.nav-lang-active { color: #fff; font-weight: 900; }
+.nav-lang-inactive { color: rgba(255,255,255,.45); font-weight: 600; }
+.nav-lang-sep { color: rgba(255,255,255,.25); font-size: .65rem; }
+
 /* ─── Topic Action Buttons (Share, Mark Done) ─── */
 .topic-action-btn {
   display: inline-flex;
