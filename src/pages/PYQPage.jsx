@@ -47,6 +47,15 @@ function ProModal({ exam, onClose, onPay, paying, payError, user, onOpenLogin })
   );
 }
 
+const HINDI_CACHE_PREFIX = 'pyq_hi_';
+
+function loadHindiCache(id) {
+  try { return JSON.parse(localStorage.getItem(HINDI_CACHE_PREFIX + id) || 'null'); } catch { return null; }
+}
+function saveHindiCache(id, data) {
+  try { localStorage.setItem(HINDI_CACHE_PREFIX + id, JSON.stringify(data)); } catch {}
+}
+
 // ── Question Card ─────────────────────────────────────────────────
 function QuestionCard({ q, qi, exam, isPro, freeLeft, onReveal, revealed, selected, onSelect, onToggleBookmark, bookmarked }) {
   const isRevealed = revealed[q.id];
@@ -54,6 +63,45 @@ function QuestionCard({ q, qi, exam, isPro, freeLeft, onReveal, revealed, select
   const hasAns     = userAns !== undefined;
   const isBookmarked = bookmarked.has(q.id);
   const canReveal  = isPro || freeLeft > 0;
+
+  const [hindiMode,  setHindiMode]  = useState(false);
+  const [hindiData,  setHindiData]  = useState(() => loadHindiCache(q.id));
+  const [translating, setTranslating] = useState(false);
+  const [transErr,   setTransErr]   = useState('');
+
+  const handleHindiToggle = async () => {
+    if (hindiMode) { setHindiMode(false); return; }
+    if (hindiData) { setHindiMode(true); return; }
+    setTranslating(true);
+    setTransErr('');
+    try {
+      // Send question + options + solution (if revealed) for translation
+      const texts = [q.question, ...q.options, q.solution];
+      const res = await fetch('/api/translate', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ texts, targetLang: 'hi' }),
+      });
+      const data = await res.json();
+      if (!res.ok) throw new Error(data.error || 'Translation failed');
+      const parsed = {
+        question: data.translated[0],
+        options:  data.translated.slice(1, 1 + q.options.length),
+        solution: data.translated[1 + q.options.length],
+      };
+      saveHindiCache(q.id, parsed);
+      setHindiData(parsed);
+      setHindiMode(true);
+    } catch (e) {
+      setTransErr(e.message);
+    } finally {
+      setTranslating(false);
+    }
+  };
+
+  const displayQ    = hindiMode && hindiData ? hindiData.question : q.question;
+  const displayOpts = hindiMode && hindiData ? hindiData.options   : q.options;
+  const displaySol  = hindiMode && hindiData ? hindiData.solution  : q.solution;
 
   return (
     <div className={`pyq-card ${isRevealed ? 'pyq-card-revealed' : ''}`} id={`q-${q.id}`}>
@@ -71,6 +119,14 @@ function QuestionCard({ q, qi, exam, isPro, freeLeft, onReveal, revealed, select
         <div className="pyq-card-meta-right">
           <span className="pyq-year-badge">📅 {q.year}</span>
           <button
+            className={`pyq-lang-btn ${hindiMode ? 'active' : ''}`}
+            onClick={handleHindiToggle}
+            disabled={translating}
+            title={hindiMode ? 'Switch to English' : 'हिंदी में पढ़ें'}
+          >
+            {translating ? '⏳' : hindiMode ? 'EN' : 'हिं'}
+          </button>
+          <button
             className={`pyq-bookmark-btn ${isBookmarked ? 'active' : ''}`}
             onClick={() => onToggleBookmark(q.id)}
             title={isBookmarked ? 'Remove bookmark' : 'Bookmark'}
@@ -80,14 +136,17 @@ function QuestionCard({ q, qi, exam, isPro, freeLeft, onReveal, revealed, select
         </div>
       </div>
 
+      {transErr && <div className="pyq-trans-err">⚠️ {transErr}</div>}
+      {hindiMode && <div className="pyq-lang-bar">🇮🇳 हिंदी में</div>}
+
       {/* Question */}
       <div className="pyq-question-text">
-        Q{qi + 1}. {q.question}
+        Q{qi + 1}. {displayQ}
       </div>
 
       {/* Options */}
       <div className="pyq-options-grid">
-        {q.options.map((opt, i) => {
+        {displayOpts.map((opt, i) => {
           let cls = 'pyq-option';
           if (isRevealed) {
             if (i === q.correct) cls += ' pyq-option-correct';
@@ -112,8 +171,8 @@ function QuestionCard({ q, qi, exam, isPro, freeLeft, onReveal, revealed, select
       {/* Solution */}
       {isRevealed && (
         <div className="pyq-solution">
-          <div className="pyq-solution-label">✅ Step-by-Step Solution</div>
-          <div className="pyq-solution-text">{q.solution}</div>
+          <div className="pyq-solution-label">✅ {hindiMode ? 'चरण-दर-चरण समाधान' : 'Step-by-Step Solution'}</div>
+          <div className="pyq-solution-text">{displaySol}</div>
         </div>
       )}
 

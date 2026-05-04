@@ -1677,6 +1677,62 @@ app.delete('/api/group-classes/:id', requireAuth, async (req, res) => {
   } catch (e) { res.status(500).json({ error: 'Server error' }); }
 });
 
+// ── Hindi Translation ──────────────────────────────────────────
+app.post('/api/translate', async (req, res) => {
+  try {
+    const { texts, targetLang = 'hi' } = req.body || {};
+    if (!Array.isArray(texts) || texts.length === 0) return res.status(400).json({ error: 'texts array required' });
+    if (texts.length > 10) return res.status(400).json({ error: 'Max 10 texts per request' });
+
+    const groqKey = (process.env.GROQ_API_KEY || '').trim();
+    if (!groqKey) return res.status(503).json({ error: 'Translation service not configured.' });
+
+    const langMap = { hi: 'Hindi', mr: 'Marathi', bn: 'Bengali', te: 'Telugu', ta: 'Tamil', gu: 'Gujarati', kn: 'Kannada' };
+    const langName = langMap[targetLang] || 'Hindi';
+
+    const numbered = texts.map((t, i) => `[${i + 1}] ${t}`).join('\n\n');
+    const prompt = `Translate the following exam questions/answers from English to ${langName}.
+Rules:
+- Keep all numbers, formulas, chemical symbols, and scientific notation in their original form (do NOT translate: CO₂, H₂O, pH, m/s, kJ/mol, etc.)
+- Keep option labels (A), B), C), D)) unchanged
+- Translate naturally for Indian high school and competitive exam students
+- Return ONLY the translated texts numbered exactly as [1], [2], etc. — no extra commentary
+
+${numbered}`;
+
+    const groqRes = await fetch('https://api.groq.com/openai/v1/chat/completions', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${groqKey}` },
+      body: JSON.stringify({
+        model: 'llama-3.1-8b-instant',
+        max_tokens: 2048,
+        messages: [{ role: 'user', content: prompt }],
+      }),
+    });
+
+    if (!groqRes.ok) {
+      const err = await groqRes.json().catch(() => ({}));
+      return res.status(groqRes.status).json({ error: err.error?.message || 'Translation error' });
+    }
+
+    const data = await groqRes.json();
+    const raw = data.choices?.[0]?.message?.content || '';
+
+    // Parse [1] ... [2] ... numbered output back into array
+    const translated = texts.map((_, i) => {
+      const num = i + 1;
+      const regex = new RegExp(`\\[${num}\\]\\s*([\\s\\S]*?)(?=\\[${num + 1}\\]|$)`);
+      const match = raw.match(regex);
+      return match ? match[1].trim() : texts[i]; // fallback to original on parse failure
+    });
+
+    res.json({ translated, lang: targetLang });
+  } catch (e) {
+    console.error('translate error:', e);
+    res.status(500).json({ error: 'Translation failed' });
+  }
+});
+
 // ── Error Handler ──────────────────────────────────────────────
 app.use((err, req, res, next) => {
   console.error('Unhandled error:', err);

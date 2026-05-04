@@ -6925,6 +6925,12 @@ html[data-theme="dark"] .notif-toggle {
 .pyq-bookmark-btn { background: none; border: none; font-size: 1rem; cursor: pointer; opacity: .6; transition: opacity .15s, transform .15s; padding: .1rem; }
 .pyq-bookmark-btn:hover { opacity: 1; transform: scale(1.15); }
 .pyq-bookmark-btn.active { opacity: 1; }
+.pyq-lang-btn { font-size: .72rem; font-weight: 800; padding: .2rem .55rem; border-radius: 99px; border: 1.5px solid #e5e7eb; background: #f9fafb; color: #374151; cursor: pointer; font-family: 'Nunito', sans-serif; transition: all .15s; line-height: 1; }
+.pyq-lang-btn:hover:not(:disabled) { border-color: #f59e0b; color: #d97706; background: #fffbeb; }
+.pyq-lang-btn.active { background: #fef3c7; border-color: #f59e0b; color: #92400e; }
+.pyq-lang-btn:disabled { opacity: .5; cursor: not-allowed; }
+.pyq-lang-bar { font-size: .74rem; font-weight: 700; color: #92400e; background: #fef3c7; border-bottom: 1px solid #fde68a; padding: .3rem 1.25rem; display: flex; align-items: center; gap: .4rem; }
+.pyq-trans-err { font-size: .78rem; color: #dc2626; background: #fef2f2; padding: .4rem 1.25rem; border-bottom: 1px solid #fecaca; }
 .pyq-question-text { padding: .75rem 1.25rem; font-size: .97rem; font-weight: 600; color: #1f2937; line-height: 1.7; }
 .pyq-options-grid { padding: .25rem 1.25rem 1rem; display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: .5rem; }
 .pyq-option { text-align: left; padding: .65rem .9rem; border-radius: 10px; border: 1.5px solid #e5e7eb; background: #f9fafb; color: #374151; font-size: .87rem; font-weight: 500; cursor: pointer; display: flex; align-items: flex-start; gap: .5rem; transition: all .15s; line-height: 1.5; }
