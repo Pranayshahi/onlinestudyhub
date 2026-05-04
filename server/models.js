@@ -12,6 +12,7 @@ const studentSchema = new mongoose.Schema({
   referred_by:    { type: String, default: null },
   referral_count: { type: Number, default: 0 },
   unlocked_notes: [{ type: String }], // each entry: "classId/subjectId/topicId"
+  pyq_pro_expires: { type: Date, default: null }, // null = not a Pro subscriber
 }, { timestamps: true });
 
 const teacherSchema = new mongoose.Schema({

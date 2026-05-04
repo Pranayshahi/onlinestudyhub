@@ -207,7 +207,7 @@ export default function App() {
                   path="/exam/:examId/weightage"
                   element={<WeightagePage />}
                 />
-                <Route path="/exam/:examId/pyq" element={<PYQPage />} />
+                <Route path="/exam/:examId/pyq" element={<PYQPage user={user} onOpenLogin={() => setLoginOpen(true)} />} />
                 <Route
                   path="/exam/:examId/mock-test"
                   element={<MockTestListPage />}

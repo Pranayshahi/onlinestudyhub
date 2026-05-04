@@ -1,208 +1,602 @@
-import React, { useState, useMemo } from 'react';
+import React, { useState, useMemo, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { EXAMS, PYQS } from '../data/jeeNeetData';
 import SEO from '../components/SEO';
+import { api } from '../utils/api';
 
+const FREE_LIMIT = 5;
 const DIFF_COLOR = { easy: '#16a34a', medium: '#d97706', hard: '#dc2626' };
 const DIFF_BG    = { easy: '#f0fdf4', medium: '#fffbeb', hard: '#fef2f2' };
 
-export default function PYQPage() {
+// ── Pro Upgrade Modal ─────────────────────────────────────────────
+function ProModal({ exam, onClose, onPay, paying, payError, user, onOpenLogin }) {
+  return (
+    <div className="pyq-modal-backdrop" onClick={e => e.target === e.currentTarget && onClose()}>
+      <div className="pyq-pro-modal">
+        <button className="pyq-pro-modal-close" onClick={onClose}>✕</button>
+        <div className="pyq-pro-modal-icon">🔓</div>
+        <h2 className="pyq-pro-modal-title">Unlock PYQ Pro</h2>
+        <div className="pyq-pro-modal-price">
+          <span className="pyq-pro-price-amount">₹99</span>
+          <span className="pyq-pro-price-period">/year</span>
+        </div>
+        <ul className="pyq-pro-modal-perks">
+          {[
+            `Unlimited solution reveals — all ${PYQS[exam?.id]?.length}+ questions`,
+            'Chapter-wise performance tracking',
+            'Bookmark & revisit any question',
+            'Valid for both JEE & NEET banks',
+            '1-year access from date of purchase',
+          ].map(p => (
+            <li key={p}><span className="pyq-perk-check">✓</span> {p}</li>
+          ))}
+        </ul>
+        {payError && <p className="pyq-pro-modal-error">⚠️ {payError}</p>}
+        {!user ? (
+          <button className="pyq-pro-pay-btn" onClick={() => { onClose(); onOpenLogin?.(); }}>
+            🔐 Login to Subscribe
+          </button>
+        ) : (
+          <button className="pyq-pro-pay-btn" onClick={onPay} disabled={paying}>
+            {paying ? '⏳ Processing…' : '💳 Pay ₹99 — Unlock Now'}
+          </button>
+        )}
+        <p className="pyq-pro-modal-note">🔒 Secured by Razorpay · UPI, Cards, Net Banking accepted</p>
+      </div>
+    </div>
+  );
+}
+
+// ── Question Card ─────────────────────────────────────────────────
+function QuestionCard({ q, qi, exam, isPro, freeLeft, onReveal, revealed, selected, onSelect, onToggleBookmark, bookmarked }) {
+  const isRevealed = revealed[q.id];
+  const userAns    = selected[q.id];
+  const hasAns     = userAns !== undefined;
+  const isBookmarked = bookmarked.has(q.id);
+  const canReveal  = isPro || freeLeft > 0;
+
+  return (
+    <div className={`pyq-card ${isRevealed ? 'pyq-card-revealed' : ''}`} id={`q-${q.id}`}>
+      {/* Card header */}
+      <div className="pyq-card-header">
+        <div className="pyq-card-badges">
+          <span className="pyq-badge" style={{ background: exam.lightColor, color: exam.color }}>
+            {exam.subjectEmojis[q.subject]} {exam.subjectLabels[q.subject]}
+          </span>
+          <span className="pyq-badge pyq-badge-chapter">{q.chapter}</span>
+          <span className="pyq-badge" style={{ background: DIFF_BG[q.difficulty], color: DIFF_COLOR[q.difficulty] }}>
+            {q.difficulty.charAt(0).toUpperCase() + q.difficulty.slice(1)}
+          </span>
+        </div>
+        <div className="pyq-card-meta-right">
+          <span className="pyq-year-badge">📅 {q.year}</span>
+          <button
+            className={`pyq-bookmark-btn ${isBookmarked ? 'active' : ''}`}
+            onClick={() => onToggleBookmark(q.id)}
+            title={isBookmarked ? 'Remove bookmark' : 'Bookmark'}
+          >
+            {isBookmarked ? '🔖' : '📌'}
+          </button>
+        </div>
+      </div>
+
+      {/* Question */}
+      <div className="pyq-question-text">
+        Q{qi + 1}. {q.question}
+      </div>
+
+      {/* Options */}
+      <div className="pyq-options-grid">
+        {q.options.map((opt, i) => {
+          let cls = 'pyq-option';
+          if (isRevealed) {
+            if (i === q.correct) cls += ' pyq-option-correct';
+            else if (hasAns && i === userAns) cls += ' pyq-option-wrong';
+          } else if (hasAns && i === userAns) {
+            cls += ' pyq-option-selected';
+          }
+          return (
+            <button key={i} className={cls} onClick={() => onSelect(q.id, i)}
+              style={isRevealed && i === q.correct ? { borderColor: '#86efac' } :
+                     isRevealed && hasAns && i === userAns ? { borderColor: '#fca5a5' } :
+                     hasAns && i === userAns ? { borderColor: exam.color } : {}}>
+              <span className="pyq-option-letter">{String.fromCharCode(65 + i)}</span>
+              <span>{opt}</span>
+              {isRevealed && i === q.correct && <span className="pyq-opt-tick">✓</span>}
+              {isRevealed && hasAns && i === userAns && i !== q.correct && <span className="pyq-opt-cross">✗</span>}
+            </button>
+          );
+        })}
+      </div>
+
+      {/* Solution */}
+      {isRevealed && (
+        <div className="pyq-solution">
+          <div className="pyq-solution-label">✅ Step-by-Step Solution</div>
+          <div className="pyq-solution-text">{q.solution}</div>
+        </div>
+      )}
+
+      {/* Actions */}
+      <div className="pyq-card-actions">
+        <button
+          className={`pyq-reveal-btn ${isRevealed ? 'pyq-reveal-btn-hide' : ''} ${!canReveal && !isRevealed ? 'pyq-reveal-btn-locked' : ''}`}
+          onClick={() => onReveal(q.id)}
+          style={!isRevealed ? { borderColor: exam.color, color: exam.color } : {}}
+        >
+          {isRevealed ? '🙈 Hide Solution' : !canReveal ? '🔒 Pro — Show Solution' : '💡 Show Solution'}
+        </button>
+        {hasAns && !isRevealed && canReveal && (
+          <button className="pyq-check-btn" onClick={() => onReveal(q.id)}
+            style={{ borderColor: '#16a34a', color: '#15803d' }}>
+            ✓ Check Answer
+          </button>
+        )}
+        {!isPro && !isRevealed && (
+          <span className="pyq-free-left-pill">
+            {freeLeft > 0 ? `${freeLeft} free reveal${freeLeft !== 1 ? 's' : ''} left` : '🔒 Upgrade for more'}
+          </span>
+        )}
+        {isPro && <span className="pyq-pro-pill">⭐ Pro</span>}
+      </div>
+    </div>
+  );
+}
+
+// ── Main ──────────────────────────────────────────────────────────
+export default function PYQPage({ user, onOpenLogin }) {
   const { examId } = useParams();
-  const exam = EXAMS[examId];
+  const exam    = EXAMS[examId];
   const allPYQs = PYQS[examId] || [];
 
-  const [subjectFilter, setSubjectFilter] = useState('all');
-  const [yearFilter, setYearFilter] = useState('all');
-  const [diffFilter, setDiffFilter] = useState('all');
-  const [revealed, setRevealed] = useState({});
-  const [selected, setSelected] = useState({});
-  const [search, setSearch] = useState('');
+  // Filters
+  const [subjectFilter,  setSubjectFilter]  = useState('all');
+  const [yearFilter,     setYearFilter]     = useState('all');
+  const [diffFilter,     setDiffFilter]     = useState('all');
+  const [chapterFilter,  setChapterFilter]  = useState('all');
+  const [search,         setSearch]         = useState('');
+  const [bmOnly,         setBmOnly]         = useState(false);
 
-  if (!exam) return <div className="container" style={{ padding: '3rem 1.25rem' }}>Exam not found.</div>;
+  // Interaction
+  const [revealed,  setRevealed]  = useState({});
+  const [selected,  setSelected]  = useState({});
+  const [sidebarOpen, setSidebarOpen] = useState(false);
+
+  // Pro
+  const [isPro,        setIsPro]        = useState(false);
+  const [freeLeft,     setFreeLeft]     = useState(FREE_LIMIT);
+  const [showProModal, setShowProModal] = useState(false);
+  const [payingPro,    setPayingPro]    = useState(false);
+  const [payError,     setPayError]     = useState('');
+
+  // Bookmarks
+  const [bookmarked, setBookmarked] = useState(() => {
+    try { return new Set(JSON.parse(localStorage.getItem(`pyq_bm_${examId}`) || '[]')); }
+    catch { return new Set(); }
+  });
+
+  // Load Razorpay script
+  useEffect(() => {
+    if (document.getElementById('razorpay-script')) return;
+    const s = document.createElement('script');
+    s.id = 'razorpay-script';
+    s.src = 'https://checkout.razorpay.com/v1/checkout.js';
+    document.body.appendChild(s);
+  }, []);
+
+  // Fetch Pro status
+  useEffect(() => {
+    if (!user) return;
+    api('/payments/pyq-pro-status').then(d => setIsPro(!!d.isPro)).catch(() => {});
+  }, [user]);
+
+  if (!exam) return (
+    <div className="container" style={{ padding: '3rem 1.25rem', textAlign: 'center', color: '#9ca3af' }}>
+      Exam not found. Try <Link to="/exam/jee">JEE</Link> or <Link to="/exam/neet">NEET</Link>.
+    </div>
+  );
 
   const years = [...new Set(allPYQs.map(q => q.year))].sort((a, b) => b - a);
 
+  // Build chapter list with counts
+  const chapters = useMemo(() => {
+    const map = {};
+    allPYQs.forEach(q => {
+      const k = q.chapter;
+      if (!map[k]) map[k] = { chapter: k, subject: q.subject, count: 0 };
+      map[k].count++;
+    });
+    return Object.values(map).sort((a, b) => b.count - a.count);
+  }, [allPYQs]);
+
+  // Filter
   const filtered = useMemo(() => allPYQs.filter(q => {
     if (subjectFilter !== 'all' && q.subject !== subjectFilter) return false;
-    if (yearFilter !== 'all' && q.year !== Number(yearFilter)) return false;
-    if (diffFilter !== 'all' && q.difficulty !== diffFilter) return false;
-    if (search && !q.question.toLowerCase().includes(search.toLowerCase()) && !q.chapter.toLowerCase().includes(search.toLowerCase())) return false;
+    if (yearFilter    !== 'all' && q.year !== Number(yearFilter)) return false;
+    if (diffFilter    !== 'all' && q.difficulty !== diffFilter) return false;
+    if (chapterFilter !== 'all' && q.chapter !== chapterFilter) return false;
+    if (bmOnly && !bookmarked.has(q.id)) return false;
+    if (search && !q.question.toLowerCase().includes(search.toLowerCase()) &&
+        !q.chapter.toLowerCase().includes(search.toLowerCase())) return false;
     return true;
-  }), [allPYQs, subjectFilter, yearFilter, diffFilter, search]);
+  }), [allPYQs, subjectFilter, yearFilter, diffFilter, chapterFilter, bmOnly, search, bookmarked]);
+
+  // Score
+  const attempted = Object.keys(selected).length;
+  const correct   = Object.entries(selected).filter(([id, ans]) => {
+    const q = allPYQs.find(q => q.id === id);
+    return q && ans === q.correct;
+  }).length;
+  const score = correct * 4 - (attempted - correct);
 
   function toggleReveal(id) {
-    setRevealed(prev => ({ ...prev, [id]: !prev[id] }));
+    if (revealed[id]) { setRevealed(p => ({ ...p, [id]: false })); return; }
+    if (!isPro && freeLeft <= 0) { setShowProModal(true); return; }
+    setRevealed(p => ({ ...p, [id]: true }));
+    if (!isPro) setFreeLeft(n => n - 1);
   }
 
   function selectOption(qId, idx) {
     if (revealed[qId]) return;
-    setSelected(prev => ({ ...prev, [qId]: idx }));
+    setSelected(p => ({ ...p, [qId]: idx }));
   }
 
-  const attempted = Object.keys(selected).length;
-  const correct = Object.entries(selected).filter(([id, ans]) => {
-    const q = allPYQs.find(q => q.id === id);
-    return q && ans === q.correct;
-  }).length;
+  function toggleBookmark(id) {
+    setBookmarked(prev => {
+      const next = new Set(prev);
+      if (next.has(id)) next.delete(id); else next.add(id);
+      localStorage.setItem(`pyq_bm_${examId}`, JSON.stringify([...next]));
+      return next;
+    });
+  }
 
-  const examLabel = exam.shortLabel || exam.label;
+  async function handlePayPro() {
+    setPayError('');
+    setPayingPro(true);
+    try {
+      const order = await api('/payments/pyq-pro-order', { method: 'POST' });
+      const options = {
+        key: order.keyId,
+        amount: order.amount,
+        currency: order.currency,
+        name: 'OnlineStudyHub',
+        description: 'PYQ Pro — 1 Year Unlimited Access',
+        order_id: order.orderId,
+        prefill: { name: user?.name, email: user?.email },
+        theme: { color: exam.color },
+        handler: async (response) => {
+          try {
+            await api('/payments/pyq-pro-verify', {
+              method: 'POST',
+              body: JSON.stringify({
+                razorpay_order_id:    response.razorpay_order_id,
+                razorpay_payment_id:  response.razorpay_payment_id,
+                razorpay_signature:   response.razorpay_signature,
+              }),
+            });
+            setIsPro(true);
+            setShowProModal(false);
+          } catch {
+            setPayError('Payment successful but activation failed. Please refresh.');
+          } finally {
+            setPayingPro(false);
+          }
+        },
+      };
+      const rzp = new window.Razorpay(options);
+      rzp.on('payment.failed', () => { setPayError('Payment failed. Please try again.'); setPayingPro(false); });
+      rzp.open();
+    } catch (e) {
+      setPayError(e.message || 'Failed to initiate payment');
+      setPayingPro(false);
+    }
+  }
+
+  // ── SEO schemas ──────────────────────────────────────────────────
+  const isJEE     = examId === 'jee';
+  const examLabel = exam.shortLabel;
+  const seoTitle  = isJEE
+    ? `JEE Main & Advanced Previous Year Questions (PYQ) 2019–2024 with Solutions — Free | OnlineStudyHub`
+    : `NEET-UG Previous Year Questions (PYQ) 2019–2024 with Solutions — Free | OnlineStudyHub`;
+  const seoDesc   = isJEE
+    ? `Practice ${allPYQs.length}+ JEE Main & Advanced previous year questions (2019–2024) with step-by-step solutions. Filter by Physics, Chemistry, Mathematics, chapter & difficulty. Free JEE PYQ bank — no registration required.`
+    : `Practice ${allPYQs.length}+ NEET-UG previous year questions (2019–2024) with detailed solutions. Filter by Physics, Chemistry, Biology, chapter & difficulty. Free NEET PYQ bank with answer explanations.`;
+
+  const faqSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: [
+      {
+        '@type': 'Question',
+        name: `How many ${examLabel} previous year questions are available on OnlineStudyHub?`,
+        acceptedAnswer: { '@type': 'Answer', text: `OnlineStudyHub has ${allPYQs.length}+ ${examLabel} previous year questions from ${years[years.length-1]} to ${years[0]}, covering all subjects and chapters with step-by-step solutions.` },
+      },
+      {
+        '@type': 'Question',
+        name: `Are ${examLabel} PYQ solutions available for free?`,
+        acceptedAnswer: { '@type': 'Answer', text: `Yes, the first ${FREE_LIMIT} solution reveals are completely free for every student. For unlimited access to all solutions, subscribe to PYQ Pro at just ₹99 per year.` },
+      },
+      {
+        '@type': 'Question',
+        name: `Which years of ${examLabel} papers are available?`,
+        acceptedAnswer: { '@type': 'Answer', text: `${examLabel} questions from ${years.join(', ')} are available on OnlineStudyHub, covering all major chapters and topics.` },
+      },
+      {
+        '@type': 'Question',
+        name: `Can I filter ${examLabel} PYQs by chapter or subject?`,
+        acceptedAnswer: { '@type': 'Answer', text: `Yes. You can filter by subject (${exam.subjects.map(s => exam.subjectLabels[s]).join(', ')}), year, difficulty (Easy/Medium/Hard), and individual chapters. You can also search by keyword.` },
+      },
+      {
+        '@type': 'Question',
+        name: `What is the marking scheme for ${examLabel}?`,
+        acceptedAnswer: { '@type': 'Answer', text: `${examLabel} follows +${exam.marking.correct} marks for correct answers and ${exam.marking.wrong} mark for wrong answers. Unattempted questions carry 0 marks. The total marks are ${exam.totalMarks} for ${exam.totalQuestions} questions in ${exam.duration} minutes.` },
+      },
+    ],
+  };
+
+  const itemListSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'ItemList',
+    name: `${examLabel} Previous Year Papers — Year-wise`,
+    description: `${examLabel} PYQ papers from ${years[years.length-1]} to ${years[0]}`,
+    numberOfItems: years.length,
+    itemListElement: years.map((y, i) => ({
+      '@type': 'ListItem',
+      position: i + 1,
+      name: `${examLabel} ${y} Previous Year Questions`,
+      url: `https://www.onlinestudyhub.com/exam/${examId}/pyq`,
+    })),
+  };
+
+  const courseSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'Course',
+    name: `${exam.label} Previous Year Questions Bank`,
+    description: seoDesc,
+    provider: { '@type': 'Organization', name: 'OnlineStudyHub', url: 'https://www.onlinestudyhub.com' },
+    educationalLevel: 'Undergraduate Entrance Exam',
+    numberOfCredits: allPYQs.length,
+    hasCourseInstance: years.map(y => ({
+      '@type': 'CourseInstance',
+      name: `${examLabel} ${y} Paper`,
+      courseMode: 'online',
+    })),
+  };
+
+  // Active filter count (for mobile indicator)
+  const activeFilters = [subjectFilter, yearFilter, diffFilter, chapterFilter].filter(f => f !== 'all').length;
 
   return (
     <div style={{ background: '#f9fafb', minHeight: '100vh' }}>
       <SEO
-        title={`${examLabel} Previous Year Questions (PYQ) — Free Question Bank`}
-        description={`Practice ${allPYQs.length}+ ${examLabel} previous year questions with answers. Filter by subject, year, and difficulty. Free ${examLabel} PYQ bank for 2025 preparation.`}
+        title={seoTitle}
+        description={seoDesc}
         path={`/exam/${examId}/pyq`}
         breadcrumbs={[
-          { name: examLabel, url: `/exam/${examId}` },
-          { name: 'Previous Year Questions', url: `/exam/${examId}/pyq` },
+          { name: isJEE ? 'JEE' : 'NEET', url: `/exam/${examId}` },
+          { name: 'PYQ Bank', url: `/exam/${examId}/pyq` },
         ]}
+        schemas={[faqSchema, itemListSchema, courseSchema]}
       />
-      {/* Header */}
-      <div style={{ background: `linear-gradient(135deg, #1e1b4b 0%, ${exam.color} 100%)`, color: '#fff', padding: '2.5rem 0 2rem' }}>
+
+      {/* ── Hero ── */}
+      <div className="pyq-hero" style={{ background: `linear-gradient(135deg, #1e1b4b 0%, ${exam.color} 100%)` }}>
         <div className="container">
-          <div style={{ fontSize: '.82rem', color: 'rgba(255,255,255,.6)', marginBottom: '.5rem' }}>
-            <Link to={`/exam/${examId}`} style={{ color: 'rgba(255,255,255,.7)' }}>{exam.shortLabel}</Link> › PYQ Bank
+          <div className="pyq-hero-breadcrumb">
+            <Link to={`/exam/${examId}`} style={{ color: 'rgba(255,255,255,.65)' }}>{examLabel}</Link>
+            <span style={{ color: 'rgba(255,255,255,.4)', margin: '0 .4rem' }}>›</span>
+            <span style={{ color: 'rgba(255,255,255,.85)' }}>PYQ Bank</span>
           </div>
-          <div style={{ display: 'flex', alignItems: 'center', gap: '.75rem' }}>
-            <span style={{ fontSize: '2rem' }}>📝</span>
+          <div className="pyq-hero-row">
             <div>
-              <h1 style={{ fontWeight: 900, fontSize: '1.8rem', lineHeight: 1.2 }}>Previous Year Questions</h1>
-              <p style={{ color: 'rgba(255,255,255,.7)', fontSize: '.9rem', marginTop: '.25rem' }}>
-                {allPYQs.length} questions from {years[years.length-1]}–{years[0]} with step-by-step solutions
+              <h1 className="pyq-hero-title">
+                {examLabel} Previous Year Questions
+              </h1>
+              <p className="pyq-hero-sub">
+                {allPYQs.length} questions · {years[years.length-1]}–{years[0]} · Step-by-step solutions
               </p>
+              <div className="pyq-hero-pills">
+                {exam.subjects.map(s => (
+                  <span key={s} className="pyq-hero-pill">
+                    {exam.subjectEmojis[s]} {exam.subjectLabels[s]}
+                  </span>
+                ))}
+                <span className="pyq-hero-pill">+{exam.marking.correct}/−{Math.abs(exam.marking.wrong)} marking</span>
+              </div>
+            </div>
+            <div className="pyq-hero-stats">
+              {[
+                { v: allPYQs.length, l: 'Questions' },
+                { v: years.length, l: 'Years' },
+                { v: chapters.length, l: 'Chapters' },
+              ].map(s => (
+                <div key={s.l} className="pyq-hero-stat">
+                  <div className="pyq-hero-stat-num">{s.v}</div>
+                  <div className="pyq-hero-stat-label">{s.l}</div>
+                </div>
+              ))}
             </div>
           </div>
         </div>
       </div>
 
-      <div className="container" style={{ padding: '2rem 1.25rem' }}>
-        {/* Score tracker */}
-        {attempted > 0 && (
-          <div style={{ background: '#fff', border: '1px solid #e5e7eb', borderRadius: 14, padding: '1rem 1.5rem', marginBottom: '1.5rem', display: 'flex', alignItems: 'center', gap: '2rem', flexWrap: 'wrap' }}>
-            <span style={{ fontFamily: 'Nunito, sans-serif', fontWeight: 800, fontSize: '1rem' }}>📊 Practice Score:</span>
-            <span style={{ color: '#16a34a', fontWeight: 700 }}>✅ {correct} Correct</span>
-            <span style={{ color: '#dc2626', fontWeight: 700 }}>❌ {attempted - correct} Wrong</span>
-            <span style={{ color: '#6b7280', fontWeight: 600 }}>📋 {attempted}/{filtered.length} Attempted</span>
-            <span style={{ fontFamily: 'Nunito, sans-serif', fontWeight: 800, color: exam.color }}>
-              Score: {correct * 4 - (attempted - correct)} / {attempted * 4}
-            </span>
-          </div>
-        )}
-
-        {/* Filters */}
-        <div className="pyq-filter-row" style={{ background: '#fff', border: '1px solid #e5e7eb', borderRadius: 14, padding: '1.25rem 1.5rem', marginBottom: '1.5rem', display: 'flex', gap: '1rem', flexWrap: 'wrap', alignItems: 'center' }}>
-          <input
-            value={search} onChange={e => setSearch(e.target.value)}
-            placeholder="Search questions or chapters..."
-            style={{ flex: 1, minWidth: 200, padding: '.5rem .9rem', border: '1px solid #e5e7eb', borderRadius: 8, fontSize: '.9rem', outline: 'none' }}
-          />
-
-          <select value={subjectFilter} onChange={e => setSubjectFilter(e.target.value)}
-            style={{ padding: '.5rem .8rem', border: '1px solid #e5e7eb', borderRadius: 8, fontSize: '.85rem', background: '#f9fafb' }}>
-            <option value="all">All Subjects</option>
-            {exam.subjects.map(s => <option key={s} value={s}>{exam.subjectEmojis[s]} {exam.subjectLabels[s]}</option>)}
-          </select>
-
-          <select value={yearFilter} onChange={e => setYearFilter(e.target.value)}
-            style={{ padding: '.5rem .8rem', border: '1px solid #e5e7eb', borderRadius: 8, fontSize: '.85rem', background: '#f9fafb' }}>
-            <option value="all">All Years</option>
-            {years.map(y => <option key={y} value={y}>{y}</option>)}
-          </select>
-
-          <select value={diffFilter} onChange={e => setDiffFilter(e.target.value)}
-            style={{ padding: '.5rem .8rem', border: '1px solid #e5e7eb', borderRadius: 8, fontSize: '.85rem', background: '#f9fafb' }}>
-            <option value="all">All Difficulties</option>
-            <option value="easy">Easy</option>
-            <option value="medium">Medium</option>
-            <option value="hard">Hard</option>
-          </select>
-
-          <span style={{ color: '#6b7280', fontSize: '.82rem', fontWeight: 600, whiteSpace: 'nowrap' }}>{filtered.length} questions</span>
+      {/* ── Pro banner (when limit hit) ── */}
+      {!isPro && freeLeft === 0 && (
+        <div className="pyq-pro-banner">
+          <span>🔒 You've used all {FREE_LIMIT} free solution reveals.</span>
+          <button className="pyq-pro-banner-btn" onClick={() => setShowProModal(true)}>
+            Upgrade to Pro — ₹99/year
+          </button>
         </div>
+      )}
 
-        {/* Questions */}
-        {filtered.length === 0 ? (
-          <div style={{ textAlign: 'center', padding: '3rem', color: '#9ca3af' }}>
-            <div style={{ fontSize: '2.5rem', marginBottom: '.75rem' }}>🔍</div>
-            <div style={{ fontWeight: 600 }}>No questions match your filters</div>
+      <div className="container pyq-layout">
+        {/* ── Chapter Sidebar ── */}
+        <aside className={`pyq-sidebar ${sidebarOpen ? 'pyq-sidebar-open' : ''}`}>
+          <div className="pyq-sidebar-header">
+            <span style={{ fontWeight: 800, fontSize: '.9rem', color: '#1f2937' }}>📚 Chapters</span>
+            <button className="pyq-sidebar-close" onClick={() => setSidebarOpen(false)}>✕</button>
           </div>
-        ) : (
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '1.25rem' }}>
-            {filtered.map((q, qi) => {
-              const isRevealed = revealed[q.id];
-              const userAns = selected[q.id];
-              const hasAns = userAns !== undefined;
+          <button
+            className={`pyq-chapter-item ${chapterFilter === 'all' ? 'active' : ''}`}
+            style={chapterFilter === 'all' ? { background: exam.lightColor, color: exam.color } : {}}
+            onClick={() => { setChapterFilter('all'); setSidebarOpen(false); }}
+          >
+            <span>All Chapters</span>
+            <span className="pyq-chapter-count">{allPYQs.length}</span>
+          </button>
+          {chapters.map(ch => (
+            <button
+              key={ch.chapter}
+              className={`pyq-chapter-item ${chapterFilter === ch.chapter ? 'active' : ''}`}
+              style={chapterFilter === ch.chapter ? { background: exam.lightColor, color: exam.color } : {}}
+              onClick={() => { setChapterFilter(ch.chapter); setSubjectFilter('all'); setSidebarOpen(false); }}
+            >
+              <span className="pyq-chapter-name">{ch.chapter}</span>
+              <span className="pyq-chapter-count">{ch.count}</span>
+            </button>
+          ))}
+        </aside>
+        {sidebarOpen && <div className="pyq-sidebar-overlay" onClick={() => setSidebarOpen(false)} />}
 
-              return (
-                <div key={q.id} style={{ background: '#fff', border: '1px solid #e5e7eb', borderRadius: 16, overflow: 'hidden' }}>
-                  {/* Question header */}
-                  <div style={{ padding: '1.25rem 1.5rem 0', display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', gap: '1rem', flexWrap: 'wrap' }}>
-                    <div style={{ display: 'flex', gap: '.5rem', flexWrap: 'wrap', alignItems: 'center' }}>
-                      <span style={{ background: exam.lightColor, color: exam.color, fontSize: '.75rem', fontWeight: 700, padding: '.2rem .65rem', borderRadius: 99 }}>
-                        {exam.subjectEmojis[q.subject]} {exam.subjectLabels[q.subject]}
-                      </span>
-                      <span style={{ background: '#f3f4f6', color: '#4b5563', fontSize: '.75rem', fontWeight: 600, padding: '.2rem .65rem', borderRadius: 99 }}>{q.chapter}</span>
-                      <span style={{ background: DIFF_BG[q.difficulty], color: DIFF_COLOR[q.difficulty], fontSize: '.72rem', fontWeight: 700, padding: '.15rem .55rem', borderRadius: 99 }}>
-                        {q.difficulty.charAt(0).toUpperCase() + q.difficulty.slice(1)}
-                      </span>
-                    </div>
-                    <span style={{ color: '#9ca3af', fontSize: '.82rem', fontWeight: 600, whiteSpace: 'nowrap' }}>📅 {q.year}</span>
+        {/* ── Main content ── */}
+        <div className="pyq-main">
+
+          {/* ── Filters ── */}
+          <div className="pyq-filters-wrap">
+            {/* Mobile chapter toggle */}
+            <button className="pyq-chapter-toggle" onClick={() => setSidebarOpen(true)}>
+              📚 Chapters {activeFilters > 0 && <span className="pyq-filter-badge">{activeFilters}</span>}
+            </button>
+
+            {/* Subject pills */}
+            <div className="pyq-subject-pills">
+              <button className={`pyq-subject-pill ${subjectFilter === 'all' ? 'active' : ''}`}
+                style={subjectFilter === 'all' ? { background: exam.color, color: '#fff' } : {}}
+                onClick={() => setSubjectFilter('all')}>All</button>
+              {exam.subjects.map(s => (
+                <button key={s}
+                  className={`pyq-subject-pill ${subjectFilter === s ? 'active' : ''}`}
+                  style={subjectFilter === s ? { background: exam.subjectColors?.[s] || exam.color, color: '#fff' } : {}}
+                  onClick={() => setSubjectFilter(s)}>
+                  {exam.subjectEmojis[s]} {exam.subjectLabels[s]}
+                </button>
+              ))}
+            </div>
+
+            {/* Year pills */}
+            <div className="pyq-year-pills">
+              <button className={`pyq-year-pill ${yearFilter === 'all' ? 'active' : ''}`}
+                onClick={() => setYearFilter('all')}>All Years</button>
+              {years.map(y => (
+                <button key={y}
+                  className={`pyq-year-pill ${yearFilter === String(y) ? 'active' : ''}`}
+                  onClick={() => setYearFilter(String(y))}>{y}</button>
+              ))}
+            </div>
+
+            {/* Bottom row — difficulty + search + bookmarks */}
+            <div className="pyq-filter-bottom">
+              <select value={diffFilter} onChange={e => setDiffFilter(e.target.value)} className="pyq-select">
+                <option value="all">All Difficulties</option>
+                <option value="easy">🟢 Easy</option>
+                <option value="medium">🟡 Medium</option>
+                <option value="hard">🔴 Hard</option>
+              </select>
+              <input
+                className="pyq-search"
+                value={search}
+                onChange={e => setSearch(e.target.value)}
+                placeholder="Search questions or chapters…"
+              />
+              <button
+                className={`pyq-bm-toggle ${bmOnly ? 'active' : ''}`}
+                onClick={() => setBmOnly(b => !b)}
+                title="Show bookmarked only"
+              >
+                🔖 {bmOnly ? 'All' : 'Saved'}
+              </button>
+            </div>
+
+            <div className="pyq-result-count">
+              {filtered.length} question{filtered.length !== 1 ? 's' : ''}
+              {chapterFilter !== 'all' && <span className="pyq-active-chapter"> — {chapterFilter}</span>}
+            </div>
+          </div>
+
+          {/* ── Score tracker ── */}
+          {attempted > 0 && (
+            <div className="pyq-score-bar">
+              <span className="pyq-score-title">📊 Practice Score</span>
+              <span style={{ color: '#16a34a', fontWeight: 700 }}>✅ {correct} Correct</span>
+              <span style={{ color: '#dc2626', fontWeight: 700 }}>❌ {attempted - correct} Wrong</span>
+              <span style={{ color: '#6b7280' }}>📋 {attempted}/{filtered.length} Attempted</span>
+              <span style={{ color: exam.color, fontWeight: 800 }}>Score: {score}/{attempted * 4}</span>
+            </div>
+          )}
+
+          {/* ── Question list ── */}
+          {filtered.length === 0 ? (
+            <div className="pyq-empty">
+              <div style={{ fontSize: '2.5rem', marginBottom: '.75rem' }}>🔍</div>
+              <div style={{ fontWeight: 700, fontSize: '1.05rem', color: '#374151' }}>No questions match</div>
+              <p style={{ color: '#9ca3af', fontSize: '.85rem', marginTop: '.25rem' }}>Try changing your filters.</p>
+            </div>
+          ) : (
+            <div className="pyq-list">
+              {filtered.map((q, qi) => (
+                <QuestionCard
+                  key={q.id}
+                  q={q}
+                  qi={qi}
+                  exam={exam}
+                  isPro={isPro}
+                  freeLeft={freeLeft}
+                  onReveal={toggleReveal}
+                  revealed={revealed}
+                  selected={selected}
+                  onSelect={selectOption}
+                  onToggleBookmark={toggleBookmark}
+                  bookmarked={bookmarked}
+                />
+              ))}
+            </div>
+          )}
+
+          {/* ── Bottom Pro CTA ── */}
+          {!isPro && (
+            <div className="pyq-bottom-cta">
+              <div className="pyq-bottom-cta-inner">
+                <div>
+                  <div style={{ fontFamily: 'Nunito', fontWeight: 900, fontSize: '1.15rem', color: '#1e1b4b', marginBottom: '.3rem' }}>
+                    🔓 Unlock all solutions with PYQ Pro
                   </div>
-
-                  {/* Question text */}
-                  <div style={{ padding: '1rem 1.5rem', fontWeight: 600, fontSize: '1rem', color: '#1f2937', lineHeight: 1.65 }}>
-                    Q{qi + 1}. {q.question}
-                  </div>
-
-                  {/* Options */}
-                  <div className="pyq-options-grid" style={{ padding: '0 1.5rem 1.25rem', display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(280px, 1fr))', gap: '.6rem' }}>
-                    {q.options.map((opt, i) => {
-                      let bg = '#f9fafb', border = '#e5e7eb', color = '#374151';
-                      if (isRevealed) {
-                        if (i === q.correct) { bg = '#f0fdf4'; border = '#86efac'; color = '#15803d'; }
-                        else if (hasAns && i === userAns) { bg = '#fef2f2'; border = '#fca5a5'; color = '#dc2626'; }
-                      } else if (hasAns && i === userAns) {
-                        bg = exam.lightColor; border = exam.color; color = exam.color;
-                      }
-                      return (
-                        <button key={i} onClick={() => selectOption(q.id, i)}
-                          style={{ textAlign: 'left', padding: '.7rem 1rem', borderRadius: 10, border: `2px solid ${border}`, background: bg, color, fontSize: '.88rem', fontWeight: 500, cursor: isRevealed ? 'default' : 'pointer', transition: 'all .15s', lineHeight: 1.5 }}>
-                          <span style={{ fontWeight: 700, marginRight: '.5rem' }}>{String.fromCharCode(65 + i)}.</span>{opt}
-                          {isRevealed && i === q.correct && <span style={{ marginLeft: '.5rem' }}>✓</span>}
-                          {isRevealed && hasAns && i === userAns && i !== q.correct && <span style={{ marginLeft: '.5rem' }}>✗</span>}
-                        </button>
-                      );
-                    })}
-                  </div>
-
-                  {/* Solution */}
-                  {isRevealed && (
-                    <div style={{ margin: '0 1.5rem 1.5rem', background: '#f0fdf4', border: '1px solid #bbf7d0', borderRadius: 12, padding: '1rem 1.25rem' }}>
-                      <div style={{ fontWeight: 700, color: '#15803d', marginBottom: '.4rem', fontSize: '.85rem' }}>✅ Solution</div>
-                      <div style={{ color: '#166534', fontSize: '.88rem', lineHeight: 1.7 }}>{q.solution}</div>
-                    </div>
-                  )}
-
-                  {/* Actions */}
-                  <div style={{ padding: '0 1.5rem 1.25rem', display: 'flex', gap: '.75rem' }}>
-                    <button onClick={() => toggleReveal(q.id)}
-                      style={{ padding: '.5rem 1.1rem', borderRadius: 8, border: `1px solid ${exam.color}`, background: isRevealed ? exam.lightColor : '#fff', color: exam.color, fontSize: '.82rem', fontWeight: 700, cursor: 'pointer' }}>
-                      {isRevealed ? '🙈 Hide Solution' : '💡 Show Solution'}
-                    </button>
-                    {hasAns && !isRevealed && (
-                      <button onClick={() => toggleReveal(q.id)}
-                        style={{ padding: '.5rem 1.1rem', borderRadius: 8, border: '1px solid #16a34a', background: '#f0fdf4', color: '#15803d', fontSize: '.82rem', fontWeight: 700, cursor: 'pointer' }}>
-                        Check Answer
-                      </button>
-                    )}
+                  <div style={{ color: '#6b7280', fontSize: '.85rem' }}>
+                    {FREE_LIMIT} free reveals used up? Get unlimited access to every {examLabel} solution — both JEE & NEET banks.
                   </div>
                 </div>
-              );
-            })}
-          </div>
-        )}
+                <button className="pyq-bottom-cta-btn" onClick={() => setShowProModal(true)}
+                  style={{ background: exam.color }}>
+                  Subscribe — ₹99/yr
+                </button>
+              </div>
+            </div>
+          )}
+        </div>
       </div>
+
+      {/* ── Pro Modal ── */}
+      {showProModal && (
+        <ProModal
+          exam={exam}
+          onClose={() => { setShowProModal(false); setPayError(''); }}
+          onPay={handlePayPro}
+          paying={payingPro}
+          payError={payError}
+          user={user}
+          onOpenLogin={onOpenLogin}
+        />
+      )}
     </div>
   );
 }

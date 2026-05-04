@@ -1120,6 +1120,51 @@ app.post('/api/payments/verify', requireStudentAuth, async (req, res) => {
 });
 
 
+// ── PYQ Pro (₹99/year) ─────────────────────────────────────────
+app.post('/api/payments/pyq-pro-order', requireStudentAuth, async (req, res) => {
+  try {
+    const rzp = getRazorpay();
+    if (!rzp) return res.status(503).json({ error: 'Payment gateway not configured' });
+    const order = await rzp.orders.create({
+      amount: 9900, // ₹99 in paise
+      currency: 'INR',
+      receipt: `pyqpro_${Date.now()}`,
+      notes: { studentEmail: req.student.email, product: 'pyq_pro_1yr' },
+    });
+    res.json({ orderId: order.id, amount: order.amount, currency: order.currency, keyId: process.env.RAZORPAY_KEY_ID });
+  } catch (e) {
+    console.error('PYQ Pro order error:', e.message);
+    res.status(500).json({ error: e.message });
+  }
+});
+
+app.post('/api/payments/pyq-pro-verify', requireStudentAuth, async (req, res) => {
+  try {
+    if (!process.env.RAZORPAY_KEY_SECRET) return res.status(503).json({ error: 'Payment gateway not configured' });
+    const { razorpay_order_id, razorpay_payment_id, razorpay_signature } = req.body;
+    const body = razorpay_order_id + '|' + razorpay_payment_id;
+    const expected = crypto.createHmac('sha256', process.env.RAZORPAY_KEY_SECRET).update(body).digest('hex');
+    if (expected !== razorpay_signature) return res.status(400).json({ error: 'Payment verification failed' });
+    const expires = new Date(Date.now() + 365 * 24 * 60 * 60 * 1000); // 1 year
+    await Student.findByIdAndUpdate(req.student.id, { pyq_pro_expires: expires });
+    res.json({ ok: true, paymentId: razorpay_payment_id, expires });
+  } catch (e) {
+    console.error('PYQ Pro verify error:', e.message);
+    res.status(500).json({ error: e.message });
+  }
+});
+
+app.get('/api/payments/pyq-pro-status', requireStudentAuth, async (req, res) => {
+  try {
+    const student = await Student.findById(req.student.id).select('pyq_pro_expires').lean();
+    const expires = student?.pyq_pro_expires;
+    const isPro = expires && new Date(expires) > new Date();
+    res.json({ isPro: !!isPro, expires: expires || null });
+  } catch (e) {
+    res.status(500).json({ error: e.message });
+  }
+});
+
 // ── Advanced Notes Payment (₹25 unlock) ────────────────────────
 app.post('/api/payments/notes-order', requireStudentAuth, async (req, res) => {
   try {
