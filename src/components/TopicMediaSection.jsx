@@ -364,6 +364,73 @@ function MentorLoginGate({ onOpenLogin }) {
   );
 }
 
+// ── Notes Payment Gate Card ───────────────────────────────────────
+function NotesPaymentGate({ bestTeacher, onPay, paying }) {
+  return (
+    <div style={{
+      background: 'linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%)',
+      border: '2px solid #bae6fd',
+      borderRadius: 16,
+      padding: '1.75rem',
+      textAlign: 'center',
+      position: 'relative',
+      overflow: 'hidden',
+    }}>
+      <div style={{ fontSize: '2.5rem', marginBottom: '.5rem' }}>🔒</div>
+      <h3 style={{ fontFamily: 'Nunito', fontWeight: 900, fontSize: '1.1rem', color: '#0369a1', marginBottom: '.4rem' }}>
+        Advanced Study Notes
+      </h3>
+      {bestTeacher && (
+        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '.4rem', marginBottom: '.75rem' }}>
+          <span style={{ fontSize: '1.1rem' }}>{bestTeacher.avatar || '👨‍🏫'}</span>
+          <span style={{ fontSize: '.82rem', color: '#475569', fontWeight: 600 }}>
+            by {bestTeacher.name} · {'★'.repeat(Math.round(bestTeacher.rating ?? 5))} {(bestTeacher.rating ?? 5).toFixed(1)}
+          </span>
+        </div>
+      )}
+      <p style={{ fontSize: '.85rem', color: '#64748b', lineHeight: 1.6, marginBottom: '1.25rem', maxWidth: 300, margin: '0 auto 1.25rem' }}>
+        Unlock detailed PDF notes crafted by our best-rated teachers — formulas, solved examples & exam tips.
+      </p>
+      <div style={{ display: 'flex', align: 'center', justifyContent: 'center', gap: '.75rem', flexWrap: 'wrap' }}>
+        <div style={{
+          background: '#0369a1',
+          color: '#fff',
+          borderRadius: 12,
+          padding: '.35rem 1rem',
+          fontFamily: 'Nunito',
+          fontWeight: 900,
+          fontSize: '1.25rem',
+          letterSpacing: '-.01em',
+        }}>
+          ₹25
+        </div>
+        <button
+          onClick={onPay}
+          disabled={paying}
+          style={{
+            background: paying ? '#94a3b8' : 'linear-gradient(135deg, #0369a1, #0284c7)',
+            color: '#fff',
+            border: 'none',
+            borderRadius: 12,
+            padding: '.7rem 1.75rem',
+            fontFamily: 'Nunito',
+            fontWeight: 800,
+            fontSize: '1rem',
+            cursor: paying ? 'not-allowed' : 'pointer',
+            boxShadow: paying ? 'none' : '0 4px 14px rgba(3,105,161,.35)',
+            transition: 'all .2s',
+          }}
+        >
+          {paying ? '⏳ Processing…' : '🔓 Unlock Notes'}
+        </button>
+      </div>
+      <p style={{ fontSize: '.72rem', color: '#94a3b8', marginTop: '.85rem' }}>
+        🔒 Secured by Razorpay · UPI, Cards, Net Banking accepted
+      </p>
+    </div>
+  );
+}
+
 // ── Main TopicMediaSection ────────────────────────────────────────
 export default function TopicMediaSection({ classId, subjectId, topicId, user, onOpenLogin }) {
   const [activeTab, setActiveTab] = useState('self');
@@ -373,15 +440,76 @@ export default function TopicMediaSection({ classId, subjectId, topicId, user, o
   const [activeItem, setActiveItem] = useState(null);
   const [fetchingId, setFetchingId] = useState(null);
   const [filterTeacher, setFilterTeacher] = useState('all');
+  const [notesUnlocked, setNotesUnlocked] = useState(false);
+  const [paying, setPaying] = useState(false);
+  const [payError, setPayError] = useState('');
 
+  // Load Razorpay script once
+  useEffect(() => {
+    if (document.getElementById('razorpay-script')) return;
+    const s = document.createElement('script');
+    s.id = 'razorpay-script';
+    s.src = 'https://checkout.razorpay.com/v1/checkout.js';
+    document.body.appendChild(s);
+  }, []);
+
+  // Fetch mentor media + notes unlock status when on mentor tab & logged in
   useEffect(() => {
     if (activeTab !== 'mentor' || !user) { setLoading(false); return; }
     setLoading(true);
-    api(`/media/${classId}/${subjectId}/${topicId}`)
-      .then(data => setItems(Array.isArray(data) ? data : []))
-      .catch(() => setItems([]))
-      .finally(() => setLoading(false));
+    Promise.all([
+      api(`/media/${classId}/${subjectId}/${topicId}`).catch(() => []),
+      api(`/payments/notes-status/${classId}/${subjectId}/${topicId}`).catch(() => ({ unlocked: false })),
+    ]).then(([mediaData, statusData]) => {
+      setItems(Array.isArray(mediaData) ? mediaData : []);
+      setNotesUnlocked(statusData?.unlocked ?? false);
+    }).finally(() => setLoading(false));
   }, [classId, subjectId, topicId, user, activeTab]);
+
+  async function handlePayNotes(bestTeacher) {
+    setPayError('');
+    setPaying(true);
+    try {
+      const order = await api('/payments/notes-order', {
+        method: 'POST',
+        body: JSON.stringify({ classId, subjectId, topicId }),
+      });
+      const options = {
+        key: order.keyId,
+        amount: order.amount,
+        currency: order.currency,
+        name: 'OnlineStudyHub',
+        description: 'Advanced Study Notes Unlock',
+        order_id: order.orderId,
+        prefill: { name: user.name, email: user.email },
+        theme: { color: '#0369a1' },
+        handler: async (response) => {
+          try {
+            await api('/payments/notes-verify', {
+              method: 'POST',
+              body: JSON.stringify({
+                razorpay_order_id: response.razorpay_order_id,
+                razorpay_payment_id: response.razorpay_payment_id,
+                razorpay_signature: response.razorpay_signature,
+                classId, subjectId, topicId,
+              }),
+            });
+            setNotesUnlocked(true);
+          } catch {
+            setPayError('Payment verified but unlock failed. Please refresh.');
+          } finally {
+            setPaying(false);
+          }
+        },
+      };
+      const rzp = new window.Razorpay(options);
+      rzp.on('payment.failed', () => { setPayError('Payment failed. Please try again.'); setPaying(false); });
+      rzp.open();
+    } catch (e) {
+      setPayError(e.message || 'Failed to initiate payment');
+      setPaying(false);
+    }
+  }
 
   async function openModal(item, type) {
     if (type === 'quiz' || type === 'video') {
@@ -473,23 +601,42 @@ export default function TopicMediaSection({ classId, subjectId, topicId, user, o
           </div>
         )}
 
+        {payError && (
+          <div style={{ background: '#fef2f2', border: '1px solid #fecaca', color: '#dc2626', borderRadius: 10, padding: '.75rem 1rem', fontSize: '.85rem', marginBottom: '1rem' }}>
+            ⚠️ {payError}
+          </div>
+        )}
+
         {activeTypes.map(res => (
           <div key={res.type} className="teacher-resource-type-section">
             <div className="teacher-resource-type-header" style={{ color: res.color }}>
               {res.icon} {res.label}
-              <span className="teacher-resource-type-count">{byType[res.type].length} version{byType[res.type].length > 1 ? 's' : ''}</span>
+              {res.type !== 'report' && (
+                <span className="teacher-resource-type-count">{byType[res.type].length} version{byType[res.type].length > 1 ? 's' : ''}</span>
+              )}
+              {res.type === 'report' && notesUnlocked && (
+                <span className="teacher-resource-type-count" style={{ color: '#059669' }}>✓ Unlocked</span>
+              )}
             </div>
             <div className="teacher-resource-cards">
-              {byType[res.type].map(item => (
-                <TeacherResourceCard
-                  key={item._id}
-                  item={item}
-                  res={res}
-                  isBestRated={byType[res.type].length > 1 && item._id === bestRatedId[res.type]}
-                  onOpen={openModal}
-                  fetching={fetchingId === item._id}
+              {res.type === 'report' && !notesUnlocked ? (
+                <NotesPaymentGate
+                  bestTeacher={byType['report'].reduce((a, b) => (b.uploadedBy?.rating ?? 0) > (a.uploadedBy?.rating ?? 0) ? b : a, byType['report'][0])?.uploadedBy}
+                  onPay={() => handlePayNotes()}
+                  paying={paying}
                 />
-              ))}
+              ) : (
+                byType[res.type].map(item => (
+                  <TeacherResourceCard
+                    key={item._id}
+                    item={item}
+                    res={res}
+                    isBestRated={byType[res.type].length > 1 && item._id === bestRatedId[res.type]}
+                    onOpen={openModal}
+                    fetching={fetchingId === item._id}
+                  />
+                ))
+              )}
             </div>
           </div>
         ))}

@@ -1120,6 +1120,53 @@ app.post('/api/payments/verify', requireStudentAuth, async (req, res) => {
 });
 
 
+// ── Advanced Notes Payment (₹25 unlock) ────────────────────────
+app.post('/api/payments/notes-order', requireStudentAuth, async (req, res) => {
+  try {
+    const rzp = getRazorpay();
+    if (!rzp) return res.status(503).json({ error: 'Payment gateway not configured' });
+    const { classId, subjectId, topicId } = req.body;
+    if (!classId || !subjectId || !topicId) return res.status(400).json({ error: 'Missing topic info' });
+    const order = await rzp.orders.create({
+      amount: 2500, // ₹25 in paise
+      currency: 'INR',
+      receipt: `notes_${Date.now()}`,
+      notes: { classId, subjectId, topicId, studentEmail: req.student.email },
+    });
+    res.json({ orderId: order.id, amount: order.amount, currency: order.currency, keyId: process.env.RAZORPAY_KEY_ID });
+  } catch (e) {
+    console.error('Notes order error:', e.message);
+    res.status(500).json({ error: e.message });
+  }
+});
+
+app.post('/api/payments/notes-verify', requireStudentAuth, async (req, res) => {
+  try {
+    if (!process.env.RAZORPAY_KEY_SECRET) return res.status(503).json({ error: 'Payment gateway not configured' });
+    const { razorpay_order_id, razorpay_payment_id, razorpay_signature, classId, subjectId, topicId } = req.body;
+    const body = razorpay_order_id + '|' + razorpay_payment_id;
+    const expected = crypto.createHmac('sha256', process.env.RAZORPAY_KEY_SECRET).update(body).digest('hex');
+    if (expected !== razorpay_signature) return res.status(400).json({ error: 'Payment verification failed' });
+    const topicKey = `${classId}/${subjectId}/${topicId}`;
+    await Student.findByIdAndUpdate(req.student.id, { $addToSet: { unlocked_notes: topicKey } });
+    res.json({ ok: true, paymentId: razorpay_payment_id, topicKey });
+  } catch (e) {
+    console.error('Notes verify error:', e.message);
+    res.status(500).json({ error: e.message });
+  }
+});
+
+app.get('/api/payments/notes-status/:classId/:subjectId/:topicId', requireStudentAuth, async (req, res) => {
+  try {
+    const { classId, subjectId, topicId } = req.params;
+    const topicKey = `${classId}/${subjectId}/${topicId}`;
+    const student = await Student.findById(req.student.id).select('unlocked_notes').lean();
+    res.json({ unlocked: student?.unlocked_notes?.includes(topicKey) ?? false });
+  } catch (e) {
+    res.status(500).json({ error: e.message });
+  }
+});
+
 // ── Web Push setup ─────────────────────────────────────────────
 let webPush = null;
 let vapidPublicKey = null;

@@ -11,6 +11,7 @@ const studentSchema = new mongoose.Schema({
   referral_code:  { type: String, default: null, sparse: true },
   referred_by:    { type: String, default: null },
   referral_count: { type: Number, default: 0 },
+  unlocked_notes: [{ type: String }], // each entry: "classId/subjectId/topicId"
 }, { timestamps: true });
 
 const teacherSchema = new mongoose.Schema({
