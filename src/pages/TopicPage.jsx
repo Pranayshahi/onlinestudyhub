@@ -13,6 +13,8 @@ import TopicQuiz from '../components/TopicQuiz';
 import TopicPoll from '../components/TopicPoll';
 import { useNotifications } from '../context/NotificationsContext';
 import TopicIllustration from '../components/TopicIllustration';
+import FormulaBankCard from '../components/FormulaBankCard';
+import { useLang } from '../context/LanguageContext';
 
 // ── Accordion item ──────────────────────────────────────────────
 function AccordionItem({ number, question, answer, subjectColor, isOpen, onToggle }) {
@@ -60,7 +62,7 @@ function AccordionItem({ number, question, answer, subjectColor, isOpen, onToggl
 }
 
 // ── Personal Notes Panel ────────────────────────────────────────
-function NotesPanel({ classId, subjectId, topicId, subjectColor }) {
+function NotesPanel({ classId, subjectId, topicId, subjectColor, t }) {
   const storageKey = `osh_notes_${classId}_${subjectId}_${topicId}`;
   const [isOpen, setIsOpen] = useState(false);
   const [note, setNote] = useState(() => {
@@ -102,7 +104,7 @@ function NotesPanel({ classId, subjectId, topicId, subjectColor }) {
       >
         <div style={{ display: 'flex', alignItems: 'center', gap: '.6rem' }}>
           <span>📝</span>
-          <span>My Notes</span>
+          <span>{t('topic_notes')}</span>
           {note.length > 0 && (
             <span style={{
               background: 'var(--sc)', color: '#fff',
@@ -113,7 +115,7 @@ function NotesPanel({ classId, subjectId, topicId, subjectColor }) {
             </span>
           )}
         </div>
-        <span style={{ fontSize: '.78rem', opacity: .65 }}>{isOpen ? '▲ Close' : '▼ Open'}</span>
+        <span style={{ fontSize: '.78rem', opacity: .65 }}>{isOpen ? t('topic_notes_close') : t('topic_notes_open')}</span>
       </button>
 
       {isOpen && (
@@ -170,6 +172,7 @@ export default function TopicPage({ user, onOpenLogin }) {
   const [fontSize, setFontSize] = useState(16);
   const { isDone, toggle } = useProgress();
   const { addNotification, settings } = useNotifications();
+  const { t } = useLang();
 
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -330,17 +333,17 @@ export default function TopicPage({ user, onOpenLogin }) {
               }}
               className={`topic-action-btn ${done ? 'done' : ''}`}
             >
-              {done ? '✅ Completed' : '○ Mark as Done'}
+              {done ? t('topic_completed') : t('topic_mark_done')}
             </button>
 
             {/* Share button */}
             <button onClick={handleShare} className="topic-action-btn">
-              {copied ? '✓ Link Copied!' : '🔗 Share Topic'}
+              {copied ? t('topic_copied') : t('topic_share')}
             </button>
 
             {/* Stats */}
             <div style={{ display: 'flex', alignItems: 'center', gap: '.4rem', opacity: .8, fontSize: '.85rem', marginLeft: 'auto' }}>
-              <span>📖</span> Detailed explanation
+              <span>📖</span> {t('topic_detailed_exp')}
             </div>
             {topic.qa?.length > 0 && (
               <div style={{ display: 'flex', alignItems: 'center', gap: '.4rem', opacity: .8, fontSize: '.85rem' }}>
@@ -357,14 +360,22 @@ export default function TopicPage({ user, onOpenLogin }) {
         {/* ── 1. Definition Box ── */}
         <div className={`topic-definition ${subjectColor}`}>
           <div className="topic-definition-label">
-            📌 Definition — What is {topic.title}?
+            📌 {t('topic_definition')} {topic.title}?
           </div>
           <div className="topic-definition-text">
             {topic.definition}
           </div>
         </div>
 
-        <NotesPanel classId={classId} subjectId={subjectId} topicId={topicId} subjectColor={subjectColor} />
+        <FormulaBankCard
+          classId={classId}
+          subjectId={subjectId}
+          topicId={topicId}
+          topicContent={topic.content}
+          subjectColor={subjectColor}
+        />
+
+        <NotesPanel classId={classId} subjectId={subjectId} topicId={topicId} subjectColor={subjectColor} t={t} />
 
         <TopicMediaSection classId={classId} subjectId={subjectId} topicId={topicId} user={user} onOpenLogin={onOpenLogin} />
 
@@ -373,7 +384,7 @@ export default function TopicPage({ user, onOpenLogin }) {
           <section style={{ marginBottom: '3rem' }}>
             <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: '.75rem', marginBottom: '.75rem' }}>
               <h2 className="topic-section-title" style={{ margin: 0 }}>
-                Understanding {topic.title}
+                {t('topic_understanding')} {topic.title}
               </h2>
               {/* Font size controls */}
               <div className="font-size-controls">
@@ -421,10 +432,10 @@ export default function TopicPage({ user, onOpenLogin }) {
             <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '1.5rem', flexWrap: 'wrap', gap: '.75rem' }}>
               <div>
                 <h2 className="topic-section-title" style={{ marginBottom: '.25rem' }}>
-                  Important Questions &amp; Answers
+                  {t('topic_qa_title')}
                 </h2>
                 <p style={{ fontSize: '.85rem', color: '#9ca3af', marginLeft: '.6rem' }}>
-                  Frequently asked in exams — {topic.qa.length} questions
+                  {t('topic_qa_sub')} — {topic.qa.length} questions
                 </p>
               </div>
               <div style={{ display: 'flex', gap: '.5rem', flexWrap: 'wrap' }}>
@@ -439,7 +450,7 @@ export default function TopicPage({ user, onOpenLogin }) {
                     cursor: 'pointer', display: 'flex', alignItems: 'center', gap: '.4rem',
                   }}
                 >
-                  🃏 Flashcards
+                  {t('topic_flashcards')}
                 </button>
                 {/* AI-generated flashcards */}
                 <button
@@ -476,16 +487,16 @@ export default function TopicPage({ user, onOpenLogin }) {
                     transition: 'all .2s',
                   }}
                 >
-                  {aiLoading ? '⏳ Generating…' : aiCards ? '✨ AI Flashcards ✓' : '✨ AI Flashcards'}
+                  {aiLoading ? t('topic_ai_generating') : aiCards ? t('topic_ai_flashcards_done') : t('topic_ai_flashcards')}
                 </button>
                 {aiError && <span style={{ fontSize: '.75rem', color: '#dc2626', alignSelf: 'center' }}>{aiError}</span>}
                 {topic.qa.length > 4 && (
                   <>
                     <button onClick={() => setOpenQA(null)} style={{ padding: '.35rem .9rem', borderRadius: 8, border: '1px solid #e5e7eb', background: '#f9fafb', fontSize: '.8rem', color: '#6b7280', cursor: 'pointer' }}>
-                      Collapse all
+                      {t('topic_collapse_all')}
                     </button>
                     <button onClick={() => setOpenQA('all')} style={{ padding: '.35rem .9rem', borderRadius: 8, border: '1px solid #e5e7eb', background: '#f9fafb', fontSize: '.8rem', color: '#6b7280', cursor: 'pointer' }}>
-                      Expand all
+                      {t('topic_expand_all')}
                     </button>
                   </>
                 )}
@@ -513,7 +524,7 @@ export default function TopicPage({ user, onOpenLogin }) {
                   className="btn btn-secondary"
                   style={{ fontSize: '.9rem' }}
                 >
-                  {showAllQA ? `Show less ▲` : `Show all ${topic.qa.length} questions ▼`}
+                  {showAllQA ? t('topic_show_less') : `Show all ${topic.qa.length} questions ▼`}
                 </button>
               </div>
             )}
@@ -521,7 +532,7 @@ export default function TopicPage({ user, onOpenLogin }) {
             <div style={{ marginTop: '2rem', background: '#fffbeb', border: '1.5px solid #fde68a', borderRadius: 14, padding: '1.25rem 1.5rem', display: 'flex', gap: '1rem', alignItems: 'flex-start' }}>
               <span style={{ fontSize: '1.5rem', flexShrink: 0 }}>💡</span>
               <div>
-                <div style={{ fontFamily: 'Nunito', fontWeight: 700, color: '#92400e', marginBottom: '.3rem' }}>Exam Tip</div>
+                <div style={{ fontFamily: 'Nunito', fontWeight: 700, color: '#92400e', marginBottom: '.3rem' }}>{t('topic_exam_tip')}</div>
                 <p style={{ fontSize: '.875rem', color: '#78350f', lineHeight: 1.7 }}>
                   These questions are based on common exam patterns for {classData.label} {meta.label}.
                   Practice writing answers in your own words — don't just memorise.
@@ -546,14 +557,14 @@ export default function TopicPage({ user, onOpenLogin }) {
               </div>
               <div style={{ flex: 1, minWidth: 280 }}>
                 <div style={{ display: 'flex', alignItems: 'center', gap: '.75rem', marginBottom: '.5rem' }}>
-                  <span style={{ background: '#4f46e5', color: '#fff', fontSize: '.7rem', fontWeight: 800, padding: '.2rem .6rem', borderRadius: 6, textTransform: 'uppercase' }}>Expert Teacher</span>
+                  <span style={{ background: '#4f46e5', color: '#fff', fontSize: '.7rem', fontWeight: 800, padding: '.2rem .6rem', borderRadius: 6, textTransform: 'uppercase' }}>{t('topic_expert_teacher')}</span>
                   <div style={{ display: 'flex', color: '#fbbf24', fontSize: '.9rem' }}>
                     {'★'.repeat(Math.floor(relevantTeacher.rating))}{relevantTeacher.rating % 1 !== 0 ? '½' : ''}
                     <span style={{ color: '#64748b', marginLeft: '.4rem', fontSize: '.8rem', fontWeight: 600 }}>({relevantTeacher.rating})</span>
                   </div>
                 </div>
                 <h2 style={{ fontFamily: 'Nunito', fontWeight: 900, fontSize: '1.75rem', color: '#1e1b4b', marginBottom: '.5rem' }}>
-                  Deep Learn with{' '}
+                  {t('topic_deep_learn')}{' '}
                   <button
                     onClick={() => {
                       if (!user) { onOpenLogin(); return; }
@@ -599,7 +610,7 @@ export default function TopicPage({ user, onOpenLogin }) {
                     border: 'none',
                   }}
                 >
-                  🚀 Book a Deep Learn Session with {relevantTeacher.name}
+                  {t('topic_book_session')} {relevantTeacher.name}
                 </button>              </div>
             </div>
           </section>
@@ -627,7 +638,7 @@ export default function TopicPage({ user, onOpenLogin }) {
               <div className={`card ${subjectColor}`} style={{ padding: '1.25rem', border: '1px solid var(--sm)', background: 'var(--sl)', display: 'flex', alignItems: 'center', gap: '.75rem' }}>
                 <span style={{ fontSize: '1.25rem' }}>←</span>
                 <div style={{ flex: 1, minWidth: 0 }}>
-                  <div style={{ fontSize: '.72rem', color: 'var(--sc)', fontWeight: 700, textTransform: 'uppercase', marginBottom: '.2rem' }}>Previous Topic</div>
+                  <div style={{ fontSize: '.72rem', color: 'var(--sc)', fontWeight: 700, textTransform: 'uppercase', marginBottom: '.2rem' }}>{t('topic_prev')}</div>
                   <div style={{ fontFamily: 'Nunito', fontWeight: 700, color: '#1e1b4b', fontSize: '.92rem', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{prevTopic.title}</div>
                 </div>
               </div>
@@ -638,7 +649,7 @@ export default function TopicPage({ user, onOpenLogin }) {
               <div className={`card ${subjectColor}`} style={{ padding: '1.25rem', border: '1px solid var(--sm)', background: 'var(--sl)', display: 'flex', alignItems: 'center', gap: '.75rem', textAlign: 'right', flexDirection: 'row-reverse' }}>
                 <span style={{ fontSize: '1.25rem' }}>→</span>
                 <div style={{ flex: 1, minWidth: 0 }}>
-                  <div style={{ fontSize: '.72rem', color: 'var(--sc)', fontWeight: 700, textTransform: 'uppercase', marginBottom: '.2rem' }}>Next Topic</div>
+                  <div style={{ fontSize: '.72rem', color: 'var(--sc)', fontWeight: 700, textTransform: 'uppercase', marginBottom: '.2rem' }}>{t('topic_next')}</div>
                   <div style={{ fontFamily: 'Nunito', fontWeight: 700, color: '#1e1b4b', fontSize: '.92rem', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{nextTopic.title}</div>
                 </div>
               </div>

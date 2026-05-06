@@ -7,25 +7,50 @@
     "icon": "./assets/icon.png",
     "userInterfaceStyle": "light",
     "newArchEnabled": true,
+
     "splash": {
       "image": "./assets/splash-icon.png",
       "resizeMode": "contain",
-      "backgroundColor": "#ffffff"
+      "backgroundColor": "#1e1b4b"
     },
+
     "ios": {
-      "supportsTablet": true,
-      "bundleIdentifier": "com.onlinestudyhub.app"
+      "supportsTablet": false,
+      "bundleIdentifier": "com.onlinestudyhub.app",
+      "buildNumber": "1",
+      "infoPlist": {
+        "NSCameraUsageDescription": "Used to scan documents for studying.",
+        "NSPhotoLibraryUsageDescription": "Used to save screenshots of formula sheets.",
+        "NSMicrophoneUsageDescription": "Used for voice questions in AI doubt solver."
+      }
     },
+
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
-        "backgroundColor": "#ffffff"
+        "backgroundColor": "#1e1b4b"
       },
       "package": "com.onlinestudyhub.app",
-      "edgeToEdgeEnabled": true
+      "versionCode": 1,
+      "permissions": [
+        "android.permission.INTERNET",
+        "android.permission.ACCESS_NETWORK_STATE",
+        "android.permission.VIBRATE",
+        "android.permission.CAMERA",
+        "android.permission.READ_MEDIA_IMAGES"
+      ]
     },
+
     "web": {
       "favicon": "./assets/favicon.png"
+    },
+
+    "scheme": "onlinestudyhub",
+
+    "extra": {
+      "eas": {
+        "projectId": "onlinestudyhub-mobile"
+      }
     }
   }
 }

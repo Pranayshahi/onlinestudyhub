@@ -3,6 +3,7 @@ import { useParams, Link } from 'react-router-dom';
 import { getClass, getSubject, getSubjectColor, SUBJECT_META } from '../data/curriculum';
 import Breadcrumb from '../components/Breadcrumb';
 import { useProgress } from '../hooks/useProgress';
+import { useLang } from '../context/LanguageContext';
 
 function downloadCertificate({ name, subjectLabel, classLabel, classId, topicCount }) {
   const W = 1200, H = 840;
@@ -155,6 +156,7 @@ export default function SubjectPage({ user }) {
   const { classId, subjectId } = useParams();
   const [search, setSearch] = useState('');
   const { isDone, countDone } = useProgress();
+  const { t } = useLang();
 
   const classData = getClass(classId);
   const subject = getSubject(classId, subjectId);
@@ -208,7 +210,7 @@ export default function SubjectPage({ user }) {
                 {meta.label || subjectId}
               </h1>
               <p style={{ opacity: .8, fontSize: '.95rem' }}>
-                {subject.topics.length} topics · Click any topic to start learning
+                {subject.topics.length} topics · {t('subj_click_hint')}
               </p>
               {/* Progress bar */}
               {(() => {
@@ -237,7 +239,7 @@ export default function SubjectPage({ user }) {
           <span style={{ position: 'absolute', left: '1rem', top: '50%', transform: 'translateY(-50%)', fontSize: '1.1rem' }}>🔍</span>
           <input
             type="text"
-            placeholder={`Search topics in ${meta.label || subjectId}...`}
+            placeholder={`${t('subj_search_placeholder')} ${meta.label || subjectId}...`}
             value={search}
             onChange={e => setSearch(e.target.value)}
             style={{
@@ -319,7 +321,7 @@ export default function SubjectPage({ user }) {
                       display: 'flex', alignItems: 'center', justifyContent: 'space-between'
                     }}>
                       <span style={{ fontSize: '.78rem', color: 'var(--sc)', fontWeight: 600 }}>
-                        Start learning →
+                        {t('subj_start_learning')}
                       </span>
                     </div>
                   </div>
@@ -330,13 +332,13 @@ export default function SubjectPage({ user }) {
         ) : (
           <div style={{ textAlign: 'center', padding: '3rem 0' }}>
             <div style={{ fontSize: '3rem', marginBottom: '1rem' }}>🔍</div>
-            <p style={{ color: '#9ca3af' }}>No topics found for "{search}"</p>
+            <p style={{ color: '#9ca3af' }}>{t('subj_no_topics')} "{search}"</p>
             <button
               onClick={() => setSearch('')}
               className="btn btn-secondary"
               style={{ marginTop: '1rem', fontSize: '.9rem' }}
             >
-              Clear search
+              {t('subj_clear_search')}
             </button>
           </div>
         )}
@@ -354,7 +356,7 @@ export default function SubjectPage({ user }) {
             <div style={{ position: 'absolute', right: '-3rem', top: '-3rem', width: '12rem', height: '12rem', borderRadius: '50%', background: 'rgba(255,255,255,.04)' }} />
             <div style={{ fontSize: '3.5rem', marginBottom: '.75rem' }}>🏆</div>
             <h2 style={{ fontFamily: 'Nunito', fontWeight: 900, fontSize: '1.5rem', marginBottom: '.5rem' }}>
-              You've mastered all {subject.topics.length} topics!
+              {t('subj_mastered_all')} {subject.topics.length} {t('subj_mastered_suffix')}
             </h2>
             <p style={{ opacity: .75, fontSize: '.95rem', marginBottom: '1.75rem', maxWidth: 420, margin: '0 auto 1.75rem' }}>
               Congratulations on completing {meta.label || subjectId} — {classData.label}. Download your certificate and share your achievement!
@@ -382,7 +384,7 @@ export default function SubjectPage({ user }) {
                 onMouseEnter={e => e.currentTarget.style.transform = 'translateY(-2px)'}
                 onMouseLeave={e => e.currentTarget.style.transform = 'translateY(0)'}
               >
-                🎓 Download Certificate
+                {t('subj_download_cert')}
               </button>
               <button
                 onClick={() => {
@@ -399,7 +401,7 @@ export default function SubjectPage({ user }) {
                   cursor: 'pointer',
                 }}
               >
-                📱 Share on WhatsApp
+                {t('subj_share_wa')}
               </button>
             </div>
           </div>
@@ -411,7 +413,7 @@ export default function SubjectPage({ user }) {
           background: '#f9fafb', borderRadius: 16, border: '1px solid #e5e7eb'
         }}>
           <h3 style={{ fontFamily: 'Nunito', fontWeight: 800, color: '#1e1b4b', marginBottom: '1rem', fontSize: '1rem' }}>
-            Other subjects in {classData.label}
+            {t('subj_other_subjects')} {classData.label}
           </h3>
           <div style={{ display: 'flex', gap: '.5rem', flexWrap: 'wrap' }}>
             {Object.keys(classData.subjects)

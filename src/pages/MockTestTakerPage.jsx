@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef, useCallback } from 'react';
 import { useParams, useNavigate, Link } from 'react-router-dom';
 import { EXAMS, getMockTestQuestions } from '../data/jeeNeetData';
+import { useLang } from '../context/LanguageContext';
 
 const STATUS = { unanswered: 'unanswered', answered: 'answered', marked: 'marked' };
 
@@ -12,6 +13,7 @@ export default function MockTestTakerPage() {
   const { test, questions } = getMockTestQuestions(testId);
 
   const [phase, setPhase] = useState('start'); // start | test | result
+  const { t } = useLang();
   const [current, setCurrent] = useState(0);
   const [answers, setAnswers] = useState({}); // qId → optionIndex
   const [statuses, setStatuses] = useState({}); // qId → STATUS
@@ -100,38 +102,38 @@ export default function MockTestTakerPage() {
 
           <div className="mock-start-stats" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1rem', marginBottom: '1.5rem' }}>
             {[
-              { label: 'Questions', val: questions.length },
-              { label: 'Duration', val: `${test.duration} min` },
-              { label: 'Total Marks', val: test.totalMarks },
-              { label: 'Marking', val: `+${exam.marking.correct} / ${exam.marking.wrong}` },
+              { labelKey: 'mock_stat_questions', val: questions.length },
+              { labelKey: 'mock_stat_duration', val: `${test.duration} min` },
+              { labelKey: 'mock_stat_total_marks', val: test.totalMarks },
+              { labelKey: 'mtake_marking', val: `+${exam.marking.correct} / ${exam.marking.wrong}` },
             ].map(s => (
-              <div key={s.label} style={{ background: '#f9fafb', borderRadius: 10, padding: '.75rem' }}>
-                <div style={{ fontSize: '.72rem', color: '#9ca3af', fontWeight: 600 }}>{s.label}</div>
+              <div key={s.labelKey} style={{ background: '#f9fafb', borderRadius: 10, padding: '.75rem' }}>
+                <div style={{ fontSize: '.72rem', color: '#9ca3af', fontWeight: 600 }}>{t(s.labelKey)}</div>
                 <div style={{ fontFamily: 'Nunito, sans-serif', fontWeight: 800, fontSize: '1.1rem', color: exam.color }}>{s.val}</div>
               </div>
             ))}
           </div>
 
           <div style={{ background: exam.lightColor, borderRadius: 12, padding: '1rem', marginBottom: '1.5rem', textAlign: 'left' }}>
-            <div style={{ fontWeight: 700, color: exam.color, marginBottom: '.5rem', fontSize: '.85rem' }}>Subject Distribution</div>
+            <div style={{ fontWeight: 700, color: exam.color, marginBottom: '.5rem', fontSize: '.85rem' }}>{t('mtake_subj_dist')}</div>
             {Object.entries(subjectGroups).map(([s, count]) => (
               <div key={s} style={{ display: 'flex', justifyContent: 'space-between', fontSize: '.85rem', color: '#374151', padding: '.2rem 0' }}>
                 <span>{exam.subjectEmojis[s]} {exam.subjectLabels[s]}</span>
-                <span style={{ fontWeight: 700 }}>{count} questions</span>
+                <span style={{ fontWeight: 700 }}>{count} {t('mtake_questions')}</span>
               </div>
             ))}
           </div>
 
           <div style={{ background: '#fffbeb', border: '1px solid #fde68a', borderRadius: 10, padding: '.85rem', marginBottom: '1.75rem', fontSize: '.82rem', color: '#92400e', textAlign: 'left' }}>
-            ⚠️ Once you start, the timer begins. The test auto-submits when time runs out.
+            ⚠️ {t('mtake_start_warning')}
           </div>
 
           <div style={{ display: 'flex', gap: '.75rem' }}>
             <Link to={`/exam/${examId}/mock-test`} style={{ flex: 1 }}>
-              <button className="btn btn-secondary" style={{ width: '100%', justifyContent: 'center' }}>← Back</button>
+              <button className="btn btn-secondary" style={{ width: '100%', justifyContent: 'center' }}>{t('mtake_back')}</button>
             </Link>
             <button className="btn btn-primary" style={{ flex: 2, justifyContent: 'center' }} onClick={() => setPhase('test')}>
-              ▶ Start Test
+              {t('mock_start_test')}
             </button>
           </div>
         </div>
@@ -151,31 +153,31 @@ export default function MockTestTakerPage() {
           {/* Score card */}
           <div style={{ background: `linear-gradient(135deg, #1e1b4b, ${exam.color})`, borderRadius: 20, padding: '2.5rem', color: '#fff', textAlign: 'center', marginBottom: '1.5rem' }}>
             <div style={{ fontSize: '2.5rem', marginBottom: '.5rem' }}>🎯</div>
-            <h2 style={{ fontFamily: 'Nunito, sans-serif', fontWeight: 900, fontSize: '1.5rem', marginBottom: '.25rem' }}>Test Completed!</h2>
+            <h2 style={{ fontFamily: 'Nunito, sans-serif', fontWeight: 900, fontSize: '1.5rem', marginBottom: '.25rem' }}>{t('mtake_completed')}</h2>
             <div style={{ fontSize: '4rem', fontFamily: 'Nunito, sans-serif', fontWeight: 900, margin: '1rem 0' }}>{result.score}</div>
-            <div style={{ color: 'rgba(255,255,255,.75)', fontSize: '1rem' }}>out of {test.totalMarks} marks</div>
+            <div style={{ color: 'rgba(255,255,255,.75)', fontSize: '1rem' }}>{t('mtake_out_of')} {test.totalMarks} {t('mtake_marks')}</div>
             <div style={{ marginTop: '1rem', display: 'inline-block', background: 'rgba(255,255,255,.15)', borderRadius: 99, padding: '.4rem 1.2rem', fontWeight: 700 }}>{rank}</div>
           </div>
 
           {/* Stats row */}
           <div className="mock-result-stats" style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: '1rem', marginBottom: '1.5rem' }}>
             {[
-              { label: 'Correct', val: result.correct, color: '#16a34a', bg: '#f0fdf4', icon: '✅' },
-              { label: 'Wrong', val: result.wrong, color: '#dc2626', bg: '#fef2f2', icon: '❌' },
-              { label: 'Skipped', val: result.unattempted, color: '#6b7280', bg: '#f3f4f6', icon: '⬜' },
-              { label: 'Score %', val: `${pct}%`, color: rankColor, bg: '#fff', icon: '📊' },
+              { labelKey: 'mtake_correct', val: result.correct, color: '#16a34a', bg: '#f0fdf4', icon: '✅' },
+              { labelKey: 'mtake_wrong', val: result.wrong, color: '#dc2626', bg: '#fef2f2', icon: '❌' },
+              { labelKey: 'mtake_skipped', val: result.unattempted, color: '#6b7280', bg: '#f3f4f6', icon: '⬜' },
+              { labelKey: 'mtake_score_pct', val: `${pct}%`, color: rankColor, bg: '#fff', icon: '📊' },
             ].map(s => (
-              <div key={s.label} style={{ background: s.bg, border: '1px solid #e5e7eb', borderRadius: 14, padding: '1rem', textAlign: 'center' }}>
+              <div key={s.labelKey} style={{ background: s.bg, border: '1px solid #e5e7eb', borderRadius: 14, padding: '1rem', textAlign: 'center' }}>
                 <div style={{ fontSize: '1.3rem', marginBottom: '.25rem' }}>{s.icon}</div>
                 <div style={{ fontFamily: 'Nunito, sans-serif', fontWeight: 900, fontSize: '1.5rem', color: s.color }}>{s.val}</div>
-                <div style={{ fontSize: '.72rem', color: '#9ca3af', fontWeight: 600 }}>{s.label}</div>
+                <div style={{ fontSize: '.72rem', color: '#9ca3af', fontWeight: 600 }}>{t(s.labelKey)}</div>
               </div>
             ))}
           </div>
 
           {/* Subject breakdown */}
           <div style={{ background: '#fff', border: '1px solid #e5e7eb', borderRadius: 16, padding: '1.5rem', marginBottom: '1.5rem' }}>
-            <h3 style={{ fontFamily: 'Nunito, sans-serif', fontWeight: 800, marginBottom: '1rem', color: '#1f2937' }}>Subject Breakdown</h3>
+            <h3 style={{ fontFamily: 'Nunito, sans-serif', fontWeight: 800, marginBottom: '1rem', color: '#1f2937' }}>{t('mtake_subj_breakdown')}</h3>
             {Object.entries(result.breakdown).map(([s, data]) => {
               const total = data.correct + data.wrong + data.unattempted;
               const sPct = total > 0 ? Math.round((data.correct / total) * 100) : 0;
@@ -195,7 +197,7 @@ export default function MockTestTakerPage() {
 
           {/* Answer review */}
           <div style={{ background: '#fff', border: '1px solid #e5e7eb', borderRadius: 16, padding: '1.5rem', marginBottom: '1.5rem' }}>
-            <h3 style={{ fontFamily: 'Nunito, sans-serif', fontWeight: 800, marginBottom: '1rem', color: '#1f2937' }}>Answer Review</h3>
+            <h3 style={{ fontFamily: 'Nunito, sans-serif', fontWeight: 800, marginBottom: '1rem', color: '#1f2937' }}>{t('mtake_answer_review')}</h3>
             <div style={{ display: 'flex', flexDirection: 'column', gap: '1.25rem' }}>
               {questions.map((q, i) => {
                 const userAns = result.answers[q.id];
@@ -222,9 +224,9 @@ export default function MockTestTakerPage() {
                         );
                       })}
                     </div>
-                    {isUnattempted && <div style={{ fontSize: '.8rem', color: '#9ca3af', fontStyle: 'italic' }}>Not attempted</div>}
+                    {isUnattempted && <div style={{ fontSize: '.8rem', color: '#9ca3af', fontStyle: 'italic' }}>{t('mtake_not_attempted')}</div>}
                     <div style={{ marginTop: '.5rem', fontSize: '.82rem', color: '#374151', background: '#fff8', borderRadius: 8, padding: '.5rem .75rem' }}>
-                      <span style={{ fontWeight: 700 }}>Solution: </span>{q.solution}
+                      <span style={{ fontWeight: 700 }}>{t('mtake_solution')} </span>{q.solution}
                     </div>
                   </div>
                 );
@@ -234,10 +236,10 @@ export default function MockTestTakerPage() {
 
           <div style={{ display: 'flex', gap: '.75rem' }}>
             <Link to={`/exam/${examId}/mock-test`} style={{ flex: 1 }}>
-              <button className="btn btn-secondary" style={{ width: '100%', justifyContent: 'center' }}>← All Tests</button>
+              <button className="btn btn-secondary" style={{ width: '100%', justifyContent: 'center' }}>{t('mtake_all_tests')}</button>
             </Link>
             <button className="btn btn-primary" style={{ flex: 1, justifyContent: 'center' }} onClick={() => { setAnswers({}); setStatuses({}); setResult(null); setTimeLeft(test.duration * 60); setCurrent(0); setPhase('start'); }}>
-              🔁 Retake
+              {t('mtake_retake')}
             </button>
           </div>
         </div>
@@ -276,7 +278,7 @@ export default function MockTestTakerPage() {
 
           <button onClick={() => { if (window.confirm('Submit the test now?')) submitTest(); }}
             style={{ background: '#f97316', border: 'none', borderRadius: 8, padding: '.4rem 1rem', color: '#fff', fontWeight: 700, fontSize: '.85rem', cursor: 'pointer' }}>
-            Submit
+            {t('mtake_submit')}
           </button>
         </div>
       </div>

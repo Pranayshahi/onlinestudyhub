@@ -2,11 +2,13 @@ import React from 'react';
 import { useParams, Link, useNavigate } from 'react-router-dom';
 import { EXAMS, WEIGHTAGE, PYQS, MOCK_TESTS } from '../data/jeeNeetData';
 import SEO from '../components/SEO';
+import { useLang } from '../context/LanguageContext';
 
 export default function ExamHubPage() {
   const { examId } = useParams();
   const navigate = useNavigate();
   const exam = EXAMS[examId];
+  const { t } = useLang();
 
   if (!exam) {
     return (
@@ -26,27 +28,27 @@ export default function ExamHubPage() {
   const cards = [
     {
       icon: '📊',
-      title: 'Chapter Weightage',
+      titleKey: 'exam_weightage_title',
       desc: `${totalChapters} chapters ranked by importance across ${exam.subjects.length} subjects`,
-      sub: 'Know which chapters to prioritise',
+      subKey: 'exam_weightage_sub',
       link: `/exam/${examId}/weightage`,
       color: exam.color,
       bg: exam.lightColor,
     },
     {
       icon: '📝',
-      title: 'PYQ Bank',
+      titleKey: 'exam_pyq_title',
       desc: `${pyqs.length} previous year questions with detailed solutions`,
-      sub: 'Filter by year, subject & difficulty',
+      subKey: 'exam_pyq_sub',
       link: `/exam/${examId}/pyq`,
       color: '#f59e0b',
       bg: '#fffbeb',
     },
     {
       icon: '⏱️',
-      title: 'Mock Tests',
+      titleKey: 'exam_mock_title',
       desc: `${tests.length} full-length timed tests with negative marking`,
-      sub: 'Get your estimated rank & score breakdown',
+      subKey: 'exam_mock_sub',
       link: `/exam/${examId}/mock-test`,
       color: '#dc2626',
       bg: '#fef2f2',
@@ -84,7 +86,7 @@ export default function ExamHubPage() {
           <div style={{ display: 'flex', alignItems: 'center', gap: '1rem', marginBottom: '1rem' }}>
             <span style={{ fontSize: '3rem' }}>{exam.emoji}</span>
             <div>
-              <div style={{ fontSize: '.85rem', color: 'rgba(255,255,255,.65)', fontWeight: 600, letterSpacing: '.06em', textTransform: 'uppercase' }}>Competitive Exam Prep</div>
+              <div style={{ fontSize: '.85rem', color: 'rgba(255,255,255,.65)', fontWeight: 600, letterSpacing: '.06em', textTransform: 'uppercase' }}>{t('exam_prep_label')}</div>
               <h1 style={{ fontSize: 'clamp(1.8rem, 4vw, 2.8rem)', fontWeight: 900, lineHeight: 1.2 }}>{exam.label}</h1>
             </div>
           </div>
@@ -113,7 +115,7 @@ export default function ExamHubPage() {
               <span style={{ fontSize: '1.3rem' }}>{exam.subjectEmojis[s]}</span>
               <div>
                 <div style={{ fontSize: '.85rem', color: '#1f2937' }}>{exam.subjectLabels[s]}</div>
-                <div style={{ fontSize: '.72rem', color: '#9ca3af' }}>{(WEIGHTAGE[examId]?.[s] || []).length} chapters</div>
+                <div style={{ fontSize: '.72rem', color: '#9ca3af' }}>{(WEIGHTAGE[examId]?.[s] || []).length} {t('exam_chapters')}</div>
               </div>
             </div>
           ))}
@@ -121,16 +123,16 @@ export default function ExamHubPage() {
 
         {/* Feature cards */}
         <h2 style={{ fontFamily: 'Nunito, sans-serif', fontWeight: 800, fontSize: '1.4rem', color: '#1f2937', marginBottom: '1.25rem' }}>
-          {exam.shortLabel} Preparation Tools
+          {exam.shortLabel} {t('exam_prep_tools')}
         </h2>
         <div className="exam-feature-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(280px, 1fr))', gap: '1.25rem', marginBottom: '3rem' }}>
           {cards.map(card => (
-            <Link key={card.title} to={card.link} style={{ textDecoration: 'none' }}>
+            <Link key={card.titleKey} to={card.link} style={{ textDecoration: 'none' }}>
               <div className="card" style={{ padding: '1.75rem', cursor: 'pointer', borderTop: `4px solid ${card.color}`, height: '100%' }}>
                 <div style={{ fontSize: '2.2rem', marginBottom: '1rem' }}>{card.icon}</div>
-                <h3 style={{ fontFamily: 'Nunito, sans-serif', fontWeight: 800, fontSize: '1.15rem', color: '#1f2937', marginBottom: '.5rem' }}>{card.title}</h3>
+                <h3 style={{ fontFamily: 'Nunito, sans-serif', fontWeight: 800, fontSize: '1.15rem', color: '#1f2937', marginBottom: '.5rem' }}>{t(card.titleKey)}</h3>
                 <p style={{ color: '#4b5563', fontSize: '.9rem', lineHeight: 1.6, marginBottom: '.75rem' }}>{card.desc}</p>
-                <div style={{ background: card.bg, color: card.color, fontSize: '.78rem', fontWeight: 600, padding: '.3rem .8rem', borderRadius: 99, display: 'inline-block' }}>{card.sub}</div>
+                <div style={{ background: card.bg, color: card.color, fontSize: '.78rem', fontWeight: 600, padding: '.3rem .8rem', borderRadius: 99, display: 'inline-block' }}>{t(card.subKey)}</div>
               </div>
             </Link>
           ))}
@@ -138,20 +140,20 @@ export default function ExamHubPage() {
 
         {/* Quick stats */}
         <div style={{ background: '#fff', border: '1px solid #e5e7eb', borderRadius: 16, padding: '1.5rem 2rem' }}>
-          <h3 style={{ fontFamily: 'Nunito, sans-serif', fontWeight: 800, marginBottom: '1rem', color: '#1f2937' }}>Quick Stats</h3>
+          <h3 style={{ fontFamily: 'Nunito, sans-serif', fontWeight: 800, marginBottom: '1rem', color: '#1f2937' }}>{t('exam_quick_stats')}</h3>
           <div className="exam-stats-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(140px, 1fr))', gap: '1rem' }}>
             {[
-              { label: 'Total Questions', value: exam.totalQuestions, icon: '❓' },
-              { label: 'Total Marks', value: exam.totalMarks, icon: '🏅' },
-              { label: 'Duration', value: `${exam.duration} min`, icon: '⏱️' },
-              { label: 'Chapters Covered', value: totalChapters, icon: '📚' },
-              { label: 'PYQs Available', value: pyqs.length, icon: '📝' },
-              { label: 'Mock Tests', value: tests.length, icon: '🎯' },
+              { labelKey: 'exam_stat_questions', value: exam.totalQuestions, icon: '❓' },
+              { labelKey: 'exam_stat_marks', value: exam.totalMarks, icon: '🏅' },
+              { labelKey: 'exam_stat_duration', value: `${exam.duration} min`, icon: '⏱️' },
+              { labelKey: 'exam_stat_chapters', value: totalChapters, icon: '📚' },
+              { labelKey: 'exam_stat_pyqs', value: pyqs.length, icon: '📝' },
+              { labelKey: 'exam_mock_title', value: tests.length, icon: '🎯' },
             ].map(stat => (
-              <div key={stat.label} style={{ textAlign: 'center', padding: '1rem', background: '#f9fafb', borderRadius: 12 }}>
+              <div key={stat.labelKey} style={{ textAlign: 'center', padding: '1rem', background: '#f9fafb', borderRadius: 12 }}>
                 <div style={{ fontSize: '1.5rem', marginBottom: '.25rem' }}>{stat.icon}</div>
                 <div style={{ fontFamily: 'Nunito, sans-serif', fontWeight: 800, fontSize: '1.4rem', color: exam.color }}>{stat.value}</div>
-                <div style={{ fontSize: '.75rem', color: '#9ca3af', fontWeight: 600 }}>{stat.label}</div>
+                <div style={{ fontSize: '.75rem', color: '#9ca3af', fontWeight: 600 }}>{t(stat.labelKey)}</div>
               </div>
             ))}
           </div>

@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useSearchParams, Link } from 'react-router-dom';
 import { useSearch } from '../hooks/useSearch';
+import { useLang } from '../context/LanguageContext';
 
 function ResultSection({ title, emoji, items, renderItem }) {
   if (!items.length) return null;
@@ -22,6 +23,7 @@ export default function SearchPage() {
   const query = params.get('q') || '';
   const [input, setInput] = useState(query);
   const results = useSearch(query);
+  const { t } = useLang();
 
   useEffect(() => { setInput(params.get('q') || ''); }, [params]);
 
@@ -35,7 +37,7 @@ export default function SearchPage() {
     <div className="search-page">
       <div className="search-hero">
         <div className="container-sm">
-          <h1 className="search-hero-title">Search</h1>
+          <h1 className="search-hero-title">{t('search_page_title')}</h1>
           <form onSubmit={handleSubmit} className="search-form">
             <div className="search-form-inner">
               <span className="search-form-icon">
@@ -47,7 +49,7 @@ export default function SearchPage() {
                 className="search-page-input"
                 value={input}
                 onChange={e => setInput(e.target.value)}
-                placeholder="Search topics, classes, teachers..."
+                placeholder={t('search_page_placeholder')}
                 autoFocus
                 autoComplete="off"
               />
@@ -69,9 +71,9 @@ export default function SearchPage() {
           results.total === 0 ? (
             <div className="search-empty">
               <div className="search-empty-icon">🔍</div>
-              <h3>No results for "{query}"</h3>
+              <h3>{t('search_no_results')} "{query}"</h3>
               <p>Try different keywords or browse classes directly.</p>
-              <Link to="/classes" className="btn btn-secondary" style={{ marginTop: '1rem' }}>Browse Classes</Link>
+              <Link to="/classes" className="btn btn-secondary" style={{ marginTop: '1rem' }}>{t('search_browse_classes')}</Link>
             </div>
           ) : (
             <>
@@ -80,7 +82,7 @@ export default function SearchPage() {
               </p>
 
               <ResultSection
-                title="Topics" emoji="📚" items={results.topics}
+                title={t('search_section_topics')} emoji="📚" items={results.topics}
                 renderItem={r => (
                   <Link key={r.id} to={r.url} className="search-result-card">
                     <span className="search-result-card-icon">{r.icon || '📄'}</span>
@@ -95,7 +97,7 @@ export default function SearchPage() {
               />
 
               <ResultSection
-                title="Subjects" emoji="📖" items={results.subjects}
+                title={t('search_section_subjects')} emoji="📖" items={results.subjects}
                 renderItem={r => (
                   <Link key={r.id} to={r.url} className="search-result-card">
                     <span className="search-result-card-icon">{r.icon || '📖'}</span>
@@ -109,7 +111,7 @@ export default function SearchPage() {
               />
 
               <ResultSection
-                title="Classes" emoji="🏫" items={results.classes}
+                title={t('search_section_classes')} emoji="🏫" items={results.classes}
                 renderItem={r => (
                   <Link key={r.id} to={r.url} className="search-result-card">
                     <span className="search-result-card-icon">{r.emoji || '🏫'}</span>
@@ -123,7 +125,7 @@ export default function SearchPage() {
               />
 
               <ResultSection
-                title="Teachers" emoji="👨‍🏫" items={results.teachers}
+                title={t('search_section_teachers')} emoji="👨‍🏫" items={results.teachers}
                 renderItem={r => (
                   <Link key={r.id} to={r.url} className="search-result-card search-result-teacher">
                     <span className="search-result-card-icon" style={{ fontSize: '1.6rem' }}>{r.avatar}</span>
@@ -144,10 +146,10 @@ export default function SearchPage() {
             </>
           )
         ) : query.length > 0 ? (
-          <p className="search-hint">Type at least 2 characters to search.</p>
+          <p className="search-hint">{t('search_min_chars')}</p>
         ) : (
           <div className="search-suggestions">
-            <p className="search-hint">Try searching for:</p>
+            <p className="search-hint">{t('search_try')}</p>
             <div className="search-suggestion-chips">
               {['Algebra', 'Photosynthesis', 'Newton', 'Class 10', 'Chemistry', 'History'].map(s => (
                 <button key={s} className="search-chip" onClick={() => { setInput(s); setParams({ q: s }); }}>

@@ -3,8 +3,10 @@ import { Link } from 'react-router-dom';
 import { NAV_CLASSES } from '../data/curriculum';
 import Breadcrumb from '../components/Breadcrumb';
 import SEO from '../components/SEO';
+import { useLang } from '../context/LanguageContext';
 
 export default function TeachersPage() {
+  const { t } = useLang();
   return (
     <div>
       <SEO 
@@ -16,18 +18,18 @@ export default function TeachersPage() {
         <div className="container">
           <Breadcrumb items={[{ label: 'Home', to: '/' }, { label: 'Find Teachers' }]} />
           <h1 style={{ fontFamily: 'Nunito', fontSize: 'clamp(1.8rem,4vw,2.5rem)', fontWeight: 900 }}>
-            Find Your Mentor
+            {t('tpage_title')}
           </h1>
           <p style={{ color: 'rgba(255,255,255,.7)', fontSize: '.95rem', marginTop: '.5rem' }}>
-            Choose your class to see expert teachers available for you.
+            {t('tpage_sub')}
           </p>
         </div>
       </div>
 
       <div className="container" style={{ paddingTop: '2.5rem', paddingBottom: '4rem' }}>
         <div className="section-header">
-          <h2 className="section-title">Select Your Class</h2>
-          <p className="section-sub">We have subject-matter experts for every grade. Choose yours to continue.</p>
+          <h2 className="section-title">{t('tpage_select_class')}</h2>
+          <p className="section-sub">{t('tpage_select_sub')}</p>
         </div>
 
         <div className="classes-grid">
@@ -39,7 +41,7 @@ export default function TeachersPage() {
                 </div>
                 <div className="class-card-title">{cls.label}</div>
                 <div className="class-card-sub" style={{ marginTop: '.5rem', fontWeight: 600, color: '#6366f1' }}>
-                  Browse Teachers →
+                  {t('tpage_browse')}
                 </div>
               </div>
             </Link>

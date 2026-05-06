@@ -2,9 +2,11 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { getAllClasses } from '../data/curriculum';
 import SEO from '../components/SEO';
+import { useLang } from '../context/LanguageContext';
 
 export default function ClassesPage() {
   const classes = getAllClasses();
+  const { t } = useLang();
 
   return (
     <div>
@@ -17,10 +19,10 @@ export default function ClassesPage() {
       <div className="page-header">
         <div className="container">
           <h1 style={{ fontFamily: 'Nunito', fontSize: 'clamp(1.8rem,4vw,2.5rem)', fontWeight: 900 }}>
-            Choose Your Class
+            {t('classes_title')}
           </h1>
           <p style={{ color: 'rgba(255,255,255,.7)', fontSize: '.95rem', marginTop: '.5rem' }}>
-            Select your class to browse subjects and topics
+            {t('classes_sub')}
           </p>
         </div>
       </div>

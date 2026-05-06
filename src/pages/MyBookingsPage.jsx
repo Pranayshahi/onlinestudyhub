@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { api } from '../utils/api';
 import { useNotifications } from '../context/NotificationsContext';
+import { useLang } from '../context/LanguageContext';
 
 const BOOKING_CACHE_KEY = 'osh_booking_status_cache';
 
@@ -86,6 +87,7 @@ function RatingModal({ booking, onClose, onSubmitted }) {
 function BookingCard({ booking, onRate, reviewed, onCancel }) {
   const status = STATUS_STYLE[booking.status] || STATUS_STYLE.pending;
   const [cancelling, setCancelling] = useState(false);
+  const { t } = useLang();
   const date = booking.scheduled_date
     ? new Date(booking.scheduled_date).toLocaleDateString('en-IN', { day: 'numeric', month: 'short', year: 'numeric' })
     : '—';
@@ -124,16 +126,16 @@ function BookingCard({ booking, onRate, reviewed, onCancel }) {
       </div>
 
       <div style={{ display: 'flex', gap: '1.5rem', flexWrap: 'wrap', fontSize: '.83rem', color: '#374151' }}>
-        <div><span style={{ color: '#9ca3af' }}>Date</span><br /><strong>{date}</strong></div>
-        <div><span style={{ color: '#9ca3af' }}>Time</span><br /><strong>{booking.time_slot || '—'}</strong></div>
-        <div><span style={{ color: '#9ca3af' }}>Name</span><br /><strong>{booking.student_name}</strong></div>
-        <div><span style={{ color: '#9ca3af' }}>Phone</span><br /><strong>{booking.student_phone}</strong></div>
+        <div><span style={{ color: '#9ca3af' }}>{t('bookings_date')}</span><br /><strong>{date}</strong></div>
+        <div><span style={{ color: '#9ca3af' }}>{t('bookings_time')}</span><br /><strong>{booking.time_slot || '—'}</strong></div>
+        <div><span style={{ color: '#9ca3af' }}>{t('bookings_name')}</span><br /><strong>{booking.student_name}</strong></div>
+        <div><span style={{ color: '#9ca3af' }}>{t('bookings_phone')}</span><br /><strong>{booking.student_phone}</strong></div>
       </div>
 
       {booking.status === 'confirmed' && booking.meet_link && (
         <a href={booking.meet_link} target="_blank" rel="noopener noreferrer"
           style={{ display: 'inline-flex', alignItems: 'center', gap: '.4rem', background: '#1e1b4b', color: '#fff', fontSize: '.82rem', fontWeight: 700, padding: '.45rem 1rem', borderRadius: 8, textDecoration: 'none', width: 'fit-content' }}>
-          📹 Join Meet
+          {t('bookings_join')}
         </a>
       )}
 
@@ -143,19 +145,19 @@ function BookingCard({ booking, onRate, reviewed, onCancel }) {
           disabled={cancelling}
           style={{ display: 'inline-flex', alignItems: 'center', gap: '.4rem', background: '#fff', color: '#dc2626', border: '1.5px solid #fecaca', fontSize: '.82rem', fontWeight: 700, padding: '.45rem 1rem', borderRadius: 8, cursor: cancelling ? 'not-allowed' : 'pointer', width: 'fit-content', opacity: cancelling ? .6 : 1 }}
         >
-          {cancelling ? '⏳ Cancelling…' : '✕ Cancel Booking'}
+          {cancelling ? t('bookings_cancelling') : t('bookings_cancel')}
         </button>
       )}
 
       {booking.status === 'completed' && (
         reviewed ? (
           <div style={{ display: 'inline-flex', alignItems: 'center', gap: '.4rem', background: '#f0fdf4', color: '#16a34a', fontSize: '.8rem', fontWeight: 700, padding: '.35rem .85rem', borderRadius: 8 }}>
-            ✅ Reviewed — Thank you!
+            {t('bookings_reviewed')}
           </div>
         ) : (
           <button onClick={() => onRate(booking)}
             style={{ display: 'inline-flex', alignItems: 'center', gap: '.4rem', background: 'linear-gradient(135deg, #f59e0b, #d97706)', color: '#fff', fontSize: '.82rem', fontWeight: 700, padding: '.45rem 1rem', borderRadius: 8, border: 'none', cursor: 'pointer', width: 'fit-content' }}>
-            ⭐ Rate This Session
+            {t('bookings_rate')}
           </button>
         )
       )}
@@ -170,6 +172,7 @@ export default function MyBookingsPage({ user, onBadgeUpdate }) {
   const [ratingBooking, setRatingBooking] = useState(null);
   const [reviewed, setReviewed] = useState(new Set());
   const { addNotification } = useNotifications();
+  const { t } = useLang();
 
   useEffect(() => {
     if (!user) { setLoading(false); return; }
@@ -208,8 +211,8 @@ export default function MyBookingsPage({ user, onBadgeUpdate }) {
     return (
       <div style={{ minHeight: '60vh', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', gap: '1rem', textAlign: 'center', padding: '2rem' }}>
         <div style={{ fontSize: '3rem' }}>🔒</div>
-        <h2 style={{ fontFamily: 'Nunito', color: '#1e1b4b', fontWeight: 900 }}>Login Required</h2>
-        <p style={{ color: '#6b7280' }}>Please login to view your booking history.</p>
+        <h2 style={{ fontFamily: 'Nunito', color: '#1e1b4b', fontWeight: 900 }}>{t('bookings_login_required')}</h2>
+        <p style={{ color: '#6b7280' }}>{t('bookings_login_sub')}</p>
         <Link to="/" className="btn btn-primary">← Go Home</Link>
       </div>
     );
@@ -224,9 +227,9 @@ export default function MyBookingsPage({ user, onBadgeUpdate }) {
         <div className="container">
           <div style={{ display: 'flex', alignItems: 'center', gap: '.75rem', marginBottom: '.5rem' }}>
             <span style={{ fontSize: '1.75rem' }}>📅</span>
-            <h1 style={{ fontFamily: 'Nunito', fontWeight: 900, fontSize: 'clamp(1.4rem, 3vw, 2rem)', margin: 0 }}>My Bookings</h1>
+            <h1 style={{ fontFamily: 'Nunito', fontWeight: 900, fontSize: 'clamp(1.4rem, 3vw, 2rem)', margin: 0 }}>{t('bookings_title')}</h1>
           </div>
-          <p style={{ opacity: .75, fontSize: '.9rem', margin: 0 }}>All your session requests and upcoming classes</p>
+          <p style={{ opacity: .75, fontSize: '.9rem', margin: 0 }}>{t('bookings_sub')}</p>
         </div>
       </div>
 
@@ -235,7 +238,7 @@ export default function MyBookingsPage({ user, onBadgeUpdate }) {
           <div style={{ textAlign: 'center', padding: '4rem', color: '#9ca3af' }}>
             <div style={{ width: 36, height: 36, border: '3px solid #e0e7ff', borderTopColor: '#4f46e5', borderRadius: '50%', animation: 'spin 0.7s linear infinite', margin: '0 auto 1rem' }} />
             <style>{`@keyframes spin { to { transform: rotate(360deg); } }`}</style>
-            Loading your bookings…
+            {t('bookings_loading')}
           </div>
         )}
         {error && (
@@ -244,14 +247,14 @@ export default function MyBookingsPage({ user, onBadgeUpdate }) {
         {!loading && !error && bookings.length === 0 && (
           <div style={{ textAlign: 'center', padding: '4rem 1rem' }}>
             <div style={{ fontSize: '3.5rem', marginBottom: '1rem' }}>📭</div>
-            <h3 style={{ fontFamily: 'Nunito', color: '#1e1b4b', fontWeight: 800, marginBottom: '.5rem' }}>No bookings yet</h3>
-            <p style={{ color: '#9ca3af', marginBottom: '1.5rem' }}>Book a session with a teacher to get started.</p>
-            <Link to="/teachers" className="btn btn-primary">Find a Teacher</Link>
+            <h3 style={{ fontFamily: 'Nunito', color: '#1e1b4b', fontWeight: 800, marginBottom: '.5rem' }}>{t('bookings_none')}</h3>
+            <p style={{ color: '#9ca3af', marginBottom: '1.5rem' }}>{t('bookings_none_sub')}</p>
+            <Link to="/teachers" className="btn btn-primary">{t('bookings_find_teacher')}</Link>
           </div>
         )}
         {!loading && upcoming.length > 0 && (
           <div style={{ marginBottom: '2rem' }}>
-            <h2 style={{ fontFamily: 'Nunito', fontWeight: 800, fontSize: '1.1rem', color: '#1f2937', marginBottom: '1rem' }}>Upcoming ({upcoming.length})</h2>
+            <h2 style={{ fontFamily: 'Nunito', fontWeight: 800, fontSize: '1.1rem', color: '#1f2937', marginBottom: '1rem' }}>{t('bookings_upcoming')} ({upcoming.length})</h2>
             <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
               {upcoming.map(b => <BookingCard key={b._id} booking={b} onRate={setRatingBooking} reviewed={reviewed.has(b._id)} onCancel={id => setBookings(bs => bs.map(x => x._id === id ? { ...x, status: 'cancelled' } : x))} />)}
             </div>
@@ -259,7 +262,7 @@ export default function MyBookingsPage({ user, onBadgeUpdate }) {
         )}
         {!loading && past.length > 0 && (
           <div>
-            <h2 style={{ fontFamily: 'Nunito', fontWeight: 800, fontSize: '1.1rem', color: '#1f2937', marginBottom: '1rem' }}>Past Sessions ({past.length})</h2>
+            <h2 style={{ fontFamily: 'Nunito', fontWeight: 800, fontSize: '1.1rem', color: '#1f2937', marginBottom: '1rem' }}>{t('bookings_past')} ({past.length})</h2>
             <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
               {past.map(b => <BookingCard key={b._id} booking={b} onRate={setRatingBooking} reviewed={reviewed.has(b._id)} />)}
             </div>

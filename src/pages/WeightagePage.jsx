@@ -2,18 +2,19 @@ import React, { useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { EXAMS, WEIGHTAGE } from '../data/jeeNeetData';
 import SEO from '../components/SEO';
+import { useLang } from '../context/LanguageContext';
 
 const PRIORITY_META = {
-  must:   { label: 'Must Do', color: '#dc2626', bg: '#fef2f2' },
-  high:   { label: 'High',    color: '#d97706', bg: '#fffbeb' },
-  medium: { label: 'Medium',  color: '#2563eb', bg: '#eff6ff' },
-  low:    { label: 'Low',     color: '#6b7280', bg: '#f3f4f6' },
+  must:   { labelKey: 'wt_priority_must',   color: '#dc2626', bg: '#fef2f2' },
+  high:   { labelKey: 'wt_priority_high',   color: '#d97706', bg: '#fffbeb' },
+  medium: { labelKey: 'wt_priority_medium', color: '#2563eb', bg: '#eff6ff' },
+  low:    { labelKey: 'wt_priority_low',    color: '#6b7280', bg: '#f3f4f6' },
 };
 
 const DIFF_META = {
-  high:   { label: 'Hard',   color: '#dc2626' },
-  medium: { label: 'Medium', color: '#d97706' },
-  low:    { label: 'Easy',   color: '#16a34a' },
+  high:   { labelKey: 'wt_diff_hard',       color: '#dc2626' },
+  medium: { labelKey: 'wt_priority_medium', color: '#d97706' },
+  low:    { labelKey: 'wt_diff_easy',       color: '#16a34a' },
 };
 
 export default function WeightagePage() {
@@ -21,6 +22,7 @@ export default function WeightagePage() {
   const exam = EXAMS[examId];
   const [activeSubject, setActiveSubject] = useState(exam?.subjects?.[0] || '');
   const [sortBy, setSortBy] = useState('weightage');
+  const { t } = useLang();
 
   if (!exam) return <div className="container" style={{ padding: '3rem 1.25rem' }}>Exam not found.</div>;
 
@@ -55,9 +57,9 @@ export default function WeightagePage() {
           <div style={{ display: 'flex', alignItems: 'center', gap: '.75rem' }}>
             <span style={{ fontSize: '2rem' }}>📊</span>
             <div>
-              <h1 style={{ fontWeight: 900, fontSize: '1.8rem', lineHeight: 1.2 }}>Chapter Weightage</h1>
+              <h1 style={{ fontWeight: 900, fontSize: '1.8rem', lineHeight: 1.2 }}>{t('wt_title')}</h1>
               <p style={{ color: 'rgba(255,255,255,.7)', fontSize: '.9rem', marginTop: '.25rem' }}>
-                Know which chapters appear most in {exam.label} — prioritise smart
+                {t('wt_subtitle')} {exam.label}
               </p>
             </div>
           </div>
@@ -78,12 +80,12 @@ export default function WeightagePage() {
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '1rem', marginBottom: '1.5rem' }}>
           <div style={{ display: 'flex', gap: '.5rem', flexWrap: 'wrap' }}>
             {Object.entries(PRIORITY_META).map(([k, v]) => (
-              <span key={k} style={{ background: v.bg, color: v.color, padding: '.2rem .65rem', borderRadius: 99, fontSize: '.75rem', fontWeight: 700 }}>● {v.label}</span>
+              <span key={k} style={{ background: v.bg, color: v.color, padding: '.2rem .65rem', borderRadius: 99, fontSize: '.75rem', fontWeight: 700 }}>● {t(v.labelKey)}</span>
             ))}
           </div>
           <div style={{ display: 'flex', alignItems: 'center', gap: '.5rem' }}>
-            <span style={{ fontSize: '.82rem', color: '#6b7280', fontWeight: 600 }}>Sort:</span>
-            {[['weightage','By Weight'],['difficulty','By Difficulty'],['alpha','A–Z']].map(([val, label]) => (
+            <span style={{ fontSize: '.82rem', color: '#6b7280', fontWeight: 600 }}>{t('wt_sort')}</span>
+            {[['weightage', t('wt_sort_weight')],['difficulty', t('wt_sort_diff')],['alpha', t('wt_sort_alpha')]].map(([val, label]) => (
               <button key={val} onClick={() => setSortBy(val)}
                 style={{ padding: '.3rem .7rem', borderRadius: 8, border: `1px solid ${sortBy === val ? exam.color : '#e5e7eb'}`, background: sortBy === val ? exam.lightColor : '#fff', color: sortBy === val ? exam.color : '#6b7280', fontSize: '.8rem', fontWeight: 600, cursor: 'pointer' }}>
                 {label}
@@ -94,9 +96,9 @@ export default function WeightagePage() {
 
         {/* Subject summary card */}
         <div className="weightage-summary" style={{ background: '#fff', border: '1px solid #e5e7eb', borderRadius: 14, padding: '1rem 1.5rem', marginBottom: '1.5rem', display: 'flex', gap: '2rem', flexWrap: 'wrap' }}>
-          <div><div style={{ fontSize: '.78rem', color: '#9ca3af', fontWeight: 600 }}>TOTAL CHAPTERS</div><div style={{ fontFamily: 'Nunito, sans-serif', fontWeight: 800, fontSize: '1.5rem', color: exam.color }}>{chapters.length}</div></div>
-          <div><div style={{ fontSize: '.78rem', color: '#9ca3af', fontWeight: 600 }}>MUST-DO</div><div style={{ fontFamily: 'Nunito, sans-serif', fontWeight: 800, fontSize: '1.5rem', color: '#dc2626' }}>{chapters.filter(c => c.priority === 'must').length}</div></div>
-          <div><div style={{ fontSize: '.78rem', color: '#9ca3af', fontWeight: 600 }}>AVG QUESTIONS</div><div style={{ fontFamily: 'Nunito, sans-serif', fontWeight: 800, fontSize: '1.5rem', color: '#1f2937' }}>{Math.round(chapters.reduce((s,c) => s + c.avgQuestions, 0) / chapters.length * 10)/10}</div></div>
+          <div><div style={{ fontSize: '.78rem', color: '#9ca3af', fontWeight: 600 }}>{t('wt_total_chapters')}</div><div style={{ fontFamily: 'Nunito, sans-serif', fontWeight: 800, fontSize: '1.5rem', color: exam.color }}>{chapters.length}</div></div>
+          <div><div style={{ fontSize: '.78rem', color: '#9ca3af', fontWeight: 600 }}>{t('wt_must_do')}</div><div style={{ fontFamily: 'Nunito, sans-serif', fontWeight: 800, fontSize: '1.5rem', color: '#dc2626' }}>{chapters.filter(c => c.priority === 'must').length}</div></div>
+          <div><div style={{ fontSize: '.78rem', color: '#9ca3af', fontWeight: 600 }}>{t('wt_avg_q')}</div><div style={{ fontFamily: 'Nunito, sans-serif', fontWeight: 800, fontSize: '1.5rem', color: '#1f2937' }}>{Math.round(chapters.reduce((s,c) => s + c.avgQuestions, 0) / chapters.length * 10)/10}</div></div>
         </div>
 
         {/* Chapter list */}
@@ -113,8 +115,8 @@ export default function WeightagePage() {
                       <span style={{ fontFamily: 'Nunito, sans-serif', fontWeight: 800, fontSize: '1rem', color: '#1f2937' }}>
                         {idx + 1}. {ch.chapter}
                       </span>
-                      <span style={{ background: pri.bg, color: pri.color, fontSize: '.72rem', fontWeight: 700, padding: '.15rem .55rem', borderRadius: 99 }}>{pri.label}</span>
-                      <span style={{ color: diff.color, fontSize: '.72rem', fontWeight: 700 }}>● {diff.label}</span>
+                      <span style={{ background: pri.bg, color: pri.color, fontSize: '.72rem', fontWeight: 700, padding: '.15rem .55rem', borderRadius: 99 }}>{t(pri.labelKey)}</span>
+                      <span style={{ color: diff.color, fontSize: '.72rem', fontWeight: 700 }}>● {t(diff.labelKey)}</span>
                     </div>
 
                     {/* Weightage bar */}
@@ -134,9 +136,9 @@ export default function WeightagePage() {
                   </div>
 
                   <div className="weightage-chapter-right" style={{ textAlign: 'right', minWidth: 100 }}>
-                    <div style={{ fontSize: '.72rem', color: '#9ca3af', fontWeight: 600 }}>AVG QUESTIONS</div>
+                    <div style={{ fontSize: '.72rem', color: '#9ca3af', fontWeight: 600 }}>{t('wt_avg_q')}</div>
                     <div style={{ fontFamily: 'Nunito, sans-serif', fontWeight: 900, fontSize: '1.8rem', color: '#1f2937' }}>{ch.avgQuestions}</div>
-                    <div style={{ fontSize: '.7rem', color: '#9ca3af' }}>per paper</div>
+                    <div style={{ fontSize: '.7rem', color: '#9ca3af' }}>{t('wt_per_paper')}</div>
                   </div>
                 </div>
               </div>

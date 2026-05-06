@@ -5,6 +5,7 @@ import Breadcrumb from '../components/Breadcrumb';
 import SEO from '../components/SEO';
 import TeacherFinder from '../components/TeacherFinder';
 import { useProgress } from '../hooks/useProgress';
+import { useLang } from '../context/LanguageContext';
 
 
 export default function ClassPage({ user, onOpenLogin }) {
@@ -13,6 +14,7 @@ export default function ClassPage({ user, onOpenLogin }) {
   const [activeSubject, setActiveSubject] = useState(null);
   const [showFinder, setShowFinder] = useState(false);
   const { isDone, countDone } = useProgress();
+  const { t } = useLang();
 
   if (!classData) {
     return (
@@ -89,17 +91,17 @@ export default function ClassPage({ user, onOpenLogin }) {
               onMouseEnter={e => e.currentTarget.style.background = 'rgba(255,255,255,.25)'}
               onMouseLeave={e => e.currentTarget.style.background = 'rgba(255,255,255,.15)'}
             >
-              👩‍🏫 Find Teacher
+              {t('class_find_teacher')}
             </button>
           </div>
 
           {/* Quick stats */}
           <div style={{ display: 'flex', gap: '1.5rem', marginTop: '1.5rem', flexWrap: 'wrap' }}>
             <div style={{ background: 'rgba(255,255,255,.1)', borderRadius: 10, padding: '.5rem 1rem', fontSize: '.85rem', color: 'rgba(255,255,255,.9)' }}>
-              📚 {subjectIds.length} Subjects
+              📚 {subjectIds.length} {t('class_subjects_count')}
             </div>
             <div style={{ background: 'rgba(255,255,255,.1)', borderRadius: 10, padding: '.5rem 1rem', fontSize: '.85rem', color: 'rgba(255,255,255,.9)' }}>
-              📖 {subjectIds.reduce((acc, sid) => acc + classData.subjects[sid].topics.length, 0)} Topics
+              📖 {subjectIds.reduce((acc, sid) => acc + classData.subjects[sid].topics.length, 0)} {t('class_topics_count')}
             </div>
             <div style={{ background: 'rgba(255,255,255,.1)', borderRadius: 10, padding: '.5rem 1rem', fontSize: '.85rem', color: 'rgba(255,255,255,.9)' }}>
               🏫 {classData.board}
@@ -165,13 +167,13 @@ export default function ClassPage({ user, onOpenLogin }) {
                 className={`btn btn-secondary ${subjectColor}`}
                 style={{ borderColor: 'var(--sc)', color: 'var(--sc)' }}
               >
-                View All Topics →
+                {t('class_view_topics')}
               </Link>
             </div>
 
             {/* Topics grid */}
             <h3 style={{ fontFamily: 'Nunito', fontWeight: 800, fontSize: '1.15rem', color: '#1e1b4b', marginBottom: '1rem' }}>
-              Topics in {meta.label}
+              {t('class_topics_in')} {meta.label}
             </h3>
             <div className={`topics-grid ${subjectColor}`}>
               {currentSubject.topics.map((topic, i) => (
@@ -190,7 +192,7 @@ export default function ClassPage({ user, onOpenLogin }) {
                       {topic.subtopics ? topic.subtopics.split(',').slice(0, 2).join(' · ') : ''}
                     </div>
                     <div style={{ marginTop: '.75rem', fontSize: '.78rem', color: 'var(--sc)', fontWeight: 600 }}>
-                      {topic.qa?.length || 0} practice questions →
+                      {topic.qa?.length || 0} {t('class_practice_q')}
                     </div>
                   </div>
                 </Link>
@@ -202,7 +204,7 @@ export default function ClassPage({ user, onOpenLogin }) {
         {/* All subjects overview */}
         <div style={{ marginTop: '3.5rem' }}>
           <h3 style={{ fontFamily: 'Nunito', fontWeight: 800, fontSize: '1.15rem', color: '#1e1b4b', marginBottom: '1.25rem' }}>
-            All subjects in {classData.label}
+            {t('class_all_subjects')} {classData.label}
           </h3>
           <div className="subjects-grid">
             {subjectIds.map(sid => {

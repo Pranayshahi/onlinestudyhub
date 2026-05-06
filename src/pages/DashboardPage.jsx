@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { api } from '../utils/api';
 import { getAllClasses, SUBJECT_META } from '../data/curriculum';
 import { usePushNotifications } from '../hooks/usePushNotifications';
+import { useLang } from '../context/LanguageContext';
 
 const SUB_EMOJI = { mathematics:'📐', physics:'⚡', chemistry:'🧪', biology:'🧬', english:'📖', science:'🔬', social:'🌍', history:'🏛️', geography:'🗺️', civics:'⚖️', economics:'💹' };
 const AVATAR_OPTIONS = ['🧑‍🎓','👦','👧','🧑','👨','👩','🧒','🧑‍💻','👨‍🏫','👩‍🏫','🦸','🦸‍♀️','🧙','🤓','😎','🦊'];
@@ -65,6 +66,45 @@ function loadWeakTopics() {
   }
   return weak.slice(0, 6);
 }
+function getNudgeDismissKey() {
+  return `osh_nudge_${new Date().toISOString().slice(0, 10)}`;
+}
+function isNudgeDismissed() {
+  try { return localStorage.getItem(getNudgeDismissKey()) === '1'; } catch { return false; }
+}
+function dismissNudgeStorage() {
+  try { localStorage.setItem(getNudgeDismissKey(), '1'); } catch {}
+}
+function getOverdueFlashcardTopic() {
+  const now = Date.now();
+  for (let i = 0; i < localStorage.length; i++) {
+    const key = localStorage.key(i);
+    if (key?.startsWith('fc_sr_')) {
+      try {
+        const data = JSON.parse(localStorage.getItem(key));
+        if (data?.nextDue && data.nextDue <= now) {
+          // key: fc_sr_<classId>_<subjectId>_<topicId>
+          const raw = key.replace('fc_sr_', '');
+          const m = raw.match(/^(class-[^_]+)_([^_]+)_(.+)$/);
+          if (m) {
+            const topicTitle = m[3].replace(/-/g, ' ').replace(/\b\w/g, c => c.toUpperCase());
+            return { type: 'flashcard', topicTitle, topicId: m[3], classId: m[1], subjectId: m[2] };
+          }
+        }
+      } catch {}
+    }
+  }
+  return null;
+}
+function pickTopUrgentTopic(weakTopics) {
+  const quizWeak = weakTopics
+    .filter(t => t.type === 'quiz')
+    .sort((a, b) => (a.correct / a.total) - (b.correct / b.total));
+  if (quizWeak.length) return quizWeak[0];
+  const notClear = weakTopics.filter(t => t.type === 'poll' && t.confidence === 1);
+  if (notClear.length) return notClear[0];
+  return weakTopics[0] || null;
+}
 function computeStreak() {
   try {
     const dates = JSON.parse(localStorage.getItem('osh_study_dates') || '[]').sort().reverse();
@@ -103,6 +143,74 @@ function loadStudyPlan() {
 }
 function saveStudyPlan(plan) {
   try { localStorage.setItem('osh_study_plan', JSON.stringify(plan)); } catch {}
+}
+function loadLPSettings() {
+  try { return JSON.parse(localStorage.getItem('osh_lp_settings') || 'null'); } catch { return null; }
+}
+function saveLPSettings(s) {
+  try { localStorage.setItem('osh_lp_settings', JSON.stringify(s)); } catch {}
+}
+
+// Returns array of plan items with real topic links, sorted with weak topics first
+function buildSchedule({ classId, examDate, hoursPerDay, subjectIds, progress, weakTopics }) {
+  const cls = getAllClasses().find(c => c.id === classId);
+  if (!cls) return [];
+
+  const doneSet = new Set(Object.keys(progress));
+  const weakSet = new Set([
+    ...weakTopics.map(w => w.topicId ? `${w.classId || classId}/${w.subjectId || ''}/${w.topicId}` : null).filter(Boolean),
+    ...weakTopics.map(w => w.topicTitle ? w.topicTitle : null).filter(Boolean),
+  ]);
+
+  // Collect all remaining topics across selected subjects
+  const remaining = [];
+  const subjects = Object.entries(cls.subjects || {});
+  for (const [subId, sub] of subjects) {
+    if (subjectIds.length > 0 && !subjectIds.includes(subId)) continue;
+    const icon = SUBJECT_META[subId]?.icon || '📚';
+    for (const topic of (sub.topics || [])) {
+      const key = `${classId}/${subId}/${topic.id}`;
+      if (doneSet.has(key)) continue;
+      const isWeak = weakSet.has(key) || weakSet.has(topic.title);
+      remaining.push({ classId, subjectId: subId, topicId: topic.id, title: topic.title, icon, isWeak });
+    }
+  }
+
+  // Sort: weak first, then normal order
+  remaining.sort((a, b) => (b.isWeak ? 1 : 0) - (a.isWeak ? 1 : 0));
+
+  const today = new Date();
+  today.setHours(0, 0, 0, 0);
+  const exam = new Date(examDate);
+  exam.setHours(0, 0, 0, 0);
+
+  const daysLeft = Math.max(1, Math.min(90, Math.round((exam - today) / 86400000)));
+  const topicsPerDay = Math.max(1, Math.round(hoursPerDay / 1.5));
+  const totalSlots = daysLeft * topicsPerDay;
+  const topicSlice = remaining.slice(0, totalSlots);
+
+  const items = [];
+  for (let dayIdx = 0; dayIdx < daysLeft && items.length < topicSlice.length; dayIdx++) {
+    const d = new Date(today);
+    d.setDate(today.getDate() + dayIdx + 1); // start from tomorrow
+    const dateStr = d.toISOString().slice(0, 10);
+    const dayTopics = topicSlice.slice(dayIdx * topicsPerDay, (dayIdx + 1) * topicsPerDay);
+    for (const t of dayTopics) {
+      items.push({
+        id: `lp_${t.classId}_${t.subjectId}_${t.topicId}_${dateStr}`,
+        text: `${t.icon} ${t.title}`,
+        done: false,
+        date: dateStr,
+        path: `/class/${t.classId}/subject/${t.subjectId}/topic/${t.topicId}`,
+        classId: t.classId,
+        subjectId: t.subjectId,
+        topicId: t.topicId,
+        generated: true,
+        isWeak: t.isWeak,
+      });
+    }
+  }
+  return items;
 }
 function computeBadges(totalDone, mockCount, quizData) {
   const highScoreQuizzes = quizData.filter(q => q.correct / q.total >= 0.8).length;
@@ -147,6 +255,363 @@ function SectionCard({ icon, title, action, children }) {
   );
 }
 
+function SmartNudgeBanner({ weakTopics, onDismiss }) {
+  const urgent = pickTopUrgentTopic(weakTopics) || getOverdueFlashcardTopic();
+  if (!urgent) return null;
+
+  const topicName = urgent.topicTitle
+    || (urgent.topicId?.replace(/-/g, ' ').replace(/\b\w/g, c => c.toUpperCase()));
+
+  let message, icon;
+  if (urgent.type === 'quiz') {
+    const pct = Math.round((urgent.correct / urgent.total) * 100);
+    message = `You scored ${pct}% on "${topicName}" — review it today`;
+    icon = '📝';
+  } else if (urgent.type === 'poll') {
+    message = urgent.confidence === 1
+      ? `You marked "${topicName}" as unclear — revisit it now`
+      : `You found "${topicName}" tricky — strengthen it today`;
+    icon = '💡';
+  } else {
+    message = `Your "${topicName}" flashcards are overdue — drill them now`;
+    icon = '🃏';
+  }
+
+  const link = (urgent.classId && urgent.subjectId && urgent.topicId)
+    ? `/class/${urgent.classId}/subject/${urgent.subjectId}/topic/${urgent.topicId}`
+    : null;
+
+  return (
+    <div style={{
+      background: 'linear-gradient(135deg, #fef3c7 0%, #fde68a 100%)',
+      border: '1.5px solid #f59e0b',
+      borderRadius: 16,
+      padding: '1rem 1.25rem',
+      display: 'flex',
+      alignItems: 'center',
+      gap: '1rem',
+      marginBottom: '1.25rem',
+      boxShadow: '0 2px 10px rgba(245,158,11,.18)',
+    }}>
+      <div style={{ fontSize: '1.75rem', flexShrink: 0 }}>{icon}</div>
+      <div style={{ flex: 1, minWidth: 0 }}>
+        <div style={{ fontFamily: 'Nunito', fontWeight: 800, color: '#92400e', fontSize: '.88rem', textTransform: 'uppercase', letterSpacing: '.04em' }}>
+          Today's Focus
+        </div>
+        <div style={{ color: '#78350f', fontSize: '.92rem', marginTop: '.15rem', fontWeight: 600 }}>{message}</div>
+      </div>
+      {link && (
+        <Link to={link} style={{
+          background: '#f59e0b',
+          color: '#fff',
+          fontWeight: 700,
+          fontSize: '.82rem',
+          padding: '.45rem .9rem',
+          borderRadius: 10,
+          textDecoration: 'none',
+          flexShrink: 0,
+          whiteSpace: 'nowrap',
+        }}>
+          Review →
+        </Link>
+      )}
+      <button onClick={onDismiss} title="Dismiss for today" style={{
+        background: 'none',
+        border: 'none',
+        cursor: 'pointer',
+        color: '#92400e',
+        fontSize: '1.1rem',
+        padding: '.25rem .35rem',
+        flexShrink: 0,
+        lineHeight: 1,
+        opacity: .7,
+      }}>✕</button>
+    </div>
+  );
+}
+
+// ── Learning Path Card ────────────────────────────────────────────
+function LearningPathCard({ user, progress, weakTopics, studyPlan, onPlanChange }) {
+  const allClasses = getAllClasses().filter(c => c.id.startsWith('class-'));
+  const defaultClassId = user?.class_id
+    || (allClasses.find(c => c.id === 'class-10')?.id)
+    || allClasses[0]?.id;
+
+  const saved = loadLPSettings();
+  const [form, setForm] = useState({
+    classId: saved?.classId || defaultClassId || 'class-10',
+    examDate: saved?.examDate || '',
+    hoursPerDay: saved?.hoursPerDay || 3,
+    subjectIds: saved?.subjectIds || [],
+  });
+  const [open, setOpen] = useState(false);
+  const [preview, setPreview] = useState(null);
+  const [generated, setGenerated] = useState(!!saved?.generatedOn);
+
+  const classData = getAllClasses().find(c => c.id === form.classId);
+  const subjectOptions = classData ? Object.entries(classData.subjects || {}).map(([id]) => ({
+    id,
+    label: SUBJECT_META[id]?.label || id,
+    icon: SUBJECT_META[id]?.icon || '📚',
+  })) : [];
+
+  const today = new Date();
+  const minDate = new Date(today);
+  minDate.setDate(today.getDate() + 1);
+  const minDateStr = minDate.toISOString().slice(0, 10);
+  const maxDateStr = new Date(today.getFullYear() + 1, today.getMonth(), today.getDate()).toISOString().slice(0, 10);
+
+  // Days until exam
+  const daysUntil = form.examDate
+    ? Math.max(0, Math.round((new Date(form.examDate) - today) / 86400000))
+    : null;
+
+  function toggleSubject(id) {
+    setForm(f => ({
+      ...f,
+      subjectIds: f.subjectIds.includes(id) ? f.subjectIds.filter(s => s !== id) : [...f.subjectIds, id],
+    }));
+    setPreview(null);
+  }
+
+  function buildPreview() {
+    if (!form.examDate) return;
+    const items = buildSchedule({ ...form, progress, weakTopics });
+    setPreview(items);
+  }
+
+  function generate() {
+    if (!form.examDate) return;
+    const items = buildSchedule({ ...form, progress, weakTopics });
+
+    // Remove previous generated items from future dates
+    const todayStr = today.toISOString().slice(0, 10);
+    const kept = studyPlan.filter(p => !p.generated || p.date < todayStr);
+    const merged = [...kept, ...items];
+
+    onPlanChange(merged);
+    saveLPSettings({ ...form, generatedOn: new Date().toISOString() });
+    setGenerated(true);
+    setPreview(items);
+    setOpen(false);
+  }
+
+  // Existing generated plan summary
+  const todayStr = today.toISOString().slice(0, 10);
+  const generatedItems = studyPlan.filter(p => p.generated && p.date >= todayStr);
+  const doneGenerated = generatedItems.filter(p => p.done).length;
+  const upcomingDays = [...new Set(generatedItems.map(p => p.date))].sort().slice(0, 7);
+
+  return (
+    <div style={{
+      background: 'linear-gradient(135deg, #1e1b4b 0%, #312e81 100%)',
+      borderRadius: 16,
+      padding: '1.25rem',
+      marginBottom: '1.5rem',
+      color: '#fff',
+    }}>
+      {/* Header */}
+      <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '.75rem' }}>
+        <div>
+          <div style={{ fontFamily: 'Nunito', fontWeight: 900, fontSize: '1rem', display: 'flex', alignItems: 'center', gap: '.5rem' }}>
+            🗓️ AI Learning Path
+          </div>
+          {generated && form.examDate && (
+            <div style={{ fontSize: '.75rem', color: 'rgba(255,255,255,.65)', marginTop: '.15rem' }}>
+              {daysUntil !== null ? `${daysUntil} days to exam` : ''} · {generatedItems.length} topics scheduled · {doneGenerated} done
+            </div>
+          )}
+        </div>
+        <button
+          onClick={() => setOpen(o => !o)}
+          style={{
+            background: 'rgba(255,255,255,.15)',
+            border: '1px solid rgba(255,255,255,.25)',
+            color: '#fff',
+            borderRadius: 10,
+            padding: '.4rem .9rem',
+            fontSize: '.78rem',
+            fontWeight: 700,
+            cursor: 'pointer',
+          }}
+        >
+          {open ? 'Cancel' : generated ? '⚙️ Edit' : '✨ Set Up'}
+        </button>
+      </div>
+
+      {/* Setup form */}
+      {open && (
+        <div style={{ background: 'rgba(255,255,255,.08)', borderRadius: 12, padding: '1rem', display: 'flex', flexDirection: 'column', gap: '.85rem' }}>
+          {/* Class */}
+          <div>
+            <label style={{ fontSize: '.75rem', fontWeight: 700, opacity: .8, display: 'block', marginBottom: '.3rem' }}>Target Class</label>
+            <select
+              value={form.classId}
+              onChange={e => { setForm(f => ({ ...f, classId: e.target.value, subjectIds: [] })); setPreview(null); }}
+              style={{ width: '100%', padding: '.5rem .75rem', borderRadius: 8, border: 'none', fontWeight: 600, fontSize: '.88rem', background: 'rgba(255,255,255,.92)', color: '#1e1b4b' }}
+            >
+              {allClasses.map(c => <option key={c.id} value={c.id}>{c.label}</option>)}
+            </select>
+          </div>
+
+          {/* Exam date */}
+          <div>
+            <label style={{ fontSize: '.75rem', fontWeight: 700, opacity: .8, display: 'block', marginBottom: '.3rem' }}>
+              Exam / Target Date {daysUntil !== null && form.examDate && (
+                <span style={{ fontWeight: 600, opacity: .7 }}>— {daysUntil} days away</span>
+              )}
+            </label>
+            <input
+              type="date"
+              value={form.examDate}
+              min={minDateStr}
+              max={maxDateStr}
+              onChange={e => { setForm(f => ({ ...f, examDate: e.target.value })); setPreview(null); }}
+              style={{ width: '100%', padding: '.5rem .75rem', borderRadius: 8, border: 'none', fontWeight: 600, fontSize: '.88rem', background: 'rgba(255,255,255,.92)', color: '#1e1b4b', boxSizing: 'border-box' }}
+            />
+          </div>
+
+          {/* Hours per day */}
+          <div>
+            <label style={{ fontSize: '.75rem', fontWeight: 700, opacity: .8, display: 'block', marginBottom: '.3rem' }}>
+              Daily Study Hours: <span style={{ color: '#a5b4fc', fontWeight: 800 }}>{form.hoursPerDay}h</span>
+              <span style={{ opacity: .6, fontWeight: 600 }}> (~{Math.max(1, Math.round(form.hoursPerDay / 1.5))} topics/day)</span>
+            </label>
+            <input
+              type="range" min="1" max="8" step="0.5"
+              value={form.hoursPerDay}
+              onChange={e => { setForm(f => ({ ...f, hoursPerDay: Number(e.target.value) })); setPreview(null); }}
+              style={{ width: '100%', accentColor: '#818cf8' }}
+            />
+            <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '.68rem', opacity: .55, marginTop: '.1rem' }}>
+              <span>1h</span><span>4h</span><span>8h</span>
+            </div>
+          </div>
+
+          {/* Subjects (optional filter) */}
+          <div>
+            <label style={{ fontSize: '.75rem', fontWeight: 700, opacity: .8, display: 'block', marginBottom: '.4rem' }}>
+              Focus Subjects <span style={{ fontWeight: 500, opacity: .65 }}>(leave blank = all)</span>
+            </label>
+            <div style={{ display: 'flex', flexWrap: 'wrap', gap: '.4rem' }}>
+              {subjectOptions.map(s => (
+                <button
+                  key={s.id}
+                  onClick={() => toggleSubject(s.id)}
+                  style={{
+                    padding: '.3rem .7rem',
+                    borderRadius: 8,
+                    border: '1.5px solid',
+                    borderColor: form.subjectIds.includes(s.id) ? '#818cf8' : 'rgba(255,255,255,.25)',
+                    background: form.subjectIds.includes(s.id) ? 'rgba(129,140,248,.3)' : 'transparent',
+                    color: '#fff',
+                    fontSize: '.78rem',
+                    fontWeight: 700,
+                    cursor: 'pointer',
+                  }}
+                >
+                  {s.icon} {s.label}
+                </button>
+              ))}
+            </div>
+          </div>
+
+          {/* Preview / Generate */}
+          {preview && (
+            <div style={{ background: 'rgba(129,140,248,.15)', borderRadius: 10, padding: '.75rem 1rem', fontSize: '.82rem' }}>
+              <div style={{ fontWeight: 800, marginBottom: '.3rem' }}>📊 Plan Preview</div>
+              <div style={{ opacity: .85 }}>
+                {preview.length} topics across {Math.min(daysUntil || 0, Math.ceil(preview.length / Math.max(1, Math.round(form.hoursPerDay / 1.5))))} days
+                {weakTopics.length > 0 && ` · ${preview.filter(p => p.isWeak).length} weak topics prioritised first`}
+              </div>
+            </div>
+          )}
+
+          <div style={{ display: 'flex', gap: '.65rem' }}>
+            <button
+              onClick={buildPreview}
+              disabled={!form.examDate}
+              style={{
+                flex: 1,
+                padding: '.6rem',
+                borderRadius: 10,
+                border: '1.5px solid rgba(255,255,255,.3)',
+                background: 'transparent',
+                color: '#fff',
+                fontWeight: 700,
+                fontSize: '.85rem',
+                cursor: form.examDate ? 'pointer' : 'not-allowed',
+                opacity: form.examDate ? 1 : .5,
+              }}
+            >
+              Preview
+            </button>
+            <button
+              onClick={generate}
+              disabled={!form.examDate}
+              style={{
+                flex: 2,
+                padding: '.6rem',
+                borderRadius: 10,
+                border: 'none',
+                background: form.examDate ? '#818cf8' : 'rgba(255,255,255,.2)',
+                color: '#fff',
+                fontFamily: 'Nunito',
+                fontWeight: 800,
+                fontSize: '.88rem',
+                cursor: form.examDate ? 'pointer' : 'not-allowed',
+              }}
+            >
+              {generated ? '🔄 Regenerate Plan' : '✨ Generate My Plan'}
+            </button>
+          </div>
+        </div>
+      )}
+
+      {/* Upcoming week strip (when generated and form closed) */}
+      {!open && generated && upcomingDays.length > 0 && (
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '.45rem', marginTop: '.25rem' }}>
+          {upcomingDays.slice(0, 3).map(dateStr => {
+            const dayItems = generatedItems.filter(p => p.date === dateStr);
+            const allDone = dayItems.every(p => p.done);
+            const isToday = dateStr === today.toISOString().slice(0, 10);
+            const tomorrow = new Date(today); tomorrow.setDate(today.getDate() + 1);
+            const isTmr = dateStr === tomorrow.toISOString().slice(0, 10);
+            const label = isToday ? 'Today' : isTmr ? 'Tomorrow' : new Date(dateStr).toLocaleDateString('en-IN', { weekday: 'short', day: 'numeric', month: 'short' });
+            return (
+              <div key={dateStr} style={{
+                background: allDone ? 'rgba(16,185,129,.2)' : 'rgba(255,255,255,.09)',
+                borderRadius: 10,
+                padding: '.55rem .85rem',
+                display: 'flex',
+                alignItems: 'center',
+                gap: '.6rem',
+              }}>
+                <div style={{ fontSize: '.7rem', fontWeight: 800, minWidth: 60, opacity: .85 }}>{label}</div>
+                <div style={{ flex: 1, fontSize: '.78rem', opacity: .8, overflow: 'hidden', whiteSpace: 'nowrap', textOverflow: 'ellipsis' }}>
+                  {dayItems.map(p => p.text).join(' · ')}
+                </div>
+                {allDone && <span style={{ fontSize: '.7rem', color: '#6ee7b7', fontWeight: 700 }}>✓ Done</span>}
+              </div>
+            );
+          })}
+          {!generated && (
+            <div style={{ textAlign: 'center', fontSize: '.78rem', opacity: .55, padding: '.5rem 0' }}>
+              Set up your plan to see your schedule here
+            </div>
+          )}
+        </div>
+      )}
+
+      {!open && !generated && (
+        <div style={{ fontSize: '.82rem', opacity: .65, textAlign: 'center', padding: '.5rem 0' }}>
+          Tell us your exam date + daily hours → we build a day-by-day topic schedule linked to the curriculum.
+        </div>
+      )}
+    </div>
+  );
+}
+
 // ── Main Dashboard ────────────────────────────────────────────────
 export default function DashboardPage({ user, onOpenLogin, onUpdateUser }) {
   const [bookings, setBookings] = useState([]);
@@ -167,6 +632,8 @@ export default function DashboardPage({ user, onOpenLogin, onUpdateUser }) {
   const [groupClasses, setGroupClasses] = useState([]);
   const [jitsiOpen, setJitsiOpen] = useState(null);
   const { permission, subscribed, subscribe, loading: pushLoading, supported: pushSupported } = usePushNotifications(user);
+  const { t } = useLang();
+  const [nudgeDismissed, setNudgeDismissed] = useState(isNudgeDismissed);
 
   const progress   = loadProgress();
   const lastTopic  = loadLastTopic();
@@ -213,16 +680,16 @@ export default function DashboardPage({ user, onOpenLogin, onUpdateUser }) {
     return (
       <div style={{ minHeight: '60vh', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', gap: '1rem', textAlign: 'center', padding: '2rem' }}>
         <div style={{ fontSize: '4rem' }}>🔒</div>
-        <h2 style={{ fontFamily: 'Nunito', fontWeight: 900, color: '#1e1b4b' }}>Login to see your Dashboard</h2>
-        <p style={{ color: '#6b7280' }}>Track your progress, earn badges, and plan your studies.</p>
-        <button className="btn btn-primary" onClick={onOpenLogin}>Login / Sign Up</button>
+        <h2 style={{ fontFamily: 'Nunito', fontWeight: 900, color: '#1e1b4b' }}>{t('dash_login_title')}</h2>
+        <p style={{ color: '#6b7280' }}>{t('dash_login_sub')}</p>
+        <button className="btn btn-primary" onClick={onOpenLogin}>{t('dash_login_btn')}</button>
       </div>
     );
   }
 
   const firstName = user.name?.split(' ')[0] || 'Student';
   const hour = new Date().getHours();
-  const greeting = hour < 12 ? 'Good morning' : hour < 17 ? 'Good afternoon' : 'Good evening';
+  const greeting = hour < 12 ? t('dash_greeting_morning') : hour < 17 ? t('dash_greeting_afternoon') : t('dash_greeting_evening');
   const upcoming = bookings.filter(b => b.status === 'confirmed' || b.status === 'pending')
     .sort((a, b) => new Date(a.scheduled_date) - new Date(b.scheduled_date)).slice(0, 3);
   const completed = bookings.filter(b => b.status === 'completed').length;
@@ -333,6 +800,14 @@ export default function DashboardPage({ user, onOpenLogin, onUpdateUser }) {
       </div>
 
       <div className="container db-body">
+
+        {/* ── Smart Nudge banner ── */}
+        {!nudgeDismissed && weakTopics.length > 0 && (
+          <SmartNudgeBanner
+            weakTopics={weakTopics}
+            onDismiss={() => { dismissNudgeStorage(); setNudgeDismissed(true); }}
+          />
+        )}
 
         {/* ── Stats row ── */}
         <div className="db-stats-grid">
@@ -692,6 +1167,15 @@ export default function DashboardPage({ user, onOpenLogin, onUpdateUser }) {
               </div>
             )}
 
+            {/* AI Learning Path */}
+            <LearningPathCard
+              user={user}
+              progress={progress}
+              weakTopics={weakTopics}
+              studyPlan={studyPlan}
+              onPlanChange={updated => { setStudyPlan(updated); saveStudyPlan(updated); }}
+            />
+
             {/* Study Planner */}
             <SectionCard icon="📅" title="Today's Study Plan">
               {todayPlan.length > 0 && (
@@ -708,7 +1192,15 @@ export default function DashboardPage({ user, onOpenLogin, onUpdateUser }) {
                     <button className="db-plan-check" onClick={() => togglePlanItem(item.id)}>
                       {item.done ? '✅' : '⬜'}
                     </button>
-                    <span className="db-plan-text">{item.text}</span>
+                    {item.path ? (
+                      <Link to={item.path} className="db-plan-text" style={{ color: 'inherit', textDecoration: 'none', flex: 1, minWidth: 0 }}>
+                        {item.text}
+                        {item.isWeak && <span style={{ marginLeft: '.4rem', fontSize: '.65rem', background: '#fef3c7', color: '#92400e', padding: '.1rem .35rem', borderRadius: 6, fontWeight: 700, whiteSpace: 'nowrap' }}>review</span>}
+                        <span style={{ marginLeft: '.35rem', fontSize: '.7rem', opacity: .5 }}>→</span>
+                      </Link>
+                    ) : (
+                      <span className="db-plan-text">{item.text}</span>
+                    )}
                     <button className="db-plan-del" onClick={() => removePlanItem(item.id)}>✕</button>
                   </div>
                 ))}
