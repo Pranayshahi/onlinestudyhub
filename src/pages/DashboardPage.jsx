@@ -4,6 +4,7 @@ import { api } from '../utils/api';
 import { getAllClasses, SUBJECT_META } from '../data/curriculum';
 import { usePushNotifications } from '../hooks/usePushNotifications';
 import { useLang } from '../context/LanguageContext';
+import StudyHeatmap from '../components/StudyHeatmap';
 
 const SUB_EMOJI = { mathematics:'📐', physics:'⚡', chemistry:'🧪', biology:'🧬', english:'📖', science:'🔬', social:'🌍', history:'🏛️', geography:'🗺️', civics:'⚖️', economics:'💹' };
 const AVATAR_OPTIONS = ['🧑‍🎓','👦','👧','🧑','👨','👩','🧒','🧑‍💻','👨‍🏫','👩‍🏫','🦸','🦸‍♀️','🧙','🤓','😎','🦊'];
@@ -815,6 +816,15 @@ export default function DashboardPage({ user, onOpenLogin, onUpdateUser }) {
           <StatCard icon="🏅" label="Badges Earned" value={earnedBadges.length} color="#d97706" />
           <StatCard icon="🎯" label="Mock Tests" value={mockResults.length} color="#4f46e5" />
           <StatCard icon="📅" label="Sessions Done" value={completed} color="#dc2626" />
+        </div>
+
+        {/* ── Activity Heatmap ── */}
+        <div className="db-card" style={{ marginBottom: '1.5rem' }}>
+          <div className="db-card-head" style={{ marginBottom: '1rem' }}>
+            <div className="db-card-title"><span>📊</span> Study Activity</div>
+            <span style={{ fontSize: '.75rem', color: '#6b7280' }}>Last 52 weeks</span>
+          </div>
+          <StudyHeatmap />
         </div>
 
         {/* ── Achievements strip ── */}

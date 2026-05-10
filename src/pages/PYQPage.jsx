@@ -56,6 +56,47 @@ function saveHindiCache(id, data) {
   try { localStorage.setItem(HINDI_CACHE_PREFIX + id, JSON.stringify(data)); } catch {}
 }
 
+// ── Solution step formatter ────────────────────────────────────────
+function SolutionSteps({ text }) {
+  // Split on numbered patterns like "Step 1:", "1.", "→" or "·"
+  const stepRe = /(?:Step\s*\d+[:.]\s*|\d+\.\s+|→\s*|^\s*•\s*)/gm;
+  const parts  = text.split(stepRe).map(s => s.trim()).filter(Boolean);
+  const labels = [...text.matchAll(/Step\s*(\d+)[:.]\s*/g)].map(m => `Step ${m[1]}`);
+
+  if (parts.length <= 1) {
+    // No numbered steps — just render as plain, but highlight formula-like fragments
+    return (
+      <div style={{ fontSize: '.88rem', color: '#374151', lineHeight: 1.75 }}>
+        {text.split(/(\b[A-Z][a-z]*\s*=\s*[\w\d\s+\-*/^()√.]+)/).map((chunk, i) =>
+          i % 2 === 1
+            ? <code key={i} style={{ background: '#f0fdf4', color: '#166534', padding: '1px 5px', borderRadius: 4, fontFamily: 'monospace', fontSize: '.85rem' }}>{chunk}</code>
+            : <span key={i}>{chunk}</span>
+        )}
+      </div>
+    );
+  }
+
+  return (
+    <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
+      {parts.map((part, i) => (
+        <div key={i} style={{ display: 'flex', gap: '0.6rem', alignItems: 'flex-start' }}>
+          <span style={{
+            minWidth: 22, height: 22, borderRadius: '50%',
+            background: '#4f46e5', color: '#fff',
+            fontSize: '0.68rem', fontWeight: 800,
+            display: 'flex', alignItems: 'center', justifyContent: 'center',
+            flexShrink: 0, marginTop: 2,
+          }}>{i + 1}</span>
+          <span style={{ fontSize: '.86rem', color: '#374151', lineHeight: 1.7 }}>
+            {labels[i] ? <strong style={{ color: '#4f46e5' }}>{labels[i]}: </strong> : null}
+            {part}
+          </span>
+        </div>
+      ))}
+    </div>
+  );
+}
+
 // ── Question Card ─────────────────────────────────────────────────
 function QuestionCard({ q, qi, exam, isPro, freeLeft, onReveal, revealed, selected, onSelect, onToggleBookmark, bookmarked }) {
   const isRevealed = revealed[q.id];
@@ -172,7 +213,13 @@ function QuestionCard({ q, qi, exam, isPro, freeLeft, onReveal, revealed, select
       {isRevealed && (
         <div className="pyq-solution">
           <div className="pyq-solution-label">✅ {hindiMode ? 'चरण-दर-चरण समाधान' : 'Step-by-Step Solution'}</div>
-          <div className="pyq-solution-text">{displaySol}</div>
+          {hindiMode
+            ? <div className="pyq-solution-text">{displaySol}</div>
+            : <SolutionSteps text={q.solution} />
+          }
+          <div style={{ marginTop: '0.75rem', padding: '0.5rem 0.75rem', background: '#fffbeb', borderRadius: 8, fontSize: '0.78rem', color: '#92400e', borderLeft: '3px solid #f59e0b' }}>
+            <strong>Correct Answer:</strong> ({String.fromCharCode(65 + q.correct)}) {q.options[q.correct]}
+          </div>
         </div>
       )}
 
@@ -593,6 +640,45 @@ export default function PYQPage({ user, onOpenLogin }) {
               <span style={{ color: exam.color, fontWeight: 800 }}>Score: {score}/{attempted * 4}</span>
             </div>
           )}
+
+          {/* ── Chapter accuracy analytics ── */}
+          {attempted >= 3 && (() => {
+            const chapterStats = {};
+            Object.entries(selected).forEach(([id, ans]) => {
+              const q = allPYQs.find(q => q.id === id);
+              if (!q) return;
+              if (!chapterStats[q.chapter]) chapterStats[q.chapter] = { correct: 0, total: 0, subject: q.subject };
+              chapterStats[q.chapter].total++;
+              if (ans === q.correct) chapterStats[q.chapter].correct++;
+            });
+            const sorted = Object.entries(chapterStats).sort((a, b) => (a[1].correct / a[1].total) - (b[1].correct / b[1].total));
+            if (sorted.length < 2) return null;
+            return (
+              <div style={{ background: '#fff', border: '1px solid #e5e7eb', borderRadius: 14, padding: '1rem 1.25rem', marginBottom: '1rem' }}>
+                <div style={{ fontWeight: 800, fontSize: '.9rem', color: '#1f2937', marginBottom: '.75rem' }}>
+                  🎯 Chapter Performance
+                </div>
+                <div style={{ display: 'flex', flexDirection: 'column', gap: '.5rem' }}>
+                  {sorted.map(([ch, st]) => {
+                    const pct = Math.round((st.correct / st.total) * 100);
+                    const color = pct >= 70 ? '#059669' : pct >= 40 ? '#d97706' : '#dc2626';
+                    return (
+                      <div key={ch} style={{ display: 'flex', alignItems: 'center', gap: '.75rem' }}>
+                        <div style={{ width: 130, fontSize: '.75rem', color: '#374151', fontWeight: 600, flexShrink: 0, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }} title={ch}>{ch}</div>
+                        <div style={{ flex: 1, height: 7, background: '#f3f4f6', borderRadius: 999, overflow: 'hidden' }}>
+                          <div style={{ width: `${pct}%`, height: '100%', background: color, borderRadius: 999, transition: 'width .4s' }} />
+                        </div>
+                        <div style={{ width: 48, fontSize: '.72rem', fontWeight: 700, color, textAlign: 'right', flexShrink: 0 }}>{pct}% ({st.correct}/{st.total})</div>
+                      </div>
+                    );
+                  })}
+                </div>
+                <div style={{ marginTop: '.75rem', fontSize: '.72rem', color: '#9ca3af' }}>
+                  💡 Focus on chapters under 50% accuracy
+                </div>
+              </div>
+            );
+          })()}
 
           {/* ── Question list ── */}
           {filtered.length === 0 ? (
