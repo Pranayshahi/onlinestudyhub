@@ -5,6 +5,7 @@ import { getAllClasses, SUBJECT_META } from '../data/curriculum';
 import { usePushNotifications } from '../hooks/usePushNotifications';
 import { useLang } from '../context/LanguageContext';
 import StudyHeatmap from '../components/StudyHeatmap';
+import PeerLeaderboard from '../components/PeerLeaderboard';
 
 const SUB_EMOJI = { mathematics:'📐', physics:'⚡', chemistry:'🧪', biology:'🧬', english:'📖', science:'🔬', social:'🌍', history:'🏛️', geography:'🗺️', civics:'⚖️', economics:'💹' };
 const AVATAR_OPTIONS = ['🧑‍🎓','👦','👧','🧑','👨','👩','🧒','🧑‍💻','👨‍🏫','👩‍🏫','🦸','🦸‍♀️','🧙','🤓','😎','🦊'];
@@ -1054,6 +1055,16 @@ export default function DashboardPage({ user, onOpenLogin, onUpdateUser }) {
                 </form>
               )}
             </SectionCard>
+
+            {/* Peer Leaderboard */}
+            {user.class_id && (
+              <PeerLeaderboard
+                user={user}
+                classId={user.class_id}
+                topicsCompleted={totalDone}
+                quizData={quizData}
+              />
+            )}
 
             {/* Change Password */}
             <SectionCard icon="🔒" title="Change Password"

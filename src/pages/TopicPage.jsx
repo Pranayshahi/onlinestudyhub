@@ -160,7 +160,7 @@ function NotesPanel({ classId, subjectId, topicId, subjectColor, t }) {
 }
 
 // ── Main TopicPage ──────────────────────────────────────────────
-export default function TopicPage({ user, onOpenLogin }) {
+export default function TopicPage({ user, onOpenLogin, onOpenAI }) {
   const { classId, subjectId, topicId } = useParams();
   const [openQA, setOpenQA] = useState(null);
   const [showAllQA, setShowAllQA] = useState(false);
@@ -170,6 +170,7 @@ export default function TopicPage({ user, onOpenLogin }) {
   const [aiLoading, setAiLoading] = useState(false);
   const [aiError, setAiError] = useState('');
   const [fontSize, setFontSize] = useState(16);
+  const [selectionPopup, setSelectionPopup] = useState(null); // { text, x, y }
   const { isDone, toggle } = useProgress();
   const { addNotification, settings } = useNotifications();
   const { t } = useLang();
@@ -179,7 +180,14 @@ export default function TopicPage({ user, onOpenLogin }) {
     setOpenQA(null);
     setShowAllQA(false);
     setCopied(false);
+    setSelectionPopup(null);
   }, [topicId]);
+
+  useEffect(() => {
+    const dismiss = () => setSelectionPopup(null);
+    document.addEventListener('mousedown', dismiss);
+    return () => document.removeEventListener('mousedown', dismiss);
+  }, []);
 
   // Track last visited topic + record study day for streak
   useEffect(() => {
@@ -381,7 +389,7 @@ export default function TopicPage({ user, onOpenLogin }) {
 
         {/* ── 3. Learning Content ── */}
         {topic.content && (
-          <section style={{ marginBottom: '3rem' }}>
+          <section style={{ marginBottom: '3rem', position: 'relative' }}>
             <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: '.75rem', marginBottom: '.75rem' }}>
               <h2 className="topic-section-title" style={{ margin: 0 }}>
                 {t('topic_understanding')} {topic.title}
@@ -413,7 +421,51 @@ export default function TopicPage({ user, onOpenLogin }) {
               className={`topic-content ${subjectColor}`}
               style={{ fontSize: `${fontSize}px`, lineHeight: fontSize > 18 ? 1.85 : 1.75 }}
               dangerouslySetInnerHTML={{ __html: topic.content }}
+              onMouseUp={() => {
+                const sel = window.getSelection();
+                const text = sel?.toString().trim();
+                if (!text || text.length < 8 || text.length > 400) { setSelectionPopup(null); return; }
+                const range = sel.getRangeAt(0);
+                const rect = range.getBoundingClientRect();
+                const scrollY = window.scrollY || document.documentElement.scrollTop;
+                setSelectionPopup({ text, x: rect.left + rect.width / 2, y: rect.top + scrollY - 10 });
+              }}
             />
+
+            {/* Floating "Ask AI" button on text selection */}
+            {selectionPopup && onOpenAI && (
+              <button
+                style={{
+                  position: 'absolute',
+                  left: selectionPopup.x,
+                  top: selectionPopup.y,
+                  transform: 'translate(-50%, -100%)',
+                  background: 'linear-gradient(135deg, #4f46e5, #7c3aed)',
+                  color: '#fff',
+                  border: 'none',
+                  borderRadius: 99,
+                  padding: '6px 14px',
+                  fontSize: '.78rem',
+                  fontWeight: 800,
+                  cursor: 'pointer',
+                  boxShadow: '0 4px 16px rgba(79,70,229,.45)',
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: '5px',
+                  zIndex: 50,
+                  whiteSpace: 'nowrap',
+                  animation: 'fadeInUp .15s ease',
+                }}
+                onClick={() => {
+                  onOpenAI(selectionPopup.text);
+                  setSelectionPopup(null);
+                  window.getSelection()?.removeAllRanges();
+                }}
+                onMouseDown={e => e.preventDefault()}
+              >
+                🤖 Ask AI about this
+              </button>
+            )}
           </section>
         )}
 

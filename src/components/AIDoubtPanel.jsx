@@ -81,7 +81,7 @@ function MsgContent({ content }) {
   );
 }
 
-export default function AIDoubtPanel({ open, onClose }) {
+export default function AIDoubtPanel({ open, onClose, prefillText }) {
   const location = useLocation();
 
   // Load chat history from localStorage (exclude imagePreview blobs)
@@ -146,6 +146,14 @@ export default function AIDoubtPanel({ open, onClose }) {
     if (open) window.addEventListener('keydown', handler);
     return () => window.removeEventListener('keydown', handler);
   }, [open, onClose]);
+
+  // Pre-fill when opened with selected text (doubt tagging)
+  useEffect(() => {
+    if (open && prefillText) {
+      setInput(`Explain this to me: "${prefillText.trim()}"`);
+      setTimeout(() => textareaRef.current?.focus(), 100);
+    }
+  }, [open, prefillText]);
 
   // Voice input setup
   useEffect(() => {

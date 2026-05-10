@@ -43,12 +43,46 @@ function BookingModal({ teacher, topic, classData, subjectMeta, classId, subject
   const [form, setForm] = useState({ name: storedUser?.name || '', phone: '', date: '', time: '', doubts: '' });
   const [loading, setLoading] = useState(false);
   const [errors, setErrors] = useState({});
+  const [availability, setAvailability] = useState(null);
+  const [bookedSlots, setBookedSlots] = useState([]);
+  const [loadingSlots, setLoadingSlots] = useState(false);
 
-  const TIME_SLOTS = [
+  const ALL_TIME_SLOTS = [
     '9:00 AM', '10:00 AM', '11:00 AM',
     '2:00 PM', '3:00 PM', '4:00 PM', '5:00 PM',
     '6:00 PM', '7:00 PM', '8:00 PM',
   ];
+
+  const teacherDbId = teacher._id || teacher.id;
+
+  useEffect(() => {
+    if (!teacherDbId) { setAvailability([]); return; }
+    api(`/teachers/${teacherDbId}/availability`)
+      .then(data => setAvailability(Array.isArray(data) ? data : []))
+      .catch(() => setAvailability([]));
+  }, [teacherDbId]);
+
+  useEffect(() => {
+    if (!form.date || !teacherDbId) { setBookedSlots([]); return; }
+    setLoadingSlots(true);
+    api(`/teachers/${teacherDbId}/booked-slots?date=${form.date}`)
+      .then(data => setBookedSlots(Array.isArray(data) ? data : []))
+      .catch(() => setBookedSlots([]))
+      .finally(() => setLoadingSlots(false));
+  }, [form.date, teacherDbId]);
+
+  const selectedDayName = form.date
+    ? new Date(form.date + 'T00:00:00').toLocaleDateString('en-US', { weekday: 'long' })
+    : null;
+
+  const dayAvailability = (availability?.length > 0 && selectedDayName)
+    ? availability.find(a => a.day === selectedDayName)
+    : null;
+
+  const candidateSlots = dayAvailability ? dayAvailability.slots : ALL_TIME_SLOTS;
+  const availableSlots = candidateSlots.filter(s => !bookedSlots.includes(s));
+  const noSlotsForDay = availability?.length > 0 && selectedDayName && !dayAvailability;
+  const availableDays = availability?.length > 0 ? availability.map(a => a.day).join(', ') : null;
 
   function set(k, v) { setForm(f => ({ ...f, [k]: v })); setErrors(e => ({ ...e, [k]: '' })); }
 
@@ -189,24 +223,42 @@ function BookingModal({ teacher, topic, classData, subjectMeta, classId, subject
             {errors.phone && <p style={{ color: '#ef4444', fontSize: '.75rem', marginTop: '.25rem' }}>{errors.phone}</p>}
           </div>
 
+          {/* Available days notice */}
+          {availableDays && (
+            <div style={{ background: '#f0fdf4', border: '1px solid #bbf7d0', borderRadius: 10, padding: '.6rem .9rem', marginBottom: '.85rem', fontSize: '.78rem', color: '#15803d', fontWeight: 600 }}>
+              📅 Teacher available: {availableDays}
+            </div>
+          )}
+
           {/* Date + Time */}
           <div className="book-datetime-grid" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1rem', marginBottom: '1rem' }}>
             <div>
               <label style={{ display: 'block', fontWeight: 700, fontSize: '.82rem', color: '#374151', marginBottom: '.35rem' }}>
                 Date <span style={{ color: '#ef4444' }}>*</span>
               </label>
-              <input type="date" style={inputStyle(errors.date)} min={minDate} value={form.date} onChange={e => set('date', e.target.value)} />
+              <input type="date" style={inputStyle(errors.date)} min={minDate} value={form.date} onChange={e => { set('date', e.target.value); set('time', ''); }} />
               {errors.date && <p style={{ color: '#ef4444', fontSize: '.75rem', marginTop: '.25rem' }}>{errors.date}</p>}
+              {noSlotsForDay && (
+                <p style={{ color: '#d97706', fontSize: '.75rem', marginTop: '.25rem' }}>No slots on {selectedDayName} — pick another day</p>
+              )}
             </div>
             <div>
               <label style={{ display: 'block', fontWeight: 700, fontSize: '.82rem', color: '#374151', marginBottom: '.35rem' }}>
                 Time Slot <span style={{ color: '#ef4444' }}>*</span>
               </label>
-              <select style={{ ...inputStyle(errors.time), background: '#fff' }} value={form.time} onChange={e => set('time', e.target.value)}>
-                <option value="">Pick a slot…</option>
-                {TIME_SLOTS.map(t => <option key={t} value={t}>{t}</option>)}
+              <select
+                style={{ ...inputStyle(errors.time), background: '#fff' }}
+                value={form.time}
+                onChange={e => set('time', e.target.value)}
+                disabled={loadingSlots || noSlotsForDay}
+              >
+                <option value="">{loadingSlots ? 'Loading slots…' : 'Pick a slot…'}</option>
+                {availableSlots.map(t => <option key={t} value={t}>{t}</option>)}
               </select>
               {errors.time && <p style={{ color: '#ef4444', fontSize: '.75rem', marginTop: '.25rem' }}>{errors.time}</p>}
+              {!loadingSlots && form.date && !noSlotsForDay && availableSlots.length === 0 && (
+                <p style={{ color: '#ef4444', fontSize: '.75rem', marginTop: '.25rem' }}>All slots booked for this day — try another</p>
+              )}
             </div>
           </div>
 
@@ -271,17 +323,26 @@ function BookingSuccess({ booking, teacher, topic, onClose }) {
           <strong>{teacher.name}</strong> will call you on <strong>{booking.phone}</strong> within <strong>24 hours</strong> to confirm your session on <strong>{topic.title}</strong>.
         </p>
 
-        <div style={{ background: '#f0fdf4', border: '1px solid #bbf7d0', borderRadius: 14, padding: '1rem', marginBottom: '1.5rem', fontSize: '.85rem', color: '#15803d', textAlign: 'left' }}>
+        <div style={{ background: '#f0fdf4', border: '1px solid #bbf7d0', borderRadius: 14, padding: '1rem', marginBottom: '1rem', fontSize: '.85rem', color: '#15803d', textAlign: 'left' }}>
           <div style={{ fontWeight: 800, marginBottom: '.5rem' }}>✅ What happens next:</div>
           <div>1. Teacher reviews your request</div>
-          <div>2. Calls you to confirm the slot</div>
+          <div>2. Calls you on {booking.phone} to confirm</div>
           <div>3. You join at the agreed time</div>
           <div>4. 45–60 min 1-on-1 deep session</div>
         </div>
 
-        <div style={{ fontSize: '.8rem', color: '#9ca3af', marginBottom: '1.5rem' }}>
-          Requested: {booking.date} at {booking.time}
+        <div style={{ fontSize: '.8rem', color: '#6b7280', marginBottom: '1rem', background: '#fffbeb', border: '1px solid #fde68a', borderRadius: 10, padding: '.65rem .85rem', textAlign: 'left' }}>
+          <strong>📅 Requested:</strong> {booking.date} at {booking.time}
         </div>
+
+        <a
+          href={`https://wa.me/?text=${encodeURIComponent(`Reminder: My session on "${topic.title}" with ${teacher.name} is on ${booking.date} at ${booking.time}. Join via OnlineStudyHub.`)}`}
+          target="_blank"
+          rel="noopener noreferrer"
+          style={{ display: 'block', marginBottom: '1rem', padding: '.6rem 1rem', background: '#25D366', color: '#fff', borderRadius: 10, fontWeight: 700, fontSize: '.85rem', textDecoration: 'none', textAlign: 'center' }}
+        >
+          📱 Send WhatsApp Reminder to Yourself
+        </a>
 
         <button
           onClick={onClose}

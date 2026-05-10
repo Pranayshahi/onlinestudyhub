@@ -35,6 +35,10 @@ const teacherSchema = new mongoose.Schema({
   demo_available: { type: Boolean, default: true },
   is_online: { type: Boolean, default: false },
   last_seen: { type: Date, default: Date.now },
+  availability: [{
+    day: { type: String }, // 'Monday', 'Tuesday', etc.
+    slots: [{ type: String }], // ['9:00 AM', '10:00 AM', ...]
+  }],
 }, { timestamps: true });
 
 const bookingSchema = new mongoose.Schema({

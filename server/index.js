@@ -1733,6 +1733,90 @@ ${numbered}`;
   }
 });
 
+// ── Leaderboard ────────────────────────────────────────────────
+// In-memory weekly leaderboard (resets Monday). Key: classId → [{name,avatar,score,topics,quizAvg}]
+const leaderboardStore = new Map();
+function getWeekKey() {
+  const d = new Date();
+  const jan1 = new Date(d.getFullYear(), 0, 1);
+  const week = Math.ceil(((d - jan1) / 86400000 + jan1.getDay() + 1) / 7);
+  return `${d.getFullYear()}-W${week}`;
+}
+
+app.post('/api/leaderboard/submit', requireStudentAuth, async (req, res) => {
+  try {
+    const { classId, topicsCompleted, quizAvg, displayName, avatar } = req.body;
+    if (!classId) return res.status(400).json({ error: 'classId required' });
+    const weekKey = `${classId}:${getWeekKey()}`;
+    if (!leaderboardStore.has(weekKey)) leaderboardStore.set(weekKey, new Map());
+    const board = leaderboardStore.get(weekKey);
+    const score = (topicsCompleted || 0) * 10 + Math.round((quizAvg || 0) * 5);
+    board.set(req.student.email, {
+      name: displayName || req.student.name?.split(' ')[0] || 'Student',
+      avatar: avatar || req.student.avatar || '🧑‍🎓',
+      score,
+      topics: topicsCompleted || 0,
+      quizAvg: Math.round(quizAvg || 0),
+    });
+    res.json({ ok: true, score });
+  } catch (err) {
+    res.status(500).json({ error: 'Server error' });
+  }
+});
+
+app.get('/api/leaderboard/:classId', async (req, res) => {
+  try {
+    const weekKey = `${req.params.classId}:${getWeekKey()}`;
+    const board = leaderboardStore.get(weekKey);
+    if (!board || board.size === 0) return res.json([]);
+    const entries = [...board.entries()]
+      .map(([email, d]) => ({ ...d, emailHash: email.slice(0, 3) + '***' }))
+      .sort((a, b) => b.score - a.score)
+      .slice(0, 10);
+    res.json(entries);
+  } catch (err) {
+    res.status(500).json({ error: 'Server error' });
+  }
+});
+
+// ── Teacher Availability ────────────────────────────────────────
+app.get('/api/teachers/:id/availability', async (req, res) => {
+  try {
+    const teacher = await Teacher.findById(req.params.id).lean();
+    if (!teacher) return res.status(404).json({ error: 'Teacher not found' });
+    res.json(teacher.availability || []);
+  } catch (err) {
+    res.status(500).json({ error: 'Server error' });
+  }
+});
+
+app.put('/api/teachers/me/availability', requireAuth, async (req, res) => {
+  try {
+    const { availability } = req.body; // [{ day: 'Monday', slots: ['9:00 AM', '10:00 AM'] }]
+    if (!Array.isArray(availability)) return res.status(400).json({ error: 'availability must be an array' });
+    await Teacher.findByIdAndUpdate(req.teacher.id, { availability });
+    res.json({ ok: true });
+  } catch (err) {
+    res.status(500).json({ error: 'Server error' });
+  }
+});
+
+// Get teacher's booked slots for a date (to block out unavailable times)
+app.get('/api/teachers/:id/booked-slots', async (req, res) => {
+  try {
+    const { date } = req.query;
+    if (!date) return res.status(400).json({ error: 'date required' });
+    const bookings = await Booking.find({
+      teacher_id: req.params.id,
+      scheduled_date: date,
+      status: { $in: ['pending', 'confirmed'] },
+    }).lean();
+    res.json(bookings.map(b => b.time_slot));
+  } catch (err) {
+    res.status(500).json({ error: 'Server error' });
+  }
+});
+
 // ── Error Handler ──────────────────────────────────────────────
 app.use((err, req, res, next) => {
   console.error('Unhandled error:', err);

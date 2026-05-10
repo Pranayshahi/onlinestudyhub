@@ -63,6 +63,12 @@ function PageLoader() {
 
 export default function App() {
   const [aiOpen, setAiOpen] = useState(false);
+  const [aiPrefill, setAiPrefill] = useState('');
+
+  function openAI(prefillText = '') {
+    setAiPrefill(prefillText);
+    setAiOpen(true);
+  }
   const [loginOpen, setLoginOpen] = useState(false);
   const [user, setUser] = useState(() => {
     try {
@@ -130,7 +136,7 @@ export default function App() {
       <NotificationsProvider>
         <div className="app">
           <Navbar
-            onOpenAI={() => setAiOpen(true)}
+            onOpenAI={() => openAI()}
             onOpenLogin={() => setLoginOpen(true)}
             user={user}
             onLogout={handleLogout}
@@ -143,7 +149,7 @@ export default function App() {
               <Routes>
                 <Route
                   path="/"
-                  element={<HomePage onOpenAI={() => setAiOpen(true)} />}
+                  element={<HomePage onOpenAI={() => openAI()} />}
                 />
                 <Route path="/classes" element={<ClassesPage />} />
                 <Route path="/teachers" element={<TeachersPage />} />
@@ -175,6 +181,7 @@ export default function App() {
                     <TopicPage
                       user={user}
                       onOpenLogin={() => setLoginOpen(true)}
+                      onOpenAI={openAI}
                     />
                   }
                 />
@@ -244,7 +251,7 @@ export default function App() {
           <Footer />
           <Suspense fallback={null}>
             {aiOpen && (
-              <AIDoubtPanel open={aiOpen} onClose={() => setAiOpen(false)} />
+              <AIDoubtPanel open={aiOpen} onClose={() => { setAiOpen(false); setAiPrefill(''); }} prefillText={aiPrefill} />
             )}
             {loginOpen && (
               <LoginModal
