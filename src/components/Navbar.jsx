@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { NAV_CLASSES, CURRICULUM } from "../data/curriculum";
+import { NAV_CLASSES, NAV_COMPETITIVE, CURRICULUM } from "../data/curriculum";
 import { TEACHERS } from "../data/teachers";
 import NotificationBell from "./NotificationBell";
 import { useLang } from "../context/LanguageContext";
@@ -278,6 +278,43 @@ export default function Navbar({
                             {t.avatar}
                           </span>
                         )}
+                      </Link>
+                    );
+                  })}
+                </div>
+                <div className="dropdown-section">
+                  <div className="dropdown-label">Competitive Exams</div>
+                  {NAV_COMPETITIVE.map((exam) => {
+                    const target = `/teachers/${exam.id}`;
+                    return (
+                      <Link
+                        key={exam.id}
+                        to={user ? target : "#"}
+                        className="dropdown-item"
+                        onClick={(e) => {
+                          if (!user) {
+                            e.preventDefault();
+                            onOpenLogin();
+                          }
+                          close();
+                        }}
+                      >
+                        <span
+                          style={{
+                            display: "inline-flex",
+                            alignItems: "center",
+                            justifyContent: "center",
+                            width: 26,
+                            height: 26,
+                            borderRadius: 7,
+                            background: exam.id === "jee" ? "#ede9fe" : "#fce7f3",
+                            fontSize: ".9rem",
+                            flexShrink: 0,
+                          }}
+                        >
+                          {exam.icon}
+                        </span>
+                        <span style={{ flex: 1 }}>{exam.label}</span>
                       </Link>
                     );
                   })}
