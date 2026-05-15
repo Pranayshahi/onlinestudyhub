@@ -48,12 +48,12 @@ router.post('/tts', async (req, res) => {
       body: JSON.stringify({
         inputs: [text.slice(0, 500)],
         target_language_code: language_code,
-        speaker: 'meera',
-        model: 'bulbul:v1',
+        speaker: 'anushka',
+        model: 'bulbul:v2',
       }),
     });
     const data = await resp.json();
-    if (!resp.ok) return res.status(resp.status).json({ error: data.message || 'TTS failed' });
+    if (!resp.ok) return res.status(resp.status).json({ error: data?.error?.message || data.message || 'TTS failed' });
     res.json({ audio: data.audios?.[0] });
   } catch (err) {
     res.status(500).json({ error: err.message });
