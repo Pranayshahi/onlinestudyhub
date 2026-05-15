@@ -237,30 +237,74 @@ export default function AIDoubtPanel({ open, onClose, prefillText }) {
 
   // ── Sarvam TTS ─────────────────────────────────────────────────
   async function speakMessage(idx, text) {
+    // Toggle off
     if (ttsPlaying === idx) {
+      window.speechSynthesis?.cancel();
       audioRef.current?.pause();
       audioRef.current = null;
       setTtsPlaying(null);
       return;
     }
+
+    // English: use browser speech synthesis (Sarvam TTS doesn't support en-IN)
+    if (selectedLang === 'en-IN') {
+      if (!window.speechSynthesis) return;
+      const utter = new SpeechSynthesisUtterance(stripMarkdown(text));
+      utter.lang = 'en-IN';
+      utter.rate = 0.92;
+      utter.onend = () => setTtsPlaying(null);
+      utter.onerror = () => setTtsPlaying(null);
+      setTtsPlaying(idx);
+      window.speechSynthesis.cancel();
+      window.speechSynthesis.speak(utter);
+      return;
+    }
+
+    // Indian language: translate first (if no cached translation), then TTS
     setTtsPlaying(idx);
     try {
-      // Use cached translation if available, else speak original in English
-      const textToSpeak = translations[idx] || stripMarkdown(text);
-      const langCode = translations[idx] ? selectedLang : 'en-IN';
+      let textToSpeak = translations[idx];
+      if (!textToSpeak) {
+        const tr = await fetch('/api/sarvam/translate', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            text: stripMarkdown(text).slice(0, 1000),
+            source_language_code: 'en-IN',
+            target_language_code: selectedLang,
+          }),
+        });
+        const trData = await tr.json();
+        if (trData.translated_text) {
+          textToSpeak = trData.translated_text;
+          setTranslations(t => ({ ...t, [idx]: trData.translated_text }));
+        } else {
+          textToSpeak = stripMarkdown(text);
+        }
+      }
+
       const res = await fetch('/api/sarvam/tts', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ text: textToSpeak.slice(0, 500), language_code: langCode }),
+        body: JSON.stringify({ text: textToSpeak.slice(0, 500), language_code: selectedLang }),
       });
       const data = await res.json();
-      if (!data.audio) throw new Error('no audio');
-      const audio = new Audio(`data:audio/wav;base64,${data.audio}`);
-      audioRef.current = audio;
-      audio.onended = () => setTtsPlaying(null);
-      audio.onerror = () => setTtsPlaying(null);
-      await audio.play();
-    } catch { setTtsPlaying(null); }
+      if (!data.audio) throw new Error(data.error || 'no audio returned');
+
+      // AudioContext avoids autoplay restrictions after the async gap
+      const bytes = Uint8Array.from(atob(data.audio), c => c.charCodeAt(0)).buffer;
+      const ctx = new (window.AudioContext || window.webkitAudioContext)();
+      const audioBuffer = await ctx.decodeAudioData(bytes);
+      const source = ctx.createBufferSource();
+      source.buffer = audioBuffer;
+      source.connect(ctx.destination);
+      source.onended = () => { setTtsPlaying(null); ctx.close(); };
+      source.start();
+      audioRef.current = { pause: () => { source.stop(); ctx.close(); } };
+    } catch (err) {
+      console.error('TTS error:', err);
+      setTtsPlaying(null);
+    }
   }
 
   // ── Sarvam Translate ───────────────────────────────────────────
