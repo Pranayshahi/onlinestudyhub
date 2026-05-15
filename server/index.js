@@ -34,6 +34,7 @@ setInterval(() => {
 }, 10 * 60 * 1000); // prune every 10 min
 const { chunkText, retrieveChunks } = require('./rag');
 const { moderateInput, SAFETY_SYSTEM_ADDENDUM } = require('./moderation');
+const sarvamRouter = require('./sarvam');
 
 // Multer — store upload in memory (max 30 MB)
 const upload = multer({
@@ -69,6 +70,7 @@ app.use(cors({
   credentials: true,
 }));
 app.use(express.json({ limit: '50mb' }));
+app.use('/api/sarvam', sarvamRouter);
 
 // Ensure DB is connected before every request (safe for serverless)
 app.use(async (req, res, next) => {

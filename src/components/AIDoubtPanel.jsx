@@ -9,6 +9,36 @@ import { getTopic, getClass, SUBJECT_META } from '../data/curriculum';
 const CHAT_STORAGE_KEY = 'osh_ai_chat_history';
 const FEEDBACK_STORAGE_KEY = 'osh_ai_feedback';
 
+const LANGUAGES = [
+  { code: 'en-IN', label: 'English' },
+  { code: 'hi-IN', label: 'हिंदी' },
+  { code: 'ta-IN', label: 'தமிழ்' },
+  { code: 'te-IN', label: 'తెలుగు' },
+  { code: 'kn-IN', label: 'ಕನ್ನಡ' },
+  { code: 'ml-IN', label: 'മലയാളം' },
+  { code: 'bn-IN', label: 'বাংলা' },
+  { code: 'mr-IN', label: 'मराठी' },
+  { code: 'gu-IN', label: 'ગુજરાતી' },
+  { code: 'pa-IN', label: 'ਪੰਜਾਬੀ' },
+  { code: 'od-IN', label: 'ଓଡ଼ିଆ' },
+];
+
+// Strip markdown so text is clean for TTS / Translation
+function stripMarkdown(text) {
+  return text
+    .replace(/\*\*(.*?)\*\*/g, '$1')
+    .replace(/\*(.*?)\*/g, '$1')
+    .replace(/#{1,6}\s+/g, '')
+    .replace(/```[\s\S]*?```/g, '[code block]')
+    .replace(/`([^`]+)`/g, '$1')
+    .replace(/\[([^\]]+)\]\([^)]+\)/g, '$1')
+    .replace(/^>\s+/gm, '')
+    .replace(/\$\$[\s\S]*?\$\$/g, 'math formula')
+    .replace(/\$([^$\n]+)\$/g, '$1')
+    .replace(/\n{3,}/g, '\n\n')
+    .trim();
+}
+
 const BASE_SYSTEM = `You are a world-class AI tutor for Indian school students (Class 6–12, JEE, NEET).
 Explain concepts clearly with step-by-step reasoning. Use markdown formatting:
 - Use **bold** for key terms
@@ -111,9 +141,18 @@ export default function AIDoubtPanel({ open, onClose, prefillText }) {
   const [uploadedImage, setUploadedImage] = useState(null);
   const [uploadingImage, setUploadingImage] = useState(false);
 
-  // Voice input
+  // Sarvam STT
   const [listening, setListening] = useState(false);
-  const recognitionRef = useRef(null);
+  const [sttLoading, setSttLoading] = useState(false);
+  const mediaRecorderRef = useRef(null);
+  const audioChunksRef = useRef([]);
+
+  // Sarvam TTS + Translation
+  const [selectedLang, setSelectedLang] = useState('en-IN');
+  const [ttsPlaying, setTtsPlaying] = useState(null);
+  const [translations, setTranslations] = useState({});
+  const [translating, setTranslating] = useState(null);
+  const audioRef = useRef(null);
 
   const fileInputRef = useRef(null);
   const imageInputRef = useRef(null);
@@ -155,28 +194,97 @@ export default function AIDoubtPanel({ open, onClose, prefillText }) {
     }
   }, [open, prefillText]);
 
-  // Voice input setup
-  useEffect(() => {
-    const SR = window.SpeechRecognition || window.webkitSpeechRecognition;
-    if (!SR) return;
-    const r = new SR();
-    r.lang = 'en-IN';
-    r.continuous = false;
-    r.interimResults = true;
-    r.onresult = (e) => {
-      const transcript = Array.from(e.results).map(r => r[0].transcript).join('');
-      setInput(transcript);
-    };
-    r.onend = () => setListening(false);
-    r.onerror = () => setListening(false);
-    recognitionRef.current = r;
-  }, []);
+  // ── Sarvam STT ─────────────────────────────────────────────────
+  async function startSarvamSTT() {
+    try {
+      const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+      const mr = new MediaRecorder(stream);
+      mediaRecorderRef.current = mr;
+      audioChunksRef.current = [];
+
+      mr.ondataavailable = e => { if (e.data.size > 0) audioChunksRef.current.push(e.data); };
+      mr.onstop = async () => {
+        stream.getTracks().forEach(t => t.stop());
+        const blob = new Blob(audioChunksRef.current, { type: 'audio/webm' });
+        setSttLoading(true);
+        try {
+          const fd = new FormData();
+          fd.append('audio', blob, 'recording.webm');
+          // Pass language hint if not English (Sarvam can auto-detect too)
+          if (selectedLang !== 'en-IN') fd.append('language_code', selectedLang);
+          const res = await fetch('/api/sarvam/stt', { method: 'POST', body: fd });
+          const data = await res.json();
+          if (data.transcript) setInput(prev => prev ? `${prev} ${data.transcript}` : data.transcript);
+        } catch { /* silently fail */ }
+        finally { setSttLoading(false); setListening(false); }
+      };
+
+      mr.start();
+      setListening(true);
+    } catch {
+      setListening(false);
+    }
+  }
 
   function toggleVoice() {
-    const r = recognitionRef.current;
-    if (!r) return;
-    if (listening) { r.stop(); setListening(false); }
-    else { r.start(); setListening(true); }
+    if (listening) {
+      mediaRecorderRef.current?.stop();
+      setListening(false);
+    } else {
+      startSarvamSTT();
+    }
+  }
+
+  // ── Sarvam TTS ─────────────────────────────────────────────────
+  async function speakMessage(idx, text) {
+    if (ttsPlaying === idx) {
+      audioRef.current?.pause();
+      audioRef.current = null;
+      setTtsPlaying(null);
+      return;
+    }
+    setTtsPlaying(idx);
+    try {
+      // Use cached translation if available, else speak original in English
+      const textToSpeak = translations[idx] || stripMarkdown(text);
+      const langCode = translations[idx] ? selectedLang : 'en-IN';
+      const res = await fetch('/api/sarvam/tts', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ text: textToSpeak.slice(0, 500), language_code: langCode }),
+      });
+      const data = await res.json();
+      if (!data.audio) throw new Error('no audio');
+      const audio = new Audio(`data:audio/wav;base64,${data.audio}`);
+      audioRef.current = audio;
+      audio.onended = () => setTtsPlaying(null);
+      audio.onerror = () => setTtsPlaying(null);
+      await audio.play();
+    } catch { setTtsPlaying(null); }
+  }
+
+  // ── Sarvam Translate ───────────────────────────────────────────
+  async function translateMessage(idx, text) {
+    if (translations[idx]) {
+      setTranslations(t => { const n = { ...t }; delete n[idx]; return n; });
+      return;
+    }
+    if (selectedLang === 'en-IN') return;
+    setTranslating(idx);
+    try {
+      const res = await fetch('/api/sarvam/translate', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          text: stripMarkdown(text).slice(0, 1000),
+          source_language_code: 'en-IN',
+          target_language_code: selectedLang,
+        }),
+      });
+      const data = await res.json();
+      if (data.translated_text) setTranslations(t => ({ ...t, [idx]: data.translated_text }));
+    } catch { /* silently fail */ }
+    finally { setTranslating(null); }
   }
 
   const topicMatch = location.pathname.match(/\/class\/([^/]+)\/subject\/([^/]+)\/topic\/([^/]+)/);
@@ -238,6 +346,7 @@ export default function AIDoubtPanel({ open, onClose, prefillText }) {
     if (!window.confirm('Clear entire chat history?')) return;
     setMessages([{ role: 'assistant', content: WELCOME }]);
     setFeedback({});
+    setTranslations({});
     localStorage.removeItem(CHAT_STORAGE_KEY);
     localStorage.removeItem(FEEDBACK_STORAGE_KEY);
     removeDocument();
@@ -249,9 +358,8 @@ export default function AIDoubtPanel({ open, onClose, prefillText }) {
   // Typewriter animation — shows text char-by-char exactly like ChatGPT
   async function typewrite(fullText) {
     cancelTypewriter.current = false;
-    // Speed adapts to length so long answers don't take forever
     const charsPerTick = fullText.length > 1200 ? 18 : fullText.length > 600 ? 10 : 5;
-    const delay = 16; // ~60fps
+    const delay = 16;
     let i = 0;
     while (i < fullText.length) {
       if (cancelTypewriter.current) break;
@@ -265,7 +373,7 @@ export default function AIDoubtPanel({ open, onClose, prefillText }) {
     const { imageId: imgId } = opts;
     if (!text && !imgId) return;
 
-    cancelTypewriter.current = true; // cancel any in-progress animation
+    cancelTypewriter.current = true;
     const userMsg = { role: 'user', content: text || 'Solve this question step by step.' };
     setMessages(prev => [...prev, userMsg]);
     setInput('');
@@ -303,7 +411,6 @@ export default function AIDoubtPanel({ open, onClose, prefillText }) {
       const fullText = data.reply || 'No response.';
       const source = data.source || 'general';
 
-      // Typewriter animation before committing to messages
       await typewrite(fullText);
 
       setMessages(prev => [...prev, { role: 'assistant', content: fullText, source }]);
@@ -350,9 +457,9 @@ export default function AIDoubtPanel({ open, onClose, prefillText }) {
       ]
     : ["Solve: $x^2 - 5x + 6 = 0$", 'What is photosynthesis?', "Explain Newton's 2nd law", 'Give me 5 JEE-level MCQs'];
 
-  const voiceSupported = !!(window.SpeechRecognition || window.webkitSpeechRecognition);
   const lastAiIdx = [...messages].reverse().findIndex(m => m.role === 'assistant' && !m.blocked);
   const lastAiAbsIdx = lastAiIdx >= 0 ? messages.length - 1 - lastAiIdx : -1;
+  const selectedLangLabel = LANGUAGES.find(l => l.code === selectedLang)?.label || 'English';
 
   return (
     <>
@@ -425,15 +532,49 @@ export default function AIDoubtPanel({ open, onClose, prefillText }) {
                   }
                 </div>
 
+                {/* Translation panel */}
+                {translations[i] && (
+                  <div style={{ marginTop: '.4rem', padding: '.5rem .75rem', background: '#f0fdf4', border: '1px solid #bbf7d0', borderRadius: 8, fontSize: '.82em', color: '#14532d', lineHeight: 1.6 }}>
+                    <div style={{ fontSize: '.68rem', fontWeight: 700, color: '#16a34a', marginBottom: '.3rem' }}>
+                      🌐 {selectedLangLabel}
+                    </div>
+                    {translations[i]}
+                  </div>
+                )}
+
                 {/* AI message action row */}
                 {msg.role === 'assistant' && !msg.blocked && !msg.error && i > 0 && (
                   <div style={{ display: 'flex', alignItems: 'center', gap: '.35rem', rowGap: '.3rem', flexWrap: 'wrap' }}>
                     <SourceBadge source={msg.source} />
+
+                    {/* Copy */}
                     <button onClick={() => copyToClipboard(msg.content)}
                       style={{ background: 'none', border: 'none', cursor: 'pointer', color: '#9ca3af', fontSize: '.72rem', padding: '.1rem .3rem', borderRadius: 4, display: 'flex', alignItems: 'center', gap: '.2rem' }}>
                       <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
                       Copy
                     </button>
+
+                    {/* TTS listen */}
+                    <button onClick={() => speakMessage(i, msg.content)}
+                      title={ttsPlaying === i ? 'Stop audio' : 'Listen aloud'}
+                      style={{ background: ttsPlaying === i ? '#eff6ff' : 'none', border: ttsPlaying === i ? '1px solid #bfdbfe' : 'none', cursor: 'pointer', color: ttsPlaying === i ? '#2563eb' : '#9ca3af', fontSize: '.72rem', padding: '.1rem .35rem', borderRadius: 4, display: 'flex', alignItems: 'center', gap: '.2rem' }}>
+                      {ttsPlaying === i
+                        ? <><svg width="10" height="10" viewBox="0 0 24 24" fill="currentColor"><rect x="6" y="4" width="4" height="16"/><rect x="14" y="4" width="4" height="16"/></svg> Stop</>
+                        : <><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07"/></svg> Listen</>
+                      }
+                    </button>
+
+                    {/* Translate */}
+                    {selectedLang !== 'en-IN' && (
+                      <button onClick={() => translateMessage(i, msg.content)}
+                        disabled={translating === i}
+                        title={translations[i] ? `Hide ${selectedLangLabel} translation` : `Translate to ${selectedLangLabel}`}
+                        style={{ background: translations[i] ? '#f0fdf4' : 'none', border: translations[i] ? '1px solid #bbf7d0' : 'none', cursor: 'pointer', color: translations[i] ? '#16a34a' : '#9ca3af', fontSize: '.72rem', padding: '.1rem .35rem', borderRadius: 4, display: 'flex', alignItems: 'center', gap: '.2rem' }}>
+                        {translating === i ? '⏳' : '🌐'} {selectedLangLabel}
+                      </button>
+                    )}
+
+                    {/* Thumbs */}
                     <button onClick={() => giveFeedback(i, 'up')}
                       style={{ background: 'none', border: 'none', cursor: 'pointer', fontSize: '.8rem', opacity: feedback[i] === 'up' ? 1 : 0.45, filter: feedback[i] === 'up' ? 'none' : 'grayscale(1)' }}
                       title="Helpful">👍</button>
@@ -525,27 +666,43 @@ export default function AIDoubtPanel({ open, onClose, prefillText }) {
               value={input}
               onChange={e => setInput(e.target.value)}
               onKeyDown={handleKey}
-              placeholder={listening ? '🎙️ Listening…' : uploadedImage ? 'Ask about this image… (Enter to send)' : 'Ask a doubt… (Enter to send, Shift+Enter for new line)'}
+              placeholder={
+                sttLoading ? '⏳ Transcribing…' :
+                listening ? '🎙️ Recording… click Stop when done' :
+                uploadedImage ? 'Ask about this image… (Enter to send)' :
+                'Ask a doubt… (Enter to send, Shift+Enter for new line)'
+              }
               disabled={loading}
               style={listening ? { background: '#fef2f2' } : {}}
             />
             <div className="ai-compose-toolbar">
               <div style={{ display: 'flex', gap: '.35rem', alignItems: 'center' }}>
 
-                {/* Voice input */}
-                {voiceSupported && (
-                  <button className="ai-upload-btn" onClick={toggleVoice} disabled={loading}
-                    title={listening ? 'Stop listening' : 'Speak your doubt'}
-                    style={{ color: listening ? '#dc2626' : undefined, borderColor: listening ? '#fecaca' : undefined, background: listening ? '#fef2f2' : undefined }}>
-                    <svg width="13" height="13" viewBox="0 0 24 24" fill={listening ? '#dc2626' : 'none'} stroke="currentColor" strokeWidth="2.5">
-                      <path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/>
-                      <path d="M19 10v2a7 7 0 0 1-14 0v-2"/>
-                      <line x1="12" y1="19" x2="12" y2="23"/>
-                      <line x1="8" y1="23" x2="16" y2="23"/>
-                    </svg>
-                    {listening ? 'Stop' : 'Voice'}
-                  </button>
-                )}
+                {/* Language selector */}
+                <select
+                  value={selectedLang}
+                  onChange={e => { setSelectedLang(e.target.value); setTranslations({}); }}
+                  title="Response language for voice, listen & translate"
+                  style={{ fontSize: '.7rem', border: '1.5px solid #e5e7eb', borderRadius: 8, padding: '.22rem .35rem', background: '#f9fafb', color: '#374151', fontWeight: 600, cursor: 'pointer', outline: 'none', maxWidth: 88 }}>
+                  {LANGUAGES.map(l => <option key={l.code} value={l.code}>{l.label}</option>)}
+                </select>
+
+                {/* Voice input — Sarvam STT */}
+                <button className="ai-upload-btn" onClick={toggleVoice} disabled={loading || sttLoading}
+                  title={listening ? 'Stop recording' : 'Speak your doubt in any Indian language'}
+                  style={{ color: listening ? '#dc2626' : sttLoading ? '#9ca3af' : undefined, borderColor: listening ? '#fecaca' : undefined, background: listening ? '#fef2f2' : undefined }}>
+                  {sttLoading ? '⏳' : (
+                    <>
+                      <svg width="13" height="13" viewBox="0 0 24 24" fill={listening ? '#dc2626' : 'none'} stroke="currentColor" strokeWidth="2.5">
+                        <path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/>
+                        <path d="M19 10v2a7 7 0 0 1-14 0v-2"/>
+                        <line x1="12" y1="19" x2="12" y2="23"/>
+                        <line x1="8" y1="23" x2="16" y2="23"/>
+                      </svg>
+                      {listening ? 'Stop' : 'Voice'}
+                    </>
+                  )}
+                </button>
 
                 {/* Image upload */}
                 <button className="ai-upload-btn" onClick={() => imageInputRef.current?.click()}
