@@ -5,5 +5,13 @@ Allow: /
 Disallow: /dashboard
 Disallow: /my-bookings
 Disallow: /search
+Disallow: /parent-portal
+
+# Allow all study content
+Allow: /class/
+Allow: /exam/
+Allow: /teachers/
+Allow: /group-classes
+Allow: /study-plan
 
 Sitemap: https://www.onlinestudyhub.com/sitemap.xml

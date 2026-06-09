@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { getClass, getSubject, getSubjectColor, SUBJECT_META } from '../data/curriculum';
 import Breadcrumb from '../components/Breadcrumb';
+import SEO from '../components/SEO';
 import { useProgress } from '../hooks/useProgress';
 import { useLang } from '../context/LanguageContext';
 
@@ -178,8 +179,46 @@ export default function SubjectPage({ user }) {
     (t.subtopics || '').toLowerCase().includes(search.toLowerCase())
   );
 
+  const topicTitles = subject.topics.slice(0, 5).map(t => t.title).join(', ');
+  const seoTitle = `${meta.label || subjectId} for ${classData.label} — CBSE Notes, Topics & Q&A`;
+  const seoDesc = `Study ${meta.label || subjectId} for ${classData.label} CBSE. ${subject.topics.length} topics including ${topicTitles} and more. Free study notes, subtopics, and exam Q&A.`;
+
   return (
     <div>
+      <SEO
+        title={seoTitle}
+        description={seoDesc}
+        path={`/class/${classId}/subject/${subjectId}`}
+        breadcrumbs={[
+          { name: classData.label, url: `/class/${classId}` },
+          { name: meta.label || subjectId },
+        ]}
+        schema={{
+          '@context': 'https://schema.org',
+          '@type': 'Course',
+          name: `${meta.label || subjectId} — ${classData.label}`,
+          description: seoDesc,
+          provider: {
+            '@type': 'Organization',
+            name: 'OnlineStudyHub',
+            url: 'https://www.onlinestudyhub.com',
+          },
+          educationalLevel: classData.label,
+          inLanguage: 'en-IN',
+          isAccessibleForFree: true,
+          teaches: subject.topics.map(t => t.title).join(', '),
+          hasCourseInstance: {
+            '@type': 'CourseInstance',
+            courseMode: 'online',
+            instructor: {
+              '@type': 'Organization',
+              name: 'OnlineStudyHub',
+            },
+          },
+          url: `https://www.onlinestudyhub.com/class/${classId}/subject/${subjectId}`,
+          numberOfCredits: subject.topics.length,
+        }}
+      />
       {/* Hero banner */}
       <div className={`${subjectColor}`} style={{
         background: 'linear-gradient(135deg, var(--sc) 0%, color-mix(in srgb, var(--sc) 70%, #000) 100%)',

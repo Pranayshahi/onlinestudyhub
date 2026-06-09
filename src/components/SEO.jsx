@@ -50,9 +50,11 @@ export default function SEO({ title, description, path = '/', image, schema, sch
       <meta property="og:locale" content="en_IN" />
 
       <meta name="twitter:card" content="summary_large_image" />
+      <meta name="twitter:site" content="@onlinestudyhub" />
       <meta name="twitter:title" content={fullTitle} />
       <meta name="twitter:description" content={metaDesc} />
       <meta name="twitter:image" content={img} />
+      <meta name="application-name" content="OnlineStudyHub" />
 
       {allSchemas.map((s, i) => (
         <script key={i} type="application/ld+json">{JSON.stringify(s)}</script>

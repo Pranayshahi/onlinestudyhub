@@ -1,11 +1,13 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { useLang } from '../context/LanguageContext';
+import SEO from '../components/SEO';
 
 export default function NotFoundPage() {
   const { t } = useLang();
   return (
     <div style={{ minHeight: '70vh', display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '2rem' }}>
+      <SEO title="Page Not Found" description="The page you're looking for doesn't exist." noindex />
       <div style={{ textAlign: 'center', maxWidth: 480 }}>
         <div style={{ fontSize: '5rem', marginBottom: '1rem' }}>📚</div>
         <h1 style={{ fontFamily: 'Nunito', fontSize: '2rem', fontWeight: 900, color: '#1e1b4b', marginBottom: '.75rem' }}>

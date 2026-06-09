@@ -998,7 +998,7 @@ export default function HomePage({ onOpenAI }) {
                 name: "Is OnlineStudyHub free for students?",
                 acceptedAnswer: {
                   "@type": "Answer",
-                  text: "Yes! All study materials, topic notes, and AI doubt solving on OnlineStudyHub are 100% free for students. 1-on-1 teacher sessions are available at affordable fees.",
+                  text: "Yes! All study materials, topic notes, and AI doubt solving on OnlineStudyHub are 100% free for students. No login required to access study notes. 1-on-1 teacher sessions are available at affordable fees.",
                 },
               },
               {
@@ -1006,7 +1006,7 @@ export default function HomePage({ onOpenAI }) {
                 name: "Which classes does OnlineStudyHub cover?",
                 acceptedAnswer: {
                   "@type": "Answer",
-                  text: "OnlineStudyHub covers Class 6, 7, 8, 9, 10, 11, and 12 following the CBSE curriculum, plus dedicated JEE (IIT) and NEET preparation content.",
+                  text: "OnlineStudyHub covers Class 6, 7, 8, 9, 10, 11, and 12 following the CBSE curriculum, plus dedicated JEE (IIT-JEE Main & Advanced) and NEET preparation content with 350+ topics.",
                 },
               },
               {
@@ -1014,7 +1014,7 @@ export default function HomePage({ onOpenAI }) {
                 name: "Can I find a teacher for 1-on-1 online tuition?",
                 acceptedAnswer: {
                   "@type": "Answer",
-                  text: "Yes. OnlineStudyHub has verified subject teachers for all classes from 6 to 12. You can book a private online session directly through the platform via Google Meet.",
+                  text: "Yes. OnlineStudyHub has verified subject teachers for all classes from 6 to 12 covering Maths, Physics, Chemistry, Biology, English and more. You can book a private online session directly through the platform via Google Meet.",
                 },
               },
               {
@@ -1022,7 +1022,7 @@ export default function HomePage({ onOpenAI }) {
                 name: "Does OnlineStudyHub have JEE and NEET preparation?",
                 acceptedAnswer: {
                   "@type": "Answer",
-                  text: "Yes! We have dedicated JEE and NEET sections with chapter weightage analysis, previous year question banks, mock tests, and topic-wise study material.",
+                  text: "Yes! We have dedicated JEE and NEET sections with chapter-wise weightage analysis, previous year question banks (PYQ), full mock tests, and topic-wise study notes aligned with the latest syllabus.",
                 },
               },
               {
@@ -1030,7 +1030,47 @@ export default function HomePage({ onOpenAI }) {
                 name: "How can I solve doubts instantly on OnlineStudyHub?",
                 acceptedAnswer: {
                   "@type": "Answer",
-                  text: "Use the free AI Doubt Solver available on every topic page. Ask any question in text or upload an image of your problem — get instant, detailed answers with step-by-step explanations.",
+                  text: "Use the free AI Doubt Solver available on every topic page. Ask any question in text or upload an image of your problem — get instant, detailed answers with step-by-step explanations. Supports Hindi and other Indian languages via Sarvam AI.",
+                },
+              },
+              {
+                "@type": "Question",
+                name: "What subjects are available on OnlineStudyHub?",
+                acceptedAnswer: {
+                  "@type": "Answer",
+                  text: "OnlineStudyHub covers Mathematics, Physics, Chemistry, Biology, Science, English, Social Science, History, Geography, Civics, and Economics — all following the CBSE curriculum for Class 6 to 12.",
+                },
+              },
+              {
+                "@type": "Question",
+                name: "How do I book a free demo class on OnlineStudyHub?",
+                acceptedAnswer: {
+                  "@type": "Answer",
+                  text: "Go to the Teachers section, select your class, and browse available teachers. Click 'Book Demo' on any teacher profile to request a free demo session. Teachers typically confirm within 24 hours.",
+                },
+              },
+              {
+                "@type": "Question",
+                name: "Does OnlineStudyHub have Class 10 board exam preparation?",
+                acceptedAnswer: {
+                  "@type": "Answer",
+                  text: "Yes! Class 10 has complete CBSE preparation with all subjects: Mathematics, Science, English, Social Science, and more. Each chapter has detailed notes, important subtopics, and exam-style Q&A practice.",
+                },
+              },
+              {
+                "@type": "Question",
+                name: "Can parents track their child's progress on OnlineStudyHub?",
+                acceptedAnswer: {
+                  "@type": "Answer",
+                  text: "Yes. OnlineStudyHub has a dedicated Parent Portal where parents can monitor their child's study progress, completed topics, quiz scores, and upcoming teacher sessions.",
+                },
+              },
+              {
+                "@type": "Question",
+                name: "Is OnlineStudyHub available on mobile?",
+                acceptedAnswer: {
+                  "@type": "Answer",
+                  text: "Yes. OnlineStudyHub works on all devices — mobile, tablet, and desktop. The website is fully responsive and there is also a mobile app available for Android.",
                 },
               },
             ],

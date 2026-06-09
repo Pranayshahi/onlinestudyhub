@@ -12,29 +12,37 @@
     <link rel="manifest" href="/manifest.json" />
 
     <!-- Primary SEO -->
-    <title>OnlineStudyHub — Best Online Tuition for Class 6-12, JEE & NEET in India</title>
-    <meta name="description" content="OnlineStudyHub offers expert online tuition for Class 6 to 12, JEE and NEET preparation. Find verified teachers, study topics, and book 1-on-1 sessions. CBSE curriculum, affordable fees." />
-    <meta name="keywords" content="online tuition India, CBSE class 6 to 12, JEE preparation, NEET coaching, online teacher, study hub, learn maths physics chemistry biology" />
+    <title>OnlineStudyHub — Free Online Tuition for Class 6-12, JEE &amp; NEET in India</title>
+    <meta name="description" content="India's #1 free online study platform for Class 6–12, JEE and NEET. Study CBSE topic-wise notes, find verified teachers, and book 1-on-1 sessions. 100% free, no login required." />
+    <meta name="keywords" content="free online tuition India, CBSE class 6 to 12, JEE preparation free, NEET coaching online, online teacher India, study notes CBSE, class 10 maths notes, class 11 physics notes, class 12 chemistry, online study hub, learn maths physics chemistry biology" />
     <meta name="author" content="OnlineStudyHub" />
-    <meta name="robots" content="index, follow" />
+    <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
     <link rel="canonical" href="https://www.onlinestudyhub.com/" />
+    <meta name="rating" content="general" />
+    <meta name="revisit-after" content="3 days" />
+    <meta name="language" content="English" />
+    <meta name="geo.region" content="IN" />
+    <meta name="geo.placename" content="India" />
 
     <!-- Open Graph (Facebook, WhatsApp, LinkedIn) -->
     <meta property="og:type" content="website" />
     <meta property="og:site_name" content="OnlineStudyHub" />
-    <meta property="og:title" content="OnlineStudyHub — Best Online Tuition for Class 6-12, JEE & NEET" />
-    <meta property="og:description" content="Expert online tuition for Class 6–12, JEE & NEET. Find verified teachers, study topic-wise notes, and book 1-on-1 sessions. CBSE curriculum." />
+    <meta property="og:title" content="OnlineStudyHub — Free Online Tuition for Class 6-12, JEE &amp; NEET" />
+    <meta property="og:description" content="India's #1 free online study platform for Class 6–12, JEE &amp; NEET. Find verified teachers, study topic-wise notes, and book 1-on-1 sessions." />
     <meta property="og:url" content="https://www.onlinestudyhub.com/" />
     <meta property="og:image" content="https://www.onlinestudyhub.com/og-image.png" />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="OnlineStudyHub — Free CBSE Study Platform for Class 6-12, JEE &amp; NEET" />
     <meta property="og:locale" content="en_IN" />
 
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="OnlineStudyHub — Best Online Tuition for Class 6-12, JEE & NEET" />
-    <meta name="twitter:description" content="Expert online tuition for Class 6–12, JEE & NEET. Find verified teachers and book 1-on-1 sessions." />
+    <meta name="twitter:site" content="@onlinestudyhub" />
+    <meta name="twitter:title" content="OnlineStudyHub — Free Online Tuition for Class 6-12, JEE &amp; NEET" />
+    <meta name="twitter:description" content="India's #1 free study platform for Class 6–12, JEE &amp; NEET. Topic-wise CBSE notes, verified teachers, 1-on-1 sessions." />
     <meta name="twitter:image" content="https://www.onlinestudyhub.com/og-image.png" />
+    <meta name="twitter:image:alt" content="OnlineStudyHub Free CBSE Study Platform" />
 
     <!-- Structured Data: Organization -->
     <script type="application/ld+json">
@@ -42,10 +50,27 @@
       "@context": "https://schema.org",
       "@type": "EducationalOrganization",
       "name": "OnlineStudyHub",
+      "alternateName": "OSH",
       "url": "https://www.onlinestudyhub.com",
-      "description": "India's online tuition platform for Class 6-12, JEE and NEET students",
+      "logo": "https://www.onlinestudyhub.com/favicon-192.png",
+      "description": "India's free online tuition platform for Class 6–12, JEE and NEET students. Study CBSE topic-wise notes, find verified teachers, and book 1-on-1 sessions.",
       "address": { "@type": "PostalAddress", "addressCountry": "IN" },
-      "sameAs": ["https://github.com/Pranayshahi/onlinestudyhub"]
+      "areaServed": "IN",
+      "foundingDate": "2024",
+      "slogan": "India's Free Online Study Hub",
+      "hasOfferCatalog": {
+        "@type": "OfferCatalog",
+        "name": "Free CBSE Study Material",
+        "itemListElement": [
+          { "@type": "Offer", "itemOffered": { "@type": "Course", "name": "Class 6–12 CBSE Topic-wise Notes", "isAccessibleForFree": true } },
+          { "@type": "Offer", "itemOffered": { "@type": "Course", "name": "JEE Preparation", "isAccessibleForFree": true } },
+          { "@type": "Offer", "itemOffered": { "@type": "Course", "name": "NEET Preparation", "isAccessibleForFree": true } }
+        ]
+      },
+      "sameAs": [
+        "https://github.com/Pranayshahi/onlinestudyhub",
+        "https://www.onlinestudyhub.com"
+      ]
     }
     </script>
 
@@ -56,9 +81,14 @@
       "@type": "WebSite",
       "name": "OnlineStudyHub",
       "url": "https://www.onlinestudyhub.com",
+      "description": "Free online tuition for Class 6–12, JEE & NEET in India",
+      "inLanguage": "en-IN",
       "potentialAction": {
         "@type": "SearchAction",
-        "target": "https://www.onlinestudyhub.com/class/{search_term_string}",
+        "target": {
+          "@type": "EntryPoint",
+          "urlTemplate": "https://www.onlinestudyhub.com/search?q={search_term_string}"
+        },
         "query-input": "required name=search_term_string"
       }
     }

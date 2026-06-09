@@ -261,27 +261,42 @@ export default function TopicPage({ user, onOpenLogin, onOpenAI }) {
   return (
     <div>
       <SEO
-        title={`${topic.title} — ${meta.label} ${classData.label} CBSE`}
-        description={`${topic.definition?.slice(0, 140)} Study ${topic.title} for ${classData.label} ${meta.label} with topic notes, subtopics (${topic.subtopics}), and exam Q&A.`}
+        title={`${topic.title} — ${meta.label} ${classData.label} CBSE Notes & Q&A`}
+        description={`${topic.definition?.slice(0, 120) || `Learn ${topic.title}`}. Study notes, subtopics (${topic.subtopics?.slice(0, 80)}), and ${topic.qa?.length || 0} exam Q&A for ${classData.label} CBSE.`}
         path={`/class/${classId}/subject/${subjectId}/topic/${topicId}`}
-        schema={{
-          '@context': 'https://schema.org',
-          '@type': 'LearningResource',
-          name: topic.title,
-          description: topic.definition,
-          educationalLevel: classData.label,
-          about: { '@type': 'Thing', name: meta.label },
-          provider: { '@type': 'Organization', name: 'OnlineStudyHub', url: 'https://www.onlinestudyhub.com' },
-          breadcrumb: {
-            '@type': 'BreadcrumbList',
-            itemListElement: [
-              { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://www.onlinestudyhub.com' },
-              { '@type': 'ListItem', position: 2, name: classData.label, item: `https://www.onlinestudyhub.com/class/${classId}` },
-              { '@type': 'ListItem', position: 3, name: meta.label, item: `https://www.onlinestudyhub.com/class/${classId}/subject/${subjectId}` },
-              { '@type': 'ListItem', position: 4, name: topic.title },
-            ],
+        breadcrumbs={[
+          { name: classData.label, url: `/class/${classId}` },
+          { name: meta.label, url: `/class/${classId}/subject/${subjectId}` },
+          { name: topic.title },
+        ]}
+        schemas={[
+          {
+            '@context': 'https://schema.org',
+            '@type': 'LearningResource',
+            name: topic.title,
+            description: topic.definition || `Study notes for ${topic.title}`,
+            educationalLevel: classData.label,
+            about: { '@type': 'Thing', name: `${meta.label} — ${classData.label}` },
+            teaches: topic.subtopics,
+            inLanguage: 'en-IN',
+            isAccessibleForFree: true,
+            url: `https://www.onlinestudyhub.com/class/${classId}/subject/${subjectId}/topic/${topicId}`,
+            provider: {
+              '@type': 'Organization',
+              name: 'OnlineStudyHub',
+              url: 'https://www.onlinestudyhub.com',
+            },
           },
-        }}
+          topic.qa?.length > 0 && {
+            '@context': 'https://schema.org',
+            '@type': 'FAQPage',
+            mainEntity: topic.qa.slice(0, 5).map(q => ({
+              '@type': 'Question',
+              name: q.q,
+              acceptedAnswer: { '@type': 'Answer', text: q.a },
+            })),
+          },
+        ].filter(Boolean)}
       />
       {/* ── Topic Hero Banner ── */}
       <div className={`${subjectColor}`} style={{
