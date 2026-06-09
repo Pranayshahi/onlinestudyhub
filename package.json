@@ -37,6 +37,8 @@
     "test": "react-scripts test",
     "test:e2e": "playwright test",
     "test:e2e:report": "playwright show-report testing/report",
+    "test:backend": "cross-env NODE_ENV=test jest --config jest.backend.config.js",
+    "test:all": "npm run test:backend && cross-env CI=true npm run test && npm run test:e2e",
     "server": "node server/index.js"
   },
   "browserslist": {
@@ -51,6 +53,13 @@
     ]
   },
   "devDependencies": {
-    "@playwright/test": "^1.59.1"
+    "@playwright/test": "^1.59.1",
+    "@testing-library/jest-dom": "^6.9.1",
+    "@testing-library/react": "^16.3.2",
+    "@testing-library/user-event": "^14.6.1",
+    "cross-env": "^10.1.0",
+    "jest": "^27.5.1",
+    "mongodb-memory-server": "^11.1.0",
+    "supertest": "^7.2.2"
   }
 }

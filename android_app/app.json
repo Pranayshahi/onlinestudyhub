@@ -49,7 +49,7 @@
 
     "extra": {
       "eas": {
-        "projectId": "onlinestudyhub-mobile"
+        "projectId": "YOUR_PROJECT_ID_HERE"
       }
     }
   }
