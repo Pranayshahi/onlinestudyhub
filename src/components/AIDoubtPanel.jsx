@@ -141,6 +141,16 @@ export default function AIDoubtPanel({ open, onClose, prefillText }) {
   const [uploadedImage, setUploadedImage] = useState(null);
   const [uploadingImage, setUploadingImage] = useState(false);
 
+  // Camera capture
+  const [cameraOpen, setCameraOpen] = useState(false);
+  const [cameraStream, setCameraStream] = useState(null);
+  const [cameraFacing, setCameraFacing] = useState('environment');
+  const [cameraError, setCameraError] = useState('');
+  const [capturedPhoto, setCapturedPhoto] = useState(null);
+  const [uploadingCamera, setUploadingCamera] = useState(false);
+  const videoRef = useRef(null);
+  const canvasRef = useRef(null);
+
   // Sarvam STT
   const [listening, setListening] = useState(false);
   const [sttLoading, setSttLoading] = useState(false);
@@ -384,6 +394,95 @@ export default function AIDoubtPanel({ open, onClose, prefillText }) {
     imageIdRef.current = null;
     if (uploadedImage?.preview) URL.revokeObjectURL(uploadedImage.preview);
     setUploadedImage(null);
+  }
+
+  // ── Camera ─────────────────────────────────────────────────────
+  useEffect(() => {
+    if (cameraStream && videoRef.current) {
+      videoRef.current.srcObject = cameraStream;
+    }
+  }, [cameraStream]);
+
+  // Stop stream when panel closes
+  useEffect(() => {
+    if (!open && cameraStream) {
+      cameraStream.getTracks().forEach(t => t.stop());
+      setCameraStream(null);
+      setCameraOpen(false);
+    }
+  }, [open]); // eslint-disable-line
+
+  async function openCamera() {
+    setCameraError('');
+    setCapturedPhoto(null);
+    setCameraOpen(true);
+    try {
+      const stream = await navigator.mediaDevices.getUserMedia({
+        video: { facingMode: cameraFacing, width: { ideal: 1280 }, height: { ideal: 720 } },
+      });
+      setCameraStream(stream);
+    } catch (err) {
+      setCameraError(
+        err.name === 'NotAllowedError' ? 'Camera permission denied. Please allow camera access in your browser settings and try again.' :
+        err.name === 'NotFoundError'   ? 'No camera found on this device.' :
+        'Could not access camera: ' + err.message
+      );
+    }
+  }
+
+  function closeCamera() {
+    if (cameraStream) {
+      cameraStream.getTracks().forEach(t => t.stop());
+      setCameraStream(null);
+    }
+    setCameraOpen(false);
+    setCapturedPhoto(null);
+    setCameraError('');
+  }
+
+  async function switchCamera() {
+    const next = cameraFacing === 'environment' ? 'user' : 'environment';
+    setCameraFacing(next);
+    if (cameraStream) cameraStream.getTracks().forEach(t => t.stop());
+    try {
+      const stream = await navigator.mediaDevices.getUserMedia({
+        video: { facingMode: next, width: { ideal: 1280 }, height: { ideal: 720 } },
+      });
+      setCameraStream(stream);
+    } catch {}
+  }
+
+  function capturePhoto() {
+    if (!videoRef.current || !canvasRef.current) return;
+    const video = videoRef.current;
+    const canvas = canvasRef.current;
+    canvas.width = video.videoWidth;
+    canvas.height = video.videoHeight;
+    canvas.getContext('2d').drawImage(video, 0, 0);
+    const dataUrl = canvas.toDataURL('image/jpeg', 0.92);
+    canvas.toBlob(blob => setCapturedPhoto({ dataUrl, blob }), 'image/jpeg', 0.92);
+  }
+
+  async function useCapturedPhoto() {
+    if (!capturedPhoto?.blob) return;
+    setUploadingCamera(true);
+    try {
+      const file = new File([capturedPhoto.blob], `camera-${Date.now()}.jpg`, { type: 'image/jpeg' });
+      const formData = new FormData();
+      formData.append('image', file);
+      const res = await fetch('/api/ai-doubt/upload-image', { method: 'POST', body: formData });
+      const data = await res.json();
+      if (!res.ok) throw new Error(data.error || 'Upload failed');
+      imageIdRef.current = data.imageId;
+      setUploadedImage({ name: 'Camera photo', preview: capturedPhoto.dataUrl });
+      setMessages(prev => [...prev, { role: 'user', content: '[Camera photo]', imagePreview: capturedPhoto.dataUrl }]);
+      if (!input.trim()) setInput('Solve this question step by step.');
+      closeCamera();
+    } catch (err) {
+      setCameraError(err.message);
+    } finally {
+      setUploadingCamera(false);
+    }
   }
 
   function clearChat() {
@@ -748,6 +847,17 @@ export default function AIDoubtPanel({ open, onClose, prefillText }) {
                   )}
                 </button>
 
+                {/* Camera capture */}
+                <button className="ai-upload-btn" onClick={openCamera}
+                  disabled={loading} title="Snap a photo of your question"
+                  style={{ color: '#4f46e5', borderColor: '#c7d2fe', background: '#eef2ff' }}>
+                  <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                    <path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/>
+                    <circle cx="12" cy="13" r="4"/>
+                  </svg>
+                  Camera
+                </button>
+
                 {/* Image upload */}
                 <button className="ai-upload-btn" onClick={() => imageInputRef.current?.click()}
                   disabled={uploadingImage || loading} title="Upload image of a question"
@@ -796,6 +906,153 @@ export default function AIDoubtPanel({ open, onClose, prefillText }) {
           .ai-bubble-error { background:#fef2f2; border:1px solid #fecaca; color:#dc2626; }
         `}</style>
       </div>
+
+      {/* ── Camera Modal ───────────────────────────────────────── */}
+      {cameraOpen && (
+        <div style={{
+          position: 'fixed', inset: 0, zIndex: 10000,
+          background: '#000',
+          display: 'flex', flexDirection: 'column',
+        }}>
+          {/* Top bar */}
+          <div style={{
+            position: 'absolute', top: 0, left: 0, right: 0, zIndex: 2,
+            padding: '1rem 1.25rem',
+            background: 'linear-gradient(#000a, transparent)',
+            display: 'flex', alignItems: 'center', justifyContent: 'space-between',
+          }}>
+            <div style={{ color: '#fff', fontWeight: 700, fontSize: '.95rem', display: 'flex', alignItems: 'center', gap: '.5rem' }}>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2">
+                <path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/>
+                <circle cx="12" cy="13" r="4"/>
+              </svg>
+              Point camera at your question
+            </div>
+            <button onClick={closeCamera} style={{
+              background: 'rgba(255,255,255,.18)', border: '1px solid rgba(255,255,255,.3)',
+              color: '#fff', borderRadius: 8, padding: '.35rem .85rem',
+              cursor: 'pointer', fontWeight: 600, fontSize: '.85rem',
+            }}>✕ Close</button>
+          </div>
+
+          {cameraError ? (
+            /* Permission / error state */
+            <div style={{ flex: 1, display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', color: '#fff', padding: '2rem', textAlign: 'center' }}>
+              <div style={{ fontSize: '3.5rem', marginBottom: '1.25rem' }}>📷</div>
+              <p style={{ fontSize: '1rem', lineHeight: 1.6, maxWidth: 340, opacity: .85, marginBottom: '2rem' }}>{cameraError}</p>
+              <button onClick={closeCamera} style={{
+                background: '#4f46e5', color: '#fff', border: 'none',
+                borderRadius: 12, padding: '.8rem 2rem', fontWeight: 700, cursor: 'pointer', fontSize: '1rem',
+              }}>Close</button>
+            </div>
+          ) : capturedPhoto ? (
+            /* Review captured photo */
+            <div style={{ flex: 1, display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', padding: '5rem 1.25rem 1.5rem' }}>
+              <div style={{ fontSize: '.75rem', color: 'rgba(255,255,255,.6)', marginBottom: '.75rem', fontWeight: 600, letterSpacing: '.05em', textTransform: 'uppercase' }}>
+                Review your photo
+              </div>
+              <img
+                src={capturedPhoto.dataUrl} alt="captured"
+                style={{ maxWidth: '100%', maxHeight: '55vh', borderRadius: 14, objectFit: 'contain', boxShadow: '0 8px 40px rgba(0,0,0,.5)' }}
+              />
+              <div style={{ display: 'flex', gap: '1rem', marginTop: '2rem', flexWrap: 'wrap', justifyContent: 'center' }}>
+                <button onClick={() => setCapturedPhoto(null)} style={{
+                  background: 'rgba(255,255,255,.12)', color: '#fff',
+                  border: '1.5px solid rgba(255,255,255,.3)', borderRadius: 12,
+                  padding: '.8rem 1.75rem', fontWeight: 700, cursor: 'pointer', fontSize: '.95rem',
+                }}>🔄 Retake</button>
+                <button onClick={useCapturedPhoto} disabled={uploadingCamera} style={{
+                  background: uploadingCamera ? '#6366f1' : '#4f46e5', color: '#fff',
+                  border: 'none', borderRadius: 12,
+                  padding: '.8rem 1.75rem', fontWeight: 700, cursor: 'pointer', fontSize: '.95rem',
+                  opacity: uploadingCamera ? .75 : 1,
+                }}>
+                  {uploadingCamera ? '⏳ Uploading…' : '✅ Use this photo'}
+                </button>
+              </div>
+            </div>
+          ) : (
+            /* Live viewfinder */
+            <>
+              <video
+                ref={videoRef}
+                autoPlay playsInline muted
+                style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+              />
+
+              {/* Framing guide */}
+              <div style={{
+                position: 'absolute', inset: '14% 8%',
+                border: '2px solid rgba(255,255,255,.45)',
+                borderRadius: 16, pointerEvents: 'none',
+              }}>
+                {/* Corner brackets */}
+                {[['0','0','1','1'],['0','auto','1','-1'],['auto','0','-1','1'],['auto','auto','-1','-1']].map(([t,l,sy,sx], i) => (
+                  <div key={i} style={{
+                    position: 'absolute', top: t, left: l, bottom: t === 'auto' ? 0 : undefined, right: l === 'auto' ? 0 : undefined,
+                    width: 22, height: 22,
+                    borderTop: sy === '1' ? '3px solid #fff' : 'none',
+                    borderBottom: sy === '-1' ? '3px solid #fff' : 'none',
+                    borderLeft: sx === '1' ? '3px solid #fff' : 'none',
+                    borderRight: sx === '-1' ? '3px solid #fff' : 'none',
+                    borderRadius: sy === '1' && sx === '1' ? '4px 0 0 0' : sy === '1' && sx === '-1' ? '0 4px 0 0' : sy === '-1' && sx === '1' ? '0 0 0 4px' : '0 0 4px 0',
+                  }} />
+                ))}
+              </div>
+              <div style={{
+                position: 'absolute', top: '14%', left: '50%', transform: 'translateX(-50%) translateY(-2rem)',
+                color: 'rgba(255,255,255,.65)', fontSize: '.75rem', fontWeight: 600,
+                background: 'rgba(0,0,0,.45)', padding: '.25rem .75rem', borderRadius: 99, whiteSpace: 'nowrap',
+              }}>
+                Fit your question inside the frame
+              </div>
+
+              {/* Bottom controls */}
+              <div style={{
+                position: 'absolute', bottom: 0, left: 0, right: 0,
+                padding: '1.5rem 2rem 2.5rem',
+                background: 'linear-gradient(transparent, rgba(0,0,0,.75))',
+                display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '2.5rem',
+              }}>
+                {/* Switch camera */}
+                <button onClick={switchCamera} title="Switch camera" style={{
+                  width: 46, height: 46, borderRadius: '50%',
+                  background: 'rgba(255,255,255,.18)', border: '1.5px solid rgba(255,255,255,.35)',
+                  color: '#fff', cursor: 'pointer',
+                  display: 'flex', alignItems: 'center', justifyContent: 'center',
+                }}>
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2">
+                    <path d="M1 4v6h6"/><path d="M23 20v-6h-6"/>
+                    <path d="M20.49 9A9 9 0 0 0 5.64 5.64L1 10m22 4-4.64 4.36A9 9 0 0 1 3.51 15"/>
+                  </svg>
+                </button>
+
+                {/* Shutter */}
+                <button
+                  onClick={capturePhoto}
+                  title="Take photo"
+                  style={{
+                    width: 74, height: 74, borderRadius: '50%',
+                    background: '#fff', border: '5px solid rgba(255,255,255,.45)',
+                    cursor: 'pointer', boxShadow: '0 0 0 4px rgba(255,255,255,.25)',
+                    transition: 'transform .1s, box-shadow .1s',
+                  }}
+                  onMouseDown={e => { e.currentTarget.style.transform = 'scale(.93)'; e.currentTarget.style.boxShadow = '0 0 0 2px rgba(255,255,255,.2)'; }}
+                  onMouseUp={e => { e.currentTarget.style.transform = 'scale(1)'; e.currentTarget.style.boxShadow = '0 0 0 4px rgba(255,255,255,.25)'; }}
+                  onTouchStart={e => { e.currentTarget.style.transform = 'scale(.93)'; }}
+                  onTouchEnd={e => { e.currentTarget.style.transform = 'scale(1)'; capturePhoto(); }}
+                />
+
+                {/* Spacer to balance layout */}
+                <div style={{ width: 46 }} />
+              </div>
+            </>
+          )}
+
+          {/* Hidden canvas for frame capture */}
+          <canvas ref={canvasRef} style={{ display: 'none' }} />
+        </div>
+      )}
     </>
   );
 }
