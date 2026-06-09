@@ -96,7 +96,7 @@ function MsgContent({ content }) {
         strong: ({ children }) => <strong style={{ color: '#1e1b4b' }}>{children}</strong>,
         code: ({ inline, children }) => inline
           ? <code style={{ background: '#f3f4f6', padding: '.1em .35em', borderRadius: 4, fontSize: '.85em', fontFamily: 'monospace', color: '#be185d' }}>{children}</code>
-          : <pre style={{ background: '#1e1b4b', color: '#e0e7ff', padding: '.75rem 1rem', borderRadius: 8, fontSize: '.82em', overflowX: 'auto', margin: '.5em 0', fontFamily: 'monospace' }}><code>{children}</code></pre>,
+          : <div style={{ overflowX: 'auto', margin: '.5em 0', borderRadius: 8, maxWidth: '100%' }}><pre style={{ background: '#1e1b4b', color: '#e0e7ff', padding: '.75rem 1rem', borderRadius: 8, fontSize: '.82em', margin: 0, fontFamily: 'monospace', minWidth: 'max-content' }}><code>{children}</code></pre></div>,
         blockquote: ({ children }) => <blockquote style={{ borderLeft: '3px solid #4f46e5', margin: '.5em 0', padding: '.3em .75em', background: '#eef2ff', borderRadius: '0 6px 6px 0', color: '#3730a3' }}>{children}</blockquote>,
         h1: ({ children }) => <h1 style={{ fontSize: '1.1em', fontWeight: 800, margin: '.5em 0 .3em', color: '#1e1b4b' }}>{children}</h1>,
         h2: ({ children }) => <h2 style={{ fontSize: '1em', fontWeight: 700, margin: '.5em 0 .3em', color: '#1e1b4b' }}>{children}</h2>,

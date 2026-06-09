@@ -52,6 +52,11 @@ export default function NotificationBell({ user }) {
     return () => document.removeEventListener('mousedown', onClick);
   }, []);
 
+  // Mark all as read when the panel is opened
+  useEffect(() => {
+    if (open) markAllRead();
+  }, [open]); // eslint-disable-line
+
   const displayed = tab === 'all'
     ? notifications
     : notifications.filter(n => !n.read);
