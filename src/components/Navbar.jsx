@@ -253,40 +253,23 @@ export default function Navbar({
               </Link>
             </div>
 
-            {/* ── PW Store ── */}
-            <div className="nav-item">
-              <Link
-                to="/store"
+            {/* ── More ▾ dropdown (Store, Community, Leaderboard) ── */}
+            <div className={`nav-item ${mobileOpen && mobileExpanded === "more" ? "mobile-expanded" : ""}`}>
+              <span
                 className="nav-link"
-                onClick={close}
-                style={{ textDecoration: "none", fontWeight: 700 }}
+                onClick={() => mobileOpen && toggleMobile("more")}
+                style={{ cursor: "pointer", fontWeight: 700 }}
               >
-                📚 Store
-              </Link>
-            </div>
-
-            {/* ── Student Doubt Community ── */}
-            <div className="nav-item">
-              <Link
-                to="/community"
-                className="nav-link"
-                onClick={close}
-                style={{ textDecoration: "none", fontWeight: 700, color: "#6366f1" }}
-              >
-                💬 Community
-              </Link>
-            </div>
-
-            {/* ── Leaderboard ── */}
-            <div className="nav-item">
-              <Link
-                to="/leaderboard"
-                className="nav-link"
-                onClick={close}
-                style={{ textDecoration: "none", fontWeight: 700, color: "#f59e0b" }}
-              >
-                🏆 Leaderboard
-              </Link>
+                More <ChevronDown />
+              </span>
+              <div className="dropdown" style={{ minWidth: 200 }}>
+                <div className="dropdown-section">
+                  <div className="dropdown-label">Explore</div>
+                  <Link to="/store"       className="dropdown-item" onClick={close} style={{ display: "flex", alignItems: "center", gap: ".5rem" }}>📚 <span>Book Store</span></Link>
+                  <Link to="/community"   className="dropdown-item" onClick={close} style={{ display: "flex", alignItems: "center", gap: ".5rem" }}>💬 <span>Community Q&amp;A</span></Link>
+                  <Link to="/leaderboard" className="dropdown-item" onClick={close} style={{ display: "flex", alignItems: "center", gap: ".5rem" }}>🏆 <span>Leaderboard</span></Link>
+                </div>
+              </div>
             </div>
 
             {/* ── Teachers dropdown ── */}
@@ -554,30 +537,38 @@ export default function Navbar({
               <span className="nav-ai-text">AI Doubt</span>
             </button>
 
-            {/* Snap & Solve Camera AI */}
+            {/* Snap & Solve Camera AI — icon only */}
             {onOpenSnapSolve && (
               <button
                 onClick={onOpenSnapSolve}
+                aria-label="Snap & Solve AI Camera"
+                title="Snap & Solve — snap a textbook question for instant AI solution"
                 style={{
                   display: "inline-flex",
                   alignItems: "center",
-                  gap: ".35rem",
+                  justifyContent: "center",
+                  width: 38,
+                  height: 38,
                   background: "linear-gradient(135deg, #ef4444, #dc2626)",
                   color: "#fff",
-                  fontWeight: 800,
-                  fontSize: ".78rem",
-                  padding: ".45rem .85rem",
-                  borderRadius: 12,
+                  borderRadius: "50%",
                   border: "none",
                   cursor: "pointer",
                   boxShadow: "0 4px 14px rgba(239,68,68,0.35)",
-                  whiteSpace: "nowrap",
-                  transition: "transform 0.2s",
+                  fontSize: "1.1rem",
+                  flexShrink: 0,
+                  transition: "transform 0.2s, box-shadow 0.2s",
                 }}
-                onMouseEnter={(e) => (e.currentTarget.style.transform = "scale(1.04)")}
-                onMouseLeave={(e) => (e.currentTarget.style.transform = "scale(1)")}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.transform = "scale(1.12)";
+                  e.currentTarget.style.boxShadow = "0 6px 20px rgba(239,68,68,0.55)";
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.transform = "scale(1)";
+                  e.currentTarget.style.boxShadow = "0 4px 14px rgba(239,68,68,0.35)";
+                }}
               >
-                <span style={{ fontSize: ".95rem" }}>📷</span> Snap & Solve
+                📷
               </button>
             )}
 
