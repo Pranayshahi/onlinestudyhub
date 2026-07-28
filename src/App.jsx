@@ -39,6 +39,7 @@ const CommunityPage = lazy(() => import("./pages/CommunityPage"));
 // Heavy panel components — load only when opened
 const AIDoubtPanel = lazy(() => import("./components/AIDoubtPanel"));
 const LoginModal = lazy(() => import("./components/LoginModal"));
+const SnapSolveModal = lazy(() => import("./components/SnapSolveModal"));
 
 function PageLoader() {
   return (
@@ -68,6 +69,7 @@ function PageLoader() {
 export default function App() {
   const [aiOpen, setAiOpen] = useState(false);
   const [aiPrefill, setAiPrefill] = useState('');
+  const [snapSolveOpen, setSnapSolveOpen] = useState(false);
 
   function openAI(prefillText = '') {
     setAiPrefill(prefillText);
@@ -157,6 +159,7 @@ export default function App() {
             darkMode={darkMode}
             onToggleDark={() => setDarkMode((d) => !d)}
             bookingsBadge={bookingsBadge}
+            onOpenSnapSolve={() => setSnapSolveOpen(true)}
           />
           <main style={{ minHeight: "80vh" }}>
             <Suspense fallback={<PageLoader />}>
@@ -295,6 +298,42 @@ export default function App() {
             </Suspense>
           </main>
           <Footer />
+
+          {/* Floating Snap & Solve Action Button */}
+          <button
+            onClick={() => setSnapSolveOpen(true)}
+            style={{
+              position: "fixed",
+              bottom: "85px",
+              right: "24px",
+              zIndex: 998,
+              background: "linear-gradient(135deg, #ef4444, #dc2626)",
+              color: "#fff",
+              border: "none",
+              borderRadius: "50px",
+              padding: ".75rem 1.25rem",
+              fontFamily: "Nunito, sans-serif",
+              fontWeight: 900,
+              fontSize: ".85rem",
+              boxShadow: "0 6px 24px rgba(239,68,68,0.45)",
+              cursor: "pointer",
+              display: "flex",
+              alignItems: "center",
+              gap: ".5rem",
+              transition: "transform 0.2s, box-shadow 0.2s",
+            }}
+            onMouseEnter={(e) => {
+              e.currentTarget.style.transform = "scale(1.06) translateY(-2px)";
+              e.currentTarget.style.boxShadow = "0 10px 30px rgba(239,68,68,0.6)";
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.transform = "scale(1) translateY(0)";
+              e.currentTarget.style.boxShadow = "0 6px 24px rgba(239,68,68,0.45)";
+            }}
+          >
+            <span style={{ fontSize: "1.2rem" }}>📷</span> Snap & Solve
+          </button>
+
           <Suspense fallback={null}>
             {aiOpen && (
               <AIDoubtPanel open={aiOpen} onClose={() => { setAiOpen(false); setAiPrefill(''); }} prefillText={aiPrefill} />
@@ -304,6 +343,12 @@ export default function App() {
                 open={loginOpen}
                 onClose={() => setLoginOpen(false)}
                 onLogin={handleLogin}
+              />
+            )}
+            {snapSolveOpen && (
+              <SnapSolveModal
+                isOpen={snapSolveOpen}
+                onClose={() => setSnapSolveOpen(false)}
               />
             )}
           </Suspense>

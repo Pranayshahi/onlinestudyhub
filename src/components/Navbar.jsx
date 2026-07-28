@@ -65,6 +65,7 @@ export default function Navbar({
   darkMode,
   onToggleDark,
   bookingsBadge = 0,
+  onOpenSnapSolve,
 }) {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [mobileExpanded, setMobileExpanded] = useState(null);
@@ -540,6 +541,33 @@ export default function Navbar({
               />
               <span className="nav-ai-text">AI Doubt</span>
             </button>
+
+            {/* Snap & Solve Camera AI */}
+            {onOpenSnapSolve && (
+              <button
+                onClick={onOpenSnapSolve}
+                style={{
+                  display: "inline-flex",
+                  alignItems: "center",
+                  gap: ".35rem",
+                  background: "linear-gradient(135deg, #ef4444, #dc2626)",
+                  color: "#fff",
+                  fontWeight: 800,
+                  fontSize: ".78rem",
+                  padding: ".45rem .85rem",
+                  borderRadius: 12,
+                  border: "none",
+                  cursor: "pointer",
+                  boxShadow: "0 4px 14px rgba(239,68,68,0.35)",
+                  whiteSpace: "nowrap",
+                  transition: "transform 0.2s",
+                }}
+                onMouseEnter={(e) => (e.currentTarget.style.transform = "scale(1.04)")}
+                onMouseLeave={(e) => (e.currentTarget.style.transform = "scale(1)")}
+              >
+                <span style={{ fontSize: ".95rem" }}>📷</span> Snap & Solve
+              </button>
+            )}
 
             {/* Notification Bell */}
             <NotificationBell user={user} />

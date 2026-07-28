@@ -1419,6 +1419,106 @@ Respond with ONLY valid JSON, no markdown, no explanation:
   }
 });
 
+// ── AI Snap & Solve Doubtnut / PW Camera Solver ──────────────────
+app.post('/api/ai/snap-solve', async (req, res) => {
+  try {
+    const { imageDataUrl, questionText } = req.body || {};
+    const groqKey = (process.env.GROQ_API_KEY || '').trim();
+
+    if (!imageDataUrl && !questionText) {
+      return res.status(400).json({ error: 'ImageDataUrl or questionText is required.' });
+    }
+
+    let defaultResponse = {
+      extractedQuestion: questionText || 'Scanned Problem from Textbook',
+      subject: 'Mathematics / Science',
+      chapter: 'Board Exam Important Concepts',
+      topicLink: '/classes',
+      steps: [
+        { title: 'Step 1: Given Data & Given Parameters', detail: 'Extract given values, check unit consistency, and write basic physical/mathematical equations.' },
+        { title: 'Step 2: Formula Application', detail: 'Apply the standard governing formula and substitute given parameters step-by-step.' },
+        { title: 'Step 3: Final Solution & Unit Notation', detail: 'Perform exact arithmetic calculations and box the final answer with correct SI units.' }
+      ],
+      formulas: ['Standard Board Relation', 'SI Unit Conversion'],
+      examTip: 'State given parameters explicitly before substituting values into the formula.'
+    };
+
+    if (!groqKey) {
+      return res.json(defaultResponse);
+    }
+
+    let groqMessages = [
+      {
+        role: 'system',
+        content: `You are an expert Indian EdTech AI Master Solver (Doubtnut / PhysicsWallah style).
+Your task is to analyze the scanned image or question text of a physics, chemistry, mathematics, or biology problem.
+
+Respond ONLY with valid JSON in the following format:
+{
+  "extractedQuestion": "The exact question text scanned from image",
+  "subject": "Physics | Chemistry | Mathematics | Biology",
+  "chapter": "Chapter Name (Class X)",
+  "topicLink": "/class/class-10/subject/mathematics",
+  "steps": [
+    { "title": "Step 1: ...", "detail": "Detailed explanation..." },
+    { "title": "Step 2: ...", "detail": "Detailed explanation..." }
+  ],
+  "formulas": ["Formula 1", "Formula 2"],
+  "examTip": "Key trick for securing full marks"
+}`
+      }
+    ];
+
+    if (imageDataUrl && imageDataUrl.startsWith('data:image')) {
+      groqMessages.push({
+        role: 'user',
+        content: [
+          { type: 'text', text: 'Scan this textbook/notebook problem image. Extract the question and provide a complete step-by-step solution in JSON format.' },
+          { type: 'image_url', image_url: { url: imageDataUrl } }
+        ]
+      });
+    } else {
+      groqMessages.push({
+        role: 'user',
+        content: `Solve this problem step-by-step: "${questionText || 'Physics / Maths Problem'}"`
+      });
+    }
+
+    const modelName = (imageDataUrl && imageDataUrl.startsWith('data:image')) ? 'llama-3.2-11b-vision-preview' : 'llama-3.3-70b-versatile';
+
+    const resp = await fetch('https://api.groq.com/openai/v1/chat/completions', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${groqKey}` },
+      body: JSON.stringify({
+        model: modelName,
+        messages: groqMessages,
+        temperature: 0.2,
+        max_tokens: 1500,
+        response_format: { type: 'json_object' }
+      })
+    });
+
+    if (!resp.ok) {
+      console.warn('Groq Vision Snap-Solve returned status:', resp.status);
+      return res.json(defaultResponse);
+    }
+
+    const aiResult = await resp.json();
+    const rawContent = aiResult.choices?.[0]?.message?.content || '{}';
+    let parsed = {};
+    try {
+      parsed = JSON.parse(rawContent);
+    } catch {
+      parsed = defaultResponse;
+    }
+
+    res.json(parsed);
+  } catch (err) {
+    console.error('Snap & Solve API error:', err);
+    res.status(500).json({ error: 'Failed to process Snap & Solve' });
+  }
+});
+
 // ── Parent Portal: Auth ────────────────────────────────────────
 function requireParentAuth(req, res, next) {
   const auth = req.headers.authorization;
