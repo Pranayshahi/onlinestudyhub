@@ -165,7 +165,7 @@ function BookingCard({ booking, onRate, reviewed, onCancel }) {
   );
 }
 
-export default function MyBookingsPage({ user, onBadgeUpdate }) {
+export default function MyBookingsPage({ user, onOpenLogin, onBadgeUpdate }) {
   const [bookings, setBookings] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
@@ -176,6 +176,8 @@ export default function MyBookingsPage({ user, onBadgeUpdate }) {
 
   useEffect(() => {
     if (!user) { setLoading(false); return; }
+    setLoading(true);
+    setError('');
     api('/bookings/student')
       .then(data => {
         const list = Array.isArray(data) ? data : [];
@@ -203,17 +205,38 @@ export default function MyBookingsPage({ user, onBadgeUpdate }) {
         // Clear navbar badge — user is now viewing their bookings
         if (onBadgeUpdate) onBadgeUpdate(0);
       })
-      .catch(err => setError(err.message || 'Failed to load bookings'))
+      .catch(err => {
+        const msg = err.message || '';
+        if (msg.includes('token') || msg.includes('expired') || msg.includes('Unauthorized')) {
+          localStorage.removeItem('osh_user');
+          window.dispatchEvent(new Event('osh_logout'));
+          setError('session_expired');
+        } else {
+          setError(msg || 'Failed to load bookings');
+        }
+      })
       .finally(() => setLoading(false));
   }, [user]); // eslint-disable-line
 
-  if (!user) {
+  if (!user || error === 'session_expired') {
     return (
-      <div style={{ minHeight: '60vh', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', gap: '1rem', textAlign: 'center', padding: '2rem' }}>
-        <div style={{ fontSize: '3rem' }}>🔒</div>
-        <h2 style={{ fontFamily: 'Nunito', color: '#1e1b4b', fontWeight: 900 }}>{t('bookings_login_required')}</h2>
-        <p style={{ color: '#6b7280' }}>{t('bookings_login_sub')}</p>
-        <Link to="/" className="btn btn-primary">← Go Home</Link>
+      <div style={{ minHeight: '60vh', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', gap: '1.25rem', textAlign: 'center', padding: '2rem' }}>
+        <div style={{ fontSize: '3.5rem' }}>🔑</div>
+        <h2 style={{ fontFamily: 'Nunito', color: '#1e1b4b', fontWeight: 900, fontSize: '1.6rem', margin: 0 }}>
+          {error === 'session_expired' ? 'Session Expired — Please Login Again' : t('bookings_login_required')}
+        </h2>
+        <p style={{ color: '#6b7280', maxWidth: 440, lineHeight: 1.6 }}>
+          {error === 'session_expired'
+            ? 'Your login session has expired or is invalid. Please log in again to view your bookings and upcoming live classes.'
+            : t('bookings_login_sub')}
+        </p>
+        <button
+          onClick={() => onOpenLogin && onOpenLogin()}
+          className="btn btn-primary"
+          style={{ padding: '.85rem 2.25rem', fontSize: '1rem', fontWeight: 800, borderRadius: 14, boxShadow: '0 8px 25px rgba(249,115,22,0.35)' }}
+        >
+          🔑 Login / Sign Up
+        </button>
       </div>
     );
   }

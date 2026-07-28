@@ -123,6 +123,16 @@ export default function App() {
       .catch(() => {});
   }, [user]);
 
+  useEffect(() => {
+    const handleOshLogout = () => {
+      setUser(null);
+      localStorage.removeItem("osh_user");
+      setBookingsBadge(0);
+    };
+    window.addEventListener("osh_logout", handleOshLogout);
+    return () => window.removeEventListener("osh_logout", handleOshLogout);
+  }, []);
+
   const handleLogin = (userData) => {
     setUser(userData);
     localStorage.setItem("osh_user", JSON.stringify(userData));

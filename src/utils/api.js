@@ -32,12 +32,20 @@ export async function api(path, { method = 'GET', body = null, token = null, hea
   if (contentType.includes('application/json')) {
     const data = await res.json();
     if (!res.ok) {
+      if (res.status === 401 || res.status === 403) {
+        localStorage.removeItem('osh_user');
+        window.dispatchEvent(new Event('osh_logout'));
+      }
       throw new Error(data.message || data.error || `Request failed with status ${res.status}`);
     }
     return data;
   } else {
     const text = await res.text();
     if (!res.ok) {
+      if (res.status === 401 || res.status === 403) {
+        localStorage.removeItem('osh_user');
+        window.dispatchEvent(new Event('osh_logout'));
+      }
       throw new Error(`Server error (${res.status}): ${text.substring(0, 100)}`);
     }
     return text;
