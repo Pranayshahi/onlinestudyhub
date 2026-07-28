@@ -277,6 +277,18 @@ export default function Navbar({
               </Link>
             </div>
 
+            {/* ── Leaderboard ── */}
+            <div className="nav-item">
+              <Link
+                to="/leaderboard"
+                className="nav-link"
+                onClick={close}
+                style={{ textDecoration: "none", fontWeight: 700, color: "#f59e0b" }}
+              >
+                🏆 Leaderboard
+              </Link>
+            </div>
+
             {/* ── Teachers dropdown ── */}
             <div
               className={`nav-item ${mobileOpen && mobileExpanded === "teachers" ? "mobile-expanded" : ""}`}

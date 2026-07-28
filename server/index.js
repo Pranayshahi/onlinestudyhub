@@ -10,7 +10,7 @@ require('dotenv').config({ path: require('path').join(__dirname, '.env') });
 const mongoose = require('mongoose');
 
 const connectDB = require('./db');
-const { Student, Teacher, Booking, TopicMedia, Review, ForumPost, Parent, PushSub, GroupClass, Batch, DPP, StoreProduct } = require('./models');
+const { Student, Teacher, Booking, TopicMedia, Review, ForumPost, Parent, PushSub, GroupClass, Batch, DPP, StoreProduct, Gamification } = require('./models');
 const Razorpay = require('razorpay');
 const {
   notifyStudentBookingReceived,
@@ -1518,6 +1518,157 @@ Respond ONLY with valid JSON in the following format:
     res.status(500).json({ error: 'Failed to process Snap & Solve' });
   }
 });
+
+// ── Gamification: Badge definitions ────────────────────────────
+const BADGES = [
+  { id: 'first_step',      icon: '🚀', label: 'First Step',        desc: 'Completed your first topic',               req: g => g.topicsCompleted >= 1    },
+  { id: 'streak_3',        icon: '🔥', label: 'On Fire!',           desc: '3-day study streak',                        req: g => g.streak >= 3             },
+  { id: 'streak_7',        icon: '⚡', label: 'Week Warrior',       desc: '7-day study streak',                        req: g => g.streak >= 7             },
+  { id: 'streak_30',       icon: '💎', label: 'Diamond Streak',     desc: '30-day study streak',                       req: g => g.streak >= 30            },
+  { id: 'xp_100',          icon: '⭐', label: 'Rising Star',        desc: 'Earned 100 XP',                            req: g => g.xp >= 100               },
+  { id: 'xp_500',          icon: '🌟', label: 'Star Student',       desc: 'Earned 500 XP',                            req: g => g.xp >= 500               },
+  { id: 'xp_1000',         icon: '🏆', label: 'XP Champion',        desc: 'Earned 1000 XP',                           req: g => g.xp >= 1000              },
+  { id: 'quiz_10',         icon: '🎯', label: 'Quiz Ace',           desc: 'Completed 10 quizzes',                      req: g => g.quizzesTaken >= 10      },
+  { id: 'quiz_50',         icon: '🧠', label: 'Quiz Master',        desc: 'Completed 50 quizzes',                      req: g => g.quizzesTaken >= 50      },
+  { id: 'doubt_5',         icon: '💬', label: 'Community Helper',   desc: 'Posted 5 doubts in community',              req: g => g.doubtsPosted >= 5       },
+  { id: 'topics_10',       icon: '📚', label: 'Knowledge Seeker',   desc: 'Completed 10 topics',                       req: g => g.topicsCompleted >= 10   },
+  { id: 'topics_50',       icon: '🎓', label: 'Scholar',            desc: 'Completed 50 topics',                       req: g => g.topicsCompleted >= 50   },
+  { id: 'level_5',         icon: '🦁', label: 'Level 5 Achiever',   desc: 'Reached Level 5',                           req: g => g.level >= 5              },
+  { id: 'level_10',        icon: '👑', label: 'Elite Learner',      desc: 'Reached Level 10',                          req: g => g.level >= 10             },
+];
+
+function getLevel(xp) {
+  if (xp < 50)   return 1;
+  if (xp < 150)  return 2;
+  if (xp < 300)  return 3;
+  if (xp < 500)  return 4;
+  if (xp < 800)  return 5;
+  if (xp < 1200) return 6;
+  if (xp < 1700) return 7;
+  if (xp < 2300) return 8;
+  if (xp < 3000) return 9;
+  return 10;
+}
+
+function getISOWeekKey(date = new Date()) {
+  const d = new Date(date);
+  d.setHours(0, 0, 0, 0);
+  d.setDate(d.getDate() + 4 - (d.getDay() || 7));
+  const year = d.getFullYear();
+  const week = Math.ceil((((d - new Date(year, 0, 1)) / 86400000) + 1) / 7);
+  return `${year}-W${String(week).padStart(2, '0')}`;
+}
+
+function getTodayKey() {
+  return new Date().toISOString().split('T')[0]; // 'YYYY-MM-DD'
+}
+
+async function awardXP(studentEmail, studentName, { action, xpAmount }) {
+  const today = getTodayKey();
+  const weekKey = getISOWeekKey();
+
+  let g = await Gamification.findOne({ studentEmail });
+  if (!g) {
+    g = new Gamification({ studentEmail, studentName: studentName || '' });
+  }
+
+  // Update streak
+  if (g.lastActiveDate !== today) {
+    const yesterday = new Date();
+    yesterday.setDate(yesterday.getDate() - 1);
+    const yKey = yesterday.toISOString().split('T')[0];
+    if (g.lastActiveDate === yKey) {
+      g.streak += 1;
+    } else {
+      g.streak = 1;
+    }
+    if (g.streak > g.longestStreak) g.longestStreak = g.streak;
+    g.lastActiveDate = today;
+  }
+
+  // Reset weekly XP if new week
+  if (g.weeklyReset !== weekKey) {
+    g.weeklyXp = 0;
+    g.weeklyReset = weekKey;
+  }
+
+  // Award XP
+  g.xp += xpAmount;
+  g.weeklyXp += xpAmount;
+
+  // Track action stats
+  if (action === 'topic_completed')  g.topicsCompleted += 1;
+  if (action === 'quiz_completed')   g.quizzesTaken += 1;
+  if (action === 'doubt_posted')     g.doubtsPosted += 1;
+
+  // Update level
+  g.level = getLevel(g.xp);
+
+  // Award badges
+  const newBadges = [];
+  for (const badge of BADGES) {
+    if (!g.badges.includes(badge.id) && badge.req(g)) {
+      g.badges.push(badge.id);
+      newBadges.push(badge);
+    }
+  }
+
+  await g.save();
+  return { gamification: g, newBadges };
+}
+
+// ── Gamification API: Award XP ─────────────────────────────────
+app.post('/api/gamification/award', requireStudentAuth, async (req, res) => {
+  try {
+    const { action } = req.body || {};
+    const xpMap = {
+      topic_completed:  20,
+      quiz_completed:   15,
+      doubt_posted:     10,
+      daily_login:       5,
+    };
+    const xpAmount = xpMap[action] || 5;
+    const result = await awardXP(req.student.email, req.student.name, { action, xpAmount });
+    res.json({ success: true, ...result });
+  } catch (err) {
+    console.error('Gamification award error:', err);
+    res.status(500).json({ error: 'Failed to award XP' });
+  }
+});
+
+// ── Gamification API: Get My Stats ─────────────────────────────
+app.get('/api/gamification/me', requireStudentAuth, async (req, res) => {
+  try {
+    let g = await Gamification.findOne({ studentEmail: req.student.email });
+    if (!g) {
+      g = { studentEmail: req.student.email, xp: 0, level: 1, streak: 0, longestStreak: 0, badges: [], weeklyXp: 0, topicsCompleted: 0, quizzesTaken: 0, doubtsPosted: 0 };
+    }
+    res.json(g);
+  } catch (err) {
+    console.error('Gamification me error:', err);
+    res.status(500).json({ error: 'Failed to fetch stats' });
+  }
+});
+
+// ── Gamification API: Global Leaderboard ───────────────────────
+app.get('/api/gamification/leaderboard', async (req, res) => {
+  try {
+    const { type = 'alltime' } = req.query;
+    const sortField = type === 'weekly' ? 'weeklyXp' : 'xp';
+    const top = await Gamification.find({}).sort({ [sortField]: -1 }).limit(50).select('studentName studentEmail xp weeklyXp streak longestStreak level badges topicsCompleted quizzesTaken');
+    res.json(top);
+  } catch (err) {
+    console.error('Leaderboard error:', err);
+    res.status(500).json({ error: 'Failed to fetch leaderboard' });
+  }
+});
+
+// ── Gamification API: Badge Definitions ────────────────────────
+app.get('/api/gamification/badges', (req, res) => {
+  res.json(BADGES.map(b => ({ id: b.id, icon: b.icon, label: b.label, desc: b.desc })));
+});
+
+
 
 // ── Parent Portal: Auth ────────────────────────────────────────
 function requireParentAuth(req, res, next) {

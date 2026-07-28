@@ -35,6 +35,7 @@ const BatchesPage = lazy(() => import("./pages/BatchesPage"));
 const BatchDetailsPage = lazy(() => import("./pages/BatchDetailsPage"));
 const StorePage = lazy(() => import("./pages/StorePage"));
 const CommunityPage = lazy(() => import("./pages/CommunityPage"));
+const LeaderboardPage = lazy(() => import("./pages/LeaderboardPage"));
 
 // Heavy panel components — load only when opened
 const AIDoubtPanel = lazy(() => import("./components/AIDoubtPanel"));
@@ -292,6 +293,15 @@ export default function App() {
                 <Route
                   path="/community"
                   element={<CommunityPage />}
+                />
+                <Route
+                  path="/leaderboard"
+                  element={
+                    <LeaderboardPage
+                      user={user}
+                      onOpenLogin={() => setLoginOpen(true)}
+                    />
+                  }
                 />
                 <Route path="*" element={<NotFoundPage />} />
               </Routes>

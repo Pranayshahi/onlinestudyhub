@@ -249,5 +249,28 @@ const Batch      = mongoose.model('Batch',      batchSchema);
 const DPP        = mongoose.model('DPP',        dppSchema);
 const StoreProduct = mongoose.model('StoreProduct', storeProductSchema);
 
-module.exports = { Student, Teacher, Booking, TopicMedia, Review, ForumPost, Parent, PushSub, GroupClass, Batch, DPP, StoreProduct };
+// ── Gamification: XP, Streak & Badges per student ─────────────
+const gamificationSchema = new mongoose.Schema({
+  studentEmail:  { type: String, required: true, unique: true },
+  studentName:   { type: String, default: '' },
+  xp:            { type: Number, default: 0 },
+  level:         { type: Number, default: 1 },
+  streak:        { type: Number, default: 0 },       // current daily streak
+  longestStreak: { type: Number, default: 0 },
+  lastActiveDate:{ type: String, default: null },     // 'YYYY-MM-DD'
+  badges: [{ type: String }],                         // badge ids earned
+  weeklyXp:      { type: Number, default: 0 },        // reset every Monday
+  weeklyReset:   { type: String, default: null },     // ISO week key 'YYYY-Www'
+  topicsCompleted: { type: Number, default: 0 },
+  quizzesTaken:  { type: Number, default: 0 },
+  doubtsPosted:  { type: Number, default: 0 },
+}, { timestamps: true });
+
+gamificationSchema.index({ xp: -1 });
+gamificationSchema.index({ weeklyXp: -1 });
+
+const Gamification = mongoose.model('Gamification', gamificationSchema);
+
+module.exports = { Student, Teacher, Booking, TopicMedia, Review, ForumPost, Parent, PushSub, GroupClass, Batch, DPP, StoreProduct, Gamification };
+
 
