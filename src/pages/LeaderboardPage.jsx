@@ -3,20 +3,33 @@ import { Link } from 'react-router-dom';
 import { api } from '../utils/api';
 
 const BADGE_META = {
-  first_step:   { icon: '🚀', label: 'First Step',      color: '#f59e0b' },
-  streak_3:     { icon: '🔥', label: 'On Fire!',         color: '#ef4444' },
-  streak_7:     { icon: '⚡', label: 'Week Warrior',     color: '#f59e0b' },
-  streak_30:    { icon: '💎', label: 'Diamond Streak',   color: '#06b6d4' },
-  xp_100:       { icon: '⭐', label: 'Rising Star',      color: '#f59e0b' },
-  xp_500:       { icon: '🌟', label: 'Star Student',     color: '#8b5cf6' },
-  xp_1000:      { icon: '🏆', label: 'XP Champion',      color: '#f59e0b' },
-  quiz_10:      { icon: '🎯', label: 'Quiz Ace',         color: '#10b981' },
-  quiz_50:      { icon: '🧠', label: 'Quiz Master',      color: '#4f46e5' },
-  doubt_5:      { icon: '💬', label: 'Community Helper', color: '#6366f1' },
-  topics_10:    { icon: '📚', label: 'Knowledge Seeker', color: '#059669' },
-  topics_50:    { icon: '🎓', label: 'Scholar',          color: '#1e1b4b' },
-  level_5:      { icon: '🦁', label: 'Level 5 Achiever', color: '#d97706' },
-  level_10:     { icon: '👑', label: 'Elite Learner',    color: '#7c3aed' },
+  // Progress badges
+  first_step:     { icon: '🚀', label: 'First Step',           color: '#f59e0b' },
+  streak_3:       { icon: '🔥', label: 'On Fire!',             color: '#ef4444' },
+  streak_7:       { icon: '⚡', label: 'Week Warrior',         color: '#f59e0b' },
+  streak_30:      { icon: '💎', label: 'Diamond Streak',       color: '#06b6d4' },
+  xp_100:         { icon: '⭐', label: 'Rising Star',          color: '#f59e0b' },
+  xp_500:         { icon: '🌟', label: 'Star Student',         color: '#8b5cf6' },
+  xp_1000:        { icon: '🏆', label: 'XP Champion',          color: '#f59e0b' },
+  quiz_10:        { icon: '🎯', label: 'Quiz Ace',             color: '#10b981' },
+  quiz_50:        { icon: '🧠', label: 'Quiz Master',          color: '#4f46e5' },
+  doubt_5:        { icon: '💬', label: 'Community Helper',     color: '#6366f1' },
+  topics_10:      { icon: '📚', label: 'Knowledge Seeker',     color: '#059669' },
+  topics_50:      { icon: '🎓', label: 'Scholar',              color: '#1e1b4b' },
+  level_5:        { icon: '🦁', label: 'Level 5 Achiever',     color: '#d97706' },
+  level_10:       { icon: '👑', label: 'Elite Learner',        color: '#7c3aed' },
+  // Subject-specific achievement badges
+  maths_wizard:   { icon: '🔢', label: 'Calculus Wizard',      color: '#4f46e5' },
+  physics_ace:    { icon: '⚡', label: 'Physics Ace',          color: '#0ea5e9' },
+  chem_synth:     { icon: '🧪', label: 'Organic Synthesizer',  color: '#10b981' },
+  bio_master:     { icon: '🧬', label: 'NEET Bio Master',       color: '#16a34a' },
+  history_buff:   { icon: '📜', label: 'History Buff',         color: '#92400e' },
+  geo_explorer:   { icon: '🌍', label: 'Geo Explorer',         color: '#0284c7' },
+  english_author: { icon: '✍️', label: 'English Author',       color: '#7c3aed' },
+  cs_coder:       { icon: '💻', label: 'CS Coder',             color: '#1d4ed8' },
+  eco_analyst:    { icon: '📈', label: 'Economics Analyst',    color: '#059669' },
+  jee_warrior:    { icon: '🎯', label: 'JEE Warrior',          color: '#dc2626' },
+  neet_champion:  { icon: '🏅', label: 'NEET Champion',        color: '#15803d' },
 };
 
 const LEVEL_THRESHOLDS = [0, 50, 150, 300, 500, 800, 1200, 1700, 2300, 3000];

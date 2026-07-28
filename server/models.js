@@ -264,6 +264,7 @@ const gamificationSchema = new mongoose.Schema({
   topicsCompleted: { type: Number, default: 0 },
   quizzesTaken:  { type: Number, default: 0 },
   doubtsPosted:  { type: Number, default: 0 },
+  subjectTopics: { type: Map, of: Number, default: {} }, // e.g. { mathematics: 7, physics: 3 }
 }, { timestamps: true });
 
 gamificationSchema.index({ xp: -1 });

@@ -1,10 +1,12 @@
 import React, { useState } from 'react';
+import { useGamification } from '../hooks/useGamification';
 
-export default function TopicQuiz({ qa, topicTitle }) {
+export default function TopicQuiz({ qa, topicTitle, subjectId, user }) {
   const [phase, setPhase] = useState('idle'); // idle | quiz | result
   const [current, setCurrent] = useState(0);
   const [revealed, setRevealed] = useState(false);
   const [scores, setScores] = useState([]);
+  const { awardXP } = useGamification(user);
 
   if (!qa || qa.length === 0) return null;
 
@@ -25,12 +27,15 @@ export default function TopicQuiz({ qa, topicTitle }) {
           JSON.stringify({ correct: newScores.filter(Boolean).length, total: qa.length, date: new Date().toISOString() })
         );
       } catch {}
+      // Award XP for completing a quiz
+      awardXP({ action: 'quiz_completed', subjectId });
       setPhase('result');
     } else {
       setCurrent(c => c + 1);
       setRevealed(false);
     }
   }
+
 
   const correct = scores.filter(Boolean).length;
   const pct = qa.length > 0 ? Math.round((correct / qa.length) * 100) : 0;

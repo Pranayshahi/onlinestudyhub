@@ -6,6 +6,7 @@ import { TEACHERS } from '../data/teachers';
 import Breadcrumb from '../components/Breadcrumb';
 import FlashcardModal from '../components/FlashcardModal';
 import { useProgress } from '../hooks/useProgress';
+import { useGamification } from '../hooks/useGamification';
 import SEO from '../components/SEO';
 import TopicMediaSection from '../components/TopicMediaSection';
 import ForumSection from '../components/ForumSection';
@@ -175,6 +176,7 @@ export default function TopicPage({ user, onOpenLogin, onOpenAI }) {
   const { isDone, toggle } = useProgress();
   const { addNotification, settings } = useNotifications();
   const { t } = useLang();
+  const { awardXP } = useGamification(user);
 
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -207,7 +209,9 @@ export default function TopicPage({ user, onOpenLogin, onOpenAI }) {
         localStorage.setItem('osh_study_dates', JSON.stringify([...dates, today]));
       }
     } catch {}
-  }, [classId, subjectId, topicId]);
+    // Award XP for visiting a topic (once per topic per session)
+    awardXP({ action: 'topic_completed', subjectId });
+  }, [classId, subjectId, topicId, awardXP]);
 
   const classData = getClass(classId);
   const subject = getSubject(classId, subjectId);
@@ -623,7 +627,7 @@ export default function TopicPage({ user, onOpenLogin, onOpenAI }) {
 
         {/* ── 4. Topic Quiz ── */}
         {topic.qa && topic.qa.length > 0 && (
-          <TopicQuiz qa={topic.qa} topicTitle={topic.title} />
+          <TopicQuiz qa={topic.qa} topicTitle={topic.title} subjectId={subjectId} user={user} />
         )}
 
         {/* ── 5. Deep Learn with Teacher ── */}

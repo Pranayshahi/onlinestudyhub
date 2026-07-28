@@ -1521,20 +1521,33 @@ Respond ONLY with valid JSON in the following format:
 
 // ── Gamification: Badge definitions ────────────────────────────
 const BADGES = [
-  { id: 'first_step',      icon: '🚀', label: 'First Step',        desc: 'Completed your first topic',               req: g => g.topicsCompleted >= 1    },
-  { id: 'streak_3',        icon: '🔥', label: 'On Fire!',           desc: '3-day study streak',                        req: g => g.streak >= 3             },
-  { id: 'streak_7',        icon: '⚡', label: 'Week Warrior',       desc: '7-day study streak',                        req: g => g.streak >= 7             },
-  { id: 'streak_30',       icon: '💎', label: 'Diamond Streak',     desc: '30-day study streak',                       req: g => g.streak >= 30            },
-  { id: 'xp_100',          icon: '⭐', label: 'Rising Star',        desc: 'Earned 100 XP',                            req: g => g.xp >= 100               },
-  { id: 'xp_500',          icon: '🌟', label: 'Star Student',       desc: 'Earned 500 XP',                            req: g => g.xp >= 500               },
-  { id: 'xp_1000',         icon: '🏆', label: 'XP Champion',        desc: 'Earned 1000 XP',                           req: g => g.xp >= 1000              },
-  { id: 'quiz_10',         icon: '🎯', label: 'Quiz Ace',           desc: 'Completed 10 quizzes',                      req: g => g.quizzesTaken >= 10      },
-  { id: 'quiz_50',         icon: '🧠', label: 'Quiz Master',        desc: 'Completed 50 quizzes',                      req: g => g.quizzesTaken >= 50      },
-  { id: 'doubt_5',         icon: '💬', label: 'Community Helper',   desc: 'Posted 5 doubts in community',              req: g => g.doubtsPosted >= 5       },
-  { id: 'topics_10',       icon: '📚', label: 'Knowledge Seeker',   desc: 'Completed 10 topics',                       req: g => g.topicsCompleted >= 10   },
-  { id: 'topics_50',       icon: '🎓', label: 'Scholar',            desc: 'Completed 50 topics',                       req: g => g.topicsCompleted >= 50   },
-  { id: 'level_5',         icon: '🦁', label: 'Level 5 Achiever',   desc: 'Reached Level 5',                           req: g => g.level >= 5              },
-  { id: 'level_10',        icon: '👑', label: 'Elite Learner',      desc: 'Reached Level 10',                          req: g => g.level >= 10             },
+  // ── Progress milestones ─────────────────────────────────────
+  { id: 'first_step',      icon: '🚀', label: 'First Step',           desc: 'Completed your first topic',            req: g => g.topicsCompleted >= 1    },
+  { id: 'streak_3',        icon: '🔥', label: 'On Fire!',              desc: '3-day study streak',                    req: g => g.streak >= 3             },
+  { id: 'streak_7',        icon: '⚡', label: 'Week Warrior',          desc: '7-day study streak',                    req: g => g.streak >= 7             },
+  { id: 'streak_30',       icon: '💎', label: 'Diamond Streak',        desc: '30-day study streak',                   req: g => g.streak >= 30            },
+  { id: 'xp_100',          icon: '⭐', label: 'Rising Star',           desc: 'Earned 100 XP',                         req: g => g.xp >= 100               },
+  { id: 'xp_500',          icon: '🌟', label: 'Star Student',          desc: 'Earned 500 XP',                         req: g => g.xp >= 500               },
+  { id: 'xp_1000',         icon: '🏆', label: 'XP Champion',           desc: 'Earned 1000 XP',                        req: g => g.xp >= 1000              },
+  { id: 'quiz_10',         icon: '🎯', label: 'Quiz Ace',              desc: 'Completed 10 quizzes',                  req: g => g.quizzesTaken >= 10      },
+  { id: 'quiz_50',         icon: '🧠', label: 'Quiz Master',           desc: 'Completed 50 quizzes',                  req: g => g.quizzesTaken >= 50      },
+  { id: 'doubt_5',         icon: '💬', label: 'Community Helper',      desc: 'Posted 5 doubts in community',          req: g => g.doubtsPosted >= 5       },
+  { id: 'topics_10',       icon: '📚', label: 'Knowledge Seeker',      desc: 'Completed 10 topics',                   req: g => g.topicsCompleted >= 10   },
+  { id: 'topics_50',       icon: '🎓', label: 'Scholar',               desc: 'Completed 50 topics',                   req: g => g.topicsCompleted >= 50   },
+  { id: 'level_5',         icon: '🦁', label: 'Level 5 Achiever',      desc: 'Reached Level 5',                       req: g => g.level >= 5              },
+  { id: 'level_10',        icon: '👑', label: 'Elite Learner',         desc: 'Reached Level 10',                      req: g => g.level >= 10             },
+  // ── Subject-specific achiever badges ─────────────────────────
+  { id: 'maths_wizard',    icon: '🔢', label: 'Calculus Wizard',       desc: 'Mastered 5 Mathematics topics',         req: g => (g.subjectTopics?.['mathematics'] || 0) >= 5  },
+  { id: 'physics_ace',     icon: '⚡', label: 'Physics Ace',           desc: 'Mastered 5 Physics topics',             req: g => (g.subjectTopics?.['physics'] || 0) >= 5      },
+  { id: 'chem_synth',      icon: '🧪', label: 'Organic Synthesizer',   desc: 'Mastered 5 Chemistry topics',           req: g => (g.subjectTopics?.['chemistry'] || 0) >= 5    },
+  { id: 'bio_master',      icon: '🧬', label: 'NEET Bio Master',        desc: 'Mastered 5 Biology topics',             req: g => (g.subjectTopics?.['biology'] || 0) >= 5      },
+  { id: 'history_buff',    icon: '📜', label: 'History Buff',          desc: 'Mastered 5 History topics',             req: g => (g.subjectTopics?.['history'] || 0) >= 5      },
+  { id: 'geo_explorer',    icon: '🌍', label: 'Geo Explorer',          desc: 'Mastered 5 Geography topics',           req: g => (g.subjectTopics?.['geography'] || 0) >= 5    },
+  { id: 'english_author',  icon: '✍️', label: 'English Author',        desc: 'Mastered 5 English topics',             req: g => (g.subjectTopics?.['english'] || 0) >= 5      },
+  { id: 'cs_coder',        icon: '💻', label: 'CS Coder',              desc: 'Mastered 5 Computer Science topics',    req: g => (g.subjectTopics?.['computer-science'] || 0) >= 5 },
+  { id: 'eco_analyst',     icon: '📈', label: 'Economics Analyst',     desc: 'Mastered 5 Economics topics',           req: g => (g.subjectTopics?.['economics'] || 0) >= 5    },
+  { id: 'jee_warrior',     icon: '🎯', label: 'JEE Warrior',           desc: 'Completed 20 Maths + Physics topics',   req: g => ((g.subjectTopics?.['mathematics'] || 0) + (g.subjectTopics?.['physics'] || 0)) >= 20 },
+  { id: 'neet_champion',   icon: '🏅', label: 'NEET Champion',         desc: 'Completed 20 Biology + Chemistry topics', req: g => ((g.subjectTopics?.['biology'] || 0) + (g.subjectTopics?.['chemistry'] || 0)) >= 20 },
 ];
 
 function getLevel(xp) {
@@ -1597,9 +1610,17 @@ async function awardXP(studentEmail, studentName, { action, xpAmount }) {
   g.weeklyXp += xpAmount;
 
   // Track action stats
-  if (action === 'topic_completed')  g.topicsCompleted += 1;
-  if (action === 'quiz_completed')   g.quizzesTaken += 1;
-  if (action === 'doubt_posted')     g.doubtsPosted += 1;
+  if (action === 'topic_completed')  { g.topicsCompleted += 1; }
+  if (action === 'quiz_completed')   { g.quizzesTaken += 1; }
+  if (action === 'doubt_posted')     { g.doubtsPosted += 1; }
+
+  // Track per-subject topic counts
+  if (action === 'topic_completed' && subjectId) {
+    if (!g.subjectTopics) g.subjectTopics = {};
+    const key = subjectId.toLowerCase().replace(/_/g, '-');
+    g.subjectTopics[key] = (g.subjectTopics[key] || 0) + 1;
+    g.markModified('subjectTopics');
+  }
 
   // Update level
   g.level = getLevel(g.xp);
@@ -1620,7 +1641,7 @@ async function awardXP(studentEmail, studentName, { action, xpAmount }) {
 // ── Gamification API: Award XP ─────────────────────────────────
 app.post('/api/gamification/award', requireStudentAuth, async (req, res) => {
   try {
-    const { action } = req.body || {};
+    const { action, subjectId } = req.body || {};
     const xpMap = {
       topic_completed:  20,
       quiz_completed:   15,
@@ -1628,7 +1649,7 @@ app.post('/api/gamification/award', requireStudentAuth, async (req, res) => {
       daily_login:       5,
     };
     const xpAmount = xpMap[action] || 5;
-    const result = await awardXP(req.student.email, req.student.name, { action, xpAmount });
+    const result = await awardXP(req.student.email, req.student.name, { action, subjectId, xpAmount });
     res.json({ success: true, ...result });
   } catch (err) {
     console.error('Gamification award error:', err);

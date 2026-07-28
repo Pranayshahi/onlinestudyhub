@@ -72,9 +72,27 @@ export default function Navbar({
   const [userMenuOpen, setUserMenuOpen] = useState(false);
   const [searchOpen, setSearchOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
+  const [streak, setStreak] = useState(0);
   const searchInputRef = useRef(null);
   const navigate = useNavigate();
   const { lang, setLang, t } = useLang();
+
+  // Compute streak from localStorage study dates
+  useEffect(() => {
+    try {
+      const dates = JSON.parse(localStorage.getItem('osh_study_dates') || '[]');
+      if (!dates.length) { setStreak(0); return; }
+      const sorted = [...new Set(dates)].sort().reverse();
+      let count = 0;
+      let check = new Date();
+      for (const d of sorted) {
+        const checkKey = check.toISOString().slice(0, 10);
+        if (d === checkKey) { count++; check.setDate(check.getDate() - 1); }
+        else break;
+      }
+      setStreak(count);
+    } catch { setStreak(0); }
+  }, [user]);
 
   const close = () => {
     setMobileOpen(false);
@@ -525,6 +543,16 @@ export default function Navbar({
               />
               <span className="nav-ai-text">AI Doubt</span>
             </button>
+
+            {/* 🔥 Study Streak Chip */}
+            {user && streak > 0 && (
+              <a href="/leaderboard" onClick={(e) => { e.preventDefault(); navigate('/leaderboard'); close(); }}
+                title={`${streak}-day study streak! Keep it up! 🔥`}
+                style={{ display: "inline-flex", alignItems: "center", gap: "3px", background: streak >= 7 ? "linear-gradient(135deg,#f97316,#ef4444)" : "linear-gradient(135deg,#fbbf24,#f97316)", color: "#fff", fontFamily: "Nunito", fontWeight: 900, fontSize: ".8rem", padding: ".3rem .65rem", borderRadius: 20, textDecoration: "none", boxShadow: "0 2px 10px rgba(249,115,22,0.4)", flexShrink: 0, letterSpacing: "-.01em" }}
+              >
+                🔥 {streak}
+              </a>
+            )}
 
             {/* Snap & Solve Camera AI — icon only */}
             {onOpenSnapSolve && (
