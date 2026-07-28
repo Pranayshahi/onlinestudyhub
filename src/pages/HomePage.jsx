@@ -1129,74 +1129,91 @@ export default function HomePage({ onOpenAI }) {
           <div className="hero-two-col" style={{ marginBottom: "2.5rem" }}>
             {/* Left */}
             <div className="hero-text">
-              {/* Eyebrow */}
-              <div
-                className="hero-eyebrow"
-                style={{ borderRadius: 20, marginBottom: "1.25rem" }}
-              >
-                <span className="hero-eyebrow-dot" />
-                {t('hero_eyebrow')}
+              {/* High-Energy Live Announcement Ticker */}
+              <div style={{
+                background: 'rgba(255, 255, 255, 0.08)',
+                backdropFilter: 'blur(12px)',
+                border: '1px solid rgba(255, 255, 255, 0.15)',
+                borderRadius: 30,
+                padding: '.45rem 1.25rem',
+                display: 'inline-flex',
+                alignItems: 'center',
+                gap: '.75rem',
+                marginBottom: '1.25rem',
+                boxShadow: '0 8px 24px rgba(0,0,0,0.2)'
+              }}>
+                <span style={{ background: '#ef4444', color: '#fff', fontSize: '.7rem', fontWeight: 900, padding: '.15rem .55rem', borderRadius: 20, textTransform: 'uppercase', letterSpacing: '0.5px', display: 'inline-flex', alignItems: 'center', gap: '.3rem' }}>
+                  🔴 LIVE NOW
+                </span>
+                <span style={{ color: 'rgba(255,255,255,0.92)', fontSize: '.85rem', fontWeight: 700 }}>
+                  🚀 18,450+ Students Studying • 💬 Active Doubt Forum • 🛒 Amazon Book Store
+                </span>
               </div>
 
               {/* H1 */}
               <h1
                 style={{
-                  fontSize: "clamp(2rem, 4.2vw, 2rem)",
-                  fontWeight: 800,
+                  fontSize: "clamp(2.1rem, 4.5vw, 3rem)",
+                  fontWeight: 900,
                   lineHeight: 1.1,
                   marginBottom: "1rem",
                   textTransform: "uppercase",
                   letterSpacing: "-1px",
+                  color: "#fff"
                 }}
               >
                 {t('hero_h1_line1')}
                 <br />
-                <span className="accent">{t('hero_h1_accent')}</span>
+                <span className="accent" style={{ background: 'linear-gradient(135deg, #fbbf24 0%, #f97316 100%)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>
+                  {t('hero_h1_accent')}
+                </span>
               </h1>
 
               {/* Subtext */}
               <p
                 style={{
                   fontSize: "1.05rem",
-                  color: "rgba(255,255,255,.7)",
+                  color: "rgba(255,255,255,.8)",
                   lineHeight: 1.6,
-                  marginBottom: "2rem",
-                  maxWidth: 500,
+                  marginBottom: "1.75rem",
+                  maxWidth: 520,
                 }}
               >
                 {t('hero_sub')}
               </p>
 
-              {/* Feature cards — Gemini glassmorphism style */}
+              {/* Student High-Energy Launchpad Grid */}
               <div
-                className="feature-container"
-                style={{ marginBottom: "2rem" }}
+                style={{
+                  display: 'grid',
+                  gridTemplateColumns: 'repeat(auto-fit, minmax(115px, 1fr))',
+                  gap: '.65rem',
+                  marginBottom: '2rem'
+                }}
               >
-                <a
-                  href="#"
-                  className="feature-box ai-doubt"
-                  onClick={(e) => {
-                    e.preventDefault();
-                    onOpenAI();
-                  }}
-                >
-                  <i
-                    className="fas fa-microscope feature-icon"
-                    aria-hidden="true"
-                  ></i>
-                  <span>{t('hero_feature_ai')}</span>
+                <Link to="/community" style={{ background: 'rgba(99,102,241,0.18)', border: '1px solid rgba(165,180,252,0.35)', borderRadius: 14, padding: '.85rem .6rem', color: '#fff', textDecoration: 'none', display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '.4rem', transition: 'all 0.2s', boxShadow: '0 4px 14px rgba(79,70,229,0.2)' }}>
+                  <span style={{ fontSize: '1.4rem' }}>💬</span>
+                  <span style={{ fontSize: '.8rem', fontWeight: 800 }}>Doubt Forum</span>
+                </Link>
+
+                <Link to="/batches" style={{ background: 'rgba(245,158,11,0.18)', border: '1px solid rgba(253,230,138,0.35)', borderRadius: 14, padding: '.85rem .6rem', color: '#fff', textDecoration: 'none', display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '.4rem', transition: 'all 0.2s', boxShadow: '0 4px 14px rgba(245,158,11,0.2)' }}>
+                  <span style={{ fontSize: '1.4rem' }}>🔥</span>
+                  <span style={{ fontSize: '.8rem', fontWeight: 800 }}>Cohort Batches</span>
+                </Link>
+
+                <Link to="/store" style={{ background: 'rgba(16,185,129,0.18)', border: '1px solid rgba(110,231,183,0.35)', borderRadius: 14, padding: '.85rem .6rem', color: '#fff', textDecoration: 'none', display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '.4rem', transition: 'all 0.2s', boxShadow: '0 4px 14px rgba(16,185,129,0.2)' }}>
+                  <span style={{ fontSize: '1.4rem' }}>📚</span>
+                  <span style={{ fontSize: '.8rem', fontWeight: 800 }}>Book Store</span>
+                </Link>
+
+                <a href="#" onClick={(e) => { e.preventDefault(); onOpenAI(); }} style={{ background: 'rgba(236,72,153,0.18)', border: '1px solid rgba(249,168,212,0.35)', borderRadius: 14, padding: '.85rem .6rem', color: '#fff', textDecoration: 'none', display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '.4rem', transition: 'all 0.2s', boxShadow: '0 4px 14px rgba(236,72,153,0.2)' }}>
+                  <span style={{ fontSize: '1.4rem' }}>🎙️</span>
+                  <span style={{ fontSize: '.8rem', fontWeight: 800 }}>NotebookLM</span>
                 </a>
-                <Link to="/classes" className="feature-box topics">
-                  <i className="fas fa-book-open feature-icon" aria-hidden="true"></i>
-                  <span>{t('hero_feature_topics')}</span>
-                </Link>
-                <Link to="/teachers" className="feature-box teachers">
-                  <i className="fas fa-chalkboard-teacher feature-icon" aria-hidden="true"></i>
-                  <span>{t('hero_feature_teachers')}</span>
-                </Link>
-                <Link to="/classes" className="feature-box certificate">
-                  <i className="fas fa-shield-alt feature-icon" aria-hidden="true"></i>
-                  <span>{t('hero_feature_certificate')}</span>
+
+                <Link to="/exam/jee/mock-test" style={{ background: 'rgba(124,58,237,0.18)', border: '1px solid rgba(196,181,253,0.35)', borderRadius: 14, padding: '.85rem .6rem', color: '#fff', textDecoration: 'none', display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '.4rem', transition: 'all 0.2s', boxShadow: '0 4px 14px rgba(124,58,237,0.2)' }}>
+                  <span style={{ fontSize: '1.4rem' }}>⏱️</span>
+                  <span style={{ fontSize: '.8rem', fontWeight: 800 }}>NTA Tests</span>
                 </Link>
               </div>
 
@@ -1206,11 +1223,11 @@ export default function HomePage({ onOpenAI }) {
                   to="/classes"
                   className="btn btn-primary"
                   style={{
-                    padding: "15px 30px",
-                    fontSize: "1rem",
-                    fontWeight: 700,
-                    borderRadius: 12,
-                    boxShadow: "0 0 20px rgba(249,115,22,0.35)",
+                    padding: "15px 32px",
+                    fontSize: "1.05rem",
+                    fontWeight: 800,
+                    borderRadius: 14,
+                    boxShadow: "0 8px 25px rgba(249,115,22,0.4)",
                   }}
                 >
                   {t('hero_cta_primary')}
@@ -1219,13 +1236,13 @@ export default function HomePage({ onOpenAI }) {
                   to="/teachers"
                   className="btn"
                   style={{
-                    background: "transparent",
+                    background: "rgba(255,255,255,0.08)",
                     color: "#fff",
-                    border: "1px solid rgba(255,255,255,0.18)",
+                    border: "1.5px solid rgba(255,255,255,0.25)",
                     padding: "15px 30px",
-                    fontSize: "1rem",
-                    borderRadius: 12,
-                    fontWeight: 600,
+                    fontSize: "1.05rem",
+                    borderRadius: 14,
+                    fontWeight: 700,
                   }}
                 >
                   {t('hero_cta_secondary')}

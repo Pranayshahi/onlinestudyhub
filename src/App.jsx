@@ -31,6 +31,10 @@ const MockTestTakerPage = lazy(() => import("./pages/MockTestTakerPage"));
 const StudyPlanPage = lazy(() => import("./pages/StudyPlanPage"));
 const ParentPortal = lazy(() => import("./pages/ParentPortal"));
 const GroupClassesPage = lazy(() => import("./pages/GroupClassesPage"));
+const BatchesPage = lazy(() => import("./pages/BatchesPage"));
+const BatchDetailsPage = lazy(() => import("./pages/BatchDetailsPage"));
+const StorePage = lazy(() => import("./pages/StorePage"));
+const CommunityPage = lazy(() => import("./pages/CommunityPage"));
 
 // Heavy panel components — load only when opened
 const AIDoubtPanel = lazy(() => import("./components/AIDoubtPanel"));
@@ -243,6 +247,38 @@ export default function App() {
                       onOpenLogin={() => setLoginOpen(true)}
                     />
                   }
+                />
+                <Route
+                  path="/batches"
+                  element={
+                    <BatchesPage
+                      user={user}
+                      onOpenLogin={() => setLoginOpen(true)}
+                    />
+                  }
+                />
+                <Route
+                  path="/batches/:batchId"
+                  element={
+                    <BatchDetailsPage
+                      user={user}
+                      onOpenLogin={() => setLoginOpen(true)}
+                      onOpenAI={openAI}
+                    />
+                  }
+                />
+                <Route
+                  path="/store"
+                  element={
+                    <StorePage
+                      user={user}
+                      onOpenLogin={() => setLoginOpen(true)}
+                    />
+                  }
+                />
+                <Route
+                  path="/community"
+                  element={<CommunityPage />}
                 />
                 <Route path="*" element={<NotFoundPage />} />
               </Routes>

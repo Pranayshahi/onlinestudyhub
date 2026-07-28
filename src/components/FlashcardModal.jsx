@@ -32,7 +32,42 @@ function saveSR(key, data) { try { localStorage.setItem(key, JSON.stringify(data
 
 // ── Main Component ─────────────────────────────────────────────────
 export default function FlashcardModal({ qa, aiCards, topicTitle, onClose }) {
-  const allCards = aiCards?.length ? aiCards : (qa || []);
+  // Ensure minimum 4 cards per flashcard session
+  const allCards = useMemo(() => {
+    let raw = aiCards?.length ? aiCards : (qa || []);
+    if (!Array.isArray(raw)) raw = [];
+    const list = [...raw];
+
+    const topicName = topicTitle || 'this topic';
+
+    // Mandatory minimum 4 cards padding generator
+    const defaults = [
+      {
+        q: `What is the core definition and fundamental principle of ${topicName}?`,
+        a: `The fundamental principle of ${topicName} covers its primary scientific definition, physical laws, and conceptual mechanism for board examinations.`
+      },
+      {
+        q: `What are the key formulas, variables, and SI units associated with ${topicName}?`,
+        a: `Always express formulas with explicit variable definitions, check SI unit consistency, and state underlying boundary assumptions.`
+      },
+      {
+        q: `What is a high-yield board examination question on ${topicName}?`,
+        a: `Board exams frequently test step-by-step numerical calculations, diagrammatic derivations, and comparative distinctions.`
+      },
+      {
+        q: `What is a practical real-world application or exam scoring tip for ${topicName}?`,
+        a: `To score full marks, highlight technical key terms, state given values clearly before solving, and box your final numerical answers with correct units.`
+      }
+    ];
+
+    while (list.length < 4) {
+      const idx = list.length;
+      list.push(defaults[idx]);
+    }
+
+    return list;
+  }, [aiCards, qa, topicTitle]);
+
   const source   = aiCards?.length ? 'ai' : 'qa';
   const srKey    = `fc_sr_${(topicTitle || 'cards').replace(/\W+/g, '_')}`;
 

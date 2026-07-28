@@ -819,14 +819,14 @@ export default function AIDoubtPanel({ open, onClose, prefillText }) {
               style={listening ? { background: '#fef2f2' } : {}}
             />
             <div className="ai-compose-toolbar">
-              <div style={{ display: 'flex', gap: '.35rem', alignItems: 'center' }}>
+              <div className="ai-compose-actions">
 
                 {/* Language selector */}
                 <select
                   value={selectedLang}
                   onChange={e => { setSelectedLang(e.target.value); setTranslations({}); }}
                   title="Response language for voice, listen & translate"
-                  style={{ fontSize: '.7rem', border: '1.5px solid #e5e7eb', borderRadius: 8, padding: '.22rem .35rem', background: '#f9fafb', color: '#374151', fontWeight: 600, cursor: 'pointer', outline: 'none', maxWidth: 88 }}>
+                  style={{ fontSize: '.7rem', border: '1.5px solid #e5e7eb', borderRadius: 8, padding: '.2rem .25rem', background: '#f9fafb', color: '#374151', fontWeight: 600, cursor: 'pointer', outline: 'none', maxWidth: 78, flexShrink: 0 }}>
                   {LANGUAGES.map(l => <option key={l.code} value={l.code}>{l.label}</option>)}
                 </select>
 

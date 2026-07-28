@@ -1,13 +1,16 @@
 const express = require('express');
+const path = require('path');
+const fs = require('fs');
 const cors = require('cors');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const multer = require('multer');
 const crypto = require('crypto');
 require('dotenv').config({ path: require('path').join(__dirname, '.env') });
+const mongoose = require('mongoose');
 
 const connectDB = require('./db');
-const { Student, Teacher, Booking, TopicMedia, Review, ForumPost, Parent, PushSub, GroupClass } = require('./models');
+const { Student, Teacher, Booking, TopicMedia, Review, ForumPost, Parent, PushSub, GroupClass, Batch, DPP, StoreProduct } = require('./models');
 const Razorpay = require('razorpay');
 const {
   notifyStudentBookingReceived,
@@ -1820,6 +1823,507 @@ app.get('/api/teachers/:id/booked-slots', async (req, res) => {
     res.status(500).json({ error: 'Server error' });
   }
 });
+
+// ── Batch & Cohort APIs ──────────────────────────────────────────
+
+async function seedDefaultBatchesAndStore() {
+  try {
+    const batchCount = await Batch.countDocuments();
+    if (batchCount === 0) {
+      await Batch.insertMany([
+        {
+          title: 'Lakshya JEE 2026 (Class 12th + JEE Main/Advanced)',
+          slug: 'lakshya-jee-2026',
+          targetExam: 'JEE Main & Advanced',
+          targetClass: '12',
+          description: 'Comprehensive 1-year batch for Class 12th students preparing for JEE 2026 with Kota top faculty.',
+          bannerText: '🔥 Bestseller Batch for JEE 2026 Aspirants',
+          price: 2999,
+          originalPrice: 4999,
+          language: 'Hinglish',
+          startDate: new Date('2026-04-01'),
+          endDate: new Date('2027-05-30'),
+          faculties: [
+            { name: 'Er. Alakh Pandey', subject: 'Physics', avatar: '👨‍🏫', qualification: 'Founder & Senior Physics Lead', experience: '10+ Years' },
+            { name: 'Dr. Pankaj Sir', subject: 'Chemistry', avatar: '👨‍🔬', qualification: 'M.Sc. Organic Specialist', experience: '9+ Years' },
+            { name: 'Tarun Sir', subject: 'Mathematics', avatar: '📐', qualification: 'IIT Delhi Alumnus', experience: '8+ Years' }
+          ],
+          features: [
+            'Daily Live + Recorded Lectures with speed control (0.5x to 2x)',
+            'Daily Practice Problems (DPPs) with Video Solutions',
+            'Weekly All-India Test Series (NTA Pattern)',
+            'Dedicated AI Doubt Solver & Class PPT PDF downloads',
+            'Full Class 11th Revision & Formula Sheets Included'
+          ],
+          schedule: [
+            { day: 'Monday', time: '04:00 PM', subject: 'Physics', topic: 'Electrostatics & Electric Charges', videoUrl: 'https://www.youtube.com/embed/dQw4w9WgXcQ', pdfNotesUrl: '/notes/electrostatics.pdf' },
+            { day: 'Tuesday', time: '04:00 PM', subject: 'Chemistry', topic: 'Solid State & Crystal Lattices', videoUrl: 'https://www.youtube.com/embed/dQw4w9WgXcQ', pdfNotesUrl: '/notes/solidstate.pdf' },
+            { day: 'Wednesday', time: '04:00 PM', subject: 'Mathematics', topic: 'Matrices & Determinants', videoUrl: 'https://www.youtube.com/embed/dQw4w9WgXcQ', pdfNotesUrl: '/notes/matrices.pdf' },
+            { day: 'Thursday', time: '04:00 PM', subject: 'Physics', topic: 'Electric Potential & Capacitance', videoUrl: 'https://www.youtube.com/embed/dQw4w9WgXcQ', pdfNotesUrl: '/notes/capacitance.pdf' },
+            { day: 'Friday', time: '04:00 PM', subject: 'Chemistry', topic: 'Solutions & Colligative Properties', videoUrl: 'https://www.youtube.com/embed/dQw4w9WgXcQ', pdfNotesUrl: '/notes/solutions.pdf' }
+          ],
+          announcements: [
+            { title: '🎉 Batch Starting Today!', content: 'Welcome to Lakshya JEE 2026! Check your daily lecture timetable under the Schedule tab.', date: new Date() },
+            { title: '📝 DPP 01 Released', content: 'Electrostatics DPP 01 is now live with step-by-step video solutions.', date: new Date() }
+          ]
+        },
+        {
+          title: 'Arjuna NEET 2026 (Class 11th + NEET UG)',
+          slug: 'arjuna-neet-2026',
+          targetExam: 'NEET UG',
+          targetClass: '11',
+          description: 'Foundation to advance mastery for Class 11th medical aspirants targeting NEET 2026.',
+          bannerText: '⭐ Top Rated Medical Batch',
+          price: 2799,
+          originalPrice: 4499,
+          language: 'Hinglish',
+          startDate: new Date('2026-04-15'),
+          endDate: new Date('2027-05-30'),
+          faculties: [
+            { name: 'Dr. Manish Dubey', subject: 'Zoology', avatar: '🦁', qualification: 'MBBS, Top Biology Educator', experience: '12+ Years' },
+            { name: 'Ritu Mam', subject: 'Botany', avatar: '🌿', qualification: 'M.Sc. Plant Genetics', experience: '7+ Years' },
+            { name: 'MR Sir', subject: 'Physics', avatar: '⚡', qualification: 'Physics Wizard & Top Educator', experience: '10+ Years' }
+          ],
+          features: [
+            'Interactive Live & Recorded Classes',
+            '3000+ NCERT Based Questions & DPPs',
+            'NTA Pattern Full Length Mock Tests',
+            'NCERT Line-by-Line Highlighted PDFs'
+          ],
+          schedule: [
+            { day: 'Monday', time: '05:30 PM', subject: 'Zoology', topic: 'Animal Kingdom & Classification', videoUrl: 'https://www.youtube.com/embed/dQw4w9WgXcQ', pdfNotesUrl: '/notes/animalkingdom.pdf' },
+            { day: 'Tuesday', time: '05:30 PM', subject: 'Botany', topic: 'Cell Unit of Life & Organelles', videoUrl: 'https://www.youtube.com/embed/dQw4w9WgXcQ', pdfNotesUrl: '/notes/cellunit.pdf' },
+            { day: 'Wednesday', time: '05:30 PM', subject: 'Physics', topic: 'Units & Measurements', videoUrl: 'https://www.youtube.com/embed/dQw4w9WgXcQ', pdfNotesUrl: '/notes/units.pdf' }
+          ],
+          announcements: [
+            { title: '🌱 Welcome Arjuna Aspirants!', content: 'Get ready for your NEET journey with Kota top faculty.', date: new Date() }
+          ]
+        },
+        {
+          title: 'Udaan Class 10th Board Booster 2026',
+          slug: 'udaan-class-10-2026',
+          targetExam: 'CBSE Class 10 Board',
+          targetClass: '10',
+          description: 'Target 95%+ in Class 10th Board Exams with comprehensive syllabus coverage, sample papers & doubt support.',
+          bannerText: '🏆 95%+ Target Batch',
+          price: 1999,
+          originalPrice: 3499,
+          language: 'Hinglish',
+          startDate: new Date('2026-05-01'),
+          endDate: new Date('2027-03-15'),
+          faculties: [
+            { name: 'Rakshita Mam', subject: 'Science', avatar: '🔬', qualification: 'B.Tech Gold Medalist', experience: '6+ Years' },
+            { name: 'Sunil Sir', subject: 'Mathematics', avatar: '📊', qualification: 'M.Sc. Mathematics', experience: '8+ Years' }
+          ],
+          features: [
+            'Complete Science, Maths, SST & English Coverage',
+            'Chapterwise PYQ Banks (Last 10 Years)',
+            'Board Pattern Sample Papers & Mock Exams'
+          ],
+          schedule: [
+            { day: 'Monday', time: '06:00 PM', subject: 'Science', topic: 'Chemical Reactions & Equations', videoUrl: 'https://www.youtube.com/embed/dQw4w9WgXcQ', pdfNotesUrl: '/notes/chemreactions.pdf' }
+          ],
+          announcements: [
+            { title: '🚀 Board Prep Begins', content: 'First chapter notes and sample papers uploaded.', date: new Date() }
+          ]
+        },
+        {
+          title: 'Victory ICSE Class 10th Board Specimen Batch 2026',
+          slug: 'victory-icse-class-10-2026',
+          targetExam: 'ICSE Board',
+          targetClass: '10',
+          description: 'Specialized 1-year batch tailored specifically for ICSE Council Board Pattern (Selina Concise Solutions, Concise Explanations & 10-Year Board Papers).',
+          bannerText: '✨ 98%+ Target ICSE Board Batch',
+          price: 2499,
+          originalPrice: 3999,
+          language: 'English/Hinglish',
+          startDate: new Date('2026-04-10'),
+          endDate: new Date('2027-03-20'),
+          faculties: [
+            { name: 'Dr. Sheila Roy', subject: 'Physics & Chemistry', avatar: '👩‍🏫', qualification: 'Senior ICSE Educator', experience: '14+ Years' },
+            { name: 'Rohan Gupta', subject: 'Mathematics', avatar: '📐', qualification: 'ICSE Board Evaluator', experience: '11+ Years' }
+          ],
+          features: [
+            '100% Alignment with CISCE/ICSE Council Latest Reduced Syllabus',
+            'Selina Concise Physics, Chemistry, Biology & Maths Solutions',
+            'Structured Answer Writing Workshops for ICSE Board Papers',
+            '10-Year ICSE Past Specimen Solved Question Papers'
+          ],
+          schedule: [
+            { day: 'Monday', time: '04:30 PM', subject: 'Physics', topic: 'Force, Work, Power & Energy (ICSE Ch 1)', videoUrl: 'https://www.youtube.com/embed/dQw4w9WgXcQ', pdfNotesUrl: '/notes/icse_force.pdf' },
+            { day: 'Wednesday', time: '04:30 PM', subject: 'Chemistry', topic: 'Periodic Table & Periodic Properties', videoUrl: 'https://www.youtube.com/embed/dQw4w9WgXcQ', pdfNotesUrl: '/notes/icse_periodictable.pdf' }
+          ],
+          announcements: [
+            { title: '📜 ICSE Specimen Papers Live', content: 'Official CISCE ICSE Class 10 Specimen Question Papers with step-by-step solutions unlocked.', date: new Date() }
+          ]
+        },
+        {
+          title: 'Class 12th CBSE Board Champion 2026 (Physics, Chem, Maths & Bio)',
+          slug: 'cbse-class-12-champion-2026',
+          targetExam: 'CBSE Board',
+          targetClass: '12',
+          description: 'Complete NCERT line-by-line derivation mastery, assertion-reasoning, case-based questions, and sample papers for CBSE Class 12 Boards.',
+          bannerText: '🏆 95%+ Board Champion',
+          price: 2199,
+          originalPrice: 3699,
+          language: 'Hinglish',
+          startDate: new Date('2026-04-05'),
+          endDate: new Date('2027-03-10'),
+          faculties: [
+            { name: 'Vikram Sir', subject: 'Physics', avatar: '⚡', qualification: 'M.Sc. Physics, CBSE Examiner', experience: '10+ Years' },
+            { name: 'Anita Mam', subject: 'Chemistry', avatar: '🧪', qualification: 'Ph.D. Chemistry', experience: '12+ Years' }
+          ],
+          features: [
+            'NCERT Line-by-Line Highlighted PDF Notes',
+            'CBSE Board Case-Study & Competency Based Questions',
+            'Complete Derivation Booklet for Physics & Chemistry',
+            '15 Full Length CBSE Mock Board Examinations'
+          ],
+          schedule: [
+            { day: 'Tuesday', time: '05:00 PM', subject: 'Physics', topic: 'Electric Charges & Fields Derivations', videoUrl: 'https://www.youtube.com/embed/dQw4w9WgXcQ', pdfNotesUrl: '/notes/cbse12_electrostatics.pdf' }
+          ],
+          announcements: [
+            { title: '📚 Derivation Booklet Released', content: 'Complete Class 12 Physics Derivations PDF is now available in your course notes tab.', date: new Date() }
+          ]
+        }
+      ]);
+      console.log('Seeded default PW-style batches successfully.');
+    }
+
+    const storeCount = await StoreProduct.countDocuments();
+    if (storeCount === 0) {
+      await StoreProduct.insertMany([
+        {
+          title: 'PW-Style JEE Main & Advanced 15-Year Solved Papers Book',
+          category: 'book',
+          targetExam: 'JEE Main & Advanced',
+          description: 'Chapterwise & Topicwise Solved Papers with detailed step-by-step explanations, shortcut methods and trend analysis.',
+          price: 699,
+          originalPrice: 1199,
+          rating: 4.9,
+          reviewsCount: 342,
+          features: ['15 Years authentic questions', 'Topic-wise breakdown', 'Video QR code solutions', 'Formula Mind maps']
+        },
+        {
+          title: 'NEET Ultimate 36-Year Physics & Chemistry Formula Handbook',
+          category: 'handbook',
+          targetExam: 'NEET UG',
+          description: 'Pocket-sized high-yield formula memory handbook with diagrams, tables, and quick revision mnemonics.',
+          price: 349,
+          originalPrice: 599,
+          rating: 4.8,
+          reviewsCount: 215,
+          features: ['All 38 NCERT Chapters', 'Mnemonics & Memory Tricks', 'Formula Cheat Sheets', 'High-Yield Diagrams']
+        },
+        {
+          title: 'Class 12th Lakshya Complete Printed Study Modules (Set of 6 Books)',
+          category: 'module',
+          targetExam: 'JEE / NEET Class 12',
+          description: 'Comprehensive theory, graded exercise sets (Level 1, Level 2, PYQs, Advanced Challenge) with answer keys.',
+          price: 1899,
+          originalPrice: 2999,
+          rating: 4.95,
+          reviewsCount: 512,
+          features: ['6 Printed Volumes', 'Graded Problem Sets', 'Past 10 Year PYQs', 'Home Delivery Included']
+        }
+      ]);
+      console.log('Seeded default store products successfully.');
+    }
+  } catch (err) {
+    console.error('Error seeding default batch/store data:', err);
+  }
+}
+seedDefaultBatchesAndStore();
+
+// List public batches
+app.get('/api/batches', async (req, res) => {
+  try {
+    const { exam, targetClass } = req.query;
+    const filter = {};
+    if (exam) filter.targetExam = new RegExp(exam, 'i');
+    if (targetClass) filter.targetClass = targetClass;
+    const batches = await Batch.find(filter).sort({ createdAt: -1 }).lean();
+    res.json(batches);
+  } catch (err) {
+    res.status(500).json({ error: 'Server error' });
+  }
+});
+
+// Get single batch details
+app.get('/api/batches/:id', async (req, res) => {
+  try {
+    const batch = await Batch.findById(req.params.id).lean();
+    if (!batch) return res.status(404).json({ error: 'Batch not found' });
+    res.json(batch);
+  } catch (err) {
+    res.status(500).json({ error: 'Server error' });
+  }
+});
+
+// Enroll in batch
+app.post('/api/batches/:id/enroll', async (req, res) => {
+  try {
+    const { email, paymentId } = req.body;
+    if (!email) return res.status(400).json({ error: 'Student email required' });
+    const batch = await Batch.findById(req.params.id);
+    if (!batch) return res.status(404).json({ error: 'Batch not found' });
+
+    const existing = batch.enrolledStudents.find(s => s.email === email);
+    if (!existing) {
+      batch.enrolledStudents.push({ email, paymentId: paymentId || 'manual_enroll_' + Date.now() });
+      await batch.save();
+    }
+    res.json({ ok: true, message: 'Enrolled successfully!' });
+  } catch (err) {
+    res.status(500).json({ error: 'Server error' });
+  }
+});
+
+// Get student's enrolled batches
+app.get('/api/batches/student/enrolled', async (req, res) => {
+  try {
+    const { email } = req.query;
+    if (!email) return res.status(400).json({ error: 'Email query parameter required' });
+    const batches = await Batch.find({ 'enrolledStudents.email': email }).lean();
+    res.json(batches);
+  } catch (err) {
+    res.status(500).json({ error: 'Server error' });
+  }
+});
+
+// ── Community Doubt Schema & APIs ─────────────────────────────────
+const communityDoubtSchema = new mongoose.Schema({
+  title: { type: String, required: true },
+  description: { type: String, required: true },
+  subject: { type: String, default: 'General' },
+  classId: { type: String, default: 'all' },
+  taggedTeacher: {
+    id: String,
+    name: String,
+    avatar: String,
+    subject: String,
+  },
+  studentName: { type: String, default: 'Aspirant Student' },
+  studentAvatar: { type: String, default: '👨‍🎓' },
+  studentEmail: { type: String, default: '' },
+  upvotes: { type: Number, default: 0 },
+  upvotedBy: [String],
+  answers: [
+    {
+      authorName: { type: String, required: true },
+      authorAvatar: { type: String, default: '👨‍🏫' },
+      authorRole: { type: String, default: 'student' },
+      answerText: { type: String, required: true },
+      upvotes: { type: Number, default: 0 },
+      upvotedBy: [String],
+      createdAt: { type: Date, default: Date.now }
+    }
+  ],
+  createdAt: { type: Date, default: Date.now }
+});
+
+const CommunityDoubt = mongoose.models.CommunityDoubt || mongoose.model('CommunityDoubt', communityDoubtSchema);
+
+async function seedDefaultDoubts() {
+  try {
+    const count = await CommunityDoubt.countDocuments();
+    if (count === 0) {
+      await CommunityDoubt.create([
+        {
+          title: "How do I calculate the minimum value of |z| when |z^2 + 3z + 4| = 15?",
+          description: "I'm solving a JEE Advanced Complex Numbers problem where z = x + iy. Can anyone show the shortest geometric or algebraic method?",
+          subject: "Mathematics",
+          classId: "class-12",
+          taggedTeacher: {
+            name: "Rohan Gupta",
+            subject: "Mathematics",
+            avatar: "👨‍🏫"
+          },
+          studentName: "Aarav Sharma",
+          studentAvatar: "👨‍🎓",
+          upvotes: 18,
+          answers: [
+            {
+              authorName: "Rohan Gupta",
+              authorAvatar: "👨‍🏫",
+              authorRole: "educator",
+              answerText: "Hi Aarav! Use the triangle inequality property: |a + b| <= |a| + |b|. Here, 15 = |z^2 + 3z + 4| <= |z|^2 + 3|z| + 4 => |z|^2 + 3|z| - 11 >= 0. Solving quadratic inequality gives min |z| = (-3 + sqrt(53)) / 2 approx 2.14!",
+              upvotes: 24
+            }
+          ]
+        },
+        {
+          title: "What is the physical significance of Lenz's Law and conservation of energy?",
+          description: "Why does the induced current always oppose the change in magnetic flux? What would happen if it supported the change instead?",
+          subject: "Physics",
+          classId: "class-12",
+          taggedTeacher: {
+            name: "Rajay Sir",
+            subject: "Physics",
+            avatar: "👨‍🏫"
+          },
+          studentName: "Ananya Roy",
+          studentAvatar: "👩‍🎓",
+          upvotes: 31,
+          answers: [
+            {
+              authorName: "Rajay Sir",
+              authorAvatar: "👨‍🏫",
+              authorRole: "educator",
+              answerText: "Great question Ananya! If induced current supported the flux change, a tiny magnetic push would create infinite current out of nothing, violating the Law of Conservation of Energy! The negative sign in e = -d/dt(Phi) enforces work done against opposing forces.",
+              upvotes: 39
+            }
+          ]
+        },
+        {
+          title: "Difference between SN1 and SN2 nucleophilic substitution reactions?",
+          description: "Can someone summarize the key differences in carbocation formation, stereochemistry (inversion vs racemization), and solvent preference for Class 12 Boards?",
+          subject: "Chemistry",
+          classId: "class-12",
+          taggedTeacher: {
+            name: "Vijay Sir",
+            subject: "Chemistry",
+            avatar: "👨‍🔬"
+          },
+          studentName: "Karan Patel",
+          studentAvatar: "👨‍🎓",
+          upvotes: 27,
+          answers: [
+            {
+              authorName: "Vijay Sir",
+              authorAvatar: "👨‍🔬",
+              authorRole: "educator",
+              answerText: "1. SN1 is 2-step (via Carbocation intermediate, Racemisation, Polar Protic solvent like H2O/R-OH). Order: 3° > 2° > 1°.\n2. SN2 is 1-step (Transition state, Walden Inversion, Polar Aprotic solvent like DMSO/Acetone). Order: 1° > 2° > 3°!",
+              upvotes: 35
+            }
+          ]
+        }
+      ]);
+      console.log('Seeded default community doubts successfully.');
+    }
+  } catch (err) {
+    console.error('Error seeding doubts:', err);
+  }
+}
+seedDefaultDoubts();
+
+// Community Doubt API Endpoints
+app.get('/api/community/doubts', async (req, res) => {
+  try {
+    const { subject, classId, search } = req.query;
+    let query = {};
+    if (subject && subject !== 'All') query.subject = subject;
+    if (classId && classId !== 'all') query.classId = classId;
+    if (search) {
+      query.$or = [
+        { title: { $regex: search, $options: 'i' } },
+        { description: { $regex: search, $options: 'i' } }
+      ];
+    }
+    const doubts = await CommunityDoubt.find(query).sort({ createdAt: -1 }).lean();
+    res.json(doubts);
+  } catch (err) {
+    res.status(500).json({ error: 'Server error fetching community doubts' });
+  }
+});
+
+app.post('/api/community/doubts', async (req, res) => {
+  try {
+    const { title, description, subject, classId, taggedTeacher, studentName, studentAvatar, studentEmail } = req.body || {};
+    if (!title || !description) return res.status(400).json({ error: 'Title and description required' });
+
+    const doubt = await CommunityDoubt.create({
+      title,
+      description,
+      subject: subject || 'General',
+      classId: classId || 'all',
+      taggedTeacher: taggedTeacher || null,
+      studentName: studentName || 'Student Aspirant',
+      studentAvatar: studentAvatar || '👨‍🎓',
+      studentEmail: studentEmail || ''
+    });
+
+    res.status(201).json(doubt);
+  } catch (err) {
+    res.status(500).json({ error: 'Server error creating doubt' });
+  }
+});
+
+app.post('/api/community/doubts/:id/upvote', async (req, res) => {
+  try {
+    const { userKey } = req.body || {};
+    const voter = userKey || req.ip || 'anonymous';
+    const doubt = await CommunityDoubt.findById(req.params.id);
+    if (!doubt) return res.status(404).json({ error: 'Doubt not found' });
+
+    const idx = doubt.upvotedBy.indexOf(voter);
+    if (idx >= 0) {
+      doubt.upvotedBy.splice(idx, 1);
+      doubt.upvotes = Math.max(0, doubt.upvotes - 1);
+    } else {
+      doubt.upvotedBy.push(voter);
+      doubt.upvotes += 1;
+    }
+    await doubt.save();
+    res.json({ upvotes: doubt.upvotes, upvoted: idx < 0 });
+  } catch (err) {
+    res.status(500).json({ error: 'Server error upvoting doubt' });
+  }
+});
+
+app.post('/api/community/doubts/:id/answers', async (req, res) => {
+  try {
+    const { authorName, authorAvatar, authorRole, answerText } = req.body || {};
+    if (!answerText) return res.status(400).json({ error: 'Answer text required' });
+
+    const doubt = await CommunityDoubt.findById(req.params.id);
+    if (!doubt) return res.status(404).json({ error: 'Doubt not found' });
+
+    doubt.answers.push({
+      authorName: authorName || 'Student Scholar',
+      authorAvatar: authorAvatar || '👨‍🎓',
+      authorRole: authorRole || 'student',
+      answerText,
+      upvotes: 0,
+      upvotedBy: []
+    });
+
+    await doubt.save();
+    res.status(201).json(doubt);
+  } catch (err) {
+    res.status(500).json({ error: 'Server error adding answer' });
+  }
+});
+
+// Store APIs
+app.get('/api/store/products', async (req, res) => {
+  try {
+    const products = await StoreProduct.find().sort({ createdAt: -1 }).lean();
+    res.json(products);
+  } catch (err) {
+    res.status(500).json({ error: 'Server error' });
+  }
+});
+
+app.get('/api/store/products/:id', async (req, res) => {
+  try {
+    const product = await StoreProduct.findById(req.params.id).lean();
+    if (!product) return res.status(404).json({ error: 'Product not found' });
+    res.json(product);
+  } catch (err) {
+    res.status(500).json({ error: 'Server error' });
+  }
+});
+
+// Serve static assets from production build if available
+const buildPath = path.join(__dirname, '../build');
+if (fs.existsSync(buildPath)) {
+  app.use(express.static(buildPath));
+  app.get('*splat', (req, res, next) => {
+    if (req.path.startsWith('/api')) return next();
+    res.sendFile(path.join(buildPath, 'index.html'));
+  });
+}
 
 // ── Error Handler ──────────────────────────────────────────────
 app.use((err, req, res, next) => {

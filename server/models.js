@@ -162,6 +162,80 @@ const groupClassSchema = new mongoose.Schema({
 groupClassSchema.index({ scheduledAt: 1, status: 1 });
 groupClassSchema.index({ teacherId: 1 });
 
+const batchSchema = new mongoose.Schema({
+  title: { type: String, required: true },
+  slug: { type: String, required: true, unique: true },
+  targetExam: { type: String, required: true },
+  targetClass: { type: String, required: true },
+  description: { type: String, default: '' },
+  thumbnail: { type: String, default: '' },
+  bannerText: { type: String, default: 'PW Style Batch 2026' },
+  price: { type: Number, required: true, default: 2999 },
+  originalPrice: { type: Number, default: 4999 },
+  language: { type: String, default: 'Hinglish' },
+  startDate: { type: Date, required: true },
+  endDate: { type: Date, required: true },
+  faculties: [{
+    name: { type: String, required: true },
+    subject: { type: String, required: true },
+    avatar: { type: String, default: '👨‍🏫' },
+    qualification: { type: String, default: 'Senior Faculty' },
+    experience: { type: String, default: '8+ Years' }
+  }],
+  schedule: [{
+    day: { type: String },
+    time: { type: String },
+    subject: { type: String },
+    topic: { type: String },
+    videoUrl: { type: String },
+    pdfNotesUrl: { type: String },
+    dppId: { type: String }
+  }],
+  announcements: [{
+    title: { type: String },
+    content: { type: String },
+    date: { type: Date, default: Date.now }
+  }],
+  enrolledStudents: [{
+    email: { type: String, required: true },
+    paymentId: { type: String },
+    enrolledAt: { type: Date, default: Date.now }
+  }],
+  features: [{ type: String }]
+}, { timestamps: true });
+
+batchSchema.index({ targetExam: 1, targetClass: 1 });
+
+const dppSchema = new mongoose.Schema({
+  title: { type: String, required: true },
+  batchId: { type: mongoose.Schema.Types.ObjectId, ref: 'Batch' },
+  subject: { type: String, required: true },
+  topic: { type: String, required: true },
+  questions: [{
+    question: { type: String, required: true },
+    options: [{ type: String }],
+    correct: { type: Number, required: true },
+    explanation: { type: String },
+    videoSolutionUrl: { type: String }
+  }],
+  pdfUrl: { type: String, default: null }
+}, { timestamps: true });
+
+const storeProductSchema = new mongoose.Schema({
+  title: { type: String, required: true },
+  category: { type: String, enum: ['book', 'module', 'handbook', 'test_kit'], required: true },
+  targetExam: { type: String, default: 'JEE/NEET' },
+  description: { type: String, default: '' },
+  price: { type: Number, required: true },
+  originalPrice: { type: Number, default: 999 },
+  image: { type: String, default: '' },
+  rating: { type: Number, default: 4.8 },
+  reviewsCount: { type: Number, default: 128 },
+  features: [{ type: String }],
+  samplePdfUrl: { type: String, default: '' },
+  inStock: { type: Boolean, default: true }
+}, { timestamps: true });
+
 const Student    = mongoose.model('Student',    studentSchema);
 const Teacher    = mongoose.model('Teacher',    teacherSchema);
 const Booking    = mongoose.model('Booking',    bookingSchema);
@@ -171,5 +245,9 @@ const ForumPost  = mongoose.model('ForumPost',  forumPostSchema);
 const Parent     = mongoose.model('Parent',     parentSchema);
 const PushSub    = mongoose.model('PushSub',    pushSubSchema);
 const GroupClass = mongoose.model('GroupClass', groupClassSchema);
+const Batch      = mongoose.model('Batch',      batchSchema);
+const DPP        = mongoose.model('DPP',        dppSchema);
+const StoreProduct = mongoose.model('StoreProduct', storeProductSchema);
 
-module.exports = { Student, Teacher, Booking, TopicMedia, Review, ForumPost, Parent, PushSub, GroupClass };
+module.exports = { Student, Teacher, Booking, TopicMedia, Review, ForumPost, Parent, PushSub, GroupClass, Batch, DPP, StoreProduct };
+

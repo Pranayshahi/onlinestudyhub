@@ -14,6 +14,7 @@ import TopicPoll from '../components/TopicPoll';
 import { useNotifications } from '../context/NotificationsContext';
 import TopicIllustration from '../components/TopicIllustration';
 import FormulaBankCard from '../components/FormulaBankCard';
+import FreeVideoLectureCard from '../components/FreeVideoLectureCard';
 import { useLang } from '../context/LanguageContext';
 
 // ── Accordion item ──────────────────────────────────────────────
@@ -395,6 +396,16 @@ export default function TopicPage({ user, onOpenLogin, onOpenAI }) {
           subjectId={subjectId}
           topicId={topicId}
           topicContent={topic.content}
+          subjectColor={subjectColor}
+        />
+
+        <FreeVideoLectureCard
+          topicTitle={topic.title}
+          topicDefinition={topic.definition}
+          topicQA={topic.qa}
+          subtopics={topic.subtopics}
+          subjectId={subjectId}
+          classId={classId}
           subjectColor={subjectColor}
         />
 

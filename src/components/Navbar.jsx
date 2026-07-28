@@ -129,31 +129,33 @@ export default function Navbar({
                 {t('nav_classes')} <ChevronDown />
               </Link>
               <div className="dropdown dropdown-3col">
-                {/* Col 1 — Middle School */}
+                {/* Col 1 — CBSE Board */}
                 <div className="dropdown-section">
-                  <div className="dropdown-label">Middle School</div>
-                  {NAV_CLASSES.slice(0, 3).map((cls) => (
+                  <div className="dropdown-label" style={{ color: "#3b82f6" }}>📘 CBSE Board</div>
+                  {NAV_CLASSES.map((cls) => (
                     <Link
-                      key={cls.id}
+                      key={`cbse-${cls.id}`}
                       to={`/class/${cls.id}`}
                       className="dropdown-item"
                       onClick={close}
                     >
-                      <ClassBadge classId={cls.id} /> {cls.label}
+                      <ClassBadge classId={cls.id} />
+                      <span>{cls.label} CBSE</span>
                     </Link>
                   ))}
                 </div>
-                {/* Col 2 — High School */}
+                {/* Col 2 — ICSE Board */}
                 <div className="dropdown-section">
-                  <div className="dropdown-label">High School</div>
-                  {NAV_CLASSES.slice(3).map((cls) => (
+                  <div className="dropdown-label" style={{ color: "#f59e0b" }}>📙 ICSE Board</div>
+                  {NAV_CLASSES.map((cls) => (
                     <Link
-                      key={cls.id}
-                      to={`/class/${cls.id}`}
+                      key={`icse-${cls.id}`}
+                      to={`/class/icse-${cls.id}`}
                       className="dropdown-item"
                       onClick={close}
                     >
-                      <ClassBadge classId={cls.id} /> {cls.label}
+                      <ClassBadge classId={cls.id} />
+                      <span>{cls.label} ICSE</span>
                     </Link>
                   ))}
                 </div>
@@ -236,6 +238,42 @@ export default function Navbar({
                   </div>
                 </div>
               </div>
+            </div>
+
+            {/* ── PW Style Batches ── */}
+            <div className="nav-item">
+              <Link
+                to="/batches"
+                className="nav-link"
+                onClick={close}
+                style={{ textDecoration: "none", fontWeight: 800, color: "#ffb800" }}
+              >
+                🔥 Batches
+              </Link>
+            </div>
+
+            {/* ── PW Store ── */}
+            <div className="nav-item">
+              <Link
+                to="/store"
+                className="nav-link"
+                onClick={close}
+                style={{ textDecoration: "none", fontWeight: 700 }}
+              >
+                📚 Store
+              </Link>
+            </div>
+
+            {/* ── Student Doubt Community ── */}
+            <div className="nav-item">
+              <Link
+                to="/community"
+                className="nav-link"
+                onClick={close}
+                style={{ textDecoration: "none", fontWeight: 700, color: "#6366f1" }}
+              >
+                💬 Community
+              </Link>
             </div>
 
             {/* ── Teachers dropdown ── */}
