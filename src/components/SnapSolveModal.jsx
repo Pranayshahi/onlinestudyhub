@@ -217,8 +217,8 @@ export default function SnapSolveModal({ isOpen, onClose }) {
           <div style={{ display: 'flex', alignItems: 'center', gap: '.75rem' }}>
             <span style={{ fontSize: '1.75rem', filter: 'drop-shadow(0 2px 8px rgba(0,0,0,0.3))' }}>📷</span>
             <div>
-              <h2 style={{ fontFamily: 'Nunito', fontWeight: 900, fontSize: '1.25rem', margin: 0, display: 'flex', alignItems: 'center', gap: '.5rem' }}>
-                Snap & Solve AI <span style={{ background: '#f59e0b', color: '#000', fontSize: '.7rem', padding: '.15rem .5rem', borderRadius: 20, textTransform: 'uppercase' }}>Doubtnut / PW Style</span>
+              <h2 style={{ fontFamily: 'Nunito', fontWeight: 900, fontSize: '1.25rem', margin: 0 }}>
+                Snap & Solve AI
               </h2>
               <p style={{ fontSize: '.8rem', opacity: .8, margin: 0 }}>Snap or upload any textbook question for instant step-by-step AI solutions</p>
             </div>
