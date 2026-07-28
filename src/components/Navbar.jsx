@@ -241,19 +241,7 @@ export default function Navbar({
               </div>
             </div>
 
-            {/* ── PW Style Batches ── */}
-            <div className="nav-item">
-              <Link
-                to="/batches"
-                className="nav-link"
-                onClick={close}
-                style={{ textDecoration: "none", fontWeight: 800, color: "#ffb800" }}
-              >
-                🔥 Batches
-              </Link>
-            </div>
-
-            {/* ── More ▾ dropdown (Store, Community, Leaderboard) ── */}
+            {/* ── More ▾ dropdown (Batches, Store, Community, Leaderboard) ── */}
             <div className={`nav-item ${mobileOpen && mobileExpanded === "more" ? "mobile-expanded" : ""}`}>
               <span
                 className="nav-link"
@@ -265,6 +253,7 @@ export default function Navbar({
               <div className="dropdown" style={{ minWidth: 200 }}>
                 <div className="dropdown-section">
                   <div className="dropdown-label">Explore</div>
+                  <Link to="/batches"     className="dropdown-item" onClick={close} style={{ display: "flex", alignItems: "center", gap: ".5rem" }}>🔥 <span>Batches</span></Link>
                   <Link to="/store"       className="dropdown-item" onClick={close} style={{ display: "flex", alignItems: "center", gap: ".5rem" }}>📚 <span>Book Store</span></Link>
                   <Link to="/community"   className="dropdown-item" onClick={close} style={{ display: "flex", alignItems: "center", gap: ".5rem" }}>💬 <span>Community Q&amp;A</span></Link>
                   <Link to="/leaderboard" className="dropdown-item" onClick={close} style={{ display: "flex", alignItems: "center", gap: ".5rem" }}>🏆 <span>Leaderboard</span></Link>
