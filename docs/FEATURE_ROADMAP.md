@@ -12,7 +12,7 @@ To achieve total market leadership and maximize student retention, the following
 
 ---
 
-## 1. 📷 Snap & Solve AI Camera Doubt Solver (Doubtnut & PW Style)
+## 1. 📷 Snap & Solve AI Camera Doubt Solver
 - **Concept**: Allow students to snap a photo of any handwritten or textbook problem on mobile/tablet.
 - **Tech Stack**: OCR (Tesseract.js / Google Vision API) + Gemini 1.5 Flash / Sarvam AI.
 - **Value Proposition**: Instant step-by-step solution rendering with LaTeX mathematical formatting and related video lecture suggestions.
