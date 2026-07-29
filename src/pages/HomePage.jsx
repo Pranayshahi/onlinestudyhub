@@ -4,6 +4,7 @@ import { getAllClasses } from "../data/curriculum";
 import SEO from "../components/SEO";
 import { useLang } from "../context/LanguageContext";
 import DailyChallengeCard from "../components/DailyChallengeCard";
+import LiveAIDoubtWidget from "../components/LiveAIDoubtWidget";
 
 const SUBJECTS = [
   { icon: "📐", name: "Mathematics", nameKey: "Mathematics", descKey: "subj_maths_desc",   color: "#4f46e5", bg: "#eef2ff", link: "/class/class-10/subject/mathematics" },
@@ -971,7 +972,7 @@ function HeroIllustration() {
   );
 }
 
-export default function HomePage({ onOpenAI, user }) {
+export default function HomePage({ onOpenAI, onOpenSnapSolve, user }) {
   const navigate = useNavigate();
   const classes = getAllClasses();
   const [searchQ, setSearchQ] = useState("");
@@ -1435,22 +1436,25 @@ export default function HomePage({ onOpenAI, user }) {
         </div>
       </section>
 
-      {/* ── STATS TRUST BAR ─────────────────────────────────────── */}
-      <div className="stats-trust-bar">
-        <div className="container">
-          <div className="stats-trust-grid">
-            {STATS.map((s) => (
-              <div key={s.labelKey} className="stats-trust-item">
-                <span className="stats-trust-icon">{s.icon}</span>
-                <div>
-                  <div className="stats-trust-num">{s.num}</div>
-                  <div className="stats-trust-label">{t(s.labelKey)}</div>
-                </div>
+          {/* ── STATS TRUST BAR ─────────────────────────────────────── */}
+          <div className="stats-trust-bar">
+            <div className="container">
+              <div className="stats-trust-grid">
+                {STATS.map((s) => (
+                  <div key={s.labelKey} className="stats-trust-item">
+                    <span className="stats-trust-icon">{s.icon}</span>
+                    <div>
+                      <div className="stats-trust-num">{s.num}</div>
+                      <div className="stats-trust-label">{t(s.labelKey)}</div>
+                    </div>
+                  </div>
+                ))}
               </div>
-            ))}
+            </div>
           </div>
-        </div>
-      </div>
+
+      {/* ── LIVE AI DOUBT SOLVER TRIAL WIDGET ───────────────────── */}
+      <LiveAIDoubtWidget onOpenSnapSolve={onOpenSnapSolve} />
 
       {/* ── TRENDING TOPICS ──────────────────────────────────────── */}
       <div
@@ -1613,6 +1617,127 @@ export default function HomePage({ onOpenAI, user }) {
                 </div>
               </Link>
             ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ── FEATURED COHORT BATCHES ──────────────────────────────── */}
+      <section className="section" style={{ background: "#0b0f19", borderTop: "1px solid rgba(255,255,255,0.08)", borderBottom: "1px solid rgba(255,255,255,0.08)" }}>
+        <div className="container">
+          <div className="section-header" style={{ textAlign: "center", marginBottom: "2.5rem" }}>
+            <div className="section-eyebrow" style={{ background: "rgba(245,158,11,0.2)", color: "#fef08a", display: "inline-flex" }}>
+              🔥 Top Enrolling Batches
+            </div>
+            <h2 className="section-title" style={{ color: "#fff", fontSize: "clamp(1.75rem, 3.5vw, 2.3rem)", marginTop: ".5rem" }}>
+              Target Your Dream Rank with Focused Cohort Batches
+            </h2>
+            <p className="section-sub" style={{ color: "rgba(255,255,255,0.75)" }}>
+              Structured live syllabus coverage, daily practice sheets (DPP), and doubt sessions led by top faculty.
+            </p>
+          </div>
+
+          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))", gap: "1.5rem", marginBottom: "1rem" }}>
+            {/* Batch Card 1 */}
+            <div style={{ background: "rgba(255,255,255,0.06)", backdropFilter: "blur(16px)", border: "1.5px solid rgba(245,158,11,0.35)", borderRadius: 20, padding: "1.5rem", color: "#fff", display: "flex", flexDirection: "column", justifyContent: "space-between", boxShadow: "0 12px 32px rgba(245,158,11,0.15)" }}>
+              <div>
+                <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: ".75rem" }}>
+                  <span style={{ background: "linear-gradient(135deg,#f59e0b,#d97706)", color: "#fff", fontSize: ".7rem", fontWeight: 900, padding: "3px 10px", borderRadius: 12 }}>
+                    🔥 CLASS 12 + JEE
+                  </span>
+                  <span style={{ color: "#4ade80", fontSize: ".8rem", fontWeight: 800 }}>
+                    👥 14,280 Enrolled
+                  </span>
+                </div>
+                <h3 style={{ fontFamily: "Nunito", fontWeight: 900, fontSize: "1.25rem", margin: "0 0 .5rem", color: "#fff" }}>
+                  Lakshya JEE 2026 Batch
+                </h3>
+                <p style={{ fontSize: ".85rem", color: "rgba(255,255,255,0.75)", lineHeight: 1.5, marginBottom: "1rem" }}>
+                  Complete 100% JEE Main & Advanced syllabus coverage with daily problem solving and NTA mock tests.
+                </p>
+                <div style={{ display: "flex", flexDirection: "column", gap: ".4rem", fontSize: ".8rem", color: "#c7d2fe", marginBottom: "1.25rem" }}>
+                  <span>✓ 350+ Live Interactive Sessions</span>
+                  <span>✓ Chapter-wise DPPs with Video Solutions</span>
+                  <span>✓ 24/7 AI Camera Doubt Support</span>
+                </div>
+              </div>
+              <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", borderTop: "1px solid rgba(255,255,255,0.1)", paddingTop: "1rem" }}>
+                <div>
+                  <span style={{ fontSize: "1.2rem", fontWeight: 900, color: "#fbbf24" }}>FREE</span>
+                  <span style={{ fontSize: ".75rem", color: "rgba(255,255,255,0.5)", textDecoration: "line-through", marginLeft: 6 }}>₹4,999</span>
+                </div>
+                <Link to="/batches" className="btn btn-primary" style={{ padding: ".55rem 1.1rem", borderRadius: 10, fontWeight: 900, fontSize: ".82rem" }}>
+                  Enroll Now →
+                </Link>
+              </div>
+            </div>
+
+            {/* Batch Card 2 */}
+            <div style={{ background: "rgba(255,255,255,0.06)", backdropFilter: "blur(16px)", border: "1.5px solid rgba(99,102,241,0.35)", borderRadius: 20, padding: "1.5rem", color: "#fff", display: "flex", flexDirection: "column", justifyContent: "space-between", boxShadow: "0 12px 32px rgba(99,102,241,0.15)" }}>
+              <div>
+                <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: ".75rem" }}>
+                  <span style={{ background: "linear-gradient(135deg,#6366f1,#4f46e5)", color: "#fff", fontSize: ".7rem", fontWeight: 900, padding: "3px 10px", borderRadius: 12 }}>
+                    🚀 CLASS 10 BOARD
+                  </span>
+                  <span style={{ color: "#4ade80", fontSize: ".8rem", fontWeight: 800 }}>
+                    👥 18,920 Enrolled
+                  </span>
+                </div>
+                <h3 style={{ fontFamily: "Nunito", fontWeight: 900, fontSize: "1.25rem", margin: "0 0 .5rem", color: "#fff" }}>
+                  Udaan Class 10 Board Accelerator
+                </h3>
+                <p style={{ fontSize: ".85rem", color: "rgba(255,255,255,0.75)", lineHeight: 1.5, marginBottom: "1rem" }}>
+                  Score 95%+ in CBSE & ICSE Board exams with master revision notes, PYQs, and sample paper sessions.
+                </p>
+                <div style={{ display: "flex", flexDirection: "column", gap: ".4rem", fontSize: ".8rem", color: "#c7d2fe", marginBottom: "1.25rem" }}>
+                  <span>✓ Complete Maths, Science & Social Sci.</span>
+                  <span>✓ 10 Full-Length Board Mock Tests</span>
+                  <span>✓ Exam Scoring Tips & Formula Sheets</span>
+                </div>
+              </div>
+              <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", borderTop: "1px solid rgba(255,255,255,0.1)", paddingTop: "1rem" }}>
+                <div>
+                  <span style={{ fontSize: "1.2rem", fontWeight: 900, color: "#fbbf24" }}>FREE</span>
+                  <span style={{ fontSize: ".75rem", color: "rgba(255,255,255,0.5)", textDecoration: "line-through", marginLeft: 6 }}>₹3,499</span>
+                </div>
+                <Link to="/batches" className="btn btn-primary" style={{ padding: ".55rem 1.1rem", borderRadius: 10, fontWeight: 900, fontSize: ".82rem" }}>
+                  Enroll Now →
+                </Link>
+              </div>
+            </div>
+
+            {/* Batch Card 3 */}
+            <div style={{ background: "rgba(255,255,255,0.06)", backdropFilter: "blur(16px)", border: "1.5px solid rgba(16,185,129,0.35)", borderRadius: 20, padding: "1.5rem", color: "#fff", display: "flex", flexDirection: "column", justifyContent: "space-between", boxShadow: "0 12px 32px rgba(16,185,129,0.15)" }}>
+              <div>
+                <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: ".75rem" }}>
+                  <span style={{ background: "linear-gradient(135deg,#10b981,#059669)", color: "#fff", fontSize: ".7rem", fontWeight: 900, padding: "3px 10px", borderRadius: 12 }}>
+                    🌿 CLASS 11 + NEET
+                  </span>
+                  <span style={{ color: "#4ade80", fontSize: ".8rem", fontWeight: 800 }}>
+                    👥 11,450 Enrolled
+                  </span>
+                </div>
+                <h3 style={{ fontFamily: "Nunito", fontWeight: 900, fontSize: "1.25rem", margin: "0 0 .5rem", color: "#fff" }}>
+                  Arjuna NEET 2026 Batch
+                </h3>
+                <p style={{ fontSize: ".85rem", color: "rgba(255,255,255,0.75)", lineHeight: 1.5, marginBottom: "1rem" }}>
+                  Master Physics, Chemistry, Botany & Zoology with line-by-line NCERT breakdown and 10,000+ NCERT MCQs.
+                </p>
+                <div style={{ display: "flex", flexDirection: "column", gap: ".4rem", fontSize: ".8rem", color: "#c7d2fe", marginBottom: "1.25rem" }}>
+                  <span>✓ 100% NCERT Line-by-Line Video Notes</span>
+                  <span>✓ Weekly NEET Mock Tests & AIR Ranks</span>
+                  <span>✓ Dedicated Biology Diagram Modules</span>
+                </div>
+              </div>
+              <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", borderTop: "1px solid rgba(255,255,255,0.1)", paddingTop: "1rem" }}>
+                <div>
+                  <span style={{ fontSize: "1.2rem", fontWeight: 900, color: "#fbbf24" }}>FREE</span>
+                  <span style={{ fontSize: ".75rem", color: "rgba(255,255,255,0.5)", textDecoration: "line-through", marginLeft: 6 }}>₹4,499</span>
+                </div>
+                <Link to="/batches" className="btn btn-primary" style={{ padding: ".55rem 1.1rem", borderRadius: 10, fontWeight: 900, fontSize: ".82rem" }}>
+                  Enroll Now →
+                </Link>
+              </div>
+            </div>
           </div>
         </div>
       </section>
