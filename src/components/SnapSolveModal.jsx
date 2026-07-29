@@ -171,12 +171,12 @@ export default function SnapSolveModal({ isOpen, onClose }) {
 
     setLoading(true);
     setError('');
-    setScanProgress(15);
+    setScanProgress(20);
     setResult(null);
 
     const progressInterval = setInterval(() => {
-      setScanProgress(p => (p < 85 ? p + 15 : p));
-    }, 400);
+      setScanProgress(p => (p < 90 ? p + 20 : p));
+    }, 150);
 
     try {
       const data = await api('/ai/snap-solve', {

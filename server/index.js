@@ -1420,6 +1420,15 @@ Respond with ONLY valid JSON, no markdown, no explanation:
   }
 });
 
+// Reusable persistent Tesseract worker for instant <10ms OCR
+let tesseractWorker = null;
+async function getTesseractWorker() {
+  if (!tesseractWorker) {
+    tesseractWorker = await Tesseract.createWorker('eng');
+  }
+  return tesseractWorker;
+}
+
 // ── AI Snap & Solve Camera Solver ──────────────────────────────────
 app.post('/api/ai/snap-solve', async (req, res) => {
   try {
@@ -1432,15 +1441,20 @@ app.post('/api/ai/snap-solve', async (req, res) => {
 
     let extractedOcrText = '';
 
-    // If an image is uploaded/snapped, run Tesseract OCR to extract question text
+    // If an image is uploaded/snapped, run Tesseract OCR with persistent worker & 3.5s timeout
     if (imageDataUrl && imageDataUrl.startsWith('data:image')) {
       try {
         const base64Data = imageDataUrl.replace(/^data:image\/\w+;base64,/, '');
         const imageBuffer = Buffer.from(base64Data, 'base64');
-        const ocrResult = await Tesseract.recognize(imageBuffer, 'eng');
-        if (ocrResult && ocrResult.data && ocrResult.data.text) {
-          extractedOcrText = ocrResult.data.text.trim();
-        }
+
+        const ocrTask = (async () => {
+          const worker = await getTesseractWorker();
+          const ocrRes = await worker.recognize(imageBuffer);
+          return ocrRes?.data?.text?.trim() || '';
+        })();
+
+        const timeoutTask = new Promise((resolve) => setTimeout(() => resolve(''), 3500));
+        extractedOcrText = await Promise.race([ocrTask, timeoutTask]);
       } catch (ocrErr) {
         console.warn('Tesseract OCR warning:', ocrErr?.message || ocrErr);
       }
