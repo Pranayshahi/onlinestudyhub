@@ -37,6 +37,7 @@ const StorePage = lazy(() => import("./pages/StorePage"));
 const CommunityPage = lazy(() => import("./pages/CommunityPage"));
 const LeaderboardPage = lazy(() => import("./pages/LeaderboardPage"));
 const StudyRoomPage = lazy(() => import("./pages/StudyRoomPage"));
+const OfflineNotesPage = lazy(() => import("./pages/OfflineNotesPage"));
 
 // Heavy panel components — load only when opened
 const AIDoubtPanel = lazy(() => import("./components/AIDoubtPanel"));
@@ -307,6 +308,10 @@ export default function App() {
                 <Route
                   path="/study-room"
                   element={<StudyRoomPage user={user} />}
+                />
+                <Route
+                  path="/offline-notes"
+                  element={<OfflineNotesPage />}
                 />
                 <Route path="*" element={<NotFoundPage />} />
               </Routes>
