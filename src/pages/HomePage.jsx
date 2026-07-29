@@ -3,6 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { getAllClasses } from "../data/curriculum";
 import SEO from "../components/SEO";
 import { useLang } from "../context/LanguageContext";
+import DailyChallengeCard from "../components/DailyChallengeCard";
 
 const SUBJECTS = [
   { icon: "📐", name: "Mathematics", nameKey: "Mathematics", descKey: "subj_maths_desc",   color: "#4f46e5", bg: "#eef2ff", link: "/class/class-10/subject/mathematics" },
@@ -970,7 +971,7 @@ function HeroIllustration() {
   );
 }
 
-export default function HomePage({ onOpenAI }) {
+export default function HomePage({ onOpenAI, user }) {
   const navigate = useNavigate();
   const classes = getAllClasses();
   const [searchQ, setSearchQ] = useState("");
@@ -1250,49 +1251,17 @@ export default function HomePage({ onOpenAI }) {
               </div>
             </div>
 
-            {/* Right — banner image */}
+            {/* Right — Daily Challenge QOTD Card */}
             <div
               className="hero-illustration"
-              aria-hidden="true"
               style={{
                 position: "relative",
-                borderRadius: 20,
-                overflow: "hidden",
-                alignSelf: "stretch",
-                minHeight: 320,
-                maxHeight: 460,
-                boxShadow: "0 20px 40px rgba(0,0,0,0.5)",
+                alignSelf: "center",
+                width: "100%",
+                maxWidth: 480,
               }}
             >
-              <img
-                src="/img/banner-image.png"
-                alt="Student studying with AI on OnlineStudyHub"
-                style={{
-                  width: "100%",
-                  height: "100%",
-                  objectFit: "cover",
-                  objectPosition: "-110px top",
-                  display: "block",
-                }}
-              />
-              <div
-                style={{
-                  position: "absolute",
-                  inset: 0,
-                  background:
-                    "linear-gradient(to right, rgba(10,15,26,0.75) 0%, transparent 32%)",
-                  pointerEvents: "none",
-                }}
-              />
-              <div
-                style={{
-                  position: "absolute",
-                  inset: 0,
-                  background:
-                    "linear-gradient(to top, rgba(10,15,26,0.6) 0%, transparent 38%)",
-                  pointerEvents: "none",
-                }}
-              />
+              <DailyChallengeCard user={user} />
             </div>
           </div>
 

@@ -167,7 +167,7 @@ export default function App() {
               <Routes>
                 <Route
                   path="/"
-                  element={<HomePage onOpenAI={() => openAI()} />}
+                  element={<HomePage onOpenAI={() => openAI()} user={user} />}
                 />
                 <Route path="/classes" element={<ClassesPage />} />
                 <Route path="/teachers" element={<TeachersPage />} />

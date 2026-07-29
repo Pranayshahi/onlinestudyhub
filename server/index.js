@@ -1590,6 +1590,92 @@ Rules:
   }
 });
 
+// ── Daily Challenge / Question of the Day (QOTD) Bank ─────────────
+const QOTD_BANK = {
+  'class-10': {
+    id: 'qotd-c10-01',
+    subject: 'Mathematics',
+    topic: 'Quadratic Equations & Discriminant',
+    question: 'If the quadratic equation 2x² - kx + 8 = 0 has two equal real roots, what is the value of k?',
+    options: ['k = ±4', 'k = ±8', 'k = ±16', 'k = 0'],
+    correctIndex: 1, // k = ±8
+    explanation: 'For equal real roots, discriminant D = b² - 4ac = 0.\nComparing with ax² + bx + c = 0: a = 2, b = -k, c = 8.\n(-k)² - 4(2)(8) = 0 => k² - 64 = 0 => k² = 64 => k = ±8.',
+    examTip: 'Remember: equal real roots mean D = 0. Distinct real roots mean D > 0. Complex roots mean D < 0.',
+    totalAttempts: 4120,
+    correctCount: 3480
+  },
+  'class-11': {
+    id: 'qotd-c11-01',
+    subject: 'Physics',
+    topic: 'Kinematics & Projectile Motion',
+    question: 'A ball is thrown at an angle of 45° with velocity 20 m/s. What is its horizontal range (g = 10 m/s²)?',
+    options: ['20 m', '40 m', '80 m', '10 m'],
+    correctIndex: 1, // 40 m
+    explanation: 'Range R = (u² sin 2θ) / g.\nGiven u = 20 m/s, θ = 45°, 2θ = 90°, sin 90° = 1, g = 10 m/s².\nR = (20² * 1) / 10 = 400 / 10 = 40 m.',
+    examTip: 'Maximum range of a projectile occurs at projection angle θ = 45°.',
+    totalAttempts: 3890,
+    correctCount: 3120
+  },
+  'class-12': {
+    id: 'qotd-c12-01',
+    subject: 'Chemistry',
+    topic: 'Electrochemistry & Nernst Equation',
+    question: 'What happens to the cell potential (Ecell) of Zn-Cu cell when concentration of Zn²⁺ ions is increased?',
+    options: ['Ecell Increases', 'Ecell Decreases', 'Remains Constant', 'Becomes Zero'],
+    correctIndex: 1, // Decreases
+    explanation: 'By Nernst Equation: Ecell = E°cell - (0.0591/n) log([Zn²⁺]/[Cu²⁺]).\nIncreasing [Zn²⁺] increases log ratio, subtracting a larger quantity, so Ecell decreases.',
+    examTip: 'Increasing anode ion concentration decreases cell voltage.',
+    totalAttempts: 2950,
+    correctCount: 2360
+  },
+  'jee': {
+    id: 'qotd-jee-01',
+    subject: 'Mathematics (JEE Main)',
+    topic: 'Integral Calculus & Definite Integrals',
+    question: 'Evaluate the definite integral ∫ from -π/2 to π/2 of (sin⁵ x + x³) dx.',
+    options: ['π', 'π/2', '0', '2π'],
+    correctIndex: 2, // 0
+    explanation: 'f(x) = sin⁵ x + x³ is an ODD function because f(-x) = sin⁵(-x) + (-x)³ = -sin⁵ x - x³ = -f(x).\nBy property of definite integrals, ∫ from -a to a of an odd function is ALWAYS 0.',
+    examTip: 'Always check if the integrand is odd or even before performing integration between symmetric limits -a to +a!',
+    totalAttempts: 5210,
+    correctCount: 4280
+  }
+};
+
+app.get('/api/qotd', (req, res) => {
+  const target = req.query.target || 'class-10';
+  const q = QOTD_BANK[target] || QOTD_BANK['class-10'];
+  const { correctIndex, ...safeData } = q;
+  res.json({ ...safeData, pctCorrect: Math.round((q.correctCount / q.totalAttempts) * 100) });
+});
+
+app.post('/api/qotd/submit', async (req, res) => {
+  try {
+    const { target = 'class-10', selectedIndex } = req.body || {};
+    const q = QOTD_BANK[target] || QOTD_BANK['class-10'];
+    const isCorrect = selectedIndex === q.correctIndex;
+
+    q.totalAttempts += 1;
+    if (isCorrect) q.correctCount += 1;
+
+    const pctCorrect = Math.round((q.correctCount / q.totalAttempts) * 100);
+
+    res.json({
+      success: true,
+      isCorrect,
+      correctIndex: q.correctIndex,
+      explanation: q.explanation,
+      examTip: q.examTip,
+      totalAttempts: q.totalAttempts,
+      pctCorrect,
+      xpAwarded: isCorrect ? 25 : 10
+    });
+  } catch (err) {
+    console.error('QOTD submit error:', err);
+    res.status(500).json({ error: 'Failed to submit QOTD' });
+  }
+});
+
 // ── Gamification: Badge definitions ────────────────────────────
 const BADGES = [
   // ── Progress milestones ─────────────────────────────────────
