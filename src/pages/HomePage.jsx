@@ -7,6 +7,7 @@ import DailyChallengeCard from "../components/DailyChallengeCard";
 import LiveAIDoubtWidget from "../components/LiveAIDoubtWidget";
 import PersonalizedDashboardWidget from "../components/PersonalizedDashboardWidget";
 import AIAdaptiveDiagnosticEngine from "../components/AIAdaptiveDiagnosticEngine";
+import TrendingPracticeTestsCard from "../components/TrendingPracticeTestsCard";
 
 const SUBJECTS = [
   { icon: "📐", name: "Mathematics", nameKey: "Mathematics", descKey: "subj_maths_desc",   color: "#4f46e5", bg: "#eef2ff", link: "/class/class-10/subject/mathematics" },
@@ -1199,12 +1200,89 @@ export default function HomePage({ onOpenAI, onOpenSnapSolve, user }) {
                   fontSize: "1.05rem",
                   color: "rgba(255,255,255,.8)",
                   lineHeight: 1.6,
-                  marginBottom: "1.75rem",
+                  marginBottom: "1.25rem",
                   maxWidth: 520,
                 }}
               >
                 {t('hero_sub')}
               </p>
+
+              {/* Clean Hero Search Bar */}
+              <form
+                onSubmit={(e) => {
+                  e.preventDefault();
+                  const target = e.target.search.value.trim();
+                  if (target) navigate(`/search?q=${encodeURIComponent(target)}`);
+                }}
+                style={{
+                  display: 'flex',
+                  gap: '.5rem',
+                  maxWidth: 540,
+                  marginBottom: '1rem',
+                  background: 'rgba(0,0,0,0.4)',
+                  padding: 6,
+                  borderRadius: 16,
+                  border: '1.5px solid rgba(255,255,255,0.2)',
+                  boxShadow: '0 8px 24px rgba(0,0,0,0.3)'
+                }}
+              >
+                <input
+                  name="search"
+                  type="text"
+                  placeholder="Search any topic, chapter, or PYQ (e.g. Quadratic Equations, Optics)..."
+                  style={{
+                    flex: 1,
+                    background: 'transparent',
+                    border: 'none',
+                    color: '#fff',
+                    padding: '.65rem 1rem',
+                    fontFamily: 'Nunito',
+                    fontSize: '.92rem',
+                    outline: 'none'
+                  }}
+                />
+                <button
+                  type="submit"
+                  className="btn btn-primary"
+                  style={{
+                    borderRadius: 12,
+                    padding: '.65rem 1.25rem',
+                    fontWeight: 900,
+                    fontSize: '.9rem',
+                    background: 'linear-gradient(135deg, #f59e0b, #d97706)',
+                    border: 'none'
+                  }}
+                >
+                  🔍 Search
+                </button>
+              </form>
+
+              {/* Dynamic Tag Pills */}
+              <div style={{ display: 'flex', gap: '.4rem', flexWrap: 'wrap', marginBottom: '1.75rem' }}>
+                {[
+                  { tag: '#JEE2027', link: '/exam/jee' },
+                  { tag: '#Class10Maths', link: '/class/class-10/subject/mathematics' },
+                  { tag: '#NEETBiology', link: '/class/class-11/subject/biology' },
+                  { tag: '#CBSEBoard2026', link: '/class/class-12' },
+                ].map((item, idx) => (
+                  <Link
+                    key={idx}
+                    to={item.link}
+                    style={{
+                      background: 'rgba(255,255,255,0.08)',
+                      border: '1px solid rgba(255,255,255,0.15)',
+                      color: '#c7d2fe',
+                      borderRadius: 20,
+                      padding: '.25rem .65rem',
+                      fontSize: '.75rem',
+                      fontWeight: 800,
+                      textDecoration: 'none'
+                    }}
+                  >
+                    {item.tag}
+                  </Link>
+                ))}
+              </div>
 
               {/* Student High-Energy Launchpad Grid */}
               <div
@@ -1274,16 +1352,20 @@ export default function HomePage({ onOpenAI, onOpenSnapSolve, user }) {
               </div>
             </div>
 
-            {/* Right — Daily Challenge QOTD Card */}
+            {/* Right — Below Hero Split View (Daily Challenge + Trending Tests) */}
             <div
               className="hero-illustration"
               style={{
                 position: "relative",
                 alignSelf: "center",
                 width: "100%",
+                display: "flex",
+                flexDirection: "column",
+                gap: "1.5rem"
               }}
             >
               <DailyChallengeCard user={user} />
+              <TrendingPracticeTestsCard />
             </div>
           </div>
 
