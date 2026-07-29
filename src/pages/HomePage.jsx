@@ -1142,18 +1142,35 @@ export default function HomePage({ onOpenAI, onOpenSnapSolve, user }) {
                 backdropFilter: 'blur(12px)',
                 border: '1px solid rgba(255, 255, 255, 0.15)',
                 borderRadius: 30,
-                padding: '.45rem 1.25rem',
+                padding: '.45rem 1.1rem',
                 display: 'inline-flex',
                 alignItems: 'center',
-                gap: '.75rem',
+                gap: '.65rem',
                 marginBottom: '1.25rem',
-                boxShadow: '0 8px 24px rgba(0,0,0,0.2)'
+                boxShadow: '0 8px 24px rgba(0,0,0,0.2)',
+                maxWidth: '100%',
+                overflowX: 'auto',
+                whiteSpace: 'nowrap'
               }}>
-                <span style={{ background: '#ef4444', color: '#fff', fontSize: '.7rem', fontWeight: 900, padding: '.15rem .55rem', borderRadius: 20, textTransform: 'uppercase', letterSpacing: '0.5px', display: 'inline-flex', alignItems: 'center', gap: '.3rem' }}>
-                  🔴 LIVE NOW
+                <span style={{
+                  background: 'linear-gradient(135deg, #ef4444, #dc2626)',
+                  color: '#fff',
+                  fontSize: '.72rem',
+                  fontWeight: 900,
+                  padding: '.25rem .65rem',
+                  borderRadius: 20,
+                  letterSpacing: '0.5px',
+                  display: 'inline-flex',
+                  alignItems: 'center',
+                  gap: '.35rem',
+                  whiteSpace: 'nowrap',
+                  flexShrink: 0
+                }}>
+                  <span style={{ width: 7, height: 7, borderRadius: '50%', background: '#fff', boxShadow: '0 0 8px #fff' }} />
+                  LIVE NOW
                 </span>
-                <span style={{ color: 'rgba(255,255,255,0.92)', fontSize: '.85rem', fontWeight: 700 }}>
-                  🚀 18,450+ Students Studying • 💬 Active Doubt Forum • 🛒 Amazon Book Store
+                <span style={{ color: 'rgba(255,255,255,0.92)', fontSize: '.82rem', fontWeight: 700, whiteSpace: 'nowrap' }}>
+                  🚀 18,450+ Students Studying • 💬 Active Doubt Forum • 🛒 Book Store
                 </span>
               </div>
 
