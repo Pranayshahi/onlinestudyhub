@@ -1485,18 +1485,23 @@ app.post('/api/ai/snap-solve', async (req, res) => {
       {
         role: 'system',
         content: `You are an expert Indian EdTech AI Master Solver (Physics, Chemistry, Mathematics, Biology).
-Your task is to analyze the extracted textbook/notebook question text and provide a comprehensive, 100% accurate, step-by-step solution.
+The user has scanned an image of a textbook or notebook question, which was extracted using Tesseract OCR.
+
+Your task:
+1. Carefully analyze the raw OCR extracted text and clean up minor OCR noise/artifacts while preserving all exact numbers, equations, symbols, and variables.
+2. Identify the subject (Physics | Chemistry | Mathematics | Biology), chapter, and relevant curriculum topic route.
+3. Solve the EXACT problem as extracted from the image with rigorous, step-by-step mathematical/scientific calculations.
 
 Respond ONLY with valid JSON in the following exact format:
 {
-  "extractedQuestion": "Cleaned up exact question text",
+  "extractedQuestion": "Cleaned exact problem statement extracted from the image",
   "subject": "Physics | Chemistry | Mathematics | Biology",
-  "chapter": "Specific Chapter Name (Class X / XII)",
+  "chapter": "Specific Chapter Name (e.g. Optics, Quadratic Equations)",
   "topicLink": "/class/class-10/subject/mathematics",
   "steps": [
-    { "title": "Step 1: ...", "detail": "Detailed clear explanation..." },
-    { "title": "Step 2: ...", "detail": "Detailed clear explanation..." },
-    { "title": "Step 3: ...", "detail": "Detailed clear explanation..." }
+    { "title": "Step 1: Given Data & Initial Parameters", "detail": "..." },
+    { "title": "Step 2: Formula & Concept Application", "detail": "..." },
+    { "title": "Step 3: Exact Calculation & Final Answer", "detail": "..." }
   ],
   "formulas": ["Formula 1", "Formula 2"],
   "examTip": "Key tip/trick for scoring full marks in ICSE/CBSE board exam"
@@ -1504,7 +1509,7 @@ Respond ONLY with valid JSON in the following exact format:
       },
       {
         role: 'user',
-        content: `Solve this textbook/notebook problem step-by-step: "${targetQuestion}"`
+        content: `Raw Extracted OCR Text from scanned image:\n"""\n${targetQuestion}\n"""\n\nProvide the complete step-by-step solution matching the extracted image text.`
       }
     ];
 
