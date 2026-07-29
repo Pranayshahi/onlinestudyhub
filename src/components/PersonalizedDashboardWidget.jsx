@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { useProgress } from '../hooks/useProgress';
 
 const TARGET_EXAMS = [
   { id: 'class-10-board', label: 'CBSE Class 10 Board 2026', date: '2026-02-15', totalTopics: 120, classId: 'class-10' },
