@@ -17,6 +17,7 @@ import { useNotifications } from '../context/NotificationsContext';
 import TopicIllustration from '../components/TopicIllustration';
 import FormulaBankCard from '../components/FormulaBankCard';
 import FreeVideoLectureCard from '../components/FreeVideoLectureCard';
+import TriFormatResourceHub from '../components/TriFormatResourceHub';
 import { useLang } from '../context/LanguageContext';
 
 // ── Accordion item ──────────────────────────────────────────────
@@ -385,6 +386,15 @@ export default function TopicPage({ user, onOpenLogin, onOpenAI }) {
 
       {/* ── Main content ── */}
       <div className="container-sm" style={{ paddingTop: '2.5rem', paddingBottom: '5rem' }}>
+
+        {/* ── Tri-Format Multi-Mode Resource Hub ── */}
+        <TriFormatResourceHub
+          topic={topic}
+          classId={classId}
+          subjectId={subjectId}
+          topicId={topicId}
+          onOpenFlashcards={() => setFlashcardOpen(true)}
+        />
 
         {/* ── 1. Definition Box ── */}
         <div className={`topic-definition ${subjectColor}`}>
