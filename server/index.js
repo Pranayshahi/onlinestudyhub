@@ -10,6 +10,7 @@ require('dotenv').config({ path: require('path').join(__dirname, '.env') });
 const mongoose = require('mongoose');
 
 const connectDB = require('./db');
+const Tesseract = require('tesseract.js');
 const { Student, Teacher, Booking, TopicMedia, Review, ForumPost, Parent, PushSub, GroupClass, Batch, DPP, StoreProduct, Gamification } = require('./models');
 const Razorpay = require('razorpay');
 const {
@@ -1375,7 +1376,7 @@ Rules:
 - Use simple, clear language
 
 Respond with ONLY valid JSON, no markdown, no explanation:
-{"cards":[{"q":"question text","a":"answer text"},...]}}`;
+{"cards":[{"q":"question text","a":"answer text"},...]}`;
 
     const resp = await fetch('https://api.groq.com/openai/v1/chat/completions', {
       method: 'POST',
@@ -1419,78 +1420,85 @@ Respond with ONLY valid JSON, no markdown, no explanation:
   }
 });
 
-// ── AI Snap & Solve Doubtnut / PW Camera Solver ──────────────────
+// ── AI Snap & Solve Camera Solver ──────────────────────────────────
 app.post('/api/ai/snap-solve', async (req, res) => {
   try {
     const { imageDataUrl, questionText } = req.body || {};
     const groqKey = (process.env.GROQ_API_KEY || '').trim();
 
     if (!imageDataUrl && !questionText) {
-      return res.status(400).json({ error: 'ImageDataUrl or questionText is required.' });
+      return res.status(400).json({ error: 'imageDataUrl or questionText is required.' });
     }
 
+    let extractedOcrText = '';
+
+    // If an image is uploaded/snapped, run Tesseract OCR to extract question text
+    if (imageDataUrl && imageDataUrl.startsWith('data:image')) {
+      try {
+        const base64Data = imageDataUrl.replace(/^data:image\/\w+;base64,/, '');
+        const imageBuffer = Buffer.from(base64Data, 'base64');
+        const ocrResult = await Tesseract.recognize(imageBuffer, 'eng');
+        if (ocrResult && ocrResult.data && ocrResult.data.text) {
+          extractedOcrText = ocrResult.data.text.trim();
+        }
+      } catch (ocrErr) {
+        console.warn('Tesseract OCR warning:', ocrErr?.message || ocrErr);
+      }
+    }
+
+    // Combine user text & OCR text
+    const targetQuestion = (questionText || extractedOcrText || 'Physics/Chemistry/Maths textbook problem').trim();
+
     let defaultResponse = {
-      extractedQuestion: questionText || 'Scanned Problem from Textbook',
-      subject: 'Mathematics / Science',
+      extractedQuestion: targetQuestion,
+      subject: 'Science & Mathematics',
       chapter: 'Board Exam Important Concepts',
       topicLink: '/classes',
       steps: [
-        { title: 'Step 1: Given Data & Given Parameters', detail: 'Extract given values, check unit consistency, and write basic physical/mathematical equations.' },
-        { title: 'Step 2: Formula Application', detail: 'Apply the standard governing formula and substitute given parameters step-by-step.' },
-        { title: 'Step 3: Final Solution & Unit Notation', detail: 'Perform exact arithmetic calculations and box the final answer with correct SI units.' }
+        { title: 'Step 1: Given Data & Given Parameters', detail: `Question: "${targetQuestion}". Write down given values, verify SI unit consistency, and state initial parameters.` },
+        { title: 'Step 2: Formula & Concept Application', detail: 'Apply standard governing laws/formulas (e.g. Newton\'s laws, Snell\'s law, Quadratic formula, or Nernst equation).' },
+        { title: 'Step 3: Step-by-Step Solution', detail: 'Substitute given values into governing equations and perform step-by-step calculations.' }
       ],
-      formulas: ['Standard Board Relation', 'SI Unit Conversion'],
-      examTip: 'State given parameters explicitly before substituting values into the formula.'
+      formulas: ['Standard Governing Equation', 'SI Unit Conversion'],
+      examTip: 'State given parameters explicitly before substituting values into formula for full marks.'
     };
 
     if (!groqKey) {
       return res.json(defaultResponse);
     }
 
-    let groqMessages = [
+    const groqMessages = [
       {
         role: 'system',
-        content: `You are an expert Indian EdTech AI Master Solver (Doubtnut / PhysicsWallah style).
-Your task is to analyze the scanned image or question text of a physics, chemistry, mathematics, or biology problem.
+        content: `You are an expert Indian EdTech AI Master Solver (Physics, Chemistry, Mathematics, Biology).
+Your task is to analyze the extracted textbook/notebook question text and provide a comprehensive, 100% accurate, step-by-step solution.
 
-Respond ONLY with valid JSON in the following format:
+Respond ONLY with valid JSON in the following exact format:
 {
-  "extractedQuestion": "The exact question text scanned from image",
+  "extractedQuestion": "Cleaned up exact question text",
   "subject": "Physics | Chemistry | Mathematics | Biology",
-  "chapter": "Chapter Name (Class X)",
+  "chapter": "Specific Chapter Name (Class X / XII)",
   "topicLink": "/class/class-10/subject/mathematics",
   "steps": [
-    { "title": "Step 1: ...", "detail": "Detailed explanation..." },
-    { "title": "Step 2: ...", "detail": "Detailed explanation..." }
+    { "title": "Step 1: ...", "detail": "Detailed clear explanation..." },
+    { "title": "Step 2: ...", "detail": "Detailed clear explanation..." },
+    { "title": "Step 3: ...", "detail": "Detailed clear explanation..." }
   ],
   "formulas": ["Formula 1", "Formula 2"],
-  "examTip": "Key trick for securing full marks"
+  "examTip": "Key tip/trick for scoring full marks in ICSE/CBSE board exam"
 }`
+      },
+      {
+        role: 'user',
+        content: `Solve this textbook/notebook problem step-by-step: "${targetQuestion}"`
       }
     ];
-
-    if (imageDataUrl && imageDataUrl.startsWith('data:image')) {
-      groqMessages.push({
-        role: 'user',
-        content: [
-          { type: 'text', text: 'Scan this textbook/notebook problem image. Extract the question and provide a complete step-by-step solution in JSON format.' },
-          { type: 'image_url', image_url: { url: imageDataUrl } }
-        ]
-      });
-    } else {
-      groqMessages.push({
-        role: 'user',
-        content: `Solve this problem step-by-step: "${questionText || 'Physics / Maths Problem'}"`
-      });
-    }
-
-    const modelName = (imageDataUrl && imageDataUrl.startsWith('data:image')) ? 'llama-3.2-11b-vision-preview' : 'llama-3.3-70b-versatile';
 
     const resp = await fetch('https://api.groq.com/openai/v1/chat/completions', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${groqKey}` },
       body: JSON.stringify({
-        model: modelName,
+        model: 'llama-3.3-70b-versatile',
         messages: groqMessages,
         temperature: 0.2,
         max_tokens: 1500,
@@ -1499,7 +1507,7 @@ Respond ONLY with valid JSON in the following format:
     });
 
     if (!resp.ok) {
-      console.warn('Groq Vision Snap-Solve returned status:', resp.status);
+      console.warn('Groq Snap-Solve API returned status:', resp.status);
       return res.json(defaultResponse);
     }
 
