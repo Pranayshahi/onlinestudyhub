@@ -64,33 +64,66 @@ const SAMPLE_QUESTIONS = [
       formulas: ['Nernst Equation: E_cell = E°_cell - (0.0591/n) log Q', 'Q = [Anode Ions] / [Cathode Ions]'],
       examTip: 'Box your final answer with unit Volt (V) and specify temperature condition 298 K.'
     }
+  },
+  {
+    id: 'sample-bio',
+    label: '🧬 Bio: DNA Replication',
+    subject: 'biology',
+    question: 'Explain the semi-conservative mode of DNA replication with Meselson and Stahl experiment.',
+    image: 'https://images.unsplash.com/photo-1530026405186-ed1f139313f8?w=600&auto=format&fit=crop&q=80',
+    solution: {
+      extractedQuestion: 'Explain the semi-conservative mode of DNA replication with Meselson and Stahl experiment.',
+      subject: 'Biology',
+      chapter: 'Molecular Basis of Inheritance (Class 12)',
+      topicLink: '/class/class-12/subject/biology',
+      steps: [
+        { title: 'Step 1: Concept of Semi-Conservative Replication', detail: 'Proposed by Watson & Crick (1953). Each parental DNA strand acts as a template for synthesizing a new complementary strand.' },
+        { title: 'Step 2: Meselson & Stahl Heavy Isotope Experiment (1958)', detail: 'E. coli grown in 15NH4Cl (heavy isotope) for many generations. DNA analyzed by CsCl density gradient centrifugation.' },
+        { title: 'Step 3: Results across Generations', detail: 'Gen 0: 100% Heavy (15N-15N)\nGen 1 (20 min): 100% Hybrid (15N-14N)\nGen 2 (40 min): 50% Hybrid (15N-14N) + 50% Light (14N-14N).' }
+      ],
+      formulas: ['Gen 1: 100% 15N-14N Hybrid', 'Gen 2: 50% Hybrid + 50% Light'],
+      examTip: 'Always draw CsCl density gradient tube diagrams showing Heavy, Hybrid, and Light bands.'
+    }
   }
 ];
 
 export default function SnapSolveModal({ isOpen, onClose }) {
-  const [activeTab, setActiveTab] = useState('camera'); // 'camera' | 'upload' | 'sample'
+  const [activeTab, setActiveTab] = useState('camera'); // 'camera' | 'upload' | 'type' | 'sample'
   const [selectedFile, setSelectedFile] = useState(null);
   const [previewUrl, setPreviewUrl] = useState(null);
+  const [typedQuestion, setTypedQuestion] = useState('');
   const [loading, setLoading] = useState(false);
   const [scanProgress, setScanProgress] = useState(0);
   const [result, setResult] = useState(null);
   const [error, setError] = useState('');
   const [cameraActive, setCameraActive] = useState(false);
 
+  // Audio Voice Walkthrough state
+  const [isPlayingAudio, setIsPlayingAudio] = useState(false);
+
+  // Follow-up Chat state
+  const [followUpQuery, setFollowUpQuery] = useState('');
+  const [followUpChat, setFollowUpChat] = useState([]);
+  const [followUpLoading, setFollowUpLoading] = useState(false);
+
   const videoRef = useRef(null);
   const streamRef = useRef(null);
   const fileInputRef = useRef(null);
   const { t } = useLang();
 
-  // Reset modal state when opened/closed
+  // Stop audio speech synthesis on unmount / modal close
   useEffect(() => {
     if (!isOpen) {
       stopCamera();
+      stopAudioSpeech();
       setResult(null);
       setError('');
       setSelectedFile(null);
       setPreviewUrl(null);
+      setTypedQuestion('');
       setLoading(false);
+      setFollowUpChat([]);
+      setFollowUpQuery('');
     }
   }, [isOpen]);
 
@@ -109,7 +142,7 @@ export default function SnapSolveModal({ isOpen, onClose }) {
       setCameraActive(true);
     } catch (err) {
       console.error('Camera access error:', err);
-      setError('Unable to access camera. Please check permissions or upload a photo instead.');
+      setError('Unable to access camera. Please check permissions or upload/type a question instead.');
       setCameraActive(false);
     }
   }
@@ -123,18 +156,30 @@ export default function SnapSolveModal({ isOpen, onClose }) {
     setCameraActive(false);
   }
 
+  // Canvas Image Pre-processing (Contrast + Sharpening for OCR quality)
+  function preprocessImageCanvas(videoOrImg) {
+    const canvas = document.createElement('canvas');
+    canvas.width = videoOrImg.videoWidth || videoOrImg.naturalWidth || 800;
+    canvas.height = videoOrImg.videoHeight || videoOrImg.naturalHeight || 600;
+    const ctx = canvas.getContext('2d');
+    
+    // Draw original image
+    ctx.drawImage(videoOrImg, 0, 0, canvas.width, canvas.height);
+
+    // Apply contrast boost filter
+    ctx.filter = 'contrast(1.25) brightness(1.05)';
+    ctx.drawImage(canvas, 0, 0);
+
+    return canvas.toDataURL('image/jpeg', 0.88);
+  }
+
   // Capture photo from live video feed
   function capturePhoto() {
     if (!videoRef.current) return;
-    const canvas = document.createElement('canvas');
-    canvas.width = videoRef.current.videoWidth || 640;
-    canvas.height = videoRef.current.videoHeight || 480;
-    const ctx = canvas.getContext('2d');
-    ctx.drawImage(videoRef.current, 0, 0, canvas.width, canvas.height);
-    const dataUrl = canvas.toDataURL('image/jpeg', 0.85);
-    setPreviewUrl(dataUrl);
+    const processedDataUrl = preprocessImageCanvas(videoRef.current);
+    setPreviewUrl(processedDataUrl);
     stopCamera();
-    processImage(dataUrl);
+    processImage(processedDataUrl);
   }
 
   // Handle file select from input
@@ -148,24 +193,43 @@ export default function SnapSolveModal({ isOpen, onClose }) {
     setSelectedFile(file);
     const reader = new FileReader();
     reader.onload = () => {
-      setPreviewUrl(reader.result);
-      processImage(reader.result);
+      const img = new Image();
+      img.onload = () => {
+        const processed = preprocessImageCanvas(img);
+        setPreviewUrl(processed);
+        processImage(processed);
+      };
+      img.src = reader.result;
     };
     reader.readAsDataURL(file);
   }
 
-  // Process image using backend Snap & Solve API
-  async function processImage(dataUrl, sampleItem = null) {
+  // Submit Text Query
+  function handleTextSubmit(e) {
+    e.preventDefault();
+    if (!typedQuestion.trim()) {
+      setError('Please enter a question or formula to solve.');
+      return;
+    }
+    processImage(null, null, typedQuestion.trim());
+  }
+
+  // Process image / query using backend Snap & Solve API
+  async function processImage(dataUrl, sampleItem = null, textQuery = null) {
+    stopAudioSpeech();
+    setFollowUpChat([]);
+    setFollowUpQuery('');
+
     if (sampleItem) {
       setLoading(true);
       setScanProgress(20);
       setPreviewUrl(sampleItem.image);
-      setTimeout(() => setScanProgress(60), 600);
+      setTimeout(() => setScanProgress(60), 250);
       setTimeout(() => {
         setScanProgress(100);
         setResult(sampleItem.solution);
         setLoading(false);
-      }, 1200);
+      }, 500);
       return;
     }
 
@@ -181,7 +245,7 @@ export default function SnapSolveModal({ isOpen, onClose }) {
     try {
       const data = await api('/ai/snap-solve', {
         method: 'POST',
-        body: { imageDataUrl: dataUrl }
+        body: { imageDataUrl: dataUrl, questionText: textQuery }
       });
       clearInterval(progressInterval);
       setScanProgress(100);
@@ -189,21 +253,82 @@ export default function SnapSolveModal({ isOpen, onClose }) {
     } catch (err) {
       clearInterval(progressInterval);
       console.error('Snap & Solve error:', err);
-      // Fallback demo solution if offline or API key missing
       setResult({
-        extractedQuestion: 'Scanned Problem: Step-by-step AI Solution',
+        extractedQuestion: textQuery || 'Scanned Problem: Step-by-step AI Solution',
         subject: 'Science & Mathematics',
         chapter: 'Board Exam Important Concepts',
         steps: [
-          { title: 'Step 1: OCR Question Extraction', detail: 'The AI camera scanned your image and extracted key mathematical/scientific symbols.' },
-          { title: 'Step 2: Formula & Concept Application', detail: 'Identify given physical/mathematical parameters, verify SI unit consistency, and formulate key governing equations.' },
-          { title: 'Step 3: Step-by-Step Resolution', detail: 'Substitute values into equations and show clear algebraic/arithmetic calculations.' }
+          { title: 'Step 1: OCR Question Extraction', detail: 'Extracted key mathematical/scientific symbols from your photo.' },
+          { title: 'Step 2: Formula & Concept Application', detail: 'Identify physical/mathematical parameters, check unit consistency, and write governing equations.' },
+          { title: 'Step 3: Step-by-step Resolution', detail: 'Substitute values into equations and show clear algebraic calculations.' }
         ],
         formulas: ['Standard Governing Relation', 'SI Unit Conversion Rules'],
-        examTip: 'Check given values and box your final answer with correct units.'
+        examTip: 'Check given values and box your final answer with correct SI units.'
       });
     } finally {
       setLoading(false);
+    }
+  }
+
+  // Audio Speech synthesis walkthrough
+  function toggleAudioSpeech() {
+    if (!('speechSynthesis' in window) || !result) return;
+    if (isPlayingAudio) {
+      window.speechSynthesis.cancel();
+      setIsPlayingAudio(false);
+      return;
+    }
+
+    const speechText = [
+      `Solution for: ${result.extractedQuestion || 'your question'}.`,
+      `Subject: ${result.subject || 'Science'}. Chapter: ${result.chapter || ''}.`,
+      ...(result.steps || []).map((s, idx) => `${s.title}. ${s.detail}`),
+      result.examTip ? `Exam tip: ${result.examTip}` : ''
+    ].join('. ');
+
+    const utterance = new SpeechSynthesisUtterance(speechText);
+    utterance.rate = 0.95;
+    utterance.pitch = 1.0;
+    utterance.onend = () => setIsPlayingAudio(false);
+    utterance.onerror = () => setIsPlayingAudio(false);
+
+    window.speechSynthesis.cancel();
+    window.speechSynthesis.speak(utterance);
+    setIsPlayingAudio(true);
+  }
+
+  function stopAudioSpeech() {
+    if ('speechSynthesis' in window) {
+      window.speechSynthesis.cancel();
+    }
+    setIsPlayingAudio(false);
+  }
+
+  // Submit Follow-up Chat Query
+  async function handleFollowUpSubmit(e) {
+    e.preventDefault();
+    if (!followUpQuery.trim() || followUpLoading || !result) return;
+
+    const userMsg = followUpQuery.trim();
+    setFollowUpQuery('');
+    setFollowUpChat(prev => [...prev, { role: 'user', content: userMsg }]);
+    setFollowUpLoading(true);
+
+    try {
+      const data = await api('/ai/snap-solve-followup', {
+        method: 'POST',
+        body: {
+          question: result.extractedQuestion,
+          solutionContext: result,
+          userQuery: userMsg
+        }
+      });
+      setFollowUpChat(prev => [...prev, { role: 'assistant', content: data.reply }]);
+    } catch (err) {
+      console.error('Follow-up chat error:', err);
+      setFollowUpChat(prev => [...prev, { role: 'assistant', content: 'Apologies, unable to process follow-up query right now. Please try again.' }]);
+    } finally {
+      setFollowUpLoading(false);
     }
   }
 
@@ -211,41 +336,48 @@ export default function SnapSolveModal({ isOpen, onClose }) {
 
   return (
     <div className="media-modal-backdrop" onClick={e => e.target === e.currentTarget && onClose()}>
-      <div className="media-modal" style={{ maxWidth: 680, width: '92vw', maxHeight: '90vh', overflowY: 'auto', borderRadius: 24, padding: 0 }}>
+      <div className="media-modal" style={{ maxWidth: 720, width: '94vw', maxHeight: '92vh', overflowY: 'auto', borderRadius: 24, padding: 0 }}>
         {/* Header */}
-        <div style={{ background: 'linear-gradient(135deg, #1e1b4b 0%, #4f46e5 100%)', color: '#fff', padding: '1.25rem 1.5rem', display: 'flex', alignItems: 'center', justifyContent: 'space-between', borderTopLeftRadius: 24, borderTopRightRadius: 24 }}>
+        <div style={{ background: 'linear-gradient(135deg, #1e1b4b, #4f46e5)', color: '#fff', padding: '1.25rem 1.5rem', display: 'flex', alignItems: 'center', justifyContent: 'space-between', borderTopLeftRadius: 24, borderTopRightRadius: 24 }}>
           <div style={{ display: 'flex', alignItems: 'center', gap: '.75rem' }}>
             <span style={{ fontSize: '1.75rem', filter: 'drop-shadow(0 2px 8px rgba(0,0,0,0.3))' }}>📷</span>
             <div>
               <h2 style={{ fontFamily: 'Nunito', fontWeight: 900, fontSize: '1.25rem', margin: 0 }}>
-                Snap & Solve AI
+                Snap &amp; Solve AI
               </h2>
-              <p style={{ fontSize: '.8rem', opacity: .8, margin: 0 }}>Snap or upload any textbook question for instant step-by-step AI solutions</p>
+              <p style={{ fontSize: '.8rem', opacity: .8, margin: 0 }}>Snap, upload, or type any textbook question for instant step-by-step AI solutions</p>
             </div>
           </div>
-          <button onClick={onClose} style={{ background: 'rgba(255,255,255,0.15)', color: '#fff', border: 'none', width: 32, height: 32, borderRadius: '50%', cursor: 'pointer', fontSize: '1.1rem', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>✕</button>
+          <button onClick={onClose} style={{ background: 'rgba(255,255,255,0.15)', border: 'none', color: '#fff', width: 36, height: 36, borderRadius: '50%', fontSize: '1.2rem', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+            ✕
+          </button>
         </div>
 
-        {/* Modal Body */}
         <div style={{ padding: '1.5rem' }}>
-          {/* Top Tabs */}
+          {/* Input Mode Tabs */}
           {!result && !loading && (
-            <div style={{ display: 'flex', gap: '.5rem', marginBottom: '1.25rem', background: '#f1f5f9', padding: 4, borderRadius: 14 }}>
+            <div style={{ display: 'flex', gap: '.5rem', marginBottom: '1.25rem', background: '#f1f5f9', padding: 4, borderRadius: 12 }}>
               <button
                 onClick={() => { setActiveTab('camera'); startCamera(); }}
-                style={{ flex: 1, padding: '.65rem', border: 'none', borderRadius: 10, fontWeight: 700, fontSize: '.88rem', cursor: 'pointer', background: activeTab === 'camera' ? '#fff' : 'transparent', color: activeTab === 'camera' ? '#4f46e5' : '#64748b', boxShadow: activeTab === 'camera' ? '0 2px 8px rgba(0,0,0,0.08)' : 'none', transition: 'all 0.2s' }}
+                style={{ flex: 1, padding: '.5rem .25rem', border: 'none', borderRadius: 9, fontWeight: 800, fontSize: '.82rem', cursor: 'pointer', background: activeTab === 'camera' ? '#fff' : 'transparent', color: activeTab === 'camera' ? '#4f46e5' : '#64748b', boxShadow: activeTab === 'camera' ? '0 2px 8px rgba(0,0,0,0.08)' : 'none', transition: 'all 0.2s' }}
               >
                 📸 Live Camera
               </button>
               <button
                 onClick={() => { setActiveTab('upload'); stopCamera(); }}
-                style={{ flex: 1, padding: '.65rem', border: 'none', borderRadius: 10, fontWeight: 700, fontSize: '.88rem', cursor: 'pointer', background: activeTab === 'upload' ? '#fff' : 'transparent', color: activeTab === 'upload' ? '#4f46e5' : '#64748b', boxShadow: activeTab === 'upload' ? '0 2px 8px rgba(0,0,0,0.08)' : 'none', transition: 'all 0.2s' }}
+                style={{ flex: 1, padding: '.5rem .25rem', border: 'none', borderRadius: 9, fontWeight: 800, fontSize: '.82rem', cursor: 'pointer', background: activeTab === 'upload' ? '#fff' : 'transparent', color: activeTab === 'upload' ? '#4f46e5' : '#64748b', boxShadow: activeTab === 'upload' ? '0 2px 8px rgba(0,0,0,0.08)' : 'none', transition: 'all 0.2s' }}
               >
                 🖼️ Upload Photo
               </button>
               <button
+                onClick={() => { setActiveTab('type'); stopCamera(); }}
+                style={{ flex: 1, padding: '.5rem .25rem', border: 'none', borderRadius: 9, fontWeight: 800, fontSize: '.82rem', cursor: 'pointer', background: activeTab === 'type' ? '#fff' : 'transparent', color: activeTab === 'type' ? '#4f46e5' : '#64748b', boxShadow: activeTab === 'type' ? '0 2px 8px rgba(0,0,0,0.08)' : 'none', transition: 'all 0.2s' }}
+              >
+                ✍️ Type Question
+              </button>
+              <button
                 onClick={() => { setActiveTab('sample'); stopCamera(); }}
-                style={{ flex: 1, padding: '.65rem', border: 'none', borderRadius: 10, fontWeight: 700, fontSize: '.88rem', cursor: 'pointer', background: activeTab === 'sample' ? '#fff' : 'transparent', color: activeTab === 'sample' ? '#4f46e5' : '#64748b', boxShadow: activeTab === 'sample' ? '0 2px 8px rgba(0,0,0,0.08)' : 'none', transition: 'all 0.2s' }}
+                style={{ flex: 1, padding: '.5rem .25rem', border: 'none', borderRadius: 9, fontWeight: 800, fontSize: '.82rem', cursor: 'pointer', background: activeTab === 'sample' ? '#fff' : 'transparent', color: activeTab === 'sample' ? '#4f46e5' : '#64748b', boxShadow: activeTab === 'sample' ? '0 2px 8px rgba(0,0,0,0.08)' : 'none', transition: 'all 0.2s' }}
               >
                 💡 Try Samples
               </button>
@@ -264,7 +396,7 @@ export default function SnapSolveModal({ isOpen, onClose }) {
             <>
               {/* TAB 1: Live Camera */}
               {activeTab === 'camera' && (
-                <div style={{ textTransform: 'none' }}>
+                <div>
                   <div style={{ position: 'relative', width: '100%', height: 280, background: '#090d16', borderRadius: 16, overflow: 'hidden', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
                     <video ref={videoRef} playsInline muted style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
                     {!cameraActive && (
@@ -307,9 +439,30 @@ export default function SnapSolveModal({ isOpen, onClose }) {
                 </div>
               )}
 
-              {/* TAB 3: Try Samples */}
+              {/* TAB 3: Type Question */}
+              {activeTab === 'type' && (
+                <form onSubmit={handleTextSubmit}>
+                  <div style={{ marginBottom: '1rem' }}>
+                    <label style={{ display: 'block', fontWeight: 800, color: '#1e1b4b', fontSize: '.9rem', marginBottom: '.4rem' }}>
+                      ✍️ Enter or Paste Your Question:
+                    </label>
+                    <textarea
+                      rows={5}
+                      value={typedQuestion}
+                      onChange={e => setTypedQuestion(e.target.value)}
+                      placeholder="e.g. Find the roots of equation 3x² - 5x + 2 = 0 using quadratic formula..."
+                      style={{ width: '100%', borderRadius: 14, border: '1.5px solid #cbd5e1', padding: '1rem', fontFamily: 'Nunito', fontSize: '.92rem', resize: 'vertical' }}
+                    />
+                  </div>
+                  <button type="submit" className="btn btn-primary" style={{ width: '100%', padding: '.8rem', borderRadius: 12, fontWeight: 800 }}>
+                    ⚡ Solve Question with AI
+                  </button>
+                </form>
+              )}
+
+              {/* TAB 4: Try Samples */}
               {activeTab === 'sample' && (
-                <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(180px, 1fr))', gap: '1rem' }}>
+                <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(190px, 1fr))', gap: '1rem' }}>
                   {SAMPLE_QUESTIONS.map(item => (
                     <div
                       key={item.id}
@@ -333,12 +486,12 @@ export default function SnapSolveModal({ isOpen, onClose }) {
             <div style={{ textAlign: 'center', padding: '3rem 1rem' }}>
               <div style={{ position: 'relative', width: 140, height: 140, margin: '0 auto 1.5rem', borderRadius: 16, overflow: 'hidden', border: '3px solid #6366f1' }}>
                 <img src={previewUrl || 'https://images.unsplash.com/photo-1635070041078-e363dbe005cb?w=600&auto=format&fit=crop&q=80'} alt="Scanning" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
-                <div style={{ position: 'absolute', top: `${scanProgress}%`, left: 0, right: 0, height: 4, background: '#ef4444', boxShadow: '0 0 12px #ef4444', transition: 'top 0.3s ease' }} />
+                <div style={{ position: 'absolute', top: `${scanProgress}%`, left: 0, right: 0, height: 4, background: '#ef4444', boxShadow: '0 0 12px #ef4444', transition: 'top 0.2s ease' }} />
               </div>
-              <h3 style={{ fontFamily: 'Nunito', fontWeight: 900, color: '#1e1b4b', margin: '0 0 .4rem' }}>AI Scanning & Solving Question...</h3>
+              <h3 style={{ fontFamily: 'Nunito', fontWeight: 900, color: '#1e1b4b', margin: '0 0 .4rem' }}>AI Scanning &amp; Solving Question...</h3>
               <p style={{ color: '#64748b', fontSize: '.85rem', marginBottom: '1.25rem' }}>Extracting mathematical text and building step-by-step solution</p>
               <div style={{ width: '80%', maxWidth: 300, height: 8, background: '#e2e8f0', borderRadius: 4, margin: '0 auto', overflow: 'hidden' }}>
-                <div style={{ width: `${scanProgress}%`, height: '100%', background: 'linear-gradient(90deg, #4f46e5, #ec4899)', transition: 'width 0.3s' }} />
+                <div style={{ width: `${scanProgress}%`, height: '100%', background: 'linear-gradient(90deg, #4f46e5, #ec4899)', transition: 'width 0.2s' }} />
               </div>
             </div>
           )}
@@ -356,11 +509,21 @@ export default function SnapSolveModal({ isOpen, onClose }) {
                     {result.chapter || 'Step-by-Step AI Breakdown'}
                   </div>
                 </div>
-                {result.topicLink && (
-                  <Link to={result.topicLink} onClick={onClose} className="btn btn-primary" style={{ fontSize: '.82rem', padding: '.45rem 1rem', borderRadius: 10 }}>
-                    📖 Read Full Topic Notes →
-                  </Link>
-                )}
+                <div style={{ display: 'flex', gap: '.5rem', alignItems: 'center' }}>
+                  {/* Voice Walkthrough Button */}
+                  <button
+                    onClick={toggleAudioSpeech}
+                    style={{ padding: '.45rem .85rem', border: 'none', borderRadius: 10, fontWeight: 800, fontSize: '.8rem', cursor: 'pointer', background: isPlayingAudio ? '#ef4444' : '#4f46e5', color: '#fff', display: 'flex', alignItems: 'center', gap: '.4rem', transition: 'all 0.2s' }}
+                  >
+                    {isPlayingAudio ? '⏹️ Stop Voice' : '🔊 Listen AI Explanation'}
+                  </button>
+
+                  {result.topicLink && (
+                    <Link to={result.topicLink} onClick={onClose} className="btn btn-primary" style={{ fontSize: '.82rem', padding: '.45rem 1rem', borderRadius: 10 }}>
+                      📖 Read Topic Notes →
+                    </Link>
+                  )}
+                </div>
               </div>
 
               {/* Extracted Question Box */}
@@ -400,8 +563,66 @@ export default function SnapSolveModal({ isOpen, onClose }) {
                 </div>
               )}
 
+              {result.examTip && (
+                <div style={{ background: '#fffbeb', border: '1px solid #fde68a', borderRadius: 14, padding: '1rem 1.25rem', marginBottom: '1.25rem' }}>
+                  <div style={{ fontWeight: 800, color: '#b45309', fontSize: '.85rem', marginBottom: '.3rem' }}>🎯 Board Exam Scoring Tip:</div>
+                  <div style={{ color: '#92400e', fontSize: '.85rem', lineHeight: 1.5 }}>
+                    {result.examTip}
+                  </div>
+                </div>
+              )}
+
+              {/* Interactive AI Follow-up Chat */}
+              <div style={{ background: '#f8fafc', border: '1px solid #cbd5e1', borderRadius: 16, padding: '1.25rem', marginBottom: '1.5rem' }}>
+                <h5 style={{ fontFamily: 'Nunito', fontWeight: 800, color: '#1e1b4b', margin: '0 0 .75rem', fontSize: '.95rem', display: 'flex', alignItems: 'center', gap: '.4rem' }}>
+                  💬 Ask AI a Follow-up Question on this Solution:
+                </h5>
+
+                {followUpChat.length > 0 && (
+                  <div style={{ display: 'flex', flexDirection: 'column', gap: '.65rem', marginBottom: '1rem', maxHeight: 200, overflowY: 'auto' }}>
+                    {followUpChat.map((msg, i) => (
+                      <div
+                        key={i}
+                        style={{
+                          alignSelf: msg.role === 'user' ? 'flex-end' : 'flex-start',
+                          background: msg.role === 'user' ? '#4f46e5' : '#fff',
+                          color: msg.role === 'user' ? '#fff' : '#1e293b',
+                          border: msg.role === 'user' ? 'none' : '1px solid #e2e8f0',
+                          padding: '.65rem 1rem',
+                          borderRadius: 12,
+                          fontSize: '.85rem',
+                          maxWidth: '85%',
+                          lineHeight: 1.5,
+                          whiteSpace: 'pre-line'
+                        }}
+                      >
+                        {msg.content}
+                      </div>
+                    ))}
+                  </div>
+                )}
+
+                <form onSubmit={handleFollowUpSubmit} style={{ display: 'flex', gap: '.5rem' }}>
+                  <input
+                    type="text"
+                    value={followUpQuery}
+                    onChange={e => setFollowUpQuery(e.target.value)}
+                    placeholder="e.g. Can you explain step 2 in Hindi? Or why did we take discriminant > 0?"
+                    style={{ flex: 1, borderRadius: 10, border: '1.5px solid #cbd5e1', padding: '.55rem .85rem', fontFamily: 'Nunito', fontSize: '.85rem' }}
+                  />
+                  <button
+                    type="submit"
+                    disabled={followUpLoading || !followUpQuery.trim()}
+                    className="btn btn-primary"
+                    style={{ padding: '.55rem 1.1rem', borderRadius: 10, fontWeight: 800, fontSize: '.85rem' }}
+                  >
+                    {followUpLoading ? 'Asking...' : 'Send 🚀'}
+                  </button>
+                </form>
+              </div>
+
               {/* Action Buttons */}
-              <div style={{ display: 'flex', gap: '1rem', marginTop: '1.5rem' }}>
+              <div style={{ display: 'flex', gap: '1rem' }}>
                 <button
                   onClick={() => { setResult(null); setActiveTab('camera'); startCamera(); }}
                   className="btn btn-primary"

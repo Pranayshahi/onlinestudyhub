@@ -1546,6 +1546,50 @@ Respond ONLY with valid JSON in the following exact format:
   }
 });
 
+// ── AI Snap & Solve Follow-up Chat ──────────────────────────────────
+app.post('/api/ai/snap-solve-followup', async (req, res) => {
+  try {
+    const { question, solutionContext, userQuery } = req.body || {};
+    const groqKey = (process.env.GROQ_API_KEY || '').trim();
+    if (!groqKey) return res.status(503).json({ error: 'AI not configured' });
+    if (!userQuery) return res.status(400).json({ error: 'userQuery is required' });
+
+    const systemPrompt = `You are an expert Indian EdTech Master Teacher.
+A student was reviewing a solved problem and asked a follow-up question.
+
+Original Question: "${question || 'Problem'}"
+Solution Context: ${JSON.stringify(solutionContext || {})}
+
+Rules:
+- Be encouraging, clear, and student-friendly.
+- Answer the student's follow-up question specifically (whether in English or Hindi/Hinglish).
+- Provide step-by-step mathematical or conceptual reasoning.
+- Use clear bullet points and bold headers.`;
+
+    const resp = await fetch('https://api.groq.com/openai/v1/chat/completions', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${groqKey}` },
+      body: JSON.stringify({
+        model: 'llama-3.3-70b-versatile',
+        messages: [
+          { role: 'system', content: systemPrompt },
+          { role: 'user', content: userQuery }
+        ],
+        temperature: 0.3,
+        max_tokens: 1000,
+      })
+    });
+
+    if (!resp.ok) return res.status(502).json({ error: 'AI service error' });
+    const data = await resp.json();
+    const reply = data.choices?.[0]?.message?.content || 'Here is the explanation for your query.';
+    res.json({ reply });
+  } catch (err) {
+    console.error('Snap-solve follow-up error:', err);
+    res.status(500).json({ error: 'Failed to answer follow-up query' });
+  }
+});
+
 // ── Gamification: Badge definitions ────────────────────────────
 const BADGES = [
   // ── Progress milestones ─────────────────────────────────────
