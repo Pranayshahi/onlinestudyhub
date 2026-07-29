@@ -253,7 +253,7 @@ export default function VirtualScienceLab({ defaultLab = 'optics' }) {
           ].map(tab => (
             <button
               key={tab.id}
-              onClick={() => setActiveTab(tab.id)}
+              onClick={() => setActiveLab(tab.id)}
               style={{
                 background: activeLab === tab.id ? 'linear-gradient(135deg, #6366f1, #4f46e5)' : 'rgba(255,255,255,0.08)',
                 border: activeLab === tab.id ? '1px solid #a5b4fc' : '1px solid rgba(255,255,255,0.15)',
