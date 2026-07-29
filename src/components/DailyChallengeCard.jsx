@@ -11,41 +11,87 @@ const TARGET_TABS = [
 
 const OPTION_LETTERS = ['A', 'B', 'C', 'D'];
 
+const DEMO_QOTD_DATA = {
+  'class-10': {
+    id: 'qotd-c10-01',
+    subject: 'Mathematics',
+    topic: 'Quadratic Equations & Discriminant',
+    question: 'If the quadratic equation 2x² - kx + 8 = 0 has two equal real roots, what is the value of k?',
+    options: ['k = ±4', 'k = ±8', 'k = ±16', 'k = 0'],
+    totalAttempts: 4120,
+    correctCount: 3480,
+    pctCorrect: 84
+  },
+  'class-11': {
+    id: 'qotd-c11-01',
+    subject: 'Physics',
+    topic: 'Kinematics & Projectile Motion',
+    question: 'A ball is thrown at an angle of 45° with velocity 20 m/s. What is its horizontal range (g = 10 m/s²)?',
+    options: ['20 m', '40 m', '80 m', '10 m'],
+    totalAttempts: 3890,
+    correctCount: 3120,
+    pctCorrect: 80
+  },
+  'class-12': {
+    id: 'qotd-c12-01',
+    subject: 'Chemistry',
+    topic: 'Electrochemistry & Nernst Equation',
+    question: 'What happens to the cell potential (Ecell) of Zn-Cu cell when concentration of Zn²⁺ ions is increased?',
+    options: ['Ecell Increases', 'Ecell Decreases', 'Remains Constant', 'Becomes Zero'],
+    totalAttempts: 2950,
+    correctCount: 2360,
+    pctCorrect: 80
+  },
+  'jee': {
+    id: 'qotd-jee-01',
+    subject: 'Mathematics (JEE Main)',
+    topic: 'Integral Calculus & Definite Integrals',
+    question: 'Evaluate the definite integral ∫ from -π/2 to π/2 of (sin⁵ x + x³) dx.',
+    options: ['π', 'π/2', '0', '2π'],
+    totalAttempts: 5210,
+    correctCount: 4280,
+    pctCorrect: 82
+  }
+};
+
 export default function DailyChallengeCard({ user }) {
   const [selectedTarget, setSelectedTarget] = useState('class-10');
-  const [qotd, setQotd] = useState(null);
+  const [qotd, setQotd] = useState(DEMO_QOTD_DATA['class-10']);
   const [selectedIndex, setSelectedIndex] = useState(null);
   const [loading, setLoading] = useState(false);
   const [submitted, setSubmitted] = useState(false);
   const [result, setResult] = useState(null);
+  const [showInfo, setShowInfo] = useState(false);
 
   const { awardXP } = useGamification(user);
 
-  // Fetch Question of the Day for selected target
+  // Fetch live Question of the Day for selected target
   useEffect(() => {
     let isMounted = true;
-    setLoading(true);
+    // Set fallback instant demo data first
+    setQotd(DEMO_QOTD_DATA[selectedTarget] || DEMO_QOTD_DATA['class-10']);
     setSubmitted(false);
     setResult(null);
     setSelectedIndex(null);
 
+    // Check if student already answered today in localStorage
+    try {
+      const saved = localStorage.getItem(`osh_qotd_${selectedTarget}_${new Date().toISOString().slice(0, 10)}`);
+      if (saved) {
+        const parsed = JSON.parse(saved);
+        setResult(parsed);
+        setSelectedIndex(parsed.selectedIndex);
+        setSubmitted(true);
+      }
+    } catch {}
+
     api(`/qotd?target=${selectedTarget}`)
       .then(data => {
-        if (isMounted) {
+        if (isMounted && data) {
           setQotd(data);
-          try {
-            const saved = localStorage.getItem(`osh_qotd_${selectedTarget}_${new Date().toISOString().slice(0, 10)}`);
-            if (saved) {
-              const parsed = JSON.parse(saved);
-              setResult(parsed);
-              setSelectedIndex(parsed.selectedIndex);
-              setSubmitted(true);
-            }
-          } catch {}
         }
       })
-      .catch(err => console.error('Failed to load QOTD:', err))
-      .finally(() => { if (isMounted) setLoading(false); });
+      .catch(err => console.error('Failed to load live QOTD:', err));
 
     return () => { isMounted = false; };
   }, [selectedTarget]);
@@ -81,10 +127,12 @@ export default function DailyChallengeCard({ user }) {
     }
   }
 
+  const currentQotd = qotd || DEMO_QOTD_DATA[selectedTarget] || DEMO_QOTD_DATA['class-10'];
+
   return (
     <div
       style={{
-        background: 'linear-gradient(145deg, rgba(30, 27, 75, 0.92) 0%, rgba(15, 23, 42, 0.96) 100%)',
+        background: 'linear-gradient(145deg, rgba(30, 27, 75, 0.95) 0%, rgba(15, 23, 42, 0.98) 100%)',
         backdropFilter: 'blur(20px)',
         border: '1.5px solid rgba(165, 180, 252, 0.35)',
         borderRadius: 24,
@@ -99,14 +147,17 @@ export default function DailyChallengeCard({ user }) {
       <div style={{ position: 'absolute', top: '-40px', right: '-40px', width: 140, height: 140, background: 'radial-gradient(circle, rgba(245,158,11,0.25) 0%, transparent 70%)', pointerEvents: 'none' }} />
 
       {/* Header Banner */}
-      <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: '.5rem', marginBottom: '1.1rem' }}>
+      <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: '.5rem', marginBottom: '.75rem' }}>
         <div style={{ display: 'flex', alignItems: 'center', gap: '.6rem' }}>
           <span style={{ background: 'linear-gradient(135deg, #ef4444, #f97316)', color: '#fff', fontSize: '.7rem', fontWeight: 900, padding: '3px 10px', borderRadius: 20, textTransform: 'uppercase', letterSpacing: '0.5px', boxShadow: '0 2px 10px rgba(239,68,68,0.4)', display: 'inline-flex', alignItems: 'center', gap: '.3rem' }}>
-            🔥 QOTD
+            🔥 DAILY CHALLENGE
           </span>
-          <span style={{ fontSize: '.78rem', color: 'rgba(255,255,255,0.85)', fontWeight: 800 }}>
-            Resets in 14h 22m ⏱️
-          </span>
+          <button
+            onClick={() => setShowInfo(!showInfo)}
+            style={{ background: 'rgba(255,255,255,0.1)', border: 'none', color: '#a5b4fc', fontSize: '.75rem', fontWeight: 800, padding: '2px 8px', borderRadius: 8, cursor: 'pointer' }}
+          >
+            ℹ️ What is this?
+          </button>
         </div>
 
         {/* Target Class Tabs */}
@@ -134,22 +185,25 @@ export default function DailyChallengeCard({ user }) {
         </div>
       </div>
 
-      {loading && !qotd && (
-        <div style={{ textAlign: 'center', padding: '2.5rem 0', color: 'rgba(255,255,255,0.7)', fontSize: '.9rem' }}>
-          ⚡ Loading today's challenge question...
+      {/* Explanatory Info Box (Collapsible) */}
+      {showInfo && (
+        <div style={{ background: 'rgba(99,102,241,0.2)', border: '1px solid rgba(165,180,252,0.3)', borderRadius: 14, padding: '.85rem 1rem', marginBottom: '1rem', fontSize: '.8rem', color: '#c7d2fe', lineHeight: 1.5 }}>
+          <strong>🚀 What is Daily Challenge (QOTD)?</strong><br />
+          Test your conceptual clarity daily with 1 high-yield board/JEE question. Resets every 24 hours.<br />
+          ✨ Earn <strong>+25 XP</strong>, extend your <strong>🔥 Study Streak</strong>, and view real-time national accuracy!
         </div>
       )}
 
-      {qotd && (
+      {currentQotd && (
         <div>
           {/* Question Tags & Reward Badge */}
           <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '.75rem' }}>
             <div style={{ display: 'flex', gap: '.4rem', flexWrap: 'wrap' }}>
               <span style={{ background: 'rgba(99,102,241,0.25)', border: '1px solid rgba(165,180,252,0.35)', color: '#c7d2fe', fontSize: '.72rem', fontWeight: 800, padding: '3px 10px', borderRadius: 8 }}>
-                {qotd.subject}
+                {currentQotd.subject}
               </span>
               <span style={{ background: 'rgba(245,158,11,0.2)', border: '1px solid rgba(253,230,138,0.3)', color: '#fef08a', fontSize: '.72rem', fontWeight: 800, padding: '3px 10px', borderRadius: 8 }}>
-                {qotd.topic}
+                {currentQotd.topic}
               </span>
             </div>
             <span style={{ background: 'linear-gradient(135deg,#fbbf24,#f97316)', color: '#000', fontSize: '.7rem', fontWeight: 900, padding: '2px 8px', borderRadius: 12 }}>
@@ -159,13 +213,13 @@ export default function DailyChallengeCard({ user }) {
 
           {/* Question Text */}
           <h4 style={{ fontFamily: 'Nunito', fontWeight: 800, fontSize: '1rem', lineHeight: 1.5, margin: '0 0 1.1rem', color: '#fff' }}>
-            {qotd.question}
+            {currentQotd.question}
           </h4>
 
           {/* Options List */}
           <form onSubmit={handleSubmit}>
             <div style={{ display: 'flex', flexDirection: 'column', gap: '.6rem', marginBottom: '1.25rem' }}>
-              {qotd.options?.map((opt, idx) => {
+              {currentQotd.options?.map((opt, idx) => {
                 let bg = 'rgba(255,255,255,0.06)';
                 let border = '1px solid rgba(255,255,255,0.14)';
                 let letterBg = 'rgba(255,255,255,0.12)';
