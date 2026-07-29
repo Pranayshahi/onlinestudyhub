@@ -1439,7 +1439,7 @@
 /* Two-column hero layout */
 .hero-two-col {
   display: grid;
-  grid-template-columns: 1fr 440px;
+  grid-template-columns: 1fr 500px;
   align-items: stretch;
   gap: 2.5rem;
 }

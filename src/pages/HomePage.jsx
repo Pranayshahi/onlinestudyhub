@@ -1258,7 +1258,6 @@ export default function HomePage({ onOpenAI, user }) {
                 position: "relative",
                 alignSelf: "center",
                 width: "100%",
-                maxWidth: 480,
               }}
             >
               <DailyChallengeCard user={user} />

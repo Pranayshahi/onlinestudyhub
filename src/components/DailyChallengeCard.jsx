@@ -9,6 +9,8 @@ const TARGET_TABS = [
   { id: 'jee',      label: 'JEE / NEET' },
 ];
 
+const OPTION_LETTERS = ['A', 'B', 'C', 'D'];
+
 export default function DailyChallengeCard({ user }) {
   const [selectedTarget, setSelectedTarget] = useState('class-10');
   const [qotd, setQotd] = useState(null);
@@ -31,7 +33,6 @@ export default function DailyChallengeCard({ user }) {
       .then(data => {
         if (isMounted) {
           setQotd(data);
-          // Check if already answered today in localStorage
           try {
             const saved = localStorage.getItem(`osh_qotd_${selectedTarget}_${new Date().toISOString().slice(0, 10)}`);
             if (saved) {
@@ -67,7 +68,6 @@ export default function DailyChallengeCard({ user }) {
       // Award XP & Extend Streak
       awardXP({ action: 'quiz_completed', subjectId: selectedTarget });
 
-      // Save submission state to localStorage
       try {
         localStorage.setItem(
           `osh_qotd_${selectedTarget}_${new Date().toISOString().slice(0, 10)}`,
@@ -84,44 +84,47 @@ export default function DailyChallengeCard({ user }) {
   return (
     <div
       style={{
-        background: 'rgba(255, 255, 255, 0.07)',
-        backdropFilter: 'blur(16px)',
-        border: '1px solid rgba(255, 255, 255, 0.18)',
-        borderRadius: 22,
+        background: 'linear-gradient(145deg, rgba(30, 27, 75, 0.92) 0%, rgba(15, 23, 42, 0.96) 100%)',
+        backdropFilter: 'blur(20px)',
+        border: '1.5px solid rgba(165, 180, 252, 0.35)',
+        borderRadius: 24,
         padding: '1.5rem',
-        boxShadow: '0 12px 32px rgba(0, 0, 0, 0.25)',
+        boxShadow: '0 16px 40px rgba(79, 70, 229, 0.35)',
         color: '#fff',
+        position: 'relative',
+        overflow: 'hidden',
       }}
     >
-      {/* Top Banner & Target Selector */}
-      <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: '.5rem', marginBottom: '1rem' }}>
-        <div style={{ display: 'flex', alignItems: 'center', gap: '.5rem' }}>
-          <span style={{ fontSize: '1.3rem' }}>⚡</span>
-          <div>
-            <h3 style={{ fontFamily: 'Nunito', fontWeight: 900, fontSize: '1.05rem', margin: 0, color: '#fff' }}>
-              Daily Challenge (QOTD)
-            </h3>
-            <p style={{ fontSize: '.72rem', color: 'rgba(255,255,255,0.7)', margin: 0 }}>
-              Resets every 24h • Earn XP & Extend Streak 🔥
-            </p>
-          </div>
+      {/* Decorative background ambient glow */}
+      <div style={{ position: 'absolute', top: '-40px', right: '-40px', width: 140, height: 140, background: 'radial-gradient(circle, rgba(245,158,11,0.25) 0%, transparent 70%)', pointerEvents: 'none' }} />
+
+      {/* Header Banner */}
+      <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: '.5rem', marginBottom: '1.1rem' }}>
+        <div style={{ display: 'flex', alignItems: 'center', gap: '.6rem' }}>
+          <span style={{ background: 'linear-gradient(135deg, #ef4444, #f97316)', color: '#fff', fontSize: '.7rem', fontWeight: 900, padding: '3px 10px', borderRadius: 20, textTransform: 'uppercase', letterSpacing: '0.5px', boxShadow: '0 2px 10px rgba(239,68,68,0.4)', display: 'inline-flex', alignItems: 'center', gap: '.3rem' }}>
+            🔥 QOTD
+          </span>
+          <span style={{ fontSize: '.78rem', color: 'rgba(255,255,255,0.85)', fontWeight: 800 }}>
+            Resets in 14h 22m ⏱️
+          </span>
         </div>
 
-        {/* Target Tabs */}
-        <div style={{ display: 'flex', gap: '.25rem', background: 'rgba(0,0,0,0.25)', padding: 3, borderRadius: 10 }}>
+        {/* Target Class Tabs */}
+        <div style={{ display: 'flex', gap: '.25rem', background: 'rgba(0,0,0,0.35)', padding: 3, borderRadius: 12, border: '1px solid rgba(255,255,255,0.1)' }}>
           {TARGET_TABS.map(tab => (
             <button
               key={tab.id}
               onClick={() => setSelectedTarget(tab.id)}
               style={{
                 border: 'none',
-                borderRadius: 7,
-                padding: '.25rem .55rem',
-                fontSize: '.72rem',
-                fontWeight: 800,
+                borderRadius: 9,
+                padding: '.3rem .65rem',
+                fontSize: '.75rem',
+                fontWeight: 900,
                 cursor: 'pointer',
                 background: selectedTarget === tab.id ? 'linear-gradient(135deg, #f59e0b, #d97706)' : 'transparent',
-                color: '#fff',
+                color: selectedTarget === tab.id ? '#fff' : 'rgba(255,255,255,0.7)',
+                boxShadow: selectedTarget === tab.id ? '0 2px 8px rgba(245,158,11,0.4)' : 'none',
                 transition: 'all 0.2s',
               }}
             >
@@ -132,50 +135,59 @@ export default function DailyChallengeCard({ user }) {
       </div>
 
       {loading && !qotd && (
-        <div style={{ textAlign: 'center', padding: '2rem 0', color: 'rgba(255,255,255,0.7)', fontSize: '.85rem' }}>
+        <div style={{ textAlign: 'center', padding: '2.5rem 0', color: 'rgba(255,255,255,0.7)', fontSize: '.9rem' }}>
           ⚡ Loading today's challenge question...
         </div>
       )}
 
       {qotd && (
         <div>
-          {/* Question Meta */}
-          <div style={{ display: 'flex', gap: '.5rem', marginBottom: '.65rem' }}>
-            <span style={{ background: 'rgba(99,102,241,0.3)', border: '1px solid rgba(165,180,252,0.3)', color: '#a5b4fc', fontSize: '.7rem', fontWeight: 800, padding: '2px 8px', borderRadius: 8 }}>
-              {qotd.subject}
-            </span>
-            <span style={{ background: 'rgba(245,158,11,0.25)', border: '1px solid rgba(253,230,138,0.3)', color: '#fef08a', fontSize: '.7rem', fontWeight: 800, padding: '2px 8px', borderRadius: 8 }}>
-              {qotd.topic}
+          {/* Question Tags & Reward Badge */}
+          <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '.75rem' }}>
+            <div style={{ display: 'flex', gap: '.4rem', flexWrap: 'wrap' }}>
+              <span style={{ background: 'rgba(99,102,241,0.25)', border: '1px solid rgba(165,180,252,0.35)', color: '#c7d2fe', fontSize: '.72rem', fontWeight: 800, padding: '3px 10px', borderRadius: 8 }}>
+                {qotd.subject}
+              </span>
+              <span style={{ background: 'rgba(245,158,11,0.2)', border: '1px solid rgba(253,230,138,0.3)', color: '#fef08a', fontSize: '.72rem', fontWeight: 800, padding: '3px 10px', borderRadius: 8 }}>
+                {qotd.topic}
+              </span>
+            </div>
+            <span style={{ background: 'linear-gradient(135deg,#fbbf24,#f97316)', color: '#000', fontSize: '.7rem', fontWeight: 900, padding: '2px 8px', borderRadius: 12 }}>
+              +25 XP ⚡
             </span>
           </div>
 
           {/* Question Text */}
-          <p style={{ fontFamily: 'Nunito', fontWeight: 700, fontSize: '.95rem', lineHeight: 1.5, margin: '0 0 1rem', color: '#fff' }}>
+          <h4 style={{ fontFamily: 'Nunito', fontWeight: 800, fontSize: '1rem', lineHeight: 1.5, margin: '0 0 1.1rem', color: '#fff' }}>
             {qotd.question}
-          </p>
+          </h4>
 
-          {/* Options */}
+          {/* Options List */}
           <form onSubmit={handleSubmit}>
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '.5rem', marginBottom: '1rem' }}>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '.6rem', marginBottom: '1.25rem' }}>
               {qotd.options?.map((opt, idx) => {
                 let bg = 'rgba(255,255,255,0.06)';
-                let border = '1px solid rgba(255,255,255,0.15)';
-                let color = 'rgba(255,255,255,0.9)';
+                let border = '1px solid rgba(255,255,255,0.14)';
+                let letterBg = 'rgba(255,255,255,0.12)';
+                let letterColor = '#fff';
 
                 if (submitted && result) {
                   if (idx === result.correctIndex) {
                     bg = 'rgba(34,197,94,0.35)';
-                    border = '1px solid #4ade80';
-                    color = '#fff';
+                    border = '1.5px solid #4ade80';
+                    letterBg = '#22c55e';
+                    letterColor = '#fff';
                   } else if (idx === selectedIndex && !result.isCorrect) {
                     bg = 'rgba(239,68,68,0.35)';
-                    border = '1px solid #f87171';
-                    color = '#fff';
+                    border = '1.5px solid #f87171';
+                    letterBg = '#ef4444';
+                    letterColor = '#fff';
                   }
                 } else if (selectedIndex === idx) {
-                  bg = 'rgba(245,158,11,0.3)';
+                  bg = 'rgba(245,158,11,0.25)';
                   border = '1.5px solid #fbbf24';
-                  color = '#fff';
+                  letterBg = '#f59e0b';
+                  letterColor = '#000';
                 }
 
                 return (
@@ -188,22 +200,26 @@ export default function DailyChallengeCard({ user }) {
                       textAlign: 'left',
                       background: bg,
                       border,
-                      borderRadius: 12,
-                      padding: '.65rem .85rem',
-                      color,
-                      fontSize: '.85rem',
+                      borderRadius: 14,
+                      padding: '.7rem .9rem',
+                      color: '#fff',
+                      fontSize: '.88rem',
                       fontFamily: 'Nunito',
                       fontWeight: 700,
                       cursor: submitted ? 'default' : 'pointer',
-                      transition: 'all 0.15s',
+                      transition: 'all 0.2s',
                       display: 'flex',
                       alignItems: 'center',
-                      justify: 'space-between',
+                      gap: '.75rem',
+                      boxShadow: selectedIndex === idx ? '0 4px 14px rgba(245,158,11,0.2)' : 'none',
                     }}
                   >
-                    <span>{opt}</span>
-                    {submitted && result && idx === result.correctIndex && <span>✓ Correct</span>}
-                    {submitted && result && idx === selectedIndex && !result.isCorrect && <span>✗ Your Pick</span>}
+                    <span style={{ width: 26, height: 26, borderRadius: '50%', background: letterBg, color: letterColor, display: 'flex', alignItems: 'center', justifyContent: 'center', fontWeight: 900, fontSize: '.75rem', flexShrink: 0 }}>
+                      {OPTION_LETTERS[idx]}
+                    </span>
+                    <span style={{ flex: 1 }}>{opt}</span>
+                    {submitted && result && idx === result.correctIndex && <span style={{ color: '#4ade80', fontWeight: 900, fontSize: '.8rem' }}>✓ Correct</span>}
+                    {submitted && result && idx === selectedIndex && !result.isCorrect && <span style={{ color: '#f87171', fontWeight: 900, fontSize: '.8rem' }}>✗ Your Pick</span>}
                   </button>
                 );
               })}
@@ -216,42 +232,48 @@ export default function DailyChallengeCard({ user }) {
                 className="btn btn-primary"
                 style={{
                   width: '100%',
-                  padding: '.65rem',
-                  borderRadius: 12,
+                  padding: '.75rem',
+                  borderRadius: 14,
                   fontWeight: 900,
-                  fontSize: '.9rem',
+                  fontSize: '.95rem',
                   opacity: selectedIndex === null ? 0.5 : 1,
                   cursor: selectedIndex === null ? 'not-allowed' : 'pointer',
-                  background: 'linear-gradient(135deg, #f59e0b, #ef4444)',
+                  background: 'linear-gradient(135deg, #f59e0b 0%, #ef4444 100%)',
                   border: 'none',
-                  boxShadow: '0 4px 15px rgba(245,158,11,0.4)',
+                  boxShadow: '0 6px 20px rgba(245,158,11,0.45)',
+                  transition: 'transform 0.2s, box-shadow 0.2s',
                 }}
               >
-                {loading ? 'Submitting...' : '🚀 Submit Answer & Earn +25 XP'}
+                {loading ? 'Submitting...' : '🚀 Submit Answer & Claim +25 XP'}
               </button>
             ) : null}
           </form>
 
-          {/* Submitted Result Breakdown & Leaderboard Stats */}
+          {/* Submitted Result & Community Stats Bar */}
           {submitted && result && (
-            <div style={{ marginTop: '1rem', background: 'rgba(0,0,0,0.3)', border: '1px solid rgba(255,255,255,0.12)', borderRadius: 14, padding: '1rem' }}>
-              <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '.6rem' }}>
-                <div style={{ fontSize: '.9rem', fontWeight: 900, color: result.isCorrect ? '#4ade80' : '#f87171' }}>
+            <div style={{ marginTop: '1.25rem', background: 'rgba(0,0,0,0.35)', border: '1px solid rgba(255,255,255,0.15)', borderRadius: 16, padding: '1.1rem' }}>
+              <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '.75rem', flexWrap: 'wrap', gap: '.4rem' }}>
+                <div style={{ fontSize: '.92rem', fontWeight: 900, color: result.isCorrect ? '#4ade80' : '#f87171' }}>
                   {result.isCorrect ? '🎉 Correct! +25 XP & 🔥 Streak Extended!' : '💡 Keep Practising! +10 XP Awarded'}
                 </div>
-                <div style={{ fontSize: '.75rem', fontWeight: 800, color: '#fbbf24' }}>
-                  📊 {result.pctCorrect}% got this right today ({result.totalAttempts} answers)
-                </div>
+                <span style={{ fontSize: '.75rem', color: '#fbbf24', fontWeight: 800 }}>
+                  📊 {result.pctCorrect}% got this right today ({result.totalAttempts} attempts)
+                </span>
               </div>
 
-              <div style={{ fontSize: '.83rem', color: 'rgba(255,255,255,0.85)', lineHeight: 1.5, whiteSpace: 'pre-line', marginBottom: '.6rem' }}>
-                <strong>Step-by-Step Breakdown:</strong><br />
+              {/* Progress Bar for Community Accuracy */}
+              <div style={{ width: '100%', height: 6, background: 'rgba(255,255,255,0.15)', borderRadius: 3, overflow: 'hidden', marginBottom: '.85rem' }}>
+                <div style={{ width: `${result.pctCorrect}%`, height: '100%', background: 'linear-gradient(90deg, #4f46e5, #10b981)', transition: 'width 0.6s ease' }} />
+              </div>
+
+              <div style={{ fontSize: '.85rem', color: 'rgba(255,255,255,0.9)', lineHeight: 1.5, whiteSpace: 'pre-line', marginBottom: '.75rem' }}>
+                <strong style={{ color: '#a5b4fc' }}>Step-by-Step Breakdown:</strong><br />
                 {result.explanation}
               </div>
 
               {result.examTip && (
-                <div style={{ fontSize: '.78rem', color: '#fef08a', background: 'rgba(245,158,11,0.18)', border: '1px solid rgba(253,230,138,0.25)', padding: '.5rem .75rem', borderRadius: 10 }}>
-                  💡 <strong>Exam Trick:</strong> {result.examTip}
+                <div style={{ fontSize: '.8rem', color: '#fef08a', background: 'rgba(245,158,11,0.2)', border: '1px solid rgba(253,230,138,0.3)', padding: '.65rem .85rem', borderRadius: 12 }}>
+                  💡 <strong>Board Exam Trick:</strong> {result.examTip}
                 </div>
               )}
             </div>
