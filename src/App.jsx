@@ -36,6 +36,7 @@ const BatchDetailsPage = lazy(() => import("./pages/BatchDetailsPage"));
 const StorePage = lazy(() => import("./pages/StorePage"));
 const CommunityPage = lazy(() => import("./pages/CommunityPage"));
 const LeaderboardPage = lazy(() => import("./pages/LeaderboardPage"));
+const StudyRoomPage = lazy(() => import("./pages/StudyRoomPage"));
 
 // Heavy panel components — load only when opened
 const AIDoubtPanel = lazy(() => import("./components/AIDoubtPanel"));
@@ -302,6 +303,10 @@ export default function App() {
                       onOpenLogin={() => setLoginOpen(true)}
                     />
                   }
+                />
+                <Route
+                  path="/study-room"
+                  element={<StudyRoomPage user={user} />}
                 />
                 <Route path="*" element={<NotFoundPage />} />
               </Routes>

@@ -275,6 +275,7 @@ export default function Navbar({
                   <Link to="/store"       className="dropdown-item" onClick={close} style={{ display: "flex", alignItems: "center", gap: ".5rem" }}>📚 <span>Book Store</span></Link>
                   <Link to="/community"   className="dropdown-item" onClick={close} style={{ display: "flex", alignItems: "center", gap: ".5rem" }}>💬 <span>Community Q&amp;A</span></Link>
                   <Link to="/leaderboard" className="dropdown-item" onClick={close} style={{ display: "flex", alignItems: "center", gap: ".5rem" }}>🏆 <span>Leaderboard</span></Link>
+                  <Link to="/study-room"  className="dropdown-item" onClick={close} style={{ display: "flex", alignItems: "center", gap: ".5rem" }}>🎧 <span>Focus Together Room</span></Link>
                 </div>
               </div>
             </div>
