@@ -554,40 +554,7 @@ export default function Navbar({
               </a>
             )}
 
-            {/* Snap & Solve Camera AI — icon only */}
-            {onOpenSnapSolve && (
-              <button
-                onClick={onOpenSnapSolve}
-                aria-label="Snap & Solve AI Camera"
-                title="Snap & Solve — snap a textbook question for instant AI solution"
-                style={{
-                  display: "inline-flex",
-                  alignItems: "center",
-                  justifyContent: "center",
-                  width: 38,
-                  height: 38,
-                  background: "linear-gradient(135deg, #ef4444, #dc2626)",
-                  color: "#fff",
-                  borderRadius: "50%",
-                  border: "none",
-                  cursor: "pointer",
-                  boxShadow: "0 4px 14px rgba(239,68,68,0.35)",
-                  fontSize: "1.1rem",
-                  flexShrink: 0,
-                  transition: "transform 0.2s, box-shadow 0.2s",
-                }}
-                onMouseEnter={(e) => {
-                  e.currentTarget.style.transform = "scale(1.12)";
-                  e.currentTarget.style.boxShadow = "0 6px 20px rgba(239,68,68,0.55)";
-                }}
-                onMouseLeave={(e) => {
-                  e.currentTarget.style.transform = "scale(1)";
-                  e.currentTarget.style.boxShadow = "0 4px 14px rgba(239,68,68,0.35)";
-                }}
-              >
-                📷
-              </button>
-            )}
+
 
             {/* Notification Bell */}
             <NotificationBell user={user} />

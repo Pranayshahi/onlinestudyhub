@@ -30,7 +30,7 @@ function NotifItem({ n, onRead }) {
         {meta.icon}
       </div>
       <div className="notif-item-body">
-        <div className="notif-item-title">{n.title}</div>
+        <div className="notif-item-title">{(n.title || '').replace(/^[\p{Emoji}\s]+/u, '').trim() || n.title}</div>
         <div className="notif-item-text">{n.body}</div>
         <div className="notif-item-time">{timeAgo(n.createdAt)}</div>
       </div>

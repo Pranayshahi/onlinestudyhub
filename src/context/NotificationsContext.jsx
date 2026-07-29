@@ -15,23 +15,29 @@ const DEFAULT_SETTINGS = {
 
 const SEED_NOTIFS = [
   {
-    type: 'content', title: '📚 New Topics Available',
+    type: 'content', title: 'New Topics Available',
     body: 'Class 12 Physics: Electrostatics & Wave Optics chapters have been expanded!',
     link: '/class/class-12',
   },
   {
-    type: 'test', title: '🧪 Mock Test Ready',
+    type: 'test', title: 'Mock Test Ready',
     body: 'JEE Main Mock Test is now available. Challenge yourself today!',
     link: '/exam/jee/mock-test',
   },
   {
-    type: 'tip', title: '💡 Study Tip',
+    type: 'tip', title: 'Study Tip',
     body: 'Spaced repetition: Review a topic after 1 day, 3 days, then 1 week for 90% retention.',
   },
 ];
 
 function load() {
-  try { return JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]'); } catch { return []; }
+  try {
+    const list = JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]');
+    return list.map(item => ({
+      ...item,
+      title: (item.title || '').replace(/^[\p{Emoji}\s]+/u, '').trim() || item.title
+    }));
+  } catch { return []; }
 }
 function save(n) {
   try { localStorage.setItem(STORAGE_KEY, JSON.stringify(n)); } catch {}

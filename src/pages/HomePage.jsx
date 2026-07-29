@@ -6,6 +6,7 @@ import { useLang } from "../context/LanguageContext";
 import DailyChallengeCard from "../components/DailyChallengeCard";
 import LiveAIDoubtWidget from "../components/LiveAIDoubtWidget";
 import PersonalizedDashboardWidget from "../components/PersonalizedDashboardWidget";
+import AIAdaptiveDiagnosticEngine from "../components/AIAdaptiveDiagnosticEngine";
 
 const SUBJECTS = [
   { icon: "📐", name: "Mathematics", nameKey: "Mathematics", descKey: "subj_maths_desc",   color: "#4f46e5", bg: "#eef2ff", link: "/class/class-10/subject/mathematics" },
@@ -1459,6 +1460,9 @@ export default function HomePage({ onOpenAI, onOpenSnapSolve, user }) {
 
       {/* ── LIVE AI DOUBT SOLVER TRIAL WIDGET ───────────────────── */}
       <LiveAIDoubtWidget onOpenSnapSolve={onOpenSnapSolve} />
+
+      {/* ── AI ADAPTIVE LEARNING PATH & DIAGNOSTIC ENGINE ──────── */}
+      <AIAdaptiveDiagnosticEngine user={user} onReExplainConcept={() => onOpenSnapSolve && onOpenSnapSolve()} />
 
       {/* ── TRENDING TOPICS ──────────────────────────────────────── */}
       <div
