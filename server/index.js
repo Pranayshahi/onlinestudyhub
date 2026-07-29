@@ -1474,7 +1474,17 @@ app.post('/api/ai/snap-solve', async (req, res) => {
         { title: 'Step 3: Step-by-Step Solution', detail: 'Substitute given values into governing equations and perform step-by-step calculations.' }
       ],
       formulas: ['Standard Governing Equation', 'SI Unit Conversion'],
-      examTip: 'State given parameters explicitly before substituting values into formula for full marks.'
+      examTip: 'State given parameters explicitly before substituting values into formula for full marks.',
+      socraticHints: [
+        { hintNum: 1, Clue: 'Identify given parameters and write down what variable needs to be solved.', question: 'What formula relates the given quantities?' },
+        { hintNum: 2, Clue: 'Substitute known values into governing formula.', question: 'What is the intermediate algebraic value before taking square roots or simplifying?' }
+      ],
+      videoMatch: {
+        title: 'Master Concept & Board Exam PYQ Breakdown',
+        timestamp: '04:15',
+        conceptName: 'Derivation & Step-by-step Application',
+        videoUrl: 'https://www.youtube.com/embed/9bZkp7q19f0?start=255'
+      }
     };
 
     if (!groqKey) {
@@ -1484,13 +1494,15 @@ app.post('/api/ai/snap-solve', async (req, res) => {
     const groqMessages = [
       {
         role: 'system',
-        content: `You are an expert Indian EdTech AI Master Solver (Physics, Chemistry, Mathematics, Biology).
+        content: `You are an expert Indian EdTech AI Master Solver & Socratic Tutor (Physics, Chemistry, Mathematics, Biology).
 The user has scanned an image of a textbook or notebook question, which was extracted using Tesseract OCR.
 
 Your task:
 1. Carefully analyze the raw OCR extracted text and clean up minor OCR noise/artifacts while preserving all exact numbers, equations, symbols, and variables.
 2. Identify the subject (Physics | Chemistry | Mathematics | Biology), chapter, and relevant curriculum topic route.
 3. Solve the EXACT problem as extracted from the image with rigorous, step-by-step mathematical/scientific calculations.
+4. Include 2 Socratic hints to guide the student's thinking first.
+5. Provide a video timestamp match from standard board lecture series.
 
 Respond ONLY with valid JSON in the following exact format:
 {
@@ -1504,7 +1516,17 @@ Respond ONLY with valid JSON in the following exact format:
     { "title": "Step 3: Exact Calculation & Final Answer", "detail": "..." }
   ],
   "formulas": ["Formula 1", "Formula 2"],
-  "examTip": "Key tip/trick for scoring full marks in ICSE/CBSE board exam"
+  "examTip": "Key tip/trick for scoring full marks in ICSE/CBSE board exam",
+  "socraticHints": [
+    { "hintNum": 1, "Clue": "Clue for student...", "question": "Guiding question for student..." },
+    { "hintNum": 2, "Clue": "Formula application clue...", "question": "Calculation check..." }
+  ],
+  "videoMatch": {
+    "title": "Master Video Lecture",
+    "timestamp": "04:15",
+    "conceptName": "Derivation & Step-by-Step Breakdown",
+    "videoUrl": "https://www.youtube.com/embed/9bZkp7q19f0?start=255"
+  }
 }`
       },
       {

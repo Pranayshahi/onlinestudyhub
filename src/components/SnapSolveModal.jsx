@@ -536,9 +536,28 @@ export default function SnapSolveModal({ isOpen, onClose }) {
                 </div>
               )}
 
+              {/* Socratic Guided Mode Hints */}
+              {result.socraticHints?.length > 0 && (
+                <div style={{ background: '#f5f3ff', border: '1px solid #ddd6fe', borderRadius: 16, padding: '1rem 1.25rem', marginBottom: '1.25rem' }}>
+                  <div style={{ fontWeight: 800, color: '#6d28d9', fontSize: '.88rem', marginBottom: '.5rem', display: 'flex', alignItems: 'center', gap: '.4rem' }}>
+                    🧠 Socratic Tutor — Learn How to Think:
+                  </div>
+                  {result.socraticHints.map((h, i) => (
+                    <div key={i} style={{ background: '#fff', border: '1px solid #e9d5ff', borderRadius: 12, padding: '.75rem 1rem', marginBottom: i < result.socraticHints.length - 1 ? '.6rem' : 0 }}>
+                      <div style={{ fontWeight: 800, color: '#7c3aed', fontSize: '.85rem', marginBottom: '.2rem' }}>
+                        Hint {h.hintNum || i + 1}: {h.Clue}
+                      </div>
+                      <div style={{ color: '#4c1d95', fontSize: '.83rem', lineHeight: 1.5 }}>
+                        ❓ <strong>Guiding Question:</strong> {h.question}
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              )}
+
               {/* Step by Step Solution */}
               <h4 style={{ fontFamily: 'Nunito', fontWeight: 900, color: '#1e1b4b', margin: '0 0 .75rem', fontSize: '1.1rem' }}>
-                📝 Step-by-Step Solution:
+                📝 Step-by-Step Master Solution:
               </h4>
               <div style={{ display: 'flex', flexDirection: 'column', gap: '.85rem', marginBottom: '1.25rem' }}>
                 {result.steps?.map((step, idx) => (
@@ -552,6 +571,31 @@ export default function SnapSolveModal({ isOpen, onClose }) {
                   </div>
                 ))}
               </div>
+
+              {/* Video Timestamp Match Card */}
+              {result.videoMatch && (
+                <div style={{ background: '#0f172a', color: '#fff', borderRadius: 16, padding: '1.1rem', marginBottom: '1.25rem', display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: '.75rem', border: '1px solid rgba(245,158,11,0.4)', boxShadow: '0 6px 20px rgba(0,0,0,0.3)' }}>
+                  <div>
+                    <div style={{ fontSize: '.72rem', fontWeight: 900, color: '#fbbf24', textTransform: 'uppercase', letterSpacing: '0.5px' }}>
+                      🎥 Video Lecture Timestamp Match
+                    </div>
+                    <div style={{ fontFamily: 'Nunito', fontWeight: 900, fontSize: '.95rem', marginTop: '.2rem' }}>
+                      {result.videoMatch.title} ({result.videoMatch.timestamp})
+                    </div>
+                    <div style={{ fontSize: '.8rem', color: 'rgba(255,255,255,0.7)', marginTop: '.1rem' }}>
+                      Concept: {result.videoMatch.conceptName}
+                    </div>
+                  </div>
+                  <a
+                    href={result.videoMatch.videoUrl || '#'}
+                    target="_blank"
+                    rel="noreferrer"
+                    style={{ background: 'linear-gradient(135deg,#ef4444,#dc2626)', color: '#fff', textDecoration: 'none', padding: '.55rem 1.1rem', borderRadius: 12, fontSize: '.82rem', fontWeight: 900, display: 'inline-flex', alignItems: 'center', gap: '.4rem', boxShadow: '0 4px 14px rgba(239,68,68,0.4)' }}
+                  >
+                    ▶️ Play at Timestamp ({result.videoMatch.timestamp})
+                  </a>
+                </div>
+              )}
 
               {/* Formulas & Exam Tip */}
               {result.formulas?.length > 0 && (
