@@ -11,6 +11,7 @@ import SEO from '../components/SEO';
 import TopicMediaSection from '../components/TopicMediaSection';
 import ForumSection from '../components/ForumSection';
 import TopicQuiz from '../components/TopicQuiz';
+import VirtualScienceLab from '../components/VirtualScienceLab';
 import TopicPoll from '../components/TopicPoll';
 import { useNotifications } from '../context/NotificationsContext';
 import TopicIllustration from '../components/TopicIllustration';
@@ -623,6 +624,11 @@ export default function TopicPage({ user, onOpenLogin, onOpenAI }) {
               </div>
             </div>
           </section>
+        )}
+
+        {/* ── 3.5 Virtual Science Lab & 3D PhET Simulation ── */}
+        {['physics', 'chemistry', 'science', 'mathematics'].includes(subjectId) && (
+          <VirtualScienceLab defaultLab={subjectId === 'chemistry' ? '3d-molecule' : 'optics'} />
         )}
 
         {/* ── 4. Post-Chapter 2-Minute Flash Quiz & Weakness Diagnostic Report ── */}
