@@ -1217,7 +1217,7 @@ export default function HomePage({ onOpenAI, onOpenSnapSolve, user }) {
                 style={{
                   display: 'flex',
                   gap: '.5rem',
-                  maxWidth: 540,
+                  width: '100%',
                   marginBottom: '1rem',
                   background: 'rgba(0,0,0,0.4)',
                   padding: 6,
@@ -1229,9 +1229,10 @@ export default function HomePage({ onOpenAI, onOpenSnapSolve, user }) {
                 <input
                   name="search"
                   type="text"
-                  placeholder="Search any topic, chapter, or PYQ (e.g. Quadratic Equations, Optics)..."
+                  placeholder="Search any topic, chapter, or PYQ..."
                   style={{
                     flex: 1,
+                    minWidth: 160,
                     background: 'transparent',
                     border: 'none',
                     color: '#fff',
@@ -1250,7 +1251,8 @@ export default function HomePage({ onOpenAI, onOpenSnapSolve, user }) {
                     fontWeight: 900,
                     fontSize: '.9rem',
                     background: 'linear-gradient(135deg, #f59e0b, #d97706)',
-                    border: 'none'
+                    border: 'none',
+                    flexShrink: 0
                   }}
                 >
                   🔍 Search
@@ -1288,7 +1290,7 @@ export default function HomePage({ onOpenAI, onOpenSnapSolve, user }) {
               <div
                 style={{
                   display: 'grid',
-                  gridTemplateColumns: 'repeat(auto-fit, minmax(115px, 1fr))',
+                  gridTemplateColumns: 'repeat(auto-fit, minmax(110px, 1fr))',
                   gap: '.65rem',
                   marginBottom: '2rem'
                 }}
@@ -1352,21 +1354,22 @@ export default function HomePage({ onOpenAI, onOpenSnapSolve, user }) {
               </div>
             </div>
 
-            {/* Right — Below Hero Split View (Daily Challenge + Trending Tests) */}
+            {/* Right — Daily Challenge Card (Balanced Height) */}
             <div
               className="hero-illustration"
               style={{
                 position: "relative",
                 alignSelf: "center",
                 width: "100%",
-                display: "flex",
-                flexDirection: "column",
-                gap: "1.5rem"
               }}
             >
               <DailyChallengeCard user={user} />
-              <TrendingPracticeTestsCard />
             </div>
+          </div>
+
+          {/* ── Trending Practice Tests Card Row ── */}
+          <div style={{ marginBottom: "2.5rem" }}>
+            <TrendingPracticeTestsCard />
           </div>
 
           {/* ── Start Your Journey — glass card ── */}
