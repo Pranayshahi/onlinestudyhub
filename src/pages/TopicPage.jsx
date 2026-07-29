@@ -625,10 +625,19 @@ export default function TopicPage({ user, onOpenLogin, onOpenAI }) {
           </section>
         )}
 
-        {/* ── 4. Topic Quiz ── */}
-        {topic.qa && topic.qa.length > 0 && (
-          <TopicQuiz qa={topic.qa} topicTitle={topic.title} subjectId={subjectId} user={user} />
-        )}
+        {/* ── 4. Post-Chapter 2-Minute Flash Quiz & Weakness Diagnostic Report ── */}
+        <TopicQuiz
+          qa={topic.qa && topic.qa.length > 0 ? topic.qa : [
+            { q: `What is the primary governing concept of ${topic.title}?`, a: `The fundamental principle of ${topic.title} specifies exact mathematical/physical relationships between parameters.` },
+            { q: `State the standard governing equation for ${topic.title}.`, a: `Standard formula: verify SI unit consistency and substitute known values into equation.` },
+            { q: `How do you ensure correct Cartesian / SI unit consistency in ${topic.title}?`, a: `Convert all given parameters to SI base units before performing algebraic substitution.` },
+            { q: `What is a common ICSE/CBSE board exam scoring trick in ${topic.title}?`, a: `Explicitly state given values and box your final answer with correct SI units.` },
+            { q: `How do you verify the final calculated result in ${topic.title}?`, a: `Substitute calculated answer back into original governing relation or check order of magnitude.` }
+          ]}
+          topicTitle={topic.title}
+          subjectId={subjectId}
+          user={user}
+        />
 
         {/* ── 5. Deep Learn with Teacher ── */}
         {relevantTeacher && (
