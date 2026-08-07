@@ -17,7 +17,10 @@ export async function api(path, { method = 'GET', body = null, token = null, hea
     defaultHeaders['Authorization'] = `Bearer ${activeToken}`;
   }
 
-  const res = await fetch(`/api${path}`, {
+  const base = process.env.REACT_APP_API_URL || (typeof window !== 'undefined' && window.location.hostname === 'localhost' ? 'http://localhost:5001' : '');
+  const url = `${base.replace(/\/$/, '')}/api${path}`;
+
+  const res = await fetch(url, {
     method,
     headers: defaultHeaders,
     body: body ? JSON.stringify(body) : null,

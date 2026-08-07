@@ -15,6 +15,11 @@ export default function ContactPage() {
   const [submitted, setSubmitted] = useState(false);
   const [errorMsg, setErrorMsg] = useState('');
 
+  const getApiUrl = (path) => {
+    const base = process.env.REACT_APP_API_URL || (window.location.hostname === 'localhost' ? 'http://localhost:5001' : '');
+    return `${base.replace(/\/$/, '')}${path}`;
+  };
+
   async function handleSubmit(e) {
     e.preventDefault();
     setErrorMsg('');
@@ -25,13 +30,21 @@ export default function ContactPage() {
 
     setSubmitting(true);
     try {
-      const res = await fetch('/api/contact/submit', {
+      const res = await fetch(getApiUrl('/api/contact/submit'), {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(formData),
       });
 
-      const data = await res.json();
+      const contentType = res.headers.get('content-type') || '';
+      let data = {};
+      if (contentType.includes('application/json')) {
+        data = await res.json();
+      } else {
+        const text = await res.text();
+        throw new Error(`Server connection issue (${res.status}). Please ensure backend is running on port 5001.`);
+      }
+
       if (!res.ok) {
         throw new Error(data.error || 'Failed to submit message');
       }

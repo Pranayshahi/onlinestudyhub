@@ -13,6 +13,11 @@ export default function AdminAuditDashboard() {
   const [loading, setLoading] = useState(false);
   const [activeTab, setActiveTab] = useState('all'); // 'all' | 'signups' | 'logins' | 'contacts'
 
+  const getApiUrl = (path) => {
+    const base = process.env.REACT_APP_API_URL || (window.location.hostname === 'localhost' ? 'http://localhost:5001' : '');
+    return `${base.replace(/\/$/, '')}${path}`;
+  };
+
   useEffect(() => {
     if (token) {
       fetchAuditLogs();
@@ -24,12 +29,21 @@ export default function AdminAuditDashboard() {
     setLoginError('');
     setLoggingIn(true);
     try {
-      const res = await fetch('/api/admin/login', {
+      const res = await fetch(getApiUrl('/api/admin/login'), {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ email: loginEmail, password: loginPassword, adminPin }),
       });
-      const data = await res.json();
+
+      const contentType = res.headers.get('content-type') || '';
+      let data = {};
+      if (contentType.includes('application/json')) {
+        data = await res.json();
+      } else {
+        const text = await res.text();
+        throw new Error(`Server connection issue (${res.status}). Please ensure backend is running on port 5001.`);
+      }
+
       if (!res.ok) throw new Error(data.error || 'Invalid credentials');
 
       localStorage.setItem('osh_superadmin_token', data.token);
@@ -44,7 +58,7 @@ export default function AdminAuditDashboard() {
   async function fetchAuditLogs() {
     setLoading(true);
     try {
-      const res = await fetch('/api/admin/audit-logs', {
+      const res = await fetch(getApiUrl('/api/admin/audit-logs'), {
         headers: { 'Authorization': `Bearer ${token}` },
       });
       if (res.status === 401 || res.status === 403) {
@@ -52,8 +66,12 @@ export default function AdminAuditDashboard() {
         setToken('');
         return;
       }
-      const data = await res.json();
-      setAuditData(data);
+
+      const contentType = res.headers.get('content-type') || '';
+      if (contentType.includes('application/json')) {
+        const data = await res.json();
+        setAuditData(data);
+      }
     } catch (err) {
       console.error('Failed to load audit logs:', err);
     } finally {
