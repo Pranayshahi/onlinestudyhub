@@ -175,6 +175,8 @@ export default function AdminAuditDashboard() {
   });
 
   const loggedInUsers = auditData?.loggedInUsers || [];
+  const registeredStudents = auditData?.registeredStudents || [];
+  const registeredTeachers = auditData?.registeredTeachers || [];
 
   return (
     <div style={{ background: 'linear-gradient(180deg, #0b0f19 0%, #1e1b4b 100%)', color: '#fff', minHeight: '100vh', padding: '2.5rem 0' }}>
@@ -234,6 +236,8 @@ export default function AdminAuditDashboard() {
           {[
             { id: 'all', label: '📜 All Audit Events' },
             { id: 'users', label: `👥 All Logged-In Users (${loggedInUsers.length})` },
+            { id: 'students', label: `👨‍🎓 Registered Students (${registeredStudents.length})` },
+            { id: 'teachers', label: `👨‍🏫 Registered Teachers (${registeredTeachers.length})` },
             { id: 'signups', label: '🆕 User Signups' },
             { id: 'logins', label: '🔑 User Logins' },
             { id: 'contacts', label: `💬 Feedback & Complaints (${contacts.length})` },
@@ -257,11 +261,107 @@ export default function AdminAuditDashboard() {
           ))}
         </div>
 
-        {/* Audit Log Table OR Logged-In Users OR Feedback Submissions */}
+        {/* Table Views */}
         <div style={{ background: 'rgba(255,255,255,0.05)', backdropFilter: 'blur(16px)', border: '1.5px solid rgba(255,255,255,0.16)', borderRadius: 22, padding: '1.5rem', boxShadow: '0 16px 40px rgba(0,0,0,0.35)', overflowX: 'auto' }}>
           {loading ? (
             <div style={{ textAlign: 'center', padding: '3rem 1rem', color: 'rgba(255,255,255,0.7)' }}>
               ⏳ Fetching live audit log activity...
+            </div>
+          ) : activeTab === 'students' ? (
+            <div>
+              <h3 style={{ fontFamily: 'Nunito', fontWeight: 900, color: '#fff', fontSize: '1.1rem', marginBottom: '1rem' }}>
+                👨‍🎓 All Registered Students ({registeredStudents.length})
+              </h3>
+              {registeredStudents.length === 0 ? (
+                <div style={{ textAlign: 'center', padding: '2rem 1rem', color: 'rgba(255,255,255,0.6)' }}>
+                  No registered students found.
+                </div>
+              ) : (
+                <table style={{ width: '100%', borderCollapse: 'collapse', textAlign: 'left', fontSize: '.85rem' }}>
+                  <thead>
+                    <tr style={{ borderBottom: '1px solid rgba(255,255,255,0.15)', color: '#c7d2fe', fontSize: '.75rem', textTransform: 'uppercase' }}>
+                      <th style={{ padding: '.75rem 1rem' }}>Student Name</th>
+                      <th style={{ padding: '.75rem 1rem' }}>Email Address</th>
+                      <th style={{ padding: '.75rem 1rem' }}>Phone Number</th>
+                      <th style={{ padding: '.75rem 1rem' }}>Class / Target</th>
+                      <th style={{ padding: '.75rem 1rem' }}>Registered Date</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {registeredStudents.map(s => (
+                      <tr key={s.id} style={{ borderBottom: '1px solid rgba(255,255,255,0.08)' }}>
+                        <td style={{ padding: '.75rem 1rem', fontWeight: 900, color: '#fff', display: 'flex', alignItems: 'center', gap: '.4rem' }}>
+                          <span>{s.avatar || '🧑‍🎓'}</span> {s.name}
+                        </td>
+                        <td style={{ padding: '.75rem 1rem', color: '#a5b4fc' }}>
+                          {s.email}
+                        </td>
+                        <td style={{ padding: '.75rem 1rem', color: 'rgba(255,255,255,0.8)' }}>
+                          {s.phone || 'Not Provided'}
+                        </td>
+                        <td style={{ padding: '.75rem 1rem' }}>
+                          <span style={{ background: 'rgba(99,102,241,0.2)', color: '#c7d2fe', border: '1px solid rgba(165,180,252,0.3)', padding: '2px 8px', borderRadius: 8, fontSize: '.7rem', fontWeight: 800 }}>
+                            {s.class_id ? s.class_id.replace('class-', 'Class ') : 'General'}
+                          </span>
+                        </td>
+                        <td style={{ padding: '.75rem 1rem', color: 'rgba(255,255,255,0.6)', fontSize: '.78rem' }}>
+                          {new Date(s.createdAt).toLocaleString()}
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              )}
+            </div>
+          ) : activeTab === 'teachers' ? (
+            <div>
+              <h3 style={{ fontFamily: 'Nunito', fontWeight: 900, color: '#fff', fontSize: '1.1rem', marginBottom: '1rem' }}>
+                👨‍🏫 All Registered Teachers ({registeredTeachers.length})
+              </h3>
+              {registeredTeachers.length === 0 ? (
+                <div style={{ textAlign: 'center', padding: '2rem 1rem', color: 'rgba(255,255,255,0.6)' }}>
+                  No registered teachers found.
+                </div>
+              ) : (
+                <table style={{ width: '100%', borderCollapse: 'collapse', textAlign: 'left', fontSize: '.85rem' }}>
+                  <thead>
+                    <tr style={{ borderBottom: '1px solid rgba(255,255,255,0.15)', color: '#c7d2fe', fontSize: '.75rem', textTransform: 'uppercase' }}>
+                      <th style={{ padding: '.75rem 1rem' }}>Teacher Name</th>
+                      <th style={{ padding: '.75rem 1rem' }}>Email Address</th>
+                      <th style={{ padding: '.75rem 1rem' }}>Subject Expertise</th>
+                      <th style={{ padding: '.75rem 1rem' }}>Classes Taught</th>
+                      <th style={{ padding: '.75rem 1rem' }}>Status</th>
+                      <th style={{ padding: '.75rem 1rem' }}>Joined Date</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {registeredTeachers.map(t => (
+                      <tr key={t.id} style={{ borderBottom: '1px solid rgba(255,255,255,0.08)' }}>
+                        <td style={{ padding: '.75rem 1rem', fontWeight: 900, color: '#fff', display: 'flex', alignItems: 'center', gap: '.4rem' }}>
+                          <span>{t.avatar || '👨‍🏫'}</span> {t.name}
+                        </td>
+                        <td style={{ padding: '.75rem 1rem', color: '#a5b4fc' }}>
+                          {t.email}
+                        </td>
+                        <td style={{ padding: '.75rem 1rem', color: '#fef08a', fontWeight: 800 }}>
+                          {t.subject}
+                        </td>
+                        <td style={{ padding: '.75rem 1rem', color: 'rgba(255,255,255,0.8)' }}>
+                          {t.class_ids}
+                        </td>
+                        <td style={{ padding: '.75rem 1rem' }}>
+                          <span style={{ background: t.is_online ? 'rgba(16,185,129,0.2)' : 'rgba(255,255,255,0.08)', color: t.is_online ? '#4ade80' : 'rgba(255,255,255,0.5)', padding: '2px 8px', borderRadius: 8, fontSize: '.7rem', fontWeight: 900 }}>
+                            {t.is_online ? '🔴 Online Now' : '⚪ Offline'}
+                          </span>
+                        </td>
+                        <td style={{ padding: '.75rem 1rem', color: 'rgba(255,255,255,0.6)', fontSize: '.78rem' }}>
+                          {new Date(t.createdAt).toLocaleString()}
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              )}
             </div>
           ) : activeTab === 'users' ? (
             <div>
