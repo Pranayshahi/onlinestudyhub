@@ -272,6 +272,35 @@ gamificationSchema.index({ weeklyXp: -1 });
 
 const Gamification = mongoose.model('Gamification', gamificationSchema);
 
-module.exports = { Student, Teacher, Booking, TopicMedia, Review, ForumPost, Parent, PushSub, GroupClass, Batch, DPP, StoreProduct, Gamification };
+// ── Contact Submissions (Feedback & Complaints) ─────────────────
+const contactSubmissionSchema = new mongoose.Schema({
+  type: { type: String, enum: ['Feedback', 'Complaint', 'General'], default: 'Feedback' },
+  name: { type: String, required: true },
+  email: { type: String, default: '' },
+  subject: { type: String, required: true },
+  priority: { type: String, enum: ['Normal', 'Urgent', 'Critical'], default: 'Normal' },
+  message: { type: String, required: true },
+  status: { type: String, enum: ['Open', 'In Review', 'Resolved'], default: 'Open' },
+  destinationEmail: { type: String, default: 'shahipran@gmail.com' }
+}, { timestamps: true });
+
+// ── Super Admin Audit Log Schema ───────────────────────────────
+const auditLogSchema = new mongoose.Schema({
+  eventType: { type: String, required: true }, // 'student_signup', 'student_login', 'teacher_signup', 'teacher_login', 'contact_submission', 'superadmin_login'
+  userEmail: { type: String, required: true },
+  userName: { type: String, default: '' },
+  role: { type: String, default: 'student' },
+  details: { type: String, default: '' },
+  ip: { type: String, default: '' },
+  userAgent: { type: String, default: '' }
+}, { timestamps: true });
+
+auditLogSchema.index({ createdAt: -1 });
+auditLogSchema.index({ eventType: 1 });
+
+const ContactSubmission = mongoose.model('ContactSubmission', contactSubmissionSchema);
+const AuditLog          = mongoose.model('AuditLog',          auditLogSchema);
+
+module.exports = { Student, Teacher, Booking, TopicMedia, Review, ForumPost, Parent, PushSub, GroupClass, Batch, DPP, StoreProduct, Gamification, ContactSubmission, AuditLog };
 
 

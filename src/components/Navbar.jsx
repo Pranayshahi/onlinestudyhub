@@ -277,6 +277,8 @@ export default function Navbar({
                   <Link to="/leaderboard" className="dropdown-item" onClick={close} style={{ display: "flex", alignItems: "center", gap: ".5rem" }}>🏆 <span>Leaderboard</span></Link>
                   <Link to="/study-room"     className="dropdown-item" onClick={close} style={{ display: "flex", alignItems: "center", gap: ".5rem" }}>🎧 <span>Focus Together Room</span></Link>
                   <Link to="/offline-notes"  className="dropdown-item" onClick={close} style={{ display: "flex", alignItems: "center", gap: ".5rem" }}>📶 <span>Offline Notes (PWA)</span></Link>
+                  <Link to="/contact"        className="dropdown-item" onClick={close} style={{ display: "flex", alignItems: "center", gap: ".5rem" }}>💬 <span>Contact Support</span></Link>
+                  <Link to="/admin/audit"    className="dropdown-item" onClick={close} style={{ display: "flex", alignItems: "center", gap: ".5rem" }}>🛡️ <span>Super Admin Audit</span></Link>
                 </div>
               </div>
             </div>

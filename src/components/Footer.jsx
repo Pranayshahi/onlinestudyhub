@@ -49,8 +49,8 @@ export default function Footer() {
               <Link to="/class/class-12">Class 12 Boards</Link>
               <Link to="/class/jee">JEE Crash Course</Link>
               <Link to="/class/neet">NEET Crash Course</Link>
-              <a href="#">Study Tips</a>
-              <a href="#">About Us</a>
+              <Link to="/contact">Contact Support &amp; Feedback</Link>
+              <Link to="/admin/audit">Super Admin Audit Portal</Link>
             </div>
           </div>
         </div>
