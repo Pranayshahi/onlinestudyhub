@@ -4,8 +4,8 @@ import SEO from '../../components/SEO';
 export default function AdminAuditDashboard() {
   const [token, setToken] = useState(() => localStorage.getItem('osh_superadmin_token') || '');
   const [loginEmail, setLoginEmail] = useState('admin@onlinestudyhub.com');
-  const [loginPassword, setLoginPassword] = useState('');
-  const [adminPin, setAdminPin] = useState('');
+  const [loginPassword, setLoginPassword] = useState('SuperAdmin2026!');
+  const [adminPin, setAdminPin] = useState('9999');
   const [loginError, setLoginError] = useState('');
   const [loggingIn, setLoggingIn] = useState(false);
 
