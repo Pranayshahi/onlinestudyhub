@@ -174,6 +174,8 @@ export default function AdminAuditDashboard() {
     return true;
   });
 
+  const loggedInUsers = auditData?.loggedInUsers || [];
+
   return (
     <div style={{ background: 'linear-gradient(180deg, #0b0f19 0%, #1e1b4b 100%)', color: '#fff', minHeight: '100vh', padding: '2.5rem 0' }}>
       <SEO title="Super Admin Page Audit & User Monitor — OnlineStudyHub" description="Monitor real-time student signups, logins, and contact feedback submissions." />
@@ -231,6 +233,7 @@ export default function AdminAuditDashboard() {
         <div style={{ display: 'flex', gap: '.5rem', marginBottom: '1.25rem', flexWrap: 'wrap' }}>
           {[
             { id: 'all', label: '📜 All Audit Events' },
+            { id: 'users', label: `👥 All Logged-In Users (${loggedInUsers.length})` },
             { id: 'signups', label: '🆕 User Signups' },
             { id: 'logins', label: '🔑 User Logins' },
             { id: 'contacts', label: `💬 Feedback & Complaints (${contacts.length})` },
@@ -254,11 +257,70 @@ export default function AdminAuditDashboard() {
           ))}
         </div>
 
-        {/* Audit Log Table OR Feedback Submissions List */}
+        {/* Audit Log Table OR Logged-In Users OR Feedback Submissions */}
         <div style={{ background: 'rgba(255,255,255,0.05)', backdropFilter: 'blur(16px)', border: '1.5px solid rgba(255,255,255,0.16)', borderRadius: 22, padding: '1.5rem', boxShadow: '0 16px 40px rgba(0,0,0,0.35)', overflowX: 'auto' }}>
           {loading ? (
             <div style={{ textAlign: 'center', padding: '3rem 1rem', color: 'rgba(255,255,255,0.7)' }}>
               ⏳ Fetching live audit log activity...
+            </div>
+          ) : activeTab === 'users' ? (
+            <div>
+              <h3 style={{ fontFamily: 'Nunito', fontWeight: 900, color: '#fff', fontSize: '1.1rem', marginBottom: '1rem' }}>
+                👥 Logged-In Users Directory &amp; Session History
+              </h3>
+              {loggedInUsers.length === 0 ? (
+                <div style={{ textAlign: 'center', padding: '2rem 1rem', color: 'rgba(255,255,255,0.6)' }}>
+                  No active logged-in users recorded in session audit log yet.
+                </div>
+              ) : (
+                <table style={{ width: '100%', borderCollapse: 'collapse', textAlign: 'left', fontSize: '.85rem' }}>
+                  <thead>
+                    <tr style={{ borderBottom: '1px solid rgba(255,255,255,0.15)', color: '#c7d2fe', fontSize: '.75rem', textTransform: 'uppercase' }}>
+                      <th style={{ padding: '.75rem 1rem' }}>User / Name</th>
+                      <th style={{ padding: '.75rem 1rem' }}>User Email</th>
+                      <th style={{ padding: '.75rem 1rem' }}>Role</th>
+                      <th style={{ padding: '.75rem 1rem' }}>Last Active Login</th>
+                      <th style={{ padding: '.75rem 1rem' }}>Total Sessions</th>
+                      <th style={{ padding: '.75rem 1rem' }}>IP Address</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {loggedInUsers.map((u, i) => (
+                      <tr key={i} style={{ borderBottom: '1px solid rgba(255,255,255,0.08)' }}>
+                        <td style={{ padding: '.75rem 1rem', fontWeight: 900, color: '#fff' }}>
+                          {u.userName || 'Student Scholar'}
+                        </td>
+                        <td style={{ padding: '.75rem 1rem', color: '#a5b4fc' }}>
+                          {u.userEmail}
+                        </td>
+                        <td style={{ padding: '.75rem 1rem' }}>
+                          <span style={{
+                            background: u.role === 'teacher' ? 'rgba(245,158,11,0.2)' : u.role === 'superadmin' ? 'rgba(239,68,68,0.2)' : 'rgba(99,102,241,0.2)',
+                            color: u.role === 'teacher' ? '#fef08a' : u.role === 'superadmin' ? '#fca5a5' : '#c7d2fe',
+                            border: '1px solid rgba(255,255,255,0.15)',
+                            padding: '2px 8px',
+                            borderRadius: 8,
+                            fontSize: '.7rem',
+                            fontWeight: 900,
+                            textTransform: 'uppercase'
+                          }}>
+                            {u.role}
+                          </span>
+                        </td>
+                        <td style={{ padding: '.75rem 1rem', color: 'rgba(255,255,255,0.7)', fontSize: '.78rem' }}>
+                          {new Date(u.lastLoginTime).toLocaleString()}
+                        </td>
+                        <td style={{ padding: '.75rem 1rem', fontWeight: 900, color: '#4ade80' }}>
+                          {u.loginCount} Session(s)
+                        </td>
+                        <td style={{ padding: '.75rem 1rem', fontFamily: 'monospace', fontSize: '.75rem', color: 'rgba(255,255,255,0.5)' }}>
+                          {u.lastIp}
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              )}
             </div>
           ) : activeTab === 'contacts' ? (
             <div>

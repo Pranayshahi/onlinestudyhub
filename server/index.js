@@ -363,11 +363,14 @@ app.post('/api/admin/login', async (req, res) => {
 // ── Super Admin Audit Log Dashboard Data ────────────────────────
 app.get('/api/admin/audit-logs', requireSuperAdminAuth, async (req, res) => {
   try {
-    const logs = await AuditLog.find().sort({ createdAt: -1 }).limit(200).lean();
+    const logs = await AuditLog.find().sort({ createdAt: -1 }).limit(300).lean();
     const contacts = await ContactSubmission.find().sort({ createdAt: -1 }).limit(100).lean();
 
-    const totalStudents = await Student.countDocuments();
-    const totalTeachers = await Teacher.countDocuments();
+    const students = await Student.find().select('name email avatar phone class_id createdAt').sort({ createdAt: -1 }).lean();
+    const teachers = await Teacher.find().select('name email avatar subject class_ids is_online last_seen createdAt').sort({ createdAt: -1 }).lean();
+
+    const totalStudents = students.length;
+    const totalTeachers = teachers.length;
 
     const startOfToday = new Date();
     startOfToday.setHours(0, 0, 0, 0);
@@ -378,9 +381,34 @@ app.get('/api/admin/audit-logs', requireSuperAdminAuth, async (req, res) => {
     });
 
     const loginsToday = await AuditLog.countDocuments({
-      eventType: { $in: ['student_login', 'teacher_login'] },
+      eventType: { $in: ['student_login', 'teacher_login', 'superadmin_login'] },
       createdAt: { $gte: startOfToday },
     });
+
+    // Group login events by user email to build Logged-In Users Directory
+    const userLoginsMap = new Map();
+    logs.forEach(l => {
+      if (l.eventType?.includes('login') || l.eventType?.includes('signup')) {
+        const key = l.userEmail.toLowerCase();
+        if (!userLoginsMap.has(key)) {
+          userLoginsMap.set(key, {
+            userEmail: l.userEmail,
+            userName: l.userName || 'User',
+            role: l.role || 'student',
+            lastLoginTime: l.createdAt,
+            lastIp: l.ip || '127.0.0.1',
+            loginCount: 1,
+            latestEvent: l.eventType,
+            details: l.details,
+          });
+        } else {
+          const item = userLoginsMap.get(key);
+          item.loginCount += 1;
+        }
+      }
+    });
+
+    const loggedInUsersList = Array.from(userLoginsMap.values());
 
     res.json({
       logs: logs.map(l => ({
@@ -403,6 +431,27 @@ app.get('/api/admin/audit-logs', requireSuperAdminAuth, async (req, res) => {
         message: c.message,
         status: c.status,
         createdAt: c.createdAt,
+      })),
+      loggedInUsers: loggedInUsersList,
+      registeredStudents: students.map(s => ({
+        id: s._id,
+        name: s.name,
+        email: s.email,
+        avatar: s.avatar || '🧑‍🎓',
+        phone: s.phone || '',
+        class_id: s.class_id || '',
+        createdAt: s.createdAt,
+      })),
+      registeredTeachers: teachers.map(t => ({
+        id: t._id,
+        name: t.name,
+        email: t.email,
+        avatar: t.avatar || '👨‍🏫',
+        subject: t.subject,
+        class_ids: t.class_ids,
+        is_online: Boolean(t.is_online),
+        last_seen: t.last_seen,
+        createdAt: t.createdAt,
       })),
       metrics: {
         totalStudents,
