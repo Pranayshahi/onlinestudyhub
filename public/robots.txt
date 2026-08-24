@@ -1,17 +1,21 @@
 User-agent: *
 Allow: /
 
-# Disallow private/account pages — no SEO value
+# Disallow private/admin pages — no public SEO index value
 Disallow: /dashboard
 Disallow: /my-bookings
 Disallow: /search
 Disallow: /parent-portal
+Disallow: /admin/
 
-# Allow all study content
+# Allow all public study & interactive content
 Allow: /class/
 Allow: /exam/
 Allow: /teachers/
 Allow: /group-classes
 Allow: /study-plan
+Allow: /study-room
+Allow: /offline-notes
+Allow: /contact
 
 Sitemap: https://www.onlinestudyhub.com/sitemap.xml
