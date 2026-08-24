@@ -50,6 +50,8 @@ export default function Footer() {
               <Link to="/class/jee">JEE Crash Course</Link>
               <Link to="/class/neet">NEET Crash Course</Link>
               <Link to="/contact">Contact Support &amp; Feedback</Link>
+              <Link to="/formula-bank">📐 Formula Cheat Sheets</Link>
+              <Link to="/vs-physicswallah">⚡ OnlineStudyHub vs PW</Link>
               <Link to="/admin/audit">Super Admin Audit Portal</Link>
             </div>
           </div>
