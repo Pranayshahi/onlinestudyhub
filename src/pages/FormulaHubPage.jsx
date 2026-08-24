@@ -136,7 +136,18 @@ export default function FormulaHubPage() {
                 {db.formulas.map((item, fIdx) => {
                   const uniqueKey = `${dbIdx}-${fIdx}`;
                   return (
-                    <div key={fIdx} style={{ background: 'rgba(0,0,0,0.35)', border: '1px solid rgba(255,255,255,0.12)', borderRadius: 16, padding: '1.25rem', display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
+                    <div key={fIdx} style={{ background: 'rgba(0,0,0,0.35)', border: '1px solid rgba(255,255,255,0.12)', borderRadius: 16, padding: '1.25rem', display: 'flex', flexDirection: 'column', justifyContent: 'space-between', transition: 'all 0.2s cubic-bezier(0.4, 0, 0.2, 1)' }}
+                      onMouseEnter={(e) => {
+                        e.currentTarget.style.transform = 'translateY(-3px)';
+                        e.currentTarget.style.borderColor = 'rgba(165,180,252,0.4)';
+                        e.currentTarget.style.boxShadow = '0 10px 24px rgba(0,0,0,0.4)';
+                      }}
+                      onMouseLeave={(e) => {
+                        e.currentTarget.style.transform = 'translateY(0)';
+                        e.currentTarget.style.borderColor = 'rgba(255,255,255,0.12)';
+                        e.currentTarget.style.boxShadow = 'none';
+                      }}
+                    >
                       <div>
                         <span style={{ fontSize: '.72rem', fontWeight: 900, color: 'rgba(255,255,255,0.5)', textTransform: 'uppercase' }}>
                           {item.topic}
@@ -154,7 +165,9 @@ export default function FormulaHubPage() {
 
                       <button
                         onClick={() => copyToClipboard(`${item.title}: ${item.formula}`, uniqueKey)}
-                        style={{ marginTop: '1rem', background: copiedIndex === uniqueKey ? '#10b981' : 'rgba(255,255,255,0.1)', border: '1px solid rgba(255,255,255,0.2)', color: '#fff', padding: '.45rem', borderRadius: 10, fontSize: '.78rem', fontWeight: 900, cursor: 'pointer' }}
+                        style={{ marginTop: '1rem', background: copiedIndex === uniqueKey ? '#10b981' : 'rgba(255,255,255,0.1)', border: '1px solid rgba(255,255,255,0.2)', color: '#fff', padding: '.55rem', borderRadius: 10, fontSize: '.78rem', fontWeight: 900, cursor: 'pointer', transition: 'all 0.2s ease' }}
+                        onMouseEnter={(e) => e.currentTarget.style.background = copiedIndex === uniqueKey ? '#059669' : 'rgba(255,255,255,0.2)'}
+                        onMouseLeave={(e) => e.currentTarget.style.background = copiedIndex === uniqueKey ? '#10b981' : 'rgba(255,255,255,0.1)'}
                       >
                         {copiedIndex === uniqueKey ? '✓ Copied Formula!' : '📋 Copy Formula'}
                       </button>

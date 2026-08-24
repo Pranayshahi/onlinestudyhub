@@ -74,7 +74,10 @@ export default function PWComparisonPage() {
             </thead>
             <tbody>
               {comparisonData.map((item, idx) => (
-                <tr key={idx} style={{ borderBottom: '1px solid rgba(255,255,255,0.08)' }}>
+                <tr key={idx} style={{ borderBottom: '1px solid rgba(255,255,255,0.08)', transition: 'background 0.2s ease' }}
+                  onMouseEnter={(e) => e.currentTarget.style.background = 'rgba(255,255,255,0.05)'}
+                  onMouseLeave={(e) => e.currentTarget.style.background = 'transparent'}
+                >
                   <td style={{ padding: '1rem 1.25rem', fontWeight: 800, color: '#fff' }}>
                     {item.feature}
                   </td>
