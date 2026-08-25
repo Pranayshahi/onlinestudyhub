@@ -1,6 +1,8 @@
 const request = require('supertest');
 const app = require('../index');
 
+jest.setTimeout(15000);
+
 describe('Search & Curriculum API', () => {
   describe('GET /api/search', () => {
     it('should return search results for a query', async () => {

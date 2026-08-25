@@ -1193,6 +1193,7 @@ async function callGroqWithFallback(payload, groqKey) {
         resp.status === 404 ||
         resp.status === 400 ||
         resp.status === 429 ||
+        resp.status === 413 ||
         msg.includes('does not exist') ||
         msg.includes('access') ||
         msg.includes('model') ||
@@ -1299,7 +1300,7 @@ function generateSmartAcademicFallback(queryText) {
 // ── AI Doubt: RAG query with firewall + streaming + vision ─────
 app.post('/api/ai-doubt', async (req, res) => {
   try {
-    const { messages, system, uploadId, imageId } = req.body || {};
+    const { messages, system, uploadId, imageId, selectedLang } = req.body || {};
     const groqKey = (process.env.GROQ_API_KEY || '').trim();
 
     // 1. Firewall
@@ -1316,6 +1317,25 @@ app.post('/api/ai-doubt', async (req, res) => {
         reply: generateSmartAcademicFallback(userPrompt),
         source: 'smart_academic_engine'
       });
+    }
+
+    // Language directive
+    let languageDirective = '';
+    if (selectedLang && selectedLang !== 'en-IN') {
+      const langMap = {
+        'hi-IN': 'Hindi (हिंदी)',
+        'mr-IN': 'Marathi (मराठी)',
+        'ta-IN': 'Tamil (தமிழ்)',
+        'te-IN': 'Telugu (తెలుగు)',
+        'kn-IN': 'Kannada (ಕನ್ನಡ)',
+        'ml-IN': 'Malayalam (മലയാളം)',
+        'bn-IN': 'Bengali (বাংলা)',
+        'gu-IN': 'Gujarati (ગુજરાતી)',
+        'pa-IN': 'Punjabi (ਪੰਜਾਬੀ)',
+        'od-IN': 'Odia (ଓଡ଼ିଆ)',
+      };
+      const langName = langMap[selectedLang] || selectedLang;
+      languageDirective = `\n\nCRITICAL LANGUAGE MANDATE: The student has selected ${langName} as their learning language. You MUST write your ENTIRE explanation, steps, and response directly in ${langName}. Keep mathematical formulas, chemical formulas (e.g. H2O, CO2), SI units, and numbers in standard notation, but write all surrounding explanations, reasoning, headings, and tips in ${langName}.`;
     }
 
     // 2. RAG retrieval for documents
@@ -1344,7 +1364,7 @@ app.post('/api/ai-doubt', async (req, res) => {
           { type: 'text', text: lastUserMsg?.content || 'What is in this image? Explain it for a student.' },
         ];
         groqMessages = [
-          { role: 'system', content: system + SAFETY_SYSTEM_ADDENDUM + '\nThe student has uploaded an image of a question or diagram. Solve or explain it clearly with steps.' },
+          { role: 'system', content: (system || '') + SAFETY_SYSTEM_ADDENDUM + languageDirective + '\nThe student has uploaded an image of a question or diagram. Solve or explain it clearly with steps.' },
           ...(messages || []).slice(0, -1),
           { role: 'user', content: visionContent },
         ];
@@ -1352,7 +1372,7 @@ app.post('/api/ai-doubt', async (req, res) => {
     }
 
     if (!groqMessages) {
-      const fullSystem = system + SAFETY_SYSTEM_ADDENDUM + contextBlock
+      const fullSystem = (system || '') + SAFETY_SYSTEM_ADDENDUM + contextBlock + languageDirective
         + (source === 'document' ? '\n\nAnswer using the document excerpts above.' : '');
       groqMessages = [{ role: 'system', content: fullSystem }, ...(messages || [])];
     }

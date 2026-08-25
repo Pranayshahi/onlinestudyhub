@@ -47,15 +47,23 @@ Explain concepts clearly with step-by-step reasoning. Use markdown formatting:
 - Use code blocks for formulas or code
 Keep explanations precise and exam-focused.`;
 
-function buildSystemPrompt(location) {
+function buildSystemPrompt(location, selectedLang = 'en-IN') {
+  const langObj = LANGUAGES.find(l => l.code === selectedLang);
+  const langLabel = langObj ? `${langObj.label} (${langObj.code})` : 'English';
+
+  let prompt = BASE_SYSTEM;
+  if (selectedLang && selectedLang !== 'en-IN') {
+    prompt += `\n\nCRITICAL LANGUAGE MANDATE: The student has selected ${langLabel} as their learning language. You MUST respond completely in ${langLabel}. Explain all concepts, steps, and explanations in ${langLabel}. Keep math equations, chemical formulas, and SI units in standard notation.`;
+  }
+
   const m = location.pathname.match(/\/class\/([^/]+)\/subject\/([^/]+)\/topic\/([^/]+)/);
-  if (!m) return BASE_SYSTEM;
+  if (!m) return prompt;
   const [, classId, subjectId, topicId] = m;
   const classData = getClass(classId);
   const topic = getTopic(classId, subjectId, topicId);
   const meta = SUBJECT_META[subjectId] || {};
-  if (!topic) return BASE_SYSTEM;
-  return `${BASE_SYSTEM}\n\nCURRENT CONTEXT: The student is studying "${topic.title}" in ${meta.label || subjectId} for ${classData?.label || classId}.\nTopic definition: ${topic.definition || 'N/A'}\nSubtopics: ${topic.subtopics || 'N/A'}\nPrioritise explanations related to this topic.`;
+  if (!topic) return prompt;
+  return `${prompt}\n\nCURRENT CONTEXT: The student is studying "${topic.title}" in ${meta.label || subjectId} for ${classData?.label || classId}.\nTopic definition: ${topic.definition || 'N/A'}\nSubtopics: ${topic.subtopics || 'N/A'}\nPrioritise explanations related to this topic.`;
 }
 
 const WELCOME = `Hi! I'm your AI tutor 👋
@@ -336,7 +344,17 @@ export default function AIDoubtPanel({ open, onClose, prefillText }) {
         }),
       });
       const data = await res.json();
-      if (data.translated_text) setTranslations(t => ({ ...t, [idx]: data.translated_text }));
+      if (data.translated_text) {
+        setTranslations(t => ({ ...t, [idx]: data.translated_text }));
+      } else {
+        const trRes = await fetch('/api/translate', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ texts: [stripMarkdown(text).slice(0, 1000)], targetLang: selectedLang.split('-')[0] })
+        });
+        const trData = await trRes.json();
+        if (trData.translated?.[0]) setTranslations(t => ({ ...t, [idx]: trData.translated[0] }));
+      }
     } catch { /* silently fail */ }
     finally { setTranslating(null); }
   }
@@ -535,7 +553,8 @@ export default function AIDoubtPanel({ open, onClose, prefillText }) {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           messages: history,
-          system: buildSystemPrompt(location),
+          system: buildSystemPrompt(location, selectedLang),
+          selectedLang,
           uploadId: uploadIdRef.current || undefined,
           imageId: imgId || imageIdRef.current || undefined,
         }),
