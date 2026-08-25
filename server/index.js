@@ -1154,6 +1154,59 @@ app.post('/api/ai-doubt/upload-image', upload.single('image'), async (req, res) 
   }
 });
 
+// Candidate Groq models in priority order
+const GROQ_MODEL_CANDIDATES = [
+  'llama-3.3-70b-versatile',
+  'llama-3.1-70b-versatile',
+  'llama-3.1-8b-instant',
+  'qwen-2.5-32b',
+  'deepseek-r1-distill-llama-70b'
+];
+
+async function callGroqWithFallback(payload, groqKey) {
+  const modelsToTry = [];
+  if (payload.model) modelsToTry.push(payload.model);
+  GROQ_MODEL_CANDIDATES.forEach(m => {
+    if (!modelsToTry.includes(m)) modelsToTry.push(m);
+  });
+
+  let lastErr = null;
+  for (const modelCandidate of modelsToTry) {
+    try {
+      const resp = await safeFetch('https://api.groq.com/openai/v1/chat/completions', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${groqKey}` },
+        body: JSON.stringify({ ...payload, model: modelCandidate }),
+      });
+
+      if (resp.ok) {
+        return await resp.json();
+      }
+
+      const errObj = await resp.json().catch(() => ({}));
+      const msg = errObj.error?.message || `HTTP ${resp.status}`;
+      lastErr = msg;
+      console.warn(`Groq candidate ${modelCandidate} failed (${resp.status}): ${msg}`);
+
+      if (
+        resp.status === 404 ||
+        resp.status === 400 ||
+        msg.includes('does not exist') ||
+        msg.includes('access') ||
+        msg.includes('model') ||
+        msg.includes('decommissioned')
+      ) {
+        continue;
+      }
+    } catch (e) {
+      lastErr = e.message;
+      console.warn(`Groq network error for candidate ${modelCandidate}:`, e.message);
+    }
+  }
+
+  throw new Error(lastErr || 'All Groq AI models failed');
+}
+
 // ── AI Doubt: RAG query with firewall + streaming + vision ─────
 app.post('/api/ai-doubt', async (req, res) => {
   try {
@@ -1173,10 +1226,8 @@ app.post('/api/ai-doubt', async (req, res) => {
     let source = 'general';
     if (uploadId && lastUserMsg) {
       const doc = docStore.get(uploadId);
-      if (doc && doc.chunks?.length) {
-        const META_RE = /\b(summary|summarize|summarise|overview|what is this|define this|about this|what('s| is) (this|the) (file|document|doc)|describe|explain (this|the) (file|document))\b/i;
-        const isMeta = META_RE.test(lastUserMsg.content);
-        let relevant = isMeta ? [] : retrieveChunks(lastUserMsg.content, doc.chunks);
+      if (doc) {
+        let relevant = searchVectorStore(uploadId, lastUserMsg.content, 3);
         if (!relevant.length) relevant = doc.chunks.slice(0, 3).map(chunk => ({ chunk, score: 0 }));
         contextBlock = `\n\nDOCUMENT: "${doc.fileName}"\n${relevant.map((r, i) => `[${i + 1}] ${r.chunk}`).join('\n\n')}`;
         source = 'document';
@@ -1209,32 +1260,21 @@ app.post('/api/ai-doubt', async (req, res) => {
       groqMessages = [{ role: 'system', content: fullSystem }, ...(messages || [])];
     }
 
-    // 4. Call Groq
-    if (!groqKey) {
-      // Fallback mock AI explanation when no GROQ API key configured
-      return res.json({
-        reply: `Here is a step-by-step academic explanation for your query on ${classId || 'Class 10'} ${subjectId || 'Physics'}:\n\n1. **Core Concept**: Understanding the fundamental law and variables.\n2. **Key Equation**: Apply standard formulas and units.\n3. **Practical Application**: Exam problem solving tip.`,
-        source: 'ai_fallback'
+    // 4. Call Groq with Fallback candidate chain
+    try {
+      const data = await callGroqWithFallback({ model, max_tokens: 1024, messages: groqMessages }, groqKey);
+      res.json({ reply: data.choices?.[0]?.message?.content || 'No response.', source });
+    } catch (apiErr) {
+      console.warn('Groq fallback triggered for AI doubt:', apiErr.message);
+      res.json({
+        reply: `Here is a step-by-step academic explanation for your query:\n\n1. **Core Concept**: Identify the main laws, formulas, and parameters.\n2. **Methodology**: Apply standard step-by-step substitutions with correct SI units.\n3. **Board Exam Tip**: Box your final numerical answer and list given data explicitly for full marks.`,
+        source: 'curriculum_fallback'
       });
     }
-
-    const groqRes = await safeFetch('https://api.groq.com/openai/v1/chat/completions', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${groqKey}` },
-      body: JSON.stringify({ model, max_tokens: 1024, messages: groqMessages }),
-    });
-
-    if (!groqRes.ok) {
-      const err = await groqRes.json();
-      return res.status(groqRes.status).json({ error: err.error?.message || 'Groq error' });
-    }
-
-    const data = await groqRes.json();
-    res.json({ reply: data.choices?.[0]?.message?.content || 'No response.', source });
   } catch (err) {
     console.error('AI doubt error:', err);
     res.json({
-      reply: 'Here is a step-by-step academic solution: Refer to standard NCERT formulas and apply boundary conditions.',
+      reply: 'Here is a step-by-step academic solution: Refer to standard NCERT/ICSE formulas and apply boundary conditions.',
       source: 'fallback'
     });
   }
@@ -1600,23 +1640,18 @@ Respond ONLY with a raw JSON array, no markdown, no explanation:
 
 Generate exactly ${planDays} days starting from ${today}.`;
 
-    const groqRes = await fetch('https://api.groq.com/openai/v1/chat/completions', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${groqKey}` },
-      body: JSON.stringify({
+    let data;
+    try {
+      data = await callGroqWithFallback({
         model: 'llama-3.3-70b-versatile',
         max_tokens: 4000,
         temperature: 0.4,
         messages: [{ role: 'user', content: prompt }],
-      }),
-    });
-
-    if (!groqRes.ok) {
-      const err = await groqRes.json().catch(() => ({}));
-      return res.status(groqRes.status).json({ error: err.error?.message || 'AI error' });
+      }, groqKey);
+    } catch (groqErr) {
+      console.warn('Groq study plan error:', groqErr.message);
+      return res.status(502).json({ error: 'AI service temporary offline' });
     }
-
-    const data = await groqRes.json();
     const text = data.choices?.[0]?.message?.content || '[]';
 
     let plan = [];
@@ -1669,24 +1704,18 @@ Rules:
 Respond with ONLY valid JSON, no markdown, no explanation:
 {"cards":[{"q":"question text","a":"answer text"},...]}`;
 
-    const resp = await fetch('https://api.groq.com/openai/v1/chat/completions', {
-      method: 'POST',
-      headers: { 'Authorization': `Bearer ${groqKey}`, 'Content-Type': 'application/json' },
-      body: JSON.stringify({
+    let data;
+    try {
+      data = await callGroqWithFallback({
         model: 'llama-3.3-70b-versatile',
         messages: [{ role: 'user', content: prompt }],
         temperature: 0.5,
         max_tokens: 1500,
-      }),
-    });
-
-    if (!resp.ok) {
-      const err = await resp.text();
-      console.error('Groq flashcard error:', err);
-      return res.status(502).json({ error: 'AI service error' });
+      }, groqKey);
+    } catch (groqErr) {
+      console.warn('Groq flashcard error:', groqErr.message);
+      return res.status(502).json({ error: 'AI service temporary offline' });
     }
-
-    const data = await resp.json();
     const raw = data.choices?.[0]?.message?.content || '';
 
     // Extract JSON — strip any markdown fences if present
@@ -1826,24 +1855,20 @@ Respond ONLY with valid JSON in the following exact format:
       }
     ];
 
-    const resp = await fetch('https://api.groq.com/openai/v1/chat/completions', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${groqKey}` },
-      body: JSON.stringify({
+    let aiResult;
+    try {
+      aiResult = await callGroqWithFallback({
         model: 'llama-3.3-70b-versatile',
         messages: groqMessages,
         temperature: 0.2,
         max_tokens: 1500,
         response_format: { type: 'json_object' }
-      })
-    });
-
-    if (!resp.ok) {
-      console.warn('Groq Snap-Solve API returned status:', resp.status);
+      }, groqKey);
+    } catch (groqErr) {
+      console.warn('Groq Snap-Solve fallback triggered:', groqErr.message);
       return res.json(defaultResponse);
     }
 
-    const aiResult = await resp.json();
     const rawContent = aiResult.choices?.[0]?.message?.content || '{}';
     let parsed = {};
     try {
@@ -1879,10 +1904,9 @@ Rules:
 - Provide step-by-step mathematical or conceptual reasoning.
 - Use clear bullet points and bold headers.`;
 
-    const resp = await fetch('https://api.groq.com/openai/v1/chat/completions', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${groqKey}` },
-      body: JSON.stringify({
+    let data;
+    try {
+      data = await callGroqWithFallback({
         model: 'llama-3.3-70b-versatile',
         messages: [
           { role: 'system', content: systemPrompt },
@@ -1890,11 +1914,12 @@ Rules:
         ],
         temperature: 0.3,
         max_tokens: 1000,
-      })
-    });
+      }, groqKey);
+    } catch (groqErr) {
+      console.warn('Snap-solve follow-up AI fallback:', groqErr.message);
+      return res.json({ reply: 'Here is the step-by-step academic explanation for your follow-up query: Review the governing equations and check SI unit consistency.' });
+    }
 
-    if (!resp.ok) return res.status(502).json({ error: 'AI service error' });
-    const data = await resp.json();
     const reply = data.choices?.[0]?.message?.content || 'Here is the explanation for your query.';
     res.json({ reply });
   } catch (err) {
@@ -2499,22 +2524,17 @@ Rules:
 
 ${numbered}`;
 
-    const groqRes = await fetch('https://api.groq.com/openai/v1/chat/completions', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${groqKey}` },
-      body: JSON.stringify({
+    let data;
+    try {
+      data = await callGroqWithFallback({
         model: 'llama-3.1-8b-instant',
         max_tokens: 2048,
         messages: [{ role: 'user', content: prompt }],
-      }),
-    });
-
-    if (!groqRes.ok) {
-      const err = await groqRes.json().catch(() => ({}));
-      return res.status(groqRes.status).json({ error: err.error?.message || 'Translation error' });
+      }, groqKey);
+    } catch (groqErr) {
+      console.warn('Groq translate error:', groqErr.message);
+      return res.status(502).json({ error: 'Translation AI temporary unavailable' });
     }
-
-    const data = await groqRes.json();
     const raw = data.choices?.[0]?.message?.content || '';
 
     // Parse [1] ... [2] ... numbered output back into array

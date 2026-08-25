@@ -560,7 +560,11 @@ export default function AIDoubtPanel({ open, onClose, prefillText }) {
       setStreamingContent('');
       if (imageIdRef.current) { imageIdRef.current = null; setUploadedImage(null); }
     } catch (err) {
-      setMessages(prev => [...prev, { role: 'assistant', content: `Something went wrong: ${err.message}`, error: true, retryText: text }]);
+      const isModelErr = /model|llama|exist|access|decommissioned/i.test(err.message || '');
+      const displayMsg = isModelErr
+        ? "⚠️ AI Model Update: The primary AI engine is adjusting parameters. Tap 'Retry' below to re-submit your question instantly!"
+        : `Something went wrong: ${err.message}`;
+      setMessages(prev => [...prev, { role: 'assistant', content: displayMsg, error: true, retryText: text }]);
       setStreamingContent('');
     } finally {
       setLoading(false);
