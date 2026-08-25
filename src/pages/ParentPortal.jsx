@@ -130,17 +130,62 @@ function ChildView({ linkedInfo, onBack }) {
 
   const statusColor = { confirmed: '#059669', pending: '#d97706', completed: '#4f46e5', cancelled: '#dc2626' };
 
+  const [waSending, setWaSending] = useState(false);
+  const [waMsg, setWaMsg] = useState('');
+
+  async function handleSendWhatsAppReport() {
+    setWaSending(true);
+    setWaMsg('');
+    try {
+      const res = await apiFn('/parent/whatsapp-report', {
+        method: 'POST',
+        body: { studentEmail: linkedInfo.email }
+      });
+      setWaMsg(res.message || 'WhatsApp Progress Report Sent!');
+    } catch (err) {
+      setWaMsg(err.message || 'Failed to dispatch report');
+    } finally {
+      setWaSending(false);
+    }
+  }
+
   return (
     <div>
       {/* Child header */}
-      <div style={{ display: 'flex', alignItems: 'center', gap: '1rem', marginBottom: '1.75rem', flexWrap: 'wrap' }}>
-        <button onClick={onBack} style={{ padding: '.45rem .9rem', border: '1.5px solid #e5e7eb', borderRadius: 9, background: '#fff', cursor: 'pointer', fontSize: '.88rem', color: '#374151', fontWeight: 600 }}>
-          ← Back
-        </button>
-        <div style={{ fontSize: '2.5rem' }}>{student.avatar || '🧑‍🎓'}</div>
-        <div>
-          <div style={{ fontFamily: 'Nunito', fontWeight: 900, fontSize: '1.2rem', color: '#1e1b4b' }}>{student.name}</div>
-          <div style={{ fontSize: '.8rem', color: '#9ca3af' }}>{linkedInfo.email}{student.class_id && ` · Class ${student.class_id.replace('class-','')}`}</div>
+      <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '1.75rem', flexWrap: 'wrap', gap: '1rem' }}>
+        <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
+          <button onClick={onBack} style={{ padding: '.45rem .9rem', border: '1.5px solid #e5e7eb', borderRadius: 9, background: '#fff', cursor: 'pointer', fontSize: '.88rem', color: '#374151', fontWeight: 600 }}>
+            ← Back
+          </button>
+          <div style={{ fontSize: '2.5rem' }}>{student.avatar || '🧑‍🎓'}</div>
+          <div>
+            <div style={{ fontFamily: 'Nunito', fontWeight: 900, fontSize: '1.2rem', color: '#1e1b4b' }}>{student.name}</div>
+            <div style={{ fontSize: '.8rem', color: '#9ca3af' }}>{linkedInfo.email}{student.class_id && ` · Class ${student.class_id.replace('class-','')}`}</div>
+          </div>
+        </div>
+
+        <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-end', gap: '.4rem' }}>
+          <button
+            onClick={handleSendWhatsAppReport}
+            disabled={waSending}
+            style={{
+              background: 'linear-gradient(135deg, #10b981, #059669)',
+              color: '#fff',
+              border: 'none',
+              borderRadius: 12,
+              padding: '.6rem 1.1rem',
+              fontWeight: 800,
+              fontSize: '.85rem',
+              cursor: waSending ? 'not-allowed' : 'pointer',
+              display: 'flex',
+              alignItems: 'center',
+              gap: '.4rem',
+              boxShadow: '0 4px 14px rgba(16,185,129,0.3)',
+            }}
+          >
+            📲 {waSending ? 'Sending Report...' : 'Send WhatsApp & PDF Report'}
+          </button>
+          {waMsg && <div style={{ fontSize: '.75rem', fontWeight: 800, color: '#059669' }}>{waMsg}</div>}
         </div>
       </div>
 

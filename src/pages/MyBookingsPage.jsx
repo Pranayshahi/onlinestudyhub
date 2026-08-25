@@ -4,6 +4,8 @@ import { api } from '../utils/api';
 import { useNotifications } from '../context/NotificationsContext';
 import { useLang } from '../context/LanguageContext';
 
+import LiveClassroomModal from '../components/LiveClassroomModal';
+
 const BOOKING_CACHE_KEY = 'osh_booking_status_cache';
 
 const STATUS_STYLE = {
@@ -132,11 +134,20 @@ function BookingCard({ booking, onRate, reviewed, onCancel }) {
         <div><span style={{ color: '#9ca3af' }}>{t('bookings_phone')}</span><br /><strong>{booking.student_phone}</strong></div>
       </div>
 
-      {booking.status === 'confirmed' && booking.meet_link && (
-        <a href={booking.meet_link} target="_blank" rel="noopener noreferrer"
-          style={{ display: 'inline-flex', alignItems: 'center', gap: '.4rem', background: '#1e1b4b', color: '#fff', fontSize: '.82rem', fontWeight: 700, padding: '.45rem 1rem', borderRadius: 8, textDecoration: 'none', width: 'fit-content' }}>
-          {t('bookings_join')}
-        </a>
+      {booking.status === 'confirmed' && (
+        <div style={{ display: 'flex', gap: '.5rem', flexWrap: 'wrap' }}>
+          {booking.meet_link && (
+            <a href={booking.meet_link} target="_blank" rel="noopener noreferrer"
+              style={{ display: 'inline-flex', alignItems: 'center', gap: '.4rem', background: '#1e1b4b', color: '#fff', fontSize: '.82rem', fontWeight: 700, padding: '.45rem 1rem', borderRadius: 8, textDecoration: 'none', width: 'fit-content' }}>
+              {t('bookings_join')}
+            </a>
+          )}
+          <button
+            onClick={() => onOpenLiveClassroom && onOpenLiveClassroom(booking)}
+            style={{ display: 'inline-flex', alignItems: 'center', gap: '.4rem', background: 'linear-gradient(135deg, #ef4444, #dc2626)', color: '#fff', fontSize: '.82rem', fontWeight: 900, padding: '.45rem 1rem', borderRadius: 8, border: 'none', cursor: 'pointer', boxShadow: '0 4px 12px rgba(239,68,68,0.35)' }}>
+            🎙️ Enter Live WebRTC Classroom
+          </button>
+        </div>
       )}
 
       {(booking.status === 'pending' || booking.status === 'confirmed') && (
@@ -170,6 +181,7 @@ export default function MyBookingsPage({ user, onOpenLogin, onBadgeUpdate }) {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
   const [ratingBooking, setRatingBooking] = useState(null);
+  const [liveClassroomBooking, setLiveClassroomBooking] = useState(null);
   const [reviewed, setReviewed] = useState(new Set());
   const { addNotification } = useNotifications();
   const { t } = useLang();
@@ -279,7 +291,16 @@ export default function MyBookingsPage({ user, onOpenLogin, onBadgeUpdate }) {
           <div style={{ marginBottom: '2rem' }}>
             <h2 style={{ fontFamily: 'Nunito', fontWeight: 800, fontSize: '1.1rem', color: '#1f2937', marginBottom: '1rem' }}>{t('bookings_upcoming')} ({upcoming.length})</h2>
             <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
-              {upcoming.map(b => <BookingCard key={b._id} booking={b} onRate={setRatingBooking} reviewed={reviewed.has(b._id)} onCancel={id => setBookings(bs => bs.map(x => x._id === id ? { ...x, status: 'cancelled' } : x))} />)}
+              {upcoming.map(b => (
+                <BookingCard
+                  key={b._id}
+                  booking={b}
+                  onRate={setRatingBooking}
+                  onOpenLiveClassroom={setLiveClassroomBooking}
+                  reviewed={reviewed.has(b._id)}
+                  onCancel={id => setBookings(bs => bs.map(x => x._id === id ? { ...x, status: 'cancelled' } : x))}
+                />
+              ))}
             </div>
           </div>
         )}
@@ -287,7 +308,7 @@ export default function MyBookingsPage({ user, onOpenLogin, onBadgeUpdate }) {
           <div>
             <h2 style={{ fontFamily: 'Nunito', fontWeight: 800, fontSize: '1.1rem', color: '#1f2937', marginBottom: '1rem' }}>{t('bookings_past')} ({past.length})</h2>
             <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
-              {past.map(b => <BookingCard key={b._id} booking={b} onRate={setRatingBooking} reviewed={reviewed.has(b._id)} />)}
+              {past.map(b => <BookingCard key={b._id} booking={b} onRate={setRatingBooking} onOpenLiveClassroom={setLiveClassroomBooking} reviewed={reviewed.has(b._id)} />)}
             </div>
           </div>
         )}
@@ -295,6 +316,16 @@ export default function MyBookingsPage({ user, onOpenLogin, onBadgeUpdate }) {
 
       {ratingBooking && (
         <RatingModal booking={ratingBooking} onClose={() => setRatingBooking(null)} onSubmitted={id => setReviewed(s => new Set([...s, id]))} />
+      )}
+
+      {liveClassroomBooking && (
+        <LiveClassroomModal
+          isOpen={Boolean(liveClassroomBooking)}
+          onClose={() => setLiveClassroomBooking(null)}
+          topicTitle={liveClassroomBooking.topic_id ? liveClassroomBooking.topic_id.replace(/-/g, ' ').replace(/\b\w/g, c => c.toUpperCase()) : 'Live Session'}
+          teacherName={liveClassroomBooking.teacher_id?.name || 'Dr. H. C. Verma'}
+          user={user}
+        />
       )}
     </div>
   );

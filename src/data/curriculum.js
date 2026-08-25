@@ -10119,6 +10119,7 @@ export const CURRICULUM = {
             "title": "Integers and Rational Numbers",
             "subtopics": "Properties of Addition & Multiplication, Representation on Number Line, Absolute Value",
             "definition": "Integers consist of positive numbers, zero, and negative numbers. Rational numbers are numbers of the form p/q where q ≠ 0.",
+            "content": "<p>This topic is an integral part of the ICSE/CBSE board syllabus. Master core concepts, fundamental relations, and step-by-step numerical applications to achieve top scores.</p>\n<h4>Key Study Points & Principles</h4>\n<ul>\n  <li><strong>Core Concept:</strong> Understand the fundamental definition and physical mechanisms.</li>\n  <li><strong>Formulas & Units:</strong> Double-check all variables, constants, and SI unit conversions before calculations.</li>\n  <li><strong>Exam Technique:</strong> Structure answers using clear bullet points, labeled diagrams, and boxed final answers.</li>\n</ul>\n<div class=\"example-box\"><strong>Board Exam Strategy:</strong> Practice past 10 years' solved board questions to familiarize yourself with high-yield derivations and marking schemes.</div>",
             "qa": [
               {
                 "q": "State the Closure, Commutative, and Associative properties of integer addition.",
@@ -10143,6 +10144,7 @@ export const CURRICULUM = {
             "title": "Fractions and Decimals",
             "subtopics": "Proper, Improper & Mixed Fractions, Multiplication & Division, Terminating & Recurring Decimals",
             "definition": "A fraction represents part of a whole. Multiplication of fractions multiplies numerators and denominators directly.",
+            "content": "<p>This topic is an integral part of the ICSE/CBSE board syllabus. Master core concepts, fundamental relations, and step-by-step numerical applications to achieve top scores.</p>\n<h4>Key Study Points & Principles</h4>\n<ul>\n  <li><strong>Core Concept:</strong> Understand the fundamental definition and physical mechanisms.</li>\n  <li><strong>Formulas & Units:</strong> Double-check all variables, constants, and SI unit conversions before calculations.</li>\n  <li><strong>Exam Technique:</strong> Structure answers using clear bullet points, labeled diagrams, and boxed final answers.</li>\n</ul>\n<div class=\"example-box\"><strong>Board Exam Strategy:</strong> Practice past 10 years' solved board questions to familiarize yourself with high-yield derivations and marking schemes.</div>",
             "qa": [
               {
                 "q": "Multiply 3/4 by 5/7.",
@@ -10167,6 +10169,7 @@ export const CURRICULUM = {
             "title": "Exponents and Powers",
             "subtopics": "Laws of Exponents, Scientific Notation, Standard Form",
             "definition": "Exponents denote repeated multiplication of a base: a^m * a^n = a^(m+n) and (a^m)^n = a^(m*n).",
+            "content": "<p>This topic is an integral part of the ICSE/CBSE board syllabus. Master core concepts, fundamental relations, and step-by-step numerical applications to achieve top scores.</p>\n<h4>Key Study Points & Principles</h4>\n<ul>\n  <li><strong>Core Concept:</strong> Understand the fundamental definition and physical mechanisms.</li>\n  <li><strong>Formulas & Units:</strong> Double-check all variables, constants, and SI unit conversions before calculations.</li>\n  <li><strong>Exam Technique:</strong> Structure answers using clear bullet points, labeled diagrams, and boxed final answers.</li>\n</ul>\n<div class=\"example-box\"><strong>Board Exam Strategy:</strong> Practice past 10 years' solved board questions to familiarize yourself with high-yield derivations and marking schemes.</div>",
             "qa": [
               {
                 "q": "State the primary laws of exponents.",
@@ -10191,6 +10194,7 @@ export const CURRICULUM = {
             "title": "Ratio, Proportion and Percentage",
             "subtopics": "Ratio in Simplest Form, Direct and Inverse Variation, Percentage Applications, Profit & Loss, Simple Interest",
             "definition": "Simple interest I = (P * R * T) / 100, where P is Principal, R is Rate per annum, and T is Time in years.",
+            "content": "<p>This topic is an integral part of the ICSE/CBSE board syllabus. Master core concepts, fundamental relations, and step-by-step numerical applications to achieve top scores.</p>\n<h4>Key Study Points & Principles</h4>\n<ul>\n  <li><strong>Core Concept:</strong> Understand the fundamental definition and physical mechanisms.</li>\n  <li><strong>Formulas & Units:</strong> Double-check all variables, constants, and SI unit conversions before calculations.</li>\n  <li><strong>Exam Technique:</strong> Structure answers using clear bullet points, labeled diagrams, and boxed final answers.</li>\n</ul>\n<div class=\"example-box\"><strong>Board Exam Strategy:</strong> Practice past 10 years' solved board questions to familiarize yourself with high-yield derivations and marking schemes.</div>",
             "qa": [
               {
                 "q": "Calculate simple interest on ₹ 5,000 at 8% per annum for 3 years.",
@@ -10220,6 +10224,7 @@ export const CURRICULUM = {
             "title": "Physical Quantities & Density (d = m/V)",
             "subtopics": "Measurement of Area & Volume, Density of Regular & Irregular Solids, Relative Density, Plimsoll Line",
             "definition": "Density is mass per unit volume (d = m/V). Relative density is the ratio of density of a substance to the density of water at 4°C.",
+            "content": "<p>This topic is an integral part of the ICSE/CBSE board syllabus. Master core concepts, fundamental relations, and step-by-step numerical applications to achieve top scores.</p>\n<h4>Key Study Points & Principles</h4>\n<ul>\n  <li><strong>Core Concept:</strong> Understand the fundamental definition and physical mechanisms.</li>\n  <li><strong>Formulas & Units:</strong> Double-check all variables, constants, and SI unit conversions before calculations.</li>\n  <li><strong>Exam Technique:</strong> Structure answers using clear bullet points, labeled diagrams, and boxed final answers.</li>\n</ul>\n<div class=\"example-box\"><strong>Board Exam Strategy:</strong> Practice past 10 years' solved board questions to familiarize yourself with high-yield derivations and marking schemes.</div>",
             "qa": [
               {
                 "q": "State the SI unit and CGS unit of density and their conversion relation.",
@@ -10244,6 +10249,7 @@ export const CURRICULUM = {
             "title": "Motion, Speed and Distance-Time Graphs",
             "subtopics": "Types of Motion, Speed Formula s = d/t, Distance-Time Graphs, Uniform vs Non-Uniform Speed",
             "definition": "Speed is the distance traveled per unit time (s = d/t). Uniform motion covers equal distances in equal intervals of time.",
+            "content": "<p>This topic is an integral part of the ICSE/CBSE board syllabus. Master core concepts, fundamental relations, and step-by-step numerical applications to achieve top scores.</p>\n<h4>Key Study Points & Principles</h4>\n<ul>\n  <li><strong>Core Concept:</strong> Understand the fundamental definition and physical mechanisms.</li>\n  <li><strong>Formulas & Units:</strong> Double-check all variables, constants, and SI unit conversions before calculations.</li>\n  <li><strong>Exam Technique:</strong> Structure answers using clear bullet points, labeled diagrams, and boxed final answers.</li>\n</ul>\n<div class=\"example-box\"><strong>Board Exam Strategy:</strong> Practice past 10 years' solved board questions to familiarize yourself with high-yield derivations and marking schemes.</div>",
             "qa": [
               {
                 "q": "A car covers 180 km in 3 hours. Calculate its speed in m/s.",
@@ -10268,6 +10274,7 @@ export const CURRICULUM = {
             "title": "Energy and Work (W = F x s)",
             "subtopics": "Definition of Work, Forms of Energy, Law of Conservation of Energy, Kinetic vs Potential Energy",
             "definition": "Work is done when a force displaces an object in its direction (W = F * s). Energy is the capacity to do work.",
+            "content": "<p>This topic is an integral part of the ICSE/CBSE board syllabus. Master core concepts, fundamental relations, and step-by-step numerical applications to achieve top scores.</p>\n<h4>Key Study Points & Principles</h4>\n<ul>\n  <li><strong>Core Concept:</strong> Understand the fundamental definition and physical mechanisms.</li>\n  <li><strong>Formulas & Units:</strong> Double-check all variables, constants, and SI unit conversions before calculations.</li>\n  <li><strong>Exam Technique:</strong> Structure answers using clear bullet points, labeled diagrams, and boxed final answers.</li>\n</ul>\n<div class=\"example-box\"><strong>Board Exam Strategy:</strong> Practice past 10 years' solved board questions to familiarize yourself with high-yield derivations and marking schemes.</div>",
             "qa": [
               {
                 "q": "State the SI unit of work and energy.",
@@ -10292,6 +10299,7 @@ export const CURRICULUM = {
             "title": "Heat and Temperature Transfer",
             "subtopics": "Conduction, Convection, Radiation, Sea Breeze & Land Breeze, Clinical Thermometer",
             "definition": "Heat is thermal energy in transit. Conduction occurs in solids, convection in fluids, and radiation through vacuum via electromagnetic waves.",
+            "content": "<p>This topic is an integral part of the ICSE/CBSE board syllabus. Master core concepts, fundamental relations, and step-by-step numerical applications to achieve top scores.</p>\n<h4>Key Study Points & Principles</h4>\n<ul>\n  <li><strong>Core Concept:</strong> Understand the fundamental definition and physical mechanisms.</li>\n  <li><strong>Formulas & Units:</strong> Double-check all variables, constants, and SI unit conversions before calculations.</li>\n  <li><strong>Exam Technique:</strong> Structure answers using clear bullet points, labeled diagrams, and boxed final answers.</li>\n</ul>\n<div class=\"example-box\"><strong>Board Exam Strategy:</strong> Practice past 10 years' solved board questions to familiarize yourself with high-yield derivations and marking schemes.</div>",
             "qa": [
               {
                 "q": "Explain how Sea Breeze occurs during daytime.",
@@ -10321,6 +10329,7 @@ export const CURRICULUM = {
             "title": "Kinetic Theory of Matter (Selina ICSE)",
             "subtopics": "Intermolecular Space & Forces, States of Matter, Physical Changes, Sublimation",
             "definition": "Matter consists of tiny particles (atoms/molecules) in continuous motion. Intermolecular space is minimum in solids and maximum in gases.",
+            "content": "<p>This topic is an integral part of the ICSE/CBSE board syllabus. Master core concepts, fundamental relations, and step-by-step numerical applications to achieve top scores.</p>\n<h4>Key Study Points & Principles</h4>\n<ul>\n  <li><strong>Core Concept:</strong> Understand the fundamental definition and physical mechanisms.</li>\n  <li><strong>Formulas & Units:</strong> Double-check all variables, constants, and SI unit conversions before calculations.</li>\n  <li><strong>Exam Technique:</strong> Structure answers using clear bullet points, labeled diagrams, and boxed final answers.</li>\n</ul>\n<div class=\"example-box\"><strong>Board Exam Strategy:</strong> Practice past 10 years' solved board questions to familiarize yourself with high-yield derivations and marking schemes.</div>",
             "qa": [
               {
                 "q": "Compare intermolecular forces in solids, liquids, and gases.",
@@ -10345,6 +10354,7 @@ export const CURRICULUM = {
             "title": "Atomic Structure, Elements & Valency",
             "subtopics": "Subatomic Particles (Protons, Neutrons, Electrons), Atomic Number Z, Mass Number A, Valency Crossover Rule",
             "definition": "An atom consists of a nucleus (protons + neutrons) surrounded by electrons in shells. Valency is combining capacity of an element.",
+            "content": "<p>This topic is an integral part of the ICSE/CBSE board syllabus. Master core concepts, fundamental relations, and step-by-step numerical applications to achieve top scores.</p>\n<h4>Key Study Points & Principles</h4>\n<ul>\n  <li><strong>Core Concept:</strong> Understand the fundamental definition and physical mechanisms.</li>\n  <li><strong>Formulas & Units:</strong> Double-check all variables, constants, and SI unit conversions before calculations.</li>\n  <li><strong>Exam Technique:</strong> Structure answers using clear bullet points, labeled diagrams, and boxed final answers.</li>\n</ul>\n<div class=\"example-box\"><strong>Board Exam Strategy:</strong> Practice past 10 years' solved board questions to familiarize yourself with high-yield derivations and marking schemes.</div>",
             "qa": [
               {
                 "q": "State the charge and mass of protons, neutrons, and electrons.",
@@ -10374,6 +10384,7 @@ export const CURRICULUM = {
             "title": "Plant & Animal Tissues (Selina ICSE)",
             "subtopics": "Meristematic vs Permanent Tissues, Xylem and Phloem, Epithelial, Connective & Muscular Tissues",
             "definition": "A tissue is a group of similar cells performing a specific function. Xylem transports water/minerals; Phloem transports food.",
+            "content": "<p>This topic is an integral part of the ICSE/CBSE board syllabus. Master core concepts, fundamental relations, and step-by-step numerical applications to achieve top scores.</p>\n<h4>Key Study Points & Principles</h4>\n<ul>\n  <li><strong>Core Concept:</strong> Understand the fundamental definition and physical mechanisms.</li>\n  <li><strong>Formulas & Units:</strong> Double-check all variables, constants, and SI unit conversions before calculations.</li>\n  <li><strong>Exam Technique:</strong> Structure answers using clear bullet points, labeled diagrams, and boxed final answers.</li>\n</ul>\n<div class=\"example-box\"><strong>Board Exam Strategy:</strong> Practice past 10 years' solved board questions to familiarize yourself with high-yield derivations and marking schemes.</div>",
             "qa": [
               {
                 "q": "Distinguish between Meristematic and Permanent plant tissues.",
@@ -10413,6 +10424,7 @@ export const CURRICULUM = {
             "title": "Rational Numbers & Exponents",
             "subtopics": "Properties of Rational Numbers, Number Line, Laws of Exponents, Negative Exponents",
             "definition": "A rational number is any number expressible in the form p/q where p and q are integers and q ≠ 0. Exponents handle powers of rational numbers.",
+            "content": "<p>This topic is an integral part of the ICSE/CBSE board syllabus. Master core concepts, fundamental relations, and step-by-step numerical applications to achieve top scores.</p>\n<h4>Key Study Points & Principles</h4>\n<ul>\n  <li><strong>Core Concept:</strong> Understand the fundamental definition and physical mechanisms.</li>\n  <li><strong>Formulas & Units:</strong> Double-check all variables, constants, and SI unit conversions before calculations.</li>\n  <li><strong>Exam Technique:</strong> Structure answers using clear bullet points, labeled diagrams, and boxed final answers.</li>\n</ul>\n<div class=\"example-box\"><strong>Board Exam Strategy:</strong> Practice past 10 years' solved board questions to familiarize yourself with high-yield derivations and marking schemes.</div>",
             "qa": [
               {
                 "q": "What is the core definition and fundamental principle of Rational Numbers & Exponents?",
@@ -10437,6 +10449,7 @@ export const CURRICULUM = {
             "title": "Squares, Square Roots, Cubes & Cube Roots",
             "subtopics": "Prime Factorisation, Long Division Method, Estimating Square and Cube Roots",
             "definition": "The square root of a number x is a number y such that y² = x. Long division is used to find square roots of non-perfect squares.",
+            "content": "<p>This topic is an integral part of the ICSE/CBSE board syllabus. Master core concepts, fundamental relations, and step-by-step numerical applications to achieve top scores.</p>\n<h4>Key Study Points & Principles</h4>\n<ul>\n  <li><strong>Core Concept:</strong> Understand the fundamental definition and physical mechanisms.</li>\n  <li><strong>Formulas & Units:</strong> Double-check all variables, constants, and SI unit conversions before calculations.</li>\n  <li><strong>Exam Technique:</strong> Structure answers using clear bullet points, labeled diagrams, and boxed final answers.</li>\n</ul>\n<div class=\"example-box\"><strong>Board Exam Strategy:</strong> Practice past 10 years' solved board questions to familiarize yourself with high-yield derivations and marking schemes.</div>",
             "qa": [
               {
                 "q": "What is the core definition and fundamental principle of Squares, Square Roots, Cubes & Cube Roots?",
@@ -10461,6 +10474,7 @@ export const CURRICULUM = {
             "title": "Percent, Profit Loss & Compound Interest",
             "subtopics": "Discount, Tax, Simple Interest vs Compound Interest A = P(1 + r/100)^n",
             "definition": "Compound interest is calculated on the principal plus accumulated interest of previous periods: A = P (1 + R/100)^n.",
+            "content": "<p>This topic is an integral part of the ICSE/CBSE board syllabus. Master core concepts, fundamental relations, and step-by-step numerical applications to achieve top scores.</p>\n<h4>Key Study Points & Principles</h4>\n<ul>\n  <li><strong>Core Concept:</strong> Understand the fundamental definition and physical mechanisms.</li>\n  <li><strong>Formulas & Units:</strong> Double-check all variables, constants, and SI unit conversions before calculations.</li>\n  <li><strong>Exam Technique:</strong> Structure answers using clear bullet points, labeled diagrams, and boxed final answers.</li>\n</ul>\n<div class=\"example-box\"><strong>Board Exam Strategy:</strong> Practice past 10 years' solved board questions to familiarize yourself with high-yield derivations and marking schemes.</div>",
             "qa": [
               {
                 "q": "What is the core definition and fundamental principle of Percent, Profit Loss & Compound Interest?",
@@ -10485,6 +10499,7 @@ export const CURRICULUM = {
             "title": "Algebraic Expressions & Factorisation",
             "subtopics": "Identities (a+b)², (a-b)², a²-b², Grouping, Splitting the Middle Term",
             "definition": "Factorisation is the process of breaking down an algebraic expression into a product of simpler factors.",
+            "content": "<p>This topic is an integral part of the ICSE/CBSE board syllabus. Master core concepts, fundamental relations, and step-by-step numerical applications to achieve top scores.</p>\n<h4>Key Study Points & Principles</h4>\n<ul>\n  <li><strong>Core Concept:</strong> Understand the fundamental definition and physical mechanisms.</li>\n  <li><strong>Formulas & Units:</strong> Double-check all variables, constants, and SI unit conversions before calculations.</li>\n  <li><strong>Exam Technique:</strong> Structure answers using clear bullet points, labeled diagrams, and boxed final answers.</li>\n</ul>\n<div class=\"example-box\"><strong>Board Exam Strategy:</strong> Practice past 10 years' solved board questions to familiarize yourself with high-yield derivations and marking schemes.</div>",
             "qa": [
               {
                 "q": "What is the core definition and fundamental principle of Algebraic Expressions & Factorisation?",
@@ -10509,6 +10524,7 @@ export const CURRICULUM = {
             "title": "Mensuration: Volume & Surface Area",
             "subtopics": "Cube, Cuboid, Right Circular Cylinder (TSA = 2πr(r+h), Volume = πr²h)",
             "definition": "Mensuration measures total surface area and volume of 3D solid figures including cubes, cuboids, and cylinders.",
+            "content": "<p>This topic is an integral part of the ICSE/CBSE board syllabus. Master core concepts, fundamental relations, and step-by-step numerical applications to achieve top scores.</p>\n<h4>Key Study Points & Principles</h4>\n<ul>\n  <li><strong>Core Concept:</strong> Understand the fundamental definition and physical mechanisms.</li>\n  <li><strong>Formulas & Units:</strong> Double-check all variables, constants, and SI unit conversions before calculations.</li>\n  <li><strong>Exam Technique:</strong> Structure answers using clear bullet points, labeled diagrams, and boxed final answers.</li>\n</ul>\n<div class=\"example-box\"><strong>Board Exam Strategy:</strong> Practice past 10 years' solved board questions to familiarize yourself with high-yield derivations and marking schemes.</div>",
             "qa": [
               {
                 "q": "What is the core definition and fundamental principle of Mensuration: Volume & Surface Area?",
@@ -10538,6 +10554,7 @@ export const CURRICULUM = {
             "title": "Matter & Kinetic Theory (Selina ICSE)",
             "subtopics": "States of Matter, Change of State, Latent Heat, Evaporation vs Boiling",
             "definition": "Matter is made of particles in perpetual motion. Latent heat is energy absorbed or released during a phase change without temperature change.",
+            "content": "<p>This topic is an integral part of the ICSE/CBSE board syllabus. Master core concepts, fundamental relations, and step-by-step numerical applications to achieve top scores.</p>\n<h4>Key Study Points & Principles</h4>\n<ul>\n  <li><strong>Core Concept:</strong> Understand the fundamental definition and physical mechanisms.</li>\n  <li><strong>Formulas & Units:</strong> Double-check all variables, constants, and SI unit conversions before calculations.</li>\n  <li><strong>Exam Technique:</strong> Structure answers using clear bullet points, labeled diagrams, and boxed final answers.</li>\n</ul>\n<div class=\"example-box\"><strong>Board Exam Strategy:</strong> Practice past 10 years' solved board questions to familiarize yourself with high-yield derivations and marking schemes.</div>",
             "qa": [
               {
                 "q": "What is the core definition and fundamental principle of Matter & Kinetic Theory?",
@@ -10562,6 +10579,7 @@ export const CURRICULUM = {
             "title": "Physical Quantities & Relative Density",
             "subtopics": "Density d = m/V, Relative Density RD = Density of Solid / Density of Water, Hydrometer",
             "definition": "Relative Density (RD) has no units because it is the ratio of density of a substance to the density of water at 4°C.",
+            "content": "<p>This topic is an integral part of the ICSE/CBSE board syllabus. Master core concepts, fundamental relations, and step-by-step numerical applications to achieve top scores.</p>\n<h4>Key Study Points & Principles</h4>\n<ul>\n  <li><strong>Core Concept:</strong> Understand the fundamental definition and physical mechanisms.</li>\n  <li><strong>Formulas & Units:</strong> Double-check all variables, constants, and SI unit conversions before calculations.</li>\n  <li><strong>Exam Technique:</strong> Structure answers using clear bullet points, labeled diagrams, and boxed final answers.</li>\n</ul>\n<div class=\"example-box\"><strong>Board Exam Strategy:</strong> Practice past 10 years' solved board questions to familiarize yourself with high-yield derivations and marking schemes.</div>",
             "qa": [
               {
                 "q": "What is the core definition and fundamental principle of Physical Quantities & Relative Density?",
@@ -10586,6 +10604,7 @@ export const CURRICULUM = {
             "title": "Force, Liquid Pressure & Pascal's Law",
             "subtopics": "Liquid Pressure P = h d g, Thrust & Pressure, Pascal's Law & Hydraulic Press",
             "definition": "Liquid pressure at depth h is P = h d g. Pascal's Law states that pressure applied to an enclosed fluid is transmitted undiminished in all directions.",
+            "content": "<p>This topic is an integral part of the ICSE/CBSE board syllabus. Master core concepts, fundamental relations, and step-by-step numerical applications to achieve top scores.</p>\n<h4>Key Study Points & Principles</h4>\n<ul>\n  <li><strong>Core Concept:</strong> Understand the fundamental definition and physical mechanisms.</li>\n  <li><strong>Formulas & Units:</strong> Double-check all variables, constants, and SI unit conversions before calculations.</li>\n  <li><strong>Exam Technique:</strong> Structure answers using clear bullet points, labeled diagrams, and boxed final answers.</li>\n</ul>\n<div class=\"example-box\"><strong>Board Exam Strategy:</strong> Practice past 10 years' solved board questions to familiarize yourself with high-yield derivations and marking schemes.</div>",
             "qa": [
               {
                 "q": "What is the core definition and fundamental principle of Force, Liquid Pressure & Pascal's Law?",
@@ -10610,6 +10629,7 @@ export const CURRICULUM = {
             "title": "Light: Refraction & Curved Mirrors",
             "subtopics": "Refraction through Glass Prism, Convex & Concave Lenses, Ray Diagrams, Real & Virtual Images",
             "definition": "Refraction is the bending of light when it passes obliquely from one transparent medium to another of different optical density.",
+            "content": "<p>This topic is an integral part of the ICSE/CBSE board syllabus. Master core concepts, fundamental relations, and step-by-step numerical applications to achieve top scores.</p>\n<h4>Key Study Points & Principles</h4>\n<ul>\n  <li><strong>Core Concept:</strong> Understand the fundamental definition and physical mechanisms.</li>\n  <li><strong>Formulas & Units:</strong> Double-check all variables, constants, and SI unit conversions before calculations.</li>\n  <li><strong>Exam Technique:</strong> Structure answers using clear bullet points, labeled diagrams, and boxed final answers.</li>\n</ul>\n<div class=\"example-box\"><strong>Board Exam Strategy:</strong> Practice past 10 years' solved board questions to familiarize yourself with high-yield derivations and marking schemes.</div>",
             "qa": [
               {
                 "q": "What is the core definition and fundamental principle of Light: Refraction & Curved Mirrors?",
@@ -10634,6 +10654,7 @@ export const CURRICULUM = {
             "title": "Sound Waves & Echoes",
             "subtopics": "Production & Propagation of Sound, Amplitude & Loudness, Frequency & Pitch, Noise Pollution",
             "definition": "Sound travels as longitudinal mechanical waves requiring a material medium. Pitch depends on frequency; loudness depends on amplitude.",
+            "content": "<p>This topic is an integral part of the ICSE/CBSE board syllabus. Master core concepts, fundamental relations, and step-by-step numerical applications to achieve top scores.</p>\n<h4>Key Study Points & Principles</h4>\n<ul>\n  <li><strong>Core Concept:</strong> Understand the fundamental definition and physical mechanisms.</li>\n  <li><strong>Formulas & Units:</strong> Double-check all variables, constants, and SI unit conversions before calculations.</li>\n  <li><strong>Exam Technique:</strong> Structure answers using clear bullet points, labeled diagrams, and boxed final answers.</li>\n</ul>\n<div class=\"example-box\"><strong>Board Exam Strategy:</strong> Practice past 10 years' solved board questions to familiarize yourself with high-yield derivations and marking schemes.</div>",
             "qa": [
               {
                 "q": "What is the core definition and fundamental principle of Sound Waves & Echoes?",
@@ -10663,6 +10684,7 @@ export const CURRICULUM = {
             "title": "Atomic Structure & Chemical Bonding",
             "subtopics": "Rutherford & Bohr Model, Atomic Number Z, Mass Number A, Electrovalent & Covalent Bonds",
             "definition": "An electrovalent (ionic) bond involves transfer of electrons; a covalent bond involves sharing of electron pairs.",
+            "content": "<p>This topic is an integral part of the ICSE/CBSE board syllabus. Master core concepts, fundamental relations, and step-by-step numerical applications to achieve top scores.</p>\n<h4>Key Study Points & Principles</h4>\n<ul>\n  <li><strong>Core Concept:</strong> Understand the fundamental definition and physical mechanisms.</li>\n  <li><strong>Formulas & Units:</strong> Double-check all variables, constants, and SI unit conversions before calculations.</li>\n  <li><strong>Exam Technique:</strong> Structure answers using clear bullet points, labeled diagrams, and boxed final answers.</li>\n</ul>\n<div class=\"example-box\"><strong>Board Exam Strategy:</strong> Practice past 10 years' solved board questions to familiarize yourself with high-yield derivations and marking schemes.</div>",
             "qa": [
               {
                 "q": "What is the core definition and fundamental principle of Atomic Structure & Chemical Bonding?",
@@ -10687,6 +10709,7 @@ export const CURRICULUM = {
             "title": "Chemical Reactions & Equations",
             "subtopics": "Combination, Decomposition, Displacement, Double Displacement, Balancing Chemical Equations",
             "definition": "A chemical reaction rearranges atoms to form new substances. Equations are balanced to satisfy the Law of Conservation of Mass.",
+            "content": "<p>This topic is an integral part of the ICSE/CBSE board syllabus. Master core concepts, fundamental relations, and step-by-step numerical applications to achieve top scores.</p>\n<h4>Key Study Points & Principles</h4>\n<ul>\n  <li><strong>Core Concept:</strong> Understand the fundamental definition and physical mechanisms.</li>\n  <li><strong>Formulas & Units:</strong> Double-check all variables, constants, and SI unit conversions before calculations.</li>\n  <li><strong>Exam Technique:</strong> Structure answers using clear bullet points, labeled diagrams, and boxed final answers.</li>\n</ul>\n<div class=\"example-box\"><strong>Board Exam Strategy:</strong> Practice past 10 years' solved board questions to familiarize yourself with high-yield derivations and marking schemes.</div>",
             "qa": [
               {
                 "q": "What is the core definition and fundamental principle of Chemical Reactions & Equations?",
@@ -10711,6 +10734,7 @@ export const CURRICULUM = {
             "title": "Study of Hydrogen & Carbon Allotropes",
             "subtopics": "Preparation of Hydrogen, Oxidation & Reduction, Diamond, Graphite, Fullerenes",
             "definition": "Carbon exhibits allotropy (Diamond, Graphite). Diamond is hard with tetrahedral 3D structure; Graphite is a soft conductor with hexagonal layers.",
+            "content": "<p>This topic is an integral part of the ICSE/CBSE board syllabus. Master core concepts, fundamental relations, and step-by-step numerical applications to achieve top scores.</p>\n<h4>Key Study Points & Principles</h4>\n<ul>\n  <li><strong>Core Concept:</strong> Understand the fundamental definition and physical mechanisms.</li>\n  <li><strong>Formulas & Units:</strong> Double-check all variables, constants, and SI unit conversions before calculations.</li>\n  <li><strong>Exam Technique:</strong> Structure answers using clear bullet points, labeled diagrams, and boxed final answers.</li>\n</ul>\n<div class=\"example-box\"><strong>Board Exam Strategy:</strong> Practice past 10 years' solved board questions to familiarize yourself with high-yield derivations and marking schemes.</div>",
             "qa": [
               {
                 "q": "What is the core definition and fundamental principle of Study of Hydrogen & Carbon Allotropes?",
@@ -10740,6 +10764,7 @@ export const CURRICULUM = {
             "title": "Transport in Plants (Xylem & Phloem)",
             "subtopics": "Osmosis, Diffusion, Transpiration, Ascent of Sap, Xylem Vessels & Phloem Sieve Tubes",
             "definition": "Osmosis is the movement of water molecules from a region of higher water concentration to lower concentration through a semi-permeable membrane.",
+            "content": "<p>This topic is an integral part of the ICSE/CBSE board syllabus. Master core concepts, fundamental relations, and step-by-step numerical applications to achieve top scores.</p>\n<h4>Key Study Points & Principles</h4>\n<ul>\n  <li><strong>Core Concept:</strong> Understand the fundamental definition and physical mechanisms.</li>\n  <li><strong>Formulas & Units:</strong> Double-check all variables, constants, and SI unit conversions before calculations.</li>\n  <li><strong>Exam Technique:</strong> Structure answers using clear bullet points, labeled diagrams, and boxed final answers.</li>\n</ul>\n<div class=\"example-box\"><strong>Board Exam Strategy:</strong> Practice past 10 years' solved board questions to familiarize yourself with high-yield derivations and marking schemes.</div>",
             "qa": [
               {
                 "q": "What is the core definition and fundamental principle of Transport in Plants?",
@@ -10764,6 +10789,7 @@ export const CURRICULUM = {
             "title": "Reproduction in Plants and Animals",
             "subtopics": "Asexual Reproduction (Binary Fission, Budding), Sexual Reproduction in Plants & Humans, Fertilisation",
             "definition": "Reproduction ensures continuity of species. Fertilisation is the fusion of male and female gametes to form a diploid zygote.",
+            "content": "<p>This topic is an integral part of the ICSE/CBSE board syllabus. Master core concepts, fundamental relations, and step-by-step numerical applications to achieve top scores.</p>\n<h4>Key Study Points & Principles</h4>\n<ul>\n  <li><strong>Core Concept:</strong> Understand the fundamental definition and physical mechanisms.</li>\n  <li><strong>Formulas & Units:</strong> Double-check all variables, constants, and SI unit conversions before calculations.</li>\n  <li><strong>Exam Technique:</strong> Structure answers using clear bullet points, labeled diagrams, and boxed final answers.</li>\n</ul>\n<div class=\"example-box\"><strong>Board Exam Strategy:</strong> Practice past 10 years' solved board questions to familiarize yourself with high-yield derivations and marking schemes.</div>",
             "qa": [
               {
                 "q": "What is the core definition and fundamental principle of Reproduction in Plants and Animals?",
@@ -10788,6 +10814,7 @@ export const CURRICULUM = {
             "title": "Human Endocrine System & Hormones",
             "subtopics": "Pituitary, Thyroid, Adrenal & Pancreas Glands, Insulin, Thyroxine, Adrenaline, Growth Hormone",
             "definition": "Endocrine glands secrete hormones directly into the bloodstream to regulate metabolic rate, stress response, and growth.",
+            "content": "<p>This topic is an integral part of the ICSE/CBSE board syllabus. Master core concepts, fundamental relations, and step-by-step numerical applications to achieve top scores.</p>\n<h4>Key Study Points & Principles</h4>\n<ul>\n  <li><strong>Core Concept:</strong> Understand the fundamental definition and physical mechanisms.</li>\n  <li><strong>Formulas & Units:</strong> Double-check all variables, constants, and SI unit conversions before calculations.</li>\n  <li><strong>Exam Technique:</strong> Structure answers using clear bullet points, labeled diagrams, and boxed final answers.</li>\n</ul>\n<div class=\"example-box\"><strong>Board Exam Strategy:</strong> Practice past 10 years' solved board questions to familiarize yourself with high-yield derivations and marking schemes.</div>",
             "qa": [
               {
                 "q": "What is the core definition and fundamental principle of Human Endocrine System & Hormones?",
@@ -10827,6 +10854,7 @@ export const CURRICULUM = {
             "title": "Rational and Irrational Numbers",
             "subtopics": "Surds, Rationalisation of Denominator, Real Numbers on Number Line",
             "definition": "Irrational numbers cannot be written as p/q where p, q ∈ Z and q ≠ 0. Their decimal expansion is non-terminating and non-recurring.",
+            "content": "<p>This topic is an integral part of the ICSE/CBSE board syllabus. Master core concepts, fundamental relations, and step-by-step numerical applications to achieve top scores.</p>\n<h4>Key Study Points & Principles</h4>\n<ul>\n  <li><strong>Core Concept:</strong> Understand the fundamental definition and physical mechanisms.</li>\n  <li><strong>Formulas & Units:</strong> Double-check all variables, constants, and SI unit conversions before calculations.</li>\n  <li><strong>Exam Technique:</strong> Structure answers using clear bullet points, labeled diagrams, and boxed final answers.</li>\n</ul>\n<div class=\"example-box\"><strong>Board Exam Strategy:</strong> Practice past 10 years' solved board questions to familiarize yourself with high-yield derivations and marking schemes.</div>",
             "qa": [
               {
                 "q": "What is the core definition and fundamental principle of Rational and Irrational Numbers?",
@@ -10851,6 +10879,7 @@ export const CURRICULUM = {
             "title": "Expansions and Factorisation",
             "subtopics": "(a+b+c)², (a±b)³, a³±b³, Factor Theorem, Splitting Middle Term",
             "definition": "Algebraic identities allow expansion of polynomials and factorisation of second and third degree expressions.",
+            "content": "<p>This topic is an integral part of the ICSE/CBSE board syllabus. Master core concepts, fundamental relations, and step-by-step numerical applications to achieve top scores.</p>\n<h4>Key Study Points & Principles</h4>\n<ul>\n  <li><strong>Core Concept:</strong> Understand the fundamental definition and physical mechanisms.</li>\n  <li><strong>Formulas & Units:</strong> Double-check all variables, constants, and SI unit conversions before calculations.</li>\n  <li><strong>Exam Technique:</strong> Structure answers using clear bullet points, labeled diagrams, and boxed final answers.</li>\n</ul>\n<div class=\"example-box\"><strong>Board Exam Strategy:</strong> Practice past 10 years' solved board questions to familiarize yourself with high-yield derivations and marking schemes.</div>",
             "qa": [
               {
                 "q": "What is the core definition and fundamental principle of Expansions and Factorisation?",
@@ -10875,6 +10904,7 @@ export const CURRICULUM = {
             "title": "Simultaneous Linear Equations",
             "subtopics": "Elimination Method, Substitution Method, Cross-Multiplication Method, Word Problems",
             "definition": "Simultaneous linear equations in two variables ax + by + c = 0 represent straight lines whose intersection gives the unique solution.",
+            "content": "<p>This topic is an integral part of the ICSE/CBSE board syllabus. Master core concepts, fundamental relations, and step-by-step numerical applications to achieve top scores.</p>\n<h4>Key Study Points & Principles</h4>\n<ul>\n  <li><strong>Core Concept:</strong> Understand the fundamental definition and physical mechanisms.</li>\n  <li><strong>Formulas & Units:</strong> Double-check all variables, constants, and SI unit conversions before calculations.</li>\n  <li><strong>Exam Technique:</strong> Structure answers using clear bullet points, labeled diagrams, and boxed final answers.</li>\n</ul>\n<div class=\"example-box\"><strong>Board Exam Strategy:</strong> Practice past 10 years' solved board questions to familiarize yourself with high-yield derivations and marking schemes.</div>",
             "qa": [
               {
                 "q": "What is the core definition and fundamental principle of Simultaneous Linear Equations?",
@@ -10899,6 +10929,7 @@ export const CURRICULUM = {
             "title": "Triangles, Congruence & Pythagoras Theorem",
             "subtopics": "SAS, ASA, SSS, RHS Congruence, Mid-Point Theorem, Pythagoras Theorem h² = p² + b²",
             "definition": "In a right-angled triangle, the square of the hypotenuse equals the sum of squares of the other two sides (Pythagoras Theorem).",
+            "content": "<p>This topic is an integral part of the ICSE/CBSE board syllabus. Master core concepts, fundamental relations, and step-by-step numerical applications to achieve top scores.</p>\n<h4>Key Study Points & Principles</h4>\n<ul>\n  <li><strong>Core Concept:</strong> Understand the fundamental definition and physical mechanisms.</li>\n  <li><strong>Formulas & Units:</strong> Double-check all variables, constants, and SI unit conversions before calculations.</li>\n  <li><strong>Exam Technique:</strong> Structure answers using clear bullet points, labeled diagrams, and boxed final answers.</li>\n</ul>\n<div class=\"example-box\"><strong>Board Exam Strategy:</strong> Practice past 10 years' solved board questions to familiarize yourself with high-yield derivations and marking schemes.</div>",
             "qa": [
               {
                 "q": "What is the core definition and fundamental principle of Triangles, Congruence & Pythagoras Theorem?",
@@ -10923,6 +10954,7 @@ export const CURRICULUM = {
             "title": "Trigonometric Ratios & Statistics",
             "subtopics": "sin, cos, tan, cosec, sec, cot of 0°, 30°, 45°, 60°, 90°, Mean, Median, Frequency Polygon",
             "definition": "Trigonometric ratios relate angles of a right triangle to ratios of its side lengths: sin θ = Perpendicular / Hypotenuse.",
+            "content": "<p>This topic is an integral part of the ICSE/CBSE board syllabus. Master core concepts, fundamental relations, and step-by-step numerical applications to achieve top scores.</p>\n<h4>Key Study Points & Principles</h4>\n<ul>\n  <li><strong>Core Concept:</strong> Understand the fundamental definition and physical mechanisms.</li>\n  <li><strong>Formulas & Units:</strong> Double-check all variables, constants, and SI unit conversions before calculations.</li>\n  <li><strong>Exam Technique:</strong> Structure answers using clear bullet points, labeled diagrams, and boxed final answers.</li>\n</ul>\n<div class=\"example-box\"><strong>Board Exam Strategy:</strong> Practice past 10 years' solved board questions to familiarize yourself with high-yield derivations and marking schemes.</div>",
             "qa": [
               {
                 "q": "What is the core definition and fundamental principle of Trigonometric Ratios & Statistics?",
@@ -10952,6 +10984,7 @@ export const CURRICULUM = {
             "title": "Measurements & Experimentation",
             "subtopics": "Vernier Callipers, Screw Gauge, Least Count, Simple Pendulum T = 2π√(l/g)",
             "definition": "Least Count is the smallest value that can be measured accurately with an instrument. For Vernier Callipers, LC = 1 MSD - 1 VSD.",
+            "content": "<p>This topic is an integral part of the ICSE/CBSE board syllabus. Master core concepts, fundamental relations, and step-by-step numerical applications to achieve top scores.</p>\n<h4>Key Study Points & Principles</h4>\n<ul>\n  <li><strong>Core Concept:</strong> Understand the fundamental definition and physical mechanisms.</li>\n  <li><strong>Formulas & Units:</strong> Double-check all variables, constants, and SI unit conversions before calculations.</li>\n  <li><strong>Exam Technique:</strong> Structure answers using clear bullet points, labeled diagrams, and boxed final answers.</li>\n</ul>\n<div class=\"example-box\"><strong>Board Exam Strategy:</strong> Practice past 10 years' solved board questions to familiarize yourself with high-yield derivations and marking schemes.</div>",
             "qa": [
               {
                 "q": "What is the core definition and fundamental principle of Measurements & Experimentation?",
@@ -10976,6 +11009,7 @@ export const CURRICULUM = {
             "title": "Motion in 1D & Newton's Laws of Motion",
             "subtopics": "v = u + at, s = ut + 1/2 at², v² = u² + 2as, Momentum p = mv, F = ma, Action-Reaction",
             "definition": "Newton's Second Law states that force is the rate of change of momentum (F = dp/dt = ma).",
+            "content": "<p>This topic is an integral part of the ICSE/CBSE board syllabus. Master core concepts, fundamental relations, and step-by-step numerical applications to achieve top scores.</p>\n<h4>Key Study Points & Principles</h4>\n<ul>\n  <li><strong>Core Concept:</strong> Understand the fundamental definition and physical mechanisms.</li>\n  <li><strong>Formulas & Units:</strong> Double-check all variables, constants, and SI unit conversions before calculations.</li>\n  <li><strong>Exam Technique:</strong> Structure answers using clear bullet points, labeled diagrams, and boxed final answers.</li>\n</ul>\n<div class=\"example-box\"><strong>Board Exam Strategy:</strong> Practice past 10 years' solved board questions to familiarize yourself with high-yield derivations and marking schemes.</div>",
             "qa": [
               {
                 "q": "What is the core definition and fundamental principle of Motion in 1D & Newton's Laws of Motion?",
@@ -11000,6 +11034,7 @@ export const CURRICULUM = {
             "title": "Fluid Pressure & Archimedes Principle",
             "subtopics": "Atmospheric Pressure, Barometers, Buoyancy, Upthrust = V ρ g, Law of Floatation",
             "definition": "Archimedes Principle states that a body immersed in a fluid experiences an upthrust equal to the weight of fluid displaced.",
+            "content": "<p>This topic is an integral part of the ICSE/CBSE board syllabus. Master core concepts, fundamental relations, and step-by-step numerical applications to achieve top scores.</p>\n<h4>Key Study Points & Principles</h4>\n<ul>\n  <li><strong>Core Concept:</strong> Understand the fundamental definition and physical mechanisms.</li>\n  <li><strong>Formulas & Units:</strong> Double-check all variables, constants, and SI unit conversions before calculations.</li>\n  <li><strong>Exam Technique:</strong> Structure answers using clear bullet points, labeled diagrams, and boxed final answers.</li>\n</ul>\n<div class=\"example-box\"><strong>Board Exam Strategy:</strong> Practice past 10 years' solved board questions to familiarize yourself with high-yield derivations and marking schemes.</div>",
             "qa": [
               {
                 "q": "What is the core definition and fundamental principle of Fluid Pressure & Archimedes Principle?",
@@ -11024,6 +11059,7 @@ export const CURRICULUM = {
             "title": "Propagation of Sound Waves",
             "subtopics": "Longitudinal vs Transverse Waves, Speed of Sound v = f λ, Echoes & Ultrasound",
             "definition": "Speed of sound in air is v = f λ. Echo requires a minimum reflecting surface distance of 17 metres at 20°C.",
+            "content": "<p>This topic is an integral part of the ICSE/CBSE board syllabus. Master core concepts, fundamental relations, and step-by-step numerical applications to achieve top scores.</p>\n<h4>Key Study Points & Principles</h4>\n<ul>\n  <li><strong>Core Concept:</strong> Understand the fundamental definition and physical mechanisms.</li>\n  <li><strong>Formulas & Units:</strong> Double-check all variables, constants, and SI unit conversions before calculations.</li>\n  <li><strong>Exam Technique:</strong> Structure answers using clear bullet points, labeled diagrams, and boxed final answers.</li>\n</ul>\n<div class=\"example-box\"><strong>Board Exam Strategy:</strong> Practice past 10 years' solved board questions to familiarize yourself with high-yield derivations and marking schemes.</div>",
             "qa": [
               {
                 "q": "What is the core definition and fundamental principle of Propagation of Sound Waves?",
@@ -11048,6 +11084,7 @@ export const CURRICULUM = {
             "title": "Current Electricity & Magnetism",
             "subtopics": "Electric Current I = Q/t, Potential Difference V = W/Q, Magnetic Field Lines, Electromagnets",
             "definition": "Electric current is the rate of flow of electric charge (I = Q/t). SI unit is Ampere (A).",
+            "content": "<p>This topic is an integral part of the ICSE/CBSE board syllabus. Master core concepts, fundamental relations, and step-by-step numerical applications to achieve top scores.</p>\n<h4>Key Study Points & Principles</h4>\n<ul>\n  <li><strong>Core Concept:</strong> Understand the fundamental definition and physical mechanisms.</li>\n  <li><strong>Formulas & Units:</strong> Double-check all variables, constants, and SI unit conversions before calculations.</li>\n  <li><strong>Exam Technique:</strong> Structure answers using clear bullet points, labeled diagrams, and boxed final answers.</li>\n</ul>\n<div class=\"example-box\"><strong>Board Exam Strategy:</strong> Practice past 10 years' solved board questions to familiarize yourself with high-yield derivations and marking schemes.</div>",
             "qa": [
               {
                 "q": "What is the core definition and fundamental principle of Current Electricity & Magnetism?",
@@ -11077,6 +11114,7 @@ export const CURRICULUM = {
             "title": "Matter & Chemical Changes",
             "subtopics": "Elements, Compounds, Mixtures, Physical vs Chemical Change, Exothermic & Endothermic",
             "definition": "A chemical change is irreversible and forms new substances with distinct chemical properties, accompanied by energy changes.",
+            "content": "<p>This topic is an integral part of the ICSE/CBSE board syllabus. Master core concepts, fundamental relations, and step-by-step numerical applications to achieve top scores.</p>\n<h4>Key Study Points & Principles</h4>\n<ul>\n  <li><strong>Core Concept:</strong> Understand the fundamental definition and physical mechanisms.</li>\n  <li><strong>Formulas & Units:</strong> Double-check all variables, constants, and SI unit conversions before calculations.</li>\n  <li><strong>Exam Technique:</strong> Structure answers using clear bullet points, labeled diagrams, and boxed final answers.</li>\n</ul>\n<div class=\"example-box\"><strong>Board Exam Strategy:</strong> Practice past 10 years' solved board questions to familiarize yourself with high-yield derivations and marking schemes.</div>",
             "qa": [
               {
                 "q": "What is the core definition and fundamental principle of Matter & Chemical Changes?",
@@ -11101,6 +11139,7 @@ export const CURRICULUM = {
             "title": "Water & Hardness of Water",
             "subtopics": "Water as Universal Solvent, Hydrated Salts, Temporary vs Permanent Hardness, Softening",
             "definition": "Hardness of water is caused by dissolved Bicarbonates, Chlorides, and Sulphates of Calcium and Magnesium.",
+            "content": "<p>This topic is an integral part of the ICSE/CBSE board syllabus. Master core concepts, fundamental relations, and step-by-step numerical applications to achieve top scores.</p>\n<h4>Key Study Points & Principles</h4>\n<ul>\n  <li><strong>Core Concept:</strong> Understand the fundamental definition and physical mechanisms.</li>\n  <li><strong>Formulas & Units:</strong> Double-check all variables, constants, and SI unit conversions before calculations.</li>\n  <li><strong>Exam Technique:</strong> Structure answers using clear bullet points, labeled diagrams, and boxed final answers.</li>\n</ul>\n<div class=\"example-box\"><strong>Board Exam Strategy:</strong> Practice past 10 years' solved board questions to familiarize yourself with high-yield derivations and marking schemes.</div>",
             "qa": [
               {
                 "q": "What is the core definition and fundamental principle of Water & Hardness of Water?",
@@ -11125,6 +11164,7 @@ export const CURRICULUM = {
             "title": "Atomic Structure & Periodic Table",
             "subtopics": "Subatomic Particles, Electronic Configuration 2n², Valency, Dobereiner, Newlands, Mendeleev Table",
             "definition": "Modern Periodic Law states that properties of elements are periodic functions of their atomic numbers.",
+            "content": "<p>This topic is an integral part of the ICSE/CBSE board syllabus. Master core concepts, fundamental relations, and step-by-step numerical applications to achieve top scores.</p>\n<h4>Key Study Points & Principles</h4>\n<ul>\n  <li><strong>Core Concept:</strong> Understand the fundamental definition and physical mechanisms.</li>\n  <li><strong>Formulas & Units:</strong> Double-check all variables, constants, and SI unit conversions before calculations.</li>\n  <li><strong>Exam Technique:</strong> Structure answers using clear bullet points, labeled diagrams, and boxed final answers.</li>\n</ul>\n<div class=\"example-box\"><strong>Board Exam Strategy:</strong> Practice past 10 years' solved board questions to familiarize yourself with high-yield derivations and marking schemes.</div>",
             "qa": [
               {
                 "q": "What is the core definition and fundamental principle of Atomic Structure & Periodic Table?",
@@ -11149,6 +11189,7 @@ export const CURRICULUM = {
             "title": "Gas Laws (Boyle's & Charles' Law)",
             "subtopics": "Boyle's Law P1 V1 = P2 V2, Charles' Law V1/T1 = V2/T2, Gas Equation P1 V1 / T1 = P2 V2 / T2",
             "definition": "Boyle's Law states that at constant temperature, pressure of a given mass of gas is inversely proportional to volume (P ∝ 1/V).",
+            "content": "<p>This topic is an integral part of the ICSE/CBSE board syllabus. Master core concepts, fundamental relations, and step-by-step numerical applications to achieve top scores.</p>\n<h4>Key Study Points & Principles</h4>\n<ul>\n  <li><strong>Core Concept:</strong> Understand the fundamental definition and physical mechanisms.</li>\n  <li><strong>Formulas & Units:</strong> Double-check all variables, constants, and SI unit conversions before calculations.</li>\n  <li><strong>Exam Technique:</strong> Structure answers using clear bullet points, labeled diagrams, and boxed final answers.</li>\n</ul>\n<div class=\"example-box\"><strong>Board Exam Strategy:</strong> Practice past 10 years' solved board questions to familiarize yourself with high-yield derivations and marking schemes.</div>",
             "qa": [
               {
                 "q": "What is the core definition and fundamental principle of Gas Laws (Boyle's & Charles' Law)?",
@@ -11178,6 +11219,7 @@ export const CURRICULUM = {
             "title": "Cell: Structure & Plant/Animal Tissues",
             "subtopics": "Organelles (Mitochondria, Endoplasmic Reticulum, Golgi), Meristematic, Epithelial, Connective Tissues",
             "definition": "The cell is the basic structural and functional unit of life. Mitochondria are the powerhouse of the cell.",
+            "content": "<p>This topic is an integral part of the ICSE/CBSE board syllabus. Master core concepts, fundamental relations, and step-by-step numerical applications to achieve top scores.</p>\n<h4>Key Study Points & Principles</h4>\n<ul>\n  <li><strong>Core Concept:</strong> Understand the fundamental definition and physical mechanisms.</li>\n  <li><strong>Formulas & Units:</strong> Double-check all variables, constants, and SI unit conversions before calculations.</li>\n  <li><strong>Exam Technique:</strong> Structure answers using clear bullet points, labeled diagrams, and boxed final answers.</li>\n</ul>\n<div class=\"example-box\"><strong>Board Exam Strategy:</strong> Practice past 10 years' solved board questions to familiarize yourself with high-yield derivations and marking schemes.</div>",
             "qa": [
               {
                 "q": "What is the core definition and fundamental principle of Cell: Structure & Plant/Animal Tissues?",
@@ -11202,6 +11244,7 @@ export const CURRICULUM = {
             "title": "Flower, Pollination & Seeds",
             "subtopics": "Parts of Flower, Self vs Cross Pollination, Fertilisation, Seed Structure & Germination",
             "definition": "Pollination is the transfer of pollen grains from the anther to the stigma of a flower.",
+            "content": "<p>This topic is an integral part of the ICSE/CBSE board syllabus. Master core concepts, fundamental relations, and step-by-step numerical applications to achieve top scores.</p>\n<h4>Key Study Points & Principles</h4>\n<ul>\n  <li><strong>Core Concept:</strong> Understand the fundamental definition and physical mechanisms.</li>\n  <li><strong>Formulas & Units:</strong> Double-check all variables, constants, and SI unit conversions before calculations.</li>\n  <li><strong>Exam Technique:</strong> Structure answers using clear bullet points, labeled diagrams, and boxed final answers.</li>\n</ul>\n<div class=\"example-box\"><strong>Board Exam Strategy:</strong> Practice past 10 years' solved board questions to familiarize yourself with high-yield derivations and marking schemes.</div>",
             "qa": [
               {
                 "q": "What is the core definition and fundamental principle of Flower, Pollination & Seeds?",
@@ -11226,6 +11269,7 @@ export const CURRICULUM = {
             "title": "Human Digestion, Respiration & Hygiene",
             "subtopics": "Alimentary Canal, Digestive Enzymes, Respiratory System, Bacterial & Viral Diseases, First Aid",
             "definition": "Digestion breaks down complex insoluble food molecules into simple soluble forms using digestive enzymes.",
+            "content": "<p>This topic is an integral part of the ICSE/CBSE board syllabus. Master core concepts, fundamental relations, and step-by-step numerical applications to achieve top scores.</p>\n<h4>Key Study Points & Principles</h4>\n<ul>\n  <li><strong>Core Concept:</strong> Understand the fundamental definition and physical mechanisms.</li>\n  <li><strong>Formulas & Units:</strong> Double-check all variables, constants, and SI unit conversions before calculations.</li>\n  <li><strong>Exam Technique:</strong> Structure answers using clear bullet points, labeled diagrams, and boxed final answers.</li>\n</ul>\n<div class=\"example-box\"><strong>Board Exam Strategy:</strong> Practice past 10 years' solved board questions to familiarize yourself with high-yield derivations and marking schemes.</div>",
             "qa": [
               {
                 "q": "What is the core definition and fundamental principle of Human Digestion, Respiration & Hygiene?",
@@ -11265,6 +11309,7 @@ export const CURRICULUM = {
             "title": "Commercial Maths: GST & Banking",
             "subtopics": "Goods and Services Tax (CGST, SGST, IGST), Recurring Deposit (RD) Accounts Interest & Maturity Value",
             "definition": "Recurring Deposit Maturity Value MV = P * n + P * [n(n+1)/2] * (r/100) * (1/12).",
+            "content": "<p>This topic is an integral part of the ICSE/CBSE board syllabus. Master core concepts, fundamental relations, and step-by-step numerical applications to achieve top scores.</p>\n<h4>Key Study Points & Principles</h4>\n<ul>\n  <li><strong>Core Concept:</strong> Understand the fundamental definition and physical mechanisms.</li>\n  <li><strong>Formulas & Units:</strong> Double-check all variables, constants, and SI unit conversions before calculations.</li>\n  <li><strong>Exam Technique:</strong> Structure answers using clear bullet points, labeled diagrams, and boxed final answers.</li>\n</ul>\n<div class=\"example-box\"><strong>Board Exam Strategy:</strong> Practice past 10 years' solved board questions to familiarize yourself with high-yield derivations and marking schemes.</div>",
             "qa": [
               {
                 "q": "What is the core definition and fundamental principle of Commercial Maths: GST & Banking?",
@@ -11289,6 +11334,7 @@ export const CURRICULUM = {
             "title": "Algebra: Quadratic Equations, Matrices & AP",
             "subtopics": "Discriminant b²-4ac, Matrix Addition & Multiplication, Arithmetic Progression nth Term & Sum",
             "definition": "For quadratic ax² + bx + c = 0, roots are real and equal if D = b²-4ac = 0.",
+            "content": "<p>This topic is an integral part of the ICSE/CBSE board syllabus. Master core concepts, fundamental relations, and step-by-step numerical applications to achieve top scores.</p>\n<h4>Key Study Points & Principles</h4>\n<ul>\n  <li><strong>Core Concept:</strong> Understand the fundamental definition and physical mechanisms.</li>\n  <li><strong>Formulas & Units:</strong> Double-check all variables, constants, and SI unit conversions before calculations.</li>\n  <li><strong>Exam Technique:</strong> Structure answers using clear bullet points, labeled diagrams, and boxed final answers.</li>\n</ul>\n<div class=\"example-box\"><strong>Board Exam Strategy:</strong> Practice past 10 years' solved board questions to familiarize yourself with high-yield derivations and marking schemes.</div>",
             "qa": [
               {
                 "q": "What is the core definition and fundamental principle of Algebra: Quadratic Equations, Matrices & AP?",
@@ -11313,6 +11359,7 @@ export const CURRICULUM = {
             "title": "Coordinate Geometry & Similarity",
             "subtopics": "Reflection in x/y-axis, Section Formula, Slope m = tan θ, Equation of Line, Similar Triangles",
             "definition": "Section Formula: Point P dividing line segment joining (x1,y1) and (x2,y2) in ratio m:n has coordinates ((mx2+nx1)/(m+n), (my2+ny1)/(m+n)).",
+            "content": "<p>This topic is an integral part of the ICSE/CBSE board syllabus. Master core concepts, fundamental relations, and step-by-step numerical applications to achieve top scores.</p>\n<h4>Key Study Points & Principles</h4>\n<ul>\n  <li><strong>Core Concept:</strong> Understand the fundamental definition and physical mechanisms.</li>\n  <li><strong>Formulas & Units:</strong> Double-check all variables, constants, and SI unit conversions before calculations.</li>\n  <li><strong>Exam Technique:</strong> Structure answers using clear bullet points, labeled diagrams, and boxed final answers.</li>\n</ul>\n<div class=\"example-box\"><strong>Board Exam Strategy:</strong> Practice past 10 years' solved board questions to familiarize yourself with high-yield derivations and marking schemes.</div>",
             "qa": [
               {
                 "q": "What is the core definition and fundamental principle of Coordinate Geometry & Similarity?",
@@ -11337,6 +11384,7 @@ export const CURRICULUM = {
             "title": "Circles, Tangents & Mensuration",
             "subtopics": "Angle in Semi-circle, Cyclic Quadrilateral, Tangent Theorem, Cylinder, Cone, Sphere",
             "definition": "Angle subtended by an arc at the center is double the angle subtended by it at any point on the remaining circumference.",
+            "content": "<p>This topic is an integral part of the ICSE/CBSE board syllabus. Master core concepts, fundamental relations, and step-by-step numerical applications to achieve top scores.</p>\n<h4>Key Study Points & Principles</h4>\n<ul>\n  <li><strong>Core Concept:</strong> Understand the fundamental definition and physical mechanisms.</li>\n  <li><strong>Formulas & Units:</strong> Double-check all variables, constants, and SI unit conversions before calculations.</li>\n  <li><strong>Exam Technique:</strong> Structure answers using clear bullet points, labeled diagrams, and boxed final answers.</li>\n</ul>\n<div class=\"example-box\"><strong>Board Exam Strategy:</strong> Practice past 10 years' solved board questions to familiarize yourself with high-yield derivations and marking schemes.</div>",
             "qa": [
               {
                 "q": "What is the core definition and fundamental principle of Circles, Tangents & Mensuration?",
@@ -11361,6 +11409,7 @@ export const CURRICULUM = {
             "title": "Trigonometric Identities, Heights & Ogive Stats",
             "subtopics": "sin²θ + cos²θ = 1, Heights & Distances, Histogram, Ogive & Median, Probability P(E) = m/n",
             "definition": "An Ogive (cumulative frequency curve) is used to graphically determine the median, lower quartile Q1, and upper quartile Q3.",
+            "content": "<p>This topic is an integral part of the ICSE/CBSE board syllabus. Master core concepts, fundamental relations, and step-by-step numerical applications to achieve top scores.</p>\n<h4>Key Study Points & Principles</h4>\n<ul>\n  <li><strong>Core Concept:</strong> Understand the fundamental definition and physical mechanisms.</li>\n  <li><strong>Formulas & Units:</strong> Double-check all variables, constants, and SI unit conversions before calculations.</li>\n  <li><strong>Exam Technique:</strong> Structure answers using clear bullet points, labeled diagrams, and boxed final answers.</li>\n</ul>\n<div class=\"example-box\"><strong>Board Exam Strategy:</strong> Practice past 10 years' solved board questions to familiarize yourself with high-yield derivations and marking schemes.</div>",
             "qa": [
               {
                 "q": "What is the core definition and fundamental principle of Trigonometric Identities, Heights & Ogive Stats?",
@@ -11389,7 +11438,8 @@ export const CURRICULUM = {
             "id": "icse10-force-work-power",
             "title": "Force, Principle of Moments & Pulley Machines",
             "subtopics": "Turning Effect of Force, Principle of Moments, Pulleys (VR, MA, Efficiency η = MA/VR)",
-            "definition": "Principle of Moments: For a body in equilibrium, sum of anticlockwise moments = sum of clockwise moments.",
+            "definition": "Principle of Moments: For a body in equilibrium, the sum of anticlockwise moments about a pivot equals the sum of clockwise moments (Σ Clockwise = Σ Anticlockwise).",
+            "content": "<p>This topic is an integral part of the ICSE/CBSE board syllabus. Master core concepts, fundamental relations, and step-by-step numerical applications to achieve top scores.</p>\n<h4>Key Study Points & Principles</h4>\n<ul>\n  <li><strong>Core Concept:</strong> Understand the fundamental definition and physical mechanisms.</li>\n  <li><strong>Formulas & Units:</strong> Double-check all variables, constants, and SI unit conversions before calculations.</li>\n  <li><strong>Exam Technique:</strong> Structure answers using clear bullet points, labeled diagrams, and boxed final answers.</li>\n</ul>\n<div class=\"example-box\"><strong>Board Exam Strategy:</strong> Practice past 10 years' solved board questions to familiarize yourself with high-yield derivations and marking schemes.</div>",
             "qa": [
               {
                 "q": "What is the core definition and fundamental principle of Force, Principle of Moments & Pulley Machines?",
@@ -11413,7 +11463,8 @@ export const CURRICULUM = {
             "id": "icse10-light-lenses-spectrum",
             "title": "Refraction of Light, Lenses & Spectrum",
             "subtopics": "Snell's Law sin i / sin r = μ, Total Internal Reflection, Critical Angle, Convex Lens Ray Diagrams, Spectrum",
-            "definition": "Critical angle is the angle of incidence in a denser medium for which angle of refraction in rarer medium is 90°.",
+            "definition": "Refraction is the bending of light as it passes obliquely from one transparent medium into another due to a change in the speed of light.",
+            "content": "<p>This topic is an integral part of the ICSE/CBSE board syllabus. Master core concepts, fundamental relations, and step-by-step numerical applications to achieve top scores.</p>\n<h4>Key Study Points & Principles</h4>\n<ul>\n  <li><strong>Core Concept:</strong> Understand the fundamental definition and physical mechanisms.</li>\n  <li><strong>Formulas & Units:</strong> Double-check all variables, constants, and SI unit conversions before calculations.</li>\n  <li><strong>Exam Technique:</strong> Structure answers using clear bullet points, labeled diagrams, and boxed final answers.</li>\n</ul>\n<div class=\"example-box\"><strong>Board Exam Strategy:</strong> Practice past 10 years' solved board questions to familiarize yourself with high-yield derivations and marking schemes.</div>",
             "qa": [
               {
                 "q": "What is the core definition and fundamental principle of Refraction of Light, Lenses & Spectrum?",
@@ -11437,7 +11488,8 @@ export const CURRICULUM = {
             "id": "icse10-sound-echoes-resonance",
             "title": "Sound: Echoes, Natural & Forced Vibrations",
             "subtopics": "Echo minimum distance d = 17m, Damped & Forced Vibrations, Resonance Condition",
-            "definition": "Resonance occurs when frequency of applied periodic force matches natural frequency of body, producing large amplitude oscillations.",
+            "definition": "An echo is the repetition of sound caused by reflection of sound waves from a distant rigid obstacle like a wall, cliff, or mountain.",
+            "content": "<p>This topic is an integral part of the ICSE/CBSE board syllabus. Master core concepts, fundamental relations, and step-by-step numerical applications to achieve top scores.</p>\n<h4>Key Study Points & Principles</h4>\n<ul>\n  <li><strong>Core Concept:</strong> Understand the fundamental definition and physical mechanisms.</li>\n  <li><strong>Formulas & Units:</strong> Double-check all variables, constants, and SI unit conversions before calculations.</li>\n  <li><strong>Exam Technique:</strong> Structure answers using clear bullet points, labeled diagrams, and boxed final answers.</li>\n</ul>\n<div class=\"example-box\"><strong>Board Exam Strategy:</strong> Practice past 10 years' solved board questions to familiarize yourself with high-yield derivations and marking schemes.</div>",
             "qa": [
               {
                 "q": "What is the core definition and fundamental principle of Sound: Echoes, Natural & Forced Vibrations?",
@@ -11462,6 +11514,7 @@ export const CURRICULUM = {
             "title": "Current Electricity, Household Circuits & Calorimetry",
             "subtopics": "Ohm's Law R = ρ l/A, Fuse, Earthing, Specific Heat Capacity Q = m c ΔT, Latent Heat Q = m L",
             "definition": "Heat capacity Q = m c ΔT. Specific heat capacity c is heat required to raise temperature of 1 kg mass by 1°C.",
+            "content": "<p>This topic is an integral part of the ICSE/CBSE board syllabus. Master core concepts, fundamental relations, and step-by-step numerical applications to achieve top scores.</p>\n<h4>Key Study Points & Principles</h4>\n<ul>\n  <li><strong>Core Concept:</strong> Understand the fundamental definition and physical mechanisms.</li>\n  <li><strong>Formulas & Units:</strong> Double-check all variables, constants, and SI unit conversions before calculations.</li>\n  <li><strong>Exam Technique:</strong> Structure answers using clear bullet points, labeled diagrams, and boxed final answers.</li>\n</ul>\n<div class=\"example-box\"><strong>Board Exam Strategy:</strong> Practice past 10 years' solved board questions to familiarize yourself with high-yield derivations and marking schemes.</div>",
             "qa": [
               {
                 "q": "What is the core definition and fundamental principle of Current Electricity, Household Circuits & Calorimetry?",
@@ -11486,6 +11539,7 @@ export const CURRICULUM = {
             "title": "Radioactivity & Nuclear Physics",
             "subtopics": "Alpha, Beta & Gamma Radiations, Radioactive Decay, Nuclear Fission & Fusion",
             "definition": "Radioactivity is the spontaneous disintegration of an unstable atomic nucleus with emission of alpha, beta, or gamma radiation.",
+            "content": "<p>This topic is an integral part of the ICSE/CBSE board syllabus. Master core concepts, fundamental relations, and step-by-step numerical applications to achieve top scores.</p>\n<h4>Key Study Points & Principles</h4>\n<ul>\n  <li><strong>Core Concept:</strong> Understand the fundamental definition and physical mechanisms.</li>\n  <li><strong>Formulas & Units:</strong> Double-check all variables, constants, and SI unit conversions before calculations.</li>\n  <li><strong>Exam Technique:</strong> Structure answers using clear bullet points, labeled diagrams, and boxed final answers.</li>\n</ul>\n<div class=\"example-box\"><strong>Board Exam Strategy:</strong> Practice past 10 years' solved board questions to familiarize yourself with high-yield derivations and marking schemes.</div>",
             "qa": [
               {
                 "q": "What is the core definition and fundamental principle of Radioactivity & Nuclear Physics?",
@@ -11515,6 +11569,7 @@ export const CURRICULUM = {
             "title": "Periodic Table, Chemical Bonding & Acids Bases",
             "subtopics": "Periodic Trends (Ionisation Potential, Electron Affinity, Electronegativity), Ionic & Covalent Bonding, pH Scale",
             "definition": "Ionisation potential is the energy required to remove an electron from an isolated gaseous atom in its ground state.",
+            "content": "<p>This topic is an integral part of the ICSE/CBSE board syllabus. Master core concepts, fundamental relations, and step-by-step numerical applications to achieve top scores.</p>\n<h4>Key Study Points & Principles</h4>\n<ul>\n  <li><strong>Core Concept:</strong> Understand the fundamental definition and physical mechanisms.</li>\n  <li><strong>Formulas & Units:</strong> Double-check all variables, constants, and SI unit conversions before calculations.</li>\n  <li><strong>Exam Technique:</strong> Structure answers using clear bullet points, labeled diagrams, and boxed final answers.</li>\n</ul>\n<div class=\"example-box\"><strong>Board Exam Strategy:</strong> Practice past 10 years' solved board questions to familiarize yourself with high-yield derivations and marking schemes.</div>",
             "qa": [
               {
                 "q": "What is the core definition and fundamental principle of Periodic Table, Chemical Bonding & Acids Bases?",
@@ -11539,6 +11594,7 @@ export const CURRICULUM = {
             "title": "Analytical Chemistry, Mole Concept & Electrolysis",
             "subtopics": "Action of NaOH and NH4OH on Salts, Molecular Weight = 2 x Vapour Density, Electrolysis of Water, CuSO4, Electroplating",
             "definition": "According to Gay-Lussac's Law and Mole Concept, Molecular Weight = 2 × Vapour Density.",
+            "content": "<p>This topic is an integral part of the ICSE/CBSE board syllabus. Master core concepts, fundamental relations, and step-by-step numerical applications to achieve top scores.</p>\n<h4>Key Study Points & Principles</h4>\n<ul>\n  <li><strong>Core Concept:</strong> Understand the fundamental definition and physical mechanisms.</li>\n  <li><strong>Formulas & Units:</strong> Double-check all variables, constants, and SI unit conversions before calculations.</li>\n  <li><strong>Exam Technique:</strong> Structure answers using clear bullet points, labeled diagrams, and boxed final answers.</li>\n</ul>\n<div class=\"example-box\"><strong>Board Exam Strategy:</strong> Practice past 10 years' solved board questions to familiarize yourself with high-yield derivations and marking schemes.</div>",
             "qa": [
               {
                 "q": "What is the core definition and fundamental principle of Analytical Chemistry, Mole Concept & Electrolysis?",
@@ -11563,6 +11619,7 @@ export const CURRICULUM = {
             "title": "Metallurgy & Study of Compounds (HCl, NH3, HNO3, H2SO4)",
             "subtopics": "Extraction of Aluminium (Hall-Heroult Process), Preparation and Properties of HCl, Ammonia, Nitric & Sulphuric Acid",
             "definition": "Hall-Heroult Process extracts Aluminium by electrolysis of fused alumina (Al2O3) mixed with cryolite (Na3AlF6).",
+            "content": "<p>This topic is an integral part of the ICSE/CBSE board syllabus. Master core concepts, fundamental relations, and step-by-step numerical applications to achieve top scores.</p>\n<h4>Key Study Points & Principles</h4>\n<ul>\n  <li><strong>Core Concept:</strong> Understand the fundamental definition and physical mechanisms.</li>\n  <li><strong>Formulas & Units:</strong> Double-check all variables, constants, and SI unit conversions before calculations.</li>\n  <li><strong>Exam Technique:</strong> Structure answers using clear bullet points, labeled diagrams, and boxed final answers.</li>\n</ul>\n<div class=\"example-box\"><strong>Board Exam Strategy:</strong> Practice past 10 years' solved board questions to familiarize yourself with high-yield derivations and marking schemes.</div>",
             "qa": [
               {
                 "q": "What is the core definition and fundamental principle of Metallurgy & Study of Compounds?",
@@ -11587,6 +11644,7 @@ export const CURRICULUM = {
             "title": "Organic Chemistry (IUPAC Alkanes, Alkenes, Alkynes)",
             "subtopics": "IUPAC Nomenclature, Homologous Series, Alkanes Substitution, Alkenes Addition, Alcohols & Carboxylic Acids",
             "definition": "Organic chemistry studies carbon compounds. Alkanes are saturated hydrocarbons (C_n H_{2n+2}); Alkenes contain a C=C double bond (C_n H_{2n}).",
+            "content": "<p>This topic is an integral part of the ICSE/CBSE board syllabus. Master core concepts, fundamental relations, and step-by-step numerical applications to achieve top scores.</p>\n<h4>Key Study Points & Principles</h4>\n<ul>\n  <li><strong>Core Concept:</strong> Understand the fundamental definition and physical mechanisms.</li>\n  <li><strong>Formulas & Units:</strong> Double-check all variables, constants, and SI unit conversions before calculations.</li>\n  <li><strong>Exam Technique:</strong> Structure answers using clear bullet points, labeled diagrams, and boxed final answers.</li>\n</ul>\n<div class=\"example-box\"><strong>Board Exam Strategy:</strong> Practice past 10 years' solved board questions to familiarize yourself with high-yield derivations and marking schemes.</div>",
             "qa": [
               {
                 "q": "What is the core definition and fundamental principle of Organic Chemistry?",
@@ -11616,6 +11674,7 @@ export const CURRICULUM = {
             "title": "Cell Division, Chromosomes & Mendel Genetics",
             "subtopics": "Mitosis vs Meiosis, Structure of Chromosome, Monohybrid & Dihybrid Cross, Genetic Disorders",
             "definition": "Mitosis produces two genetically identical diploid daughter cells for growth and repair. Meiosis produces four haploid gamete cells.",
+            "content": "<p>This topic is an integral part of the ICSE/CBSE board syllabus. Master core concepts, fundamental relations, and step-by-step numerical applications to achieve top scores.</p>\n<h4>Key Study Points & Principles</h4>\n<ul>\n  <li><strong>Core Concept:</strong> Understand the fundamental definition and physical mechanisms.</li>\n  <li><strong>Formulas & Units:</strong> Double-check all variables, constants, and SI unit conversions before calculations.</li>\n  <li><strong>Exam Technique:</strong> Structure answers using clear bullet points, labeled diagrams, and boxed final answers.</li>\n</ul>\n<div class=\"example-box\"><strong>Board Exam Strategy:</strong> Practice past 10 years' solved board questions to familiarize yourself with high-yield derivations and marking schemes.</div>",
             "qa": [
               {
                 "q": "What is the core definition and fundamental principle of Cell Division, Chromosomes & Mendel Genetics?",
@@ -11640,6 +11699,7 @@ export const CURRICULUM = {
             "title": "Plant Physiology: Absorption, Transpiration & Photosynthesis",
             "subtopics": "Root Hair Absorption, Osmotic Pressure, Factors affecting Transpiration, Light & Dark Reactions of Photosynthesis",
             "definition": "Photosynthesis converts solar energy into chemical energy: 6CO2 + 6H2O --(light/chlorophyll)--> C6H12O6 + 6O2.",
+            "content": "<p>This topic is an integral part of the ICSE/CBSE board syllabus. Master core concepts, fundamental relations, and step-by-step numerical applications to achieve top scores.</p>\n<h4>Key Study Points & Principles</h4>\n<ul>\n  <li><strong>Core Concept:</strong> Understand the fundamental definition and physical mechanisms.</li>\n  <li><strong>Formulas & Units:</strong> Double-check all variables, constants, and SI unit conversions before calculations.</li>\n  <li><strong>Exam Technique:</strong> Structure answers using clear bullet points, labeled diagrams, and boxed final answers.</li>\n</ul>\n<div class=\"example-box\"><strong>Board Exam Strategy:</strong> Practice past 10 years' solved board questions to familiarize yourself with high-yield derivations and marking schemes.</div>",
             "qa": [
               {
                 "q": "What is the core definition and fundamental principle of Plant Physiology?",
@@ -11664,6 +11724,7 @@ export const CURRICULUM = {
             "title": "Human Circulatory & Excretory System",
             "subtopics": "Heart Structure, Double Circulation, Blood Groups, Structure of Nephron, Urine Formation",
             "definition": "Nephron is the structural unit of the kidney. Double circulation involves Pulmonary and Systemic circulation.",
+            "content": "<p>This topic is an integral part of the ICSE/CBSE board syllabus. Master core concepts, fundamental relations, and step-by-step numerical applications to achieve top scores.</p>\n<h4>Key Study Points & Principles</h4>\n<ul>\n  <li><strong>Core Concept:</strong> Understand the fundamental definition and physical mechanisms.</li>\n  <li><strong>Formulas & Units:</strong> Double-check all variables, constants, and SI unit conversions before calculations.</li>\n  <li><strong>Exam Technique:</strong> Structure answers using clear bullet points, labeled diagrams, and boxed final answers.</li>\n</ul>\n<div class=\"example-box\"><strong>Board Exam Strategy:</strong> Practice past 10 years' solved board questions to familiarize yourself with high-yield derivations and marking schemes.</div>",
             "qa": [
               {
                 "q": "What is the core definition and fundamental principle of Human Circulatory & Excretory System?",
@@ -11688,6 +11749,7 @@ export const CURRICULUM = {
             "title": "Nervous System, Endocrine System & Pollution",
             "subtopics": "Brain, Reflex Arc, Pituitary & Thyroid Hormones, Air & Water Pollution Control",
             "definition": "Reflex arc is the neural pathway that controls a rapid, involuntary reflex action.",
+            "content": "<p>This topic is an integral part of the ICSE/CBSE board syllabus. Master core concepts, fundamental relations, and step-by-step numerical applications to achieve top scores.</p>\n<h4>Key Study Points & Principles</h4>\n<ul>\n  <li><strong>Core Concept:</strong> Understand the fundamental definition and physical mechanisms.</li>\n  <li><strong>Formulas & Units:</strong> Double-check all variables, constants, and SI unit conversions before calculations.</li>\n  <li><strong>Exam Technique:</strong> Structure answers using clear bullet points, labeled diagrams, and boxed final answers.</li>\n</ul>\n<div class=\"example-box\"><strong>Board Exam Strategy:</strong> Practice past 10 years' solved board questions to familiarize yourself with high-yield derivations and marking schemes.</div>",
             "qa": [
               {
                 "q": "What is the core definition and fundamental principle of Nervous System, Endocrine System & Pollution?",
@@ -11717,6 +11779,7 @@ export const CURRICULUM = {
             "title": "Java Object-Oriented Concepts & Methods",
             "subtopics": "Class as User Defined Type, Default & Parameterized Constructors, Method Overloading, Pass by Value",
             "definition": "Constructors initialize newly created objects. Method overloading allows multiple methods with same name but different parameter lists.",
+            "content": "<p>This topic is an integral part of the ICSE/CBSE board syllabus. Master core concepts, fundamental relations, and step-by-step numerical applications to achieve top scores.</p>\n<h4>Key Study Points & Principles</h4>\n<ul>\n  <li><strong>Core Concept:</strong> Understand the fundamental definition and physical mechanisms.</li>\n  <li><strong>Formulas & Units:</strong> Double-check all variables, constants, and SI unit conversions before calculations.</li>\n  <li><strong>Exam Technique:</strong> Structure answers using clear bullet points, labeled diagrams, and boxed final answers.</li>\n</ul>\n<div class=\"example-box\"><strong>Board Exam Strategy:</strong> Practice past 10 years' solved board questions to familiarize yourself with high-yield derivations and marking schemes.</div>",
             "qa": [
               {
                 "q": "What is the core definition and fundamental principle of Java Object-Oriented Concepts & Methods?",
@@ -11741,6 +11804,7 @@ export const CURRICULUM = {
             "title": "Java 1D/2D Arrays & String Handling",
             "subtopics": "Linear Search, Binary Search, Bubble Sort, Selection Sort, String Methods (length, charAt, substring, compareTo)",
             "definition": "Binary Search finds target element in a sorted array in O(log n) time complexity.",
+            "content": "<p>This topic is an integral part of the ICSE/CBSE board syllabus. Master core concepts, fundamental relations, and step-by-step numerical applications to achieve top scores.</p>\n<h4>Key Study Points & Principles</h4>\n<ul>\n  <li><strong>Core Concept:</strong> Understand the fundamental definition and physical mechanisms.</li>\n  <li><strong>Formulas & Units:</strong> Double-check all variables, constants, and SI unit conversions before calculations.</li>\n  <li><strong>Exam Technique:</strong> Structure answers using clear bullet points, labeled diagrams, and boxed final answers.</li>\n</ul>\n<div class=\"example-box\"><strong>Board Exam Strategy:</strong> Practice past 10 years' solved board questions to familiarize yourself with high-yield derivations and marking schemes.</div>",
             "qa": [
               {
                 "q": "What is the core definition and fundamental principle of Java 1D/2D Arrays & String Handling?",
@@ -11804,7 +11868,7 @@ export const CURRICULUM = {
             "id": "isc11-thermo",
             "title": "Thermodynamics & Heat Transfer",
             "subtopics": "1st & 2nd Laws of Thermodynamics, Carnot Engine, Isothermal & Adiabatic Processes",
-            "definition": "1st Law: Q = dU + W.",
+            "definition": "Thermodynamics is the branch of physics dealing with heat, work, internal energy, and the laws governing energy transformation in physical and chemical systems.",
             "content": "<p>Carnot efficiency eta = 1 - (T2/T1).</p>",
             "qa": [
               {
@@ -11834,7 +11898,7 @@ export const CURRICULUM = {
             "id": "isc11-bonding",
             "title": "Chemical Bonding & Molecular Structure",
             "subtopics": "VSEPR Theory, Hybridisation (sp, sp2, sp3), Molecular Orbital Theory",
-            "definition": "Hybridisation involves mixing of atomic orbitals of comparable energy.",
+            "definition": "Chemical bonding describes the attractive forces that hold atoms or ions together to form stable molecules and crystal lattices, explained by VSEPR theory, hybridization, and Molecular Orbital Theory (MOT).",
             "content": "<p>CH4 is sp3 tetrahedral; C2H4 is sp2 planar; C2H2 is sp linear.</p>",
             "qa": [
               {

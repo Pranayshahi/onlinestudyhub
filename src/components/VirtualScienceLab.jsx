@@ -165,8 +165,49 @@ export default function VirtualScienceLab({ defaultLab = 'optics' }) {
         ctx.lineTo(x, y);
       }
     }
-    ctx.stroke();
   }, [activeLab, velocity, angle, gravity]);
+
+  // Pendulum Oscillation Render
+  const [pendulumAngle, setPendulumAngle] = useState(0);
+  useEffect(() => {
+    if (activeLab !== 'pendulum') return;
+    const canvas = pendulumCanvasRef.current;
+    if (!canvas) return;
+    const ctx = canvas.getContext('2d');
+    const w = canvas.width;
+    const h = canvas.height;
+    const pivotX = w / 2;
+    const pivotY = 20;
+
+    let time = 0;
+    const timer = setInterval(() => {
+      time += 0.05;
+      const omega = Math.sqrt(pendulumGravity / length);
+      const theta = 0.4 * Math.cos(omega * time);
+      setPendulumAngle(theta);
+
+      ctx.clearRect(0, 0, w, h);
+
+      // Pivot Base
+      ctx.fillStyle = '#64748b';
+      ctx.fillRect(pivotX - 40, 10, 80, 10);
+
+      // String
+      const bobX = pivotX + (length * 100) * Math.sin(theta);
+      const bobY = pivotY + (length * 100) * Math.cos(theta);
+
+      ctx.strokeStyle = '#38bdf8';
+      ctx.lineWidth = 2;
+      ctx.beginPath(); ctx.moveTo(pivotX, pivotY + 5); ctx.lineTo(bobX, bobY); ctx.stroke();
+
+      // Bob
+      ctx.fillStyle = '#ef4444';
+      ctx.beginPath(); ctx.arc(bobX, bobY, 18, 0, 2 * Math.PI); ctx.fill();
+      ctx.strokeStyle = '#fff'; ctx.lineWidth = 2; ctx.stroke();
+    }, 30);
+
+    return () => clearInterval(timer);
+  }, [activeLab, length, pendulumGravity]);
 
   // 3D Molecule Spin Render
   useEffect(() => {
@@ -247,6 +288,7 @@ export default function VirtualScienceLab({ defaultLab = 'optics' }) {
           {[
             { id: 'optics',       label: '🔬 Ray Optics Lens', icon: '🔍' },
             { id: 'projectile',   label: '🚀 Projectile Launcher', icon: '🎯' },
+            { id: 'pendulum',     label: '⏱️ Simple Pendulum', icon: '⚖️' },
             { id: '3d-molecule',   label: '⚛️ 3D Molecular Viewer', icon: '🧬' },
             { id: 'titration',    label: '🧪 Acid-Base Titration', icon: '⚗️' },
             { id: 'phet',         label: '🌐 PhET Interactive Hub', icon: '🌍' },
@@ -325,6 +367,33 @@ export default function VirtualScienceLab({ defaultLab = 'optics' }) {
                 <div>
                   <label style={{ fontSize: '.8rem', fontWeight: 800, color: '#fef08a' }}>Launch Angle (θ): {angle}°</label>
                   <input type="range" min="15" max="75" value={angle} onChange={e => setAngle(Number(e.target.value))} style={{ width: '100%', marginTop: '.4rem' }} />
+                </div>
+              </div>
+            </div>
+          )}
+
+          {/* LAB 3: SIMPLE PENDULUM FREQUENCY ADJUSTER */}
+          {activeLab === 'pendulum' && (
+            <div>
+              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '1rem', marginBottom: '1rem' }}>
+                <h4 style={{ fontFamily: 'Nunito', fontWeight: 900, color: '#fff', margin: 0, fontSize: '1.1rem' }}>
+                  ⏱️ Simple Pendulum Harmonic Oscillator
+                </h4>
+                <span style={{ fontSize: '.8rem', color: '#6ee7b7', background: 'rgba(16,185,129,0.2)', padding: '.3rem .75rem', borderRadius: 10 }}>
+                  Time Period T = 2π √(L / g) = {(2 * Math.PI * Math.sqrt(length / pendulumGravity)).toFixed(2)}s
+                </span>
+              </div>
+
+              <canvas ref={pendulumCanvasRef} width={760} height={220} style={{ width: '100%', height: 'auto', background: '#0f172a', borderRadius: 16, border: '1px solid rgba(255,255,255,0.1)' }} />
+
+              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '1rem', marginTop: '1.25rem' }}>
+                <div>
+                  <label style={{ fontSize: '.8rem', fontWeight: 800, color: '#6ee7b7' }}>Pendulum Length (L): {length} m</label>
+                  <input type="range" min="0.5" max="2.5" step="0.1" value={length} onChange={e => setLength(Number(e.target.value))} style={{ width: '100%', marginTop: '.4rem' }} />
+                </div>
+                <div>
+                  <label style={{ fontSize: '.8rem', fontWeight: 800, color: '#6ee7b7' }}>Gravity (g): {pendulumGravity} m/s²</label>
+                  <input type="range" min="1.6" max="25" step="0.2" value={pendulumGravity} onChange={e => setPendulumGravity(Number(e.target.value))} style={{ width: '100%', marginTop: '.4rem' }} />
                 </div>
               </div>
             </div>
