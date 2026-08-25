@@ -1156,11 +1156,12 @@ app.post('/api/ai-doubt/upload-image', upload.single('image'), async (req, res) 
 
 // Candidate Groq models in priority order
 const GROQ_MODEL_CANDIDATES = [
+  'groq/compound',
+  'openai/gpt-oss-120b',
+  'openai/gpt-oss-20b',
+  'qwen/qwen3.6-27b',
   'llama-3.3-70b-versatile',
-  'llama-3.1-8b-instant',
-  'llama-3.2-11b-vision-preview',
-  'qwen-2.5-coder-32b',
-  'deepseek-r1-distill-qwen-32b'
+  'llama-3.1-8b-instant'
 ];
 
 async function callGroqWithFallback(payload, groqKey) {
@@ -1191,9 +1192,11 @@ async function callGroqWithFallback(payload, groqKey) {
       if (
         resp.status === 404 ||
         resp.status === 400 ||
+        resp.status === 429 ||
         msg.includes('does not exist') ||
         msg.includes('access') ||
         msg.includes('model') ||
+        msg.includes('Rate limit') ||
         msg.includes('decommissioned')
       ) {
         continue;
